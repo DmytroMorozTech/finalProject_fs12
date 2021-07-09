@@ -22,7 +22,6 @@
     "watch-styles-sass": "npm-watch",
     "stylelint-fix-sass": "stylelint --fix 'src/**/*.scss'"
   },
-
   "watch": {
     "stylelint-dev": {
       "patterns": [
@@ -31,7 +30,6 @@
       "extensions": "scss"
     }
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
