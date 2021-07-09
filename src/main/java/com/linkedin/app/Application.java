@@ -14,5 +14,6 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("CommandLineRunner is executed before the main method in SpringApplication.");
+        System.out.println("OUR APPLICATION HAS STARTED !!!");
     }
 }
