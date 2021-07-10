@@ -12,11 +12,11 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = ApiRequestException.class)
     public ResponseEntity<Object> handleApiRequestException(
-            ApiRequestException e
+            ApiRequestException ex
     ) {
 
         ApiException apiException = new ApiException(
-                e.getMessage(),
+                ex.getMessage(),
                 HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now()
         );
@@ -26,11 +26,11 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<Object> handleNotFoundException(
-            NotFoundException e
+            NotFoundException ex
     ) {
 
         ApiException apiException = new ApiException(
-                e.getMessage(),
+                ex.getMessage(),
                 HttpStatus.NOT_FOUND,
                 ZonedDateTime.now()
         );
@@ -40,11 +40,11 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = ConflictException.class)
     public ResponseEntity<Object> handleConflictException(
-            ConflictException e
+            ConflictException ex
     ) {
 
         ApiException apiException = new ApiException(
-                e.getMessage(),
+                ex.getMessage(),
                 HttpStatus.CONFLICT,
                 ZonedDateTime.now()
         );
@@ -54,11 +54,11 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = ForbiddenException.class)
     public ResponseEntity<Object> handleForbiddenException(
-            ForbiddenException e
+            ForbiddenException ex
     ) {
 
         ApiException apiException = new ApiException(
-                e.getMessage(),
+                ex.getMessage(),
                 HttpStatus.CONFLICT,
                 ZonedDateTime.now()
         );
