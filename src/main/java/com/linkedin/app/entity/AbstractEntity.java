@@ -28,5 +28,4 @@ public abstract class AbstractEntity {
     @Column(name = "modified_date")
     @LastModifiedDate
     private Date lastModifiedDate;
-
 }
