@@ -7,13 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("CommandLineRunner is executed before the main method in SpringApplication.");
-        System.out.println("OUR APPLICATION HAS STARTED !!!");
-    }
+  @Override
+  public void run(String... args) throws Exception {
+    System.out.println("CommandLineRunner is executed before the main method in SpringApplication.");
+    System.out.println("OUR APPLICATION HAS STARTED !!!");
+  }
 }
