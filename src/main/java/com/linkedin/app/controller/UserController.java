@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping("/users/current")
     public UserDtoRes getActiveUser() {
 
-        // temporary active user id is hardcoded, when we realize security it will be changed;
+        // temporary active user id is hardcoded, when we realize "login" it will be changed;
         long activeUserId = 1;
         UserDtoRes activeUser = userFacade.convertToDto(userService.getActiveUser(activeUserId));
         log.info("Active user: " + activeUser.getLogin());

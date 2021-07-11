@@ -21,19 +21,13 @@ public class UserServiceImp implements UserService {
     @Override
     public User getActiveUser(long id) {
 
-        // uncomment it when realise DB;
-//        Optional<User> activeUser = userRepository.findById(id);
-//        if (activeUser.isPresent()) {
-//            return activeUser.get();
-//        } else throw new NoSuchUserException("User with id= " + " doesn't exist!");
-
         //temporary to test
-        User user = new User(1, "Serhii", "Romaniuk", "sergii@gmail.com", "380631003509", 33, "scini", "secret");
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        return users
-                .stream()
-                .filter(u -> u.getId() == id)
-                .findFirst().get();
+        User user = new User(1, "Gianluigi", "Donnarumma", "gian_donna@gmail.com", "393290233725", 22, "gianni", "secret");
+        userRepository.save(user);
+
+        Optional<User> activeUser = userRepository.findById(id);
+        if (activeUser.isPresent()) {
+            return activeUser.get();
+        } else throw new NoSuchUserException("User with id= " + " doesn't exist!");
     }
 }
