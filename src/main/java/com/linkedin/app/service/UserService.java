@@ -1,4 +1,10 @@
 package com.linkedin.app.service;
 
-public class UserService {
+import com.linkedin.app.entity.User;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface UserService {
+
+    public User getActiveUser(long id);
 }
