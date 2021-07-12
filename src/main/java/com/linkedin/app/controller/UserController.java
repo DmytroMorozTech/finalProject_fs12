@@ -1,7 +1,6 @@
 package com.linkedin.app.controller;
 
 import com.linkedin.app.dto.UserDtoRes;
-import com.linkedin.app.entity.User;
 import com.linkedin.app.facade.UserFacade;
 import com.linkedin.app.service.UserService;
 import lombok.RequiredArgsConstructor;

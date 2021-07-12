@@ -24,6 +24,8 @@ public class UserServiceImp implements UserService {
         Optional<User> activeUser = userRepository.findById(id);
         if (activeUser.isPresent()) {
             return activeUser.get();
-        } else throw new NoSuchUserException("User with id= " + " doesn't exist!");
+        } else {
+            throw new NoSuchUserException("User with id= " + " doesn't exist!");
+        }
     }
 }
