@@ -12,20 +12,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImp implements UserService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    @Override
-    public User getActiveUser(long id) {
+  @Override
+  public User getActiveUser(long id) {
 
-        //temporary to test
-        User user = new User(1, "Gianluigi", "Donnarumma", "gian_donna@gmail.com", "393290233725", 22, "gianni", "secret");
-        userRepository.save(user);
+    //temporary to test
+    User user = new User(1, "Gianluigi", "Donnarumma", "gian_donna@gmail.com", "393290233725", 22, "gianni", "secret");
+    userRepository.save(user);
 
-        Optional<User> activeUser = userRepository.findById(id);
-        if (activeUser.isPresent()) {
-            return activeUser.get();
-        } else {
-            throw new NoSuchUserException("User with id= " + " doesn't exist!");
-        }
+    Optional<User> activeUser = userRepository.findById(id);
+    if (activeUser.isPresent()) {
+      return activeUser.get();
+    } else {
+      throw new NoSuchUserException("User with id= " + " doesn't exist!");
     }
+  }
 }

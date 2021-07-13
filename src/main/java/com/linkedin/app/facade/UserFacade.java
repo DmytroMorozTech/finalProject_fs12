@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade {
 
-    private final ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
-    public UserFacade() {
-        this.modelMapper = new ModelMapper();
-    }
+  public UserFacade() {
+    this.modelMapper = new ModelMapper();
+  }
 
-    public UserDtoRes convertToDto(User user) {
-        return modelMapper.map(user, UserDtoRes.class);
-    }
+  public UserDtoRes convertToDto(User user) {
+    return modelMapper.map(user, UserDtoRes.class);
+  }
 
-    public User convertToEntity(UserDtoReq userDtoReq) {
-        return modelMapper.map(userDtoReq, User.class);
-    }
+  public User convertToEntity(UserDtoReq userDtoReq) {
+    return modelMapper.map(userDtoReq, User.class);
+  }
 }

@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
-    private final UserFacade userFacade;
+  private final UserService userService;
+  private final UserFacade userFacade;
 
-    @GetMapping("/users/current")
-    public UserDtoRes getActiveUser() {
+  @GetMapping("/users/current")
+  public UserDtoRes getActiveUser() {
 
-        // temporary active user id is hardcoded, when we realize "login" it will be changed;
-        long activeUserId = 1;
-        UserDtoRes activeUser = userFacade.convertToDto(userService.getActiveUser(activeUserId));
-        log.info("Active user: " + activeUser.getLogin());
-        return activeUser;
-    }
+    // temporary active user id is hardcoded, when we realize "login" it will be changed;
+    long activeUserId = 1;
+    UserDtoRes activeUser = userFacade.convertToDto(userService.getActiveUser(activeUserId));
+    log.info("Active user: " + activeUser.getLogin());
+    return activeUser;
+  }
 }

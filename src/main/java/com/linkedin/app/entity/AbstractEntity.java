@@ -22,15 +22,15 @@ import java.util.Date;
 @Data
 public abstract class AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-    @Column(name = "created_date", updatable = false)
-    @CreatedDate
-    private Date createdDate;
+  @Column(name = "created_date", updatable = false)
+  @CreatedDate
+  private Date createdDate;
 
-    @Column(name = "modified_date")
-    @LastModifiedDate
-    private Date lastModifiedDate;
+  @Column(name = "modified_date")
+  @LastModifiedDate
+  private Date lastModifiedDate;
 }
