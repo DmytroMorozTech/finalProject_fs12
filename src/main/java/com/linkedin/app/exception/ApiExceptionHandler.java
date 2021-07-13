@@ -10,59 +10,59 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(value = ApiRequestException.class)
-    public ResponseEntity<Object> handleApiRequestException(
-            ApiRequestException ex
-    ) {
+  @ExceptionHandler(value = ApiRequestException.class)
+  public ResponseEntity<Object> handleApiRequestException(
+      ApiRequestException ex
+  ) {
 
-        ApiException apiException = new ApiException(
-                ex.getMessage(),
-                HttpStatus.BAD_REQUEST,
-                ZonedDateTime.now()
-        );
+    ApiException apiException = new ApiException(
+        ex.getMessage(),
+        HttpStatus.BAD_REQUEST,
+        ZonedDateTime.now()
+    );
 
-        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+  }
 
-    @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Object> handleNotFoundException(
-            NotFoundException ex
-    ) {
+  @ExceptionHandler(value = NotFoundException.class)
+  public ResponseEntity<Object> handleNotFoundException(
+      NotFoundException ex
+  ) {
 
-        ApiException apiException = new ApiException(
-                ex.getMessage(),
-                HttpStatus.NOT_FOUND,
-                ZonedDateTime.now()
-        );
+    ApiException apiException = new ApiException(
+        ex.getMessage(),
+        HttpStatus.NOT_FOUND,
+        ZonedDateTime.now()
+    );
 
-        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
-    }
+    return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+  }
 
-    @ExceptionHandler(value = ConflictException.class)
-    public ResponseEntity<Object> handleConflictException(
-            ConflictException ex
-    ) {
+  @ExceptionHandler(value = ConflictException.class)
+  public ResponseEntity<Object> handleConflictException(
+      ConflictException ex
+  ) {
 
-        ApiException apiException = new ApiException(
-                ex.getMessage(),
-                HttpStatus.CONFLICT,
-                ZonedDateTime.now()
-        );
+    ApiException apiException = new ApiException(
+        ex.getMessage(),
+        HttpStatus.CONFLICT,
+        ZonedDateTime.now()
+    );
 
-        return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
-    }
+    return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
+  }
 
-    @ExceptionHandler(value = ForbiddenException.class)
-    public ResponseEntity<Object> handleForbiddenException(
-            ForbiddenException ex
-    ) {
+  @ExceptionHandler(value = ForbiddenException.class)
+  public ResponseEntity<Object> handleForbiddenException(
+      ForbiddenException ex
+  ) {
 
-        ApiException apiException = new ApiException(
-                ex.getMessage(),
-                HttpStatus.CONFLICT,
-                ZonedDateTime.now()
-        );
+    ApiException apiException = new ApiException(
+        ex.getMessage(),
+        HttpStatus.CONFLICT,
+        ZonedDateTime.now()
+    );
 
-        return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
-    }
+    return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
+  }
 }
