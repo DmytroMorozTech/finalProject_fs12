@@ -9,36 +9,36 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity(name = "Users")
+@Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "users")
+@Table(name = "user")
 public class User extends AbstractEntity {
 
   @Column(name = "id")
   private long id;
 
-  @Column(name = "u_first_name")
+  @Column(name = "first_name")
   private String firstName;
 
-  @Column(name = "u_last_name")
+  @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "u_email")
+  @Column(name = "email")
   private String email;
 
-  @Column(name = "u_cell")
+  @Column(name = "cell")
   private String cell;
 
-  @Column(name = "u_age")
+  @Column(name = "age")
   private Integer age;
 
-  @Column(name = "u_login")
+  @Column(name = "login")
   private String login;
 
-  @Column(name = "u_password")
+  @Column(name = "password")
   private String password;
 
 }
