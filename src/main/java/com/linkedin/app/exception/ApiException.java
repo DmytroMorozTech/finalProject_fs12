@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @ToString
 public class ApiException {
-    private final String message;
-    private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;
+  private final String message;
+  private final HttpStatus httpStatus;
+  private final ZonedDateTime zonedDateTime;
 }

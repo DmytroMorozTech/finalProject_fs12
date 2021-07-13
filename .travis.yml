@@ -9,7 +9,7 @@ cache:
 before_install:
   - nvm install node
 before_script:
-  - nvm install --prefix ./src/frontend/
+  - npm install --prefix ./src/frontend/
 script:
   - mvn clean test
   - npm run build --prefix ./src/frontend/
