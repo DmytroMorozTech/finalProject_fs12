@@ -7,7 +7,7 @@ cache:
     - $HOME/.m2
     - ./src/frontend/node_modules/
 before_install:
-  - npm install node
+  - nvm install node
 before_script:
   - npm install --prefix ./src/frontend/
 script:
