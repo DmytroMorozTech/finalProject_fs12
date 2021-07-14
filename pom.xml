@@ -9,7 +9,6 @@
     <description>Social network which helps to find a job</description>
     <properties>
         <java.version>11</java.version>
-        <spring.cloud-version>2020.0.0</spring.cloud-version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,21 +16,10 @@
         <version>2.4.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud-version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
     <dependencies>
 
         <!--Spring boot starter dependencies-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -54,30 +42,26 @@
         </dependency>
 
         <!--Lombok dependencies-->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!--h2database dependencies-->
-
+        <!--h2 database dependency-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!--Postgre SQL dependencies-->
-
+        <!--Postgre SQL dependency-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!--Model mapper dependencies-->
-
+        <!--Model mapper dependency-->
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
@@ -90,22 +74,12 @@
         <plugins>
 
             <!--Spring boot maven plugin-->
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
 
             <!--Maven compiler plugin-->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -116,7 +90,6 @@
             </plugin>
 
             <!--Frontend maven plugin-->
-
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
@@ -160,7 +133,6 @@
             </plugin>
 
             <!--Maven resources plugin-->
-
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -175,7 +147,6 @@
                                 <resource>
                                     <directory>src/frontend/build</directory>
                                 </resource>
-
                             </resources>
                             <outputDirectory>${basedir}/target/classes/static</outputDirectory>
                         </configuration>
@@ -184,7 +155,6 @@
             </plugin>
 
             <!--Maven checkstyle plugin-->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -209,4 +179,3 @@
         </plugins>
     </build>
 </project>
-
