@@ -1,4 +1,4 @@
-package com.linkedin.app.utils;
+package com.danit.fs12.utils;
 
 import org.springframework.data.domain.AuditorAware;
 

@@ -1,4 +1,4 @@
-package com.linkedin.app.dto;
+package com.danit.fs12.dto;
 
 import lombok.Data;
 

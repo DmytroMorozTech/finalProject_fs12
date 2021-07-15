@@ -1,7 +1,3 @@
-info:
-  app:
-    name: Spring Homework No.2
-
 spring:
   h2:
     console:

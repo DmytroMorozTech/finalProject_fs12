@@ -1,4 +1,4 @@
-package com.linkedin.app.entity;
+package com.danit.fs12.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
