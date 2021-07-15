@@ -1,11 +1,9 @@
-package com.linkedin.app.controller;
+package com.danit.fs12.controller;
 
-import com.linkedin.app.dto.UserDtoRes;
-import com.linkedin.app.facade.UserFacade;
-import com.linkedin.app.service.UserService;
+import com.danit.fs12.facade.UserFacade;
+import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

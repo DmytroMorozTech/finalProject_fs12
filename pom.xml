@@ -3,10 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.danit.fs12</groupId>
-    <artifactId>Linkedin</artifactId>
+    <artifactId>linkedin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app</name>
-    <description>Social network which helps to find a job</description>
+    <description>Social network for professionals, designed to help people make business connections, share their
+        experiences and resumes, and find jobs
+    </description>
     <properties>
         <java.version>11</java.version>
     </properties>

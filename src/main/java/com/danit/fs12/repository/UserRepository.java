@@ -1,6 +1,6 @@
-package com.linkedin.app.repository;
+package com.danit.fs12.repository;
 
-import com.linkedin.app.entity.User;
+import com.danit.fs12.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

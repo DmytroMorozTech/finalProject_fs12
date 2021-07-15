@@ -1,4 +1,4 @@
-package com.linkedin.app.exception;
+package com.danit.fs12.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,6 @@ public class ApiExceptionHandler {
 
     ApiException apiException = new ApiException(
         ex.getMessage(),
-        HttpStatus.BAD_REQUEST,
         ZonedDateTime.now()
     );
 
@@ -31,38 +30,23 @@ public class ApiExceptionHandler {
 
     ApiException apiException = new ApiException(
         ex.getMessage(),
-        HttpStatus.NOT_FOUND,
         ZonedDateTime.now()
     );
 
     return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
   }
 
-  @ExceptionHandler(value = ConflictException.class)
+  @ExceptionHandler(value = {ConflictException.class, ForbiddenException.class})
   public ResponseEntity<Object> handleConflictException(
       ConflictException ex
   ) {
 
     ApiException apiException = new ApiException(
         ex.getMessage(),
-        HttpStatus.CONFLICT,
         ZonedDateTime.now()
     );
 
     return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
   }
 
-  @ExceptionHandler(value = ForbiddenException.class)
-  public ResponseEntity<Object> handleForbiddenException(
-      ForbiddenException ex
-  ) {
-
-    ApiException apiException = new ApiException(
-        ex.getMessage(),
-        HttpStatus.CONFLICT,
-        ZonedDateTime.now()
-    );
-
-    return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
-  }
 }
