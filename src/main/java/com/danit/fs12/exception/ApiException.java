@@ -1,9 +1,8 @@
-package com.linkedin.app.exception;
+package com.danit.fs12.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
@@ -12,6 +11,5 @@ import java.time.ZonedDateTime;
 @ToString
 public class ApiException {
   private final String message;
-  private final HttpStatus httpStatus;
   private final ZonedDateTime zonedDateTime;
 }

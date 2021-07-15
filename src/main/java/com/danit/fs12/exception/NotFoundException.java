@@ -1,4 +1,4 @@
-package com.linkedin.app.exception;
+package com.danit.fs12.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

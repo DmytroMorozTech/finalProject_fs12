@@ -1,4 +1,4 @@
-package com.linkedin.app.exception;
+package com.danit.fs12.exception;
 
 public class ApiRequestException extends RuntimeException {
   public ApiRequestException(String message) {

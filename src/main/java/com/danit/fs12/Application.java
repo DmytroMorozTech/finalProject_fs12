@@ -1,4 +1,4 @@
-package com.linkedin.app;
+package com.danit.fs12;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

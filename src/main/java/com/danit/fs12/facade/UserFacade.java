@@ -1,8 +1,8 @@
-package com.linkedin.app.facade;
+package com.danit.fs12.facade;
 
-import com.linkedin.app.dto.UserDtoReq;
-import com.linkedin.app.dto.UserDtoRes;
-import com.linkedin.app.entity.User;
+import com.danit.fs12.dto.UserDtoReq;
+import com.danit.fs12.dto.UserDtoRes;
+import com.danit.fs12.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

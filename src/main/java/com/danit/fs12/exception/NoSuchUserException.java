@@ -1,4 +1,4 @@
-package com.linkedin.app.exception;
+package com.danit.fs12.exception;
 
 public class NoSuchUserException extends RuntimeException {
 
