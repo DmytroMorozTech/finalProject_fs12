@@ -12,6 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity(name = "CommentEntity")
 @EqualsAndHashCode(callSuper = true)
@@ -23,13 +27,13 @@ public class CommentEntity extends AbstractEntity {
   @Column(name = "id")
   private long id;
 
-  @Column(name="text")
+  @Column(name = "text")
   private String text;
 
-  @Column(name="date_time")
-  private String dateTime;
+  @Column(name = "date_time")
+  private Date dateTime;
 
-  @Column(name="post_id")
+  @Column(name = "post_id")
   private String postId;
 
 //  @JsonIgnore
@@ -49,4 +53,10 @@ public class CommentEntity extends AbstractEntity {
 //      }
 //  )
 //  private Post post;
+
+  @OneToMany(
+      mappedBy = "user_comments",
+      cascade = CascadeType.ALL
+  )
+  private List<User> users = new ArrayList<>();
 }
