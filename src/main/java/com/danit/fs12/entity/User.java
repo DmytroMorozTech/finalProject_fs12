@@ -46,8 +46,7 @@ public class User extends AbstractEntity {
   private String password;
   @OneToMany(
       mappedBy = "user",
-      cascade = CascadeType.ALL
-  )
+      cascade = CascadeType.ALL)
   private List<Post> posts = new ArrayList<>();
 
 }

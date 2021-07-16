@@ -30,8 +30,7 @@ public class Post extends AbstractEntity{
 
   @JsonIgnore
   @ManyToOne(
-      cascade = {CascadeType.PERSIST}
-  )
+      cascade = {CascadeType.PERSIST})
   @JoinTable(
       name = "rel_user_posts",
       joinColumns = {
@@ -42,7 +41,6 @@ public class Post extends AbstractEntity{
       inverseJoinColumns = {
           @JoinColumn(name = "user_id",
               referencedColumnName = "id")
-      }
-  )
+      })
   private User user;
 }

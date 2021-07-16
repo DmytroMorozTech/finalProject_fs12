@@ -15,13 +15,6 @@ public class UserServiceImp implements UserService {
   public User getActiveUser(long id) {
 
     //temporary to test
-    return new User(1,
-        "Gianluigi",
-        "Donnarumma",
-        "gian_donna@gmail.com",
-        "393290233725",
-        22,
-        "gianni",
-        "secret");
+    return new User();
   }
 }
