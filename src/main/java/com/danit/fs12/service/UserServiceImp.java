@@ -1,9 +1,12 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +25,6 @@ public class UserServiceImp implements UserService {
         "393290233725",
         22,
         "gianni",
-        "secret");
+        "secret", Arrays.asList());
   }
 }
