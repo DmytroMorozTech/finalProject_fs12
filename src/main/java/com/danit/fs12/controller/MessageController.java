@@ -21,13 +21,13 @@ public class MessageController {
   @GetMapping("/message")
   public void getMessage() {
 
-    return ;
+    return;
   }
 
   @PostMapping("/message")
   public void postMessage() {
 
-    return ;
+    return;
   }
 }
 

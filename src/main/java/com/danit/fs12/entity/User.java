@@ -47,8 +47,7 @@ public class User extends AbstractEntity {
 
   @OneToMany(
       mappedBy = "user",
-      cascade = CascadeType.ALL
-  )
+      cascade = CascadeType.ALL)
   private List<Message> messages = new ArrayList<>();
 
 }

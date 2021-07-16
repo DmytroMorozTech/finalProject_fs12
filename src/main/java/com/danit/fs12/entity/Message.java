@@ -6,7 +6,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 
 @Table(name = "message")
 @Entity(name = "Message")
@@ -23,9 +29,7 @@ public class Message extends AbstractEntity {
   private String textMessage;
 
   @JsonIgnore
-  @ManyToOne(
-      cascade = {CascadeType.PERSIST}
-  )
+  @ManyToOne(cascade = {CascadeType.PERSIST})
   @JoinTable(
       name = "rel_user_messages",
       joinColumns = {
@@ -36,8 +40,7 @@ public class Message extends AbstractEntity {
       inverseJoinColumns = {
           @JoinColumn(name = "user_id",
               referencedColumnName = "id")// от куда мы берем ИД в сущности user
-      }
-  )
+      })
   private User users;
 
 }
