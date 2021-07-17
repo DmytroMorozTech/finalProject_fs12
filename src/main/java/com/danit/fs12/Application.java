@@ -1,12 +1,17 @@
 package com.danit.fs12;
 
+import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
+import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class Application {
@@ -17,17 +22,43 @@ public class Application {
 
   @Bean
   CommandLineRunner commandLineRunner(
-      UserRepository userRepository
+      UserRepository userRepository,
+      PostRepository postRepository
   ) {
     return args -> {
       generateRandomUsers(userRepository);
-//      User firstUser = userRepository.getOne(1L);
-//      System.out.println(firstUser);
-//      userRepository.deleteById(1L); // this works; so the problem is not with JPA repo
 
-//      System.out.println(firstUser);
-//      Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
-//      firstUser.addPost(postNo1);
+      userRepository
+          .findById(2L)
+          .ifPresentOrElse(System.out::println,
+          () -> {
+            System.out.println("User was not found");
+          });
+
+      userRepository
+          .findById(211L)
+          .ifPresentOrElse(System.out::println,
+              () -> {
+                System.out.println("User was not found");
+              });
+      // will not be found in this case
+
+      List<User> users = userRepository.findAll();
+      users.forEach(System.out::println);
+
+
+      User firstUser = userRepository.findById(1L).get();
+      System.out.println(firstUser);
+
+      Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
+      Post postNo2 = new Post("Tesla's capitalization skyrocketed", "Unexpected turn...");
+      firstUser.addPost(postNo1);
+      firstUser.addPost(postNo2);
+      userRepository.save(firstUser);
+
+      System.out.println("Let's try to print out user with post after replacing toString method");
+      System.out.println(firstUser);
+      System.out.println(firstUser.getPosts());
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
 

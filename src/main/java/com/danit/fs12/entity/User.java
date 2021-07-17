@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -51,10 +52,11 @@ public class User extends AbstractEntity {
     this.password = password;
   }
 
-  @JsonIgnore
   @OneToMany(
       mappedBy = "user",
-      cascade = CascadeType.ALL)
+      cascade = {CascadeType.ALL},
+      fetch = FetchType.EAGER
+  )
   private List<Post> posts = new ArrayList<>();
 
   public void addPost(Post post) {
@@ -64,4 +66,15 @@ public class User extends AbstractEntity {
     }
   }
 
+  @Override
+  public String toString() {
+    return "User{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", email='" + email + '\'' +
+        ", cell='" + cell + '\'' +
+        ", age=" + age +
+        ", login='" + login + '\'' +
+        '}';
+  }
 }
