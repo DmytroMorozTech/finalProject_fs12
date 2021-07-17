@@ -12,8 +12,6 @@ import javax.validation.constraints.Max;
 @Data
 public class UserDtoReq {
 
-  private Long id;
-
   @NotNull(message = "First name can not be null")
   @Size(min = 2, message = "User first name must have more than 2 characters!")
   private String firstName;
@@ -25,7 +23,7 @@ public class UserDtoReq {
   @Email(message = "Invalid email address!")
   private String email;
 
-  @Pattern(regexp = "^(\\+\\d{1,3}( )?)?\\d{11}$", message = "Invalid cell number. Cell number should start with '+'! ")
+//  @Pattern(regexp = "^(\\+\\d{1,3}( )?)?\\d{11}$", message = "Invalid cell number. Cell number should start with '+'! ")
   private String cell;
 
   @Min(value = 18, message = "Age should not be less than 18")

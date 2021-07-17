@@ -24,9 +24,6 @@ public class Post extends AbstractEntity{
   private String title;
   @Column(name = "main_text", length = 280)
   private String mainText;
-  private String author;
-  private String comments;
-  private String likes;
 
   @JsonIgnore
   @ManyToOne(
@@ -43,4 +40,10 @@ public class Post extends AbstractEntity{
               referencedColumnName = "id")
       })
   private User user;
+
+  public Post(String title, String mainText) {
+//    super(); // not needed
+    this.title = title;
+    this.mainText = mainText;
+  }
 }

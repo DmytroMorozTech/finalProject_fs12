@@ -21,6 +21,13 @@ public class Application {
   ) {
     return args -> {
       generateRandomUsers(userRepository);
+//      User firstUser = userRepository.getOne(1L);
+//      System.out.println(firstUser);
+//      userRepository.deleteById(1L); // this works; so the problem is not with JPA repo
+
+//      System.out.println(firstUser);
+//      Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
+//      firstUser.addPost(postNo1);
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
 
