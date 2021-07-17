@@ -36,12 +36,12 @@ public class Comment extends AbstractEntity {
       name = "rel_post_comments",
       joinColumns = {
           @JoinColumn(
-              name = "comment_id", // name of column in link table
-              referencedColumnName = "id") // id for this entity (Comments)
+              name = "comment_id",
+              referencedColumnName = "id")
       },
       inverseJoinColumns = {
           @JoinColumn(name = "post_id",
-              referencedColumnName = "id")// id for entity post
+              referencedColumnName = "id")
       })
   private Post post;
 
