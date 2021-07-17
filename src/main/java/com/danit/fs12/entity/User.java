@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "User")
@@ -18,11 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User extends AbstractEntity {
-
-  @Column(name = "id")
-  private long id;
 
   @Column(name = "first_name")
   private String firstName;
@@ -30,20 +28,23 @@ public class User extends AbstractEntity {
   @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "email")
   private String email;
-
-  @Column(name = "cell")
   private String cell;
-
-  @Column(name = "age")
   private Integer age;
-
-  @Column(name = "login")
   private String login;
-
-  @Column(name = "password")
   private String password;
+
+  public User(String firstName, String lastName, String email, String cell, Integer age, String login, String password) {
+    super();
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.cell = cell;
+    this.age = age;
+    this.login = login;
+    this.password = password;
+  }
+
   @OneToMany(
       mappedBy = "user",
       cascade = CascadeType.ALL)
