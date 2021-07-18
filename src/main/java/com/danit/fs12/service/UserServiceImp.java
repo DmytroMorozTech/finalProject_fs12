@@ -26,33 +26,7 @@ public class UserServiceImp implements UserService {
         "393290233725",
         22,
         "gianni",
-        "secret",
-        Arrays.asList(),
+        "secret", Arrays.asList(),
         Arrays.asList());
-  }
-
-  @Override
-  public User save(User user) {
-    return userRepository.save(user);
-  }
-
-  @Override
-  public void delete(User user) {
-    userRepository.delete(user);
-  }
-
-  @Override
-  public List<User> findAll() {
-    return userRepository.findAll();
-  }
-
-  @Override
-  public void deleteById(Long id) {
-    userRepository.deleteById(id);
-  }
-
-  @Override
-  public Optional<User> getOne(Long id) {
-    return userRepository.findById(id);
   }
 }
