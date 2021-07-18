@@ -1,6 +1,5 @@
 package com.danit.fs12.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -59,10 +59,29 @@ public class User extends AbstractEntity {
   )
   private List<Post> posts = new ArrayList<>();
 
+  @OneToMany(
+      mappedBy = "user",
+      cascade = {CascadeType.ALL}
+  )
+  private List<Connection> connections = new ArrayList<>();
+
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
       this.posts.add(post);
       post.setUser(this);
+    }
+  }
+
+  public void addConnection(Long connectedUserId) {
+    List<Long> idsOfConnectedUsers =
+        this.connections
+            .stream()
+            .map(c -> c.getConnectedUserId())
+            .collect(Collectors.toList());
+    if (!idsOfConnectedUsers.contains(connectedUserId)) {
+      Connection connection = new Connection(this, connectedUserId);
+      connection.setUser(this);
+      this.connections.add(connection);
     }
   }
 

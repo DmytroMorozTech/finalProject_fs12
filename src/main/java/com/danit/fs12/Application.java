@@ -1,5 +1,6 @@
 package com.danit.fs12;
 
+import com.danit.fs12.entity.Connection;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.PostRepository;
@@ -59,6 +60,9 @@ public class Application {
       System.out.println("Let's try to print out user with post after replacing toString method");
       System.out.println(firstUser);
       System.out.println(firstUser.getPosts());
+
+//      Connection connection = new Connection(firstUser, 4L);
+      userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
 
