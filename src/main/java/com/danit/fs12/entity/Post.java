@@ -1,11 +1,11 @@
 package com.danit.fs12.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -27,6 +27,11 @@ public class Post extends AbstractEntity {
   @Column(name = "main_text", length = 280)
   private String mainText;
 
+  public Post(String title, String mainText) {
+    this.title = title;
+    this.mainText = mainText;
+  }
+
   @ManyToOne
   @JoinColumn(
       name = "user_id",
@@ -38,14 +43,13 @@ public class Post extends AbstractEntity {
   )
   private User user;
 
+
   @OneToMany(
-      mappedBy = "comment",
+      mappedBy = "post",
       cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 
-  public Post(String title, String mainText) {
-//    super(); // not needed
-    this.title = title;
-    this.mainText = mainText;
-  }
+
+
+
 }

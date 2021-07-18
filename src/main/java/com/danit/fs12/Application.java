@@ -1,6 +1,5 @@
 package com.danit.fs12;
 
-import com.danit.fs12.entity.Connection;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.PostRepository;
@@ -12,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootApplication
 public class Application {
@@ -32,9 +30,9 @@ public class Application {
       userRepository
           .findById(2L)
           .ifPresentOrElse(System.out::println,
-          () -> {
-            System.out.println("User was not found");
-          });
+              () -> {
+                System.out.println("User was not found");
+              });
 
       userRepository
           .findById(211L)
@@ -62,7 +60,7 @@ public class Application {
       System.out.println(firstUser.getPosts());
 
 //      Connection connection = new Connection(firstUser, 4L);
-      userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
+//      userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
 

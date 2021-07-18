@@ -26,9 +26,6 @@ public class Comment extends AbstractEntity {
   @Column(name = "text")
   private String text;
 
-  @Column(name = "created_at")
-  private LocalDateTime createdAt;
-
   @JsonIgnore
   @ManyToOne(
       cascade = {CascadeType.PERSIST})
