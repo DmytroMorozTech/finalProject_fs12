@@ -21,9 +21,6 @@ import java.util.List;
 @Table(name = "user")
 public class User extends AbstractEntity {
 
-  @Column(name = "id")
-  private long id;
-
   @Column(name = "first_name")
   private String firstName;
 
@@ -44,9 +41,14 @@ public class User extends AbstractEntity {
 
   @Column(name = "password")
   private String password;
+
   @OneToMany(
       mappedBy = "user",
       cascade = CascadeType.ALL)
   private List<Post> posts = new ArrayList<>();
 
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL)
+  private List<Comment> comments = new ArrayList<>();
 }
