@@ -46,7 +46,7 @@ public class Post extends AbstractEntity {
   private User user;
 
   @OneToMany(
-      mappedBy = "comment",
+      mappedBy = "post",
       cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 }
