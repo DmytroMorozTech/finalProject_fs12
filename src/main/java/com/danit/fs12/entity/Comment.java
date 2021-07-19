@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity(name = "Comment")
 @Table(name = "comments")
@@ -62,5 +60,10 @@ public class Comment extends AbstractEntity {
       })
   private User user;
   // author of comment
+
+  public Comment(String text) {
+    this.text = text;
+  }
+
 
 }

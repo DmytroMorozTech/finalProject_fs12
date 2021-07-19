@@ -65,11 +65,25 @@ public class User extends AbstractEntity {
   )
   private List<Connection> connections = new ArrayList<>();
 
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL)
+  private List<Comment> comments = new ArrayList<>();
+
+
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
       this.posts.add(post);
       post.setUser(this);
     }
+  }
+
+  public Comment addComment(Comment comment) {
+    if (!this.comments.contains(comment)) {
+      this.comments.add(comment);
+      comment.setUser(this);
+    }
+    return comment;
   }
 
   public void addConnection(Long connectedUserId) {
