@@ -1,7 +1,9 @@
 package com.danit.fs12;
 
+import com.danit.fs12.entity.Comment;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
+import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import com.github.javafaker.Faker;
@@ -22,7 +24,8 @@ public class Application {
   @Bean
   CommandLineRunner commandLineRunner(
       UserRepository userRepository,
-      PostRepository postRepository
+      PostRepository postRepository,
+      CommentRepository commentRepository
   ) {
     return args -> {
       generateRandomUsers(userRepository);
@@ -59,8 +62,26 @@ public class Application {
       System.out.println(firstUser);
       System.out.println(firstUser.getPosts());
 
-//      Connection connection = new Connection(firstUser, 4L);
-//      userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
+//    Connection connection = new Connection(firstUser, 4L);
+//    userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
+//-----------------------------------------
+//    COMMENTS
+      Post post1 = postRepository.findById(1L).get();
+      User user1 = userRepository.findById(1L).get();
+      System.out.println("---------------");
+      System.out.println(post1);
+      System.out.println(user1);
+
+//      Here we get an error:
+//      Caused by: org.springframework.dao.InvalidDataAccessApiUsageException:
+//      detached entity passed to persist: com.danit.fs12.entity.Post;
+
+//      Comment comment1FromRepo = commentRepository.save(
+//          new Comment("This post is meaningful indeed", post1, user1));
+//      post1.addComment(comment1FromRepo);
+//      postRepository.save(post1);
+
+
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
 

@@ -49,7 +49,20 @@ public class Post extends AbstractEntity {
       cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 
+  public Comment addComment(Comment comment) {
+    if (!this.comments.contains(comment)) {
+      this.comments.add(comment);
+      comment.setPost(this);
+    }
+    return comment;
+  }
 
-
-
+  @Override
+  public String toString() {
+    return "Post{" +
+        "title='" + title + '\'' +
+        ", mainText='" + mainText + '\'' +
+        ", user=" + user +
+        '}';
+  }
 }
