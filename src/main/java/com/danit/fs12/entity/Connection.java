@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -30,15 +29,20 @@ public class Connection extends AbstractEntity {
       )
   private User user;
 
-  @Column(
-      name = "connected_user_id",
-      updatable = false
-  )
-  private Long connectedUserId;
-//   the user who was connected to the primary user (owner of connection)
+  @ManyToOne
+  @JoinColumn
+      (
+          name = "user_being_followed_id",
+          nullable = false,
+          referencedColumnName = "id",
+          foreignKey = @ForeignKey(
+              name = "user_being_followed_fk"
+          )
+      )
+  private User userBeingFollowed;
 
-  public Connection(User activeUser, Long userToBeConnectedId) {
+  public Connection(User activeUser, User userBeingFollowed) {
     this.user = activeUser;
-    this.connectedUserId = userToBeConnectedId;
+    this.userBeingFollowed = userBeingFollowed;
   }
 }

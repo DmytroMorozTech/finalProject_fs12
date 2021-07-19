@@ -1,6 +1,5 @@
 package com.danit.fs12;
 
-import com.danit.fs12.entity.Comment;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.CommentRepository;
@@ -80,7 +79,6 @@ public class Application {
 //          new Comment("This post is meaningful indeed", post1, user1));
 //      post1.addComment(comment1FromRepo);
 //      postRepository.save(post1);
-
 
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");

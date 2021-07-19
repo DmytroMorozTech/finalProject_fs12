@@ -59,10 +59,10 @@ public class Post extends AbstractEntity {
 
   @Override
   public String toString() {
-    return "Post{" +
-        "title='" + title + '\'' +
-        ", mainText='" + mainText + '\'' +
-        ", user=" + user +
-        '}';
+    return "Post{"
+        + "title='" + title + '\''
+        + ", mainText='" + mainText + '\''
+        + ", user=" + user
+        + '}';
   }
 }

@@ -27,7 +27,7 @@ public class UserServiceImp implements UserService {
         22,
         "gianni",
         "secret", Arrays.asList(),
-        Arrays.asList(),Arrays.asList());
+        Arrays.asList(), Arrays.asList());
   }
 
   @Override

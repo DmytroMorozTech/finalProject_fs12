@@ -1,6 +1,7 @@
 package com.danit.fs12.controller;
 
 import com.danit.fs12.dto.UserDtoRes;
+import com.danit.fs12.dto.connection.ConnectionDtoRq;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,6 +69,33 @@ public class UserController {
     }
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+  }
+
+  // http://localhost:9000/api/users/connections/
+  @PostMapping("/connections")// add new Connection with another User
+  public ResponseEntity<?> createConnection(@Valid @RequestBody ConnectionDtoRq rq) {
+    Long activeUserId = rq.getActiveUserId();
+    Long userBeingFollowedId = rq.getUserBeingFollowedId();
+
+    Optional<User> userOpt = userService.getOne(activeUserId);
+    Optional<User> userBeingFollowedOpt = userService.getOne(userBeingFollowedId);
+    if (userOpt.isEmpty() || userBeingFollowedOpt.isEmpty()) {
+      return
+          ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    User user = userOpt.get();
+    User userBeingFollowed = userBeingFollowedOpt.get();
+
+//    Connection connection = connectionService.createConnection(user,userBeingFollowed);
+//    this one seems to be not necessary
+
+    user.addConnection(userBeingFollowed);
+    userService.save(user);
+
+    return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .build();
   }
 
 

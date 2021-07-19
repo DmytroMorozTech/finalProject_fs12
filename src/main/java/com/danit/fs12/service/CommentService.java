@@ -1,8 +1,6 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.Comment;
-import com.danit.fs12.entity.Post;
-import com.danit.fs12.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

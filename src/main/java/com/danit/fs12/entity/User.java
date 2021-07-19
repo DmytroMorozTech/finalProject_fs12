@@ -86,28 +86,29 @@ public class User extends AbstractEntity {
     return comment;
   }
 
-  public void addConnection(Long connectedUserId) {
-    List<Long> idsOfConnectedUsers =
+  public void addConnection(User userBeingFollowed) {
+    List<Long> idsOfFollowedUsers =
         this.connections
             .stream()
-            .map(c -> c.getConnectedUserId())
+            .map(c -> c.getUserBeingFollowed().getId())
             .collect(Collectors.toList());
-    if (!idsOfConnectedUsers.contains(connectedUserId)) {
-      Connection connection = new Connection(this, connectedUserId);
+    if (!idsOfFollowedUsers.contains(userBeingFollowed.getId())) {
+      Connection connection = new Connection(this, userBeingFollowed);
       connection.setUser(this);
+      connection.setUserBeingFollowed(userBeingFollowed);
       this.connections.add(connection);
     }
   }
 
   @Override
   public String toString() {
-    return "User{" +
-        "firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        ", cell='" + cell + '\'' +
-        ", age=" + age +
-        ", login='" + login + '\'' +
-        '}';
+    return "User{"
+        + "firstName='" + firstName + '\''
+        + ", lastName='" + lastName + '\''
+        + ", email='" + email + '\''
+        + ", cell='" + cell + '\''
+        + ", age=" + age
+        + ", login='" + login + '\''
+        + '}';
   }
 }
