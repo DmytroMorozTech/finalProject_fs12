@@ -4,6 +4,8 @@ export default makeStyles(() => ({
 
   eyes: {
     color: 'grey',
-    fontSize: 25
+    fontSize: 25,
+    cursor: 'pointer'
+
   }
 }))

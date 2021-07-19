@@ -6,6 +6,7 @@ export default makeStyles(() => ({
     color: '#fff',
     fontSize: 15,
     backgroundColor: '#0a66c2',
-    borderRadius: 30
+    borderRadius: 30,
+    cursor: 'pointer'
   }
 }))

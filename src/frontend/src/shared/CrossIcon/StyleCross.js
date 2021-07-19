@@ -5,7 +5,8 @@ export default makeStyles(() => ({
   cross: {
     '& > .MuiSvgIcon-root': {
       color: 'rgba(0,0,0,.5)',
-      fontSize: 35
+      fontSize: 35,
+      cursor: 'pointer'
     }
   }
 }))

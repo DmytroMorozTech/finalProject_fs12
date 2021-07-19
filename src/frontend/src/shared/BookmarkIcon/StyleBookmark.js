@@ -4,6 +4,7 @@ export default makeStyles(() => ({
 
   bookmark: {
     color: 'grey',
-    fontSize: 25
+    fontSize: 25,
+    cursor: 'pointer'
   }
 }))
