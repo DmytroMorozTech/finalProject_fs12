@@ -21,6 +21,9 @@ import java.util.List;
 @Table(name = "user")
 public class User extends AbstractEntity {
 
+  @Column(name = "id")
+  private Long id;
+
   @Column(name = "first_name")
   private String firstName;
 
@@ -51,4 +54,11 @@ public class User extends AbstractEntity {
       mappedBy = "user",
       cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
+
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL)
+  private List<Message> messages = new ArrayList<>();
+
 }
+

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-  User getActiveUser(long id);
+  User getActiveUser(Long id);
 }
