@@ -14,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-@Table(name = "message")
 @Entity(name = "Message")
+@Table(name = "messages")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,9 +23,7 @@ import javax.persistence.Table;
 public class Message extends AbstractEntity {
 
   private String userMessageFrom;
-
   private String userMessageTo;
-
   private String textMessage;
 
   @JsonIgnore
@@ -34,12 +32,12 @@ public class Message extends AbstractEntity {
       name = "rel_user_messages",
       joinColumns = {
           @JoinColumn(
-              name = "message_id", // как будет называться колонка в link table
-              referencedColumnName = "id") // от куда мы берем ИД для текущей сущности (Message)
+              name = "message_id",
+              referencedColumnName = "id")
       },
       inverseJoinColumns = {
           @JoinColumn(name = "user_id",
-              referencedColumnName = "id")// от куда мы берем ИД в сущности user
+              referencedColumnName = "id")
       })
   private User user;
 

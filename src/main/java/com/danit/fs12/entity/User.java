@@ -70,6 +70,11 @@ public class User extends AbstractEntity {
       cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL)
+  private List<Message> messages = new ArrayList<>();
+
 
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
@@ -112,10 +117,7 @@ public class User extends AbstractEntity {
         + '}';
   }
 
-  @OneToMany(
-      mappedBy = "user",
-      cascade = CascadeType.ALL)
-  private List<Message> messages = new ArrayList<>();
+
 
 }
 
