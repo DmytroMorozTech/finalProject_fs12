@@ -2,6 +2,7 @@ import Navbar from './Navbar/Navbar'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import StyleHeader from './StyleHeader'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import { Hidden } from '@material-ui/core'
 
 function Header () {
   const classes = StyleHeader()
@@ -11,10 +12,12 @@ function Header () {
         <div className={classes.header_logo}>
           <LinkedInIcon/>
         </div>
-        <div className={classes.header_search}>
-          <SearchRoundedIcon/>
-          <input placeholder="Search"/>
-        </div>
+        <Hidden mdDown>
+          <div className={classes.header_search}>
+            <SearchRoundedIcon/>
+            <input placeholder="Search"/>
+          </div>
+        </Hidden>
       </div>
       <Navbar/>
     </div>
