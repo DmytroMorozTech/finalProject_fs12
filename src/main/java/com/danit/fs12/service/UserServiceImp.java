@@ -16,7 +16,7 @@ public class UserServiceImp implements UserService {
   private final UserRepository userRepository;
 
   @Override
-  public User getActiveUser(long id) {
+  public User getActiveUser(Long id) {
 
     //temporary to test
     return new User(

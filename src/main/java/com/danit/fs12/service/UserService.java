@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-  User getActiveUser(long id);
+  User getActiveUser(Long id);
 
   public User save(User user);
 
@@ -20,4 +20,5 @@ public interface UserService {
   public void deleteById(Long id);
 
   public Optional<User> getOne(Long id);
+
 }

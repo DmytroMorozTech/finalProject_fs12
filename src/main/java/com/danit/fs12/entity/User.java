@@ -111,4 +111,11 @@ public class User extends AbstractEntity {
         + ", login='" + login + '\''
         + '}';
   }
+
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL)
+  private List<Message> messages = new ArrayList<>();
+
 }
+
