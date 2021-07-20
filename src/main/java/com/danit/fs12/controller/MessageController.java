@@ -18,16 +18,16 @@ public class MessageController {
   private final MessageService messageService;
   private final MessageFacade messageFacade;
 
-  @GetMapping("/message")
-  public void getMessage() {
-
-    return;
-  }
-
-  @PostMapping("/message")
-  public void postMessage() {
-
-    return;
-  }
+//  @GetMapping("/message")
+//  public void getMessage() {
+//
+//    return;
+//  }
+//
+//  @PostMapping("/message")
+//  public void postMessage() {
+//
+//    return;
+//  }
 }
 
