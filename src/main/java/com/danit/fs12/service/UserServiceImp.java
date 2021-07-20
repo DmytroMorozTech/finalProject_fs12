@@ -1,6 +1,6 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.Message;
+import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ public class UserServiceImp implements UserService {
   public User getActiveUser(long id) {
 
     //temporary to test
-    return new User(1,
+    return new User(
         "Gianluigi",
         "Donnarumma",
         "gian_donna@gmail.com",
         "393290233725",
         22,
         "gianni",
-        "secret", Arrays.asList());
+        "secret", Arrays.asList(), Arrays.asList());
   }
 }

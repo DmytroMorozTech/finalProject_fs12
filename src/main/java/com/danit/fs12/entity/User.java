@@ -5,13 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -44,10 +40,5 @@ public class User extends AbstractEntity {
 
   @Column(name = "password")
   private String password;
-
-  @OneToMany(
-      mappedBy = "user",
-      cascade = CascadeType.ALL)
-  private List<Message> messages = new ArrayList<>();
 
 }
