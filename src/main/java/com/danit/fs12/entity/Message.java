@@ -41,6 +41,6 @@ public class Message extends AbstractEntity {
           @JoinColumn(name = "user_id",
               referencedColumnName = "id")// от куда мы берем ИД в сущности user
       })
-  private User users;
+  private User user;
 
 }
