@@ -24,7 +24,7 @@ public class Message extends AbstractEntity {
 
   private String userMessageFrom;
 
-  private String userMessageToo;
+  private String userMessageTo;
 
   private String textMessage;
 

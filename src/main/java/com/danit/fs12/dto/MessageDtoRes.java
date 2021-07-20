@@ -8,7 +8,7 @@ public class MessageDtoRes {
 
   private Long id;
   private String userMessageFrom;
-  private String userMessageToo;
+  private String userMessageTo;
   private String textMessage;
 
 }

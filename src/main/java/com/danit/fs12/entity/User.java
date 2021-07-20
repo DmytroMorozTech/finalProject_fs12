@@ -22,7 +22,7 @@ import java.util.List;
 public class User extends AbstractEntity {
 
   @Column(name = "id")
-  private long id;
+  private Long id;
 
   @Column(name = "first_name")
   private String firstName;
