@@ -1,7 +1,6 @@
 package com.danit.fs12.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -46,7 +45,7 @@ public class User extends AbstractEntity {
               Integer age,
               String login,
               String password) {
-//    super(); // not needed
+    //    super(); // not needed
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -60,13 +59,13 @@ public class User extends AbstractEntity {
       mappedBy = "user",
       cascade = {CascadeType.ALL},
       fetch = FetchType.EAGER
-  )
+      )
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(
       mappedBy = "user",
       cascade = {CascadeType.ALL}
-  )
+      )
   private List<Connection> connections = new ArrayList<>();
 
   @OneToMany(
@@ -120,7 +119,6 @@ public class User extends AbstractEntity {
         + ", login='" + login + '\''
         + '}';
   }
-
 
 
 }

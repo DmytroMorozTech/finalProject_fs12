@@ -3,7 +3,6 @@ package com.danit.fs12.controller;
 import com.danit.fs12.dto.connection.ConnectionDtoRq;
 import com.danit.fs12.dto.user.UserDtoRes;
 import com.danit.fs12.entity.User;
-import com.danit.fs12.facade.GenericsFacade;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +31,7 @@ import java.util.stream.Collectors;
 public class UserController {
   private final UserService userService;
   private final ModelMapper mm;
-//  private final GenericsFacade<User> userFacade;
+  //  private final GenericsFacade<User> userFacade;
   private final UserFacade userFacade;
 
 
@@ -55,7 +54,7 @@ public class UserController {
     boolean wasFound = userOpt.isPresent();
     return wasFound
         ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
-//            mm.map(userOpt.get(), UserDtoRes.class)
+        //            mm.map(userOpt.get(), UserDtoRes.class)
         : ResponseEntity.notFound().build();
   }
 

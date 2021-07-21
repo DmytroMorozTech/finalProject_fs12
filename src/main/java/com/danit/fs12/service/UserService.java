@@ -23,5 +23,5 @@ public interface UserService {
 
   boolean createConnection(Long activeUserId, Long userBeingFollowedId);
 
-  User getOne(long l);
+  User getOne(long id);
 }

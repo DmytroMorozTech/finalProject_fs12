@@ -40,18 +40,18 @@ public class Application {
         generateRandomUsers();
 
         userRepository
-          .findById(2L)
-          .ifPresentOrElse(System.out::println,
-            () -> {
-              System.out.println("User was not found");
-            });
+            .findById(2L)
+            .ifPresentOrElse(System.out::println,
+                () -> {
+                  System.out.println("User was not found");
+                });
 
         userRepository
-          .findById(211L)
-          .ifPresentOrElse(System.out::println,
-            () -> {
-              System.out.println("User was not found");
-            });
+            .findById(211L)
+            .ifPresentOrElse(System.out::println,
+                () -> {
+                  System.out.println("User was not found");
+                });
         // will not be found in this case
 
         List<User> users = userRepository.findAll();
@@ -71,32 +71,32 @@ public class Application {
         System.out.println(firstUser);
         System.out.println(firstUser.getPosts());
 
-//-----------------------------------------
-//    COMMENTS
+        //-----------------------------------------
+        //    COMMENTS
         generateComments();
 
 
-//      Here we get an error:
-//      Caused by: org.springframework.dao.InvalidDataAccessApiUsageException:
-//      detached entity passed to persist: com.danit.fs12.entity.Post;
+        //      Here we get an error:
+        //      Caused by: org.springframework.dao.InvalidDataAccessApiUsageException:
+        //      detached entity passed to persist: com.danit.fs12.entity.Post;
 
-//      Comment comment1FromRepo = commentRepository.save(
-//          new Comment("This post is meaningful indeed", post1, user1));
-//      post1.addComment(comment1FromRepo);
-//      postRepository.save(post1);
+        //      Comment comment1FromRepo = commentRepository.save(
+        //          new Comment("This post is meaningful indeed", post1, user1));
+        //      post1.addComment(comment1FromRepo);
+        //      postRepository.save(post1);
 
 
         System.out.println("OUR APPLICATION HAS STARTED !!!");
 
-//      User user2 = userRepository.findById(2L).get();
-//      System.out.println(user2.getClass().getSimpleName());
+        //      User user2 = userRepository.findById(2L).get();
+        //      System.out.println(user2.getClass().getSimpleName());
 
-//      Map<String,String> conversionMapping = Map.ofEntries(
-//          Map.entry("key1", "value1"),
-//          Map.entry("key2", "value2"),
-//          Map.entry("key3", "value3")
-//      );
-//      System.out.println(conversionMapping);
+        //      Map<String,String> conversionMapping = Map.ofEntries(
+        //          Map.entry("key1", "value1"),
+        //          Map.entry("key2", "value2"),
+        //          Map.entry("key3", "value3")
+        //      );
+        //      System.out.println(conversionMapping);
 
 
       }
@@ -108,13 +108,13 @@ public class Application {
           String lastName = faker.name().lastName();
           String email = String.format("%s.%s@dan-it.edu", firstName, lastName);
           User user = new User(
-            firstName,
-            lastName,
-            email,
-            "+380503332211",
-            30,
-            "userLogin",
-            "userPassHash");
+              firstName,
+              lastName,
+              email,
+              "+380503332211",
+              30,
+              "userLogin",
+              "userPassHash");
 
           userRepository.save(user);
         }
