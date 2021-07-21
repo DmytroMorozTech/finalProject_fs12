@@ -54,7 +54,7 @@ public class UserController {
     boolean wasFound = userOpt.isPresent();
     return wasFound
         ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
-//            mm.map(userOpt.get(), UserDtoRes.class)
+        //            mm.map(userOpt.get(), UserDtoRes.class)
         : ResponseEntity.notFound().build();
   }
 

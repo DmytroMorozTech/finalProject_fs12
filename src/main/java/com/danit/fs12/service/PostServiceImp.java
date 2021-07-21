@@ -41,7 +41,12 @@ public class PostServiceImp implements PostService {
   }
 
   @Override
-  public Optional<Post> getOne(Long id) {
+  public Post getOne(Long id) {
+    return postRepository.getOne(id);
+  }
+
+  @Override
+  public Optional<Post> findById(Long id) {
     return postRepository.findById(id);
   }
 }

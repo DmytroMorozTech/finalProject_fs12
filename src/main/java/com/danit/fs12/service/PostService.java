@@ -20,5 +20,7 @@ public interface PostService {
 
   public void deleteById(Long id);
 
-  public Optional<Post> getOne(Long id);
+  public Post getOne(Long id);
+
+  public Optional<Post> findById(Long id);
 }

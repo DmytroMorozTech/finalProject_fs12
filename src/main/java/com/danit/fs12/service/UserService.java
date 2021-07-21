@@ -23,4 +23,5 @@ public interface UserService {
 
   boolean createConnection(Long userId, Long followedUserId);
 
+  User getOne(long id);
 }

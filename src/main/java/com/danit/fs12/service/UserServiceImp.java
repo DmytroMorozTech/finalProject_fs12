@@ -105,5 +105,10 @@ public class UserServiceImp implements UserService {
 //    }
 //  }
 
+  @Override
+  public User getOne(long id) {
+    return userRepository.getOne(id);
+  }
+
 
 }

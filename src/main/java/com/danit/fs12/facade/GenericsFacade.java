@@ -26,18 +26,18 @@ public class GenericsFacade<T> {
       Map.entry("CommentDtoReq", "Comment")
   );
 
-  public UserDtoRes convertToDto(T t) {
-//    System.out.println(getGenericName());
-    getDestinationTypeStr(t);
-    return mm.map(t, UserDtoRes.class);
+  public UserDtoRes convertToDto(T param) {
+    //    System.out.println(getGenericName());
+    getDestinationTypeStr(param);
+    return mm.map(param, UserDtoRes.class);
   }
 
   public User convertToEntity(UserDtoReq userDtoReq) {
     return mm.map(userDtoReq, User.class);
   } // this one should be changed
 
-  private Class<?> getDestinationTypeStr(T t) {
-    String incomingClassName = t.getClass().getSimpleName();
+  private Class<?> getDestinationTypeStr(T param) {
+    String incomingClassName = param.getClass().getSimpleName();
     System.out.println(incomingClassName);
 
     String resultingClassName = conversionMapping.get(incomingClassName);
