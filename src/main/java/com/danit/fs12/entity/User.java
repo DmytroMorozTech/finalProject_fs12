@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -80,7 +81,7 @@ public class User extends AbstractEntity {
   )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private List<User> usersFollowed;
+  private Set<User> usersFollowed; // users that current User follows
 
   @ManyToMany
   @JoinTable(name = "tbl_followers",
@@ -89,7 +90,7 @@ public class User extends AbstractEntity {
   )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private List<User> usersFollowing;
+  private Set<User> usersFollowing; // users that are following the current User
 //  ---------------------------------
 
   public void addPost(Post post) {

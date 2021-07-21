@@ -67,22 +67,20 @@ public class UserController {
   }
   // мы должны в методе deleteById бросить ошибку, если нам не удалось удалить пользователя
   // делаем это на уровне сервиса, где мы обращаемся к репозиторию
-  // ошибка высплывет... а далее условие, как будто все прошло хорошо
+  // ошибка всплывет... а далее условие, как будто все прошло хорошо
   // тернарники убираем
   // на фронте прописать логику, что если прителает какая-то ошибка, пользователю должен отображаться notification in UI
   //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
 
 
   // http://localhost:9000/api/users/connections/
-  @PostMapping("/connections")// add new Connection with another User
-  public ResponseEntity<?> createConnection(@Valid @RequestBody ConnectionDtoRq rq) {
+  @PostMapping("/following")
+  public ResponseEntity<?> followUser(@Valid @RequestBody ConnectionDtoRq rq) {
     Long userId = rq.getUserId();
     Long followedUserId = rq.getFollowedUserId();
 
-    boolean wasCreated = userService.createConnection(userId, followedUserId);
-    return wasCreated
-        ? ResponseEntity.status(HttpStatus.CREATED).build()
-        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    userService.followUser(userId, followedUserId);
+    return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
 

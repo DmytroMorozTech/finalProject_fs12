@@ -1,13 +1,13 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.User;
+import com.danit.fs12.exception.NotFoundException;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -63,28 +63,19 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public boolean createConnection(Long userId, Long followedUserId) { // should be followUser
+  public void followUser(Long userId, Long followedUserId) {
     Optional<User> userOpt = findById(userId);
     Optional<User> followedUserOpt = findById(followedUserId);
     if (userOpt.isEmpty() || followedUserOpt.isEmpty()) {
-      return false;
+      String msg = String.format("Unable to establish connection between users with ids: %d and %d." +
+          "User data can not be found in database", userId, followedUserId);
+      throw new NotFoundException(msg);
     }
 
     User user = userOpt.get();
-    User userBeingFollowed = followedUserOpt.get();
-
-    if (!user.getUsersFollowed().contains(userBeingFollowed)) {
-      user.getUsersFollowed().add(userBeingFollowed);
-      System.out.println("------------------------------------------------");
-      System.out.println("Users followed:");
-      System.out.println(user.getUsersFollowed().stream().map(User::getId).collect(Collectors.toList()));
-      System.out.println("------------------------------------------------");
-      System.out.println("Users following:");
-      System.out.println(user.getUsersFollowing().stream().map(User::getId).collect(Collectors.toList()));
-      save(user);
-      return true;
-    }
-    return false;
+    User followedUser = followedUserOpt.get();
+    user.getUsersFollowed().add(followedUser);
+    save(user);
   }
 
 //    user.addConnection(userBeingFollowed);
