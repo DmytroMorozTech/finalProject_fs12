@@ -17,7 +17,8 @@ const theme = createTheme({
   'palette': {
     'common': { 'black': '#000', 'white': '#fff' },
     'type': 'light',
-    'primary': { 'main': '#1976d2', 'light': 'rgb(71, 145, 219)', 'dark': 'rgb(17, 82, 147)', 'contrastText': '#fff' },
+    // main color of Linkedin
+    'primary': { 'main': '#0a66c2', 'light': '#0b76e0', 'dark': '#0a56a3', 'contrastText': '#fff' },
     'secondary': {
       'main': 'rgb(220, 0, 78)',
       'light': 'rgb(227, 51, 113)',
