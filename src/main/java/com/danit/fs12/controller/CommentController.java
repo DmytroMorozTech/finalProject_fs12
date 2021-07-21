@@ -69,7 +69,7 @@ public class CommentController {
     Long postId = rq.getPostId();
     String text = rq.getText();
 
-    Optional<User> userOpt = userService.getOne(activeUserId);
+    Optional<User> userOpt = userService.findById(activeUserId);
     Optional<Post> postOpt = postService.getOne(postId);
     if (userOpt.isEmpty() || postOpt.isEmpty()) {
       return

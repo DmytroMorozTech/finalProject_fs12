@@ -50,7 +50,7 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public Optional<User> getOne(Long id) {
+  public Optional<User> findById(Long id) {
     return userRepository.findById(id);
   }
 

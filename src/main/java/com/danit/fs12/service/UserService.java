@@ -19,6 +19,6 @@ public interface UserService {
 
   public void deleteById(Long id);
 
-  public Optional<User> getOne(Long id);
+  public Optional<User> findById(Long id);
 
 }

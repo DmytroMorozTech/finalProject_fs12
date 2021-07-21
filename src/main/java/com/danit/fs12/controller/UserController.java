@@ -1,8 +1,9 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.UserDtoRes;
+import com.danit.fs12.dto.user.UserDtoRes;
 import com.danit.fs12.dto.connection.ConnectionDtoRq;
 import com.danit.fs12.entity.User;
+import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 public class UserController {
   private final UserService userService;
   private final ModelMapper mm;
+  private final UserFacade userFacade;
 
 
   @GetMapping
@@ -37,7 +39,7 @@ public class UserController {
     List<User> users = userService.findAll();
     List<UserDtoRes> usersRs = users
         .stream()
-        .map(c -> mm.map(c, UserDtoRes.class))
+        .map(userFacade::convertToDto)
         .collect(Collectors.toList());
 
     return usersRs;
@@ -46,22 +48,20 @@ public class UserController {
   // http://localhost:9000/api/users/{id}
   // get user by id
   @GetMapping(path = "{id}")
-  public ResponseEntity<?> getOne(@PathVariable Long id) {
-    Optional<User> user = userService.getOne(id);
-    if (user.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-    User foundUser = user.get();
-    UserDtoRes foundUserRs = mm.map(foundUser, UserDtoRes.class);
-    return ResponseEntity.ok(foundUserRs);
+  public ResponseEntity<?> findById(@PathVariable Long id) {
+    Optional<User> userOpt = userService.findById(id);
+    if (userOpt.isEmpty()) return ResponseEntity.notFound().build();
+
+    UserDtoRes userRs = mm.map(userOpt.get(), UserDtoRes.class);
+    return ResponseEntity.ok(userRs);
   }
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
-    Optional<User> userOpt = userService.getOne(id);
+    Optional<User> userOpt = userService.findById(id);
     if (userOpt.isPresent()) {
       userService.deleteById(id);
-      boolean wasDeleted = userService.getOne(id).isEmpty();
+      boolean wasDeleted = userService.findById(id).isEmpty();
       if (wasDeleted) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
       }
@@ -77,8 +77,8 @@ public class UserController {
     Long activeUserId = rq.getActiveUserId();
     Long userBeingFollowedId = rq.getUserBeingFollowedId();
 
-    Optional<User> userOpt = userService.getOne(activeUserId);
-    Optional<User> userBeingFollowedOpt = userService.getOne(userBeingFollowedId);
+    Optional<User> userOpt = userService.findById(activeUserId);
+    Optional<User> userBeingFollowedOpt = userService.findById(userBeingFollowedId);
     if (userOpt.isEmpty() || userBeingFollowedOpt.isEmpty()) {
       return
           ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -99,15 +99,4 @@ public class UserController {
   }
 
 
-//  private final UserFacade userFacade;
-
-//  @GetMapping("/current")
-//  public UserDtoRes getActiveUser() {
-//
-//    // temporary active user id is hardcoded, when we realize "login" it will be changed;
-//    long activeUserId = 1;
-//    UserDtoRes activeUser = userFacade.getActiveUser(activeUserId);
-//    log.debug("Active user: " + activeUser.getLogin());
-//    return activeUser;
-//  }
 }
