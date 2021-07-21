@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 public class Application {
@@ -78,6 +79,17 @@ public class Application {
 
 
       System.out.println("OUR APPLICATION HAS STARTED !!!");
+
+//      User user2 = userRepository.findById(2L).get();
+//      System.out.println(user2.getClass().getSimpleName());
+
+//      Map<String,String> conversionMapping = Map.ofEntries(
+//          Map.entry("key1", "value1"),
+//          Map.entry("key2", "value2"),
+//          Map.entry("key3", "value3")
+//      );
+//      System.out.println(conversionMapping);
+
 
     };
   }
