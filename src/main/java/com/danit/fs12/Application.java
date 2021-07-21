@@ -37,7 +37,7 @@ public class Application {
 
       @Override
       public void run(String... args) throws Exception {
-        generateRandomUsers();
+        generateRandomUsers(userRepository);
 
         userRepository
             .findById(2L)
