@@ -23,7 +23,7 @@ public class UserServiceImp implements UserService {
         .firstName("firstName")
         .lastName("lastName")
         .email("email")
-        .cell("+380503332211")
+        .phoneNumber("+380503332211")
         .age(30)
         .login("userLogin")
         .password("userPassHash")
@@ -67,8 +67,8 @@ public class UserServiceImp implements UserService {
     Optional<User> userOpt = findById(userId);
     Optional<User> followedUserOpt = findById(followedUserId);
     if (userOpt.isEmpty() || followedUserOpt.isEmpty()) {
-      String msg = String.format("Unable to establish connection between users with ids: %d and %d." +
-          "User data can not be found in database", userId, followedUserId);
+      String msg = String.format("Unable to establish connection between users with ids: %d and %d."
+          + "User data can not be found in database", userId, followedUserId);
       throw new NotFoundException(msg);
     }
 
@@ -78,23 +78,23 @@ public class UserServiceImp implements UserService {
     save(user);
   }
 
-//    user.addConnection(userBeingFollowed);
-//    // ее должен являться методом сущности! Вынести в СЕРВИС!
+  //    user.addConnection(userBeingFollowed);
+  //    // ее должен являться методом сущности! Вынести в СЕРВИС!
 
 
-//  public void addConnection(User userBeingFollowed) {
-//    List<Long> idsOfFollowedUsers =
-//        this.connections
-//            .stream()
-//            .map(c -> c.getUserBeingFollowed().getId())
-//            .collect(Collectors.toList());
-//    if (!idsOfFollowedUsers.contains(userBeingFollowed.getId())) {
-//      Connection connection = new Connection(this, userBeingFollowed);
-//      connection.setUser(this);
-//      connection.setUserBeingFollowed(userBeingFollowed);
-//      this.connections.add(connection);
-//    }
-//  }
+  //  public void addConnection(User userBeingFollowed) {
+  //    List<Long> idsOfFollowedUsers =
+  //        this.connections
+  //            .stream()
+  //            .map(c -> c.getUserBeingFollowed().getId())
+  //            .collect(Collectors.toList());
+  //    if (!idsOfFollowedUsers.contains(userBeingFollowed.getId())) {
+  //      Connection connection = new Connection(this, userBeingFollowed);
+  //      connection.setUser(this);
+  //      connection.setUserBeingFollowed(userBeingFollowed);
+  //      this.connections.add(connection);
+  //    }
+  //  }
 
   @Override
   public User getOne(long id) {

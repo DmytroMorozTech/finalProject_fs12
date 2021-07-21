@@ -35,8 +35,10 @@ public class User extends AbstractEntity {
   @Column(name = "last_name")
   private String lastName;
 
+  @Column(name = "phone_number")
+  private String phoneNumber;
+
   private String email;
-  private String cell;
   private Integer age;
   private String login;
   private String password;
@@ -45,19 +47,19 @@ public class User extends AbstractEntity {
       mappedBy = "user",
       cascade = {CascadeType.ALL},
       fetch = FetchType.EAGER
-  )
+      )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Post> posts = new ArrayList<>();
 
-// should be deleted
-//  @OneToMany(
-//      mappedBy = "user",
-//      cascade = {CascadeType.ALL}
-//  )
-//  @ToString.Exclude
-//  @EqualsAndHashCode.Exclude
-//  private List<Connection> connections = new ArrayList<>();
+  // should be deleted
+  //  @OneToMany(
+  //      mappedBy = "user",
+  //      cascade = {CascadeType.ALL}
+  //  )
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  private List<Connection> connections = new ArrayList<>();
 
   @OneToMany(
       mappedBy = "user",
@@ -78,7 +80,7 @@ public class User extends AbstractEntity {
   @JoinTable(name = "tbl_followers",
       joinColumns = @JoinColumn(name = "userId"),
       inverseJoinColumns = @JoinColumn(name = "followedUserId")
-  )
+      )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowed; // users that current User follows
@@ -87,11 +89,24 @@ public class User extends AbstractEntity {
   @JoinTable(name = "tbl_followers",
       joinColumns = @JoinColumn(name = "followedUserId"),
       inverseJoinColumns = @JoinColumn(name = "userId")
-  )
+      )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
-//  ---------------------------------
+  //  ---------------------------------
+
+  //  @ManyToOne
+  //  @JoinColumn(
+  //      name = "organization_id",
+  //      nullable = false,
+  //      referencedColumnName = "id",
+  //      foreignKey = @ForeignKey(
+  //          name = "organization_user_fk"
+  //      )
+  //  )
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  private Organization organization;
 
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {

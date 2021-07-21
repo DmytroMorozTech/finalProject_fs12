@@ -31,9 +31,11 @@ import java.util.stream.Collectors;
 public class UserController {
   private final UserService userService;
   private final ModelMapper mm;
-  //  private final GenericsFacade<User> userFacade;
   private final UserFacade userFacade;
 
+  //  private final GenericsFacade<User> userFacade;
+  //  don't touch this. And don't touch GenericsFacade<User> in general.
+  //  I will finalize it soon. It has raw code there at the moment.
 
   @GetMapping
   List<UserDtoRes> findAll() {
@@ -69,6 +71,8 @@ public class UserController {
   // делаем это на уровне сервиса, где мы обращаемся к репозиторию
   // ошибка всплывет... а далее условие, как будто все прошло хорошо
   // тернарники убираем
+  // эта вся схема на данный момент уже реализована для метода followUser (UserServiceImpl)
+
   // на фронте прописать логику, что если прителает какая-то ошибка, пользователю должен отображаться notification in UI
   //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
 
