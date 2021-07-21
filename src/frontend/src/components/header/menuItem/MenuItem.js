@@ -1,16 +1,16 @@
 import React from 'react'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import { Hidden } from '@material-ui/core'
-import Style from './StyleItem'
+import Style from './Style'
 
-const Item = ({ Icon, title, arrow, onClick }) => {
+const MenuItem = ({ Icon, title, arrow, onClick }) => {
   const classes = Style()
   return (
     <div className={classes.menuItem} onClick={onClick}>
       {Icon}
       <Hidden mdDown>
         <div className={classes.title}>
-          <span>{title}</span>
+          <p>{title}</p>
           {arrow && <ArrowDropDownIcon/>}
         </div>
       </Hidden>
@@ -18,4 +18,4 @@ const Item = ({ Icon, title, arrow, onClick }) => {
   )
 }
 
-export default Item
+export default MenuItem

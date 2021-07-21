@@ -1,33 +1,38 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   menuItem: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: 'grey',
+    color: theme.palette.type === 'dark' ? 'lightgrey' : '#6e6e6e',
     cursor: 'pointer',
-    borderBottom: '2px solid white',
     transition: 'all 0.35s ease',
-    margin: '5px',
     '& > .MuiSvgIcon-root': {
-      fontSize: 30
+      fontSize: 24
+    },
+    '& > .MuiAvatar-root': {
+      width: 24,
+      height: 24
     },
     '&:hover': {
       color: 'black'
-    },
-    '&:active': {
-      borderBottom: '2px solid black'
     }
   },
   title: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    '& > span': {
+    padding: '0 2px',
+    '& > p': {
       fontSize: 12,
-      fontWeight: 400,
-      paddingBottom: '3px'
+      fontWeight: 400
+    },
+    '& > .MuiSvgIcon-root': {
+      fontSize: 20,
+      padding: 0,
+      margin: -5,
+      marginLeft: 0
     }
   }
 }))
