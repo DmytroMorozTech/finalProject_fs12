@@ -1,6 +1,7 @@
 package com.danit.fs12.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class User extends AbstractEntity {
   private Integer age;
   private String login;
   private String password;
+
+  @OneToMany
+  private List<User> following;
 
   public User(String firstName,
               String lastName,

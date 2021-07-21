@@ -74,5 +74,10 @@ public class UserServiceImp implements UserService {
     return true;
   }
 
+  @Override
+  public User getOne(long id) {
+    return userRepository.getOne(id);
+  }
+
 
 }
