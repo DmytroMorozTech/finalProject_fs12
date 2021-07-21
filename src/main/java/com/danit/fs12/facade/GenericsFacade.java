@@ -12,6 +12,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Component
 public class GenericsFacade<T> {
+  // entity, incomingDto, outComingDto
+  // даем сразу три типа и пишем все на дженериках
 
   private final ModelMapper mm;
 

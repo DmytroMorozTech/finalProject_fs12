@@ -1,19 +1,23 @@
 package com.danit.fs12.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -21,6 +25,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Data
 @Table(name = "users")
+@Builder
 public class User extends AbstractEntity {
 
   @Column(name = "first_name")
@@ -35,46 +40,57 @@ public class User extends AbstractEntity {
   private String login;
   private String password;
 
-  public User(String firstName,
-              String lastName,
-              String email,
-              String cell,
-              Integer age,
-              String login,
-              String password) {
-//    super(); // not needed
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.cell = cell;
-    this.age = age;
-    this.login = login;
-    this.password = password;
-  }
-
   @OneToMany(
       mappedBy = "user",
       cascade = {CascadeType.ALL},
       fetch = FetchType.EAGER
   )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private List<Post> posts = new ArrayList<>();
 
-  @OneToMany(
-      mappedBy = "user",
-      cascade = {CascadeType.ALL}
-  )
-  private List<Connection> connections = new ArrayList<>();
+// should be deleted
+//  @OneToMany(
+//      mappedBy = "user",
+//      cascade = {CascadeType.ALL}
+//  )
+//  @ToString.Exclude
+//  @EqualsAndHashCode.Exclude
+//  private List<Connection> connections = new ArrayList<>();
 
   @OneToMany(
       mappedBy = "user",
       cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
 
   @OneToMany(
       mappedBy = "user",
       cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private List<Message> messages = new ArrayList<>();
 
+  //  ---------------------------------
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "tbl_followers",
+      joinColumns = @JoinColumn(name = "userId"),
+      inverseJoinColumns = @JoinColumn(name = "followedUserId")
+  )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<User> usersFollowed;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "tbl_followers",
+      joinColumns = @JoinColumn(name = "followedUserId"),
+      inverseJoinColumns = @JoinColumn(name = "userId")
+  )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<User> usersFollowing;
+//  ---------------------------------
 
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
@@ -91,33 +107,9 @@ public class User extends AbstractEntity {
     return comment;
   }
 
-  public void addConnection(User userBeingFollowed) {
-    List<Long> idsOfFollowedUsers =
-        this.connections
-            .stream()
-            .map(c -> c.getUserBeingFollowed().getId())
-            .collect(Collectors.toList());
-    if (!idsOfFollowedUsers.contains(userBeingFollowed.getId())) {
-      Connection connection = new Connection(this, userBeingFollowed);
-      connection.setUser(this);
-      connection.setUserBeingFollowed(userBeingFollowed);
-      this.connections.add(connection);
-    }
-  }
-
-  @Override
-  public String toString() {
-    return "User{"
-        + "firstName='" + firstName + '\''
-        + ", lastName='" + lastName + '\''
-        + ", email='" + email + '\''
-        + ", cell='" + cell + '\''
-        + ", age=" + age
-        + ", login='" + login + '\''
-        + '}';
-  }
-
-
 
 }
+
+
+
 

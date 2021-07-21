@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
-import java.util.Map;
 
 @SpringBootApplication
 public class Application {
@@ -100,14 +99,15 @@ public class Application {
       String firstName = faker.name().firstName();
       String lastName = faker.name().lastName();
       String email = String.format("%s.%s@dan-it.edu", firstName, lastName);
-      User user = new User(
-          firstName,
-          lastName,
-          email,
-          "+380503332211",
-          30,
-          "userLogin",
-          "userPassHash");
+      User user = User.builder()
+          .firstName(firstName)
+          .lastName(lastName)
+          .email(email)
+          .cell("+380503332211")
+          .age(30)
+          .login("userLogin")
+          .password("userPassHash")
+          .build();
 
       userRepository.save(user);
     }

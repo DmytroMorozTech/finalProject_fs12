@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +19,17 @@ public class UserServiceImp implements UserService {
   public User getActiveUser(Long id) {
 
     //temporary to test
-    return new User(
-        "Gianluigi",
-        "Donnarumma",
-        "gian_donna@gmail.com",
-        "393290233725",
-        22,
-        "gianni",
-        "secret");
+    User user = User.builder()
+        .firstName("firstName")
+        .lastName("lastName")
+        .email("email")
+        .cell("+380503332211")
+        .age(30)
+        .login("userLogin")
+        .password("userPassHash")
+        .build();
+
+    return user;
   }
 
   @Override
@@ -59,20 +63,47 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public boolean createConnection(Long activeUserId, Long userBeingFollowedId) {
-    Optional<User> userOpt = findById(activeUserId);
-    Optional<User> userBeingFollowedOpt = findById(userBeingFollowedId);
-    if (userOpt.isEmpty() || userBeingFollowedOpt.isEmpty()) {
+  public boolean createConnection(Long userId, Long followedUserId) { // should be followUser
+    Optional<User> userOpt = findById(userId);
+    Optional<User> followedUserOpt = findById(followedUserId);
+    if (userOpt.isEmpty() || followedUserOpt.isEmpty()) {
       return false;
     }
 
     User user = userOpt.get();
-    User userBeingFollowed = userBeingFollowedOpt.get();
+    User userBeingFollowed = followedUserOpt.get();
 
-    user.addConnection(userBeingFollowed);
-    save(user);
-    return true;
+    if (!user.getUsersFollowed().contains(userBeingFollowed)) {
+      user.getUsersFollowed().add(userBeingFollowed);
+      System.out.println("------------------------------------------------");
+      System.out.println("Users followed:");
+      System.out.println(user.getUsersFollowed().stream().map(User::getId).collect(Collectors.toList()));
+      System.out.println("------------------------------------------------");
+      System.out.println("Users following:");
+      System.out.println(user.getUsersFollowing().stream().map(User::getId).collect(Collectors.toList()));
+      save(user);
+      return true;
+    }
+    return false;
   }
+
+//    user.addConnection(userBeingFollowed);
+//    // ее должен являться методом сущности! Вынести в СЕРВИС!
+
+
+//  public void addConnection(User userBeingFollowed) {
+//    List<Long> idsOfFollowedUsers =
+//        this.connections
+//            .stream()
+//            .map(c -> c.getUserBeingFollowed().getId())
+//            .collect(Collectors.toList());
+//    if (!idsOfFollowedUsers.contains(userBeingFollowed.getId())) {
+//      Connection connection = new Connection(this, userBeingFollowed);
+//      connection.setUser(this);
+//      connection.setUserBeingFollowed(userBeingFollowed);
+//      this.connections.add(connection);
+//    }
+//  }
 
 
 }

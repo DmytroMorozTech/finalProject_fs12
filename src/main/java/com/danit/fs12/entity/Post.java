@@ -17,10 +17,9 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Post")
+@Entity // class is named POST so here it will match automatically
 @Table(name = "posts")
-@EqualsAndHashCode(callSuper = true, exclude = {"comments"})
-@ToString(exclude = {"comments"})
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -49,6 +48,8 @@ public class Post extends AbstractEntity {
   @OneToMany(
       mappedBy = "post",
       cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
 
   public Comment addComment(Comment comment) {

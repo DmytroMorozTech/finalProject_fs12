@@ -3,7 +3,6 @@ package com.danit.fs12.controller;
 import com.danit.fs12.dto.connection.ConnectionDtoRq;
 import com.danit.fs12.dto.user.UserDtoRes;
 import com.danit.fs12.entity.User;
-import com.danit.fs12.facade.GenericsFacade;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +31,7 @@ import java.util.stream.Collectors;
 public class UserController {
   private final UserService userService;
   private final ModelMapper mm;
-//  private final GenericsFacade<User> userFacade;
+  //  private final GenericsFacade<User> userFacade;
   private final UserFacade userFacade;
 
 
@@ -50,7 +49,7 @@ public class UserController {
   // http://localhost:9000/api/users/{id}
   // get user by id
   @GetMapping(path = "{id}")
-  public ResponseEntity<?> findById(@PathVariable Long id) {
+  public ResponseEntity<?> findById(@PathVariable Long id) { // wildCard should be replaced with UserDtoRes
     Optional<User> userOpt = userService.findById(id);
     boolean wasFound = userOpt.isPresent();
     return wasFound
@@ -66,16 +65,21 @@ public class UserController {
         ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
         : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
   }
+  // мы должны в методе deleteById бросить ошибку, если нам не удалось удалить пользователя
+  // делаем это на уровне сервиса, где мы обращаемся к репозиторию
+  // ошибка высплывет... а далее условие, как будто все прошло хорошо
+  // тернарники убираем
+  // на фронте прописать логику, что если прителает какая-то ошибка, пользователю должен отображаться notification in UI
   //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
 
 
   // http://localhost:9000/api/users/connections/
   @PostMapping("/connections")// add new Connection with another User
   public ResponseEntity<?> createConnection(@Valid @RequestBody ConnectionDtoRq rq) {
-    Long activeUserId = rq.getActiveUserId();
-    Long userBeingFollowedId = rq.getUserBeingFollowedId();
+    Long userId = rq.getUserId();
+    Long followedUserId = rq.getFollowedUserId();
 
-    boolean wasCreated = userService.createConnection(activeUserId, userBeingFollowedId);
+    boolean wasCreated = userService.createConnection(userId, followedUserId);
     return wasCreated
         ? ResponseEntity.status(HttpStatus.CREATED).build()
         : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
