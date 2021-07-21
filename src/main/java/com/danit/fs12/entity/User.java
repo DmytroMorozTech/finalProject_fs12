@@ -73,7 +73,7 @@ public class User extends AbstractEntity {
   private List<Message> messages = new ArrayList<>();
 
   //  ---------------------------------
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany
   @JoinTable(name = "tbl_followers",
       joinColumns = @JoinColumn(name = "userId"),
       inverseJoinColumns = @JoinColumn(name = "followedUserId")
@@ -82,7 +82,7 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<User> usersFollowed;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany
   @JoinTable(name = "tbl_followers",
       joinColumns = @JoinColumn(name = "followedUserId"),
       inverseJoinColumns = @JoinColumn(name = "userId")
