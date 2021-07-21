@@ -11,14 +11,16 @@ public interface UserService {
 
   User getActiveUser(Long id);
 
-  public User save(User user);
+  User save(User user);
 
-  public void delete(User user);
+  void delete(User user);
 
-  public List<User> findAll();
+  List<User> findAll();
 
-  public void deleteById(Long id);
+  boolean deleteById(Long id);
 
-  public Optional<User> findById(Long id);
+  Optional<User> findById(Long id);
+
+  boolean createConnection(Long activeUserId, Long userBeingFollowedId);
 
 }

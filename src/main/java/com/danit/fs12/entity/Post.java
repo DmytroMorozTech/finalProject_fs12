@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,8 @@ import java.util.List;
 
 @Entity(name = "Post")
 @Table(name = "posts")
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"comments"})
+@ToString(exclude = {"comments"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -57,12 +59,12 @@ public class Post extends AbstractEntity {
     return comment;
   }
 
-  @Override
-  public String toString() {
-    return "Post{"
-        + "title='" + title + '\''
-        + ", mainText='" + mainText + '\''
-        + ", user=" + user
-        + '}';
-  }
+//  @Override
+//  public String toString() {
+//    return "Post{"
+//        + "title='" + title + '\''
+//        + ", mainText='" + mainText + '\''
+//        + ", user=" + user
+//        + '}';
+//  }
 }

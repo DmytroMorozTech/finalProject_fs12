@@ -1,7 +1,7 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.user.UserDtoRes;
 import com.danit.fs12.dto.connection.ConnectionDtoRq;
+import com.danit.fs12.dto.user.UserDtoRes;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
@@ -50,26 +50,22 @@ public class UserController {
   @GetMapping(path = "{id}")
   public ResponseEntity<?> findById(@PathVariable Long id) {
     Optional<User> userOpt = userService.findById(id);
-    if (userOpt.isEmpty()) return ResponseEntity.notFound().build();
-
-    UserDtoRes userRs = mm.map(userOpt.get(), UserDtoRes.class);
-    return ResponseEntity.ok(userRs);
+    boolean wasFound = userOpt.isPresent();
+    return wasFound
+        ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
+//            mm.map(userOpt.get(), UserDtoRes.class)
+        : ResponseEntity.notFound().build();
   }
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
-    Optional<User> userOpt = userService.findById(id);
-    if (userOpt.isPresent()) {
-      userService.deleteById(id);
-      boolean wasDeleted = userService.findById(id).isEmpty();
-      if (wasDeleted) {
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-      }
-      //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
-    }
-
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    boolean wasDeleted = userService.deleteById(id);
+    return wasDeleted
+        ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+        : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
   }
+  //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
+
 
   // http://localhost:9000/api/users/connections/
   @PostMapping("/connections")// add new Connection with another User
@@ -77,25 +73,10 @@ public class UserController {
     Long activeUserId = rq.getActiveUserId();
     Long userBeingFollowedId = rq.getUserBeingFollowedId();
 
-    Optional<User> userOpt = userService.findById(activeUserId);
-    Optional<User> userBeingFollowedOpt = userService.findById(userBeingFollowedId);
-    if (userOpt.isEmpty() || userBeingFollowedOpt.isEmpty()) {
-      return
-          ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
-
-    User user = userOpt.get();
-    User userBeingFollowed = userBeingFollowedOpt.get();
-
-//    Connection connection = connectionService.createConnection(user,userBeingFollowed);
-//    this one seems to be not necessary
-
-    user.addConnection(userBeingFollowed);
-    userService.save(user);
-
-    return ResponseEntity
-        .status(HttpStatus.CREATED)
-        .build();
+    boolean wasCreated = userService.createConnection(activeUserId, userBeingFollowedId);
+    return wasCreated
+        ? ResponseEntity.status(HttpStatus.CREATED).build()
+        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
   }
 
 

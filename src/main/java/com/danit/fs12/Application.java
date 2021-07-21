@@ -1,5 +1,6 @@
 package com.danit.fs12;
 
+import com.danit.fs12.entity.Comment;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.repository.CommentRepository;
@@ -61,15 +62,10 @@ public class Application {
       System.out.println(firstUser);
       System.out.println(firstUser.getPosts());
 
-//    Connection connection = new Connection(firstUser, 4L);
-//    userRepository.findById(1L).ifPresent(user -> user.addConnection(4L));
 //-----------------------------------------
 //    COMMENTS
-      Post post1 = postRepository.findById(1L).get();
-      User user1 = userRepository.findById(1L).get();
-      System.out.println("---------------");
-      System.out.println(post1);
-      System.out.println(user1);
+      generateComments(userRepository, postRepository, commentRepository);
+
 
 //      Here we get an error:
 //      Caused by: org.springframework.dao.InvalidDataAccessApiUsageException:
@@ -103,6 +99,27 @@ public class Application {
 
       userRepository.save(user);
     }
+  }
+
+  private void generateComments(
+      UserRepository userRepository,
+      PostRepository postRepository,
+      CommentRepository commentRepository) {
+    Comment comment1 = new Comment("Comment No.1 Comment No.1 Comment No.1");
+    Comment comment2 = new Comment("Comment No.2 Comment No.2 Comment No.2");
+    Comment comment3 = new Comment("Comment No.3 Comment No.3 Comment No.3");
+
+    User user1 = userRepository.findById(1L).get();
+    Post post1 = postRepository.findById(1L).get();
+
+//    post1.addComment(comment1);
+//    user1.addComment(comment1);
+//
+//    post1.addComment(comment2);
+//    user1.addComment(comment2);
+//
+//    post1.addComment(comment3);
+//    user1.addComment(comment3);
 
   }
 

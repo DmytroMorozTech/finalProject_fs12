@@ -9,17 +9,17 @@ import java.util.Optional;
 @Service
 public interface CommentService {
 
-  public Comment createComment(String text);
+  Optional<Comment> createComment(Long activeUserId, Long postId, String text);
 
-  public Comment save(Comment comment);
+  Comment save(Comment comment);
 
-  public void delete(Comment comment);
+  void delete(Comment comment);
 
-  public List<Comment> findAll();
+  List<Comment> findAll();
 
-  public void deleteById(Long id);
+  boolean deleteById(Long id);
 
-  public Optional<Comment> getOne(Long id);
+  Optional<Comment> findById(Long id);
 
   // findAllCommentsForPostId(Long postId)
 }

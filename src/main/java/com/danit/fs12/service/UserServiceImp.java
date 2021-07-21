@@ -5,7 +5,6 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,13 +44,34 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public void deleteById(Long id) {
-    userRepository.deleteById(id);
+  public boolean deleteById(Long id) {
+    Optional<User> userOpt = findById(id);
+    if (userOpt.isPresent()) {
+      delete(userOpt.get());
+      return true;
+    }
+    return false;
   }
 
   @Override
   public Optional<User> findById(Long id) {
     return userRepository.findById(id);
+  }
+
+  @Override
+  public boolean createConnection(Long activeUserId, Long userBeingFollowedId) {
+    Optional<User> userOpt = findById(activeUserId);
+    Optional<User> userBeingFollowedOpt = findById(userBeingFollowedId);
+    if (userOpt.isEmpty() || userBeingFollowedOpt.isEmpty()) {
+      return false;
+    }
+
+    User user = userOpt.get();
+    User userBeingFollowed = userBeingFollowedOpt.get();
+
+    user.addConnection(userBeingFollowed);
+    save(user);
+    return true;
   }
 
 

@@ -3,8 +3,7 @@ package com.danit.fs12.controller;
 import com.danit.fs12.dto.comment.CommentDtoRes;
 import com.danit.fs12.dto.comment.CommentDtoRq;
 import com.danit.fs12.entity.Comment;
-import com.danit.fs12.entity.Post;
-import com.danit.fs12.entity.User;
+import com.danit.fs12.facade.CommentFacade;
 import com.danit.fs12.service.CommentService;
 import com.danit.fs12.service.PostService;
 import com.danit.fs12.service.UserService;
@@ -34,16 +33,16 @@ public class CommentController {
   private final CommentService commentService;
   private final UserService userService;
   private final PostService postService;
+  private final CommentFacade commentFacade;
 
   private final ModelMapper mm;
-
 
   @GetMapping
   List<CommentDtoRes> findAll() {
     List<Comment> comments = commentService.findAll();
     List<CommentDtoRes> commentsRs = comments
         .stream()
-        .map(c -> mm.map(c, CommentDtoRes.class))
+        .map(commentFacade::convertToDto)
         .collect(Collectors.toList());
 
     return commentsRs;
@@ -52,14 +51,13 @@ public class CommentController {
   // http://localhost:9000/api/comments/{id}
   // get comment by id
   @GetMapping(path = "{id}")
-  public ResponseEntity<?> getOne(@PathVariable Long id) {
-    Optional<Comment> comment = commentService.getOne(id);
-    if (comment.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-    Comment foundComment = comment.get();
-    CommentDtoRes foundCommentRs = mm.map(foundComment, CommentDtoRes.class);
-    return ResponseEntity.ok(foundCommentRs);
+  public ResponseEntity<?> findById(@PathVariable Long id) {
+    Optional<Comment> commentOpt = commentService.findById(id);
+
+    boolean wasFound = commentOpt.isPresent();
+    return wasFound
+        ? ResponseEntity.ok(commentFacade.convertToDto(commentOpt.get()))
+        : ResponseEntity.notFound().build();
   }
 
   // http://localhost:9000/api/comments/
@@ -69,29 +67,12 @@ public class CommentController {
     Long postId = rq.getPostId();
     String text = rq.getText();
 
-    Optional<User> userOpt = userService.findById(activeUserId);
-    Optional<Post> postOpt = postService.getOne(postId);
-    if (userOpt.isEmpty() || postOpt.isEmpty()) {
-      return
-          ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
+    Optional<Comment> commentOpt = commentService.createComment(activeUserId, postId, text);
+    boolean wasCreated = commentOpt.isPresent();
+    return wasCreated
+        ? ResponseEntity.status(HttpStatus.CREATED).body(commentFacade.convertToDto(commentOpt.get()))
+        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
-    User user = userOpt.get();
-    Post post = postOpt.get();
-
-    Comment comment = commentService.createComment(text);
-
-    post.addComment(comment);
-    user.addComment(comment);
-
-    CommentDtoRes commentRs = mm.map(comment, CommentDtoRes.class);
-    postService.save(post);
-    userService.save(user);
-
-    return ResponseEntity
-        .status(HttpStatus.CREATED)
-        .body(commentRs);
   }
-
 
 }
