@@ -1,8 +1,8 @@
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-import StyleEyes from './StyleEyes'
+import Style from './styles'
 
 function EyeVisibility () {
-  const classes = StyleEyes()
+  const classes = Style()
   return (
     <div>
       <VisibilityOffIcon className={classes.eyes}/>

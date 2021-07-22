@@ -1,5 +1,5 @@
 import Item from './Item/Item'
-import StyleNavbar from './StyleNavbar'
+import Style from './styles'
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded'
 import BusinessCenterRoundedIcon from '@material-ui/icons/BusinessCenterRounded'
@@ -9,7 +9,7 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
 
 function Navbar () {
-  const classes = StyleNavbar()
+  const classes = Style()
 
   const items = [
     { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false },
