@@ -1,15 +1,15 @@
 import StyleButton from './StyleButton'
 import Button from '@material-ui/core/Button'
 
-function ButtonBlue ({title}) {
+function SharedButton ({title, color = 'primary', variant = 'contained'}) {
   const classes = StyleButton()
   return (
     <div>
-      <Button variant="contained" color="primary" className={classes.btn}>
+      <Button color={color} variant={variant} className={classes.btn}>
         {title}
       </Button>
     </div>
   )
 }
 
-export default ButtonBlue
+export default SharedButton
