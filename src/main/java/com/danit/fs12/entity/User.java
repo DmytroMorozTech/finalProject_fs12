@@ -90,6 +90,24 @@ public class User extends AbstractEntity {
   private List<Chat> chats = new ArrayList<>();
 
   //  ---------------------------------
+  @ManyToMany(
+      cascade = CascadeType.ALL
+  )
+  @JoinTable(
+      name = "groups",
+      joinColumns = @JoinColumn(
+          name = "user_id",
+          foreignKey = @ForeignKey(name = "groups_user_id_fk")
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "group_id",
+          foreignKey = @ForeignKey(name = "groups_group_id_fk")
+      )
+  )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Group> groups = new ArrayList<>();
+  //  ---------------------------------
   @ManyToMany
   @JoinTable(name = "followers",
       joinColumns = @JoinColumn(name = "userId"),
