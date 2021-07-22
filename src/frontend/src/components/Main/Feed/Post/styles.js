@@ -31,5 +31,26 @@ export default makeStyles(() => ({
 
   liked: {
     color: '#0a66c2'
+  },
+
+  quantity: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    borderBottom: '1px solid #e0e0e0',
+    width: '100%',
+    paddingBottom: '5px',
+    '& > .MuiSvgIcon-root': {
+      fontSize: 3
+    },
+    '& > span': {
+      display: 'flex',
+      alignItems: 'center',
+      margin: '0 5px',
+      fontSize: 11,
+      '&:hover': {
+        textDecoration: 'underline'
+      }
+    }
   }
 }))
