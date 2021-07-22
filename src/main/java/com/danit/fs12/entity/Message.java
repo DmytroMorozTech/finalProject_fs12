@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,6 +40,8 @@ public class Message extends AbstractEntity {
           @JoinColumn(name = "user_id",
               referencedColumnName = "id")
       })
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private User user;
 
 }

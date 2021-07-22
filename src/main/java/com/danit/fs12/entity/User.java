@@ -80,7 +80,7 @@ public class User extends AbstractEntity {
 
   //  ---------------------------------
   @ManyToMany
-  @JoinTable(name = "tbl_followers",
+  @JoinTable(name = "followers",
       joinColumns = @JoinColumn(name = "userId"),
       inverseJoinColumns = @JoinColumn(name = "followedUserId")
       )
@@ -89,7 +89,7 @@ public class User extends AbstractEntity {
   private Set<User> usersFollowed; // users that current User follows
 
   @ManyToMany
-  @JoinTable(name = "tbl_followers",
+  @JoinTable(name = "followers",
       joinColumns = @JoinColumn(name = "followedUserId"),
       inverseJoinColumns = @JoinColumn(name = "userId")
       )
@@ -117,6 +117,7 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Organization organization;
+  // this is the organization that User is currently working at.
   //  ---------------------------------
 
   public void addPost(Post post) {
