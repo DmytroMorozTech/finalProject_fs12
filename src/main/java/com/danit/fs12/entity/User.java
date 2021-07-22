@@ -1,5 +1,6 @@
 package com.danit.fs12.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +12,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -95,18 +98,26 @@ public class User extends AbstractEntity {
   private Set<User> usersFollowing; // users that are following the current User
   //  ---------------------------------
 
-  //  @ManyToOne
-  //  @JoinColumn(
-  //      name = "organization_id",
-  //      nullable = false,
-  //      referencedColumnName = "id",
-  //      foreignKey = @ForeignKey(
-  //          name = "organization_user_fk"
-  //      )
-  //  )
-  //  @ToString.Exclude
-  //  @EqualsAndHashCode.Exclude
-  //  private Organization organization;
+  @JsonIgnore
+  @ManyToOne(
+      cascade = {CascadeType.PERSIST}
+      )
+  @JoinTable(
+      name = "rel_organization_users",
+      joinColumns = {
+          @JoinColumn(
+              name = "organization_id",
+              referencedColumnName = "id")
+      },
+      inverseJoinColumns = {
+          @JoinColumn(name = "user_id",
+              referencedColumnName = "id")
+      }
+      )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private Organization organization;
+  //  ---------------------------------
 
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
