@@ -4,9 +4,11 @@ export default makeStyles(() => ({
 
   likeMini: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 12,
     backgroundColor: '#0a66c2',
     borderRadius: 30,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginTop: '3px',
+    marginRight: '3px'
   }
 }))
