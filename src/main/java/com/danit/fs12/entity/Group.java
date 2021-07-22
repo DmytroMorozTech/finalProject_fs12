@@ -1,4 +1,5 @@
 package com.danit.fs12.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,9 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Group extends AbstractEntity{
-
+public class Group extends AbstractEntity {
   @ManyToMany(mappedBy = "groups")
   private List<User> users = new ArrayList<>();
-
 }

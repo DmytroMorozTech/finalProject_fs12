@@ -27,34 +27,34 @@ public class Comment extends AbstractEntity {
 
   @JsonIgnore
   @ManyToOne(
-      cascade = {CascadeType.PERSIST})
+    cascade = {CascadeType.PERSIST})
   @JoinTable(
-      name = "rel_post_comments",
-      joinColumns = {
-          @JoinColumn(
-              name = "comment_id",
-              referencedColumnName = "id")
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "post_id",
-              referencedColumnName = "id")
-      })
+    name = "rel_post_comments",
+    joinColumns = {
+      @JoinColumn(
+        name = "comment_id",
+        referencedColumnName = "id")
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "post_id",
+        referencedColumnName = "id")
+    })
   private Post post;
 
   @JsonIgnore
   @ManyToOne(
-      cascade = {CascadeType.PERSIST})
+    cascade = {CascadeType.PERSIST})
   @JoinTable(
-      name = "rel_user_comments",
-      joinColumns = {
-          @JoinColumn(
-              name = "comment_id",
-              referencedColumnName = "id")
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "user_id",
-              referencedColumnName = "id")
-      })
+    name = "rel_user_comments",
+    joinColumns = {
+      @JoinColumn(
+        name = "comment_id",
+        referencedColumnName = "id")
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "user_id",
+        referencedColumnName = "id")
+    })
   private User user;
   // author of comment
 

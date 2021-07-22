@@ -41,10 +41,7 @@ public class Organization extends AbstractEntity {
   private String phoneNumber;
 
   @JsonIgnore
-  @OneToMany(
-      mappedBy = "organization",
-      cascade = {CascadeType.PERSIST}
-  )
+  @OneToMany(mappedBy = "organization", cascade = {CascadeType.PERSIST})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> users = new HashSet<>();

@@ -35,19 +35,16 @@ public class Post extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(
-      name = "user_id",
-      nullable = false,
-      referencedColumnName = "id",
-      foreignKey = @ForeignKey(
-          name = "user_post_fk"
-      )
-  )
+    name = "user_id",
+    nullable = false,
+    referencedColumnName = "id",
+    foreignKey = @ForeignKey(
+      name = "user_post_fk"
+    ))
   private User user;
 
 
-  @OneToMany(
-      mappedBy = "post",
-      cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();

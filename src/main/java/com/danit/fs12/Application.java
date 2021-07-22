@@ -40,18 +40,18 @@ public class Application {
         generateRandomUsers(userRepository);
 
         userRepository
-            .findById(2L)
-            .ifPresentOrElse(System.out::println,
-                () -> {
-                  System.out.println("User was not found");
-                });
+          .findById(2L)
+          .ifPresentOrElse(System.out::println,
+            () -> {
+              System.out.println("User was not found");
+            });
 
         userRepository
-            .findById(211L)
-            .ifPresentOrElse(System.out::println,
-                () -> {
-                  System.out.println("User was not found");
-                });
+          .findById(211L)
+          .ifPresentOrElse(System.out::println,
+            () -> {
+              System.out.println("User was not found");
+            });
         // will not be found in this case
 
         List<User> users = userRepository.findAll();
@@ -109,14 +109,14 @@ public class Application {
           String lastName = faker.name().lastName();
           String email = String.format("%s.%s@dan-it.edu", firstName, lastName);
           User user = User.builder()
-              .firstName(firstName)
-              .lastName(lastName)
-              .email(email)
-              .phoneNumber("+380503332211")
-              .age(30)
-              .login("userLogin")
-              .password("userPassHash")
-              .build();
+            .firstName(firstName)
+            .lastName(lastName)
+            .email(email)
+            .phoneNumber("+380503332211")
+            .age(30)
+            .login("userLogin")
+            .password("userPassHash")
+            .build();
 
           userRepository.save(user);
         }

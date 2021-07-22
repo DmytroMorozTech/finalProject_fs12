@@ -41,9 +41,9 @@ public class UserController {
   List<UserDtoRes> findAll() {
     List<User> users = userService.findAll();
     List<UserDtoRes> usersRs = users
-        .stream()
-        .map(userFacade::convertToDto)
-        .collect(Collectors.toList());
+      .stream()
+      .map(userFacade::convertToDto)
+      .collect(Collectors.toList());
 
     return usersRs;
   }
@@ -55,17 +55,17 @@ public class UserController {
     Optional<User> userOpt = userService.findById(id);
     boolean wasFound = userOpt.isPresent();
     return wasFound
-        ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
-        //            mm.map(userOpt.get(), UserDtoRes.class)
-        : ResponseEntity.notFound().build();
+      ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
+      //            mm.map(userOpt.get(), UserDtoRes.class)
+      : ResponseEntity.notFound().build();
   }
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
     boolean wasDeleted = userService.deleteById(id);
     return wasDeleted
-        ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
-        : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+      ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+      : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
   }
   // мы должны в методе deleteById бросить ошибку, если нам не удалось удалить пользователя
   // делаем это на уровне сервиса, где мы обращаемся к репозиторию

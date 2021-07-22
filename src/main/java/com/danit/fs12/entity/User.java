@@ -46,103 +46,85 @@ public class User extends AbstractEntity {
   private String login;
   private String password;
 
-  @OneToMany(
-      mappedBy = "user",
-      cascade = {CascadeType.ALL},
-      fetch = FetchType.EAGER
-  )
+  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(
-      mappedBy = "user",
-      cascade = CascadeType.ALL)
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
 
   //  ---------------------------------
-  @OneToMany(
-      cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-      mappedBy = "user"
-  )
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Message> messages = new ArrayList<>();
 
-  @ManyToMany(
-      cascade = CascadeType.ALL
-  )
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-      name = "chats",
-      joinColumns = @JoinColumn(
-          name = "user_id",
-          foreignKey = @ForeignKey(name = "chats_user_id_fk")
-      ),
-      inverseJoinColumns = @JoinColumn(
-          name = "chat_id",
-          foreignKey = @ForeignKey(name = "chats_chat_id_fk")
-      )
-  )
+    name = "chats",
+    joinColumns = @JoinColumn(
+      name = "user_id",
+      foreignKey = @ForeignKey(name = "chats_user_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "chat_id",
+      foreignKey = @ForeignKey(name = "chats_chat_id_fk")
+    ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Chat> chats = new ArrayList<>();
 
   //  ---------------------------------
-  @ManyToMany(
-      cascade = CascadeType.ALL
-  )
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-      name = "groups",
-      joinColumns = @JoinColumn(
-          name = "user_id",
-          foreignKey = @ForeignKey(name = "groups_user_id_fk")
-      ),
-      inverseJoinColumns = @JoinColumn(
-          name = "group_id",
-          foreignKey = @ForeignKey(name = "groups_group_id_fk")
-      )
-  )
+    name = "groups",
+    joinColumns = @JoinColumn(
+      name = "user_id",
+      foreignKey = @ForeignKey(name = "groups_user_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "group_id",
+      foreignKey = @ForeignKey(name = "groups_group_id_fk")
+    ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Group> groups = new ArrayList<>();
   //  ---------------------------------
   @ManyToMany
   @JoinTable(name = "followers",
-      joinColumns = @JoinColumn(name = "userId"),
-      inverseJoinColumns = @JoinColumn(name = "followedUserId")
-  )
+    joinColumns = @JoinColumn(name = "userId"),
+    inverseJoinColumns = @JoinColumn(name = "followedUserId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowed; // users that current User follows
 
   @ManyToMany
   @JoinTable(name = "followers",
-      joinColumns = @JoinColumn(name = "followedUserId"),
-      inverseJoinColumns = @JoinColumn(name = "userId")
-  )
+    joinColumns = @JoinColumn(name = "followedUserId"),
+    inverseJoinColumns = @JoinColumn(name = "userId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
   //  ---------------------------------
 
   @JsonIgnore
-  @ManyToOne(
-      cascade = {CascadeType.PERSIST}
-  )
+  @ManyToOne(cascade = {CascadeType.PERSIST})
   @JoinTable(
-      name = "rel_organization_users",
-      joinColumns = {
-          @JoinColumn(
-              name = "organization_id",
-              referencedColumnName = "id")
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "user_id",
-              referencedColumnName = "id")
-      }
-  )
+    name = "rel_organization_users",
+    joinColumns = {
+      @JoinColumn(
+        name = "organization_id",
+        referencedColumnName = "id")
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "user_id",
+        referencedColumnName = "id")
+    })
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Organization organization;

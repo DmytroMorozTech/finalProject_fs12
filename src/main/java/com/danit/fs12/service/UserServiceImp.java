@@ -20,14 +20,14 @@ public class UserServiceImp implements UserService {
 
     //temporary to test
     User user = User.builder()
-        .firstName("firstName")
-        .lastName("lastName")
-        .email("email")
-        .phoneNumber("+380503332211")
-        .age(30)
-        .login("userLogin")
-        .password("userPassHash")
-        .build();
+      .firstName("firstName")
+      .lastName("lastName")
+      .email("email")
+      .phoneNumber("+380503332211")
+      .age(30)
+      .login("userLogin")
+      .password("userPassHash")
+      .build();
 
     return user;
   }
@@ -68,7 +68,7 @@ public class UserServiceImp implements UserService {
     Optional<User> followedUserOpt = findById(followedUserId);
     if (userOpt.isEmpty() || followedUserOpt.isEmpty()) {
       String msg = String.format("Unable to establish connection between users with ids: %d and %d."
-          + "User data can not be found in database", userId, followedUserId);
+        + "User data can not be found in database", userId, followedUserId);
       throw new NotFoundException(msg);
     }
 
