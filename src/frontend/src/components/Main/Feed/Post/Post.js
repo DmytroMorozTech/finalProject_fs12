@@ -6,7 +6,6 @@ import Style from './styles'
 import { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
-import ShareBox from './ShareBox/ShareBox'
 
 function Post ({quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688}) {
   const classes = Style()
@@ -15,7 +14,6 @@ function Post ({quantityOfLikes = 10595, quantityOfComments = 420, quantityOfVie
 
   return (
     <div>
-      <ShareBox/>
       <div className={classes.quantity}>
         <span>
           <LikeMiniIcon/>
