@@ -1,5 +1,5 @@
 import Item from './Item/Item'
-import StyleNavbar from './StyleNavbar'
+import Style from './styles'
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded'
 import BusinessCenterRoundedIcon from '@material-ui/icons/BusinessCenterRounded'
@@ -10,7 +10,7 @@ import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
 import {NavLink} from 'react-router-dom'
 
 function Navbar () {
-  const classes = StyleNavbar()
+  const classes = Style()
 
   const items = [
     { Icon: <NavLink className={classes.itemPrimary} to="/home"><HomeRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/home">Home</NavLink>, arrow: false },

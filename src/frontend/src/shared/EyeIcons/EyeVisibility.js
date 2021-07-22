@@ -1,8 +1,8 @@
 import VisibilityIcon from '@material-ui/icons/Visibility'
-import StyleEyes from './StyleEyes'
+import Style from './styles'
 
 function EyeVisibility () {
-  const classes = StyleEyes()
+  const classes = Style()
   return (
     <div>
       <VisibilityIcon className={classes.eyes}/>
