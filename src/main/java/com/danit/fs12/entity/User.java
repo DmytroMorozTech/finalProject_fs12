@@ -130,8 +130,15 @@ public class User extends AbstractEntity {
   private Organization organization;
   // this is the organization that User is currently working at.
   //  ---------------------------------
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<PlaceOfWork> placesOfWork = new ArrayList<>();
 
 
+  //  ---------------------------------
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
       this.posts.add(post);

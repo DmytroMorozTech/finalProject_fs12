@@ -44,7 +44,6 @@ public class Organization extends AbstractEntity {
   @OneToMany(mappedBy = "organization", cascade = {CascadeType.PERSIST})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private Set<User> users = new HashSet<>();
-  // this field contains a set of Employees of this company that are registered on LinkedIn
+  private Set<PlaceOfWork> placesOfWork = new HashSet<>();
 
 }
