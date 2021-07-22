@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -49,7 +50,7 @@ public class User extends AbstractEntity {
       mappedBy = "user",
       cascade = {CascadeType.ALL},
       fetch = FetchType.EAGER
-      )
+  )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Post> posts = new ArrayList<>();
@@ -62,21 +63,38 @@ public class User extends AbstractEntity {
   private List<Comment> comments = new ArrayList<>();
 
   //  ---------------------------------
-  // new stuff related to user -> messages -> chats mapping
   @OneToMany(
       cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
       mappedBy = "user"
-      )
+  )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Message> messages = new ArrayList<>();
+
+  @ManyToMany(
+      cascade = CascadeType.ALL
+  )
+  @JoinTable(
+      name = "chats",
+      joinColumns = @JoinColumn(
+          name = "user_id",
+          foreignKey = @ForeignKey(name = "chats_user_id_fk")
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "chat_id",
+          foreignKey = @ForeignKey(name = "chats_chat_id_fk")
+      )
+  )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Chat> chats = new ArrayList<>();
 
   //  ---------------------------------
   @ManyToMany
   @JoinTable(name = "followers",
       joinColumns = @JoinColumn(name = "userId"),
       inverseJoinColumns = @JoinColumn(name = "followedUserId")
-      )
+  )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowed; // users that current User follows
@@ -85,7 +103,7 @@ public class User extends AbstractEntity {
   @JoinTable(name = "followers",
       joinColumns = @JoinColumn(name = "followedUserId"),
       inverseJoinColumns = @JoinColumn(name = "userId")
-      )
+  )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
@@ -94,7 +112,7 @@ public class User extends AbstractEntity {
   @JsonIgnore
   @ManyToOne(
       cascade = {CascadeType.PERSIST}
-      )
+  )
   @JoinTable(
       name = "rel_organization_users",
       joinColumns = {
@@ -106,7 +124,7 @@ public class User extends AbstractEntity {
           @JoinColumn(name = "user_id",
               referencedColumnName = "id")
       }
-      )
+  )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Organization organization;
@@ -127,16 +145,6 @@ public class User extends AbstractEntity {
       comment.setUser(this);
     }
     return comment;
-  }
-
-  public void addMessage(Message message) {
-    if (!messages.contains(message)) {
-      messages.add(message);
-    }
-  }
-
-  public void removeMessage(Message message) {
-    messages.remove(message);
   }
 
 

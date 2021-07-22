@@ -41,7 +41,7 @@ public class Post extends AbstractEntity {
       foreignKey = @ForeignKey(
           name = "user_post_fk"
       )
-      )
+  )
   private User user;
 
 
