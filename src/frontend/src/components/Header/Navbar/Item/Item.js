@@ -1,7 +1,7 @@
 import React from 'react'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import { Hidden } from '@material-ui/core'
-import Style from './StyleItem'
+import Style from './styles'
 
 const Item = ({ Icon, title, arrow, onClick }) => {
   const classes = Style()
@@ -10,7 +10,7 @@ const Item = ({ Icon, title, arrow, onClick }) => {
       {Icon}
       <Hidden mdDown>
         <div className={classes.title}>
-          <span>{title}</span>
+          <span className={classes.titleText}>{title}</span>
           {arrow && <ArrowDropDownIcon/>}
         </div>
       </Hidden>
