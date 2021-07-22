@@ -1,47 +1,45 @@
 package com.danit.fs12.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.CascadeType;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 
-@Entity(name = "Message")
-@Table(name = "messages")
-@EqualsAndHashCode(callSuper = true)
+@Entity
+@Table(name = "messages") // this table will be the connecting table for users and chats
+@EqualsAndHashCode(
+    callSuper = true,
+    exclude = {"id"}
+    )
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Message extends AbstractEntity {
+public class Message extends AbstractEntityWithoutId {
 
-  private String userMessageFrom;
-  private String userMessageTo;
-  private String textMessage;
+  @EmbeddedId
+  private MessageId id;
 
-  @JsonIgnore
-  @ManyToOne(cascade = {CascadeType.PERSIST})
-  @JoinTable(
-      name = "rel_user_messages",
-      joinColumns = {
-          @JoinColumn(
-              name = "message_id",
-              referencedColumnName = "id")
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "user_id",
-              referencedColumnName = "id")
-      })
-  @ToString.Exclude
-  @EqualsAndHashCode.Exclude
+  @ManyToOne
+  @MapsId("userId")
+  @JoinColumn(name = "user_id")
   private User user;
+  // @MapsId("userId") - this annotation says that this user is a part of id
+  // of this message.
+  // and we have an EmbeddedId represented by a composite key here...
+
+  @ManyToOne
+  @MapsId("chatId")
+  @JoinColumn(name = "chat_id")
+  private Chat chat;
+
+  private String text;
 
 }

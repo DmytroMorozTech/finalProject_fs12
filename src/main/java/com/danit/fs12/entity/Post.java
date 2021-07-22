@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // class is named POST so here it will match automatically
+@Entity
 @Table(name = "posts")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -60,12 +60,4 @@ public class Post extends AbstractEntity {
     return comment;
   }
 
-//  @Override
-//  public String toString() {
-//    return "Post{"
-//        + "title='" + title + '\''
-//        + ", mainText='" + mainText + '\''
-//        + ", user=" + user
-//        + '}';
-//  }
 }

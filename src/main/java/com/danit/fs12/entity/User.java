@@ -12,7 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -55,15 +54,6 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Post> posts = new ArrayList<>();
 
-  // should be deleted
-  //  @OneToMany(
-  //      mappedBy = "user",
-  //      cascade = {CascadeType.ALL}
-  //  )
-  //  @ToString.Exclude
-  //  @EqualsAndHashCode.Exclude
-  //  private List<Connection> connections = new ArrayList<>();
-
   @OneToMany(
       mappedBy = "user",
       cascade = CascadeType.ALL)
@@ -71,9 +61,12 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
 
+  //  ---------------------------------
+  // new stuff related to user -> messages -> chats mapping
   @OneToMany(
-      mappedBy = "user",
-      cascade = CascadeType.ALL)
+      cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+      mappedBy = "user"
+      )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Message> messages = new ArrayList<>();
@@ -120,6 +113,7 @@ public class User extends AbstractEntity {
   // this is the organization that User is currently working at.
   //  ---------------------------------
 
+
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
       this.posts.add(post);
@@ -133,6 +127,16 @@ public class User extends AbstractEntity {
       comment.setUser(this);
     }
     return comment;
+  }
+
+  public void addMessage(Message message) {
+    if (!messages.contains(message)) {
+      messages.add(message);
+    }
+  }
+
+  public void removeMessage(Message message) {
+    messages.remove(message);
   }
 
 
