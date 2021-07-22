@@ -19,11 +19,9 @@ const theme = createTheme({
     'type': 'light',
     // main color of Linkedin
     'primary': { 'main': '#0a66c2', 'light': '#0b76e0', 'dark': '#0a56a3', 'contrastText': '#fff' },
+    // secondary color of Linkedin
     'secondary': {
-      'main': 'rgb(220, 0, 78)',
-      'light': 'rgb(227, 51, 113)',
-      'dark': 'rgb(154, 0, 54)',
-      'contrastText': '#fff'
+      'main': '#757575', 'light': 'rgb(0.93, 0.93, 0.93, 0.36)', 'dark': 'rgb(0.13, 0.13, 0.13, 0.36)', 'contrastText': '#fff'
     },
     'error': { 'light': '#e57373', 'main': '#f44336', 'dark': '#d32f2f', 'contrastText': '#fff' },
     'warning': { 'light': '#ffb74d', 'main': '#ff9800', 'dark': '#f57c00', 'contrastText': 'rgba(0, 0, 0, 0.87)' },
@@ -167,11 +165,13 @@ const theme = createTheme({
     },
     'button': {
       'fontFamily': 'Roboto, Helvetica, Arial, sans-serif',
-      'fontWeight': 500,
+      // changed font weight
+      'fontWeight': 600,
       'fontSize': '0.875rem',
       'lineHeight': 1.75,
       'letterSpacing': '0.02857em',
-      'textTransform': 'uppercase'
+      // not uppercase
+      'textTransform': 'none'
     },
     'caption': {
       'fontFamily': 'Roboto, Helvetica, Arial, sans-serif',
