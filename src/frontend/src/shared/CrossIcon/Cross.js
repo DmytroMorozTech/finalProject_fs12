@@ -1,8 +1,8 @@
 import CancelIcon from '@material-ui/icons/Cancel'
-import StyleCross from './StyleCross'
+import Style from './styles'
 
 function Cross () {
-  const classes = StyleCross()
+  const classes = Style()
   return (
     <div className={classes.cross}>
       <CancelIcon/>
