@@ -7,17 +7,18 @@ import SmsRoundedIcon from '@material-ui/icons/SmsRounded'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
+import {NavLink} from 'react-router-dom'
 
 function Navbar () {
   const classes = StyleNavbar()
 
   const items = [
-    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false },
-    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false },
-    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false },
-    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false },
-    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false },
-    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true },
+    { Icon: <NavLink className={classes.itemPrimary} to="/home"><HomeRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/home">Home</NavLink>, arrow: false },
+    { Icon: <NavLink className={classes.itemPrimary} to="/network"><SupervisorAccountRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/network">Network</NavLink>, arrow: false },
+    { Icon: <NavLink className={classes.itemPrimary} to="/jobs"><BusinessCenterRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/jobs">Jobs</NavLink>, arrow: false },
+    { Icon: <NavLink className={classes.itemPrimary} to="/messages"><SmsRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/messages">Messages</NavLink>, arrow: false },
+    { Icon: <NavLink className={classes.itemPrimary} to="/notifications"><NotificationsRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/notifications">Notifications</NavLink>, arrow: false },
+    { Icon: <NavLink className={classes.itemPrimary} to="/personal"><AccountCircleRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/personal">Me</NavLink>, arrow: true },
     { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true }
   ]
 
