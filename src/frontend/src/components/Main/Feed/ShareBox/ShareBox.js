@@ -5,6 +5,7 @@ import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import AssignmentIcon from '@material-ui/icons/Assignment'
+import Avatar from '../../../../shared/Avatar/Avatar'
 
 function ShareBox (props) {
   const classes = Style()
@@ -29,7 +30,7 @@ function ShareBox (props) {
   return (
     <div className={classes.share}>
       <div className={classes.post}>
-        <AccountCircleIcon/>
+        <Avatar/>
         <button className={classes.postButton} onClick={clickHandler} disabled={!!props.loading}>
                         New post
         </button>

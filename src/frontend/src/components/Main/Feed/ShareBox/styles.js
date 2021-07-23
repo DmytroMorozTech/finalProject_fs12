@@ -12,11 +12,7 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    marginLeft: '8px',
-    color: 'gray',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 40
-    }
+    marginLeft: '8px'
   },
   postButton: {
     margin: '4px 4px',
