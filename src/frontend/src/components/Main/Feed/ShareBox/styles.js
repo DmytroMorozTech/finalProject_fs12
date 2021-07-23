@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     cursor: 'pointer',
     border: '1px solid rgba(0, 0, 0, 0.5)',
     borderRadius: '10px',
-    width: '45%'
+    width: '100%'
   },
   post: {
     display: 'flex',

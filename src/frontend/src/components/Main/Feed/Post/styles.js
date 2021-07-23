@@ -2,10 +2,19 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles(() => ({
 
+  post: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start'
+  },
+
+  picture: {
+    maxWidth: '100%',
+    height: 'auto'
+  },
+
   block: {
     display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'space-between',
     color: 'grey'
   },
 

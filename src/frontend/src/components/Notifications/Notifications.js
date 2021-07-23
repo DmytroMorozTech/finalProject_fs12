@@ -1,8 +1,8 @@
 import React from 'react'
-import StyleNotifications from './StyleNotifications'
+import Style from './styles'
 
 function Notifications () {
-  const classes = StyleNotifications()
+  const classes = Style()
   return (
     <h1 className={classes.text}>
         Welcome to the Notifications page!
