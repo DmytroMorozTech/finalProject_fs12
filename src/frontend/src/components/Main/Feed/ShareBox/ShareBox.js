@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import Style from './styles'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
