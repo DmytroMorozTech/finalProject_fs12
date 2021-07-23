@@ -1,8 +1,8 @@
 import React from 'react'
-import StyleJobs from './StyleJobs'
+import Style from './styles'
 
 function Jobs () {
-  const classes = StyleJobs()
+  const classes = Style()
   return (
     <h1 className={classes.text}>
       Welcome to the Jobs page!
