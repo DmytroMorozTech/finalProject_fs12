@@ -3,10 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   post: {
+    padding: '0, 50px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginTop: '10px'
+    marginTop: '10px',
+    border: '1px solid rgba(0, 0, 0, 0.5)',
+    borderRadius: '10px'
   },
 
   picture: {
@@ -47,9 +50,7 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-    borderBottom: '1px solid #e0e0e0',
     width: '100%',
-    paddingBottom: '5px',
     '& > .MuiSvgIcon-root': {
       fontSize: 3
     },
@@ -63,11 +64,8 @@ export default makeStyles(() => ({
       }
     }
   },
-  post: {
-    width: '45%',
-    border: '1px solid rgba(0, 0, 0, 0.5)',
-    borderRadius: '10px',
-    marginTop: '10px'
+  avatar: {
+    paddingLeft: '10px'
   },
   postAuthor: {
     display: 'flex',
@@ -75,7 +73,7 @@ export default makeStyles(() => ({
   },
   hiddenMenu: {
     color: 'gray',
-    marginLeft: '95%',
+    marginLeft: '90%',
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)',
@@ -93,6 +91,7 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
+    cursor: 'pointer',
     fontSize: 12,
     fontWeight: 500
   },

@@ -13,10 +13,8 @@ import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 
-function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime = '1h', quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688}) {
-function Post ({
-  text = 'This Post was generated automatically!',
-  picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
+function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime = '1h',
+  text = 'This Post was generated automatically!', picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
 }) {
   const classes = Style()
 
@@ -29,7 +27,9 @@ function Post ({
       </div>
       <hr className={classes.line} />
       <div className={classes.postAuthor}>
-        <Avatar/>
+        <div className={classes.avatar}>
+          <Avatar/>
+        </div>
         <div className={classes.userInfo}>
           <div className={classes.name}>
             {userName}
@@ -45,8 +45,6 @@ function Post ({
           </div>
         </div>
       </div>
-    <div className={classes.post}>
-
       <Typography variant="body2" gutterBottom>
         {text}
       </Typography>
@@ -63,6 +61,7 @@ function Post ({
         <FiberManualRecordIcon/>
         <span>{quantityOfViews} views</span>
       </div>
+      <hr className={classes.line} />
       <div className={classes.block}>
         <div className={liked ? classes.liked : ''}>
           <div className={classes.item} onClick={() => setLiked(!liked)}>
