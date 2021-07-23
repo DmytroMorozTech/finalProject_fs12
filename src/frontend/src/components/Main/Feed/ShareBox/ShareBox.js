@@ -56,5 +56,4 @@ function ShareBox (props) {
     </div>
   )
 }
-
 export default ShareBox
