@@ -1,6 +1,5 @@
 package com.danit.fs12.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,6 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -58,43 +56,45 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
 
-  //  ---------------------------------
+
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Message> messages = new ArrayList<>();
 
+
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-    name = "chats",
+    name = "users_chats",
     joinColumns = @JoinColumn(
       name = "user_id",
-      foreignKey = @ForeignKey(name = "chats_user_id_fk")
+      foreignKey = @ForeignKey(name = "users_chats_user_id_fk")
     ),
     inverseJoinColumns = @JoinColumn(
       name = "chat_id",
-      foreignKey = @ForeignKey(name = "chats_chat_id_fk")
+      foreignKey = @ForeignKey(name = "users_chats_chat_id_fk")
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Chat> chats = new ArrayList<>();
 
-  //  ---------------------------------
+
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-    name = "groups",
+    name = "user_has_groups",
     joinColumns = @JoinColumn(
       name = "user_id",
-      foreignKey = @ForeignKey(name = "groups_user_id_fk")
+      foreignKey = @ForeignKey(name = "user_has_groups_user_id_fk")
     ),
     inverseJoinColumns = @JoinColumn(
       name = "group_id",
-      foreignKey = @ForeignKey(name = "groups_group_id_fk")
+      foreignKey = @ForeignKey(name = "user_has_groups_group_id_fk")
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Group> groups = new ArrayList<>();
-  //  ---------------------------------
+
+
   @ManyToMany
   @JoinTable(name = "followers",
     joinColumns = @JoinColumn(name = "userId"),
@@ -103,6 +103,7 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowed; // users that current User follows
 
+
   @ManyToMany
   @JoinTable(name = "followers",
     joinColumns = @JoinColumn(name = "followedUserId"),
@@ -110,35 +111,45 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
-  //  ---------------------------------
 
-  @JsonIgnore
-  @ManyToOne(cascade = {CascadeType.PERSIST})
-  @JoinTable(
-    name = "rel_organization_users",
-    joinColumns = {
-      @JoinColumn(
-        name = "organization_id",
-        referencedColumnName = "id")
-    },
-    inverseJoinColumns = {
-      @JoinColumn(name = "user_id",
-        referencedColumnName = "id")
-    })
-  @ToString.Exclude
-  @EqualsAndHashCode.Exclude
-  private Organization organization;
+
+  // This part of code below should be deleted, because users will map to organizations
+  // using intermediate entity WorkPlace
+  //  @JsonIgnore
+  //  @ManyToOne(cascade = {CascadeType.PERSIST})
+  //  @JoinTable(
+  //    name = "rel_organization_users",
+  //    joinColumns = {
+  //      @JoinColumn(
+  //        name = "organization_id",
+  //        referencedColumnName = "id")
+  //    },
+  //    inverseJoinColumns = {
+  //      @JoinColumn(name = "user_id",
+  //        referencedColumnName = "id")
+  //    })
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  private Organization organization;
   // this is the organization that User is currently working at.
-  //  ---------------------------------
+
   @OneToMany(
     mappedBy = "user",
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private List<PlaceOfWork> placesOfWork = new ArrayList<>();
+  private List<WorkPlace> workPlaces = new ArrayList<>();
 
 
-  //  ---------------------------------
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Like> likes = new ArrayList<>();
+
+
+  // these methods below should be moved to service
   public void addPost(Post post) {
     if (!this.posts.contains(post)) {
       this.posts.add(post);
