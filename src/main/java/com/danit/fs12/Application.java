@@ -40,18 +40,18 @@ public class Application {
         generateRandomUsers(userRepository);
 
         userRepository
-            .findById(2L)
-            .ifPresentOrElse(System.out::println,
-                () -> {
-                  System.out.println("User was not found");
-                });
+          .findById(2L)
+          .ifPresentOrElse(System.out::println,
+            () -> {
+              System.out.println("User was not found");
+            });
 
         userRepository
-            .findById(211L)
-            .ifPresentOrElse(System.out::println,
-                () -> {
-                  System.out.println("User was not found");
-                });
+          .findById(211L)
+          .ifPresentOrElse(System.out::println,
+            () -> {
+              System.out.println("User was not found");
+            });
         // will not be found in this case
 
         List<User> users = userRepository.findAll();
@@ -102,25 +102,25 @@ public class Application {
       }
 
 
-  private void generateRandomUsers(UserRepository userRepository) {
-    Faker faker = new Faker();
-    for (int i = 0; i < 10; i++) {
-      String firstName = faker.name().firstName();
-      String lastName = faker.name().lastName();
-      String email = String.format("%s.%s@dan-it.edu", firstName, lastName);
-      User user = User.builder()
-          .firstName(firstName)
-          .lastName(lastName)
-          .email(email)
-          .cell("+380503332211")
-          .age(30)
-          .login("userLogin")
-          .password("userPassHash")
-          .build();
+      private void generateRandomUsers(UserRepository userRepository) {
+        Faker faker = new Faker();
+        for (int i = 0; i < 10; i++) {
+          String firstName = faker.name().firstName();
+          String lastName = faker.name().lastName();
+          String email = String.format("%s.%s@dan-it.edu", firstName, lastName);
+          User user = User.builder()
+            .firstName(firstName)
+            .lastName(lastName)
+            .email(email)
+            .phoneNumber("+380503332211")
+            .age(30)
+            .login("userLogin")
+            .password("userPassHash")
+            .build();
 
-      userRepository.save(user);
-    }
-  }
+          userRepository.save(user);
+        }
+      }
 
       void generateComments() {
         Comment comment1 = new Comment("Comment No.1 Comment No.1 Comment No.1");

@@ -21,7 +21,7 @@ public interface UserService {
 
   Optional<User> findById(Long id);
 
-  boolean createConnection(Long userId, Long followedUserId);
+  void followUser(Long userId, Long followedUserId);
 
   User getOne(long id);
 }

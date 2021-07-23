@@ -18,12 +18,12 @@ public class GenericsFacade<T> {
   private final ModelMapper mm;
 
   private final Map<String, String> conversionMapping = Map.ofEntries(
-      Map.entry("User", "UserDtoRes"), // convertToDto
-      Map.entry("UserDtoReq", "User"), // convertToEntity
-      Map.entry("Message", "MessageDtoRes"),
-      Map.entry("MessageDtoReq", "Message"),
-      Map.entry("Comment", "CommentDtoRes"),
-      Map.entry("CommentDtoReq", "Comment")
+    Map.entry("User", "UserDtoRes"), // convertToDto
+    Map.entry("UserDtoReq", "User"), // convertToEntity
+    Map.entry("Message", "MessageDtoRes"),
+    Map.entry("MessageDtoReq", "Message"),
+    Map.entry("Comment", "CommentDtoRes"),
+    Map.entry("CommentDtoReq", "Comment")
   );
 
   public UserDtoRes convertToDto(T param) {

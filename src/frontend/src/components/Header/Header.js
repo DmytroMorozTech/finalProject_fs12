@@ -1,11 +1,11 @@
 import Navbar from './Navbar/Navbar'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
-import StyleHeader from './StyleHeader'
+import Style from './styles'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import { Hidden } from '@material-ui/core'
 
 function Header () {
-  const classes = StyleHeader()
+  const classes = Style()
   return (
     <div className={classes.header}>
       <div className={classes.header_logo_search}>

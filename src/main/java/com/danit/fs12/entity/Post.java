@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // class is named POST so here it will match automatically
+@Entity
 @Table(name = "posts")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -35,19 +35,16 @@ public class Post extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(
-      name = "user_id",
-      nullable = false,
-      referencedColumnName = "id",
-      foreignKey = @ForeignKey(
-          name = "user_post_fk"
-      )
-      )
+    name = "user_id",
+    nullable = false,
+    referencedColumnName = "id",
+    foreignKey = @ForeignKey(
+      name = "user_post_fk"
+    ))
   private User user;
 
 
-  @OneToMany(
-      mappedBy = "post",
-      cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
@@ -60,12 +57,4 @@ public class Post extends AbstractEntity {
     return comment;
   }
 
-//  @Override
-//  public String toString() {
-//    return "Post{"
-//        + "title='" + title + '\''
-//        + ", mainText='" + mainText + '\''
-//        + ", user=" + user
-//        + '}';
-//  }
 }

@@ -41,9 +41,9 @@ public class CommentController {
   List<CommentDtoRes> findAll() {
     List<Comment> comments = commentService.findAll();
     List<CommentDtoRes> commentsRs = comments
-        .stream()
-        .map(commentFacade::convertToDto)
-        .collect(Collectors.toList());
+      .stream()
+      .map(commentFacade::convertToDto)
+      .collect(Collectors.toList());
 
     return commentsRs;
   }
@@ -56,8 +56,8 @@ public class CommentController {
 
     boolean wasFound = commentOpt.isPresent();
     return wasFound
-        ? ResponseEntity.ok(commentFacade.convertToDto(commentOpt.get()))
-        : ResponseEntity.notFound().build();
+      ? ResponseEntity.ok(commentFacade.convertToDto(commentOpt.get()))
+      : ResponseEntity.notFound().build();
   }
 
   // http://localhost:9000/api/comments/
@@ -70,8 +70,8 @@ public class CommentController {
     Optional<Comment> commentOpt = commentService.createComment(activeUserId, postId, text);
     boolean wasCreated = commentOpt.isPresent();
     return wasCreated
-        ? ResponseEntity.status(HttpStatus.CREATED).body(commentFacade.convertToDto(commentOpt.get()))
-        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+      ? ResponseEntity.status(HttpStatus.CREATED).body(commentFacade.convertToDto(commentOpt.get()))
+      : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
   }
 
