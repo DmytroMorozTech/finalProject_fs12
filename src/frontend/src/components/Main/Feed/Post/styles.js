@@ -5,7 +5,8 @@ export default makeStyles(() => ({
   post: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    marginTop: '10px'
   },
 
   picture: {
