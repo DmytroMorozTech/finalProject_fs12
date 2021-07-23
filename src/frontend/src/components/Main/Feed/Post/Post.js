@@ -2,17 +2,19 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
+import PublicIcon from '@material-ui/icons/Public'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import Style from './styles'
 import { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
+import Avatar from '../../../../shared/Avatar/Avatar'
 import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 
-function Post ({
-  text = 'This Post was generated automatically!',
-  picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
+function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime = '1h',
+  text = 'This Post was generated automatically!', picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
 }) {
   const classes = Style()
 
@@ -20,7 +22,29 @@ function Post ({
 
   return (
     <div className={classes.post}>
-
+      <div className={classes.hiddenMenu}>
+        <MoreHorizIcon/>
+      </div>
+      <hr className={classes.line} />
+      <div className={classes.postAuthor}>
+        <div className={classes.avatar}>
+          <Avatar/>
+        </div>
+        <div className={classes.userInfo}>
+          <div className={classes.name}>
+            {userName}
+          </div>
+          <div className={classes.position}>
+            {position}
+          </div>
+          <div className={classes.postTime}>
+            {postTime}
+            <div className={classes.worldIcon}>
+              <PublicIcon/>
+            </div>
+          </div>
+        </div>
+      </div>
       <Typography variant="body2" gutterBottom>
         {text}
       </Typography>
@@ -37,6 +61,7 @@ function Post ({
         <FiberManualRecordIcon/>
         <span>{quantityOfViews} views</span>
       </div>
+      <hr className={classes.line} />
       <div className={classes.block}>
         <div className={liked ? classes.liked : ''}>
           <div className={classes.item} onClick={() => setLiked(!liked)}>

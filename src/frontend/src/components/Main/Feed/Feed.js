@@ -7,9 +7,6 @@ function Feed () {
   const classes = Style()
   return (
     <div className={classes.feed}>
-      <h1 className={classes.text}>
-      Welcome to the Home page!
-      </h1>
       <ShareBox/>
       <Post/>
     </div>
