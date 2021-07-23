@@ -1,4 +1,4 @@
-package com.danit.fs12.dto;
+package com.danit.fs12.dto.message;
 
 import lombok.Data;
 

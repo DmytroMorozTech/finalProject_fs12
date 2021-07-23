@@ -1,7 +1,7 @@
 package com.danit.fs12.facade;
 
-import com.danit.fs12.dto.MessageDtoReq;
-import com.danit.fs12.dto.MessageDtoRes;
+import com.danit.fs12.dto.message.MessageDtoReq;
+import com.danit.fs12.dto.message.MessageDtoRes;
 import com.danit.fs12.entity.Message;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
