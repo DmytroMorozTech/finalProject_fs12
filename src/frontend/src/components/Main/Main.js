@@ -7,15 +7,15 @@ import {Feed} from "./Feed/Feed";
 function Main() {
     const classes = StyleMain();
 
-    return (
-        <div classes={classes.container}>
-            <Section>
-                <MainLeft/>
-                <Feed/>
-                <MainRight/>
-            </Section>
-        </div>
-    )
+  return (
+    <div className={classes.container}>
+      <Section>
+        <MainLeft/>
+        <Feed/>
+        <MainRight/>
+      </Section>
+    </div>
+  )
 }
 
 export default Main;
