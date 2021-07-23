@@ -9,8 +9,15 @@ import { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
+import image from '../../../../temporaryImages/abstraktsiia.jpg'
+import Typography from '@material-ui/core/Typography'
+import { Hidden } from '@material-ui/core'
 
 function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime = '1h', quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688}) {
+function Post ({
+  text = 'This Post was generated automatically!',
+  picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
+}) {
   const classes = Style()
 
   const [liked, setLiked] = useState(false)
@@ -38,6 +45,14 @@ function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime 
           </div>
         </div>
       </div>
+    <div className={classes.post}>
+
+      <Typography variant="body2" gutterBottom>
+        {text}
+      </Typography>
+      <div>
+        <img src={picture} alt={picture} className={classes.picture}/>
+      </div>
       <div className={classes.quantity}>
         <span>
           <LikeMiniIcon/>
@@ -52,20 +67,28 @@ function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime 
         <div className={liked ? classes.liked : ''}>
           <div className={classes.item} onClick={() => setLiked(!liked)}>
             <ThumbUpOutlinedIcon/>
-            <span className="like">Like</span>
+            <Hidden xsDown>
+              <span className="like">Like</span>
+            </Hidden>
           </div>
         </div>
         <div className={classes.item}>
           <ChatOutlinedIcon/>
-          <span>Comment</span>
+          <Hidden xsDown>
+            <span>Comment</span>
+          </Hidden>
         </div>
         <div className={classes.item}>
           <RedoOutlinedIcon/>
-          <span>Share</span>
+          <Hidden xsDown>
+            <span>Share</span>
+          </Hidden>
         </div>
         <div className={classes.item}>
           <TelegramIcon/>
-          <span>Send</span>
+          <Hidden xsDown>
+            <span>Send</span>
+          </Hidden>
         </div>
       </div>
     </div>

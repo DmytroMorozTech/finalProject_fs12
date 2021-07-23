@@ -1,8 +1,8 @@
 import React from 'react'
-import StyleNotifications from '../../Notifications/StyleNotifications'
+import Style from './styles'
 
 function Profile () {
-  const classes = StyleNotifications()
+  const classes = Style()
   return (
     <h1 className={classes.text}>
       Welcome to the Profile page!
