@@ -1,5 +1,6 @@
 package com.danit.fs12.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,20 +10,28 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "messages")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Message extends AbstractEntity {
+@Table(name = "placesOfWork")
+public class PlaceOfWork extends AbstractEntity {
+  private String name;
+  private String location;
+  private String position;
+  private String responsibilities;
+  private LocalDate dateStart;
+  private LocalDate dateFinish;
+
+  @ManyToOne
+  @JoinColumn(name = "organization_id")
+  private Organization organization;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
-
-  private String text;
 
 }

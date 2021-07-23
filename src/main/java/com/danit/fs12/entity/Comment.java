@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @Entity(name = "Comment")
 @Table(name = "comments")
@@ -26,39 +25,42 @@ public class Comment extends AbstractEntity {
   @Column(name = "text")
   private String text;
 
-  @Column(name = "created_at")
-  private LocalDateTime createdAt;
-
   @JsonIgnore
   @ManyToOne(
-      cascade = {CascadeType.PERSIST})
+    cascade = {CascadeType.PERSIST})
   @JoinTable(
-      name = "rel_post_comments",
-      joinColumns = {
-          @JoinColumn(
-              name = "comment_id",
-              referencedColumnName = "id")
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "post_id",
-              referencedColumnName = "id")
-      })
+    name = "rel_post_comments",
+    joinColumns = {
+      @JoinColumn(
+        name = "comment_id",
+        referencedColumnName = "id")
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "post_id",
+        referencedColumnName = "id")
+    })
   private Post post;
 
   @JsonIgnore
   @ManyToOne(
-      cascade = {CascadeType.PERSIST})
+    cascade = {CascadeType.PERSIST})
   @JoinTable(
-      name = "rel_user_comments",
-      joinColumns = {
-          @JoinColumn(
-              name = "comment_id", // name of column in link table
-              referencedColumnName = "id") // id for this entity (Comments)
-      },
-      inverseJoinColumns = {
-          @JoinColumn(name = "user_id",
-              referencedColumnName = "id")// id for entity post
-      })
-
+    name = "rel_user_comments",
+    joinColumns = {
+      @JoinColumn(
+        name = "comment_id",
+        referencedColumnName = "id")
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "user_id",
+        referencedColumnName = "id")
+    })
   private User user;
+  // author of comment
+
+  public Comment(String text) {
+    this.text = text;
+  }
+
+
 }
