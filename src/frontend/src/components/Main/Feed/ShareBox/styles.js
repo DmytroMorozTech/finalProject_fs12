@@ -12,14 +12,15 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    marginLeft: '8px',
+    marginRight: '10px',
     marginTop: '4px'
   },
   avatar: {
-    marginTop: '5px'
+    marginTop: '5px',
+    marginLeft: '20px'
   },
   postButton: {
-    margin: '0 8px',
+    margin: '0 10px',
     flexGrow: '1',
     paddingLeft: '16px',
     border: '1px solid #e0e0e0',

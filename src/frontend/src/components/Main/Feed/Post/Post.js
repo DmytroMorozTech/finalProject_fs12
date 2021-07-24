@@ -5,13 +5,13 @@ import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import Style from './styles'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
-import { Hidden } from '@material-ui/core'
+import { Hidden, TextField } from '@material-ui/core'
 
 function Post ({
   userName = 'Steve Noiry',
@@ -34,9 +34,7 @@ function Post ({
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
-        <div className={classes.avatar}>
-          <Avatar/>
-        </div>
+        <Avatar/>
         <div className={classes.userInfo}>
           <Typography variant="body1" className={classes.name}>
             {userName}
@@ -100,6 +98,22 @@ function Post ({
             <span>Send</span>
           </Hidden>
         </div>
+      </div>
+      <div className={classes.addComment}>
+        <div className={classes.avatar}>
+          <Avatar/>
+        </div>
+        <TextField
+          id="outlined-full-width"
+          className={classes.commentField}
+          placeholder="Add comment"
+          fullWidth
+          margin="none"
+          variant="outlined"
+          color="secondary"
+          // rows="1"
+          size="small"
+        />
       </div>
     </div>
   )

@@ -75,14 +75,11 @@ export default makeStyles(() => ({
     }
   },
 
-  avatar: {
-    paddingLeft: '10px'
-  },
-
   postAuthor: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '10px'
+    margin: '10px',
+    paddingLeft: '10px'
   },
 
   hiddenMenu: {
@@ -135,5 +132,25 @@ export default makeStyles(() => ({
       color: '#0a66c2',
       textDecoration: 'underline'
     }
+  },
+
+  addComment: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: '20px',
+    width: '90%'
+  },
+
+  commentField: {
+    marginRight: '10px',
+    '& > .MuiOutlinedInput-root': {
+      borderRadius: '35px',
+      padding: '5px'
+    }
+  },
+
+  avatar: {
+    paddingTop: '5px',
+    paddingRight: '10px'
   }
 }))
