@@ -29,7 +29,9 @@ function ShareBox (props) {
   return (
     <div className={classes.share}>
       <div className={classes.post}>
-        <Avatar/>
+        <div className={classes.avatar}>
+          <Avatar/>
+        </div>
         <button className={classes.postButton} onClick={clickHandler} disabled={!!props.loading}>
                         New post
         </button>
@@ -49,7 +51,7 @@ function ShareBox (props) {
         </div>
         <div className={classes.article}>
           <AssignmentIcon/>
-          <div className={classes.names}>Write Article</div>
+          <div className={classes.names}>Write article</div>
         </div>
       </div>
     </div>
