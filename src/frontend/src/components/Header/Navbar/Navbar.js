@@ -8,26 +8,88 @@ import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
 import {NavLink} from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
+import MenuList from '@material-ui/core/MenuList'
+import MenuItem from '@material-ui/core/MenuItem'
+import Popper from '@material-ui/core/Popper'
+import Grow from '@material-ui/core/Grow'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import React from 'react'
 
 function Navbar () {
   const classes = Style()
+  const [open, setOpen] = React.useState(false)
+  const anchorRef = React.useRef(null)
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen)
+  }
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return
+    }
+
+    setOpen(false)
+  }
+
+  function handleListKeyDown (event) {
+    if (event.key === 'Tab') {
+      event.preventDefault()
+      setOpen(false)
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open)
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus()
+    }
+
+    prevOpen.current = open
+  }, [open])
 
   const items = [
-    { Icon: <NavLink className={classes.itemPrimary} to="/home"><HomeRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/home">Home</NavLink>, arrow: false },
-    { Icon: <NavLink className={classes.itemPrimary} to="/network"><SupervisorAccountRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/network">Network</NavLink>, arrow: false },
-    { Icon: <NavLink className={classes.itemPrimary} to="/jobs"><BusinessCenterRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/jobs">Jobs</NavLink>, arrow: false },
-    { Icon: <NavLink className={classes.itemPrimary} to="/messages"><SmsRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/messages">Messages</NavLink>, arrow: false },
-    { Icon: <NavLink className={classes.itemPrimary} to="/notifications"><NotificationsRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/notifications">Notifications</NavLink>, arrow: false },
-    { Icon: <NavLink className={classes.itemPrimary} to="/personal"><AccountCircleRoundedIcon/></NavLink>, title: <NavLink className={classes.itemPrimaryText} to="/personal">Me</NavLink>, arrow: true },
+    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, link: '/home' },
+    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, link: '/network' },
+    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, link: '/jobs' },
+    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, link: '/messages' },
+    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, link: '/notifications' },
+    { Icon: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}><AccountCircleRoundedIcon/></span>, title: 'Me', arrow: true },
     { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true }
   ]
 
   return (
-    <div className={classes.navbar}>
-      {items.map(({ Icon, title, arrow, onClick }, i) => (
-        <Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick}/>
-      ))}
-    </div>
+    <>
+      <div className={classes.navbar}>
+        {items.map(({ Icon, title, arrow, onClick, link }, i) => (
+            <NavLink className={classes.itemPrimary} to={link}><Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick}/></NavLink>
+        ))}
+      </div>
+      <div className={classes.root}>
+        <div>
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            {({TransitionProps, placement}) => (
+              <Grow
+                {...TransitionProps}
+                style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'}}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </div>
+    </>
   )
 }
 

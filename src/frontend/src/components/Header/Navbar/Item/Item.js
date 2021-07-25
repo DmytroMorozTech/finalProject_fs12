@@ -10,7 +10,7 @@ const Item = ({ Icon, title, arrow, onClick }) => {
       {Icon}
       <Hidden mdDown>
         <div className={classes.title}>
-          <span className={classes.titleText}>{title}</span>
+          <span className={classes.titleText} >{title}</span>
           {arrow && <ArrowDropDownIcon/>}
         </div>
       </Hidden>
