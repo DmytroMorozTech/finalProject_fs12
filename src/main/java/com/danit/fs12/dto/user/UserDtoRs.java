@@ -3,7 +3,7 @@ package com.danit.fs12.dto.user;
 import lombok.Data;
 
 @Data
-public class UserDtoRes {
+public class UserDtoRs {
 
   private Long id;
   private String firstName;

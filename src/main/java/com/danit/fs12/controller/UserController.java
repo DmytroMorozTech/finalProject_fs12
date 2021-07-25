@@ -1,7 +1,7 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.connection.ConnectionDtoRq;
-import com.danit.fs12.dto.user.UserDtoRes;
+import com.danit.fs12.dto.following.FollowingDtoRq;
+import com.danit.fs12.dto.user.UserDtoRs;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
@@ -37,9 +37,9 @@ public class UserController {
   //  I will finalize it soon. It has raw code there at the moment.
 
   @GetMapping
-  List<UserDtoRes> findAll() {
+  List<UserDtoRs> findAll() {
     List<User> users = userService.findAll();
-    List<UserDtoRes> usersRs = users
+    List<UserDtoRs> usersRs = users
       .stream()
       .map(userFacade::convertToDto)
       .collect(Collectors.toList());
@@ -78,7 +78,7 @@ public class UserController {
 
   // http://localhost:9000/api/users/connections/
   @PostMapping("/following")
-  public ResponseEntity<?> followUser(@Valid @RequestBody ConnectionDtoRq rq) {
+  public ResponseEntity<?> followUser(@Valid @RequestBody FollowingDtoRq rq) {
     Long userId = rq.getUserId();
     Long followedUserId = rq.getFollowedUserId();
 

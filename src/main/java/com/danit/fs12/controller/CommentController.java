@@ -1,6 +1,6 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.comment.CommentDtoRes;
+import com.danit.fs12.dto.comment.CommentDtoRs;
 import com.danit.fs12.dto.comment.CommentDtoRq;
 import com.danit.fs12.entity.Comment;
 import com.danit.fs12.facade.CommentFacade;
@@ -38,9 +38,9 @@ public class CommentController {
   private final ModelMapper mm;
 
   @GetMapping
-  List<CommentDtoRes> findAll() {
+  List<CommentDtoRs> findAll() {
     List<Comment> comments = commentService.findAll();
-    List<CommentDtoRes> commentsRs = comments
+    List<CommentDtoRs> commentsRs = comments
       .stream()
       .map(commentFacade::convertToDto)
       .collect(Collectors.toList());
