@@ -112,27 +112,6 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
 
-
-  // This part of code below should be deleted, because users will map to organizations
-  // using intermediate entity WorkPlace
-  //  @JsonIgnore
-  //  @ManyToOne(cascade = {CascadeType.PERSIST})
-  //  @JoinTable(
-  //    name = "rel_organization_users",
-  //    joinColumns = {
-  //      @JoinColumn(
-  //        name = "organization_id",
-  //        referencedColumnName = "id")
-  //    },
-  //    inverseJoinColumns = {
-  //      @JoinColumn(name = "user_id",
-  //        referencedColumnName = "id")
-  //    })
-  //  @ToString.Exclude
-  //  @EqualsAndHashCode.Exclude
-  //  private Organization organization;
-  // this is the organization that User is currently working at.
-
   @OneToMany(
     mappedBy = "user",
     cascade = CascadeType.ALL)
@@ -147,6 +126,20 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Like> likes = new ArrayList<>();
+
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Education> educations = new ArrayList<>();
+
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Certification> certifications = new ArrayList<>();
 
 
   // these methods below should be moved to service

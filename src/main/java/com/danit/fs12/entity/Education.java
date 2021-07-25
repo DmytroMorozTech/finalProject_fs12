@@ -18,22 +18,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "workPlaces")
-public class WorkPlace extends AbstractEntity {
-  private String name;
-  private String location;
-  private String position;
-  private String responsibilities;
+@Table(name = "educations")
+public class Education extends AbstractEntity {
+  private String school;
+  private String degree;
+  private String activities; // example: Marching Band, Volleyball, Choir
+  private String description;
+
+  @Column(name = "field_of_study")
+  private String fieldOfStudy;
 
   @Column(name = "date_start")
   private LocalDate dateStart;
 
   @Column(name = "date_finish")
   private LocalDate dateFinish;
-
-  @ManyToOne
-  @JoinColumn(name = "organization_id")
-  private Organization organization;
 
   @ManyToOne
   @JoinColumn(name = "user_id")

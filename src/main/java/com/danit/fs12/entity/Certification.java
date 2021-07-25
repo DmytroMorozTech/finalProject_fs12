@@ -18,22 +18,27 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "workPlaces")
-public class WorkPlace extends AbstractEntity {
+@Table(name = "certifications")
+public class Certification extends AbstractEntity {
   private String name;
-  private String location;
-  private String position;
-  private String responsibilities;
 
-  @Column(name = "date_start")
-  private LocalDate dateStart;
+  @Column(name = "issuing_organization")
+  private String issuingOrganization;
 
-  @Column(name = "date_finish")
-  private LocalDate dateFinish;
+  @Column(name = "has_expiry_date")
+  private Boolean hasExpiryDate;
 
-  @ManyToOne
-  @JoinColumn(name = "organization_id")
-  private Organization organization;
+  @Column(name = "issue_date")
+  private LocalDate issueDate;
+
+  @Column(name = "expiration_date")
+  private LocalDate expirationDate;
+
+  @Column(name = "credential_id")
+  private String credentialId;
+
+  @Column(name = "credential_url")
+  private String credentialUrl;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
