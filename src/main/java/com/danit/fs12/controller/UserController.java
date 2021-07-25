@@ -7,7 +7,6 @@ import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +29,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
   private final UserService userService;
-  private final ModelMapper mm;
+  //  private final ModelMapper mm;
   private final UserFacade userFacade;
 
   //  private final GenericsFacade<User> userFacade;
