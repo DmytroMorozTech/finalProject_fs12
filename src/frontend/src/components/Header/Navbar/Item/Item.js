@@ -3,7 +3,6 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import { Hidden } from '@material-ui/core'
 import Style from './styles'
 import {NavLink} from 'react-router-dom'
-import MenuListComposition from '../../../Main/ProfileMenu/ProfileMenu'
 
 const Item = ({ Icon, title, arrow, onClick, to }) => {
   const classes = Style()
