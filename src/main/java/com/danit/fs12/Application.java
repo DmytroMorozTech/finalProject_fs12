@@ -8,6 +8,7 @@ import com.danit.fs12.service.CommentService;
 import com.danit.fs12.service.PostService;
 import com.danit.fs12.service.UserService;
 import com.github.javafaker.Faker;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

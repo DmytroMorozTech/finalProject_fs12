@@ -9,8 +9,6 @@ public class Convertor {
 
   @Bean
   public ModelMapper createModelMapper() {
-    ModelMapper mm = new ModelMapper();
-
-    return mm;
+    return new ModelMapper();
   }
 }

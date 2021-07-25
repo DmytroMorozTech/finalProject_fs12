@@ -2,16 +2,20 @@ package com.danit.fs12.facade;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.ParameterizedType;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Component
 public abstract class GeneralFacade<E, RQ_DTO, RS_DTO> {
-  private final ModelMapper mm;
+  @Autowired
+  private ModelMapper mm;
 
   public RS_DTO convertToDto(E entity) {
     return mm.map(entity, getClassRS_DTO());
@@ -21,17 +25,14 @@ public abstract class GeneralFacade<E, RQ_DTO, RS_DTO> {
     return mm.map(rqDto, getClassE());
   }
 
-  public Class<E> getClassE() {
+  private Class<E> getClassE() {
     return (Class<E>) ((ParameterizedType) getClass()
       .getGenericSuperclass()).getActualTypeArguments()[0];
   }
 
-  public Class<RS_DTO> getClassRS_DTO() {
+  private Class<RS_DTO> getClassRS_DTO() {
     return (Class<RS_DTO>) ((ParameterizedType) getClass()
       .getGenericSuperclass()).getActualTypeArguments()[2];
   }
 
-
 }
-
-// we pass to Abstract class 3 Type parameters: entity, incomingDto, outgoingDto
