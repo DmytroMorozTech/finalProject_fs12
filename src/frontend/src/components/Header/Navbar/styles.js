@@ -11,5 +11,14 @@ export default makeStyles(() => ({
       justifyContent: 'center',
       marginRight: '40px'
     }
+  },
+  additionalList: {
+    width: '20%'
+  },
+  logoutLink: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'grey'
   }
 }))

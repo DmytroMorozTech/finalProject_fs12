@@ -14,6 +14,8 @@ import Popper from '@material-ui/core/Popper'
 import Grow from '@material-ui/core/Grow'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import React from 'react'
+import UserData from '../../UserData/UserData'
+import {NavLink} from 'react-router-dom'
 
 function Navbar () {
   const classes = Style()
@@ -55,7 +57,7 @@ function Navbar () {
     { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, to: '/jobs' },
     { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, to: '/messages' },
     { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, to: '/notifications' },
-    { Icon: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}><AccountCircleRoundedIcon/></span>, title: 'Me', arrow: true, to: '#' },
+    { Icon: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}><AccountCircleRoundedIcon/></span>, title: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}>Me</span>, arrow: true, to: '#' },
     { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true, to: '/apps' }
   ]
 
@@ -63,12 +65,12 @@ function Navbar () {
     <>
       <div className={classes.navbar}>
         {items.map(({ Icon, title, arrow, onClick, to }, i) => (
-          <Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick} to={to}/>
+          <Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick} to={to} />
         ))}
       </div>
-      <div className={classes.root}>
+      <div>
         <div>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          <Popper className={classes.additionalList} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({TransitionProps, placement}) => (
               <Grow
                 {...TransitionProps}
@@ -76,10 +78,9 @@ function Navbar () {
               >
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
-                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuList id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <MenuItem component={NavLink} to='/personal' onClick={handleClose}><UserData/></MenuItem>
+                      <MenuItem className={classes.logoutLink} onClick={handleClose}>Logout</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
