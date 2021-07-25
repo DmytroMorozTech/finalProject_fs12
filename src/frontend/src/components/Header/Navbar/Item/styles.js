@@ -29,5 +29,35 @@ export default makeStyles(() => ({
       fontWeight: 400,
       paddingBottom: '3px'
     }
+  },
+  itemPrimary: {
+    textDecoration: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '&:link, &:visited': {
+      color: 'grey'
+    },
+    '&:hover': {
+      color: 'black',
+      fontWeight: 'bold'
+    },
+    '&:active': {
+      color: 'black',
+      fontWeight: 'bold'
+    }
+  },
+  itemPrimaryText: {
+    textDecoration: 'none',
+    '&:link, &:visited': {
+      color: 'grey'
+    },
+    '&:hover': {
+      color: 'black'
+    },
+    '&:active': {
+      color: 'black'
+    }
   }
 }))

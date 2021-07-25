@@ -7,7 +7,6 @@ import SmsRoundedIcon from '@material-ui/icons/SmsRounded'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
-import {NavLink} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -51,20 +50,20 @@ function Navbar () {
   }, [open])
 
   const items = [
-    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, link: '/home' },
-    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, link: '/network' },
-    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, link: '/jobs' },
-    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, link: '/messages' },
-    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, link: '/notifications' },
-    { Icon: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}><AccountCircleRoundedIcon/></span>, title: 'Me', arrow: true },
-    { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true }
+    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, to: '/home' },
+    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, to: '/network' },
+    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, to: '/jobs' },
+    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, to: '/messages' },
+    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, to: '/notifications' },
+    { Icon: <span ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}><AccountCircleRoundedIcon/></span>, title: 'Me', arrow: true, to: '#' },
+    { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true, to: '/apps' }
   ]
 
   return (
     <>
       <div className={classes.navbar}>
-        {items.map(({ Icon, title, arrow, onClick, link }, i) => (
-            <NavLink className={classes.itemPrimary} to={link}><Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick}/></NavLink>
+        {items.map(({ Icon, title, arrow, onClick, to }, i) => (
+          <Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick} to={to}/>
         ))}
       </div>
       <div className={classes.root}>
