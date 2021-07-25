@@ -5,22 +5,32 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.ParameterizedType;
+
 @AllArgsConstructor
 @Data
 @Component
 public abstract class GeneralFacade<E, RQ_DTO, RS_DTO> {
-  private final Class<E> typeParameterE;
-  private final Class<RQ_DTO> typeParameterRQ_DTO;
-  private final Class<RS_DTO> typeParameterRS_DTO;
   private final ModelMapper mm;
 
   public RS_DTO convertToDto(E entity) {
-    return mm.map(entity, typeParameterRS_DTO);
+    return mm.map(entity, getClassRS_DTO());
   }
 
   public E convertToEntity(RQ_DTO rqDto) {
-    return mm.map(rqDto, typeParameterE);
+    return mm.map(rqDto, getClassE());
   }
+
+  public Class<E> getClassE() {
+    return (Class<E>) ((ParameterizedType) getClass()
+      .getGenericSuperclass()).getActualTypeArguments()[0];
+  }
+
+  public Class<RS_DTO> getClassRS_DTO() {
+    return (Class<RS_DTO>) ((ParameterizedType) getClass()
+      .getGenericSuperclass()).getActualTypeArguments()[2];
+  }
+
 
 }
 
