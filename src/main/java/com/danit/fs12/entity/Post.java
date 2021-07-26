@@ -40,7 +40,12 @@ public class Post extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
-
+  @OneToMany(
+    mappedBy = "post",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Like> likes = new ArrayList<>();
 
   public Post(String title, String mainText) {
     this.title = title;
@@ -54,12 +59,5 @@ public class Post extends AbstractEntity {
     }
     return comment;
   }
-
-  @OneToMany(
-    mappedBy = "post",
-    cascade = CascadeType.ALL)
-  @ToString.Exclude
-  @EqualsAndHashCode.Exclude
-  private List<Like> likes = new ArrayList<>();
 
 }
