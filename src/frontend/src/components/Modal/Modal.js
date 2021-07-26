@@ -12,7 +12,7 @@ import toggleModalAction from '../../redux/Modal/modalActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {modalTypeSelector, openModalSelector} from '../../redux/Modal/modalSelector'
 import {ADD_NEW_POST} from './modalTypes'
-import Notifications from '../Notifications/Notifications'
+import Jobs from '../Jobs/Jobs'
 
 const styles = (theme) => ({
   root: {
@@ -60,7 +60,7 @@ export default function CustomizedDialogs () {
   const modalType = useSelector(modalTypeSelector)
 
   /* Example of using! Add to this conditional operator the type of modal and the react component to render into  */
-  const renderModal = modalType === ADD_NEW_POST ? <Notifications/> : null
+  const renderModal = modalType === ADD_NEW_POST ? <Jobs/> : null
 
   const handleClose = () => {
     dispatch(toggleModalAction())

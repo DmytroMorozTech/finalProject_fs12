@@ -55,4 +55,11 @@ public class Post extends AbstractEntity {
     return comment;
   }
 
+  @OneToMany(
+    mappedBy = "post",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Like> likes = new ArrayList<>();
+
 }

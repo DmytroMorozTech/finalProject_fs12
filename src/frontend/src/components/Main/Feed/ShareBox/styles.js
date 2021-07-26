@@ -1,10 +1,10 @@
-import {makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+
 export default makeStyles(() => ({
   share: {
     display: 'flex',
     flexDirection: 'column',
-    cursor: 'pointer',
-    border: '1px solid rgba(0, 0, 0, 0.5)',
+    border: '1px solid #e0e0e0',
     borderRadius: '10px',
     width: '100%'
   },
@@ -12,18 +12,24 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    marginLeft: '8px'
+    marginRight: '10px',
+    marginTop: '4px'
+  },
+  avatar: {
+    marginTop: '5px',
+    marginLeft: '20px'
   },
   postButton: {
-    margin: '4px 4px',
+    margin: '0 10px',
     flexGrow: '1',
     paddingLeft: '16px',
-    border: '1px solid rgba(0, 0, 0, 0.15)',
+    border: '1px solid #e0e0e0',
     borderRadius: '35px',
     textAlign: 'left',
-    height: '30px',
+    height: '50px',
     backgroundColor: 'white',
     cursor: 'pointer',
+    color: 'grey',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     }
@@ -42,6 +48,7 @@ export default makeStyles(() => ({
     transition: 'all 0.35s ease',
     padding: '10px',
     borderRadius: '5px',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     }
@@ -54,6 +61,7 @@ export default makeStyles(() => ({
     transition: 'all 0.35s ease',
     padding: '10px',
     borderRadius: '5px',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     }
@@ -66,6 +74,7 @@ export default makeStyles(() => ({
     transition: 'all 0.35s ease',
     padding: '10px',
     borderRadius: '5px',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     }
@@ -78,14 +87,16 @@ export default makeStyles(() => ({
     transition: 'all 0.35s ease',
     padding: '10px',
     borderRadius: '5px',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     }
   },
   names: {
-    color: 'gray',
-    fontSize: 12,
+    color: 'grey',
+    fontSize: 14,
     fontWeight: 400,
-    marginLeft: '10px'
+    marginLeft: '10px',
+    cursor: 'pointer'
   }
 }))

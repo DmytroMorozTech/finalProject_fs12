@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,18 +18,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "placesOfWork")
-public class PlaceOfWork extends AbstractEntity {
-  private String name;
-  private String location;
-  private String position;
-  private String responsibilities;
-  private LocalDate dateStart;
-  private LocalDate dateFinish;
+@Table(name = "educations")
+public class Education extends AbstractEntity {
+  private String school;
+  private String degree;
+  private String activities; // example: Marching Band, Volleyball, Choir
+  private String description;
 
-  @ManyToOne
-  @JoinColumn(name = "organization_id")
-  private Organization organization;
+  @Column(name = "field_of_study")
+  private String fieldOfStudy;
+
+  @Column(name = "date_start")
+  private LocalDate dateStart;
+
+  @Column(name = "date_finish")
+  private LocalDate dateFinish;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
