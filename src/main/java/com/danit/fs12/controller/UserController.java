@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
   private final UserService userService;
-  //  private final ModelMapper mm;
   private final UserFacade userFacade;
 
   //  private final GenericsFacade<User> userFacade;
@@ -38,7 +37,7 @@ public class UserController {
 
   @GetMapping
   List<UserDtoRs> findAll() {
-    List<User> users = userService.findAll();
+    List<User> users = userFacade.findAll(); // we used to have UserService here
     List<UserDtoRs> usersRs = users
       .stream()
       .map(userFacade::convertToDto)
