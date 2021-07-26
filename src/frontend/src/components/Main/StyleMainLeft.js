@@ -5,7 +5,7 @@ export default makeStyles(() => ({
     display: 'grid',
     gridArea: 'leftside'
   },
-  profile_card: {
+  profileCard: {
     textAlign: 'center',
     overflow: 'hidden',
     backgroundColor: '#fff',
@@ -15,13 +15,13 @@ export default makeStyles(() => ({
     marginBottom: '7.5px',
     boxShadow: '0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 19.5%)'
   },
-  profile_info: {
+  profileInfo: {
     wordWrap: 'break-word',
     wordBreak: 'break-word',
     padding: '12px 12px 16px',
     borderBottom: '0.5px solid rgba(0, 0, 0, 0.10)'
   },
-  profile_bg: {
+  profileBg: {
     width: '72px',
     height: '72px',
     boxShadow: 'none',
@@ -34,7 +34,7 @@ export default makeStyles(() => ({
     border: '2px solid #fff',
     margin: '-38px auto 12px'
   },
-  profile_link: {
+  profileLink: {
     lineHeight: '1.5',
     fontSize: '16px',
     fontWeight: '600',

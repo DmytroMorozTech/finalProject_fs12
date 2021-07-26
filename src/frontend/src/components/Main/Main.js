@@ -8,7 +8,7 @@ function Main () {
   const classes = StyleMain()
 
   return (
-    <div classes={classes.mainContainer}>
+    <div className={classes.mainContainer}>
       <MainLeft/>
       <Feed/>
       <MainRight/>

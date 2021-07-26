@@ -3,16 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   post: {
+    padding: '0, 50px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginTop: '10px',
-    border: '1px solid #e0e0e0',
+    border: '1px solid rgba(0, 0, 0, 0.5)',
     borderRadius: '10px'
-  },
-
-  text: {
-    paddingLeft: '10px'
   },
 
   picture: {
@@ -22,9 +19,7 @@ export default makeStyles(() => ({
 
   block: {
     display: 'flex',
-    color: 'grey',
-    marginLeft: '10px',
-    marginTop: '4px'
+    color: 'grey'
   },
 
   item: {
@@ -32,11 +27,9 @@ export default makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     transition: 'all 0.35s ease',
-    paddingLeft: '15px',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    paddingRight: '15px',
+    padding: '10px',
     borderRadius: '5px',
+
     '& > .MuiSvgIcon-root': {
       fontSize: 30
     },
@@ -45,8 +38,7 @@ export default makeStyles(() => ({
     },
     '& > span': {
       fontSize: 15,
-      fontWeight: 500,
-      paddingLeft: '5px'
+      fontWeight: 500
     }
   },
 
@@ -55,103 +47,69 @@ export default makeStyles(() => ({
   },
 
   quantity: {
-    paddingLeft: '10px',
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
     '& > .MuiSvgIcon-root': {
       fontSize: 3
+    },
+    '& > span': {
+      display: 'flex',
+      alignItems: 'center',
+      margin: '0 5px',
+      fontSize: 11,
+      '&:hover': {
+        textDecoration: 'underline'
+      }
     }
   },
-
-  quantityText: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '5px',
-    margin: '0 5px',
-    color: '#9e9e9e',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
-  },
-
-  postAuthor: {
-    display: 'flex',
-    flexDirection: 'row',
-    margin: '10px',
+  avatar: {
     paddingLeft: '10px'
   },
-
+  postAuthor: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
   hiddenMenu: {
-    color: 'grey',
+    color: 'gray',
     marginLeft: '90%',
     cursor: 'pointer',
-    marginTop: '7px',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)',
       borderRadius: '50%'
     }
   },
-
   line: {
     width: '95%',
     height: '0.5px',
     border: '0',
-    margin: '0 10px',
     backgroundColor: '#e0e0e0'
-  },
 
+  },
   userInfo: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: 12,
+    fontWeight: 500
   },
-
   position: {
-    color: 'grey'
+    color: 'gray',
+    fontSize: 10
   },
-
   postTime: {
     display: 'flex',
     flexDirection: 'row',
-    color: 'grey'
+    color: 'gray',
+    fontSize: 10
   },
-
   worldIcon: {
-    color: 'grey',
+    color: 'gray',
     '& > .MuiSvgIcon-root': {
       fontSize: 12,
       marginLeft: '5px'
     }
-  },
-
-  name: {
-    'fontWeight': 600,
-    '&:hover': {
-      color: '#0a66c2',
-      textDecoration: 'underline'
-    }
-  },
-
-  addComment: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: '20px',
-    width: '90%'
-  },
-
-  commentField: {
-    marginRight: '10px',
-    '& > .MuiOutlinedInput-root': {
-      borderRadius: '35px',
-      padding: '5px'
-    }
-  },
-
-  avatar: {
-    paddingTop: '5px',
-    paddingRight: '10px'
   }
 }))
