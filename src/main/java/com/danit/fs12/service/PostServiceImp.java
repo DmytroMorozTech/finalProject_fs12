@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class PostServiceImp implements PostService {
+public class PostServiceImp implements Service {
 
   private final PostRepository postRepository;
 

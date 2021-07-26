@@ -1,7 +1,6 @@
 package com.danit.fs12.facade;
 
-import com.danit.fs12.entity.Post;
-import com.danit.fs12.entity.User;
+import com.danit.fs12.service.GeneralService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +17,12 @@ import java.util.Optional;
 @NoArgsConstructor
 @Data
 @Component
-public abstract class GeneralFacade<E, RQ_DTO, RS_DTO, REPO extends JpaRepository<E,Long>> {
+public abstract class GeneralFacade<E, RQ_DTO, RS_DTO>{
   @Autowired
   private ModelMapper mm;
-  private REPO repo;
+
+  @Autowired
+  private GeneralService service;
 
   public RS_DTO convertToDto(E entity) {
     return mm.map(entity, getClassRS_DTO());
@@ -42,18 +43,18 @@ public abstract class GeneralFacade<E, RQ_DTO, RS_DTO, REPO extends JpaRepositor
   }
 
   public E save(E entity) {
-    return repo.save(entity);
+    return service.save(entity);
   }
 
-  public void delete(E entity){
-    repo.delete(entity);
+  public void delete(E entity) {
+    service.delete(entity);
   }
 
-  public List<E> findAll(){
-    return repo.findAll();
+  public List<E> findAll() {
+    return service.findAll();
   }
 
-  public boolean deleteById(Long id){
+  public boolean deleteById(Long id) {
     Optional<E> entityOpt = findById(id);
     if (entityOpt.isPresent()) {
       delete(entityOpt.get());
@@ -62,14 +63,13 @@ public abstract class GeneralFacade<E, RQ_DTO, RS_DTO, REPO extends JpaRepositor
     return false;
   }
 
-  public E getOne(Long id){
-    return repo.getOne(id);
+  public E getOne(Long id) {
+    return service.getOne(id);
   }
 
   public Optional<E> findById(Long id) {
-    return repo.findById(id);
+    return service.findById(id);
   }
-
 
 
 }

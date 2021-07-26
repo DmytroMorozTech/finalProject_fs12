@@ -4,9 +4,7 @@ import com.danit.fs12.dto.comment.CommentDtoRs;
 import com.danit.fs12.dto.comment.CommentDtoRq;
 import com.danit.fs12.entity.Comment;
 import com.danit.fs12.facade.CommentFacade;
-import com.danit.fs12.service.CommentService;
-import com.danit.fs12.service.PostService;
-import com.danit.fs12.service.UserService;
+import com.danit.fs12.service.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -32,7 +30,7 @@ import java.util.stream.Collectors;
 public class CommentController {
   private final CommentService commentService;
   private final UserService userService;
-  private final PostService postService;
+  private final Service postService;
   private final CommentFacade commentFacade;
 
   private final ModelMapper mm;

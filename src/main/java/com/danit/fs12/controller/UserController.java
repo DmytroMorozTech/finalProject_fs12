@@ -1,10 +1,8 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.following.FollowingDtoRq;
 import com.danit.fs12.dto.user.UserDtoRs;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.facade.UserFacade;
-import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,12 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +23,6 @@ import java.util.stream.Collectors;
 // http://localhost:9000/api/users
 @RequiredArgsConstructor
 public class UserController {
-  private final UserService userService;
   private final UserFacade userFacade;
 
   //  private final GenericsFacade<User> userFacade;
@@ -37,7 +31,7 @@ public class UserController {
 
   @GetMapping
   List<UserDtoRs> findAll() {
-    List<User> users = userFacade.findAll(); // we used to have UserService here
+    List<User> users = userFacade.findAll(); // we used to have UserService.java here
     List<UserDtoRs> usersRs = users
       .stream()
       .map(userFacade::convertToDto)
@@ -50,7 +44,7 @@ public class UserController {
   // get user by id
   @GetMapping(path = "{id}")
   public ResponseEntity<?> findById(@PathVariable Long id) { // wildCard should be replaced with UserDtoRes
-    Optional<User> userOpt = userService.findById(id);
+    Optional<User> userOpt = userFacade.findById(id);
     boolean wasFound = userOpt.isPresent();
     return wasFound
       ? ResponseEntity.ok(userFacade.convertToDto(userOpt.get()))
@@ -60,7 +54,7 @@ public class UserController {
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
-    boolean wasDeleted = userService.deleteById(id);
+    boolean wasDeleted = userFacade.deleteById(id);
     return wasDeleted
       ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
       : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -75,15 +69,15 @@ public class UserController {
   //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
 
 
-  // http://localhost:9000/api/users/connections/
-  @PostMapping("/following")
-  public ResponseEntity<?> followUser(@Valid @RequestBody FollowingDtoRq rq) {
-    Long userId = rq.getUserId();
-    Long followedUserId = rq.getFollowedUserId();
-
-    userService.followUser(userId, followedUserId);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-  }
+//  // http://localhost:9000/api/users/connections/
+//  @PostMapping("/following")
+//  public ResponseEntity<?> followUser(@Valid @RequestBody FollowingDtoRq rq) {
+//    Long userId = rq.getUserId();
+//    Long followedUserId = rq.getFollowedUserId();
+//
+//    userService.followUser(userId, followedUserId);
+//    return ResponseEntity.status(HttpStatus.CREATED).build();
+//  }
 
 
 }
