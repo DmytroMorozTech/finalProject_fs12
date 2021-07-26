@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Style from './styles'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import AssignmentIcon from '@material-ui/icons/Assignment'
 import Avatar from '../../../../shared/Avatar/Avatar'
+import { Hidden } from '@material-ui/core'
 
 function ShareBox (props) {
   const classes = Style()
@@ -29,30 +30,41 @@ function ShareBox (props) {
   return (
     <div className={classes.share}>
       <div className={classes.post}>
-        <Avatar/>
+        <div className={classes.avatar}>
+          <Avatar/>
+        </div>
         <button className={classes.postButton} onClick={clickHandler} disabled={!!props.loading}>
-                        New post
+          New post
         </button>
       </div>
       <div className={classes.shareButtons}>
         <div className={classes.photo}>
           <PhotoSizeSelectActualIcon/>
-          <div className={classes.names}>Photo</div>
+          <Hidden mdDown>
+            <div className={classes.names}>Photo</div>
+          </Hidden>
         </div>
         <div className={classes.video}>
           <YouTubeIcon/>
-          <div className={classes.names}>Video</div>
+          <Hidden mdDown>
+            <div className={classes.names}>Video</div>
+          </Hidden>
         </div>
         <div className={classes.event}>
           <EventNoteIcon/>
-          <div className={classes.names}>Event</div>
+          <Hidden mdDown>
+            <div className={classes.names}>Event</div>
+          </Hidden>
         </div>
         <div className={classes.article}>
           <AssignmentIcon/>
-          <div className={classes.names}>Write Article</div>
+          <Hidden mdDown>
+            <div className={classes.names}>Write article</div>
+          </Hidden>
         </div>
       </div>
     </div>
   )
 }
+
 export default ShareBox
