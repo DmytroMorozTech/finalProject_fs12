@@ -111,7 +111,6 @@ function Post ({
           margin="none"
           variant="outlined"
           color="secondary"
-          // rows="1"
           size="small"
         />
       </div>

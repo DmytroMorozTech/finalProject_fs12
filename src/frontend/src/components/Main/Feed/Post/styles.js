@@ -45,7 +45,8 @@ export default makeStyles(() => ({
     },
     '& > span': {
       fontSize: 15,
-      fontWeight: 500
+      fontWeight: 500,
+      paddingLeft: '5px'
     }
   },
 
