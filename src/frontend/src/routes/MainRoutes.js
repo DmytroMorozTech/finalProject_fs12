@@ -17,6 +17,7 @@ const MainRoutes = () => {
       <Route exact path="/messages" render={() => <Messages/>}/>
       <Route exact path="/notifications" render={() => <Notifications/>}/>
       <Route exact path="/personal" render={() => <Profile/>}/>
+      {/* <Route exact path="*" render={() => <NotFound/>}/> */}
     </Switch>
   )
 }

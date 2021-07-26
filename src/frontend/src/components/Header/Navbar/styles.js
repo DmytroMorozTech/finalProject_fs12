@@ -12,29 +12,13 @@ export default makeStyles(() => ({
       marginRight: '40px'
     }
   },
-  itemPrimary: {
-    '&:link, &:visited': {
-      color: 'grey'
-    },
-    '&:hover': {
-      color: 'black',
-      fontWeight: 'bold'
-    },
-    '&:active': {
-      color: 'black',
-      fontWeight: 'bold'
-    }
+  additionalList: {
+    width: '20%'
   },
-  itemPrimaryText: {
-    textDecoration: 'none',
-    '&:link, &:visited': {
-      color: 'grey'
-    },
-    '&:hover': {
-      color: 'black'
-    },
-    '&:active': {
-      color: 'black'
-    }
+  logoutLink: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'grey'
   }
 }))
