@@ -1,7 +1,7 @@
 import * as actions from './modalActionTypes'
 
 const initialStore = {
-  isModelOpen: false,
+  isModalOpen: false,
   modalOpenType: null
 }
 
@@ -17,7 +17,7 @@ const modalReducer = (store = initialStore, action) => {
     case actions.TOGGLE_MODAL:
       return {
         ...store,
-        isModalOpen: !store.isModelOpen,
+        isModalOpen: !store.isModalOpen,
         modalOpenType: type
       }
     default: {

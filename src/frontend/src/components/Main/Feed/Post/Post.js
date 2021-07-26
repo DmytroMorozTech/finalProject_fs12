@@ -5,7 +5,7 @@ import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import Style from './styles'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
@@ -17,7 +17,6 @@ function Post ({userName = 'Steve Noiry', position = 'Java Developer', postTime 
   text = 'This Post was generated automatically!', picture = image, quantityOfLikes = 10595, quantityOfComments = 420, quantityOfViews = 244688
 }) {
   const classes = Style()
-
   const [liked, setLiked] = useState(false)
 
   return (
