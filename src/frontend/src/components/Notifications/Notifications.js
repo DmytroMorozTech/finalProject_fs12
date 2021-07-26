@@ -18,7 +18,7 @@ function Notifications ({
         <div>
           <img src={userAvatar} alt={'user avatar'} className={classes.userAvatar}/>
         </div>
-        <div>
+        <div className={classes.content}>
           <Typography variant="body1">
             <span className={classes.userName}>{userName + ' '}</span>
             <span className={classes.actionAndText}>{userAction + ' ' + userText}</span>

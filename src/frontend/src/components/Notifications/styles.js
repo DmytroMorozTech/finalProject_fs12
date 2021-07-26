@@ -6,20 +6,23 @@ export default makeStyles(() => ({
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     border: '1px solid #e0e0e0',
     borderRadius: '10px'
   },
 
   notification: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'row'
   },
 
   userAvatar: {
     width: '65px',
     borderRadius: '50%',
+    marginTop: '10px',
+    marginLeft: '15px'
+  },
+
+  content: {
     margin: '15px'
   },
 
@@ -36,11 +39,13 @@ export default makeStyles(() => ({
     color: 'grey',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'flex-end',
+    margin: '10px'
   },
 
   notificationTime: {
-    fontSize: 12
+    fontSize: 12,
+    marginRight: '10px'
   },
 
   menu: {
