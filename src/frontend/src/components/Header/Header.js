@@ -10,16 +10,16 @@ function Header () {
     <div className={classes.header}>
       <div className={classes.header_logo_search}>
         <div className={classes.header_logo}>
-          <LinkedInIcon/>
+          <LinkedInIcon />
         </div>
         <Hidden mdDown>
           <div className={classes.header_search}>
-            <SearchRoundedIcon/>
-            <input placeholder="Search"/>
+            <SearchRoundedIcon />
+            <input placeholder="Search" />
           </div>
         </Hidden>
       </div>
-      <Navbar/>
+      <Navbar />
     </div>
   )
 }

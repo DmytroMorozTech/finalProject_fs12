@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,9 @@ public class Chat extends AbstractEntity {
 
   @ManyToMany(mappedBy = "chats")
   private List<User> users = new ArrayList<>();
+
+  @OneToMany(mappedBy = "chat")
+  private List<Message> messages = new ArrayList<>();
 
 
 }
