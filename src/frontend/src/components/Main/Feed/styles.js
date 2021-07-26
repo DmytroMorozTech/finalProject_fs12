@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   feed: {
-    maxWidth: '35%',
+    marginTop: '50px',
+    paddingLeft: '50px',
+    maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
