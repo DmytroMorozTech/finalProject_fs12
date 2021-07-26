@@ -10,6 +10,18 @@ const theme = createTheme({
     }
   },
   'typography': {
+    'body1': {
+      // changed font size
+      'fontSize': '0.900rem',
+      // changed line height
+      'lineHeight': 1.43,
+      // changed color
+      'color': '#333333'
+    },
+    'body2': {
+      // changed font size
+      'fontSize': '0.800rem'
+    },
     'button': {
       // changed font weight
       'fontWeight': 600,
