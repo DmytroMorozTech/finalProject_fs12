@@ -12,8 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @EqualsAndHashCode(callSuper = true)
@@ -44,6 +44,6 @@ public class Organization extends AbstractEntity {
   @OneToMany(mappedBy = "organization", cascade = {CascadeType.PERSIST})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private Set<PlaceOfWork> placesOfWork = new HashSet<>();
+  private List<WorkPlace> workPlaces = new ArrayList<>();
 
 }
