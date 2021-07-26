@@ -23,7 +23,8 @@ export default makeStyles(() => ({
   },
 
   content: {
-    margin: '15px'
+    margin: '15px',
+    cursor: 'pointer'
   },
 
   userName: {
