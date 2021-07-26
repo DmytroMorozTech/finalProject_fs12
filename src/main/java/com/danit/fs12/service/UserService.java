@@ -2,7 +2,6 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.User;
 import com.danit.fs12.exception.NotFoundException;
-import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService extends GeneralService<User, UserRepository> {
+public class UserService extends GeneralService<User> {
+
 
   public User getActiveUser(Long id) {
 

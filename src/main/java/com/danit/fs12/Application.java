@@ -5,7 +5,8 @@ import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.repository.UserRepository;
-import com.danit.fs12.service.Service;
+import com.danit.fs12.service.CommentService;
+import com.danit.fs12.service.PostService;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,7 +31,7 @@ public class Application {
       @Autowired
       private UserFacade userFacade;
       @Autowired
-      private Service postService;
+      private PostService postService;
       @Autowired
       private CommentService commentService;
 

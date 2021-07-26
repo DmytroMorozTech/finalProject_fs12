@@ -5,9 +5,9 @@ import com.danit.fs12.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+import java.util.List;
 
-  public User getAllPostsByUserId(long id);
+@Repository
+public interface PostRepository extends RepositoryInterface<Post> {
 
 }

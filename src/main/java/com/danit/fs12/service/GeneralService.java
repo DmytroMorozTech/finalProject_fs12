@@ -1,43 +1,50 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.Post;
+import com.danit.fs12.repository.RepositoryInterface;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class GeneralService<E> implements ServiceInterface {
+public abstract class GeneralService<E> implements ServiceInterface<E> {
+  private RepositoryInterface<E> repo;
+
   @Override
-  public Post save(Object entity) {
-    return null;
+  public E save(E entity) {
+    return repo.save(entity);
   }
 
   @Override
-  public void delete(Object entity) {
-
+  public void delete(E entity) {
+    repo.delete(entity);
   }
 
   @Override
-  public List findAll() {
-    return null;
+  public List<E> findAll() {
+    return repo.findAll();
   }
 
   @Override
-  public void deleteById(Long id) {
-
+  public boolean deleteById(Long id) {
+    Optional<E> entityOpt = findById(id);
+    if (entityOpt.isPresent()) {
+      delete(entityOpt.get());
+      return true;
+    }
+    return false;
   }
 
   @Override
-  public Post getOne(Long id) {
-    return null;
+  public Optional<E> findById(Long id) {
+    return repo.findById(id);
   }
 
   @Override
-  public Optional findById(Long id) {
-    return Optional.empty();
+  public E getOne(Long id) {
+    return repo.getOne(id);
   }
 }
