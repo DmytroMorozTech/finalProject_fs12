@@ -19,18 +19,18 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Data
 @Component
-public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
+public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
   @Autowired
   private ModelMapper mm;
 
   @Autowired
   private ServiceInterface<E> service;
 
-  public RS_DTO convertToDto(E entity) {
+  public RSDTO convertToDto(E entity) {
     return mm.map(entity, getClassRS_DTO());
   }
 
-  public E convertToEntity(RQ_DTO rqDto) {
+  public E convertToEntity(RQDTO rqDto) {
     return mm.map(rqDto, getClassE());
   }
 
@@ -39,8 +39,8 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
       .getGenericSuperclass()).getActualTypeArguments()[0];
   }
 
-  private Class<RS_DTO> getClassRS_DTO() {
-    return (Class<RS_DTO>) ((ParameterizedType) getClass()
+  private Class<RSDTO> getClassRS_DTO() {
+    return (Class<RSDTO>) ((ParameterizedType) getClass()
       .getGenericSuperclass()).getActualTypeArguments()[2];
   }
 
@@ -52,9 +52,9 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
     service.delete(entity);
   }
 
-  public List<RS_DTO> findAll() {
+  public List<RSDTO> findAll() {
     List<E> entities = service.findAll();
-    List<RS_DTO> entitiesRs = entities.stream()
+    List<RSDTO> entitiesRs = entities.stream()
       .map(this::convertToDto)
       .collect(Collectors.toList());
     return entitiesRs;
@@ -68,7 +68,7 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
     return service.getOne(id);
   }
 
-  public RS_DTO findById(Long id) {
+  public RSDTO findById(Long id) {
     Optional<E> entityOpt = service.findById(id);
     if (entityOpt.isEmpty()) {
       String msg = String.format("Entity with id %d was not found.", id);
