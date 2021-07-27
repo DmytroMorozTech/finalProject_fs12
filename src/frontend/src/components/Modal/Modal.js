@@ -61,7 +61,7 @@ export default function CustomizedDialogs () {
   const dispatch = useDispatch()
   const modalType = useSelector(modalTypeSelector)
   const classes = Style()
-  
+
   /* Example of using! Add to this conditional operator the type of modal and the react component to render into  */
   const renderModal = modalType === ADD_NEW_POST ? <Jobs/> : null
 
@@ -70,7 +70,7 @@ export default function CustomizedDialogs () {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Modal title

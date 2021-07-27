@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class CommentFacade extends GeneralFacade<Comment, CommentDtoRq, CommentDtoRs> {
-  private final CommentService commentService;
+  private CommentService commentService;
 
   public CommentDtoRs createComment(Long activeUserId, Long postId, String text) {
     Comment comment = commentService.createComment(activeUserId, postId, text);
