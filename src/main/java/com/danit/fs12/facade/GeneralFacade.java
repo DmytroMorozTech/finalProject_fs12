@@ -61,7 +61,7 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
   }
 
   public void deleteById(Long id) {
-   service.deleteById(id);
+    service.deleteById(id);
   }
 
   public E getOne(Long id) {

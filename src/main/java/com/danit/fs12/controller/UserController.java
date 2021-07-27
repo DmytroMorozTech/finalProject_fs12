@@ -43,28 +43,6 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
-
-  // мы должны в методе deleteById бросить ошибку, если нам не удалось удалить пользователя
-  // делаем это на уровне сервиса, где мы обращаемся к репозиторию
-  // ошибка всплывет... а далее условие, как будто все прошло хорошо
-  // тернарники убираем
-  // эта вся схема на данный момент уже реализована для метода followUser (UserServiceImpl)
-
-  // на фронте прописать логику, что если прителает какая-то ошибка, пользователю должен отображаться notification in UI
-  //HttpStatus.NO_CONTENT - request was processed successfully, but we have no content to return to client
-
-
-//  // http://localhost:9000/api/users/connections/
-//  @PostMapping("/following")
-//  public ResponseEntity<?> followUser(@Valid @RequestBody FollowingDtoRq rq) {
-//    Long userId = rq.getUserId();
-//    Long followedUserId = rq.getFollowedUserId();
-//
-//    userService.followUser(userId, followedUserId);
-//    return ResponseEntity.status(HttpStatus.CREATED).build();
-//  }
-
-
 }
 
-// wildCards should be replaced with UserDtoRes
+
