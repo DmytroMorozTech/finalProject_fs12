@@ -11,7 +11,9 @@ import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
-import { Hidden, TextField } from '@material-ui/core'
+import { Hidden } from '@material-ui/core'
+import InputBase from '@material-ui/core/InputBase'
+import SharedButton from '../../../../shared/Button/SharedButton'
 
 function Post ({
   userName = 'Steve Noiry',
@@ -25,6 +27,13 @@ function Post ({
 }) {
   const classes = Style()
   const [liked, setLiked] = useState(false)
+  const [showedAddComment, setShowedAddComment] = useState(false)
+  const [commentValue, setCommentValue] = useState('')
+
+  const handleCommentInputChange = e => {
+    let commentInputVal = e.currentTarget.value
+    setCommentValue(commentInputVal)
+  }
 
   return (
     <div className={classes.post}>
@@ -79,7 +88,7 @@ function Post ({
             </Hidden>
           </div>
         </div>
-        <div className={classes.item}>
+        <div className={classes.item} onClick={() => setShowedAddComment(!showedAddComment)}>
           <ChatOutlinedIcon/>
           <Hidden xsDown>
             <span>Comment</span>
@@ -98,20 +107,24 @@ function Post ({
           </Hidden>
         </div>
       </div>
-      <div className={classes.addComment}>
-        <div className={classes.avatar}>
-          <Avatar/>
+      <div className={showedAddComment ? classes.showedAddComment : classes.hiddenAddComment}>
+        <div className={classes.addComment}>
+          <div className={classes.avatar}>
+            <Avatar/>
+          </div>
+          <InputBase
+            placeholder="Add a comment..."
+            fullWidth={true}
+            multiline={true}
+            value={commentValue}
+            onChange={handleCommentInputChange}
+            className={classes.commentField}/>
         </div>
-        <TextField
-          id="outlined-full-width"
-          className={classes.commentField}
-          placeholder="Add comment"
-          fullWidth
-          margin="none"
-          variant="outlined"
-          color="secondary"
-          size="small"
-        />
+      </div>
+      <div className={showedAddComment ? classes.showedAddComment : classes.hiddenButton}>
+        <div className={commentValue.length > 0 ? classes.showedButton : classes.hiddenButton}>
+          <SharedButton title="Post"/>
+        </div>
       </div>
     </div>
   )
