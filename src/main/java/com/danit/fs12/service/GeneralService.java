@@ -1,5 +1,6 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.repository.RepositoryInterface;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,8 @@ import java.util.Optional;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class GeneralService<E> implements ServiceInterface<E> {
+public abstract class GeneralService<E extends AbstractEntity> implements ServiceInterface<E> {
+  @Autowired
   private RepositoryInterface<E> repo;
 
   @Override

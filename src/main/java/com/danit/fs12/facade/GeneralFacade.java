@@ -1,5 +1,6 @@
 package com.danit.fs12.facade;
 
+import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.service.ServiceInterface;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +17,11 @@ import java.util.Optional;
 @NoArgsConstructor
 @Data
 @Component
-public abstract class GeneralFacade<E, RQ_DTO, RS_DTO> {
+public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
   @Autowired
   private ModelMapper mm;
 
+  @Autowired
   private ServiceInterface<E> service;
 
   public RS_DTO convertToDto(E entity) {

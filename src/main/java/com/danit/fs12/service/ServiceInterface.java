@@ -1,9 +1,13 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.AbstractEntity;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface ServiceInterface<E> {
+@Service
+public interface ServiceInterface<E extends AbstractEntity> {
   E save(E entity);
 
   void delete(E entity);
