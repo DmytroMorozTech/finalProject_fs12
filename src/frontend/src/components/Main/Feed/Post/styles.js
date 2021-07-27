@@ -3,13 +3,76 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   post: {
-    padding: '0, 50px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginTop: '10px',
-    border: '1px solid rgba(0, 0, 0, 0.5)',
-    borderRadius: '10px'
+    border: '1px solid #e0e0e0',
+    borderRadius: '10px',
+    marginBottom: '50px'
+  },
+
+  postAuthor: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '10px',
+    paddingLeft: '10px'
+  },
+
+  hiddenMenu: {
+    color: 'grey',
+    marginLeft: '90%',
+    cursor: 'pointer',
+    marginTop: '7px',
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.10)',
+      borderRadius: '50%'
+    }
+  },
+
+  line: {
+    width: '95%',
+    height: '0.5px',
+    border: '0',
+    margin: '0 10px',
+    backgroundColor: '#e0e0e0'
+  },
+
+  userInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'baseline',
+    cursor: 'pointer'
+  },
+
+  position: {
+    color: 'grey'
+  },
+
+  postTime: {
+    display: 'flex',
+    flexDirection: 'row',
+    color: 'grey'
+  },
+
+  worldIcon: {
+    color: 'grey',
+    '& > .MuiSvgIcon-root': {
+      fontSize: 12,
+      marginLeft: '5px'
+    }
+  },
+
+  name: {
+    'fontWeight': 600,
+    '&:hover': {
+      color: '#0a66c2',
+      textDecoration: 'underline'
+    }
+  },
+
+  text: {
+    paddingLeft: '10px'
   },
 
   picture: {
@@ -19,7 +82,9 @@ export default makeStyles(() => ({
 
   block: {
     display: 'flex',
-    color: 'grey'
+    color: 'grey',
+    marginLeft: '10px',
+    marginTop: '4px'
   },
 
   item: {
@@ -27,9 +92,11 @@ export default makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     transition: 'all 0.35s ease',
-    padding: '10px',
+    paddingLeft: '15px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    paddingRight: '15px',
     borderRadius: '5px',
-
     '& > .MuiSvgIcon-root': {
       fontSize: 30
     },
@@ -38,7 +105,30 @@ export default makeStyles(() => ({
     },
     '& > span': {
       fontSize: 15,
-      fontWeight: 500
+      fontWeight: 500,
+      paddingLeft: '5px'
+    }
+  },
+
+  quantity: {
+    paddingLeft: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    width: '100%',
+    '& > .MuiSvgIcon-root': {
+      fontSize: 3
+    }
+  },
+
+  quantityText: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '5px',
+    margin: '0 5px',
+    color: '#9e9e9e',
+    '&:hover': {
+      textDecoration: 'underline'
     }
   },
 
@@ -46,70 +136,42 @@ export default makeStyles(() => ({
     color: '#0a66c2'
   },
 
-  quantity: {
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    width: '100%',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 3
-    },
-    '& > span': {
-      display: 'flex',
-      alignItems: 'center',
-      margin: '0 5px',
-      fontSize: 11,
-      '&:hover': {
-        textDecoration: 'underline'
-      }
-    }
+  hiddenAddComment: {
+    display: 'none'
   },
-  avatar: {
-    paddingLeft: '10px'
-  },
-  postAuthor: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  hiddenMenu: {
-    color: 'gray',
-    marginLeft: '90%',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      borderRadius: '50%'
-    }
-  },
-  line: {
-    width: '95%',
-    height: '0.5px',
-    border: '0',
-    backgroundColor: '#e0e0e0'
 
-  },
-  userInfo: {
+  showedAddComment: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'baseline',
-    cursor: 'pointer',
-    fontSize: 12,
-    fontWeight: 500
+    width: '100%'
   },
-  position: {
-    color: 'gray',
-    fontSize: 10
-  },
-  postTime: {
+
+  addComment: {
     display: 'flex',
-    flexDirection: 'row',
-    color: 'gray',
-    fontSize: 10
+    alignItems: 'flex-start',
+    paddingLeft: '20px',
+    paddingRight: '10px',
+    width: '100%'
   },
-  worldIcon: {
-    color: 'gray',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 12,
-      marginLeft: '5px'
-    }
+
+  avatar: {
+    paddingTop: '5px',
+    paddingRight: '10px'
+  },
+
+  commentField: {
+    border: '1px solid #e0e0e0',
+    borderRadius: '35px',
+    padding: '14px',
+    margin: '8px 0px'
+  },
+
+  hiddenButton: {
+    display: 'none'
+  },
+
+  showedButton: {
+    display: 'flex',
+    marginLeft: '80px',
+    marginBottom: '10px'
   }
 }))

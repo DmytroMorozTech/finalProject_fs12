@@ -10,23 +10,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "messages")
+@Table(name = "likes")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Message extends AbstractEntity {
+public class Like extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "chat_id")
-  private Chat chat;
-
-  private String text;
+  @JoinColumn(name = "post_id")
+  private User post;
 
 }
