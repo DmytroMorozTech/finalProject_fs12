@@ -3,10 +3,10 @@ package com.danit.fs12;
 import com.danit.fs12.entity.Comment;
 import com.danit.fs12.entity.Post;
 import com.danit.fs12.entity.User;
+import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.repository.UserRepository;
 import com.danit.fs12.service.CommentService;
 import com.danit.fs12.service.PostService;
-import com.danit.fs12.service.UserService;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,7 +29,7 @@ public class Application {
       @Autowired
       private UserRepository userRepository;
       @Autowired
-      private UserService userService;
+      private UserFacade userFacade;
       @Autowired
       private PostService postService;
       @Autowired
@@ -131,7 +131,7 @@ public class Application {
         comment2 = commentService.save(comment2);
         comment3 = commentService.save(comment3);
 
-        User user1 = userService.getOne(1L);
+        User user1 = userFacade.getOne(1L);
         Post post1 = postService.getOne(1L);
 
         comment1.setPost(post1);

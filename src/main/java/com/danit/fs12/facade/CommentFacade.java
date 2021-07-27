@@ -1,24 +1,20 @@
 package com.danit.fs12.facade;
 
-import com.danit.fs12.dto.comment.CommentDtoRes;
+import com.danit.fs12.dto.comment.CommentDtoRq;
+import com.danit.fs12.dto.comment.CommentDtoRs;
 import com.danit.fs12.entity.Comment;
-import org.modelmapper.ModelMapper;
+import com.danit.fs12.service.CommentService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
-public class CommentFacade {
+public class CommentFacade extends GeneralFacade<Comment, CommentDtoRq, CommentDtoRs> {
+  private CommentService commentService;
 
-  private final ModelMapper modelMapper;
-
-  public CommentFacade() {
-    this.modelMapper = new ModelMapper();
-  }
-
-  public CommentDtoRes convertToDto(Comment comment) {
-    return modelMapper.map(comment, CommentDtoRes.class);
-  }
-
-  public Comment convertToEntity(CommentDtoRes commentDtoRes) {
-    return modelMapper.map(commentDtoRes, Comment.class);
+  public CommentDtoRs createComment(Long activeUserId, Long postId, String text) {
+    Comment comment = commentService.createComment(activeUserId, postId, text);
+    return convertToDto(comment);
   }
 }
+

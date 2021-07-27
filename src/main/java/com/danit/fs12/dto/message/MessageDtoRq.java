@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class MessageDtoReq {
+public class MessageDtoRq {
 
   private Long id;
 

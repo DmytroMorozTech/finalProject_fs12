@@ -1,25 +1,41 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.Comment;
+import com.danit.fs12.entity.Post;
+import com.danit.fs12.entity.User;
+import com.danit.fs12.exception.BadRequestException;
+import com.danit.fs12.repository.PostRepository;
+import com.danit.fs12.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface CommentService {
+@RequiredArgsConstructor
+public class CommentService extends GeneralService<Comment> {
+  private final UserRepository userRepository;
+  private final PostRepository postRepository;
 
-  Optional<Comment> createComment(Long activeUserId, Long postId, String text);
+  public Comment createComment(Long activeUserId, Long postId, String text) {
+    Optional<User> userOpt = userRepository.findById(activeUserId);
+    Optional<Post> postOpt = postRepository.findById(postId);
+    if (userOpt.isEmpty() || postOpt.isEmpty()) {
+      String msg = String.format("An error while trying to add new comment. Extra data: "
+        + "activeUserId: %d, postId: %d, text: %s", activeUserId, postId, text);
+      throw new BadRequestException(msg);
+    }
 
-  Comment save(Comment comment);
+    User user = userOpt.get();
+    Post post = postOpt.get();
+    Comment comment = save(new Comment(text));
+    post.addComment(comment);
+    user.addComment(comment);
 
-  void delete(Comment comment);
+    postRepository.save(post);
+    userRepository.save(user);
 
-  List<Comment> findAll();
+    return comment;
+  }
 
-  boolean deleteById(Long id);
-
-  Optional<Comment> findById(Long id);
-
-  // findAllCommentsForPostId(Long postId)
 }
