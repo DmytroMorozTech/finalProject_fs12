@@ -6,11 +6,12 @@ import Profile from '../components/Main/Profile/Profile'
 import Notifications from '../components/Notifications/Notifications'
 import Jobs from '../components/Jobs/Jobs'
 import Network from '../components/Network/Network'
+import Login from '../components/Login/Login'
 
 const MainRoutes = () => {
   return (
     <Switch>
-      {/* <Route exact path="/" render={() => <Login/>}/> */}
+      <Route exact path="/" render={() => <Login/>}/>
       <Route exact path="/home" render={() => <Feed/>}/>
       <Route exact path="/network" render={() => <Network/>}/>
       <Route exact path="/jobs" render={() => <Jobs/>}/>
