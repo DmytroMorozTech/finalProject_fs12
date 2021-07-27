@@ -5,6 +5,7 @@ export default makeStyles(() => ({
   navbar: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     '& > div': {
       display: 'flex',
       alignItems: 'center',

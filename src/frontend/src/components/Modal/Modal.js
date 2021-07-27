@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {modalTypeSelector, openModalSelector} from '../../redux/Modal/modalSelector'
 import {ADD_NEW_POST} from './modalTypes'
 import Jobs from '../Jobs/Jobs'
+import Style from './styles'
 
 const styles = (theme) => ({
   root: {
@@ -21,6 +22,7 @@ const styles = (theme) => ({
   },
   closeButton: {
     position: 'absolute',
+    zIndex: 1,
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500]
@@ -58,7 +60,8 @@ export default function CustomizedDialogs () {
   const isModalOpened = useSelector(openModalSelector)
   const dispatch = useDispatch()
   const modalType = useSelector(modalTypeSelector)
-
+  const classes = Style()
+  
   /* Example of using! Add to this conditional operator the type of modal and the react component to render into  */
   const renderModal = modalType === ADD_NEW_POST ? <Jobs/> : null
 
