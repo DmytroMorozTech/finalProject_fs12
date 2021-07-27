@@ -1,5 +1,5 @@
 import React from 'react'
-import StyleMain from './StyleMain'
+import StyleMain from './styleMain'
 import MainRight from './MainRight'
 import MainLeft from './MainLeft'
 import Feed from './Feed/Feed'

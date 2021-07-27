@@ -53,7 +53,7 @@ export default makeStyles(() => ({
     paddingTop: '11.5px',
     paddingBottom: '11.5px',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    '& > a': {
+    'a': {
       display: 'flex',
       textDecoration: 'none',
       alignItems: 'center',
@@ -66,7 +66,17 @@ export default makeStyles(() => ({
   },
 
   profileWidgetText: {
-
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left',
+    fontSize: '12px',
+    lineHeight: '1.33',
+    '&:first-child': {
+      color: 'rgba(0, 0, 0, 0.6)',
+    },
+    '&:nth-child(2)': {
+      color: 'rgba(0, 0, 0, 0.11)'
+    }
   },
 
   profileItem: {
@@ -78,7 +88,32 @@ export default makeStyles(() => ({
   },
 
   socialCard: {
-
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left',
+    padding: '7.5px 0 0',
+    'a': {
+      color: 'black',
+      fontSize: '11.5px',
+      padding: '3.5px 11.5px 3.5px 11.5px',
+      '&:hover': {
+        color: '#0a66c2',
+      },
+      'span': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+      '&:last-child': {
+        textDecoration: 'none',
+        color: 'rgba(0, 0, 0, 0.5)',
+        padding: '11.5px',
+        borderTop: '1px solid #d6cec2',
+        '&:hover': {
+          backgroundColor: 'rgba(0, 0, 0, 0.09)'
+        }
+      }
+    } 
   },
   
   profileLink: {

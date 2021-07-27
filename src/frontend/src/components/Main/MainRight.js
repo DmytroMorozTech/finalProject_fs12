@@ -1,5 +1,5 @@
 import React from 'react'
-import StyleMainRight from './StyleMainRight'
+import StyleMainRight from './styleMainRight'
 
 function MainRight () {
   const classes = StyleMainRight()
@@ -16,7 +16,7 @@ function MainRight () {
               <div className={classes.newsPic}/>
             </a>
             <div className={classes.newsListItem}>
-              <span className={classes.text}>#LinkedIn</span>
+              <span className={classes.text}>LinkedIn</span>
               <button className={classes.btnNewsListItem}>Follow</button>
             </div>
           </li>
@@ -25,7 +25,7 @@ function MainRight () {
               <div className={classes.newsPic}/>
             </a>
             <div className={classes.newsListItem}>
-              <span className={classes.text}>#Video</span>
+              <span className={classes.text}>Video</span>
               <button className={classes.btnNewsListItem}>Follow</button>
             </div>
           </li>

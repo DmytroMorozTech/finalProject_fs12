@@ -1,5 +1,5 @@
 import React from 'react'
-import StyleMainLeft from './StyleMainLeft'
+import StyleMainLeft from './styleMainLeft'
 
 function MainLeft () {
   const classes = StyleMainLeft()
