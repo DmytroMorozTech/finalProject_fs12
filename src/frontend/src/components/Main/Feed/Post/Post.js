@@ -27,10 +27,13 @@ function Post ({
 }) {
   const classes = Style()
   const [liked, setLiked] = useState(false)
-
   const [showedAddComment, setShowedAddComment] = useState(false)
+  const [commentValue, setCommentValue] = useState('')
 
-  const [showedButton, setShowedButton] = useState(false)
+  const handleCommentInputChange = e => {
+    let commentInputVal = e.currentTarget.value
+    setCommentValue(commentInputVal)
+  }
 
   return (
     <div className={classes.post}>
@@ -113,12 +116,13 @@ function Post ({
             placeholder="Add a comment..."
             fullWidth={true}
             multiline={true}
-            className={classes.commentField}
-            onClick={() => setShowedButton(!showedButton)}/>
+            value={commentValue}
+            onChange={handleCommentInputChange}
+            className={classes.commentField}/>
         </div>
       </div>
       <div className={showedAddComment ? classes.showedAddComment : classes.hiddenButton}>
-        <div className={showedButton ? classes.showedButton : classes.hiddenButton}>
+        <div className={commentValue.length > 0 ? classes.showedButton : classes.hiddenButton}>
           <SharedButton title="Post"/>
         </div>
       </div>
