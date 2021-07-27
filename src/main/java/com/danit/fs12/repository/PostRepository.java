@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-  public User getAllPostsByUserId(long id);
+  User getAllPostsByUserId(long id);
 
 }
