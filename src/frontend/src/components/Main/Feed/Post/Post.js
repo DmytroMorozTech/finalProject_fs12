@@ -26,7 +26,6 @@ function Post ({
   quantityOfViews = 244688
 }) {
   const classes = Style()
-
   const [liked, setLiked] = useState(false)
 
   const [showedAddComment, setShowedAddComment] = useState(false)

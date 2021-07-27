@@ -27,12 +27,6 @@ public class Post extends AbstractEntity {
   private String title;
   @Column(name = "main_text", length = 280)
   private String mainText;
-
-  public Post(String title, String mainText) {
-    this.title = title;
-    this.mainText = mainText;
-  }
-
   @ManyToOne
   @JoinColumn(
     name = "user_id",
@@ -42,12 +36,21 @@ public class Post extends AbstractEntity {
       name = "user_post_fk"
     ))
   private User user;
-
-
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
+  @OneToMany(
+    mappedBy = "post",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private List<Like> likes = new ArrayList<>();
+
+  public Post(String title, String mainText) {
+    this.title = title;
+    this.mainText = mainText;
+  }
 
   public Comment addComment(Comment comment) {
     if (!this.comments.contains(comment)) {
@@ -56,12 +59,5 @@ public class Post extends AbstractEntity {
     }
     return comment;
   }
-
-  @OneToMany(
-    mappedBy = "post",
-    cascade = CascadeType.ALL)
-  @ToString.Exclude
-  @EqualsAndHashCode.Exclude
-  private List<Like> likes = new ArrayList<>();
 
 }

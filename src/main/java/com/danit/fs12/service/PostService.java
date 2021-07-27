@@ -12,15 +12,15 @@ public interface PostService {
 
   User getAllPostsByUserId(long id);
 
-  public Post save(Post post);
+  Post save(Post post);
 
-  public void delete(Post post);
+  void delete(Post post);
 
-  public List<Post> findAll();
+  List<Post> findAll();
 
-  public void deleteById(Long id);
+  void deleteById(Long id);
 
-  public Post getOne(Long id);
+  Post getOne(Long id);
 
-  public Optional<Post> findById(Long id);
+  Optional<Post> findById(Long id);
 }
