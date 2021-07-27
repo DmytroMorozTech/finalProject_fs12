@@ -1,46 +1,43 @@
 import React from 'react'
-import {StyleMainLeft} from './StyleMainLeft'
+import StyleMainLeft from './StyleMainLeft'
 
 function MainLeft () {
   const classes = StyleMainLeft()
 
   return (
-    <div classes={classes.container}>
-      <div className={classes.profile_card}>
-        <div className={classes.profile_info}>
-          <div className={classes.profile_bg}>
+    <div className={classes.container}>
+      <div className={classes.profileCard}>
+        <div className={classes.profileInfo}>
+          <div className={classes.profileBg}>
             <a>
-              <div className={classes.profile_pic}/>
-              <link className>Ivan Ivanov</link>
+              <div className={classes.profilePic}/>
+              <link className={classes.profileLink}>Ivan Ivanov</link>
             </a>
             <a>
-              <div className={classes.profile_info__text}>Junior C++ Programmer</div>
+              <div className={classes.profileInfoText}>Junior C++ Programmer</div>
             </a>
           </div>
         </div>
-        <div className={classes.profile_widget}>
+        <div className={classes.profileWidget}>
           <a>
-            <div className={classes.profile_widget__span}>
+            <div className={classes.profileWidgetText}>
               <span>Contacts</span>
               <span>Add your contacts here</span>
             </div>
-            <img src="" alt=""/>
           </a>
         </div>
-        <div className={classes.profile_item}>
+        <div className={classes.profileItem}>
           <span>
-            <img src="" alt=""/>
-                        My Code
+            My Code
           </span>
         </div>
       </div>
-      <div className={classes.social_card}>
+      <div className={classes.socialCard}>
         <a>
           <span>Groups and communities</span>
         </a>
         <a>
           <span>Events and meetings</span>
-          <img src="" alt=""/>
         </a>
         <a>
           <span>Followed hashtags</span>
