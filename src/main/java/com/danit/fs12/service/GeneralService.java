@@ -1,6 +1,7 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.exception.NotFoundException;
 import com.danit.fs12.repository.RepositoryInterface;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -31,13 +32,14 @@ public abstract class GeneralService<E extends AbstractEntity> implements Servic
   }
 
   @Override
-  public boolean deleteById(Long id) {
-    Optional<E> entityOpt = findById(id);
-    if (entityOpt.isPresent()) {
-      delete(entityOpt.get());
-      return true;
+  public void deleteById(Long id) {
+    Optional<E> entityOpt = repo.findById(id);
+    if (entityOpt.isEmpty()) {
+      String msg = String.format("Entity with id %d was not found.", id);
+      throw new NotFoundException(msg);
     }
-    return false;
+
+    delete(entityOpt.get());
   }
 
   @Override

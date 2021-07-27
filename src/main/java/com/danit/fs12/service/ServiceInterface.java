@@ -12,7 +12,7 @@ public interface ServiceInterface<E extends AbstractEntity> {
 
   void delete(E entity);
 
-  boolean deleteById(Long id);
+  void deleteById(Long id);
 
   List<E> findAll();
 

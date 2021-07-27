@@ -1,6 +1,7 @@
 package com.danit.fs12.facade;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.exception.NotFoundException;
 import com.danit.fs12.service.ServiceInterface;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,26 +52,31 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQ_DTO, RS_DTO> {
     service.delete(entity);
   }
 
-  public List<E> findAll() {
-    return service.findAll();
+  public List<RS_DTO> findAll() {
+    List<E> entities = service.findAll();
+    List<RS_DTO> entitiesRs = entities.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
+    return entitiesRs;
   }
 
-  public boolean deleteById(Long id) {
-    Optional<E> entityOpt = findById(id);
-    if (entityOpt.isPresent()) {
-      delete(entityOpt.get());
-      return true;
-    }
-    return false;
+  public void deleteById(Long id) {
+   service.deleteById(id);
   }
 
   public E getOne(Long id) {
     return service.getOne(id);
   }
 
-  public Optional<E> findById(Long id) {
-    return service.findById(id);
+  public RS_DTO findById(Long id) {
+    Optional<E> entityOpt = service.findById(id);
+    if (entityOpt.isEmpty()) {
+      String msg = String.format("Entity with id %d was not found.", id);
+      throw new NotFoundException(msg);
+    }
+    return convertToDto(entityOpt.get());
   }
+  // our facade methods should return not E (entity), but RS_DTO type
 
 
 }
