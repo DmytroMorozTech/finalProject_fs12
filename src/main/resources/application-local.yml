@@ -10,8 +10,7 @@ spring:
       ddl-auto: create
     database-platform: org.hibernate.dialect.H2Dialect
   datasource:
-    # url: "jdbc:h2:mem:linkedin"
-    url: jdbc:h2:file:E:\DAN_IT\finalProject_fs12\src\main\resources/data/db;AUTO_SERVER=true
+    url: "jdbc:h2:mem:linkedin"
     username: sa
     password:
     driver-class-name: org.h2.Driver

@@ -13,24 +13,7 @@ import {Hidden} from '@material-ui/core'
 function ShareBox (props) {
   const classes = Style()
   const dispatch = useDispatch()
-  // const [showModal, setShowModal] = useState('close')
-  // const clickHandler = (event) => {
-  //   event.preventDefault()
-  //   if (event.target !== event.currentTarget) {
-  //     return
-  //   }
-  //   switch (showModal) {
-  //     case 'open':
-  //       setShowModal('close')
-  //       break
-  //     case 'close':
-  //       setShowModal('open')
-  //       break
-  //     default:
-  //       setShowModal('close')
-  //       break
-  //   }
-  // }
+
   return (
     <div className={classes.share}>
       <div className={classes.post}>
