@@ -1,21 +1,37 @@
 import React from 'react'
-import {StyleMainRight} from './StyleMainRight'
+import StyleMainRight from './styleMainRight'
 
 function MainRight () {
   const classes = StyleMainRight()
 
   return (
     <div className={classes.container}>
-      <div className={classes.follow_card}>
-        <div className={classes.follow_card__title}>
+      <div className={classes.followCard}>
+        <div className={classes.followCardTitle}>
           <h2>Add to your feed</h2>
         </div>
-        <div className={classes.follow_card__news_list}>
-          <li className={classes.news_list__li}>
+        <div className={classes.followCardNewsList}>
+          <li className={classes.newsListItems}>
             <a>
-              <div className={classes.profile_pic}/>
+              <div className={classes.newsPic}/>
             </a>
+            <div className={classes.newsListItem}>
+              <span className={classes.text}>LinkedIn</span>
+              <button className={classes.btnNewsListItem}>Follow</button>
+            </div>
           </li>
+          <li className={classes.newsListItems}>
+            <a>
+              <div className={classes.newsPic}/>
+            </a>
+            <div className={classes.newsListItem}>
+              <span className={classes.text}>Video</span>
+              <button className={classes.btnNewsListItem}>Follow</button>
+            </div>
+          </li>
+        </div>
+        <div className={classes.recommendations}>
+          <span className={classes.recommendationsText}>View All Recommendations</span>
         </div>
       </div>
     </div>

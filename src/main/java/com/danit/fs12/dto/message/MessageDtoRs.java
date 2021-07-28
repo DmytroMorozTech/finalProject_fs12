@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 @Data
-public class MessageDtoRes {
+public class MessageDtoRs {
 
   private Long id;
   private String userMessageFrom;

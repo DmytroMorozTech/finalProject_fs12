@@ -12,21 +12,15 @@ import toggleModalAction from '../../redux/Modal/modalActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {modalTypeSelector, openModalSelector} from '../../redux/Modal/modalSelector'
 import {ADD_NEW_POST} from './modalTypes'
-import AddNewPost from '../Main/Feed/AddNewPost/AddNewPost'
-import NewPostFooter from '../Main/Feed/AddNewPost/NewPostFooter'
-import NewPostTitle from '../Main/Feed/AddNewPost/NewPostTitle'
+import Jobs from '../Jobs/Jobs'
 
 const styles = (theme) => ({
   root: {
-    // display: 'flex',
-    // flexDirection: 'row',
-    // justifyContent: 'space-between'
-    margin: 0
-    // padding: theme.spacing(2)
+    margin: 0,
+    padding: theme.spacing(2)
   },
   closeButton: {
     position: 'absolute',
-    zIndex: '1',
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500]
@@ -65,9 +59,9 @@ export default function CustomizedDialogs () {
   const dispatch = useDispatch()
   const modalType = useSelector(modalTypeSelector)
 
-  const renderTitle = modalType === ADD_NEW_POST ? <NewPostTitle/> : null
-  const renderModal = modalType === ADD_NEW_POST ? <AddNewPost/> : null
-  const renderFooter = modalType === ADD_NEW_POST ? <NewPostFooter/> : null
+  /* Example of using! Add to this conditional operator the type of modal and the react component to render into  */
+  const renderModal = modalType === ADD_NEW_POST ? <Jobs/> : null
+
   const handleClose = () => {
     dispatch(toggleModalAction())
   }
@@ -76,13 +70,13 @@ export default function CustomizedDialogs () {
     <div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {renderTitle}
+                    Modal title
         </DialogTitle>
         <DialogContent dividers>
+          {/* Main component to render into modal body */}
           {renderModal}
         </DialogContent>
         <DialogActions>
-          {renderFooter}
           <Button autoFocus onClick={handleClose} color="primary">
                         SAVE
           </Button>
