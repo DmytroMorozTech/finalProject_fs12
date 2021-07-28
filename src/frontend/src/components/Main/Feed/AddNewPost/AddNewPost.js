@@ -18,8 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   userInfo: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center'
+    flexDirection: 'row'
   },
   buttonGroup: {
     paddingLeft: '10px'
@@ -44,12 +43,25 @@ const useStyles = makeStyles(() => ({
       fontSize: 15,
       color: 'grey'
     }
+  },
+  editor: {
+    height: 150
   }
 }))
-const AddNewPost = ({userName = 'Steve Johns', userAvatar = TemporaryAvatar}) => {
+const AddNewPost = ({
+  userName = 'Steve Johns',
+  userAvatar = TemporaryAvatar,
+  buttonName = 'SAVE'
+                  
+}) => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const [editorText, setEditorText] = React.useState('')
+  const [postInputText, setPostInputText] = React.useState('')
+
+  const handlePostInputChange = e => {
+    let postInputVal = e.currentTarget.value
+    setPostInputText(postInputVal)
+  }
 
   return (
     <div>
@@ -74,9 +86,10 @@ const AddNewPost = ({userName = 'Steve Johns', userAvatar = TemporaryAvatar}) =>
         placeholder="What do you want to talk about?"
         fullWidth={true}
         multiline={true}
-        value={editorText}
-        onChange={(event) => setEditorText(event.target.value)}
-        className={classes.editor}/>
+        value={postInputText}
+        onChange={handlePostInputChange}
+        className={classes.editor}
+      />
     </div>
   )
 }

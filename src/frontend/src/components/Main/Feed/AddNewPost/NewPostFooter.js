@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
@@ -9,30 +9,18 @@ const useStyles = makeStyles(() => ({
   shareButtons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     color: 'gray',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginRight: ''
   },
   photo: {
-    marginRight: '10px',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      backgroundSize: '150%',
-      borderRadius: '50%'
-    }
+    marginRight: '10px'
   },
   video: {
-    marginRight: '10px',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      borderRadius: '50%'
-    }
+    marginRight: '10px'
   },
   docs: {
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      borderRadius: '50%'
-    }
+    marginRight: '50px'
   },
   vl: {
     borderLeft: '1px solid gray',
@@ -40,6 +28,10 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     top: 0,
     marginLeft: '10px'
+  },
+  tooltip: {
+    backgroundColor: 'white',
+    color: 'grey'
   }
 }))
 const NewPostFooter = () => {
@@ -48,24 +40,26 @@ const NewPostFooter = () => {
   const longText2 = `Add video`
   const longText3 = `Add documents`
   return (
-    <div className={classes.shareButtons}>
-      <Tooltip title={longText1} placement={'top'}>
-        <div className={classes.photo}>
-          <PhotoSizeSelectActualIcon/>
-        </div>
-      </Tooltip>
-      <Tooltip title={longText2} placement={'top'}>
-        <div className={classes.video}>
-          <YouTubeIcon/>
-        </div>
-      </Tooltip>
-      <Tooltip title={longText3} placement={'top'}>
-        <div className={classes.docs}>
-          <EventNoteIcon/>
-        </div>
-      </Tooltip>
+    <>
+      <div className={classes.shareButtons}>
+        <Tooltip className={classes.tooltip} title={longText1} placement={'top'}>
+          <div className={classes.photo}>
+            <PhotoSizeSelectActualIcon/>
+          </div>
+        </Tooltip>
+        <Tooltip title={longText2} placement={'top'}>
+          <div className={classes.video}>
+            <YouTubeIcon/>
+          </div>
+        </Tooltip>
+        <Tooltip title={longText3} placement={'top'}>
+          <div className={classes.docs}>
+            <EventNoteIcon/>
+          </div>
+        </Tooltip>
+      </div>
       <div className={classes.vl}></div>
-    </div>
+    </>
   )
 }
 export default NewPostFooter
