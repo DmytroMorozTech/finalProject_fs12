@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import Typography from '@material-ui/core/Typography'
 import toggleModalAction from '../../redux/Modal/modalActions'
 import {useDispatch, useSelector} from 'react-redux'
-import {modalTypeSelector, openModalSelector} from '../../redux/Modal/modalSelector'
+import {modalContentSelector, modalTypeSelector, openModalSelector} from '../../redux/Modal/modalSelector'
 import {ADD_NEW_POST} from './modalTypes'
 import AddNewPost from '../Main/Feed/AddNewPost/AddNewPost'
 import NewPostTitle from '../Main/Feed/AddNewPost/NewPostTitle'
@@ -63,6 +63,7 @@ export default function CustomizedDialogs () {
   const isModalOpened = useSelector(openModalSelector)
   const dispatch = useDispatch()
   const modalType = useSelector(modalTypeSelector)
+  const modalContent = useSelector(modalContentSelector)
 
   const renderTitle = modalType === ADD_NEW_POST ? <NewPostTitle/> : null
   const renderModal = modalType === ADD_NEW_POST ? <AddNewPost/> : null
@@ -75,19 +76,20 @@ export default function CustomizedDialogs () {
   return (
     <div className={classes.root}>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
-        {renderTitle}
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-
-        </DialogTitle>
-        <DialogContent dividers>
-          {renderModal}
-        </DialogContent>
-        <DialogActions>
-          {renderFooter}
-          <Button autoFocus onClick={handleClose} color="primary">
-                        SAVE
-          </Button>
-        </DialogActions>
+        {modalContent}
+        {/*  {renderTitle} */}
+        {/*  <DialogTitle id="customized-dialog-title" onClose={handleClose}> */}
+      
+        {/*  </DialogTitle> */}
+        {/*  <DialogContent dividers> */}
+        {/*    {renderModal} */}
+        {/*  </DialogContent> */}
+        {/*  <DialogActions> */}
+        {/*    {renderFooter} */}
+        {/*    <Button autoFocus onClick={handleClose} color="primary"> */}
+        {/*                  SAVE */}
+        {/*    </Button> */}
+        {/*  </DialogActions> */}
       </Dialog>
     </div>
   )
