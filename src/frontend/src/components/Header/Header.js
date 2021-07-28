@@ -13,21 +13,23 @@ function Header () {
   const modal = isModalOpen ? <CustomizedDialogs/> : null
 
   return (
-    <div className={classes.header}>
-      <div className={classes.header_logo_search}>
-        <div className={classes.header_logo}>
-          <LinkedInIcon/>
-        </div>
-        <Hidden mdDown>
-          <div className={classes.header_search}>
-            <SearchRoundedIcon/>
-            <input placeholder="Search"/>
+    <>
+      <div className={classes.header}>
+        <div className={classes.header_logo_search}>
+          <div className={classes.header_logo}>
+            <LinkedInIcon/>
           </div>
-        </Hidden>
+          <Hidden mdDown>
+            <div className={classes.header_search}>
+              <SearchRoundedIcon/>
+              <input placeholder="Search"/>
+            </div>
+          </Hidden>
+        </div>
+        <Navbar/>
       </div>
       {modal}
-      <Navbar/>
-    </div>
+    </>
   )
 }
 
