@@ -15,6 +15,7 @@ import {ADD_NEW_POST} from './modalTypes'
 import AddNewPost from '../Main/Feed/AddNewPost/AddNewPost'
 import NewPostTitle from '../Main/Feed/AddNewPost/NewPostTitle'
 import NewPostFooter from '../Main/Feed/AddNewPost/NewPostFooter'
+import Style from './styles'
 
 const styles = (theme) => ({
 
@@ -61,6 +62,7 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions)
 
 export default function CustomizedDialogs () {
+  const classes = Style()
   const isModalOpened = useSelector(openModalSelector)
   const dispatch = useDispatch()
   const modalType = useSelector(modalTypeSelector)
@@ -74,7 +76,7 @@ export default function CustomizedDialogs () {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
         {renderTitle}
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
