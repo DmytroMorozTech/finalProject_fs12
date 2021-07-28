@@ -24,6 +24,7 @@ const modalReducer = (store = initialStore, action) => {
         case ADD_NEW_POST:
           content = <AddNewPost/>
           break
+
         default:
           content = <h1>Default case</h1>
       }
