@@ -4,9 +4,7 @@ import Style from './styles'
 function Jobs () {
   const classes = Style()
   return (
-    <h1 className={classes.text}>
-      Welcome to the Jobs page!
-    </h1>
+    <h1 className={classes.text}></h1>
   )
 }
 
