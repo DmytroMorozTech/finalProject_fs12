@@ -1,3 +1,3 @@
-export const openModalSelector = (store) => store.toggleModal.isModalOpen
-export const modalTypeSelector = (store) => store.toggleModal.modalOpenType
-export const modalContentSelector = (store) => store.toggleModal.modalContent
+export const openModalSelector = (store) => store.modal.isModalOpen
+export const modalTypeSelector = (store) => store.modal.modalOpenType
+export const modalContentSelector = (store) => store.modal.modalContent

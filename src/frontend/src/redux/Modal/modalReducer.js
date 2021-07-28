@@ -14,13 +14,13 @@ const modalReducer = (store = initialStore, action) => {
     return modalType
   }
 
-  const type = action.payload ? getModalType() : null // ADD_NEW_POST
+  const modalType = action.payload ? getModalType() : null // ADD_NEW_POST
 
   switch (action.type) { // TOGGLE_MODAL
     case actions.TOGGLE_MODAL:
     {
       let content
-      switch (type) {
+      switch (modalType) {
         case ADD_NEW_POST:
           content = <AddNewPost/>
           break
@@ -32,7 +32,7 @@ const modalReducer = (store = initialStore, action) => {
       return {
         ...store,
         isModalOpen: !store.isModalOpen,
-        modalOpenType: type,
+        modalOpenType: modalType,
         modalContent: content
       }
     }

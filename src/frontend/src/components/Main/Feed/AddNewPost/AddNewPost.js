@@ -117,7 +117,7 @@ const AddNewPost = ({
   return (
     <div>
       <NewPostTitle/>
-      <DialogTitle id="customized-dialog-title" >
+      <DialogTitle id="customized-dialog-title" onClose={() => console.log('HELLO!')} >
         {/* onClose={handleClose} */}
 
       </DialogTitle>

@@ -21,12 +21,7 @@ export default function CustomizedDialogs () {
   const classes = Style()
   const isModalOpened = useSelector(openModalSelector)
   const dispatch = useDispatch()
-  const modalType = useSelector(modalTypeSelector)
   const modalContent = useSelector(modalContentSelector)
-
-  const renderTitle = modalType === ADD_NEW_POST ? <NewPostTitle/> : null
-  const renderModal = modalType === ADD_NEW_POST ? <AddNewPost/> : null
-  const renderFooter = modalType === ADD_NEW_POST ? <NewPostFooter/> : null
 
   const handleClose = () => {
     dispatch(toggleModalAction())
