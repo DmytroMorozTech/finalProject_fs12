@@ -1,5 +1,7 @@
-package com.danit.fs12.entity;
+package com.danit.fs12.entity.organization;
 
+import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.workplace.WorkPlace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

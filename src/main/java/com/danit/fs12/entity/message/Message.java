@@ -1,8 +1,8 @@
 package com.danit.fs12.entity.message;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.Chat;
-import com.danit.fs12.entity.User;
+import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

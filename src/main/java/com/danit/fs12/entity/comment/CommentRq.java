@@ -1,11 +1,11 @@
-package com.danit.fs12.dto.comment;
+package com.danit.fs12.entity.comment;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-public class CommentDtoRq {
+public class CommentRq {
 
   @NotNull(message = "activeUserId should be specified.")
   Long activeUserId;

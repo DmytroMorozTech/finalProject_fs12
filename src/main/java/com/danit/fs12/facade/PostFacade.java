@@ -1,18 +1,18 @@
 package com.danit.fs12.facade;
 
-import com.danit.fs12.dto.post.PostDtoRq;
-import com.danit.fs12.dto.post.PostDtoRs;
-import com.danit.fs12.entity.Post;
+import com.danit.fs12.entity.post.PostRq;
+import com.danit.fs12.entity.post.PostRs;
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class PostFacade extends GeneralFacade<Post, PostDtoRq, PostDtoRs> {
+public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
   private PostService postService;
 
-  public PostDtoRs createPost(PostDtoRq rq) {
+  public PostRs createPost(PostRq rq) {
     Post post = postService.createPost(convertToEntity(rq), rq.getUserId());
     return convertToDto(post);
   }

@@ -1,9 +1,9 @@
-package com.danit.fs12.dto.post;
+package com.danit.fs12.entity.post;
 
 import lombok.Data;
 
 @Data
-public class PostDtoRs {
+public class PostRs {
 
   private Long id;
   Long userId;

@@ -1,11 +1,11 @@
-package com.danit.fs12.dto.post;
+package com.danit.fs12.entity.post;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-public class PostDtoRq {
+public class PostRq {
 
   @NotNull(message = "userId should be specified.")
   Long userId;

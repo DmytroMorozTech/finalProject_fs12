@@ -1,5 +1,7 @@
-package com.danit.fs12.entity;
+package com.danit.fs12.entity.group;
 
+import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,5 +1,9 @@
-package com.danit.fs12.entity;
+package com.danit.fs12.entity.post;
 
+import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.comment.Comment;
+import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

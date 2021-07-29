@@ -1,6 +1,6 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.user.UserDtoRs;
+import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,16 +23,16 @@ public class UserController {
   private final UserFacade userFacade;
 
   @GetMapping
-  List<UserDtoRs> findAll() {
-    List<UserDtoRs> allUsers = userFacade.findAll();
+  List<UserRs> findAll() {
+    List<UserRs> allUsers = userFacade.findAll();
     return allUsers;
   }
 
   // http://localhost:9000/api/users/{id}
   // get user by id
   @GetMapping(path = "{id}")
-  public ResponseEntity<UserDtoRs> findById(@PathVariable Long id) {
-    UserDtoRs user = userFacade.findById(id);
+  public ResponseEntity<UserRs> findById(@PathVariable Long id) {
+    UserRs user = userFacade.findById(id);
     // in case User can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(user);
   }

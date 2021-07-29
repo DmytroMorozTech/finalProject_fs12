@@ -1,7 +1,7 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.comment.CommentDtoRq;
-import com.danit.fs12.dto.comment.CommentDtoRs;
+import com.danit.fs12.entity.comment.CommentRq;
+import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.facade.CommentFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,25 +24,25 @@ public class CommentController {
   private final CommentFacade commentFacade;
 
   @GetMapping
-  List<CommentDtoRs> findAll() {
+  List<CommentRs> findAll() {
     return commentFacade.findAll();
   }
 
   @GetMapping(path = "{id}")
-  public ResponseEntity<CommentDtoRs> findById(@PathVariable Long id) {
-    CommentDtoRs comment = commentFacade.findById(id);
+  public ResponseEntity<CommentRs> findById(@PathVariable Long id) {
+    CommentRs comment = commentFacade.findById(id);
     // in case Comment can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(comment);
   }
 
   @PostMapping
-  public ResponseEntity<?> createComment(@Valid @RequestBody CommentDtoRq rq) {
+  public ResponseEntity<?> createComment(@Valid @RequestBody CommentRq rq) {
     System.out.println("Create comment Controller");
     Long activeUserId = rq.getActiveUserId();
     Long postId = rq.getPostId();
     String text = rq.getText();
 
-    CommentDtoRs comment = commentFacade.createComment(activeUserId, postId, text);
+    CommentRs comment = commentFacade.createComment(activeUserId, postId, text);
     return ResponseEntity.ok(comment);
   }
 

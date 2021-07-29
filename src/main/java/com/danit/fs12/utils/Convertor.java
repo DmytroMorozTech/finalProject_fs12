@@ -1,4 +1,4 @@
-package com.danit.fs12.dto;
+package com.danit.fs12.utils;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

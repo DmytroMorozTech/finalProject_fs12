@@ -1,5 +1,8 @@
-package com.danit.fs12.entity;
+package com.danit.fs12.entity.comment;
 
+import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

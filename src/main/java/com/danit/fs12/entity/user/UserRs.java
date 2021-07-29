@@ -1,9 +1,9 @@
-package com.danit.fs12.dto.user;
+package com.danit.fs12.entity.user;
 
 import lombok.Data;
 
 @Data
-public class UserDtoRs {
+public class UserRs {
 
   private Long id;
   private String firstName;

@@ -1,5 +1,14 @@
-package com.danit.fs12.entity;
+package com.danit.fs12.entity.user;
 
+import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.certification.Certification;
+import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.education.Education;
+import com.danit.fs12.entity.group.Group;
+import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.workplace.WorkPlace;
+import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

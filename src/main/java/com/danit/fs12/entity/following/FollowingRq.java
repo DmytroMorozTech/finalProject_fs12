@@ -1,11 +1,11 @@
-package com.danit.fs12.dto.following;
+package com.danit.fs12.entity.following;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-public class FollowingDtoRq {
+public class FollowingRq {
 
   @NotNull(message = "userId should be specified.")
   Long userId;

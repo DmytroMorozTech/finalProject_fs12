@@ -1,8 +1,8 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.Comment;
-import com.danit.fs12.entity.Post;
-import com.danit.fs12.entity.User;
+import com.danit.fs12.entity.comment.Comment;
+import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
