@@ -8,4 +8,3 @@
 #### Konstantin Rozhkov
 #### Oksana Marysheva
 #### Oleh Horskyi
-#### Pivtorak Vladymyr
