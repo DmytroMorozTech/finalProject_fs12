@@ -22,6 +22,7 @@ import Style from './styles'
 const styles = (theme) => ({
 
   root: {
+    width: '500px',
     margin: 0,
     padding: theme.spacing(2)
   },
