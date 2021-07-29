@@ -2,7 +2,7 @@ import React from 'react'
 import Style from './styles'
 import Typography from '@material-ui/core/Typography'
 import TemporaryAvatar from '../../temporaryImages/avatarNotification.jpg'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import ThreeDots from '../../shared/ThreeDots/TreeDots'
 
 function Notifications ({
   userAvatar = TemporaryAvatar,
@@ -28,9 +28,7 @@ function Notifications ({
           <div className={classes.notificationTime}>
             {notificationTime}
           </div>
-          <div className={classes.menu}>
-            <MoreHorizIcon/>
-          </div>
+          <ThreeDots/>
         </div>
       </div>
     </div>
