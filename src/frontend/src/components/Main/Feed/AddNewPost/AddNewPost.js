@@ -80,7 +80,7 @@ const AddNewPost = ({
     setPostInputText(postInputVal)
   }
 
-  // let buttonClasses = postInputText.length > 0 ? {color: 'primary'} : {disabled: 'true'}
+  let btnIsDisabled = postInputText.length === 0
   const longText1 = `Add photo`
   const longText2 = `Add video`
   const longText3 = `Add documents`
@@ -140,8 +140,8 @@ const AddNewPost = ({
           </Tooltip>
           <div className={classes.vl}></div>
         </div>
-        <Button autoFocus onClick={handleClose} color={'primary'}>
-                      POST
+        <Button autoFocus onClick={handleClose} disabled={btnIsDisabled} color={'primary'}>
+          POST
         </Button>
       </DialogActions>
     </div>
