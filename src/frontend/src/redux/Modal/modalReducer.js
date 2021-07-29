@@ -1,8 +1,11 @@
 import * as actions from './modalActionTypes'
+import {ADD_NEW_POST} from '../../components/Modal/modalTypes'
+import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 
 const initialStore = {
   isModalOpen: false,
-  modalOpenType: null
+  modalOpenType: null,
+  modalContent: null
 }
 
 const modalReducer = (store = initialStore, action) => {
@@ -11,15 +14,29 @@ const modalReducer = (store = initialStore, action) => {
     return modalType
   }
 
-  const type = action.payload ? getModalType() : null
+  const modalType = action.payload ? getModalType() : null // ADD_NEW_POST
 
-  switch (action.type) {
+  switch (action.type) { // TOGGLE_MODAL
     case actions.TOGGLE_MODAL:
+    {
+      let content
+      switch (modalType) {
+        case ADD_NEW_POST:
+          content = <AddNewPost/>
+          break
+
+        default:
+          content = ''
+      }
+      
       return {
         ...store,
         isModalOpen: !store.isModalOpen,
-        modalOpenType: type
+        modalOpenType: modalType,
+        modalContent: content
       }
+    }
+      
     default: {
       return store
     }
