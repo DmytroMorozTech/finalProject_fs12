@@ -20,13 +20,16 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Post extends AbstractEntity {
   private String title;
+
   @Column(name = "main_text", length = 280)
   private String mainText;
+
   @ManyToOne
   @JoinColumn(
     name = "user_id",
@@ -36,10 +39,12 @@ public class Post extends AbstractEntity {
       name = "user_post_fk"
     ))
   private User user;
+
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Comment> comments = new ArrayList<>();
+
   @OneToMany(
     mappedBy = "post",
     cascade = CascadeType.ALL)
@@ -50,14 +55,6 @@ public class Post extends AbstractEntity {
   public Post(String title, String mainText) {
     this.title = title;
     this.mainText = mainText;
-  }
-
-  public Comment addComment(Comment comment) {
-    if (!this.comments.contains(comment)) {
-      this.comments.add(comment);
-      comment.setPost(this);
-    }
-    return comment;
   }
 
 }

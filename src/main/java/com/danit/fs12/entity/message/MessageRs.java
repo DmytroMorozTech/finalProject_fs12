@@ -1,10 +1,10 @@
-package com.danit.fs12.dto.message;
+package com.danit.fs12.entity.message;
 
 import lombok.Data;
 
 
 @Data
-public class MessageDtoRs {
+public class MessageRs {
 
   private Long id;
   private String userMessageFrom;

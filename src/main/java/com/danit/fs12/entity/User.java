@@ -1,5 +1,6 @@
 package com.danit.fs12.entity;
 
+import com.danit.fs12.entity.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -140,24 +141,6 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<Certification> certifications = new ArrayList<>();
-
-
-  // these methods below should be moved to service
-  public void addPost(Post post) {
-    if (!this.posts.contains(post)) {
-      this.posts.add(post);
-      post.setUser(this);
-    }
-  }
-
-  public Comment addComment(Comment comment) {
-    if (!this.comments.contains(comment)) {
-      this.comments.add(comment);
-      comment.setUser(this);
-    }
-    return comment;
-  }
-
 
 }
 

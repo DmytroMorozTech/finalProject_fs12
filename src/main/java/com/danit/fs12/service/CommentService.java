@@ -29,8 +29,8 @@ public class CommentService extends GeneralService<Comment> {
     User user = userOpt.get();
     Post post = postOpt.get();
     Comment comment = save(new Comment(text));
-    post.addComment(comment);
-    user.addComment(comment);
+    post.getComments().add(comment);
+    user.getComments().add(comment);
 
     postRepository.save(post);
     userRepository.save(user);

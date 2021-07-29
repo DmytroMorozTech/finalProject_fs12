@@ -19,7 +19,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/comments")
-// http://localhost:9000/api/comments
 @RequiredArgsConstructor
 public class CommentController {
   private final CommentFacade commentFacade;
@@ -29,8 +28,6 @@ public class CommentController {
     return commentFacade.findAll();
   }
 
-  // http://localhost:9000/api/comments/{id}
-  // get comment by id
   @GetMapping(path = "{id}")
   public ResponseEntity<CommentDtoRs> findById(@PathVariable Long id) {
     CommentDtoRs comment = commentFacade.findById(id);
@@ -38,8 +35,7 @@ public class CommentController {
     return ResponseEntity.ok(comment);
   }
 
-  //   http://localhost:9000/api/comments/
-  @PostMapping // create new Comment
+  @PostMapping
   public ResponseEntity<?> createComment(@Valid @RequestBody CommentDtoRq rq) {
     System.out.println("Create comment Controller");
     Long activeUserId = rq.getActiveUserId();

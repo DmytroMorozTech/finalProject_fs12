@@ -15,14 +15,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * parameter types: E - entity, I - input (request DTO), O - output (response DTO)
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Component
 public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
-  /**
-   * parameter types: E - entity, I - input (request DTO), O - output (response DTO)
-   */
+
   @Autowired
   private ModelMapper mm;
 
@@ -30,7 +31,7 @@ public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
   private ServiceInterface<E> service;
 
   public O convertToDto(E entity) {
-    return mm.map(entity, getClassRS_DTO());
+    return mm.map(entity, getClassO());
   }
 
   public E convertToEntity(I rqDto) {
@@ -42,7 +43,7 @@ public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
       .getGenericSuperclass()).getActualTypeArguments()[0];
   }
 
-  private Class<O> getClassRS_DTO() {
+  private Class<O> getClassO() {
     return (Class<O>) ((ParameterizedType) getClass()
       .getGenericSuperclass()).getActualTypeArguments()[2];
   }
@@ -79,7 +80,5 @@ public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
     }
     return convertToDto(entityOpt.get());
   }
-  // our facade methods should return not E (entity), but RS_DTO type
-
 
 }

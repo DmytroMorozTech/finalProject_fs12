@@ -19,7 +19,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/posts")
-// http://localhost:9000/api/posts
 @RequiredArgsConstructor
 public class PostController {
   private final PostFacade postFacade;
@@ -29,8 +28,6 @@ public class PostController {
     return postFacade.findAll();
   }
 
-  // http://localhost:9000/api/posts/{id}
-  // get comment by id
   @GetMapping(path = "{id}")
   public ResponseEntity<PostDtoRs> findById(@PathVariable Long id) {
     PostDtoRs post = postFacade.findById(id);
@@ -38,14 +35,9 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
-  //   http://localhost:9000/api/posts/
-  @PostMapping // create new Post
-  public ResponseEntity<?> createPost(@Valid @RequestBody PostDtoRq rq) {
-    Long activeUserId = rq.getActiveUserId();
-    String title = rq.getTitle();
-    String mainText = rq.getMainText();
-
-    PostDtoRs post = postFacade.createPost(activeUserId, title, mainText);
+  @PostMapping
+  public ResponseEntity<PostDtoRs> createPost(@Valid @RequestBody PostDtoRq rq) {
+    PostDtoRs post = postFacade.createPost(rq);
     return ResponseEntity.ok(post);
   }
 

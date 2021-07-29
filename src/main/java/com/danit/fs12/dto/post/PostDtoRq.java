@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PostDtoRq {
 
-  @NotNull(message = "activeUserId should be specified.")
-  Long activeUserId;
+  @NotNull(message = "userId should be specified.")
+  Long userId;
 
   @NotNull(message = "Post title should be specified")
   String title;

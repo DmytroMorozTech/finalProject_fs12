@@ -1,5 +1,6 @@
 package com.danit.fs12.entity;
 
+import com.danit.fs12.entity.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

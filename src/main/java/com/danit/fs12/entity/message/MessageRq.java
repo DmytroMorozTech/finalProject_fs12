@@ -1,4 +1,4 @@
-package com.danit.fs12.dto.message;
+package com.danit.fs12.entity.message;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class MessageDtoRq {
+public class MessageRq {
 
   private Long id;
 

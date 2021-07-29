@@ -57,50 +57,26 @@ public class Application {
         List<User> users = userRepository.findAll();
         users.forEach(System.out::println);
 
-
         User firstUser = userRepository.findById(1L).get();
         System.out.println(firstUser);
 
         Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
         Post postNo2 = new Post("Tesla's capitalization skyrocketed", "Unexpected turn...");
-        firstUser.addPost(postNo1);
-        firstUser.addPost(postNo2);
+        postNo1.setUser(firstUser);
+        postNo2.setUser(firstUser);
+        firstUser.getPosts().add(postNo1);
+        firstUser.getPosts().add(postNo2);
         userRepository.save(firstUser);
 
         System.out.println("Let's try to print out user with post after replacing toString method");
         System.out.println(firstUser);
         System.out.println(firstUser.getPosts());
 
-        //-----------------------------------------
-        //    COMMENTS
-        generateComments();
-
-
-        //      Here we get an error:
-        //      Caused by: org.springframework.dao.InvalidDataAccessApiUsageException:
-        //      detached entity passed to persist: com.danit.fs12.entity.Post;
-
-        //      Comment comment1FromRepo = commentRepository.save(
-        //          new Comment("This post is meaningful indeed", post1, user1));
-        //      post1.addComment(comment1FromRepo);
-        //      postRepository.save(post1);
-
-
         System.out.println("OUR APPLICATION HAS STARTED !!!");
 
-        //      User user2 = userRepository.findById(2L).get();
-        //      System.out.println(user2.getClass().getSimpleName());
-
-        //      Map<String,String> conversionMapping = Map.ofEntries(
-        //          Map.entry("key1", "value1"),
-        //          Map.entry("key2", "value2"),
-        //          Map.entry("key3", "value3")
-        //      );
-        //      System.out.println(conversionMapping);
-
+        generateComments();
 
       }
-
 
       private void generateRandomUsers(UserRepository userRepository) {
         Faker faker = new Faker();
