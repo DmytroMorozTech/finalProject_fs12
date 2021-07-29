@@ -5,6 +5,7 @@ export default makeStyles(() => ({
     cursor: 'pointer',
     width: '40px',
     height: '40px',
+    color: 'grey',
     '& > .MuiSvgIcon-root': {
       margin: '8px'
     },
