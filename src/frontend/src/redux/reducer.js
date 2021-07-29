@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import modalReducer from './Modal/modalReducer'
 
 const reducer = combineReducers({
-  toggleModal: modalReducer
+  modal: modalReducer
 })
 
 export default reducer
