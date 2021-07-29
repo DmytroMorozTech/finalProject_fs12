@@ -26,7 +26,7 @@ const modalReducer = (store = initialStore, action) => {
           break
 
         default:
-          content = <h1>Default case</h1>
+          content = ''
       }
       
       return {

@@ -1,13 +1,11 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import {makeStyles, withStyles} from '@material-ui/core/styles'
-import {toggleModalAction} from '../../../../redux/Modal/modalActions'
+import {withStyles} from '@material-ui/core/styles'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import InputBase from '@material-ui/core/InputBase'
 import TemporaryAvatar from '../../../../temporaryImages/14.jpg'
-import NewPostTitle from './NewPostTitle'
-import NewPostFooter from './NewPostFooter'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -15,48 +13,11 @@ import CloseIcon from '@material-ui/icons/Close'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
-
-const useStyles = makeStyles(() => ({
-  avatar: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  userAvatar: {
-    width: '65px',
-    borderRadius: '50%'
-  },
-  userInfo: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  buttonGroup: {
-    paddingLeft: '10px'
-  },
-  shareComment: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: 10,
-    borderRadius: '15px',
-    cursor: 'pointer'
-  },
-  worldIcon: {
-    '& > .MuiSvgIcon-root': {
-      fontSize: 15,
-      color: 'grey'
-    }
-  },
-  arrow: {
-    '& > .MuiSvgIcon-root': {
-      fontSize: 15,
-      color: 'grey'
-    }
-  },
-  editor: {
-    height: 150
-  }
-}))
+import Tooltip from '@material-ui/core/Tooltip'
+import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
+import YouTubeIcon from '@material-ui/icons/YouTube'
+import EventNoteIcon from '@material-ui/icons/EventNote'
+import Style from './styles'
 
 const styles = (theme) => ({
 
@@ -101,24 +62,32 @@ const DialogActions = withStyles((theme) => ({
 
 const AddNewPost = ({
   userName = 'Steve Johns',
-  userAvatar = TemporaryAvatar,
-  buttonName = 'SAVE'
+  userAvatar = TemporaryAvatar
                   
 }) => {
-  const classes = useStyles()
   const dispatch = useDispatch()
-  const [postInputText, setPostInputText] = React.useState('')
 
+  const handleClose = () => {
+    dispatch(toggleModalAction())
+  }
+
+  const classes = Style()
+  const [postInputText, setPostInputText] = React.useState('')
   const handlePostInputChange = e => {
     let postInputVal = e.currentTarget.value
     setPostInputText(postInputVal)
   }
 
+  // let buttonClasses = postInputText.length > 0 ? {color: 'primary'} : {disabled: 'true'}
+  const longText1 = `Add photo`
+  const longText2 = `Add video`
+  const longText3 = `Add documents`
   return (
     <div>
-      <NewPostTitle/>
-      <DialogTitle id="customized-dialog-title" onClose={() => console.log('HELLO!')} >
-        {/* onClose={handleClose} */}
+      <div className={classes.title}>
+        <h4>Create post</h4>
+      </div>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose} >
 
       </DialogTitle>
 
@@ -151,12 +120,27 @@ const AddNewPost = ({
       </DialogContent>
       
       <DialogActions>
-        <NewPostFooter/>
+        <div className={classes.shareButtons}>
+          <Tooltip className={classes.tooltip} title={longText1} placement={'top'}>
+            <div className={classes.photo}>
+              <PhotoSizeSelectActualIcon/>
+            </div>
+          </Tooltip>
+          <Tooltip title={longText2} placement={'top'}>
+            <div className={classes.video}>
+              <YouTubeIcon/>
+            </div>
+          </Tooltip>
+          <Tooltip title={longText3} placement={'top'}>
+            <div className={classes.docs}>
+              <EventNoteIcon/>
+            </div>
+          </Tooltip>
+        </div>
+        <div className={classes.vl}></div>
 
-        <Button autoFocus color="primary">
-                      SAVE
-          {/* <Button autoFocus onClick={handleClose} color="primary"> */}
-          {/*  SAVE */}
+        <Button autoFocus onClick={handleClose} color={'primary'}>
+                      POST
         </Button>
       </DialogActions>
 
