@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   notifications: {
+    marginTop: '75px',
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
@@ -47,18 +48,5 @@ export default makeStyles(() => ({
   notificationTime: {
     fontSize: 12,
     marginRight: '10px'
-  },
-
-  menu: {
-    cursor: 'pointer',
-    width: '40px',
-    height: '40px',
-    '& > .MuiSvgIcon-root': {
-      margin: '8px'
-    },
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      borderRadius: '50%'
-    }
   }
 }))

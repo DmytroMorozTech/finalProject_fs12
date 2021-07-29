@@ -72,7 +72,7 @@ export default makeStyles(() => ({
     fontSize: '12px',
     lineHeight: '1.33',
     '&:first-child': {
-      color: 'rgba(0, 0, 0, 0.6)',
+      color: 'rgba(0, 0, 0, 0.6)'
     },
     '&:nth-child(2)': {
       color: 'rgba(0, 0, 0, 0.11)'
@@ -84,7 +84,7 @@ export default makeStyles(() => ({
     textAlign: 'left',
     padding: '12px',
     fontSize: '12px',
-    display: 'block',
+    display: 'block'
   },
 
   socialCard: {
@@ -97,12 +97,12 @@ export default makeStyles(() => ({
       fontSize: '11.5px',
       padding: '3.5px 11.5px 3.5px 11.5px',
       '&:hover': {
-        color: '#0a66c2',
+        color: '#0a66c2'
       },
       'span': {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
       },
       '&:last-child': {
         textDecoration: 'none',
@@ -113,7 +113,7 @@ export default makeStyles(() => ({
           backgroundColor: 'rgba(0, 0, 0, 0.09)'
         }
       }
-    } 
+    }
   },
   
   profileLink: {

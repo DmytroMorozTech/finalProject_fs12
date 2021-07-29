@@ -3,10 +3,15 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   header: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    zIndex: 100,
+    backgroundColor: 'white',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-
     '& > div': {
       display: 'flex',
       alignItems: 'center',
