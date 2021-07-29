@@ -3,7 +3,6 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import Style from './styles'
 import React, { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
@@ -14,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
+import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 
 function Post ({
   userName = 'Steve Noiry',
@@ -38,7 +38,7 @@ function Post ({
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
-        <MoreHorizIcon/>
+        <ThreeDots/>
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>

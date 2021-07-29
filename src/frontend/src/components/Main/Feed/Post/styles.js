@@ -20,14 +20,8 @@ export default makeStyles(() => ({
   },
 
   hiddenMenu: {
-    color: 'grey',
     marginLeft: '90%',
-    cursor: 'pointer',
-    marginTop: '7px',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)',
-      borderRadius: '50%'
-    }
+    margin: '2px 0'
   },
 
   line: {
