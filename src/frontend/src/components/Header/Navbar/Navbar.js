@@ -8,6 +8,7 @@ import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
 import React from 'react'
+import SimpleMenu from '../../../shared/ToggleMenu/ToggleMenu'
 
 function Navbar () {
   const classes = Style()
@@ -18,8 +19,7 @@ function Navbar () {
     { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, to: '/jobs' },
     { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, to: '/messages' },
     { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, to: '/notifications' },
-    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, to: '#' },
-    { Icon: <AppsRoundedIcon/>, title: 'Apps', arrow: true, to: '/apps' }
+    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, to: '#' }
   ]
 
   return (
