@@ -1,0 +1,1 @@
+export const TOGGLE_POPUP_MENU = 'TOGGLE_POPUP_MENU'
