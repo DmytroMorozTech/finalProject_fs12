@@ -56,7 +56,8 @@ const DialogContent = withStyles((theme) => ({
 const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    justifyContent: 'space-between'
   }
 }))(MuiDialogActions)
 
@@ -121,7 +122,7 @@ const AddNewPost = ({
       
       <DialogActions>
         <div className={classes.shareButtons}>
-          <Tooltip className={classes.tooltip} title={longText1} placement={'top'}>
+          <Tooltip title={longText1} placement={'top'}>
             <div className={classes.photo}>
               <PhotoSizeSelectActualIcon/>
             </div>
@@ -136,14 +137,12 @@ const AddNewPost = ({
               <EventNoteIcon/>
             </div>
           </Tooltip>
+          <div className={classes.vl}></div>
         </div>
-        <div className={classes.vl}></div>
-
         <Button autoFocus onClick={handleClose} color={'primary'}>
                       POST
         </Button>
       </DialogActions>
-
     </div>
   )
 }
