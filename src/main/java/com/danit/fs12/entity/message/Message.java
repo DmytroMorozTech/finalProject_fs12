@@ -32,4 +32,8 @@ public class Message extends AbstractEntity {
 
   private String text;
 
+  public Message(String text) {
+    this.text = text;
+  }
+
 }

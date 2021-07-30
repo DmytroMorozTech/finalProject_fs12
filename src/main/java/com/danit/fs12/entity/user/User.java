@@ -151,6 +151,16 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Certification> certifications = new ArrayList<>();
 
+
+  public Message addMessage(Message message) {
+    if (!this.messages.contains(message)) {
+      this.messages.add(message);
+      message.setUser(this);
+    }
+    return message;
+  }
+
+
 }
 
 
