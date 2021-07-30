@@ -1,11 +1,11 @@
 package com.danit.fs12.facade;
 
-import com.danit.fs12.dto.user.UserDtoRq;
-import com.danit.fs12.dto.user.UserDtoRs;
-import com.danit.fs12.entity.User;
+import com.danit.fs12.entity.user.UserRq;
+import com.danit.fs12.entity.user.UserRs;
+import com.danit.fs12.entity.user.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserFacade extends GeneralFacade<User, UserDtoRq, UserDtoRs> {
+public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
 
 }

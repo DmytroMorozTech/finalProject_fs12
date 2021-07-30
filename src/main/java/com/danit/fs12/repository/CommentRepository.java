@@ -1,6 +1,6 @@
 package com.danit.fs12.repository;
 
-import com.danit.fs12.entity.Comment;
+import com.danit.fs12.entity.comment.Comment;
 import org.springframework.stereotype.Repository;
 
 @Repository
