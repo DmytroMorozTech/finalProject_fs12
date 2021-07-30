@@ -14,8 +14,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
 @SpringBootApplication
 public class Application {
 
@@ -37,44 +35,57 @@ public class Application {
 
       @Override
       public void run(String... args) throws Exception {
-        generateRandomUsers(userRepository);
+//        generateRandomUsers(userRepository);
+//
+//        userRepository
+//          .findById(2L)
+//          .ifPresentOrElse(System.out::println,
+//            () -> {
+//              System.out.println("User was not found");
+//            });
+//
+//        userRepository
+//          .findById(211L)
+//          .ifPresentOrElse(System.out::println,
+//            () -> {
+//              System.out.println("User was not found");
+//            });
+//        // will not be found in this case
+//
+//        List<User> users = userRepository.findAll();
+//        users.forEach(System.out::println);
+//
+//        User firstUser = userRepository.findById(1L).get();
+//        System.out.println(firstUser);
+//
+//        Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
+//        Post postNo2 = new Post("Tesla's capitalization skyrocketed", "Unexpected turn...");
+//        postNo1.setUser(firstUser);
+//        postNo2.setUser(firstUser);
+//        firstUser.getPosts().add(postNo1);
+//        firstUser.getPosts().add(postNo2);
+//        userRepository.save(firstUser);
+//
+//        System.out.println("Let's try to print out user with post after replacing toString method");
+//        System.out.println(firstUser);
+//        System.out.println(firstUser.getPosts());
+//
+//        System.out.println("OUR APPLICATION HAS STARTED !!!");
+//
+//        generateComments();
+//
+//        WorkPlace workPlace1 = new WorkPlace("Microsoft",
+//          "New York", "Developer",
+//          "To code",
+//          LocalDate.of(2010, 5, 20),
+//          LocalDate.of(2015, 7, 12),
+//          null,
+//          firstUser
+//        );
+//        User userNo1 = userRepository.findById(1L).get();
+//        System.out.println(userNo1);
 
-        userRepository
-          .findById(2L)
-          .ifPresentOrElse(System.out::println,
-            () -> {
-              System.out.println("User was not found");
-            });
-
-        userRepository
-          .findById(211L)
-          .ifPresentOrElse(System.out::println,
-            () -> {
-              System.out.println("User was not found");
-            });
-        // will not be found in this case
-
-        List<User> users = userRepository.findAll();
-        users.forEach(System.out::println);
-
-        User firstUser = userRepository.findById(1L).get();
-        System.out.println(firstUser);
-
-        Post postNo1 = new Post("Elon Musk goes to Mars", "This is a really breaking news!");
-        Post postNo2 = new Post("Tesla's capitalization skyrocketed", "Unexpected turn...");
-        postNo1.setUser(firstUser);
-        postNo2.setUser(firstUser);
-        firstUser.getPosts().add(postNo1);
-        firstUser.getPosts().add(postNo2);
-        userRepository.save(firstUser);
-
-        System.out.println("Let's try to print out user with post after replacing toString method");
-        System.out.println(firstUser);
-        System.out.println(firstUser.getPosts());
-
-        System.out.println("OUR APPLICATION HAS STARTED !!!");
-
-        generateComments();
+//        System.out.println(userNo1.getWorkPlaces());
 
       }
 
@@ -90,8 +101,8 @@ public class Application {
             .email(email)
             .phoneNumber("+380503332211")
             .age(30)
-            .login("userLogin")
-            .password("userPassHash")
+            .passwordHash("userPassHash")
+            .avatarUrl("https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg")
             .build();
 
           userRepository.save(user);

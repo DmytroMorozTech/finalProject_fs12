@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,10 +37,22 @@ public class WorkPlace extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "organization_id")
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private Organization organization;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private User user;
+
+  public String getPositionAndCompany() {
+    return getPosition() + " at " + getCompanyName();
+  }
+
+  private String getCompanyName() {
+    return name != null ? name : organization.getName();
+  }
 
 }

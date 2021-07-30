@@ -1,8 +1,8 @@
 package com.danit.fs12.entity.post;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.comment.Comment;
+import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,10 +29,8 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class Post extends AbstractEntity {
-  private String title;
-
-  @Column(name = "main_text", length = 280)
-  private String mainText;
+  @Column(length = 280)
+  private String text;
 
   @ManyToOne
   @JoinColumn(
@@ -56,9 +54,25 @@ public class Post extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Like> likes = new ArrayList<>();
 
-  public Post(String title, String mainText) {
-    this.title = title;
-    this.mainText = mainText;
+  public Post(String text) {
+    this.text = text;
+  }
+
+  public Long getPostAuthorId() {
+    return user.getId();
+  }
+
+  public Long getNumberOfLikes() {
+    return (long) likes.size();
+  }
+
+  public Long getNumberOfComments() {
+    return (long) comments.size();
+  }
+
+  public boolean isLikedByUser(Long userId) {
+//    return likes.stream().anyMatch(l -> l.getUser().getId() == userId);
+    return false;
   }
 
 }

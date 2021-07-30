@@ -3,13 +3,13 @@ package com.danit.fs12.entity.user;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.certification.Certification;
 import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
 import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
-import com.danit.fs12.entity.comment.Comment;
-import com.danit.fs12.entity.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +29,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity(name = "User")
@@ -51,8 +52,12 @@ public class User extends AbstractEntity {
 
   private String email;
   private Integer age;
-  private String login;
-  private String password;
+
+  @Column(name = "password_hash")
+  private String passwordHash;
+
+  @Column(name = "avatar_url")
+  private String avatarUrl;
 
   @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   @ToString.Exclude
@@ -151,6 +156,21 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Certification> certifications = new ArrayList<>();
 
+
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
+
+  public String getPositionAndCompany() {
+    Optional<WorkPlace> workPlaceOpt = workPlaces
+      .stream()
+      .filter(wp -> wp.getDateFinish() == null)
+      .findFirst();
+
+    return workPlaceOpt.isPresent()
+      ? workPlaceOpt.get().getPositionAndCompany()
+      : "";
+  }
 }
 
 
