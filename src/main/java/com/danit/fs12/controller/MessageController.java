@@ -1,7 +1,7 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.dto.message.MessageDtoRq;
-import com.danit.fs12.dto.message.MessageDtoRs;
+import com.danit.fs12.entity.message.MessageRq;
+import com.danit.fs12.entity.message.MessageRs;
 import com.danit.fs12.facade.MessageFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,23 +24,23 @@ public class MessageController {
   private final MessageFacade messageFacade;
 
   @GetMapping
-  List<MessageDtoRs> findAll() {
+  List<MessageRs> findAll() {
     return messageFacade.findAll();
   }
 
   @GetMapping(path = "{id}")
-  public ResponseEntity<MessageDtoRs> findById(@PathVariable Long id) {
-    MessageDtoRs message = messageFacade.findById(id);
+  public ResponseEntity<MessageRs> findById(@PathVariable Long id) {
+    MessageRs message = messageFacade.findById(id);
     return ResponseEntity.ok(message);
   }
 
   @PostMapping
-  public ResponseEntity<?> createMessage(@Valid @RequestBody MessageDtoRq rq) {
+  public ResponseEntity<?> createMessage(@Valid @RequestBody MessageRq rq) {
     Long activeUserId = rq.getActiveUserId();
     Long chatId = rq.getChatId();
     String text = rq.getText();
 
-    MessageDtoRs message = messageFacade.createMessage(activeUserId, chatId, text);
+    MessageRs message = messageFacade.createMessage(activeUserId, chatId, text);
     return ResponseEntity.ok(message);
   }
 }

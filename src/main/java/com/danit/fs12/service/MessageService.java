@@ -1,8 +1,9 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.Chat;
-import com.danit.fs12.entity.Message;
-import com.danit.fs12.entity.User;
+
+import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.message.Message;
+import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
 import com.danit.fs12.repository.UserRepository;
