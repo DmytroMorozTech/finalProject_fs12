@@ -26,5 +26,11 @@ public class Chat extends AbstractEntity {
   @OneToMany(mappedBy = "chat")
   private List<Message> messages = new ArrayList<>();
 
-
+  public Message addMessage(Message message){
+    if (!this.messages.contains(message)) {
+      this.messages.add(message);
+      message.setChat(this);
+    }
+    return message;
+  }
 }
