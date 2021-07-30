@@ -15,22 +15,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * parameter types: E - entity, I - input (request DTO), O - output (response DTO)
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Component
-public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
+public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
+
   @Autowired
   private ModelMapper mm;
 
   @Autowired
   private ServiceInterface<E> service;
 
-  public RSDTO convertToDto(E entity) {
-    return mm.map(entity, getClassRS_DTO());
+  public O convertToDto(E entity) {
+    return mm.map(entity, getClassO());
   }
 
-  public E convertToEntity(RQDTO rqDto) {
+  public E convertToEntity(I rqDto) {
     return mm.map(rqDto, getClassE());
   }
 
@@ -39,8 +43,8 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
       .getGenericSuperclass()).getActualTypeArguments()[0];
   }
 
-  private Class<RSDTO> getClassRS_DTO() {
-    return (Class<RSDTO>) ((ParameterizedType) getClass()
+  private Class<O> getClassO() {
+    return (Class<O>) ((ParameterizedType) getClass()
       .getGenericSuperclass()).getActualTypeArguments()[2];
   }
 
@@ -52,9 +56,9 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
     service.delete(entity);
   }
 
-  public List<RSDTO> findAll() {
+  public List<O> findAll() {
     List<E> entities = service.findAll();
-    List<RSDTO> entitiesRs = entities.stream()
+    List<O> entitiesRs = entities.stream()
       .map(this::convertToDto)
       .collect(Collectors.toList());
     return entitiesRs;
@@ -68,7 +72,7 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
     return service.getOne(id);
   }
 
-  public RSDTO findById(Long id) {
+  public O findById(Long id) {
     Optional<E> entityOpt = service.findById(id);
     if (entityOpt.isEmpty()) {
       String msg = String.format("Entity with id %d was not found.", id);
@@ -76,7 +80,5 @@ public abstract class GeneralFacade<E extends AbstractEntity, RQDTO, RSDTO> {
     }
     return convertToDto(entityOpt.get());
   }
-  // our facade methods should return not E (entity), but RS_DTO type
-
 
 }
