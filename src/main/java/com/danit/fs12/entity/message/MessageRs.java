@@ -10,4 +10,5 @@ public class MessageRs {
   private Long activeUserId;
   private Long chatId;
   private String text;
+
 }
