@@ -18,7 +18,7 @@ public class MessageService extends GeneralService<Message> {
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
 
-  public Message createMessage (Long activeUserId, Long chatId, String text){
+  public Message createMessage(Long activeUserId, Long chatId, String text) {
     Optional<User> userOpt = userRepository.findById(activeUserId);
     Optional<Chat> chatOpt = chatRepository.findById(chatId);
     if (userOpt.isEmpty() || chatOpt.isEmpty()) {
