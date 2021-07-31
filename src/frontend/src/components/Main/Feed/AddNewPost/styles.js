@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles(() => ({
   title: {
-    width: '100vh',
     marginLeft: '20px',
     color: 'gray'
   },
@@ -51,7 +50,7 @@ export default makeStyles(() => ({
     flexDirection: 'row',
     color: 'gray',
     cursor: 'pointer',
-    marginRight: ''
+    marginLeft: '10px'
   },
   photo: {
     marginRight: '10px'
@@ -68,9 +67,5 @@ export default makeStyles(() => ({
     left: '50%',
     top: 0,
     marginLeft: '10px'
-  },
-  tooltip: {
-    backgroundColor: 'white',
-    color: 'grey'
   }
 }))

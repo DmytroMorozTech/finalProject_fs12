@@ -1,6 +1,6 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.User;
+import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
