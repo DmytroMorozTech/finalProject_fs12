@@ -14,6 +14,6 @@ public class PostRs {
   private Long numberOfComments;
   private Boolean isLikedByActiveUser;
   private Date createdDate;
-  private Date modifiedDate;
+  private Date lastModifiedDate;
 
 }
