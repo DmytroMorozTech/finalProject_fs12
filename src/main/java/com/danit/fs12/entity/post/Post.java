@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "posts")
@@ -71,8 +72,7 @@ public class Post extends AbstractEntity {
   }
 
   public Boolean isLikedByUserId(Long id) {
-    return likes.stream().anyMatch(l -> l.getUser().getId() == id);
-//    return false;
+    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), id));
   }
 
 }

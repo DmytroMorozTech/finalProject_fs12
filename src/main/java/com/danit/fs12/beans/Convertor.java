@@ -40,10 +40,10 @@ public class Convertor {
       .addMapping(Post::getNumberOfComments, PostRs::setNumberOfComments)
       .addMapping(Post::getCreatedDate, PostRs::setCreatedDate)
       .addMapping(Post::getLastModifiedDate, PostRs::setLastModifiedDate);
-//      .addMapping(
-//        p -> p.isLikedByUserId(1L),
-//        PostRs::setIsLikedByActiveUser
-//      );
+    //      .addMapping(
+    //        p -> p.isLikedByUserId(1L),
+    //        PostRs::setIsLikedByActiveUser
+    //      );
 
     mm.createTypeMap(PostRq.class, Post.class)
       .addMapping(PostRq::getText, Post::setText);
