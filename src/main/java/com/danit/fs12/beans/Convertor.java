@@ -22,13 +22,6 @@ public class Convertor {
       .addMapping(User::getAge, UserRs::setAge)
       .addMapping(User::getPositionAndCompany, UserRs::setPosition)
       .addMapping(User::getFullName, UserRs::setFullName);
-//      .addMapping(u -> Optional.ofNullable(u)
-//          .map(Person::getPhones)
-//          .map(p -> p.stream()
-//            .map(Phone::getNumber)
-//            .collect(Collectors.joining(",")))
-//          .orElse("was null :(")
-//        , RsPerson::setPhones);
 
     mm.createTypeMap(Post.class, PostRs.class)
       .addMapping(Post::getId, PostRs::setId)
@@ -36,7 +29,11 @@ public class Convertor {
       .addMapping(Post::getText, PostRs::setText)
       .addMapping(Post::getNumberOfLikes, PostRs::setNumberOfLikes)
       .addMapping(Post::getNumberOfComments, PostRs::setNumberOfComments);
-//      .addMapping(p -> p.isLikedByUser(1L), PostRs::setIsLikedByActiveUser);
+//      .addMapping(Post::getCreatedDate, PostRs::setCreatedDate);
+//      .addMapping(
+//        p -> p.isLikedByUserId(1L),
+//        PostRs::setIsLikedByActiveUser
+//      );
 
     return mm;
   }

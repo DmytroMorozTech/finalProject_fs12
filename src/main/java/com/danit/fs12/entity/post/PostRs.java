@@ -2,7 +2,7 @@ package com.danit.fs12.entity.post;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class PostRs {
@@ -13,7 +13,7 @@ public class PostRs {
   private Long numberOfLikes;
   private Long numberOfComments;
   private Boolean isLikedByActiveUser;
-  private LocalDateTime createdAt;
-  private LocalDateTime modifiedAt;
+  private Date createdDate;
+  private Date modifiedDate;
 
 }
