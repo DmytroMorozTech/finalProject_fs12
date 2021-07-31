@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from './styles'
 import Typography from '@material-ui/core/Typography'
-import TemporaryAvatar from '../../temporaryImages/avatarNotification.jpg'
+import TemporaryAvatar from '../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../shared/ThreeDots/TreeDots'
 
 function Notifications ({

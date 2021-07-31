@@ -43,10 +43,11 @@ export default makeStyles(() => ({
     color: 'grey'
   },
 
-  postTime: {
+  time: {
     display: 'flex',
     flexDirection: 'row',
-    color: 'grey'
+    color: 'grey',
+    fontSize: '12px'
   },
 
   worldIcon: {
@@ -167,5 +168,86 @@ export default makeStyles(() => ({
     display: 'flex',
     marginLeft: '80px',
     marginBottom: '10px'
+  },
+
+  comments: {
+    margin: '5px',
+    color: 'grey'
+  },
+
+  comment: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+
+  commentAvatar: {
+    width: '47px',
+    borderRadius: '50%',
+    marginLeft: '18px'
+  },
+
+  commentBackground: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: '0 10px 10px 10px',
+    padding: '8px 12px',
+    marginLeft: '5px',
+    marginRight: '10px'
+  },
+
+  commentHeader: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+
+  commentRow: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+
+  commentColumn: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+
+  dots: {
+    cursor: 'pointer',
+    marginLeft: '2px',
+    '& > .MuiSvgIcon-root': {
+      fontSize: 18
+    }
+  },
+
+  commentUserInfo: {
+    fontSize: '12px',
+    marginBottom: '-3px',
+    cursor: 'pointer'
+  },
+
+  commentText: {
+    marginTop: '10px'
+  },
+
+  commentLike: {
+    display: 'flex',
+    marginLeft: '15px',
+    fontSize: '12px',
+    padding: '0 2px',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.05)',
+      borderRadius: '5px'
+    }
+  },
+
+  loadMoreComments: {
+    margin: '5px 0',
+    '& > span': {
+      padding: '5px',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: '5px'
+      }
+    }
   }
 }))

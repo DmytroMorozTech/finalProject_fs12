@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 
 function Post ({
@@ -23,7 +25,12 @@ function Post ({
   picture = image,
   quantityOfLikes = 10595,
   quantityOfComments = 420,
-  quantityOfViews = 244688
+  quantityOfViews = 244688,
+  commentAvatar = TemporaryAvatar,
+  commentUserName = 'Peter Walker',
+  commentUserJobPosition = 'JavaScript Developer',
+  commentText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, urna sed suscipit posuere, velit.',
+  commentTime = '4d'
 }) {
   const classes = Style()
   const [liked, setLiked] = useState(false)
@@ -50,7 +57,7 @@ function Post ({
           <Typography variant="body2" className={classes.position}>
             {position}
           </Typography>
-          <Typography variant="body2" className={classes.postTime}>
+          <Typography variant="body2" className={classes.time}>
             {postTime}
             <div className={classes.worldIcon}>
               <PublicIcon/>
@@ -124,6 +131,40 @@ function Post ({
       <div className={showedAddComment ? classes.showedAddComment : classes.hiddenButton}>
         <div className={commentValue.length > 0 ? classes.showedButton : classes.hiddenButton}>
           <SharedButton title="Post"/>
+        </div>
+        <div className={classes.comments}>
+          <div className={classes.comment}>
+            <div>
+              <img src={commentAvatar} alt={'comment avatar'} className={classes.commentAvatar}/>
+            </div>
+            <div>
+              <div className={classes.commentBackground}>
+                <div className={[classes.commentRow, classes.commentHeader].join(' ')}>
+                  <div className={classes.commentColumn}>
+                    <Typography variant="body1" className={[classes.name, classes.commentUserInfo].join(' ')}>
+                      {commentUserName}
+                    </Typography>
+                    <Typography variant="body2" className={[classes.position, classes.commentUserInfo].join(' ')}>
+                      {commentUserJobPosition}
+                    </Typography>
+                  </div>
+                  <div className={classes.commentRow}>
+                    <div className={classes.time}>{commentTime}</div>
+                    <div className={classes.dots}><MoreHorizIcon/></div>
+                  </div>
+                </div>
+                <Typography variant="body1" gutterBottom className={classes.commentText}>
+                  {commentText}
+                </Typography>
+              </div>
+              <div className={classes.commentLike}>
+                Like
+              </div>
+            </div>
+          </div>
+          <div className={classes.loadMoreComments}>
+            <span>Load more comments</span>
+          </div>
         </div>
       </div>
     </div>
