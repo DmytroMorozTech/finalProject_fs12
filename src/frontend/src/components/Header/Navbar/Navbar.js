@@ -6,26 +6,24 @@ import BusinessCenterRoundedIcon from '@material-ui/icons/BusinessCenterRounded'
 import SmsRoundedIcon from '@material-ui/icons/SmsRounded'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
-import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
 import React from 'react'
-import SimpleMenu from '../../../shared/ToggleMenu/ToggleMenu'
 
 function Navbar () {
   const classes = Style()
 
   const items = [
-    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, to: '/home' },
-    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, to: '/network' },
-    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, to: '/jobs' },
-    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, to: '/messages' },
-    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, to: '/notifications' },
-    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, to: '#' }
+    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, toggleMenu: false, to: '/home' },
+    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network' },
+    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
+    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
+    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
+    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, toggleMenu: true, to: '#' }
   ]
 
   return (
     <div className={classes.navbar}>
-      {items.map(({ Icon, title, arrow, onClick, to }, i) => (
-        <Item key={i} Icon={Icon} title={title} arrow={arrow} onClick={onClick} to={to} />
+      {items.map(({ Icon, title, arrow, toggleMenu, onClick, to }, i) => (
+        <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} onClick={onClick} to={to} />
       ))}
     </div>
   )
