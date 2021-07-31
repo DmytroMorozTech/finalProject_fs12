@@ -157,6 +157,16 @@ public class User extends AbstractEntity {
   private List<Certification> certifications = new ArrayList<>();
 
 
+  public Message addMessage(Message message) {
+    if (!this.messages.contains(message)) {
+      this.messages.add(message);
+      message.setUser(this);
+    }
+    return message;
+  }
+
+
+
   public String getFullName() {
     return firstName + " " + lastName;
   }

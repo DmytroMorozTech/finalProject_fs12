@@ -7,8 +7,8 @@ import lombok.Data;
 public class MessageRs {
 
   private Long id;
-  private String userMessageFrom;
-  private String userMessageTo;
-  private String textMessage;
+  private Long activeUserId;
+  private Long chatId;
+  private String text;
 
 }
