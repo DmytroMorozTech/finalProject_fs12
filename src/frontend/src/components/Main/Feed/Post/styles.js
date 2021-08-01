@@ -4,23 +4,25 @@ export default makeStyles(() => ({
 
   post: {
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginTop: '10px',
     border: '1px solid #e0e0e0',
     borderRadius: '10px',
-    marginBottom: '50px'
+    marginBottom: '15px'
   },
 
   postAuthor: {
     display: 'flex',
     flexDirection: 'row',
     margin: '10px',
-    paddingLeft: '10px'
+    paddingLeft: '10px',
+    alignItems: 'center'
   },
 
   hiddenMenu: {
-    marginLeft: '90%',
+    marginLeft: '93%',
     margin: '2px 0'
   },
 
@@ -28,7 +30,7 @@ export default makeStyles(() => ({
     width: '95%',
     height: '0.5px',
     border: '0',
-    margin: '0 10px',
+    margin: '0 auto',
     backgroundColor: '#e0e0e0'
   },
 
@@ -36,7 +38,8 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginLeft: '10px'
   },
 
   position: {

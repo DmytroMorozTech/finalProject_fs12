@@ -48,7 +48,7 @@ function Post (props) {
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
-        <Avatar/>
+        <Avatar avatarUrl={user.avatarUrl}/>
         <div className={classes.userInfo}>
           <Typography variant="body1" className={classes.name}>
             {user.fullName}
@@ -58,9 +58,9 @@ function Post (props) {
           </Typography>
           <Typography variant="body2" className={classes.postTime}>
             {createdDate}
-            <div className={classes.worldIcon}>
-              <PublicIcon/>
-            </div>
+            {/* <div className={classes.worldIcon}> */}
+            {/*  <PublicIcon/> */}
+            {/* </div> */}
           </Typography>
         </div>
       </div>
