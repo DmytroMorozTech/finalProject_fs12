@@ -19,7 +19,6 @@ export default function CustomizedDialogs () {
     <div className={classes.root}>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
         {modalContent}
-
       </Dialog>
     </div>
   )
