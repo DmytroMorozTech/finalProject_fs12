@@ -132,10 +132,10 @@ function Post ({
             className={classes.commentField}/>
         </div>
       </div>
-      <div className={showedAddComment ? classes.showedAddComment : classes.hiddenButton}>
-        <div className={commentValue.length > 0 ? classes.showedButton : classes.hiddenButton}>
-          <SharedButton title="Post"/>
-        </div>
+      <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
+        <SharedButton title="Post"/>
+      </div>
+      <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
         <div className={classes.comments}>
           <div className={classes.comment}>
             <div>
@@ -163,8 +163,10 @@ function Post ({
               </div>
               <div className={classes.commentLikes}>
                 <span className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')} onClick={() => setCommentLiked(!commentLiked)}>Like</span>
-                <SmallDot/>
-                <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
+                <span className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
+                  <SmallDot/>
+                  <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
+                </span>
               </div>
             </div>
           </div>

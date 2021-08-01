@@ -35,7 +35,6 @@ export default makeStyles(() => ({
   userInfo: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'baseline',
     cursor: 'pointer'
   },
 
@@ -53,12 +52,15 @@ export default makeStyles(() => ({
   worldIcon: {
     color: 'grey',
     '& > .MuiSvgIcon-root': {
-      fontSize: 12
+      fontSize: 14,
+      fontWeight: 600
     }
   },
 
   name: {
     'fontWeight': 600,
+    marginBottom: '-3px',
+    alignSelf: 'self-start',
     '&:hover': {
       color: '#0a66c2',
       textDecoration: 'underline'
@@ -160,7 +162,7 @@ export default makeStyles(() => ({
     margin: '8px 0px'
   },
 
-  hiddenButton: {
+  hidden: {
     display: 'none'
   },
 
@@ -219,7 +221,7 @@ export default makeStyles(() => ({
 
   commentUserInfo: {
     fontSize: '12px',
-    marginBottom: '-3px',
+    // marginBottom: '-3px',
     cursor: 'pointer'
   },
 
@@ -229,6 +231,7 @@ export default makeStyles(() => ({
 
   commentLikes: {
     display: 'flex',
+
     alignItems: 'center',
     marginTop: '3px',
     marginLeft: '15px',
@@ -266,8 +269,14 @@ export default makeStyles(() => ({
     }
   },
 
+  hiddenQuantityOfCommentsLike: {
+    opacity: '0'
+  },
+
   loadMoreComments: {
-    margin: '5px 0',
+    margin: '15px 0 8px 15px',
+    fontWeight: 600,
+    fontSize: '14px',
     '& > span': {
       padding: '5px',
       cursor: 'pointer',

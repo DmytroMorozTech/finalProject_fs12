@@ -6,6 +6,7 @@ export default makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     margin: '5px',
+    paddingTop: '3px',
     '& > .MuiSvgIcon-root': {
       fontSize: 3
     }
