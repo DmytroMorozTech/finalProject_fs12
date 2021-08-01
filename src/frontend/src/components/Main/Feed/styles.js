@@ -4,7 +4,6 @@ export default makeStyles(() => ({
 
   feed: {
     margin: '75px auto',
-    paddingLeft: '50px',
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',

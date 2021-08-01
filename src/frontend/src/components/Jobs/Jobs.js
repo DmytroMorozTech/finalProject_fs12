@@ -5,7 +5,7 @@ function Jobs () {
   const classes = Style()
   return (
     <h1 className={classes.text}>
-      Welcome to the Jobs page!
+      Welcome to the Network page!
     </h1>
   )
 }
