@@ -20,7 +20,7 @@ const theme = createTheme({
     },
     'body2': {
       // changed font size
-      'fontSize': '0.800rem'
+      'fontSize': '0.700rem'
     },
     'button': {
       // changed font weight
