@@ -16,6 +16,7 @@ import SharedButton from '../../../../shared/Button/SharedButton'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
+import SmallDot from '../../../../shared/SmallDot/SmallDot'
 
 function Post ({
   userName = 'Steve Noiry',
@@ -30,7 +31,8 @@ function Post ({
   commentUserName = 'Peter Walker',
   commentUserJobPosition = 'JavaScript Developer',
   commentText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, urna sed suscipit posuere, velit.',
-  commentTime = '4d'
+  commentTime = '4d',
+  quantityOfCommentsLike = 1
 }) {
   const classes = Style()
   const [liked, setLiked] = useState(false)
@@ -76,11 +78,11 @@ function Post ({
           <LikeMiniIcon/>
           {quantityOfLikes}
         </Typography>
-        <FiberManualRecordIcon/>
+        <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
           {quantityOfComments} comments
         </Typography>
-        <FiberManualRecordIcon/>
+        <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
           {quantityOfViews} views
         </Typography>
@@ -158,7 +160,9 @@ function Post ({
                 </Typography>
               </div>
               <div className={classes.commentLike}>
-                Like
+                <span className={classes.commentLiked}>Like</span>
+                <SmallDot/>
+                <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
               </div>
             </div>
           </div>

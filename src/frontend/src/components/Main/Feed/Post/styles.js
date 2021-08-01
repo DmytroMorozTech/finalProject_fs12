@@ -25,10 +25,10 @@ export default makeStyles(() => ({
   },
 
   line: {
-    width: '95%',
+    width: '90%',
     height: '0.5px',
     border: '0',
-    margin: '0 10px',
+    margin: '0 5%',
     backgroundColor: '#e0e0e0'
   },
 
@@ -111,6 +111,7 @@ export default makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
+    marginLeft: '15px',
     '& > .MuiSvgIcon-root': {
       fontSize: 3
     }
@@ -120,10 +121,10 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     marginTop: '5px',
-    margin: '0 5px',
     color: '#9e9e9e',
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: '#0a66c2'
     }
   },
 
@@ -229,13 +230,28 @@ export default makeStyles(() => ({
 
   commentLike: {
     display: 'flex',
+    alignItems: 'center',
+    marginTop: '3px',
     marginLeft: '15px',
-    fontSize: '12px',
-    padding: '0 2px',
-    cursor: 'pointer',
+    '& > span': {
+      padding: '0 2px',
+      fontSize: '12px',
+      cursor: 'pointer'
+    }
+  },
+
+  commentLiked: {
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.05)',
       borderRadius: '5px'
+    }
+  },
+
+  quantityOfCommentsLike: {
+    display: 'flex',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#0a66c2'
     }
   },
 
