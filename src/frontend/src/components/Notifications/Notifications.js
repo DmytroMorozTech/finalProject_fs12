@@ -3,6 +3,8 @@ import Style from './styles'
 import Typography from '@material-ui/core/Typography'
 import TemporaryAvatar from '../../temporaryImages/avatarNotification.jpg'
 import ThreeDots from '../../shared/ThreeDots/TreeDots'
+import SimpleMenu from '../../shared/PopupMenu/PopupMenu'
+import NotificationAdditions from './Additions/NotificationAdditions'
 
 function Notifications ({
   userAvatar = TemporaryAvatar,
@@ -28,7 +30,7 @@ function Notifications ({
           <div className={classes.notificationTime}>
             {notificationTime}
           </div>
-          <ThreeDots/>
+          <SimpleMenu menuItem={<ThreeDots/>} userData={<NotificationAdditions userName={userName}/>}/>
         </div>
       </div>
     </div>

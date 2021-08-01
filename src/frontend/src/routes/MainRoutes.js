@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Switch} from 'react-router'
+import {Route, Switch} from 'react-router-dom'
 import Feed from '../components/Main/Feed/Feed'
 import Messages from '../components/Main/Messages/Messages'
 import Profile from '../components/Main/Profile/Profile'
