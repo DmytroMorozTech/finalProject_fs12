@@ -18,6 +18,7 @@ public class Convertor {
   public ModelMapper createModelMapper() {
     ModelMapper mm = new ModelMapper();
 
+
     mm.getConfiguration()
       .setMatchingStrategy(MatchingStrategies.STRICT)
       .setFieldMatchingEnabled(true)
@@ -29,7 +30,7 @@ public class Convertor {
       .addMapping(User::getPhoneNumber, UserRs::setPhoneNumber)
       .addMapping(User::getEmail, UserRs::setEmail)
       .addMapping(User::getAge, UserRs::setAge)
-      .addMapping(User::getPositionAndCompany, UserRs::setPosition)
+      .addMapping(User::getPositionAndCompany, UserRs::setPositionAndCompany)
       .addMapping(User::getFullName, UserRs::setFullName);
 
     mm.createTypeMap(Post.class, PostRs.class)
@@ -39,7 +40,8 @@ public class Convertor {
       .addMapping(Post::getNumberOfLikes, PostRs::setNumberOfLikes)
       .addMapping(Post::getNumberOfComments, PostRs::setNumberOfComments)
       .addMapping(Post::getCreatedDate, PostRs::setCreatedDate)
-      .addMapping(Post::getLastModifiedDate, PostRs::setLastModifiedDate);
+      .addMapping(Post::getLastModifiedDate, PostRs::setLastModifiedDate)
+      .addMapping(Post::getUser, PostRs::setUser);
     //      .addMapping(
     //        p -> p.isLikedByUserId(1L),
     //        PostRs::setIsLikedByActiveUser

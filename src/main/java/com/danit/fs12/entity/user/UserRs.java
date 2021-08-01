@@ -11,5 +11,5 @@ public class UserRs {
   private String phoneNumber;
   private String age;
   private String avatarUrl;
-  private String position;
+  private String positionAndCompany;
 }

@@ -10,6 +10,8 @@ import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +22,6 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -39,6 +40,7 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User extends AbstractEntity {
 
   @Column(name = "first_name")
@@ -59,9 +61,10 @@ public class User extends AbstractEntity {
   @Column(name = "avatar_url")
   private String avatarUrl;
 
-  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(
@@ -69,12 +72,14 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Comment> comments = new ArrayList<>();
 
 
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Message> messages = new ArrayList<>();
 
 
@@ -91,6 +96,7 @@ public class User extends AbstractEntity {
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Chat> chats = new ArrayList<>();
 
 
@@ -107,6 +113,7 @@ public class User extends AbstractEntity {
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
 
@@ -132,6 +139,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<WorkPlace> workPlaces = new ArrayList<>();
 
 
@@ -140,6 +148,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Like> likes = new ArrayList<>();
 
   @OneToMany(

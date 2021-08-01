@@ -1,5 +1,6 @@
 package com.danit.fs12.entity.post;
 
+import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserRs;
 import lombok.Data;
 
@@ -18,5 +19,7 @@ public class PostRs {
   private Boolean isLikedByActiveUser;
   private Date createdDate;
   private Date lastModifiedDate;
+
+  private User user;
 
 }

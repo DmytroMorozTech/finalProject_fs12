@@ -8,23 +8,29 @@ import React, { useState } from 'react'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
-import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 
-function Post ({
-  userName = 'Steve Noiry',
-  position = 'Java Developer',
-  postTime = '1h',
-  text = 'This text in Post was generated automatically!',
-  picture = image,
-  quantityOfLikes = 10595,
-  quantityOfComments = 420,
-  quantityOfViews = 244688
-}) {
+function Post (props) {
+//   {
+//   userName = 'Steve Noiry',
+//   position = 'Java Developer',
+//   postTime = '1h',
+//   text = 'This text in Post was generated automatically!',
+//   picture = image,
+//   quantityOfLikes = 10595,
+//   quantityOfComments = 420,
+//   quantityOfViews = 244688
+// })
+
+  const {
+    id, authorId, text, user, createdDate, lastModifiedDate,
+    numberOfLikes, numberOfComments, numberOfViews = 244688, isLikedByActiveUser = true
+  } = props.post
+
   const classes = Style()
   const [liked, setLiked] = useState(false)
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -45,13 +51,13 @@ function Post ({
         <Avatar/>
         <div className={classes.userInfo}>
           <Typography variant="body1" className={classes.name}>
-            {userName}
+            {user.fullName}
           </Typography>
           <Typography variant="body2" className={classes.position}>
-            {position}
+            {user.positionAndCompany}
           </Typography>
           <Typography variant="body2" className={classes.postTime}>
-            {postTime}
+            {createdDate}
             <div className={classes.worldIcon}>
               <PublicIcon/>
             </div>
@@ -61,21 +67,21 @@ function Post ({
       <Typography variant="body1" gutterBottom className={classes.text}>
         {text}
       </Typography>
-      <div>
-        <img src={picture} alt={picture} className={classes.picture}/>
-      </div>
+      {/* <div> */}
+      {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
+      {/* </div> */}
       <div className={classes.quantity}>
         <Typography variant="body2" className={classes.quantityText}>
           <LikeMiniIcon/>
-          {quantityOfLikes}
+          {numberOfLikes}
         </Typography>
         <FiberManualRecordIcon/>
         <Typography variant="body2" className={classes.quantityText}>
-          {quantityOfComments} comments
+          {numberOfComments} comments
         </Typography>
         <FiberManualRecordIcon/>
         <Typography variant="body2" className={classes.quantityText}>
-          {quantityOfViews} views
+          {numberOfViews} views
         </Typography>
       </div>
       <hr className={classes.line}/>

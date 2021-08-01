@@ -4,6 +4,9 @@ import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +16,7 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,7 +37,7 @@ public class Post extends AbstractEntity {
   @Column(length = 280)
   private String text;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
     name = "user_id",
     nullable = false,
@@ -53,6 +57,7 @@ public class Post extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Like> likes = new ArrayList<>();
 
   public Post(String text) {
