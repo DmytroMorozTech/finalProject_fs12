@@ -53,8 +53,7 @@ export default makeStyles(() => ({
   worldIcon: {
     color: 'grey',
     '& > .MuiSvgIcon-root': {
-      fontSize: 12,
-      marginLeft: '5px'
+      fontSize: 12
     }
   },
 
@@ -228,28 +227,40 @@ export default makeStyles(() => ({
     marginTop: '10px'
   },
 
-  commentLike: {
+  commentLikes: {
     display: 'flex',
     alignItems: 'center',
     marginTop: '3px',
     marginLeft: '15px',
     '& > span': {
-      padding: '0 2px',
       fontSize: '12px',
       cursor: 'pointer'
     }
   },
 
-  commentLiked: {
+  commentLike: {
+    padding: '0 5px',
+    marginRight: '-2px',
+    fontWeight: '600'
+  },
+
+  commentNotLiked: {
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.05)',
       borderRadius: '5px'
     }
   },
 
+  commentLiked: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: '5px',
+    color: '#0a66c2'
+  },
+
   quantityOfCommentsLike: {
     display: 'flex',
     cursor: 'pointer',
+    marginLeft: '3px',
     '&:hover': {
       color: '#0a66c2'
     }

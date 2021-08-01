@@ -5,7 +5,6 @@ import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
 import Style from './styles'
 import React, { useState } from 'react'
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import image from '../../../../temporaryImages/abstraktsiia.jpg'
@@ -44,6 +43,8 @@ function Post ({
     setCommentValue(commentInputVal)
   }
 
+  const [commentLiked, setCommentLiked] = useState(false)
+
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
@@ -61,6 +62,7 @@ function Post ({
           </Typography>
           <Typography variant="body2" className={classes.time}>
             {postTime}
+            <SmallDot/>
             <div className={classes.worldIcon}>
               <PublicIcon/>
             </div>
@@ -159,8 +161,8 @@ function Post ({
                   {commentText}
                 </Typography>
               </div>
-              <div className={classes.commentLike}>
-                <span className={classes.commentLiked}>Like</span>
+              <div className={classes.commentLikes}>
+                <span className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')} onClick={() => setCommentLiked(!commentLiked)}>Like</span>
                 <SmallDot/>
                 <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
               </div>
