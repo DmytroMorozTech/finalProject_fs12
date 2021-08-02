@@ -11,7 +11,6 @@ import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,7 +39,6 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 @Builder
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User extends AbstractEntity {
 
   @Column(name = "first_name")
@@ -173,7 +171,6 @@ public class User extends AbstractEntity {
     }
     return message;
   }
-
 
 
   public String getFullName() {

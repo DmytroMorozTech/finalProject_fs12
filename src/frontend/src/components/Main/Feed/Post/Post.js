@@ -33,6 +33,7 @@ function Post (props) {
     numberOfLikes, numberOfComments, numberOfViews = 244688, isLikedByActiveUser = true
   } = props.post
 
+  // so fat this data is hardcoded, but we will soon connect it to the backend
   const {
     commentAvatar = TemporaryAvatar,
     commentUserName = 'Peter Walker',
@@ -71,7 +72,7 @@ function Post (props) {
           </Typography>
           <Typography variant="body2" className={classes.postTime}>
             {createdDate}
-            <SmallDot/>
+            {/* <SmallDot/> */}
             {/* <div className={classes.worldIcon}> */}
             {/*  <PublicIcon/> */}
             {/* </div> */}

@@ -24,8 +24,7 @@ import java.time.LocalDate;
 @Data
 @Table(name = "workPlaces")
 public class WorkPlace extends AbstractEntity {
-  private String name;
-  private String location;
+
   private String position;
   private String responsibilities;
 
@@ -48,11 +47,7 @@ public class WorkPlace extends AbstractEntity {
   private User user;
 
   public String getPositionAndCompany() {
-    return getPosition() + " at " + getCompanyName();
-  }
-
-  private String getCompanyName() {
-    return name != null ? name : organization.getName();
+    return getPosition() + " at " + organization.getName();
   }
 
 }

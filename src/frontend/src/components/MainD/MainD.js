@@ -4,17 +4,13 @@ import Grid from '@material-ui/core/Grid'
 import MainLeft from './MainLeft'
 import styleMain from './styleMain'
 import { Container, Hidden } from '@material-ui/core'
-import MainRight from './MainRight'
 
 function Main () {
-  // xs 0-600px the Feed will take the whole width of the viewport
-  // sm 600-960px the Feed will take ___% of the whole width of the viewport
-
   const classes = styleMain()
 
   return (
-    <Container className={classes.container} maxWidth={'lg'} justify={'center'} >
-      <Grid container spacing={2} alignItems={'flex-start'} justify={'center'}>
+    <Container className={classes.container} maxWidth={'lg'} >
+      <Grid container spacing={2} alignItems={'flex-start'} >
 
         <Hidden smDown>
           <Grid item sm={3} md={3} lg={2} xl={2}>

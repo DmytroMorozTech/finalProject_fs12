@@ -4,10 +4,10 @@ VALUES ('Richard', 'West', '+380502926823', 'richard@gmail.com', 20, 'passwordHa
         'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Frank', 'Jackson', '+380674974924', 'frank@gmail.com', 32, 'passwordHashed2',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_2_avatar_nltrmp.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Laura', 'Lee', '+380677623175', 'laura@gmail.com', 62, 'passwordHashed3',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_4_avatar_o6hvwu.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Everett', 'Anderson', '+380507501193', 'everetta@gmail.com', 62, 'passwordHashed4',
         'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
@@ -32,29 +32,41 @@ VALUES ('Richard', 'West', '+380502926823', 'richard@gmail.com', 20, 'passwordHa
         CURRENT_DATE, CURRENT_DATE);
 
 
-INSERT INTO ORGANIZATIONS (name, email, industry, specialities, web_site, founded_in_year,
+INSERT INTO ORGANIZATIONS (name, email, web_site, industry, location, specialities, founded_in_year,
                            number_of_employees, phone_number, created_date, modified_date)
-VALUES ('Microsoft', 'office@microsoft.com', 'Software development',
+VALUES ('Microsoft', 'office@microsoft.com', 'microsoft.com', 'Software development',
+        'Redmond, WA, US (HQ) Microsoft Corporation One Microsoft Way',
         'OS Windows, Microsoft Access, Microsoft Excel, Microsoft Lens (mobile), Microsoft OneNote',
-        'microsoft.com', 1975, 166475, '+380444960310', date '2014-01-20', date '2021-01-20'),
-       ('Apple', 'support@apple.com', 'Computer hardware Computer software Consumer electronics',
-        'Iphone, Ipad, MacBook', 'apple.com', 1976, 37100, '+380442223322', date '2015-01-20', date '2021-01-12');
+        1975, 166475, '+380444960310', date '2014-01-20', date '2021-01-20'),
+       ('Apple', 'support@apple.com', 'apple.com', 'Computer hardware Computer software Consumer electronics',
+        '1 Apple Park Way Cupertino, California, 95014-0642 United States',
+        'Iphone, Ipad, MacBook', 1976, 37100, '+380442223322', date '2015-01-20', date '2021-01-12'),
+       ('PayPal Holdings Inc.', 'support@paypal.com', 'www.paypal.com',
+        'Credit cards, payment systems',
+        '2211 N 1st St, San Jose, CA 95131, United States',
+        'Advanced payment systems', 1999, 26500, '+380442223322', date '2010-01-02', date '2021-01-12');
 
 
-INSERT INTO WORK_PLACES (name, organization_id, user_id, location, position, responsibilities, date_start,
+INSERT INTO WORK_PLACES (organization_id, user_id, position, responsibilities, date_start,
                          date_finish, created_date, modified_date)
-VALUES ('CompanyName1', null, 1, 'Location of company_no.1', 'Chief Operational Officer', 'Responsibilities list 1',
+VALUES (3, 1, 'Chief Operational Officer', 'Responsibilities list 1',
         date '2000-12-31', date '2010-06-12', CURRENT_DATE, CURRENT_DATE),
-       ('CompanyName2', null, 1, 'Location of company_no.2', 'CEO', 'Responsibilities list 2',
+       (2, 1, 'CEO', 'Responsibilities list 2',
         date '2010-06-20', date '2013-11-22', CURRENT_DATE, CURRENT_DATE),
-       ('CompanyName3', null, 1, 'Location of company_no.3', 'Sales manager', 'Responsibilities list 3',
+       (1, 1, 'Sales manager', 'Responsibilities list 3',
         date '2014-01-20', null, CURRENT_DATE, CURRENT_DATE),
-       ('CompanyName4', 1, 2, 'Location of company', 'Chief Operational Officer', 'Responsibilities list 4',
+       (1, 2, 'Chief Operational Officer', 'Responsibilities list 4',
         date '2000-12-31', date '2010-06-12', CURRENT_DATE, CURRENT_DATE),
-       ('CompanyName5', 2, 2, 'Location of company', 'Sales manager', 'Responsibilities list 5',
+       (2, 2, 'Sales manager', 'Responsibilities list 5',
         date '2010-06-20', date '2013-11-22', CURRENT_DATE, CURRENT_DATE),
-       (null, 2, 2, 'Location of company', 'Head of CIS region', 'Responsibilities list 6',
-        date '2014-01-20', null, CURRENT_DATE, CURRENT_DATE);
+       (2, 2, 'Head of CIS region', 'Responsibilities list 6',
+        date '2014-01-20', null, CURRENT_DATE, CURRENT_DATE),
+       (2, 3, 'Intern in UI design', 'Making design for simple UI elements',
+        date '2005-01-01', date '2006-06-03', CURRENT_DATE, CURRENT_DATE),
+       (2, 3, 'Designer of interfaces', 'Designing UI interfaces with team',
+        date '2006-06-03', date '2010-12-05', CURRENT_DATE, CURRENT_DATE),
+       (2, 3, 'Head of design Unit', 'Responsibilities list ',
+        date '2010-12-05', null, CURRENT_DATE, CURRENT_DATE);
 
 
 INSERT INTO POSTS (text, user_id, created_date, modified_date)

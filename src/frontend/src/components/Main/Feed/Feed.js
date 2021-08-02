@@ -10,14 +10,13 @@ function Feed (props) {
   const classes = Style()
 
   useEffect(() => {
-    console.log(posts)
   }, [posts])
   // this useEffect is needed to rerender Feed component if some data related to accounts changes in Redux store.
 
   return (
     <div className={classes.feed}>
       <ShareBox/>
-      {posts.map(post => <Post post={post}/>)}
+      {posts.map(post => <Post key={post.id} post={post}/>)}
       {/* <Post/> */}
     </div>
   )
