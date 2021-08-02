@@ -12,21 +12,37 @@ import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import Comment from './Comment/Comment'
 
-function Post ({
-  userName = 'Steve Noiry',
-  position = 'Java Developer',
-  postTime = '1h',
-  text = 'This text in Post was generated automatically!',
-  picture = image,
-  quantityOfLikes = 10595,
-  quantityOfComments = 420,
-  quantityOfViews = 244688
-}) {
+function Post (props) {
+//   {
+//   userName = 'Steve Noiry',
+//   position = 'Java Developer',
+//   postTime = '1h',
+//   text = 'This text in Post was generated automatically!',
+//   picture = image,
+//   quantityOfLikes = 10595,
+//   quantityOfComments = 420,
+//   quantityOfViews = 244688
+// })
+
+  const {
+    text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
+  } = props.post
+
+  // so fat this data is hardcoded, but we will soon connect it to the backend
+  const {
+    commentAvatar = TemporaryAvatar,
+    commentUserName = 'Peter Walker',
+    commentUserJobPosition = 'JavaScript Developer',
+    commentText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, urna sed suscipit posuere, velit.',
+    commentTime = '4d',
+    quantityOfCommentsLike = 1
+  } = props
+
   const classes = Style()
   const [liked, setLiked] = useState(false)
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -37,6 +53,8 @@ function Post ({
     setCommentValue(commentInputVal)
   }
 
+  const [commentLiked, setCommentLiked] = useState(false)
+
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
@@ -44,41 +62,41 @@ function Post ({
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
-        <Avatar/>
+        <Avatar avatarUrl={user.avatarUrl}/>
         <div className={classes.userInfo}>
           <Typography variant="body1" className={classes.name}>
-            {userName}
+            {user.fullName}
           </Typography>
           <Typography variant="body2" className={classes.position}>
-            {position}
+            {user.positionAndCompany}
           </Typography>
-          <Typography variant="body2" className={classes.time}>
-            {postTime}
-            <SmallDot/>
-            <div className={classes.worldIcon}>
-              <PublicIcon/>
-            </div>
+          <Typography variant="body2" className={classes.postTime}>
+            {createdDate}
+            {/* <SmallDot/> */}
+            {/* <div className={classes.worldIcon}> */}
+            {/*  <PublicIcon/> */}
+            {/* </div> */}
           </Typography>
         </div>
       </div>
       <Typography variant="body1" gutterBottom className={classes.text}>
         {text}
       </Typography>
-      <div>
-        <img src={picture} alt={picture} className={classes.picture}/>
-      </div>
+      {/* <div> */}
+      {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
+      {/* </div> */}
       <div className={classes.quantity}>
         <Typography variant="body2" className={classes.quantityText}>
           <LikeMiniIcon/>
-          {quantityOfLikes}
+          {numberOfLikes}
         </Typography>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
-          {quantityOfComments} comments
+          {numberOfComments} comments
         </Typography>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
-          {quantityOfViews} views
+          {numberOfViews} views
         </Typography>
       </div>
       <hr className={classes.line}/>
@@ -128,7 +146,47 @@ function Post ({
         <SharedButton title="Post"/>
       </div>
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <Comment/>
+        <div className={classes.comments}>
+          <div className={classes.comment}>
+            <div>
+              <img src={commentAvatar} alt={'comment avatar'} className={classes.commentAvatar}/>
+            </div>
+            <div>
+              <div className={classes.commentBackground}>
+                <div className={[classes.commentRow, classes.commentHeader].join(' ')}>
+                  <div className={classes.commentColumn}>
+                    <Typography variant="body1" className={[classes.name, classes.commentUserInfo].join(' ')}>
+                      {commentUserName}
+                    </Typography>
+                    <Typography variant="body2" className={[classes.position, classes.commentUserInfo].join(' ')}>
+                      {commentUserJobPosition}
+                    </Typography>
+                  </div>
+                  <div className={classes.commentRow}>
+                    <div className={classes.time}>{commentTime}</div>
+                    <div className={classes.dots}><MoreHorizIcon/></div>
+                  </div>
+                </div>
+                <Typography variant="body1" gutterBottom className={classes.commentText}>
+                  {commentText}
+                </Typography>
+              </div>
+              <div className={classes.commentLikes}>
+                <span
+                  className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')}
+                  onClick={() => setCommentLiked(!commentLiked)}>Like</span>
+                <span
+                  className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
+                  <SmallDot/>
+                  <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className={classes.loadMoreComments}>
+            <span>Load more comments</span>
+          </div>
+        </div>
       </div>
     </div>
   )
