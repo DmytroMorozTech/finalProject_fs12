@@ -48,6 +48,10 @@ export default makeStyles(() => ({
       fontWeight: 'bold'
     }
   },
+  itemPrimaryActive: {
+    color: 'black!important',
+    borderBottom: '2px solid black'
+  },
   itemPrimaryText: {
     textDecoration: 'none',
     '&:link, &:visited': {
