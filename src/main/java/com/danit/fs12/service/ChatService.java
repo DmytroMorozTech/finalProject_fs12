@@ -25,7 +25,7 @@ public class ChatService extends GeneralService<Chat> {
     }
 
     User user = userOpt.get();
-    Chat chat = new Chat();
+    Chat chat = save(new Chat());
     user.addChat(chat);
     userRepository.save(user);
 
