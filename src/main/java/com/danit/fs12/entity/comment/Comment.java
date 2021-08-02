@@ -59,7 +59,6 @@ public class Comment extends AbstractEntity {
         referencedColumnName = "id")
     })
   private User user;
-  // author of comment
 
   public Comment(String text) {
     this.text = text;

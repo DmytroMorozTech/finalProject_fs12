@@ -1,6 +1,7 @@
 package com.danit.fs12.entity.like;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,6 @@ public class Like extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "post_id")
-  private User post;
+  private Post post;
 
 }
