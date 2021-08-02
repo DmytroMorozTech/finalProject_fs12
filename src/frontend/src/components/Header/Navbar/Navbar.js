@@ -17,7 +17,7 @@ function Navbar () {
     { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
     { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
     { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
-    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, toggleMenu: true, to: '#' }
+    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, toggleMenu: true, to: '/personal' }
   ]
 
   return (

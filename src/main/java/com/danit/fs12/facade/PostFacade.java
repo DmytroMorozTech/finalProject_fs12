@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
-  private PostService postService;
+  private final PostService postService;
 
   public PostRs createPost(PostRq rq) {
     Post post = postService.createPost(convertToEntity(rq), rq.getUserId());
