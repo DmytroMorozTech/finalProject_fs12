@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import { getAllPostsAction } from './redux/Post/postActions'
 import { useEffect } from 'react'
 
-function App (props) {
-  const { getPostsForActiveUser } = props
-
+function App ({ getPostsForActiveUser }) {
   useEffect(() => {
     getPostsForActiveUser()
   }, [])

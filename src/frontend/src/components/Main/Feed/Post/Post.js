@@ -2,7 +2,6 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
-import PublicIcon from '@material-ui/icons/Public'
 import Style from './styles'
 import React, { useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
@@ -29,8 +28,7 @@ function Post (props) {
 // })
 
   const {
-    id, authorId, text, user, createdDate, lastModifiedDate,
-    numberOfLikes, numberOfComments, numberOfViews = 244688, isLikedByActiveUser = true
+    text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
   } = props.post
 
   // so fat this data is hardcoded, but we will soon connect it to the backend
@@ -172,8 +170,11 @@ function Post (props) {
                 </Typography>
               </div>
               <div className={classes.commentLikes}>
-                <span className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')} onClick={() => setCommentLiked(!commentLiked)}>Like</span>
-                <span className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
+                <span
+                  className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')}
+                  onClick={() => setCommentLiked(!commentLiked)}>Like</span>
+                <span
+                  className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
                   <SmallDot/>
                   <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
                 </span>
