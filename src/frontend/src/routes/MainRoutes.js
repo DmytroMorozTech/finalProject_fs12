@@ -7,12 +7,14 @@ import Notifications from '../components/Notifications/Notifications'
 import Jobs from '../components/Jobs/Jobs'
 import Network from '../components/Network/Network'
 import Login from '../components/Login/Login'
+import MainD from '../components/MainD/MainD'
 
 const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
-      <Route exact path="/home" render={() => <Feed/>}/>
+      {/* <Route exact path="/home" render={() => <Feed/>}/> */}
+      <Route exact path="/home" render={() => <MainD/>}/>
       <Route exact path="/network" render={() => <Network/>}/>
       <Route exact path="/jobs" render={() => <Jobs/>}/>
       <Route exact path="/messages" render={() => <Messages/>}/>
