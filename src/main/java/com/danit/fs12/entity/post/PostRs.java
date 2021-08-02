@@ -9,5 +9,5 @@ public class PostRs {
   Long userId;
   String title;
   String mainText;
-
+  Long numberOfLikes;
 }
