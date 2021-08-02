@@ -13,6 +13,7 @@ public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
   private final ChatService chatService;
 
   public ChatRs createChat(ChatRq chatRq){
+    System.out.println(chatRq);
     Chat chat = chatService.createChat(chatRq.getUserId());
     return convertToDto(chat);
   }

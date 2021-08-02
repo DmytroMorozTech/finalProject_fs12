@@ -6,5 +6,4 @@ import lombok.Data;
 public class ChatRs {
 
   private Long id;
-  private Long userId;
 }
