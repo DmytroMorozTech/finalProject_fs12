@@ -17,7 +17,14 @@ public class PostService extends GeneralService<Post> {
   private final PostRepository postRepository;
 
   public Post createPost(Post incomingPost, Long userId) {
-    incomingPost.setId(null);
+    /**
+     * There was an issue when creating new Post using Post Controller.
+     * ModelMapper was taking the userId from PostRq and mapped it automatically to id of Post.
+     * This totally broke the functioning of PostService. So fat that we do not want to use this line of code:
+     * incomingPost.setId(null);
+     * additional configuration had to be done to ModelMapper -> setMatchingStrategy(MatchingStrategies.STRICT)
+     * After that the problem was gone and implicit casting was ceased.
+     */
 
     Optional<User> userOpt = userRepository.findById(userId);
     if (userOpt.isEmpty()) {
@@ -27,9 +34,9 @@ public class PostService extends GeneralService<Post> {
     }
 
     User user = userOpt.get();
+    incomingPost.setUser(user);
     Post post = save(incomingPost);
 
-    post.setUser(user);
     user.getPosts().add(post);
     userRepository.save(user);
 
