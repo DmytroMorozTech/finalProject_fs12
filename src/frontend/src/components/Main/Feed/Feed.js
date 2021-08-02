@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { getAllPostsAction } from '../../../redux/Post/postActions'
 
 function Feed (props) {
-  const { activeUserId, getPostsForActiveUser, posts } = props
+  const { posts } = props
   const classes = Style()
 
   useEffect(() => {
@@ -17,7 +17,6 @@ function Feed (props) {
     <div className={classes.feed}>
       <ShareBox/>
       {posts.map(post => <Post key={post.id} post={post}/>)}
-      {/* <Post/> */}
     </div>
   )
 }
@@ -29,10 +28,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPostsForActiveUser: () => dispatch(getAllPostsAction())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Feed)
+export default connect(mapStateToProps, null)(Feed)
