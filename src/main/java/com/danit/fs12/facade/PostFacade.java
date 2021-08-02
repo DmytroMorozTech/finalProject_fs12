@@ -1,8 +1,8 @@
 package com.danit.fs12.facade;
 
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.post.PostRq;
 import com.danit.fs12.entity.post.PostRs;
-import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

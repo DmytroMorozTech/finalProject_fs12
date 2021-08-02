@@ -1,5 +1,3 @@
-import * as actions from './userActionTypes'
-
 const initialStore = {
   activeUserId: 1
 }

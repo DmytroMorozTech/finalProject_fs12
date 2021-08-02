@@ -4,37 +4,42 @@ export default makeStyles(() => ({
 
   post: {
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
+    alignItems: 'flex-start',
     marginTop: '10px',
     border: '1px solid #e0e0e0',
     borderRadius: '10px',
-    marginBottom: '50px'
+    marginBottom: '15px'
   },
 
   postAuthor: {
     display: 'flex',
     flexDirection: 'row',
     margin: '10px',
-    paddingLeft: '10px'
+    paddingLeft: '10px',
+    alignItems: 'center'
   },
 
   hiddenMenu: {
-    marginLeft: '90%',
+    marginLeft: '93%',
     margin: '2px 0'
   },
 
   line: {
-    width: '90%',
+    width: '95%',
     height: '0.5px',
     border: '0',
-    margin: '0 5%',
+    margin: '0 auto',
     backgroundColor: '#e0e0e0'
   },
 
   userInfo: {
     display: 'flex',
     flexDirection: 'column',
-    cursor: 'pointer'
+    alignItems: 'baseline',
+    cursor: 'pointer',
+    marginLeft: '10px'
   },
 
   position: {
