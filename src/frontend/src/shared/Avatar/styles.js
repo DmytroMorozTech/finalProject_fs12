@@ -6,5 +6,9 @@ export default makeStyles(() => ({
     color: 'grey',
     fontSize: 55,
     cursor: 'pointer'
+  },
+  userAvatar: {
+    width: '65px',
+    borderRadius: '50%'
   }
 }))

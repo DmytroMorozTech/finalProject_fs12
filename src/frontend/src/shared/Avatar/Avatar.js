@@ -1,12 +1,19 @@
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Style from './styles'
 
-function Avatar () {
+function Avatar (props) {
+  const { avatarUrl } = props
+
   const classes = Style()
   return (
-    <div>
-      <AccountCircleIcon className={classes.avatar}/>
-    </div>
+    <>
+      {
+        avatarUrl == null
+          ? <AccountCircleIcon className={classes.avatar}/>
+          : <img src={avatarUrl} alt={avatarUrl} className={classes.userAvatar}/>
+
+      }
+    </>
   )
 }
 

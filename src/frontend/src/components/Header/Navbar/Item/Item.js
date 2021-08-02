@@ -8,9 +8,10 @@ import UserData from '../../../UserData/UserData'
 
 const Item = ({ Icon, title, arrow, toggleMenu, onClick, to }) => {
   const classes = Style()
+  const clickBehaviour = toggleMenu ? { pointerEvents: 'none' } : null
 
   const renderMenuItem = (
-    <NavLink className={classes.itemPrimary} to={to}>
+    <NavLink style={clickBehaviour} className={classes.itemPrimary} activeClassName={classes.itemPrimaryActive} to={to}>
       {Icon}
       <Hidden mdDown>
         <div className={classes.title}>

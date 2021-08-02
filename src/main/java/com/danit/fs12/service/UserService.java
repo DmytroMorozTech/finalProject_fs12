@@ -21,8 +21,7 @@ public class UserService extends GeneralService<User> {
       .email("email")
       .phoneNumber("+380503332211")
       .age(30)
-      .login("userLogin")
-      .password("userPassHash")
+      .passwordHash("userPassHash")
       .build();
 
     return user;

@@ -10,10 +10,7 @@ public class PostRq {
   @NotNull(message = "userId should be specified.")
   Long userId;
 
-  @NotNull(message = "Post title should be specified")
-  String title;
-
-  @NotNull(message = "Post main text should be specified")
-  String mainText;
+  @NotNull(message = "Post text should be specified")
+  String text;
 
 }
