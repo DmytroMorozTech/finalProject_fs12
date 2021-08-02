@@ -3,7 +3,6 @@ import Style from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
 import { connect } from 'react-redux'
-import { getAllPostsAction } from '../../../redux/Post/postActions'
 
 function Feed (props) {
   const { posts } = props
@@ -17,6 +16,7 @@ function Feed (props) {
     <div className={classes.feed}>
       <ShareBox/>
       {posts.map(post => <Post key={post.id} post={post}/>)}
+      {/* <Post/> */}
     </div>
   )
 }
