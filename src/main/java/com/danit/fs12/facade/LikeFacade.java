@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class LikeFacade extends GeneralFacade<Like, LikeRq, LikeRs> {
-  private LikeService likeService;
+  private final LikeService likeService;
 
   public LikeRs createLike(Long activeUserId, Long postId) {
     Like like = likeService.createLike(activeUserId, postId);

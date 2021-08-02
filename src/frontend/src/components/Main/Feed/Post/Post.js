@@ -14,6 +14,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
+import {useSelector} from 'react-redux'
+import {activeUserSelector} from '../../../../redux/User/userSelector'
 
 function Post (props) {
 //   {
@@ -27,8 +29,10 @@ function Post (props) {
 //   quantityOfViews = 244688
 // })
 
+  const activeUser = useSelector(activeUserSelector)
+  
   const {
-    text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
+    id, text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
   } = props.post
 
   // so fat this data is hardcoded, but we will soon connect it to the backend
