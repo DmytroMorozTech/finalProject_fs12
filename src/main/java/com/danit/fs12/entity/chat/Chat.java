@@ -36,4 +36,12 @@ public class Chat extends AbstractEntity {
     }
     return message;
   }
+
+  public User addUser(User user) {
+    if (!this.users.contains(user)) {
+      this.users.add(user);
+      user.getChats().add(this);
+    }
+    return user;
+  }
 }

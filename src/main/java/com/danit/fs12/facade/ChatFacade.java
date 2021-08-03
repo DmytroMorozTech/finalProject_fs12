@@ -7,14 +7,20 @@ import com.danit.fs12.service.ChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Component
 public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
   private final ChatService chatService;
 
-  public ChatRs createChat(ChatRq chatRq){
-    System.out.println(chatRq);
-    Chat chat = chatService.createChat(chatRq.getUserId());
+  public ChatRs createChat() {
+    Chat chat = chatService.createChat();
+    return convertToDto(chat);
+  }
+
+  public ChatRs addUser(ChatRq chatRq) {
+    Chat chat = chatService.addUser(chatRq.getUserId(), chatRq.getChatId());
     return convertToDto(chat);
   }
 }

@@ -6,12 +6,16 @@ import com.danit.fs12.facade.ChatFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -21,8 +25,25 @@ public class ChatController {
   private final ChatFacade chatFacade;
 
   @PostMapping
-  public ResponseEntity<ChatRs> createChat(@Valid @RequestBody ChatRq chatRq){
-    ChatRs chatRs = chatFacade.createChat(chatRq);
+  public ResponseEntity<ChatRs> createChat() {
+    ChatRs chatRs = chatFacade.createChat();
     return ResponseEntity.ok(chatRs);
+  }
+
+  @PutMapping
+  public ResponseEntity<ChatRs> addUser(@Valid @RequestBody ChatRq chatRq) {
+    ChatRs chatRs = chatFacade.addUser(chatRq);
+    return ResponseEntity.ok(chatRs);
+  }
+
+  @GetMapping(path = "{id}")
+  public ResponseEntity<ChatRs> findById(@PathVariable Long id) {
+    ChatRs chatRs = chatFacade.findById(id);
+    return ResponseEntity.ok(chatRs);
+  }
+
+  @GetMapping
+  List<ChatRs> findAll() {
+    return chatFacade.findAll();
   }
 }

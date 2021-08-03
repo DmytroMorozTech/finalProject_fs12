@@ -9,4 +9,7 @@ public class ChatRq {
 
   @NotNull(message = "User id should be specified.")
   private Long userId;
+
+  @NotNull(message = "Chat id should be specified.")
+  private Long chatId;
 }
