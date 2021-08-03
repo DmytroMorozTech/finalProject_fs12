@@ -7,16 +7,14 @@ import Style from './styles'
 import React, { useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
-import image from '../../../../temporaryImages/abstraktsiia.jpg'
 import Typography from '@material-ui/core/Typography'
 import { Hidden } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
-import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch } from 'react-redux'
-import { toggleLikeAction, getCommentsForPostAction } from '../../../../redux/Post/postActions'
+import { getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
 import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
 
@@ -33,33 +31,20 @@ function Post (props) {
 // })
 
   const dispatch = useDispatch()
+
   const {
-    id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
-  } = props.post
+    id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
+    numberOfViews = 244688, comments = [] } = props.post
 
   // so fat this data is hardcoded, but we will soon connect it to the backend
-  const {
-    commentAvatar = TemporaryAvatar,
-    commentUserName = 'Peter Walker',
-    commentUserJobPosition = 'JavaScript Developer',
-    commentText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, urna sed suscipit posuere, velit.',
-    commentTime = '4d',
-    quantityOfCommentsLike = 1
-  } = props
 
   const classes = Style()
   const [showedAddComment, setShowedAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
-  const [postCommentValue, setPostCommentValue] = useState('')
 
   const handleCommentInputChange = e => {
     let commentInputVal = e.currentTarget.value
     setCommentValue(commentInputVal)
-  }
-
-  const handlePressPostButton = () => {
-    const postCommentValue = commentValue
-    setPostCommentValue(postCommentValue)
   }
 
   return (
@@ -160,12 +145,13 @@ function Post (props) {
         </div>
 
         <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
-          <SharedButton title="Post" onClick={handlePressPostButton}/>
+          <SharedButton title="Post" onClick={ () => { console.log('Hardcoded func') }}/>
         </div>
 
         <div>
           <div className={classes.comments}>
-            <Comment/>
+            {comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
+
             <div className={classes.loadMoreComments}>
               <span>Load more comments</span>
             </div>

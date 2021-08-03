@@ -7,7 +7,6 @@ export default makeStyles(() => ({
     flexDirection: 'row',
     width: '100%',
     marginBottom: '15px'
-
   },
 
   commentAvatar: {
@@ -16,11 +15,16 @@ export default makeStyles(() => ({
     marginLeft: '18px'
   },
 
+  commentWrapper: {
+    width: 'calc(100% - 100px)'
+  },
+
   commentBackground: {
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: '0 10px 10px 10px',
     padding: '8px 12px',
-    margin: '0 5px'
+    margin: '0 5px',
+    width: '100%'
   },
 
   commentHeader: {
