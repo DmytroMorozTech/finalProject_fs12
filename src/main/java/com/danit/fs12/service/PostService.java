@@ -10,7 +10,7 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -43,13 +43,14 @@ public class PostService extends GeneralService<Post> {
 
     user.getPosts().add(post);
     userRepository.save(user);
+
     return post;
   }
 
   public Post toggleLike(Long postId) {
     Long hardCodedActiveUserId = 1L;
 
-    Optional<Post> postOpt = postRepository.findById(postId);
+    Optional<Post> postOpt = findById(postId);
     if (postOpt.isEmpty()) {
       String msg = String.format("An error while trying to find post with id %d. ", postId);
       throw new BadRequestException(msg);
@@ -59,28 +60,32 @@ public class PostService extends GeneralService<Post> {
     Boolean postIsLiked = post.getIsLikedByActiveUser();
 
     if (postIsLiked) {
-      List<Like> likes = post.getLikes();
-      Optional<Like> likeOptional = likes.stream().filter(l ->
-        l.getUser().getId() == hardCodedActiveUserId
-          && l.getPost().getId() == postId
-      ).findFirst();
+      Optional<Like> likeOptional =
+        post.getLikes().stream()
+          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
+            && Objects.equals(l.getPost().getId(), postId))
+          .findFirst();
 
       if (likeOptional.isEmpty()) {
         String msg = String.format("An error while trying to unwrap Like Optional. ");
         throw new BadRequestException(msg);
       }
+
       Like like = likeOptional.get();
       post.getLikes().remove(like);
-      likeRepository.delete(like);
+      likeRepository.delete(like); // do not remove this line!
+
+      return save(post);
     } else {
       Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);
       if (userOpt.isEmpty()) {
         String msg = String.format("An error while trying to unwrap UserOptional with id %d. ", hardCodedActiveUserId);
         throw new BadRequestException(msg);
       }
-      Like like = new Like(userOpt.get(), post);
+      User user = userOpt.get();
+      Like like = new Like(user, post);
       post.getLikes().add(like);
+      return save(post);
     }
-    return postRepository.save(post);
   }
 }
