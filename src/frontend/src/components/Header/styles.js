@@ -9,6 +9,7 @@ export default makeStyles(() => ({
     width: '100vw',
     zIndex: 100,
     backgroundColor: 'white',
+    borderBottom: '2px solid #e2dfdf',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-evenly',
