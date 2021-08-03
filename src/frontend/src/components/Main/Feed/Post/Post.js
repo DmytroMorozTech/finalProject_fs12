@@ -15,6 +15,9 @@ import SharedButton from '../../../../shared/Button/SharedButton'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
+import { useDispatch } from 'react-redux'
+import { toggleLikeAction } from '../../../../redux/Post/postActions'
+import {getUsersWhoLikedPostAction} from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
 
 function Post (props) {
@@ -29,8 +32,9 @@ function Post (props) {
 //   quantityOfViews = 244688
 // })
 
+  const dispatch = useDispatch()
   const {
-    text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
+    id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
   } = props.post
 
   // so fat this data is hardcoded, but we will soon connect it to the backend
@@ -44,7 +48,6 @@ function Post (props) {
   } = props
 
   const classes = Style()
-  const [liked, setLiked] = useState(false)
   const [showedAddComment, setShowedAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
   const [postCommentValue, setPostCommentValue] = useState('')
@@ -90,10 +93,12 @@ function Post (props) {
       {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
       {/* </div> */}
       <div className={classes.quantity}>
-        <Typography variant="body2" className={classes.quantityText}>
-          <LikeMiniIcon/>
-          {numberOfLikes}
-        </Typography>
+        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
+          <Typography variant="body2" className={classes.quantityText}>
+            <LikeMiniIcon/>
+            {numberOfLikes}
+          </Typography>
+        </div>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
           {numberOfComments} comments
@@ -104,9 +109,10 @@ function Post (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
+      {/* -------  We should move the component below into a separate react Component */}
       <div className={classes.block}>
-        <div className={liked ? classes.liked : ''}>
-          <div className={classes.item} onClick={() => setLiked(!liked)}>
+        <div className={isLikedByActiveUser ? classes.liked : ''}>
+          <div className={classes.item} onClick={() => dispatch(toggleLikeAction(id))}>
             <ThumbUpOutlinedIcon/>
             <Hidden xsDown>
               <span className="like">Like</span>
@@ -132,6 +138,7 @@ function Post (props) {
           </Hidden>
         </div>
       </div>
+      {/* -------  */}
       <div className={showedAddComment ? classes.showedAddComment : classes.hiddenAddComment}>
         <div className={classes.addComment}>
           <div className={classes.avatar}>

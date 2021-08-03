@@ -1,20 +1,22 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
-import com.danit.fs12.repository.PostRepository;
+import com.danit.fs12.repository.LikeRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
-  private final PostRepository postRepository;
+  private final LikeRepository likeRepository;
 
   public Post createPost(Post incomingPost, Long userId) {
     /**
@@ -43,4 +45,45 @@ public class PostService extends GeneralService<Post> {
     return post;
   }
 
+  public Post toggleLike(Long postId) {
+    Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
+
+    Optional<Post> postOpt = findById(postId);
+    if (postOpt.isEmpty()) {
+      String msg = String.format("An error while trying to find post with id %d. ", postId);
+      throw new BadRequestException(msg);
+    }
+
+    Post post = postOpt.get();
+    Boolean postIsLiked = post.getIsLikedByActiveUser();
+
+    if (postIsLiked) {
+      Optional<Like> likeOptional =
+        post.getLikes().stream()
+          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
+            && Objects.equals(l.getPost().getId(), postId))
+          .findFirst();
+
+      if (likeOptional.isEmpty()) {
+        String msg = String.format("An error while trying to unwrap Like Optional. ");
+        throw new BadRequestException(msg);
+      }
+
+      Like like = likeOptional.get();
+      post.getLikes().remove(like);
+      likeRepository.delete(like); // do not remove this line!
+
+      return save(post);
+    } else {
+      Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);
+      if (userOpt.isEmpty()) {
+        String msg = String.format("An error while trying to unwrap UserOptional with id %d. ", hardCodedActiveUserId);
+        throw new BadRequestException(msg);
+      }
+      User user = userOpt.get();
+      Like like = new Like(user, post);
+      post.getLikes().add(like);
+      return save(post);
+    }
+  }
 }
