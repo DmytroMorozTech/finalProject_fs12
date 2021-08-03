@@ -10,7 +10,8 @@ export default makeStyles(() => ({
     marginTop: '10px',
     border: '1px solid #e0e0e0',
     borderRadius: '10px',
-    marginBottom: '15px'
+    marginBottom: '15px',
+    backgroundColor: 'white'
   },
 
   postAuthor: {
