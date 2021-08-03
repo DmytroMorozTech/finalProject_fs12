@@ -5,6 +5,7 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
+import com.danit.fs12.repository.LikeRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
+  private final LikeRepository likeRepository;
 
   public Post createPost(Post incomingPost, Long userId) {
     /**
@@ -42,7 +44,6 @@ public class PostService extends GeneralService<Post> {
 
     user.getPosts().add(post);
     userRepository.save(user);
-
     return post;
   }
 
@@ -64,20 +65,14 @@ public class PostService extends GeneralService<Post> {
         l.getUser().getId() == hardCodedActiveUserId
           && l.getPost().getId() == postId
       ).findFirst();
-      System.out.println("------------------------------------------------");
-      System.out.println(likeOptional);
-      System.out.println("------------------------------------------------");
-      System.out.println("------------------------------------------------");
 
       if (likeOptional.isEmpty()) {
         String msg = String.format("An error while trying to unwrap Like Optional. ");
         throw new BadRequestException(msg);
       }
-
       Like like = likeOptional.get();
-
       post.getLikes().remove(like);
-      return postRepository.save(post);
+      likeRepository.delete(like);
     } else {
       Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);
       if (userOpt.isEmpty()) {
@@ -86,7 +81,7 @@ public class PostService extends GeneralService<Post> {
       }
       Like like = new Like(userOpt.get(), post);
       post.getLikes().add(like);
-      return postRepository.save(post);
     }
+    return postRepository.save(post);
   }
 }
