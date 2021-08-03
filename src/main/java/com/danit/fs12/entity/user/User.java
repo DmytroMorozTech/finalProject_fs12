@@ -172,6 +172,14 @@ public class User extends AbstractEntity {
     return message;
   }
 
+  public Chat addChat(Chat chat) {
+    if (!this.chats.contains(chat)) {
+      this.chats.add(chat);
+      chat.getUsers().add(this);
+    }
+    return chat;
+  }
+
 
   public String getFullName() {
     return firstName + " " + lastName;
