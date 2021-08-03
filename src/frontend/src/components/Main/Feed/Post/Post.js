@@ -14,8 +14,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import {useSelector} from 'react-redux'
-import {activeUserSelector} from '../../../../redux/User/userSelector'
+// import {useSelector} from 'react-redux'
+// import {activeUserSelector} from '../../../../redux/User/userSelector'
 
 function Post (props) {
 //   {
