@@ -1,14 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles(() => ({
-  comments: {
-    margin: '5px',
-    color: 'grey'
-  },
 
   comment: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    // width: '100%',
+    marginBottom: '15px'
+
   },
 
   commentAvatar: {
@@ -22,11 +21,11 @@ export default makeStyles(() => ({
     borderRadius: '0 10px 10px 10px',
     padding: '8px 12px',
     marginLeft: '5px',
+    // width: 'calc(100% - 65px)',
     marginRight: '10px'
   },
 
   commentHeader: {
-    display: 'flex',
     justifyContent: 'space-between'
   },
 
@@ -80,7 +79,6 @@ export default makeStyles(() => ({
 
   commentLikes: {
     display: 'flex',
-
     alignItems: 'center',
     marginTop: '3px',
     marginLeft: '15px',
@@ -120,19 +118,5 @@ export default makeStyles(() => ({
 
   hiddenQuantityOfCommentsLike: {
     opacity: '0'
-  },
-
-  loadMoreComments: {
-    margin: '15px 0 8px 15px',
-    fontWeight: 600,
-    fontSize: '14px',
-    '& > span': {
-      padding: '5px',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: 'rgba(0,0,0,0.05)',
-        borderRadius: '5px'
-      }
-    }
   }
 }))

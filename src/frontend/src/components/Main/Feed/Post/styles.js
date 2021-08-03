@@ -72,7 +72,7 @@ export default makeStyles(() => ({
   },
 
   text: {
-    paddingLeft: '10px'
+    padding: '0 10px'
   },
 
   picture: {
@@ -174,5 +174,25 @@ export default makeStyles(() => ({
     display: 'flex',
     marginLeft: '80px',
     marginBottom: '10px'
+  },
+
+  comments: {
+    margin: '5px',
+    // width: '100%',
+    color: 'grey'
+  },
+
+  loadMoreComments: {
+    margin: '15px 0 8px 15px',
+    fontWeight: 600,
+    fontSize: '14px',
+    '& > span': {
+      padding: '5px',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: '5px'
+      }
+    }
   }
 }))
