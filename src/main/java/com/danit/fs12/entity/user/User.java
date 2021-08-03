@@ -173,7 +173,7 @@ public class User extends AbstractEntity {
   }
 
   public Chat addChat(Chat chat) {
-    if(!this.chats.contains(chat)) {
+    if (!this.chats.contains(chat)) {
       this.chats.add(chat);
       chat.getUsers().add(this);
     }

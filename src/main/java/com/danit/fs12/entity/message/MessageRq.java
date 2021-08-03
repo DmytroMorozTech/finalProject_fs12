@@ -8,9 +8,6 @@ import javax.validation.constraints.Size;
 @Data
 public class MessageRq {
 
-  @NotNull(message = "activeUserId should be specified.")
-  private Long activeUserId;
-
   @NotNull(message = "chatId should be specified.")
   private Long chatId;
 

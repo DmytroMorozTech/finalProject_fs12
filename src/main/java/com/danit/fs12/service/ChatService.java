@@ -8,7 +8,6 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +18,7 @@ public class ChatService extends GeneralService<Chat> {
   private final ChatRepository chatRepository;
 
   public Chat createChat() {
-
-    Long userId = 1L;
+    Long userId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
     Optional<User> userOpt = userRepository.findById(userId);
     if (userOpt.isEmpty()) {
       String msg = String.format("An error while trying to create chat. "

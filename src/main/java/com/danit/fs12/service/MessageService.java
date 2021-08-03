@@ -18,12 +18,13 @@ public class MessageService extends GeneralService<Message> {
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
 
-  public Message createMessage(Long activeUserId, Long chatId, String text) {
+  public Message createMessage(Long chatId, String text) {
+    Long activeUserId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
     Optional<User> userOpt = userRepository.findById(activeUserId);
     Optional<Chat> chatOpt = chatRepository.findById(chatId);
     if (userOpt.isEmpty() || chatOpt.isEmpty()) {
       String msg = String.format("An error while trying to send new message. Extra data: "
-        + "activeUserId: %d, chatId: %d, text: %s", activeUserId, chatId, text);
+        + "chatId: %d, text: %s", chatId, text);
       throw new BadRequestException(msg);
     }
 

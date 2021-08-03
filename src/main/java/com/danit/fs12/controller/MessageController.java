@@ -36,11 +36,7 @@ public class MessageController {
 
   @PostMapping
   public ResponseEntity<?> createMessage(@Valid @RequestBody MessageRq rq) {
-    Long activeUserId = rq.getActiveUserId();
-    Long chatId = rq.getChatId();
-    String text = rq.getText();
-
-    MessageRs message = messageFacade.createMessage(activeUserId, chatId, text);
+    MessageRs message = messageFacade.createMessage(rq);
     return ResponseEntity.ok(message);
   }
 }
