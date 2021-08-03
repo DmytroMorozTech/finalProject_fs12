@@ -1,5 +1,6 @@
 package com.danit.fs12.entity.post;
 
+import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.entity.user.UserRs;
 import lombok.Data;
 

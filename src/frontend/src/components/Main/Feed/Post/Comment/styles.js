@@ -5,7 +5,7 @@ export default makeStyles(() => ({
   comment: {
     display: 'flex',
     flexDirection: 'row',
-    // width: '100%',
+    width: '100%',
     marginBottom: '15px'
 
   },
@@ -20,9 +20,7 @@ export default makeStyles(() => ({
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: '0 10px 10px 10px',
     padding: '8px 12px',
-    marginLeft: '5px',
-    // width: 'calc(100% - 65px)',
-    marginRight: '10px'
+    margin: '0 5px'
   },
 
   commentHeader: {

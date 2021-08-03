@@ -16,8 +16,8 @@ import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch } from 'react-redux'
-import { toggleLikeAction } from '../../../../redux/Post/postActions'
-import {getUsersWhoLikedPostAction} from '../../../../redux/User/userActions'
+import { toggleLikeAction, getCommentsForPostAction } from '../../../../redux/Post/postActions'
+import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
 
 function Post (props) {
@@ -119,7 +119,11 @@ function Post (props) {
             </Hidden>
           </div>
         </div>
-        <div className={classes.item} onClick={() => setShowedAddComment(!showedAddComment)}>
+        <div className={classes.item} onClick={() => {
+          dispatch(getCommentsForPostAction(id))
+          setTimeout(() => setShowedAddComment(!showedAddComment), 500)
+        }}>
+          {/* !!! */}
           <ChatOutlinedIcon/>
           <Hidden xsDown>
             <span>Comment</span>
@@ -139,30 +143,32 @@ function Post (props) {
         </div>
       </div>
       {/* -------  */}
-      <div className={showedAddComment ? classes.showedAddComment : classes.hiddenAddComment}>
-        <div className={classes.addComment}>
-          <div className={classes.avatar}>
-            <Avatar/>
-          </div>
-          <InputBase
-            placeholder="Add a comment..."
-            fullWidth={true}
-            multiline={true}
-            value={commentValue}
-            onChange={handleCommentInputChange}
-            className={classes.commentField}/>
-        </div>
-      </div>
-      <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
-        <SharedButton title="Post" onClick={handlePressPostButton}/>
-      </div>
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <div className={classes.comments}>
-          <Comment/>
-          <Comment commentText={postCommentValue} commentTime={'1h'} commentUserName={'Julian McMahon'}
-            quantityOfCommentsLike={0} commentUserJobPosition={'JS Developer'}/>
-          <div className={classes.loadMoreComments}>
-            <span>Load more comments</span>
+        <div>
+          <div className={classes.addComment}>
+            <div className={classes.avatar}>
+              <Avatar/>
+            </div>
+            <InputBase
+              placeholder="Add a comment..."
+              // fullWidth={true}
+              multiline={true}
+              value={commentValue}
+              onChange={handleCommentInputChange}
+              className={classes.commentField}/>
+          </div>
+        </div>
+
+        <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
+          <SharedButton title="Post" onClick={handlePressPostButton}/>
+        </div>
+
+        <div>
+          <div className={classes.comments}>
+            <Comment/>
+            <div className={classes.loadMoreComments}>
+              <span>Load more comments</span>
+            </div>
           </div>
         </div>
       </div>

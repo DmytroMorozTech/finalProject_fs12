@@ -143,6 +143,7 @@ export default makeStyles(() => ({
 
   showedAddComment: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%'
   },
 
@@ -163,7 +164,8 @@ export default makeStyles(() => ({
     border: '1px solid #e0e0e0',
     borderRadius: '35px',
     padding: '14px',
-    margin: '8px 0px'
+    margin: '8px 0px',
+    width: 'calc(100% - 100px)'
   },
 
   hidden: {
@@ -177,9 +179,11 @@ export default makeStyles(() => ({
   },
 
   comments: {
-    margin: '5px',
-    // width: '100%',
+    boxSizing: 'border-box',
+    padding: '5px',
+    width: '100%',
     color: 'grey'
+    // border: '1px solid red'
   },
 
   loadMoreComments: {
