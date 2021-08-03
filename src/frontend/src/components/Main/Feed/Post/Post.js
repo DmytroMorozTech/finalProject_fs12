@@ -29,10 +29,10 @@ function Post (props) {
 //   quantityOfViews = 244688
 // })
 
-  const activeUser = useSelector(activeUserSelector)
+  // const activeUser = useSelector(activeUserSelector)
   
   const {
-    id, text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
+    text, user, createdDate, numberOfLikes, numberOfComments, numberOfViews = 244688
   } = props.post
 
   // so fat this data is hardcoded, but we will soon connect it to the backend
