@@ -8,12 +8,14 @@ import { ThemeProvider } from '@material-ui/styles'
 import theme from './components/Theme'
 import {Provider} from 'react-redux'
 import store from './redux/configureStore'
+import {CssBaseline} from '@material-ui/core'
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <CssBaseline />
           <App/>
         </BrowserRouter>
       </ThemeProvider>
