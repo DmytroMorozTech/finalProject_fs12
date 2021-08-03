@@ -46,4 +46,10 @@ public class CommentController {
     return ResponseEntity.ok(comment);
   }
 
+  @GetMapping(path = "/for_post/{postId}")
+  public ResponseEntity<List<CommentRs>> getCommentsForPost(@PathVariable Long postId) {
+    List<CommentRs> comments = commentFacade.getCommentsForPost(postId);
+    return ResponseEntity.ok(comments);
+  }
+
 }

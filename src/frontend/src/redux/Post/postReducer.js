@@ -41,6 +41,21 @@ const postReducer = (store = initialStore, action) => {
         postsList: { $splice: [[indexOfCurrentPost1, 1, currentPost1Copy]] }
       })
 
+    case actions.GET_COMMENTS_FOR_POST:
+      let { listOfComments, postId } = action.payload
+      if (listOfComments.length === 0) return store
+
+      let currentPost2 = store.postsList.find((post) => post.id === postId)
+
+      let currentPost2Copy = {...currentPost2}
+      currentPost2Copy.comments = listOfComments
+
+      const indexOfCurrentPost2 = store.postsList.indexOf(currentPost2)
+
+      return update(store, {
+        postsList: { $splice: [[indexOfCurrentPost2, 1, currentPost2Copy]] }
+      })
+
     default: {
       return store
     }

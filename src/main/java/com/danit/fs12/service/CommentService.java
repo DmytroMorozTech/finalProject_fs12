@@ -9,6 +9,7 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,4 +39,13 @@ public class CommentService extends GeneralService<Comment> {
     return comment;
   }
 
+  public List<Comment> getCommentsForPost(Long postId) {
+    Optional<Post> postOpt = postRepository.findById(postId);
+    if (postOpt.isEmpty()) {
+      String msg = String.format("An error while trying to unwrap post Optional with id %d", postId);
+      throw new BadRequestException(msg);
+    }
+
+    return postOpt.get().getComments();
+  }
 }
