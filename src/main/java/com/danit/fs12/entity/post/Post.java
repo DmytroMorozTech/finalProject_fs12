@@ -74,8 +74,8 @@ public class Post extends AbstractEntity {
     return (long) comments.size();
   }
 
-  public Boolean isLikedByUserId(Long id) {
-    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), id));
+  public Boolean getIsLikedByActiveUser() {
+    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
   }
 
 }

@@ -1,3 +1,5 @@
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const LOADING_POSTS = 'LOADING_POSTS'
 export const SAVE_POSTS = 'SAVE_POSTS'
+export const UPDATE_POST = 'UPDATE_POST'
+export const GET_USERS_WHO_LIKED_POST = 'GET_USERS_WHO_LIKED_POST'
