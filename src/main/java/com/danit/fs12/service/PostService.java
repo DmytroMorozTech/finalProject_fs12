@@ -48,7 +48,7 @@ public class PostService extends GeneralService<Post> {
   }
 
   public Post toggleLike(Long postId) {
-    Long hardCodedActiveUserId = 1L;
+    Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
 
     Optional<Post> postOpt = findById(postId);
     if (postOpt.isEmpty()) {

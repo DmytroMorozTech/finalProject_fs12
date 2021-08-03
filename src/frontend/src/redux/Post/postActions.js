@@ -29,12 +29,11 @@ export const createNewPostAction = (payload) => (dispatch) => {
 }
 
 export const toggleLikeAction = (payload) => (dispatch) => {
-  const {id} = payload
-  return fetch(`/api/posts/toggle_like/{id}`,
+  const id = payload
+  return fetch(`/api/posts/toggle_like/${id}`,
     {
       headers: {'Content-Type': 'application/json'},
-      method: 'POST',
-      body: JSON.stringify(payload)
+      method: 'POST'
     })
     .then(checkStatus)
     .then((res) => res.json())

@@ -104,7 +104,7 @@ function Post (props) {
       {/* -------  We should move the component below into a separate react Component */}
       <div className={classes.block}>
         <div className={isLikedByActiveUser ? classes.liked : ''}>
-          <div className={classes.item} onClick={() => toggleLikeAction(id)}>
+          <div className={classes.item} onClick={() => dispatch(toggleLikeAction(id))}>
             <ThumbUpOutlinedIcon/>
             <Hidden xsDown>
               <span className="like">Like</span>
