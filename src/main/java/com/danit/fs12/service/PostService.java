@@ -5,7 +5,6 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.LikeRepository;
-import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
-  private final PostRepository postRepository;
   private final LikeRepository likeRepository;
 
   public Post createPost(Post incomingPost, Long userId) {

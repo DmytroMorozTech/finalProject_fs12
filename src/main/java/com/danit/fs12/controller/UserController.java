@@ -28,8 +28,6 @@ public class UserController {
     return allUsers;
   }
 
-  // http://localhost:9000/api/users/{id}
-  // get user by id
   @GetMapping(path = "{id}")
   public ResponseEntity<UserRs> findById(@PathVariable Long id) {
     UserRs user = userFacade.findById(id);
@@ -41,6 +39,13 @@ public class UserController {
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
     userFacade.deleteById(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
+  @GetMapping(path = "/who_liked_post/{id}")
+  public ResponseEntity<List<UserRs>> findUserWhoLikedPost(@PathVariable Long id) {
+    List<UserRs> usersList = userFacade.findUserWhoLikedPost(id);
+    // in case User can not be found by id in Facade, an error will be thrown
+    return ResponseEntity.ok(usersList);
   }
 
 }

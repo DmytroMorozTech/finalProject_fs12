@@ -1,16 +1,22 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.exception.NotFoundException;
+import com.danit.fs12.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService extends GeneralService<User> {
-
+  private final PostRepository postRepository;
 
   public User getActiveUser(Long id) {
 
@@ -59,5 +65,19 @@ public class UserService extends GeneralService<User> {
   //      this.connections.add(connection);
   //    }
   //  }
+
+  public List<User> findUserWhoLikedPost(Long id) {
+    Optional<Post> postOpt = postRepository.findById(id);
+
+    if (postOpt.isEmpty()) {
+      String msg = String.format("An error while trying to unwrap post Optional, post id: %d", id);
+      throw new BadRequestException(msg);
+    }
+
+    Post post = postOpt.get();
+    List<Like> likes = post.getLikes();
+    List<User> usersList = likes.stream().map(Like::getUser).collect(Collectors.toList());
+    return usersList;
+  }
 
 }

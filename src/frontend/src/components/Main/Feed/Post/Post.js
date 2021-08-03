@@ -16,6 +16,7 @@ import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch } from 'react-redux'
 import { toggleLikeAction } from '../../../../redux/Post/postActions'
+import {getUsersWhoLikedPostAction} from '../../../../redux/User/userActions'
 
 function Post (props) {
 //   {
@@ -45,7 +46,6 @@ function Post (props) {
   } = props
 
   const classes = Style()
-  const [liked, setLiked] = useState(false)
   const [showedAddComment, setShowedAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
 
@@ -87,10 +87,12 @@ function Post (props) {
       {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
       {/* </div> */}
       <div className={classes.quantity}>
-        <Typography variant="body2" className={classes.quantityText}>
-          <LikeMiniIcon/>
-          {numberOfLikes}
-        </Typography>
+        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
+          <Typography variant="body2" className={classes.quantityText}>
+            <LikeMiniIcon/>
+            {numberOfLikes}
+          </Typography>
+        </div>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
           {numberOfComments} comments

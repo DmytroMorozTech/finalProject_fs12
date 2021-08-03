@@ -28,7 +28,18 @@ const postReducer = (store = initialStore, action) => {
         postsList: { $splice: [[indexOfCurrentPost, 1, updatedPost]] }
       })
 
-      return { ...store, postsList: [...store.postsList, action.payload] }
+    case actions.GET_USERS_WHO_LIKED_POST:
+      let {usersList, id} = action.payload
+
+      let currentPost1 = store.postsList.find((post) => post.id === id)
+      let currentPost1Copy = {...currentPost1}
+      currentPost1Copy.usersWhoLikedPost = usersList
+
+      const indexOfCurrentPost1 = store.postsList.indexOf(currentPost1)
+
+      return update(store, {
+        postsList: { $splice: [[indexOfCurrentPost1, 1, currentPost1Copy]] }
+      })
 
     default: {
       return store
