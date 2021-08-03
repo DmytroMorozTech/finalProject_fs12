@@ -1,1 +1,1 @@
-export const activeUserIdSelector = (store) => store.user.activeUserId
+export const activeUserSelector = (store) => store.user.activeUser

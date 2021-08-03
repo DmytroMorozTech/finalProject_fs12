@@ -27,3 +27,17 @@ export const createNewPostAction = (payload) => (dispatch) => {
       dispatch({type: actions.ADD_NEW_POST, payload: postObjFromServer})
     })
 }
+
+export const toggleLikeAction = (payload) => (dispatch) => {
+  const id = payload
+  return fetch(`/api/posts/toggle_like/${id}`,
+    {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST'
+    })
+    .then(checkStatus)
+    .then((res) => res.json())
+    .then((postObjFromServer) => {
+      dispatch({type: actions.UPDATE_POST, payload: postObjFromServer})
+    })
+}

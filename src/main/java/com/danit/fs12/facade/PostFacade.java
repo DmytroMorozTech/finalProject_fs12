@@ -17,5 +17,10 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return convertToDto(post);
   }
 
+  public PostRs toggleLike(Long postId) {
+    Post post = postService.toggleLike(postId);
+    return convertToDto(post);
+  }
+
 }
 

@@ -41,4 +41,10 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
+  @PostMapping(path = "/toggle_like/{postId}")
+  public ResponseEntity<PostRs> toggleLike(@PathVariable Long postId) {
+    PostRs post = postFacade.toggleLike(postId);
+    return ResponseEntity.ok(post);
+  }
+
 }

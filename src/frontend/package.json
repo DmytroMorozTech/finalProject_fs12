@@ -65,6 +65,7 @@
   },
   "proxy": "http://localhost:9000",
   "devDependencies": {
+    "immutability-helper": "^3.1.1",
     "standard": "^10.0.3"
   }
 }
