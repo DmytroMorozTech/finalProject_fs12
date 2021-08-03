@@ -2,7 +2,6 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
-import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.LikeRepository;
