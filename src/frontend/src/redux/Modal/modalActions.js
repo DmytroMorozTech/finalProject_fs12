@@ -1,8 +1,8 @@
 import * as actions from './modalActionTypes'
 
-const toggleModalAction = (modalType) => (dispatch) => dispatch({
+const toggleModalAction = (payload) => (dispatch) => dispatch({
   type: actions.TOGGLE_MODAL,
-  payload: {modalType}
+  payload: {payload}
 })
 
 export default toggleModalAction

@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux'
 import { getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
 import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
+import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../../Modal/modalTypes'
 
 function Post (props) {
 //   {
@@ -78,7 +80,11 @@ function Post (props) {
       {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
       {/* </div> */}
       <div className={classes.quantity}>
-        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
+        <div onClick={() => {
+          dispatch(getUsersWhoLikedPostAction(id))
+          dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, postId: id}))
+        }
+        }>
           <Typography variant="body2" className={classes.quantityText}>
             <LikeMiniIcon/>
             {numberOfLikes}

@@ -1,28 +1,31 @@
 import * as actions from './modalActionTypes'
-import {ADD_NEW_POST} from '../../components/Modal/modalTypes'
+import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
+import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 
 const initialStore = {
   isModalOpen: false,
   modalOpenType: null,
-  modalContent: null
+  modalContent: null,
+  activePostId: null
 }
 
 const modalReducer = (store = initialStore, action) => {
-  function getModalType () {
-    const {modalType} = action.payload
-    return modalType
-  }
+  const {modalType} = action.payload
 
-  const modalType = action.payload ? getModalType() : null // ADD_NEW_POST
+  const typeOfModal = action.payload ? modalType : null
 
-  switch (action.type) { // TOGGLE_MODAL
+  switch (action.type) {
     case actions.TOGGLE_MODAL:
     {
       let content
-      switch (modalType) {
+      switch (typeOfModal) {
         case ADD_NEW_POST:
           content = <AddNewPost/>
+          break
+
+        case SHOW_USERS_WHO_LIKED_POST:
+          content = <UsersWhoLiked/>
           break
 
         default:
@@ -32,7 +35,7 @@ const modalReducer = (store = initialStore, action) => {
       return {
         ...store,
         isModalOpen: !store.isModalOpen,
-        modalOpenType: modalType,
+        modalOpenType: typeOfModal,
         modalContent: content
       }
     }
