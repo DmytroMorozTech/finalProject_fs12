@@ -1,11 +1,10 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
-import {withStyles} from '@material-ui/core/styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import InputBase from '@material-ui/core/InputBase'
-import TemporaryAvatar from '../../../../temporaryImages/14.jpg'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -18,6 +17,8 @@ import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import Style from './styles'
+import { activeUserSelector } from '../../../../redux/User/userSelector'
+import { createNewPostAction } from '../../../../redux/Post/postActions'
 
 const styles = (theme) => ({
 
@@ -62,14 +63,12 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const AddNewPost = ({
-  userName = 'Steve Johns',
-  userAvatar = TemporaryAvatar
-                  
-}) => {
+const AddNewPost = () => {
   const dispatch = useDispatch()
+  const activeUser = useSelector(activeUserSelector)
 
-  const handleClose = () => {
+  const onPostSubmitHandler = () => {
+    dispatch(createNewPostAction({text: postInputText}))
     dispatch(toggleModalAction())
   }
 
@@ -89,17 +88,17 @@ const AddNewPost = ({
       <div className={classes.title}>
         <h4>Create post</h4>
       </div>
-      <DialogTitle id="customized-dialog-title" onClose={handleClose} >
+      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler} >
 
       </DialogTitle>
 
       <DialogContent dividers>
         <div className={classes.userInfo}>
           <div className={classes.avatar}>
-            <img src={userAvatar} alt={'user avatar'} className={classes.userAvatar}/>
+            <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
           </div>
           <div className={classes.buttonGroup}>
-            <span>{userName}</span>
+            <span>{activeUser.fullName}</span>
             <button className={classes.shareComment}>
               <div className={classes.worldIcon}>
                 <PublicIcon/>
@@ -140,7 +139,7 @@ const AddNewPost = ({
           </Tooltip>
           <div className={classes.vl}></div>
         </div>
-        <Button autoFocus onClick={handleClose} disabled={btnIsDisabled} color={'primary'}>
+        <Button autoFocus onClick={onPostSubmitHandler} disabled={btnIsDisabled} color={'primary'}>
           POST
         </Button>
       </DialogActions>
