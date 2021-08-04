@@ -45,10 +45,8 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-const WhoLikedPost = ({
-  numberOfLikes = 2,
-  userName = 'Glen Block',
-  userPositionAndCompany = 'Java Dev' }) => {
+const WhoLikedPost = (props) => {
+  const {avatarUrl, positionANdCompany, fullName} = props.user
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -58,28 +56,18 @@ const WhoLikedPost = ({
   const classes = Style()
 
   return (
-    <div>
-
-      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        <div className={classes.title}>
-          <LikeMiniIcon/>
-          {numberOfLikes}
+    <DialogContent dividers>
+      <div className={classes.userInfo}>
+        <div className={classes.avatar}>
+          <Avatar avatarUrl={avatarUrl}/>
         </div>
-      </DialogTitle>
-
-      <DialogContent dividers>
-        <div className={classes.userInfo}>
-          <div className={classes.avatar}>
-            <Avatar/>
-          </div>
-          <div className={classes.buttonGroup}>
-            <span>{userName}</span>
-            <span>{userPositionAndCompany}</span>
-          </div>
+        <div className={classes.buttonGroup}>
+          <span>{fullName}</span>
+          <span>{positionANdCompany}</span>
         </div>
+      </div>
 
-      </DialogContent>
-    </div>
+    </DialogContent>
   )
 }
 export default WhoLikedPost

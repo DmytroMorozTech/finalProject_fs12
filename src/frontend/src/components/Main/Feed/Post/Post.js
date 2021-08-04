@@ -80,9 +80,12 @@ function Post (props) {
       {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
       {/* </div> */}
       <div className={classes.quantity}>
-        <div onClick={() => {
-          dispatch(getUsersWhoLikedPostAction(id))
-          dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, postId: id}))
+        <div onClick={async () => {
+          dispatch(getUsersWhoLikedPostAction(id)) // we received data from backend and saved it to Redux
+
+          setTimeout(
+            dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, postId: id})),
+            1000)
         }
         }>
           <Typography variant="body2" className={classes.quantityText}>

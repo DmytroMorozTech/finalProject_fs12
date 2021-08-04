@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect, useDispatch, useSelector} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
 import {withStyles} from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
@@ -9,9 +9,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import Style from './styles'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
-import Avatar from '../../../../shared/Avatar/Avatar'
-import {allPostsSelector} from '../../../../redux/Post/postSelector'
-import {getAllPostsAction} from '../../../../redux/Post/postActions'
+import UserWhoLikedItem from './UserWhoLikedItem'
 
 const styles = (theme) => ({
   root: {
@@ -47,13 +45,13 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-// numberOfLikes = 2,
-//     userName = 'Glen Block',
-//     userPositionAndCompany = 'Java Dev'
-
 const WhoLikedPost = (props) => {
-  const { posts, postId } = props
-  const post = posts.filter(p => p.id === postId)[0]
+  const { posts, postId } = props // we get full list of posts from Redux
+  const post = posts.filter(p => p.id === postId)[0] // we find the post the is needed for components based on id
+
+  console.log(posts)
+  const usersWhoLikedList = post.usersWhoLikedPost // posts seem to be not synchronized with Redux ??
+  console.log(usersWhoLikedList)
 
   const dispatch = useDispatch()
 
@@ -72,6 +70,8 @@ const WhoLikedPost = (props) => {
           {post.numberOfLikes}
         </div>
       </DialogTitle>
+
+      {usersWhoLikedList.map(user => <UserWhoLikedItem key={user.id} user={user}/>)}
 
     </div>
   )
