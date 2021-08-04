@@ -17,8 +17,9 @@ import java.util.Optional;
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
   private final LikeRepository likeRepository;
+  private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
 
-  public Post createPost(Post incomingPost, Long userId) {
+  public Post createPost(Post incomingPost) {
     /**
      * There was an issue when creating new Post using Post Controller.
      * ModelMapper was taking the userId from PostRq and mapped it automatically to id of Post.
@@ -28,10 +29,10 @@ public class PostService extends GeneralService<Post> {
      * After that the problem was gone and implicit casting was ceased.
      */
 
-    Optional<User> userOpt = userRepository.findById(userId);
+    Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);
     if (userOpt.isEmpty()) {
       String msg = String.format("An error while trying to add post. "
-        + "User with id %d could not be found in DB", userId);
+        + "User with id %d could not be found in DB", hardCodedActiveUserId);
       throw new BadRequestException(msg);
     }
 
@@ -46,8 +47,6 @@ public class PostService extends GeneralService<Post> {
   }
 
   public Post toggleLike(Long postId) {
-    Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
-
     Optional<Post> postOpt = findById(postId);
     if (postOpt.isEmpty()) {
       String msg = String.format("An error while trying to find post with id %d. ", postId);
