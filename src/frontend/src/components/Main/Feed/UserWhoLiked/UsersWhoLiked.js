@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import {connect, useDispatch, useSelector} from 'react-redux'
 import {withStyles} from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
@@ -10,6 +10,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import Style from './styles'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
+import {allPostsSelector} from '../../../../redux/Post/postSelector'
+import {getAllPostsAction} from '../../../../redux/Post/postActions'
 
 const styles = (theme) => ({
   root: {
@@ -45,10 +47,14 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-const WhoLikedPost = ({
-  numberOfLikes = 2,
-  userName = 'Glen Block',
-  userPositionAndCompany = 'Java Dev' }) => {
+// numberOfLikes = 2,
+//     userName = 'Glen Block',
+//     userPositionAndCompany = 'Java Dev'
+
+const WhoLikedPost = (props) => {
+  const { posts, postId } = props
+  const post = posts.filter(p => p.id === postId)[0]
+
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -63,23 +69,17 @@ const WhoLikedPost = ({
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <div className={classes.title}>
           <LikeMiniIcon/>
-          {numberOfLikes}
+          {post.numberOfLikes}
         </div>
       </DialogTitle>
 
-      <DialogContent dividers>
-        <div className={classes.userInfo}>
-          <div className={classes.avatar}>
-            <Avatar/>
-          </div>
-          <div className={classes.buttonGroup}>
-            <span>{userName}</span>
-            <span>{userPositionAndCompany}</span>
-          </div>
-        </div>
-
-      </DialogContent>
     </div>
   )
 }
-export default WhoLikedPost
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts.postsList
+  }
+}
+
+export default connect(mapStateToProps, null)(WhoLikedPost)

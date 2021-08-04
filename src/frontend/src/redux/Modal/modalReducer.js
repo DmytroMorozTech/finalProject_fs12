@@ -6,12 +6,11 @@ import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked
 const initialStore = {
   isModalOpen: false,
   modalOpenType: null,
-  modalContent: null,
-  activePostId: null
+  modalContent: null
 }
 
 const modalReducer = (store = initialStore, action) => {
-  const {modalType} = action.payload
+  const {modalType, postId} = {...action.payload}
 
   const typeOfModal = action.payload ? modalType : null
 
@@ -25,7 +24,7 @@ const modalReducer = (store = initialStore, action) => {
           break
 
         case SHOW_USERS_WHO_LIKED_POST:
-          content = <UsersWhoLiked/>
+          content = <UsersWhoLiked postId={postId}/>
           break
 
         default:
