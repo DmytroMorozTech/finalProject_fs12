@@ -14,5 +14,6 @@ public class CommentRs {
   private Date createdDate;
   private Date lastModifiedDate;
   private String timePassedSinceCreated;
+//  private Long numberOfCommentLikes;
 
 }

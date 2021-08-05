@@ -7,9 +7,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class CommentRq {
 
-  @NotNull(message = "activeUserId should be specified.")
-  Long activeUserId;
-
   @NotNull(message = "postId should be specified.")
   Long postId;
 

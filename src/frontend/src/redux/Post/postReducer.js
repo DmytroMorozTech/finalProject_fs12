@@ -56,6 +56,20 @@ const postReducer = (store = initialStore, action) => {
         postsList: { $splice: [[indexOfCurrentPost2, 1, currentPost2Copy]] }
       })
 
+    case actions.ADD_NEW_COMMENT_FOR_POST:
+      let { comment, postId: postId2 } = {...action.payload}
+
+      let currentPost3 = store.postsList.find((post) => post.id === postId2)
+      let currentPost3Copy = {...currentPost3}
+      if (!currentPost3Copy.comments) currentPost3Copy.comments = []
+      currentPost3Copy.comments.push(comment)
+
+      const indexOfCurrentPost3 = store.postsList.indexOf(currentPost3)
+
+      return update(store, {
+        postsList: { $splice: [[indexOfCurrentPost3, 1, currentPost3Copy]] }
+      })
+
     default: {
       return store
     }

@@ -22,5 +22,10 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return convertToDto(post);
   }
 
+//  public PostRs changeNumberOfComment(Long postId) {
+//    Post post = postService.changeNumberOfComment(postId);
+//    return convertToDto(post);
+//  }
+
 }
 

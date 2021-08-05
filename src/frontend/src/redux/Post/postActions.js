@@ -54,3 +54,35 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
       dispatch({type: actions.GET_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
     })
 }
+
+export const createNewCommentAction = ({text, id}) => (dispatch) => {
+  return fetch(`/api/comments`,
+    {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      body: JSON.stringify({ text, postId: id })
+    })
+    .then(checkStatus)
+    .then((res) => res.json())
+    .then((commentObjFromServer) => {
+      dispatch(
+        {
+          type: actions.ADD_NEW_COMMENT_FOR_POST,
+          payload: { comment: commentObjFromServer, postId: id }
+        })
+    })
+}
+
+// export const changeNumberOfCommentAction = (payload) => (dispatch) => {
+//   const id = payload
+//   return fetch(`/api/posts/number_of_comment/${id}`,
+//     {
+//       headers: {'Content-Type': 'application/json'},
+//       method: 'POST'
+//     })
+//     .then(checkStatus)
+//     .then((res) => res.json())
+//     .then((postObjFromServer) => {
+//       dispatch({type: actions.UPDATE_POST, payload: postObjFromServer})
+//     })
+// }

@@ -47,4 +47,10 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
+//  @PostMapping(path = "/number_of_comment/${postId}")
+//  public ResponseEntity<PostRs> changeNumberOfComment(@PathVariable Long postId) {
+//    PostRs post = postFacade.changeNumberOfComment(postId);
+//    return ResponseEntity.ok(post);
+//  }
+
 }
