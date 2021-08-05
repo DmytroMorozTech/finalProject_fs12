@@ -5,7 +5,7 @@ export default makeStyles(() => ({
   layoutListDetail: {
     margin: '75px auto',
     paddingLeft: '50px',
-    maxWidth: '90%',
+    maxWidth: '70%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -118,6 +118,14 @@ export default makeStyles(() => ({
       boxShadow: 'inset 4px 0 0 0 #057642',
       backgroundColor: '#eef3f8'
     }
+  },
+
+  containerConvoItemActive: {
+    position: 'relative',
+    display: 'block',
+    width: '100%',
+    boxShadow: 'inset 4px 0 0 0 #057642',
+    backgroundColor: '#eef3f8'
   },
 
   conversationCard: {
@@ -465,10 +473,7 @@ export default makeStyles(() => ({
     maxHeight: '100%',
     position: 'static',
     width: '100%',
-    boxShadow: '0px -3px 0px rgb(0 0 0 / 8%)',
-    '&:focus': {
-      boxShadow: '0px -3px 0px #057642'
-    }
+    boxShadow: '0px -3px 0px rgb(0 0 0 / 8%)'
   },
 
   msgFormActive: {
@@ -509,13 +514,13 @@ export default makeStyles(() => ({
     width: '90%'
   },
 
-  showedButton: {
+  activeMsgButton: {
     display: 'flex',
     marginLeft: '80px',
     marginBottom: '10px'
   },
 
-  hiddenButton: {
+  msgButton: {
 
   }
 

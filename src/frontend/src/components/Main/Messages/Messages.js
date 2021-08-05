@@ -9,6 +9,7 @@ import OpenInNewSharpIcon from '@material-ui/icons/OpenInNewSharp'
 import MenuSharpIcon from '@material-ui/icons/MenuSharp'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import InputBase from '@material-ui/core/InputBase'
+import clsx from 'clsx'
 
 function Messages ({
   myAvatar = MyAvatarMessage,
@@ -26,13 +27,15 @@ function Messages ({
 }) {
   const classes = Style()
   const [messageValue, setMessageValue] = useState('')
-  const handleCommentInputChange = e => {
+  const [inputIsFocused, setInputIsFocused] = useState(false)
+
+  const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
     setMessageValue(messageInputVal)
   }
   return (
     <main className={classes.layoutListDetail}>
-      <div className={classes.listDetailInner}>
+      <div className={ classes.listDetailInner}>
         <section className={classes.layoutList}>
 
           <div className={classes.containerHeader}>
@@ -207,16 +210,18 @@ function Messages ({
                   </li>
                 </ul>
               </div>
-              <form className={classes.msgForm}>
+              <form className={clsx(classes.msgForm, inputIsFocused ? classes.msgFormActive : '')}>
                 <div className={classes.formMsgContentContainer}>
                   <div className={classes.formMsgContentContainerScrollable}>
                     <div className={classes.addMsg}>
                       <InputBase
+                        onFocus={() => setInputIsFocused(!inputIsFocused)}
+                        onBlur={() => setInputIsFocused(!inputIsFocused)}
                         placeholder="Add a message..."
                         fullWidth={true}
                         multiline={true}
                         value={messageValue}
-                        onChange={handleCommentInputChange}/>
+                        onChange={handleMessageInputChange}/>
                     </div>
                   </div>
                 </div>
