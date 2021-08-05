@@ -3,14 +3,11 @@ import fetch from 'unfetch'
 import checkStatus from '../Services/checkStatus'
 
 export const getAllPostsAction = () => (dispatch) => {
-  // dispatch({type: actions.LOADING_POSTS, payload: true})
-
   return fetch('api/posts')
     .then(checkStatus)
     .then((result) => result.json())
     .then((listOfPosts) => {
       dispatch({type: actions.SAVE_POSTS, payload: listOfPosts})
-      // dispatch({type: actions.LOADING_POSTS, payload: false});
     })
 }
 
@@ -52,5 +49,23 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
     .then((res) => res.json())
     .then((listOfComments) => {
       dispatch({type: actions.GET_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
+    })
+}
+
+export const createNewCommentAction = ({text, id}) => (dispatch) => {
+  return fetch(`/api/comments`,
+    {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      body: JSON.stringify({ text, postId: id })
+    })
+    .then(checkStatus)
+    .then((res) => res.json())
+    .then((commentObjFromServer) => {
+      dispatch(
+        {
+          type: actions.ADD_NEW_COMMENT_FOR_POST,
+          payload: { comment: commentObjFromServer, postId: id }
+        })
     })
 }

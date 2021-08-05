@@ -184,7 +184,6 @@ export default makeStyles(() => ({
     padding: '5px',
     width: '100%',
     color: 'grey'
-    // border: '1px solid red'
   },
 
   loadMoreComments: {
