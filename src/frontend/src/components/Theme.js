@@ -7,6 +7,10 @@ const theme = createTheme({
     // secondary color of Linkedin
     'secondary': {
       'main': '#757575', 'light': 'rgb(0.93, 0.93, 0.93, 0.36)', 'dark': 'rgb(0.13, 0.13, 0.13, 0.36)', 'contrastText': '#fff'
+    },
+    'background': {
+      'paper': '#ffffff',
+      'default': '#f1f1f1'
     }
   },
   'typography': {

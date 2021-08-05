@@ -7,6 +7,9 @@ import com.danit.fs12.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Component
 public class CommentFacade extends GeneralFacade<Comment, CommentRq, CommentRs> {
@@ -16,5 +19,13 @@ public class CommentFacade extends GeneralFacade<Comment, CommentRq, CommentRs> 
     Comment comment = commentService.createComment(activeUserId, postId, text);
     return convertToDto(comment);
   }
+
+  public List<CommentRs> getCommentsForPost(Long postId) {
+    List<Comment> commentsList = commentService.getCommentsForPost(postId);
+    List<CommentRs> listCommentRs = commentsList.stream()
+      .map(this::convertToDto).collect(Collectors.toList());
+    return listCommentRs;
+  }
+
 }
 

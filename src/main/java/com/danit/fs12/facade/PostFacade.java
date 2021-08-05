@@ -13,7 +13,7 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
   private final PostService postService;
 
   public PostRs createPost(PostRq rq) {
-    Post post = postService.createPost(convertToEntity(rq), rq.getUserId());
+    Post post = postService.createPost(convertToEntity(rq));
     return convertToDto(post);
   }
 
