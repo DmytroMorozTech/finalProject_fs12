@@ -60,8 +60,11 @@ const postReducer = (store = initialStore, action) => {
       let { comment, postId: postId2 } = {...action.payload}
 
       let currentPost3 = store.postsList.find((post) => post.id === postId2)
-      let currentPost3Copy = {...currentPost3}
-      if (!currentPost3Copy.comments) currentPost3Copy.comments = []
+      let currentPost3Copy = {
+        ...currentPost3,
+        comments: currentPost3.comments ? [...currentPost3.comments] : [],
+        numberOfComments: currentPost3.numberOfComments + 1
+      }
       currentPost3Copy.comments.push(comment)
 
       const indexOfCurrentPost3 = store.postsList.indexOf(currentPost3)

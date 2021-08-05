@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class  CommentService extends GeneralService<Comment> {
+public class CommentService extends GeneralService<Comment> {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
   private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext

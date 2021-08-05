@@ -78,8 +78,4 @@ public class Post extends AbstractEntity {
     return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
   }
 
-  public Boolean getIsChangedNumberOfComment() {
-    return comments.stream().anyMatch(c -> Objects.equals(c.getUser().getId(), 1L));
-  }
-
 }

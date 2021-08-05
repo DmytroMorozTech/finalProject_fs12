@@ -3,14 +3,11 @@ import fetch from 'unfetch'
 import checkStatus from '../Services/checkStatus'
 
 export const getAllPostsAction = () => (dispatch) => {
-  // dispatch({type: actions.LOADING_POSTS, payload: true})
-
   return fetch('api/posts')
     .then(checkStatus)
     .then((result) => result.json())
     .then((listOfPosts) => {
       dispatch({type: actions.SAVE_POSTS, payload: listOfPosts})
-      // dispatch({type: actions.LOADING_POSTS, payload: false});
     })
 }
 
@@ -72,17 +69,3 @@ export const createNewCommentAction = ({text, id}) => (dispatch) => {
         })
     })
 }
-
-// export const changeNumberOfCommentAction = (payload) => (dispatch) => {
-//   const id = payload
-//   return fetch(`/api/posts/number_of_comment/${id}`,
-//     {
-//       headers: {'Content-Type': 'application/json'},
-//       method: 'POST'
-//     })
-//     .then(checkStatus)
-//     .then((res) => res.json())
-//     .then((postObjFromServer) => {
-//       dispatch({type: actions.UPDATE_POST, payload: postObjFromServer})
-//     })
-// }

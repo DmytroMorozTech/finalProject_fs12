@@ -15,7 +15,6 @@ import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch } from 'react-redux'
 import {
-  // changeNumberOfCommentAction,
   createNewCommentAction,
   getCommentsForPostAction,
   toggleLikeAction
@@ -42,12 +41,16 @@ function Post (props) {
     setCommentValue(commentInputVal)
   }
 
-  // function connect(mapStateToProps, mapDispatchToProps, mergeProps, options)
+  const handleEnterPressed = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      handleButtonPost()
+    }
+  }
 
   const handleButtonPost = () => {
     dispatch(createNewCommentAction({ text: commentValue, id: id }))
     setCommentValue('')
-    // dispatch(changeNumberOfCommentAction(id))
   }
 
   return (
@@ -143,6 +146,7 @@ function Post (props) {
             className={classes.commentField}
             id="input"
             autoFocus={true}
+            onKeyDown={handleEnterPressed}
           />
         </div>
         <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
