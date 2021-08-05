@@ -7,6 +7,7 @@ import Jobs from '../components/Jobs/Jobs'
 import Network from '../components/Network/Network'
 import Login from '../components/Login/Login'
 import MainD from '../components/MainD/MainD'
+import Page404 from '../components/Main/Page404/Page404'
 
 const MainRoutes = () => {
   return (
@@ -19,7 +20,7 @@ const MainRoutes = () => {
       <Route exact path="/messages" render={() => <Messages/>}/>
       <Route exact path="/notifications" render={() => <Notifications/>}/>
       <Route exact path="/personal" render={() => <Profile/>}/>
-      {/* <Route exact path="*" render={() => <NotFound/>}/> */}
+      <Route exact path="*" render={() => <Page404/>}/>
     </Switch>
   )
 }
