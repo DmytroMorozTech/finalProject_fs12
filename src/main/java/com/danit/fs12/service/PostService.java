@@ -87,21 +87,4 @@ public class PostService extends GeneralService<Post> {
       return save(post);
     }
   }
-
-//  public Post changeNumberOfComment(Long postId) {
-//    Optional<Post> postOpt = findById(postId);
-//    if (postOpt.isEmpty()) {
-//      String msg = String.format("An error while trying to find post with id %d. ", postId);
-//      throw new BadRequestException(msg);
-//    }
-//
-//    Post post = postOpt.get();
-//    Boolean postIsChanged = post.getIsChangedNumberOfComment();
-//
-////    if (!postIsChanged) {
-////      return;
-////    }
-//
-//    return post;
-//  }
 }
