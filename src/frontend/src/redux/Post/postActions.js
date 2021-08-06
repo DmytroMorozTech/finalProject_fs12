@@ -48,7 +48,7 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
     .then(checkStatus)
     .then((res) => res.json())
     .then((listOfComments) => {
-      dispatch({type: actions.GET_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
+      dispatch({type: actions.SAVE_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
     })
 }
 
