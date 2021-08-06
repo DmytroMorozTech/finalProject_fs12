@@ -62,20 +62,18 @@ public class PostService extends GeneralService<Post> {
     Boolean postIsLiked = post.getIsLikedByActiveUser();
 
     if (postIsLiked) {
-//      Optional<Like> likeOptional =
-//        post.getLikes().stream()
-//          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
-//            && Objects.equals(l.getPost().getId(), postId))
-//          .findFirst();
+      Optional<Like> likeOptional =
+        post.getLikes().stream()
+          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
+            && Objects.equals(l.getPost().getId(), postId))
+          .findFirst();
 
-//      if (likeOptional.isEmpty()) {
-//        String msg = String.format("An error while trying to unwrap Like Optional. ");
-//        throw new BadRequestException(msg);
-//      }
+      if (likeOptional.isEmpty()) {
+        String msg = String.format("An error while trying to unwrap Like Optional. ");
+        throw new BadRequestException(msg);
+      }
 
-//      Like like = likeOptional.get();
-//      orphanRemoval = true
-      post.getLikes().removeIf(l -> l.getUserId() == currentUserId);
+      Like like = likeOptional.get();
       likeRepository.delete(like); // do not remove this line!
 
       return save(post);

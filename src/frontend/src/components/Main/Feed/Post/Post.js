@@ -13,24 +13,23 @@ import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import { useDispatch } from 'react-redux'
-import {
-  createNewCommentAction,
-  getCommentsForPostAction,
-  toggleLikeAction
-} from '../../../../redux/Post/postActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
 import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
+import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 
 function Post (props) {
-  const dispatch = useDispatch()
+  // we get all comments from Redux store using useSelector
 
   const {
     id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    numberOfViews = 244688, comments = []
+    numberOfViews = 244688
   } = props.post
 
-  // so fat this data is hardcoded, but we will soon connect it to the backend
+  const dispatch = useDispatch()
+  const allComments = useSelector(allCommentsSelector)
+  const commentsForPost = allComments[id] || []
 
   const classes = Style()
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -154,7 +153,7 @@ function Post (props) {
         </div>
         <div>
           <div className={classes.comments}>
-            {comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
+            {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
             <div className={classes.loadMoreComments}>
               <span>Load more comments</span>
             </div>
