@@ -4,6 +4,7 @@ import SmallDot from '../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
 import Style from './styles'
+import clsx from 'clsx'
 
 function Comment (props) {
   let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
@@ -22,10 +23,10 @@ function Comment (props) {
         <div className={classes.commentBackground}>
           <div className={[classes.commentRow, classes.commentHeader].join(' ')}>
             <div className={classes.commentColumn}>
-              <Typography variant="body1" className={[classes.name, classes.commentUserInfo].join(' ')}>
+              <Typography variant="h5" className={[classes.name, classes.commentUserInfo].join(' ')}>
                 {fullName}
               </Typography>
-              <Typography variant="body2" className={[classes.position, classes.commentUserInfo].join(' ')}>
+              <Typography variant="h6" className={[classes.position, classes.commentUserInfo].join(' ')}>
                 {positionAndCompany}
               </Typography>
             </div>
@@ -40,9 +41,9 @@ function Comment (props) {
         </div>
         <div className={classes.commentLikes}>
           <span
-            className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')}
+            className={clsx(classes.commentLike, commentLiked ? classes.commentLiked : classes.commentNotLiked)}
             onClick={() => setCommentLiked(!commentLiked)}>Like</span>
-          <span className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
+          <span className={clsx(classes.commentRow, quantityOfCommentsLike === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
             <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
           </span>

@@ -14,11 +14,7 @@ import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch } from 'react-redux'
-import {
-  createNewCommentAction,
-  getCommentsForPostAction,
-  toggleLikeAction
-} from '../../../../redux/Post/postActions'
+import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
 import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
 import Comment from './Comment/Comment'
 
@@ -60,19 +56,21 @@ function Post (props) {
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
-        <Avatar avatarUrl={user.avatarUrl}/>
+        <div className={classes.mediumAvatar}>
+          <Avatar avatarUrl={user.avatarUrl}/>
+        </div>
         <div className={classes.userInfo}>
-          <Typography variant="body1" className={classes.name}>
+          <Typography variant="h5" className={classes.name}>
             {user.fullName}
           </Typography>
-          <Typography variant="body2" className={classes.position}>
+          <Typography variant="h6">
             {user.positionAndCompany}
           </Typography>
-          <Typography variant="body2" className={classes.time}>
+          <Typography variant="h6" className={classes.time}>
             {createdDate}
             <SmallDot/>
             <div className={classes.worldIcon}>
-              <PublicIcon/>
+              <PublicIcon fontSize="inherit"/>
             </div>
           </Typography>
         </div>
@@ -104,7 +102,7 @@ function Post (props) {
       <div className={classes.block}>
         <div className={isLikedByActiveUser ? classes.liked : ''}>
           <div className={classes.item} onClick={() => dispatch(toggleLikeAction(id))}>
-            <ThumbUpOutlinedIcon/>
+            <ThumbUpOutlinedIcon fontSize="inherit"/>
             <Hidden xsDown>
               <span className="like">Like</span>
             </Hidden>
@@ -114,19 +112,19 @@ function Post (props) {
           dispatch(getCommentsForPostAction(id))
           setShowedAddComment(!showedAddComment)
         }}>
-          <ChatOutlinedIcon/>
+          <ChatOutlinedIcon fontSize="inherit"/>
           <Hidden xsDown>
             <span>Comment</span>
           </Hidden>
         </div>
         <div className={classes.item}>
-          <RedoOutlinedIcon/>
+          <RedoOutlinedIcon fontSize="inherit"/>
           <Hidden xsDown>
             <span>Share</span>
           </Hidden>
         </div>
         <div className={classes.item}>
-          <TelegramIcon/>
+          <TelegramIcon fontSize="inherit"/>
           <Hidden xsDown>
             <span>Send</span>
           </Hidden>
@@ -135,22 +133,24 @@ function Post (props) {
       {/* -------  */}
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
         <div className={classes.addComment}>
-          <div className={classes.avatar}>
-            <Avatar/>
+          <div className={classes.smallAvatar}>
+            <Avatar avatarUrl={user.avatarUrl}/>
           </div>
-          <InputBase
-            placeholder="Add a comment..."
-            multiline={true}
-            value={commentValue}
-            onChange={handleCommentInputChange}
-            className={classes.commentField}
-            id="input"
-            autoFocus={true}
-            onKeyDown={handleEnterPressed}
-          />
-        </div>
-        <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
-          <SharedButton title="Post"/>
+          <div className={classes.newComment}>
+            <InputBase
+              placeholder="Add a comment..."
+              multiline={true}
+              value={commentValue}
+              onChange={handleCommentInputChange}
+              className={classes.commentField}
+              id="input"
+              autoFocus={true}
+              onKeyDown={handleEnterPressed}
+            />
+            <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
+              <SharedButton title="Post"/>
+            </div>
+          </div>
         </div>
         <div>
           <div className={classes.comments}>

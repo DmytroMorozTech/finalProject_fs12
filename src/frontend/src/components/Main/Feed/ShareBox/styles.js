@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   share: {
     display: 'flex',
     flexDirection: 'column',
@@ -16,7 +16,8 @@ export default makeStyles(() => ({
     marginRight: '10px',
     marginTop: '4px'
   },
-  avatar: {
+  mediumAvatar: {
+    width: theme.avatar.medium,
     marginTop: '5px',
     marginLeft: '20px'
   },
