@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class CommentFacade extends GeneralFacade<Comment, CommentRq, CommentRs> {
   private final CommentService commentService;
 
-  public CommentRs createComment(Long activeUserId, Long postId, String text) {
-    Comment comment = commentService.createComment(activeUserId, postId, text);
+  public CommentRs createComment(CommentRq rq) {
+    Comment comment = commentService.createComment(rq);
     return convertToDto(comment);
   }
 

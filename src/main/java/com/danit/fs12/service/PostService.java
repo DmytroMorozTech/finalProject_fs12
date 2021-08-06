@@ -4,6 +4,7 @@ import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
+import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.LikeRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
   private final LikeRepository likeRepository;
+  private final CommentRepository commentRepository;
   private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
 
   public Post createPost(Post incomingPost) {
@@ -52,26 +54,14 @@ public class PostService extends GeneralService<Post> {
       String msg = String.format("An error while trying to find post with id %d. ", postId);
       throw new BadRequestException(msg);
     }
+    // логику выше нужно вынести в отдельную функцию
+    //    Post post = newMethod(postId)  inside check
 
     Post post = postOpt.get();
     Boolean postIsLiked = post.getIsLikedByActiveUser();
 
     if (postIsLiked) {
-      Optional<Like> likeOptional =
-        post.getLikes().stream()
-          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
-            && Objects.equals(l.getPost().getId(), postId))
-          .findFirst();
-
-      if (likeOptional.isEmpty()) {
-        String msg = String.format("An error while trying to unwrap Like Optional. ");
-        throw new BadRequestException(msg);
-      }
-
-      Like like = likeOptional.get();
-      post.getLikes().remove(like);
-      likeRepository.delete(like); // do not remove this line!
-
+      post.getLikes().removeIf(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId));
       return save(post);
     } else {
       Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);

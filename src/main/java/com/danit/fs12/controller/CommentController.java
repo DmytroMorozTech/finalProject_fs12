@@ -37,12 +37,7 @@ public class CommentController {
 
   @PostMapping
   public ResponseEntity<?> createComment(@Valid @RequestBody CommentRq rq) {
-    System.out.println("Create comment Controller");
-    Long activeUserId = rq.getActiveUserId();
-    Long postId = rq.getPostId();
-    String text = rq.getText();
-
-    CommentRs comment = commentFacade.createComment(activeUserId, postId, text);
+    CommentRs comment = commentFacade.createComment(rq);
     return ResponseEntity.ok(comment);
   }
 

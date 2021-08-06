@@ -5,15 +5,6 @@ import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
 import Style from './styles'
 
-// function Comment ({
-//   commentAvatar = TemporaryAvatar,
-//   commentUserName = 'Peter Walker',
-//   commentUserJobPosition = 'JavaScript Developer',
-//   text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, urna sed suscipit posuere, velit. ',
-//   commentTime = '4d',
-//   quantityOfCommentsLike = 1
-// }) {
-
 function Comment (props) {
   let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
   let {fullName, avatarUrl, positionAndCompany} = user
@@ -24,11 +15,9 @@ function Comment (props) {
 
   return (
     <div className={classes.comment}>
-
       <div>
         <img src={avatarUrl} alt={'comment avatar'} className={classes.commentAvatar}/>
       </div>
-
       <div className= {classes.commentWrapper}>
         <div className={classes.commentBackground}>
           <div className={[classes.commentRow, classes.commentHeader].join(' ')}>

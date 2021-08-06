@@ -4,7 +4,6 @@ import com.danit.fs12.entity.user.UserRs;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class PostRs {
@@ -17,6 +16,5 @@ public class PostRs {
   private Date createdDate;
   private Date lastModifiedDate;
   private UserRs user;
-  private List<UserRs> usersWhoLikedPost;
 
 }

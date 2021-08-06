@@ -13,32 +13,22 @@ import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import { useDispatch } from 'react-redux'
-import { getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
-import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
-import toggleModalAction from '../../../../redux/Modal/modalActions'
-import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../../Modal/modalTypes'
+import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 
 function Post (props) {
-//   {
-//   userName = 'Steve Noiry',
-//   position = 'Java Developer',
-//   postTime = '1h',
-//   text = 'This text in Post was generated automatically!',
-//   picture = image,
-//   quantityOfLikes = 10595,
-//   quantityOfComments = 420,
-//   quantityOfViews = 244688
-// })
-
-  const dispatch = useDispatch()
-
   const {
     id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    numberOfViews = 244688, comments = [] } = props.post
+    numberOfViews = 244688
+  } = props.post
 
-  // so fat this data is hardcoded, but we will soon connect it to the backend
+  const dispatch = useDispatch()
+  const allComments = useSelector(allCommentsSelector)
+  // we get all comments from Redux store using useSelector
+  const commentsForPost = allComments[id] || []
+  // we get from Redux an array of Comments for a particular Post by postId
 
   const classes = Style()
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -47,6 +37,18 @@ function Post (props) {
   const handleCommentInputChange = e => {
     let commentInputVal = e.currentTarget.value
     setCommentValue(commentInputVal)
+  }
+
+  const handleEnterPressed = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      handleButtonPost()
+    }
+  }
+
+  const handleButtonPost = () => {
+    dispatch(createNewCommentAction({ text: commentValue, id: id }))
+    setCommentValue('')
   }
 
   return (
@@ -80,14 +82,7 @@ function Post (props) {
       {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
       {/* </div> */}
       <div className={classes.quantity}>
-        <div onClick={async () => {
-          dispatch(getUsersWhoLikedPostAction(id)) // we received data from backend and saved it to Redux
-
-          setTimeout(
-            dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, postId: id})),
-            1000)
-        }
-        }>
+        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
           <Typography variant="body2" className={classes.quantityText}>
             <LikeMiniIcon/>
             {numberOfLikes}
@@ -95,7 +90,7 @@ function Post (props) {
         </div>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
-          {numberOfComments} comments
+          {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
         </Typography>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
@@ -115,9 +110,8 @@ function Post (props) {
         </div>
         <div className={classes.item} onClick={() => {
           dispatch(getCommentsForPostAction(id))
-          setTimeout(() => setShowedAddComment(!showedAddComment), 500)
+          setShowedAddComment(!showedAddComment)
         }}>
-          {/* !!! */}
           <ChatOutlinedIcon/>
           <Hidden xsDown>
             <span>Comment</span>
@@ -138,29 +132,27 @@ function Post (props) {
       </div>
       {/* -------  */}
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <div>
-          <div className={classes.addComment}>
-            <div className={classes.avatar}>
-              <Avatar/>
-            </div>
-            <InputBase
-              placeholder="Add a comment..."
-              // fullWidth={true}
-              multiline={true}
-              value={commentValue}
-              onChange={handleCommentInputChange}
-              className={classes.commentField}/>
+        <div className={classes.addComment}>
+          <div className={classes.avatar}>
+            <Avatar/>
           </div>
+          <InputBase
+            placeholder="Add a comment..."
+            multiline={true}
+            value={commentValue}
+            onChange={handleCommentInputChange}
+            className={classes.commentField}
+            id="input"
+            autoFocus={true}
+            onKeyDown={handleEnterPressed}
+          />
         </div>
-
-        <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
-          <SharedButton title="Post" onClick={ () => { console.log('Hardcoded func') }}/>
+        <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
+          <SharedButton title="Post"/>
         </div>
-
         <div>
           <div className={classes.comments}>
-            {comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
-
+            {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
             <div className={classes.loadMoreComments}>
               <span>Load more comments</span>
             </div>
