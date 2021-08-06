@@ -54,26 +54,14 @@ public class PostService extends GeneralService<Post> {
       String msg = String.format("An error while trying to find post with id %d. ", postId);
       throw new BadRequestException(msg);
     }
+    // логику выше нужно вынести в отдельную функцию
+    //    Post post = newMethod(postId)  inside check
 
     Post post = postOpt.get();
     Boolean postIsLiked = post.getIsLikedByActiveUser();
 
     if (postIsLiked) {
-      Optional<Like> likeOptional =
-        post.getLikes().stream()
-          .filter(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId)
-            && Objects.equals(l.getPost().getId(), postId))
-          .findFirst();
-
-      if (likeOptional.isEmpty()) {
-        String msg = String.format("An error while trying to unwrap Like Optional. ");
-        throw new BadRequestException(msg);
-      }
-
-      Like like = likeOptional.get();
-      post.getLikes().remove(like);
-      likeRepository.delete(like); // do not remove this line!
-
+      post.getLikes().removeIf(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId));
       return save(post);
     } else {
       Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);

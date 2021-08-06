@@ -25,20 +25,6 @@ export const createNewPostAction = (payload) => (dispatch) => {
     })
 }
 
-export const toggleLikeAction = (payload) => (dispatch) => {
-  const id = payload
-  return fetch(`/api/posts/toggle_like/${id}`,
-    {
-      headers: {'Content-Type': 'application/json'},
-      method: 'POST'
-    })
-    .then(checkStatus)
-    .then((res) => res.json())
-    .then((postObjFromServer) => {
-      dispatch({type: actions.UPDATE_POST, payload: postObjFromServer})
-    })
-}
-
 export const getCommentsForPostAction = (postId) => (dispatch) => {
   return fetch(`/api/comments/for_post/${postId}`,
     {
@@ -48,7 +34,7 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
     .then(checkStatus)
     .then((res) => res.json())
     .then((listOfComments) => {
-      dispatch({type: actions.GET_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
+      dispatch({type: actions.SAVE_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
     })
 }
 
@@ -67,5 +53,35 @@ export const createNewCommentAction = ({text, id}) => (dispatch) => {
           type: actions.ADD_NEW_COMMENT_FOR_POST,
           payload: { comment: commentObjFromServer, postId: id }
         })
+    })
+}
+
+export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
+  const id = payload
+  return fetch(`/api/users/who_liked_post/${id}`,
+    {
+      headers: {'Content-Type': 'application/json'},
+      method: 'GET'
+    })
+    .then(checkStatus)
+    .then((res) => res.json())
+    .then((usersList) => {
+      dispatch({type: actions.SAVE_USERS_WHO_LIKED_POST, payload: {usersList, id}})
+    })
+}
+
+export const toggleLikeAction = (payload) => (dispatch) => {
+  const id = payload
+  // console.log(`toggleLikeAction with postId: ${payload}`)
+
+  return fetch(`/api/posts/toggle_like/${id}`,
+    {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST'
+    })
+    .then(checkStatus)
+    .then((res) => res.json())
+    .then((postObjFromServer) => {
+      dispatch({type: actions.UPDATE_POST, payload: postObjFromServer})
     })
 }

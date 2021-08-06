@@ -13,24 +13,22 @@ import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import { useDispatch } from 'react-redux'
-import {
-  createNewCommentAction,
-  getCommentsForPostAction,
-  toggleLikeAction
-} from '../../../../redux/Post/postActions'
-import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
+import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 
 function Post (props) {
-  const dispatch = useDispatch()
-
   const {
     id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    numberOfViews = 244688, comments = []
+    numberOfViews = 244688
   } = props.post
 
-  // so fat this data is hardcoded, but we will soon connect it to the backend
+  const dispatch = useDispatch()
+  const allComments = useSelector(allCommentsSelector)
+  // we get all comments from Redux store using useSelector
+  const commentsForPost = allComments[id] || []
+  // we get from Redux an array of Comments for a particular Post by postId
 
   const classes = Style()
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -92,7 +90,7 @@ function Post (props) {
         </div>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
-          {numberOfComments} comments
+          {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
         </Typography>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
@@ -154,7 +152,7 @@ function Post (props) {
         </div>
         <div>
           <div className={classes.comments}>
-            {comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
+            {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
             <div className={classes.loadMoreComments}>
               <span>Load more comments</span>
             </div>

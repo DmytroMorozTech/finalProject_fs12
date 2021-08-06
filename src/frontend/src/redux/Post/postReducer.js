@@ -1,80 +1,55 @@
 import * as actions from './postActionTypes'
 import update from 'immutability-helper'
 
-const initialStore = {
+const initialState = {
   postsList: [],
-  loading: false
+  loading: false,
+  comments: {}, // key - postId, value - [commentRs, commentRs,...]
+  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
 }
 
-const postReducer = (store = initialStore, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOADING_POSTS:
-      return {...store, loading: action.payload}
+      return {...state, loading: action.payload}
 
     case actions.SAVE_POSTS:
-      return { ...store, postsList: action.payload }
+      return { ...state, postsList: action.payload }
 
     case actions.ADD_NEW_POST:
-      return { ...store, postsList: [...store.postsList, action.payload] }
+      return { ...state, postsList: [...state.postsList, action.payload] }
 
     case actions.UPDATE_POST:
       let updatedPost = action.payload
 
-      const currentPost = store.postsList.find((post) => post.id === updatedPost.id)
+      const currentPost = state.postsList.find((post) => post.id === updatedPost.id)
 
-      const indexOfCurrentPost = store.postsList.indexOf(currentPost)
+      const indexOfCurrentPost = state.postsList.indexOf(currentPost)
 
-      return update(store, {
+      return update(state, {
         postsList: { $splice: [[indexOfCurrentPost, 1, updatedPost]] }
       })
 
-    case actions.GET_USERS_WHO_LIKED_POST:
+    case actions.SAVE_USERS_WHO_LIKED_POST:
       let {usersList, id} = action.payload
-
-      let currentPost1 = store.postsList.find((post) => post.id === id)
-      let currentPost1Copy = {...currentPost1}
-      currentPost1Copy.usersWhoLikedPost = usersList
-
-      const indexOfCurrentPost1 = store.postsList.indexOf(currentPost1)
-
-      return update(store, {
-        postsList: { $splice: [[indexOfCurrentPost1, 1, currentPost1Copy]] }
-      })
-
-    case actions.GET_COMMENTS_FOR_POST:
-      let { listOfComments, postId } = action.payload
-      if (listOfComments.length === 0) return store
-
-      let currentPost2 = store.postsList.find((post) => post.id === postId)
-
-      let currentPost2Copy = {...currentPost2}
-      currentPost2Copy.comments = listOfComments
-
-      const indexOfCurrentPost2 = store.postsList.indexOf(currentPost2)
-
-      return update(store, {
-        postsList: { $splice: [[indexOfCurrentPost2, 1, currentPost2Copy]] }
-      })
+      return { ...state, usersWhoLikedPost: {...state.usersWhoLikedPost, [id]: usersList} }
 
     case actions.ADD_NEW_COMMENT_FOR_POST:
       let { comment, postId: postId2 } = {...action.payload}
+      return { ...state, comments: {...state.comments, [postId2]: [ ...(state.comments[postId2] || []), comment ]} }
 
-      let currentPost3 = store.postsList.find((post) => post.id === postId2)
-      let currentPost3Copy = {
-        ...currentPost3,
-        comments: currentPost3.comments ? [...currentPost3.comments] : [],
-        numberOfComments: currentPost3.numberOfComments + 1
-      }
-      currentPost3Copy.comments.push(comment)
+    case actions.SAVE_COMMENTS_FOR_POST:
+      const { listOfComments, postId } = action.payload
+      return { ...state, comments: {...state.comments, [postId]: listOfComments} }
 
-      const indexOfCurrentPost3 = store.postsList.indexOf(currentPost3)
+    case actions.DELETE_COMMENT:
+      const { commentId, postId: postId3 } = action.payload
+      const updatedComments = state.comments[postId3].filter(c => c.id !== commentId)
 
-      return update(store, {
-        postsList: { $splice: [[indexOfCurrentPost3, 1, currentPost3Copy]] }
-      })
+      return { ...state, comments: {...state.comments, [postId3]: updatedComments} }
 
     default: {
-      return store
+      return state
     }
   }
 }
