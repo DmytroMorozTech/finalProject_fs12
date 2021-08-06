@@ -2,13 +2,13 @@ import * as actions from './modalActionTypes'
 import {ADD_NEW_POST} from '../../components/Modal/modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 
-const initialStore = {
+const initialState = {
   isModalOpen: false,
   modalOpenType: null,
   modalContent: null
 }
 
-const modalReducer = (store = initialStore, action) => {
+const modalReducer = (state = initialState, action) => {
   function getModalType () {
     const {modalType} = action.payload
     return modalType
@@ -30,15 +30,15 @@ const modalReducer = (store = initialStore, action) => {
       }
       
       return {
-        ...store,
-        isModalOpen: !store.isModalOpen,
+        ...state,
+        isModalOpen: !state.isModalOpen,
         modalOpenType: modalType,
         modalContent: content
       }
     }
       
     default: {
-      return store
+      return state
     }
   }
 }

@@ -1,4 +1,4 @@
-const initialStore = {
+const initialState = {
   activeUser: {
     'id': 1,
     'fullName': 'Richard West',
@@ -10,10 +10,10 @@ const initialStore = {
   }
 }
 
-const userReducer = (store = initialStore, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     default: {
-      return store
+      return state
     }
   }
 }

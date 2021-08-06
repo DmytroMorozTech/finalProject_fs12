@@ -52,7 +52,9 @@ public class Post extends AbstractEntity {
 
   @OneToMany(
     mappedBy = "post",
-    cascade = CascadeType.ALL)
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
+    )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore

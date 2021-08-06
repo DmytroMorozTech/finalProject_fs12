@@ -14,14 +14,11 @@ import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction } from '../../../../redux/Post/postActions'
-import { getUsersWhoLikedPostAction } from '../../../../redux/User/userActions'
+import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 
 function Post (props) {
-  // we get all comments from Redux store using useSelector
-
   const {
     id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
     numberOfViews = 244688
@@ -29,7 +26,9 @@ function Post (props) {
 
   const dispatch = useDispatch()
   const allComments = useSelector(allCommentsSelector)
+  // we get all comments from Redux store using useSelector
   const commentsForPost = allComments[id] || []
+  // we get from Redux an array of Comments for a particular Post by postId
 
   const classes = Style()
   const [showedAddComment, setShowedAddComment] = useState(false)
@@ -91,7 +90,7 @@ function Post (props) {
         </div>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>
-          {numberOfComments} comments
+          {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
         </Typography>
         <SmallDot/>
         <Typography variant="body2" className={classes.quantityText}>

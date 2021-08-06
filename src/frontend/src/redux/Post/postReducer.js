@@ -4,7 +4,8 @@ import update from 'immutability-helper'
 const initialState = {
   postsList: [],
   loading: false,
-  comments: {}
+  comments: {}, // key - postId, value - [commentRs, commentRs,...]
+  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
 }
 
 const postReducer = (state = initialState, action) => {
@@ -18,8 +19,7 @@ const postReducer = (state = initialState, action) => {
     case actions.ADD_NEW_POST:
       return { ...state, postsList: [...state.postsList, action.payload] }
 
-    // ----------------------------------------------
-    case actions.UPDATE_POST: // ok
+    case actions.UPDATE_POST:
       let updatedPost = action.payload
 
       const currentPost = state.postsList.find((post) => post.id === updatedPost.id)
@@ -30,18 +30,9 @@ const postReducer = (state = initialState, action) => {
         postsList: { $splice: [[indexOfCurrentPost, 1, updatedPost]] }
       })
 
-    case actions.GET_USERS_WHO_LIKED_POST:
+    case actions.SAVE_USERS_WHO_LIKED_POST:
       let {usersList, id} = action.payload
-
-      let currentPost1 = state.postsList.find((post) => post.id === id)
-      let currentPost1Copy = {...currentPost1}
-      currentPost1Copy.usersWhoLikedPost = usersList
-
-      const indexOfCurrentPost1 = state.postsList.indexOf(currentPost1)
-
-      return update(state, {
-        postsList: { $splice: [[indexOfCurrentPost1, 1, currentPost1Copy]] }
-      })
+      return { ...state, usersWhoLikedPost: {...state.usersWhoLikedPost, [id]: usersList} }
 
     case actions.ADD_NEW_COMMENT_FOR_POST:
       let { comment, postId: postId2 } = {...action.payload}
