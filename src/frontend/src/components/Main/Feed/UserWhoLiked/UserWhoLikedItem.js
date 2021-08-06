@@ -8,36 +8,35 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import Style from './styles'
-import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
 
-const styles = (theme) => ({
-  root: {
-    width: '500px',
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
-})
+// const styles = (theme) => ({
+//   root: {
+//     width: '500px',
+//     margin: 0,
+//     padding: theme.spacing(2)
+//   },
+//   closeButton: {
+//     position: 'absolute',
+//     right: theme.spacing(1),
+//     top: theme.spacing(1),
+//     color: theme.palette.grey[500]
+//   }
+// })
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose && (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      )}
-    </MuiDialogTitle>
-  )
-})
+// const DialogTitle = withStyles(styles)((props) => {
+//   const { children, classes, onClose, ...other } = props
+//   return (
+//     <MuiDialogTitle disableTypography className={classes.root} {...other}>
+//       <Typography variant="h6">{children}</Typography>
+//       {onClose && (
+//         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+//           <CloseIcon />
+//         </IconButton>
+//       )}
+//     </MuiDialogTitle>
+//   )
+// })
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -45,8 +44,8 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-const WhoLikedPost = (props) => {
-  const {avatarUrl, positionANdCompany, fullName} = props.user
+const UserWhoLikedPostItem = (props) => {
+  const {avatarUrl, positionAndCompany, fullName} = props.user
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -63,11 +62,11 @@ const WhoLikedPost = (props) => {
         </div>
         <div className={classes.buttonGroup}>
           <span>{fullName}</span>
-          <span>{positionANdCompany}</span>
+          <span>{positionAndCompany}</span>
         </div>
       </div>
 
     </DialogContent>
   )
 }
-export default WhoLikedPost
+export default UserWhoLikedPostItem

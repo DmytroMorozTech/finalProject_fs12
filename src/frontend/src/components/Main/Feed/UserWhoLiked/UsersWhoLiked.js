@@ -6,7 +6,6 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import MuiDialogContent from '@material-ui/core/DialogContent'
 import Style from './styles'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import UserWhoLikedItem from './UserWhoLikedItem'
@@ -39,13 +38,13 @@ const DialogTitle = withStyles(styles)((props) => {
   )
 })
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2)
-  }
-}))(MuiDialogContent)
+// const DialogContent = withStyles((theme) => ({
+//   root: {
+//     padding: theme.spacing(2)
+//   }
+// }))(MuiDialogContent)
 
-const WhoLikedPost = (props) => {
+const UsersWhoLiked = (props) => {
   const { posts, postId } = props // we get full list of posts from Redux
   const post = posts.filter(p => p.id === postId)[0] // we find the post the is needed for components based on id
 
@@ -82,4 +81,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(WhoLikedPost)
+export default connect(mapStateToProps, null)(UsersWhoLiked)

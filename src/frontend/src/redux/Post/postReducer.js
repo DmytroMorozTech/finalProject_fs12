@@ -34,7 +34,6 @@ const postReducer = (store = initialStore, action) => {
       let currentPost1 = store.postsList.find((post) => post.id === id)
       let currentPost1Copy = {...currentPost1}
       currentPost1Copy.usersWhoLikedPost = usersList
-
       const indexOfCurrentPost1 = store.postsList.indexOf(currentPost1)
 
       return update(store, {
