@@ -8,7 +8,7 @@ export default makeStyles(() => ({
     cursor: 'pointer'
   },
   userAvatar: {
-    width: '65px',
+    width: '100%',
     borderRadius: '50%'
   }
 }))

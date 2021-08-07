@@ -1,13 +1,13 @@
 import {makeStyles} from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   btn: {
     margin: '5px',
-    borderRadius: 30,
+    borderRadius: theme.shape.large,
     boxShadow: 'none',
-    paddingTop: '2px',
-    paddingBottom: '2px',
+    fontSize: '14px',
+    padding: '0px',
     '&:hover': {
       boxShadow: 'none'
     },
