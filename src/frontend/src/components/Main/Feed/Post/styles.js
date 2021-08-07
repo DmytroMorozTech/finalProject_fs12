@@ -92,7 +92,7 @@ export default makeStyles((theme) => ({
     transition: 'all 0.35s ease',
     padding: theme.spacing(2),
     borderRadius: theme.shape.small,
-    fontSize: theme.typography.icons.medium.fontSize,
+    fontSize: theme.typography.icons.large.fontSize,
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     },

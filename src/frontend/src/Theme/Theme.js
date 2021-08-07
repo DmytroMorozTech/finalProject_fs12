@@ -61,6 +61,9 @@ const theme = createTheme({
         fontSize: '0.900rem'
       },
       medium: {
+        fontSize: '1.1rem'
+      },
+      large: {
         fontSize: '1.9rem'
       }
     },
@@ -74,7 +77,8 @@ const theme = createTheme({
     medium: '50px'
   },
   border: {
-    simple: '1px solid #e0e0e0'
+    simple: '1px solid #e0e0e0',
+    comment: '0 10px 10px 10px'
   },
   shape: {
     extraSmall: 3,
