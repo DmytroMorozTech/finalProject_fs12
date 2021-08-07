@@ -88,7 +88,7 @@ const AddNewPost = () => {
       <div className={classes.title}>
         <h4>Create post</h4>
       </div>
-      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler} >
+      <DialogTitle id="customized-dialog-title" onClose={() => dispatch(toggleModalAction())} >
 
       </DialogTitle>
 

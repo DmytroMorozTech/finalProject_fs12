@@ -45,13 +45,10 @@ const DialogTitle = withStyles(styles)((props) => {
 // }))(MuiDialogContent)
 
 const UsersWhoLiked = (props) => {
-  const { posts, postId } = props // we get full list of posts from Redux
-  const post = posts.filter(p => p.id === postId)[0] // we find the post the is needed for components based on id
+  const {usersWhoLikedPost, postId} = props
+  const usersWhoLikedThisPost = usersWhoLikedPost[postId]
 
-  console.log(posts)
-  const usersWhoLikedList = post.usersWhoLikedPost // posts seem to be not synchronized with Redux ??
-  console.log(usersWhoLikedList)
-
+  console.log(usersWhoLikedThisPost)
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -66,18 +63,19 @@ const UsersWhoLiked = (props) => {
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <div className={classes.title}>
           <LikeMiniIcon/>
-          {post.numberOfLikes}
+          {usersWhoLikedThisPost.length}
         </div>
       </DialogTitle>
 
-      {usersWhoLikedList.map(user => <UserWhoLikedItem key={user.id} user={user}/>)}
+      {usersWhoLikedThisPost.map(user => <UserWhoLikedItem key={user.id} user={user}/>)}
 
     </div>
   )
 }
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.postsList
+    usersWhoLikedPost: state.posts.usersWhoLikedPost,
+    postId: state.modal.activePostId
   }
 }
 
