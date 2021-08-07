@@ -16,15 +16,14 @@ export default makeStyles(() => ({
     height: '100%',
     overflow: 'hidden',
     borderRadius: 12,
-    boxShadow: 'inset 0 0 0 1px #8080802b',
-    zIndex: 1000
+    boxShadow: 'inset 0 0 0 1px #8080802b'
   },
 
   layoutList: {
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: 'inset 0 0 0 1px #8080802b'
+    borderRight: 1
   },
 
   containerHeader: {
@@ -135,8 +134,7 @@ export default makeStyles(() => ({
     overflowX: 'hidden',
     listStyle: 'none!important',
     padding: 0,
-    margin: 0,
-    marginTop: 6
+    margin: 0
   },
 
   containerConvoItem: {
@@ -501,7 +499,7 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '100%',
-    position: 'static',
+    position: 'relative',
     width: '100%',
     boxShadow: '0px -3px 0px rgb(0 0 0 / 8%)'
   },
@@ -547,6 +545,7 @@ export default makeStyles(() => ({
   },
 
   msgFormFooter: {
+    position: 'relative',
     borderTop: '1px solid #00000014',
     justifyContent: 'space-between',
     marginTop: 'auto',
@@ -556,7 +555,7 @@ export default makeStyles(() => ({
     display: 'flex',
     paddingBottom: 48,
     flexShrink: 0,
-    zIndex: 1
+    zIndex: -1
   },
 
   imgIconMsg: {
@@ -572,24 +571,6 @@ export default makeStyles(() => ({
       width: '40px',
       height: '40px'
     }
-  },
-
-  btnMsg: {
-    '& > .MuiButtonBase-root': {
-      '& >.Mui-disabled': {
-        cursor: 'not-allowed!important',
-        pointerEvents: 'none'
-      }
-    }
-  },
-
-  btnDisabled: {
-    cursor: 'not-allowed',
-    pointerEvents: 'none'
-  },
-
-  btnMsgActive: {
-
   }
 
 }))
