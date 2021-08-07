@@ -10,6 +10,11 @@ export default makeStyles(() => ({
     paddingBottom: '2px',
     '&:hover': {
       boxShadow: 'none'
+    },
+
+    '&:disabled': {
+      cursor: 'not-allowed',
+      pointerEvents: 'auto'
     }
   }
 }))

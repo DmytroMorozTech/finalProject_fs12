@@ -109,8 +109,10 @@ function Post (props) {
           </div>
         </div>
         <div className={classes.item} onClick={() => {
-          dispatch(getCommentsForPostAction(id))
-          setShowedAddComment(!showedAddComment)
+          if (!showedAddComment) {
+            dispatch(getCommentsForPostAction(id))
+            setShowedAddComment(!showedAddComment)
+          }
         }}>
           <ChatOutlinedIcon/>
           <Hidden xsDown>
