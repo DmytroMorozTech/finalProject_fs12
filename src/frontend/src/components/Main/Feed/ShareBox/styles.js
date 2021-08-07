@@ -4,8 +4,8 @@ export default makeStyles((theme) => ({
   share: {
     display: 'flex',
     flexDirection: 'column',
-    border: '1px solid #e0e0e0',
-    borderRadius: '10px',
+    border: theme.border.simple,
+    borderRadius: theme.shape.medium,
     width: '100%',
     backgroundColor: 'white'
   },
@@ -13,92 +13,69 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    marginRight: '10px',
-    marginTop: '4px'
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(2)
   },
   mediumAvatar: {
     width: theme.avatar.medium,
-    marginTop: '5px',
-    marginLeft: '20px'
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(4)
   },
   postButton: {
-    margin: '0 10px',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    fontWeight: theme.typography.h5.fontWeight,
+    fontSize: theme.typography.h4.fontSize,
     flexGrow: '1',
-    paddingLeft: '16px',
-    border: '1px solid #e0e0e0',
-    borderRadius: '35px',
+    paddingLeft: theme.spacing(3),
+    border: theme.border.dark,
+    borderRadius: theme.shape.large,
     textAlign: 'left',
-    height: '50px',
+    padding: theme.spacing(3.5),
     backgroundColor: 'white',
     cursor: 'pointer',
-    color: 'grey',
+    color: theme.palette.grey[500],
+    letterSpacing: theme.typography.h5.letterSpacing,
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
+      backgroundColor: 'rgba(0,0,0,0.05)'
     }
   },
   shareButtons: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: theme.spacing(1)
+  },
+  shareButton: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    transition: 'all 0.35s ease',
+    borderRadius: theme.shape.small,
+    cursor: 'pointer',
+    padding: theme.spacing(2),
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.05)'
+    }
   },
   photo: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    color: '#0a66c2',
-    transition: 'all 0.35s ease',
-    padding: '10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
-    }
+    color: theme.palette.primary.main
   },
   video: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    color: '#3ACB0A',
-    transition: 'all 0.35s ease',
-    padding: '10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
-    }
+    color: '#3ACB0A'
   },
   event: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    color: '#F8A558',
-    transition: 'all 0.35s ease',
-    padding: '10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
-    }
+    color: '#F8A558'
   },
   article: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    color: '#E6699D',
-    transition: 'all 0.35s ease',
-    padding: '10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
-    }
+    color: '#E6699D'
   },
   names: {
-    color: 'grey',
-    fontSize: 14,
-    fontWeight: 400,
-    marginLeft: '10px',
+    fontWeight: theme.typography.h5.fontWeight,
+    fontSize: theme.typography.h4.fontSize,
+    color: theme.palette.grey[500],
+    marginLeft: theme.spacing(2),
     cursor: 'pointer'
   }
 }))
