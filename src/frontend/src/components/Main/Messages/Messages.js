@@ -6,10 +6,16 @@ import TemporaryAvatarOne from '../../../temporaryImages/avatarTempMessage.png'
 import TemporaryAvatarTwo from '../../../temporaryImages/avatarTempMassegeTwo.png'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import OpenInNewSharpIcon from '@material-ui/icons/OpenInNewSharp'
-import MenuSharpIcon from '@material-ui/icons/MenuSharp'
+// import MenuSharpIcon from '@material-ui/icons/MenuSharp'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import InputBase from '@material-ui/core/InputBase'
+import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
+import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
+import VideoCallIcon from '@material-ui/icons/VideoCall'
 import clsx from 'clsx'
+import SharedButton from '../../../shared/Button/SharedButton'
+import ImageUpload from './imageUpload'
+import AllUpload from './allUpload'
 
 function Messages ({
   myAvatar = MyAvatarMessage,
@@ -26,13 +32,20 @@ function Messages ({
   daysAgoOnline = '4 days ago'
 }) {
   const classes = Style()
+  const [SearchValue, setSearchValue] = useState('')
+  const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
+  const handleSearchInputChange = e => {
+    let SearchInputVal = e.currentTarget.value
+    setSearchValue(SearchInputVal)
+  }
+
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
-
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
     setMessageValue(messageInputVal)
   }
+
   return (
     <main className={classes.layoutListDetail}>
       <div className={ classes.listDetailInner}>
@@ -49,15 +62,21 @@ function Messages ({
               </div>
             </div>
 
-            <div>
-              <div className={classes.header_search}>
+            <div className={classes.header_search_container}>
+              <div className={clsx(classes.header_search, inputIsFocusedSearch ? classes.header_searchActive : '')}>
                 <SearchRoundedIcon className={`${classes.absolut} ${classes.iconSearch}`}/>
-                <input placeholder="Search"/>
-                <div className={classes.menu}>
-                  <MenuSharpIcon className={classes.iconNavMenu}/>
-                </div>
+                <input placeholder="Search"
+                  onFocus={() => setInputIsFocusedSearch(!inputIsFocusedSearch)}
+                  onBlur={() => setInputIsFocusedSearch(!inputIsFocusedSearch)}
+                  value={SearchValue}
+                  onChange={handleSearchInputChange}
+                />
+                {/* <div className={classes.menu}> */}
+                {/*  <MenuSharpIcon className={classes.iconNavMenu}/> */}
+                {/* </div> */}
               </div>
             </div>
+
           </div>
 
           <div>
@@ -225,8 +244,33 @@ function Messages ({
                     </div>
                   </div>
                 </div>
-                <footer>
-
+                <footer className={classes.msgFormFooter}>
+                  <div style={{ display: 'flex' }}>
+                    <div style={{ display: 'inline-block' }}>
+                      <ImageUpload/>
+                    </div>
+                    <div style={{ display: 'inline-block' }}>
+                      <AllUpload/>
+                    </div>
+                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                      <GifOutlinedIcon/>
+                    </div>
+                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                      <SentimentSatisfiedOutlinedIcon/>
+                    </div>
+                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                      <VideoCallIcon/>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex' }}>
+                    <div >
+                      <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0 }
+                        title="Message"/>
+                    </div>
+                    <div className={classes.menu}>
+                      <MoreHorizIcon/>
+                    </div>
+                  </div>
                 </footer>
               </form>
             </div>

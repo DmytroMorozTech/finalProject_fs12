@@ -16,7 +16,8 @@ export default makeStyles(() => ({
     height: '100%',
     overflow: 'hidden',
     borderRadius: 12,
-    boxShadow: 'inset 0 0 0 1px #8080802b'
+    boxShadow: 'inset 0 0 0 1px #8080802b',
+    zIndex: 1000
   },
 
   layoutList: {
@@ -61,26 +62,55 @@ export default makeStyles(() => ({
     }
   },
 
-  header_search: {
-    position: 'relative',
-    marginLeft: '15px',
-    width: '290px',
+  header_search_container: {
+    height: 50,
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  header_search: {
+    position: 'relative',
+    width: '90%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: '5px',
     borderRadius: 5,
     backgroundColor: '#eef3f8',
-    marginTop: '5px',
     boxShadow: 'none',
-    '&:hover': {
-      boxShadow: 'inset 0 0 0 1px #000'
-    },
     '& > .MuiSvgIcon-root': {
       color: 'rgb(95 97 99)'
     },
     '& > input': {
       fontSize: 18,
-      marginLeft: 30,
+      marginLeft: 40,
+      border: 0,
+      outlineWidth: 0,
+      backgroundColor: 'transparent',
+      '&::placeholder': {
+        color: 'grey',
+        fontSize: '15px'
+      }
+    }
+  },
+
+  header_searchActive: {
+    position: 'relative',
+    width: '90%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '5px',
+    borderRadius: 5,
+    backgroundColor: '#eef3f8',
+    boxShadow: 'inset 0 0 0 1px #000',
+    '& > .MuiSvgIcon-root': {
+      color: 'rgb(95 97 99)'
+    },
+    '& > input': {
+      fontSize: 18,
+      marginLeft: 40,
       border: 0,
       outlineWidth: 0,
       backgroundColor: 'transparent',
@@ -189,7 +219,6 @@ export default makeStyles(() => ({
   userName: {
     flex: 1,
     width: 0,
-    display: '-webkit-box',
     whiteSpace: 'nowrap!important',
     overflow: 'hidden!important',
     textOverflow: 'ellipsis!important'
@@ -212,7 +241,7 @@ export default makeStyles(() => ({
     textOverflow: 'ellipsis',
     display: 'box',
     margin: '0 auto',
-    maxHeight: '2rem',
+    maxHeight: 40,
     flex: 1,
     color: 'rgba(0, 0, 0, 0.6)',
     boxSizing: 'inherit',
@@ -452,6 +481,7 @@ export default makeStyles(() => ({
   },
 
   eventListItemMessageBubble: {
+    minHeight: 140,
     display: 'inline-block',
     maxWidth: '100%',
     padding: 0,
@@ -486,6 +516,8 @@ export default makeStyles(() => ({
   },
 
   formMsgContentContainer: {
+
+    minHeight: 120,
     display: 'flex',
     Flex: '1 0 auto',
     flexDirection: 'column',
@@ -514,13 +546,49 @@ export default makeStyles(() => ({
     width: '90%'
   },
 
-  activeMsgButton: {
+  msgFormFooter: {
+    borderTop: '1px solid #00000014',
+    justifyContent: 'space-between',
+    marginTop: 'auto',
+    padding: '4px 8px',
+    backgroundColor: '#f9fafb',
+    alignItems: 'center',
     display: 'flex',
-    marginLeft: '80px',
-    marginBottom: '10px'
+    paddingBottom: 48,
+    flexShrink: 0,
+    zIndex: 1
   },
 
-  msgButton: {
+  imgIconMsg: {
+    cursor: 'pointer',
+    display: 'block',
+    '& > .MuiSvgIcon-root': {
+      margin: '8px',
+      color: 'rgb(95 97 99)'
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.10)',
+      borderRadius: '50%',
+      width: '40px',
+      height: '40px'
+    }
+  },
+
+  btnMsg: {
+    '& > .MuiButtonBase-root': {
+      '& >.Mui-disabled': {
+        cursor: 'not-allowed!important',
+        pointerEvents: 'none'
+      }
+    }
+  },
+
+  btnDisabled: {
+    cursor: 'not-allowed',
+    pointerEvents: 'none'
+  },
+
+  btnMsgActive: {
 
   }
 
