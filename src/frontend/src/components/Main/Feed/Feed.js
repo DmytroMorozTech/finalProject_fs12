@@ -16,7 +16,6 @@ function Feed (props) {
     <div className={classes.feed}>
       <ShareBox/>
       {posts.map(post => <Post key={post.id} post={post}/>)}
-      {/* <Post/> */}
     </div>
   )
 }

@@ -5,9 +5,9 @@ import Style from './styles'
 function SmallDot () {
   const classes = Style()
   return (
-    <div className={classes.smallDot}>
+    <span className={classes.smallDot}>
       <FiberManualRecordIcon/>
-    </div>
+    </span>
   )
 }
 
