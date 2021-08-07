@@ -16,14 +16,15 @@ export default makeStyles(() => ({
     height: '100%',
     overflow: 'hidden',
     borderRadius: 12,
-    boxShadow: 'inset 0 0 0 1px #8080802b'
+    boxShadow: 'inset 0 0 0 1px #8080802b',
+    backgroundColor: '#fff'
   },
 
   layoutList: {
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
-    borderRight: 1
+    boxShadow: 'inset -1px 0 0 0 #8080802b'
   },
 
   containerHeader: {
@@ -330,8 +331,7 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
-    justifyContent: 'flex-start',
-    overflowY: 'auto'
+    justifyContent: 'flex-start'
   },
 
   messageListContent: {
@@ -555,7 +555,8 @@ export default makeStyles(() => ({
     display: 'flex',
     paddingBottom: 48,
     flexShrink: 0,
-    zIndex: -1
+    zIndex: 2,
+    boxShadow: 'inset -1px -1px 0 0 #8080802b'
   },
 
   imgIconMsg: {

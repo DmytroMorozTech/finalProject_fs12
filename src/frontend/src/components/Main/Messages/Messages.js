@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Style from './styles'
 import MyAvatarMessage from '../../../temporaryImages/myAvatarMessage.JPG'
-import TemporaryAvatar from '../../../temporaryImages/avatarNotification.jpg'
+import TemporaryAvatar from '../../../temporaryImages/avatar.jpg'
 import TemporaryAvatarOne from '../../../temporaryImages/avatarTempMessage.png'
 import TemporaryAvatarTwo from '../../../temporaryImages/avatarTempMassegeTwo.png'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
