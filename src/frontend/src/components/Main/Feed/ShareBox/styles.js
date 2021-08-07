@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     width: '100%',
-    backgroundColor: 'white'
+    backgroundColor: theme.palette.common.white
   },
   post: {
     display: 'flex',
@@ -28,11 +28,11 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.h4.fontSize,
     flexGrow: '1',
     paddingLeft: theme.spacing(3),
-    border: theme.border.dark,
+    border: theme.border.normal,
     borderRadius: theme.shape.large,
     textAlign: 'left',
     padding: theme.spacing(3.5),
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.common.white,
     cursor: 'pointer',
     color: theme.palette.grey[500],
     letterSpacing: theme.typography.h5.letterSpacing,

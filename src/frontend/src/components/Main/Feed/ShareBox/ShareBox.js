@@ -1,5 +1,5 @@
 import React from 'react'
-import Style from './styles'
+import styles from './styles'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
@@ -13,7 +13,7 @@ import avatarUrl from '../../../../temporaryImages/avatar.jpg'
 import clsx from 'clsx'
 
 function ShareBox (props) {
-  const classes = Style()
+  const classes = styles()
   const dispatch = useDispatch()
 
   return (

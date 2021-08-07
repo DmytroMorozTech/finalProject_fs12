@@ -3,7 +3,7 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
-import Style from './styles'
+import styles from './styles'
 import React, { useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
@@ -31,7 +31,7 @@ function Post (props) {
   const commentsForPost = allComments[id] || []
   // we get from Redux an array of Comments for a particular Post by postId
 
-  const classes = Style()
+  const classes = styles()
   const [showedAddComment, setShowedAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
 

@@ -38,6 +38,7 @@ const theme = createTheme({
       fontSize: '0.700rem'
     },
     h3: {
+      fontSize: '1.2rem',
       fontWeight: 700
     },
     h4: {
@@ -53,7 +54,7 @@ const theme = createTheme({
       color: '#616161'
     },
     h6: {
-      fontSize: '0.750rem', // 12px
+      fontSize: '0.750rem',
       fontWeight: 500,
       letterSpacing: '0.02em',
       lineHeight: 1.3,
@@ -72,7 +73,8 @@ const theme = createTheme({
     },
     button: {
       fontWeight: 600,
-      textTransform: 'none'
+      textTransform: 'none',
+      fontSize: '0.900rem'
     }
   },
   avatar: {
@@ -81,7 +83,9 @@ const theme = createTheme({
   },
   border: {
     simple: '1px solid #e0e0e0',
-    dark: '1px solid #bdbdbd',
+    normal: '1px solid #bdbdbd',
+    boldLight: '2px solid #bdbdbd',
+    boldDark: '2px solid #757575',
     comment: '0 10px 10px 10px'
   },
   shape: {

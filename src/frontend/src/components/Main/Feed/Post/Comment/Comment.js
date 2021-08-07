@@ -3,7 +3,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import SmallDot from '../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
-import Style from './styles'
+import styles from './styles'
 import clsx from 'clsx'
 import Avatar from '../../../../../shared/Avatar/Avatar'
 
@@ -11,7 +11,7 @@ function Comment (props) {
   let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
   let {fullName, avatarUrl, positionAndCompany} = user
 
-  const classes = Style()
+  const classes = styles()
 
   const [commentLiked, setCommentLiked] = useState(false)
 
