@@ -1,13 +1,17 @@
 import * as actions from './postActionTypes'
 import fetch from 'unfetch'
 import checkStatus from '../Services/checkStatus'
+import http from '../../services/httpService'
 
 export const getAllPostsAction = () => (dispatch) => {
-  return fetch('api/posts')
-    .then(checkStatus)
-    .then((result) => result.json())
+  dispatch({ type: actions.LOADING_POSTS, payload: true })
+
+  return http
+    .get('api/posts')
+    .then((result) => result.data)
     .then((listOfPosts) => {
       dispatch({type: actions.SAVE_POSTS, payload: listOfPosts})
+      dispatch({ type: actions.LOADING_POSTS, payload: false })
     })
 }
 
