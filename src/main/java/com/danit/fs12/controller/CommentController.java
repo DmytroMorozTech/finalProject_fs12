@@ -37,13 +37,14 @@ public class CommentController {
 
   @PostMapping
   public ResponseEntity<?> createComment(@Valid @RequestBody CommentRq rq) {
-    System.out.println("Create comment Controller");
-    Long activeUserId = rq.getActiveUserId();
-    Long postId = rq.getPostId();
-    String text = rq.getText();
-
-    CommentRs comment = commentFacade.createComment(activeUserId, postId, text);
+    CommentRs comment = commentFacade.createComment(rq);
     return ResponseEntity.ok(comment);
+  }
+
+  @GetMapping(path = "/for_post/{postId}")
+  public ResponseEntity<List<CommentRs>> getCommentsForPost(@PathVariable Long postId) {
+    List<CommentRs> comments = commentFacade.getCommentsForPost(postId);
+    return ResponseEntity.ok(comments);
   }
 
 }

@@ -3,17 +3,15 @@ package com.danit.fs12.entity.post;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 public class PostRq {
 
-  @NotNull(message = "userId should be specified.")
-  Long userId;
+  @Size(min = 1, max = 1000, message = "Length of post message should be within range 1-1000 characters")
+  // on original LinkedIn the maxLength of post text field is 1300 characters
 
-  @NotNull(message = "Post title should be specified")
-  String title;
-
-  @NotNull(message = "Post main text should be specified")
-  String mainText;
+  @NotNull(message = "Post text should be specified")
+  String text;
 
 }

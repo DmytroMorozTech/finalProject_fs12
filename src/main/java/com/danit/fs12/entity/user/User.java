@@ -3,13 +3,14 @@ package com.danit.fs12.entity.user;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.certification.Certification;
 import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
 import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
-import com.danit.fs12.entity.comment.Comment;
-import com.danit.fs12.entity.message.Message;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,6 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -29,6 +29,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity(name = "User")
@@ -51,12 +52,17 @@ public class User extends AbstractEntity {
 
   private String email;
   private Integer age;
-  private String login;
-  private String password;
 
-  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @Column(name = "password_hash")
+  private String passwordHash;
+
+  @Column(name = "avatar_url")
+  private String avatarUrl;
+
+  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(
@@ -64,12 +70,14 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Comment> comments = new ArrayList<>();
 
 
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Message> messages = new ArrayList<>();
 
 
@@ -86,6 +94,7 @@ public class User extends AbstractEntity {
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Chat> chats = new ArrayList<>();
 
 
@@ -102,6 +111,7 @@ public class User extends AbstractEntity {
     ))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
 
@@ -127,6 +137,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<WorkPlace> workPlaces = new ArrayList<>();
 
 
@@ -135,6 +146,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Like> likes = new ArrayList<>();
 
   @OneToMany(
@@ -151,6 +163,38 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<Certification> certifications = new ArrayList<>();
 
+
+  public Message addMessage(Message message) {
+    if (!this.messages.contains(message)) {
+      this.messages.add(message);
+      message.setUser(this);
+    }
+    return message;
+  }
+
+  public Chat addChat(Chat chat) {
+    if (!this.chats.contains(chat)) {
+      this.chats.add(chat);
+      chat.getUsers().add(this);
+    }
+    return chat;
+  }
+
+
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
+
+  public String getPositionAndCompany() {
+    Optional<WorkPlace> workPlaceOpt = workPlaces
+      .stream()
+      .filter(wp -> wp.getDateFinish() == null)
+      .findFirst();
+
+    return workPlaceOpt.isPresent()
+      ? workPlaceOpt.get().getPositionAndCompany()
+      : "";
+  }
 }
 
 

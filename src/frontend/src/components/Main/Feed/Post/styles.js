@@ -4,23 +4,26 @@ export default makeStyles(() => ({
 
   post: {
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginTop: '10px',
     border: '1px solid #e0e0e0',
     borderRadius: '10px',
-    marginBottom: '50px'
+    marginBottom: '15px',
+    backgroundColor: 'white'
   },
 
   postAuthor: {
     display: 'flex',
     flexDirection: 'row',
     margin: '10px',
-    paddingLeft: '10px'
+    paddingLeft: '10px',
+    alignItems: 'center'
   },
 
   hiddenMenu: {
-    marginLeft: '90%',
+    marginLeft: '93%',
     margin: '2px 0'
   },
 
@@ -28,7 +31,7 @@ export default makeStyles(() => ({
     width: '95%',
     height: '0.5px',
     border: '0',
-    margin: '0 10px',
+    margin: '0 auto',
     backgroundColor: '#e0e0e0'
   },
 
@@ -36,29 +39,33 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginLeft: '10px'
   },
 
   position: {
     color: 'grey'
   },
 
-  postTime: {
+  time: {
     display: 'flex',
     flexDirection: 'row',
-    color: 'grey'
+    color: 'grey',
+    fontSize: '12px'
   },
 
   worldIcon: {
     color: 'grey',
     '& > .MuiSvgIcon-root': {
-      fontSize: 12,
-      marginLeft: '5px'
+      fontSize: 14,
+      fontWeight: 600
     }
   },
 
   name: {
     'fontWeight': 600,
+    marginBottom: '-3px',
+    alignSelf: 'self-start',
     '&:hover': {
       color: '#0a66c2',
       textDecoration: 'underline'
@@ -66,7 +73,7 @@ export default makeStyles(() => ({
   },
 
   text: {
-    paddingLeft: '10px'
+    padding: '0 10px'
   },
 
   picture: {
@@ -110,6 +117,7 @@ export default makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
+    marginLeft: '15px',
     '& > .MuiSvgIcon-root': {
       fontSize: 3
     }
@@ -119,10 +127,10 @@ export default makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     marginTop: '5px',
-    margin: '0 5px',
     color: '#9e9e9e',
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: '#0a66c2'
     }
   },
 
@@ -136,6 +144,7 @@ export default makeStyles(() => ({
 
   showedAddComment: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%'
   },
 
@@ -156,10 +165,11 @@ export default makeStyles(() => ({
     border: '1px solid #e0e0e0',
     borderRadius: '35px',
     padding: '14px',
-    margin: '8px 0px'
+    margin: '8px 0px',
+    width: 'calc(100% - 100px)'
   },
 
-  hiddenButton: {
+  hidden: {
     display: 'none'
   },
 
@@ -167,5 +177,26 @@ export default makeStyles(() => ({
     display: 'flex',
     marginLeft: '80px',
     marginBottom: '10px'
+  },
+
+  comments: {
+    boxSizing: 'border-box',
+    padding: '5px',
+    width: '100%',
+    color: 'grey'
+  },
+
+  loadMoreComments: {
+    margin: '15px 0 8px 15px',
+    fontWeight: 600,
+    fontSize: '14px',
+    '& > span': {
+      padding: '5px',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: '5px'
+      }
+    }
   }
 }))

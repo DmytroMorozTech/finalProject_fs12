@@ -25,6 +25,7 @@ import java.util.List;
 @Table(name = "organizations")
 public class Organization extends AbstractEntity {
   private String name;
+  private String location;
   private String email;
   private String industry;
   private String specialities;

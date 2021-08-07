@@ -3,12 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles(() => ({
 
   notifications: {
-    marginTop: '75px',
+    margin: '75px auto',
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
     border: '1px solid #e0e0e0',
-    borderRadius: '10px'
+    borderRadius: '10px',
+    backgroundColor: 'white'
   },
 
   notification: {

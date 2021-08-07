@@ -5,15 +5,17 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import {BrowserRouter} from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles'
-import theme from './components/Theme'
+import theme from './Theme/Theme'
 import {Provider} from 'react-redux'
 import store from './redux/configureStore'
+import {CssBaseline} from '@material-ui/core'
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <CssBaseline />
           <App/>
         </BrowserRouter>
       </ThemeProvider>

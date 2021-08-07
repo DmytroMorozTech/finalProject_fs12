@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity(name = "Comment")
 @Table(name = "comments")
@@ -59,10 +60,14 @@ public class Comment extends AbstractEntity {
         referencedColumnName = "id")
     })
   private User user;
-  // author of comment
 
   public Comment(String text) {
     this.text = text;
+  }
+
+  public String getTimePassedSinceCreated() {
+    Date createdDate = getCreatedDate();
+    return "2h"; // hardcoded temporarily
   }
 
 

@@ -6,11 +6,10 @@ import lombok.Data;
 public class UserRs {
 
   private Long id;
-  private String firstName;
-  private String lastName;
+  private String fullName;
   private String email;
-  private String cell;
+  private String phoneNumber;
   private String age;
-  private String login;
-
+  private String avatarUrl;
+  private String positionAndCompany;
 }
