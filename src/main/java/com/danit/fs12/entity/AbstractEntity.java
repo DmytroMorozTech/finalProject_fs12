@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @MappedSuperclass
@@ -28,9 +29,9 @@ public abstract class AbstractEntity {
 
   @Column(name = "created_date", updatable = false)
   @CreatedDate
-  private Date createdDate;
+  private LocalDateTime createdDate;
 
   @Column(name = "modified_date")
   @LastModifiedDate
-  private Date lastModifiedDate;
+  private LocalDateTime lastModifiedDate;
 }

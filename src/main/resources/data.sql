@@ -1,34 +1,34 @@
 INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_hash, avatar_url, created_date,
                    modified_date)
 VALUES ('Richard', 'West', '+380502926823', 'richard@gmail.com', 20, 'passwordHashed1',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/lym68lkrrt61xno2ybhn.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Frank', 'Jackson', '+380674974924', 'frank@gmail.com', 32, 'passwordHashed2',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_2_avatar_nltrmp.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/kgpkn4a4fudfjpebyegx.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Laura', 'Lee', '+380677623175', 'laura@gmail.com', 62, 'passwordHashed3',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_4_avatar_o6hvwu.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/p1qwriz6hzjgwkaihwpa.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Everett', 'Anderson', '+380507501193', 'everetta@gmail.com', 62, 'passwordHashed4',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/i1bzhpqac3i1ld2urju8.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Katherine', 'McCarthy', '+380508791965', 'k_mccarthy@gmail.com', 32, 'passwordHashed5',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/hj8sulgxxo5ywotggkcy.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('James', 'Ford', '+380952051202', 'james_f@gmail.com', 43, 'passwordHashed6',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/oevdjvez2wqekez5zbyp.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Connie', 'Johnston', '+380689978723', 'connie_j@gmail.com', 43, 'passwordHashed7',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418147/linkedin/avatars/ob8gmrldzy35dytcib5t.jpg',
         CURRENT_DATE, CURRENT_DATE),
        ('Susan', 'Anderson', '+380506433660', 'susan_a@gmail.com', 34, 'passwordHashed8',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418313/linkedin/avatars/okktjt3pedvcz3zemwor.jpg',
         CURRENT_DATE, CURRENT_DATE),
-       ('Leonard', 'Sanders', '+380678059758', 'leos@gmail.com', 32, 'passwordHashed9',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+       ('Leonard', 'Sanders', '+380678059758', 'leos@gmail.com', 37, 'passwordHashed9',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418536/linkedin/avatars/urdz0mmjsvxwq7qfyuhm.jpg',
         CURRENT_DATE, CURRENT_DATE),
-       ('Barry', 'Evans', '+380955744442', 'barry@gmail.com', 55, 'passwordHashed10',
-        'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
+       ('Barry', 'Evans', '+380955744442', 'barry@gmail.com', 28, 'passwordHashed10',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418711/linkedin/avatars/vnxm3wl3erio9ajtezlr.jpg',
         CURRENT_DATE, CURRENT_DATE);
 
 
@@ -71,9 +71,9 @@ VALUES (3, 1, 'Chief Operational Officer', 'Responsibilities list 1',
 
 INSERT INTO POSTS (text, user_id, created_date, modified_date)
 VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor varius placerat. Duis elementum mattis dui, in egestas massa hendrerit eget. Cras commodo felis erat, laoreet blandit leo hendrerit quis. Morbi diam justo, aliquam a dictum aliquam, lobortis quis sapien. Morbi luctus laoreet justo eu facilisis. Maecenas sollicitudin feugiat dui, et feugiat mauris efficitur eu. Curabitur posuere eros sed tincidunt tempor. Sed massa lectus, consequat et maximus eu, eleifend tempor justo. Curabitur in dapibus nibh. Vivamus sed risus eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean condimentum mattis turpis ac elementum. Etiam eu orci condimentum, placerat dui ac, scelerisque sem. Sed tincidunt id risus sit amet tincidunt. Nulla sed metus ex. Phasellus libero tortor, iaculis quis accumsan ac, facilisis in leo.',
-        1, date '2015-01-20', date '2015-01-20'),
+        1, timestamp '2015-01-20 09:00:10.111222', timestamp '2015-01-20 09:00:10.111222'),
        ('Post 2 Nullam eu pretium nunc. Nulla facilisi. Curabitur faucibus laoreet quam, vel dictum urna porttitor et. Curabitur vitae arcu sem. Nulla dolor ante, tristique ac sem ac, scelerisque mollis lacus. Vestibulum pellentesque arcu vel massa molestie commodo. In semper ipsum eget velit fermentum, a gravida tortor fringilla. Suspendisse potenti. Mauris purus risus, porta nec facilisis in, vestibulum eget sapien. Ut lacus libero, pulvinar quis eros quis, elementum semper massa. In ut est et turpis blandit bibendum ac quis erat. Curabitur dictum pellentesque lacinia. Aenean vulputate tortor ac leo sagittis fringilla. Ut pharetra aliquet hendrerit. Curabitur ut maximus risus.',
-        2, date '2016-10-01', date '2016-10-01'),
+        2, timestamp '2016-10-01 15:03:12.222323', timestamp '2016-10-01 15:03:12.222323'),
        ('Post 3 Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
         3, date '2017-02-11', date '2017-02-11'),
        ('Post 4 text goes here', 4, date '2017-02-21', date '2017-02-21'),
@@ -95,7 +95,7 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
        ('Post 20 text goes here', 10, date '2019-10-12', date '2019-10-12');
 
 INSERT INTO COMMENTS (text, created_date, modified_date)
-VALUES ('Comment no.1 goes here.', date '2020-01-03', date '2020-01-03'),
+VALUES ('Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111', date '2020-01-03'),
        ('Comment no.2 goes here.', date '2020-02-03', date '2020-02-03'),
        ('Comment no.3 goes here.', date '2020-03-03', date '2020-03-03'),
        ('Comment no.4 goes here.', date '2020-04-03', date '2020-04-03'),
@@ -114,7 +114,15 @@ VALUES ('Comment no.1 goes here.', date '2020-01-03', date '2020-01-03'),
        ('Comment no.17 goes here.', date '2021-01-05', date '2021-01-05'),
        ('Comment no.18 goes here.', date '2021-01-06', date '2021-01-06'),
        ('Comment no.19 goes here.', date '2021-01-07', date '2021-01-07'),
-       ('Comment no.20 goes here.', date '2021-01-08', date '2021-01-08');
+       ('Comment no.20 goes here.', date '2021-01-08', date '2021-01-08'),
+       ('Comment 1 for Post No.1', timestamp '2015-01-20 12:00:10.331222', timestamp '2015-01-20 12:00:10.331222'),
+       ('Comment 2 for Post No.1; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam venenatis accumsan.',
+        timestamp '2015-01-20 19:10:13.331222', timestamp '2015-01-20 19:10:13.331222'),
+       ('Comment 3 for Post No.1; Nullam bibendum, felis id interdum interdum, mauris urna.',
+        timestamp '2015-02-14 18:02:04.111342', timestamp '2015-02-14 18:02:04.111342'),
+       ('Comment 1 for Post No.2', timestamp '2016-10-02 11:03:12.111222', timestamp '2016-10-02 11:03:12.111222'),
+       ('Comment 2 for Post No.2; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam venenatis accumsan.',
+        timestamp '2016-10-05 13:48:10.111222', timestamp '2016-10-05 13:48:10.111222');
 
 INSERT INTO REL_USER_COMMENTS (user_id, comment_id)
 VALUES (1, 1),
@@ -136,7 +144,12 @@ VALUES (1, 1),
        (5, 17),
        (5, 18),
        (5, 19),
-       (6, 20);
+       (6, 20),
+       (3, 21),
+       (5, 22),
+       (9, 23),
+       (5, 24),
+       (7, 25);
 
 INSERT INTO REL_POST_COMMENTS (post_id, comment_id)
 VALUES (10, 1),
@@ -158,7 +171,12 @@ VALUES (10, 1),
        (5, 17),
        (5, 18),
        (4, 19),
-       (3, 20);
+       (3, 20),
+       (1, 21),
+       (1, 22),
+       (1, 23),
+       (2, 24),
+       (2, 25);
 
 INSERT INTO LIKES (user_id, post_id, created_date, modified_date)
 VALUES (10, 1, date '2015-01-20', date '2015-01-20'),
