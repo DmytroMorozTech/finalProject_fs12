@@ -1,16 +1,42 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   title: {
-    marginLeft: '20px',
-    color: 'gray'
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: theme.spacing(2),
+    color: theme.palette.grey[700]
+  },
+  likeMini: {
+    color: '#fff',
+    fontSize: 24,
+    backgroundColor: '#0a66c2',
+    borderRadius: 30
+  },
+  word: {
+    fontWeight: theme.typography.fontWeightBold
+  },
+  icon: {
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2)
+  },
+  number: {
+    color: theme.palette.grey[700]
   },
   avatar: {
     display: 'flex',
     flexDirection: 'column'
   },
   userAvatar: {
-    width: '65px',
+    position: 'relative'
+  },
+  iconStatus: {
+    position: 'absolute',
+    right: 0,
+    top: '70%',
+    border: '2px solid white',
+    borderWidth: '2px',
     borderRadius: '50%'
   },
   userInfo: {
@@ -18,16 +44,24 @@ export default makeStyles(() => ({
     flexDirection: 'row'
   },
   buttonGroup: {
-    paddingLeft: '10px',
-    paddingTop: '10px',
+    paddingLeft: theme.spacing(1),
+    paddingTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column'
   },
+  name: {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.fontWeightBold
+  },
+  position: {
+    fontSize: theme.typography.body1.fontSize,
+    color: theme.palette.grey[700]
+  },
   vl: {
     borderLeft: '1px solid gray',
-    height: '30px',
+    height: theme.spacing(2),
     left: '50%',
     top: 0,
-    marginLeft: '10px'
+    marginLeft: theme.spacing(1)
   }
 }))
