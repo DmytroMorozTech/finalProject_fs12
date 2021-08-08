@@ -1,33 +1,35 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   menuItem: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    color: 'grey',
     cursor: 'pointer',
-    borderBottom: '2px solid white',
-    transition: 'all 0.35s ease',
-    margin: '5px',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 30
-    },
+    paddingTop: theme.spacing(1),
+    transition: 'all 0.4s ease',
+    width: '100%',
+    lineHeight: theme.typography.h4.lineHeight,
     '&:hover': {
-      color: 'black'
-    },
-    '&:active': {
-      borderBottom: '2px solid black'
+      color: theme.palette.common.black
     }
+  },
+  icons: {
+    width: theme.spacing(8),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: theme.typography.icons.header.fontSize
   },
   title: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: theme.spacing(16),
+    height: theme.spacing(3),
     '& > span': {
-      fontSize: 12,
-      fontWeight: 400,
-      paddingBottom: '3px'
+      fontSize: theme.typography.h6.fontSize,
+      fontWeight: theme.typography.header.fontWeight,
+      marginBottom: theme.spacing(1)
     }
   },
   itemPrimary: {
@@ -36,32 +38,34 @@ export default makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    '&:link, &:visited': {
-      color: 'grey'
-    },
+    color: theme.palette.grey[700],
     '&:hover': {
-      color: 'black',
-      fontWeight: 'bold'
-    },
-    '&:active': {
-      color: 'black',
+      color: theme.palette.common.black,
       fontWeight: 'bold'
     }
   },
   itemPrimaryActive: {
-    color: 'black!important',
-    borderBottom: '2px solid black'
-  },
-  itemPrimaryText: {
-    textDecoration: 'none',
-    '&:link, &:visited': {
-      color: 'grey'
-    },
-    '&:hover': {
-      color: 'black'
-    },
-    '&:active': {
-      color: 'black'
+    transition: 'all 0.4s ease',
+    '& > div': {
+      color: theme.palette.common.black
     }
+  },
+  arrow: {
+    position: 'relative',
+    top: -theme.spacing(0.5),
+    left: -theme.spacing(0.5)
+  },
+  line: {
+    width: '0px',
+    height: '1.5px',
+    border: '0',
+    marginTop: '0',
+    marginBottom: '0',
+    backgroundColor: theme.palette.common.black,
+    transition: 'width 0.4s ease-out'
+  },
+  focusLine: {
+    width: theme.spacing(16),
+    transition: 'width 0.4s ease-in'
   }
 }))

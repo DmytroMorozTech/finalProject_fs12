@@ -11,6 +11,28 @@ import React from 'react'
 function Navbar () {
   const classes = styles()
 
+  // let selectedItem
+  //
+  // const handleNavbar = (e) => {
+  //   let target = e.currentTarget
+  //
+  //   while (target.getElementsByClassName('itemPrimaryActive') > 1) {
+  //     if (target.tagName === 'Item') {
+  //       itemPrimaryActive(target)
+  //       return
+  //     }
+  //     target = target.parentNode
+  //   }
+  // }
+  //
+  // const itemPrimaryActive = (node) => {
+  //   if (selectedItem) {
+  //     selectedItem.classList.remove('itemPrimaryActive')
+  //   }
+  //   selectedItem = node
+  //   selectedItem.classList.add('itemPrimaryActive')
+  // }
+
   const items = [
     { Icon: <HomeRoundedIcon fontSize='inherit'/>, title: 'Home', arrow: false, toggleMenu: false, to: '/home' },
     { Icon: <SupervisorAccountRoundedIcon fontSize='inherit'/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network' },
@@ -21,7 +43,7 @@ function Navbar () {
   ]
 
   return (
-    <div className={classes.navbar}>
+    <div className={classes.navbar} onClick={e => console.log(e.currentTarget)}>
       {items.map(({ Icon, title, arrow, toggleMenu, onClick, to }, i) => (
         <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} onClick={onClick} to={to} />
       ))}

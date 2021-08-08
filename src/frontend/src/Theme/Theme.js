@@ -47,6 +47,7 @@ const theme = createTheme({
     h4: {
       fontSize: '0.900rem',
       fontWeight: 500,
+      lineHeight: 1,
       letterSpacing: '0.02em'
     },
     h5: {
@@ -73,11 +74,11 @@ const theme = createTheme({
       medium: {
         fontSize: '1.3rem'
       },
-      header: {
-        fontSize: '1.6rem'
-      },
       large: {
         fontSize: '1.9rem'
+      },
+      header: {
+        fontSize: '2.1rem'
       },
       extraLarge: {
         fontSize: '3rem'

@@ -19,10 +19,16 @@ function Header () {
           <div className={classes.headerLogo}>
             <LinkedInIcon fontSize='inherit'/>
           </div>
-          <Hidden smDown>
+          <Hidden mdDown>
             <div className={classes.headerSearch}>
               <SearchRoundedIcon fontSize='inherit'/>
               <input placeholder="Search"/>
+            </div>
+          </Hidden>
+          <Hidden lgUp>
+            <div className={classes.headerButtonSearch}>
+              <SearchRoundedIcon fontSize='inherit' className={classes.icon}/>
+              <span>Search</span>
             </div>
           </Hidden>
         </div>
