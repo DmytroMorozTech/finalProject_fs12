@@ -75,7 +75,7 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
        ('Post 2 Nullam eu pretium nunc. Nulla facilisi. Curabitur faucibus laoreet quam, vel dictum urna porttitor et. Curabitur vitae arcu sem. Nulla dolor ante, tristique ac sem ac, scelerisque mollis lacus. Vestibulum pellentesque arcu vel massa molestie commodo. In semper ipsum eget velit fermentum, a gravida tortor fringilla. Suspendisse potenti. Mauris purus risus, porta nec facilisis in, vestibulum eget sapien. Ut lacus libero, pulvinar quis eros quis, elementum semper massa. In ut est et turpis blandit bibendum ac quis erat. Curabitur dictum pellentesque lacinia. Aenean vulputate tortor ac leo sagittis fringilla. Ut pharetra aliquet hendrerit. Curabitur ut maximus risus.',
         2, timestamp '2016-10-01 15:03:12.222323', timestamp '2016-10-01 15:03:12.222323'),
        ('Post 3 Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
-        3, date '2017-02-11', date '2017-02-11'),
+        3, timestamp '2017-02-11 08:45:23.123323', timestamp '2017-02-11 08:45:23.123323'),
        ('Post 4 text goes here', 4, date '2017-02-21', date '2017-02-21'),
        ('Post 5 text goes here', 5, date '2017-05-09', date '2017-05-09'),
        ('Post 6 text goes here', 6, date '2017-07-27', date '2017-07-27'),

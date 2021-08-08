@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
+import getTimeSinceCreated from '../../../../services/timePassedService'
 
 function Post (props) {
   const {
@@ -67,7 +68,7 @@ function Post (props) {
             {user.positionAndCompany}
           </Typography>
           <Typography variant="body2" className={classes.time}>
-            {createdDate}
+            {getTimeSinceCreated(createdDate)}
             <SmallDot/>
             <div className={classes.worldIcon}>
               <PublicIcon/>

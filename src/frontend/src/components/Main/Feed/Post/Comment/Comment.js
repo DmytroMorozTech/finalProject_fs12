@@ -4,9 +4,10 @@ import SmallDot from '../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
 import Style from './styles'
+import getTimeSinceCreated from '../../../../../services/timePassedService'
 
 function Comment (props) {
-  let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
+  let {user, text, quantityOfCommentsLike = 3, createdDate} = props.comment
   let {fullName, avatarUrl, positionAndCompany} = user
 
   const classes = Style()
@@ -30,7 +31,7 @@ function Comment (props) {
               </Typography>
             </div>
             <div className={classes.commentRow}>
-              <div className={classes.time}>{timePassedSinceCreated}</div>
+              <div className={classes.time}>{getTimeSinceCreated(createdDate)}</div>
               <div className={classes.dots}><MoreHorizIcon/></div>
             </div>
           </div>
