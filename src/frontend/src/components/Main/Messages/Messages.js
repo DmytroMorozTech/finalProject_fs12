@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Style from './styles'
-import MyAvatarMessage from '../../../temporaryImages/myAvatarMessage.JPG'
 import TemporaryAvatar from '../../../temporaryImages/avatar.jpg'
 import TemporaryAvatarOne from '../../../temporaryImages/avatarTempMessage.png'
 import TemporaryAvatarTwo from '../../../temporaryImages/avatarTempMassegeTwo.png'
@@ -16,9 +15,10 @@ import clsx from 'clsx'
 import SharedButton from '../../../shared/Button/SharedButton'
 import ImageUpload from './imageUpload'
 import AllUpload from './allUpload'
+import {useDispatch} from 'react-redux'
+import UserMessage from './UserMessage'
 
 function Messages ({
-  myAvatar = MyAvatarMessage,
   userAvatar = TemporaryAvatar,
   userAvatarOne = TemporaryAvatarOne,
   userAvatarTwo = TemporaryAvatarTwo,
@@ -41,9 +41,12 @@ function Messages ({
 
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
+  const dispatch = useDispatch()
+
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
     setMessageValue(messageInputVal)
+    console.log(messageInputVal)
   }
 
   return (
@@ -211,21 +214,7 @@ function Messages ({
                   </li>
                   <li>
                     <time className={classes.messageListTimeHeading}>{dataMessage}</time>
-                    <div className={classes.eventListItem}>
-                      <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'} className={classes.eventListItemLink}>
-                        <img src={myAvatar} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
-                      </a>
-                      <div className={classes.messageGroupMeta}>
-                        <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'} className={`${classes.eventListItemLink} ${classes.messageGroupName}`}>
-                          <span>Vadym Meshcheriakov</span>
-                        </a>
-                      </div>
-                      <div className={classes.eventListItemMessageBubble}>
-                        <p className={classes.eventListItemBody}>
-                          Спасибо, что подтвердили мой навык «HTML+CSS»!
-                        </p>
-                      </div>
-                    </div>
+                    <UserMessage/>
                   </li>
                 </ul>
               </div>
@@ -240,6 +229,7 @@ function Messages ({
                         fullWidth={true}
                         multiline={true}
                         value={messageValue}
+                        om
                         onChange={handleMessageInputChange}/>
                     </div>
                   </div>
@@ -264,7 +254,7 @@ function Messages ({
                   </div>
                   <div style={{ display: 'flex' }}>
                     <div >
-                      <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0 }
+                      <SharedButton onCli className={classes.btnDisabled} disabled={messageValue.length === 0 }
                         title="Message"/>
                     </div>
                     <div className={classes.menu}>

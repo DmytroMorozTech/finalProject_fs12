@@ -36,4 +36,11 @@ public class Message extends AbstractEntity {
     this.text = text;
   }
 
+  public Long getChatId() {
+    return chat.getId();
+  }
+  public Long getUserId() {
+    return user.getId();
+  }
+
 }

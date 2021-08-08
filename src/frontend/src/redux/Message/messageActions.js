@@ -1,7 +1,7 @@
 import * as actions from './messageActionTypes'
 import axios from 'axios'
 
-export const createChat = () => (dispatch) => {
+export const createChatAction = () => (dispatch) => {
   return axios.post('/api/chats')
     .then(res => {
       const newChatData = res.data
@@ -11,7 +11,7 @@ export const createChat = () => (dispatch) => {
     })
 }
 
-export const createMessage = ({chatId, text}) => (dispatch) => {
+export const createMessageAction = ({chatId, text}) => (dispatch) => {
   return axios.post('/api/messages', {chatId, text})
     .then(res => {
       const newMessageData = res.data
@@ -21,7 +21,7 @@ export const createMessage = ({chatId, text}) => (dispatch) => {
     })
 }
 
-export const addUser = ({chatId, userId}) => (dispatch) => {
+export const addUserAction = ({chatId, userId}) => (dispatch) => {
   return axios.put('/api/chats', {chatId, userId})
     .then(res => {
       const updatedChat = res.data
