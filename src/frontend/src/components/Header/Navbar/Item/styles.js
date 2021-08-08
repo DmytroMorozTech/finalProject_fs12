@@ -48,6 +48,10 @@ export default makeStyles((theme) => ({
     transition: 'all 0.4s ease',
     '& > div': {
       color: theme.palette.common.black
+    },
+    '& hr': {
+      width: theme.spacing(16),
+      transition: 'width 0.4s ease-in'
     }
   },
   arrow: {
@@ -63,9 +67,5 @@ export default makeStyles((theme) => ({
     marginBottom: '0',
     backgroundColor: theme.palette.common.black,
     transition: 'width 0.4s ease-out'
-  },
-  focusLine: {
-    width: theme.spacing(16),
-    transition: 'width 0.4s ease-in'
   }
 }))
