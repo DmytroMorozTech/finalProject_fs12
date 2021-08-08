@@ -18,7 +18,7 @@ function Comment (props) {
   return (
     <div className={classes.comment}>
       <div className={classes.commentAvatar}>
-        <Avatar avatarUrl={user.avatarUrl}/>
+        <Avatar avatarUrl={avatarUrl}/>
       </div>
       <div className= {classes.commentWrapper}>
         <div className={classes.commentBackground}>

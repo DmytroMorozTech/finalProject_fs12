@@ -1,5 +1,5 @@
 import Item from './Item/Item'
-import Style from './styles'
+import styles from './styles'
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded'
 import BusinessCenterRoundedIcon from '@material-ui/icons/BusinessCenterRounded'
@@ -9,15 +9,15 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import React from 'react'
 
 function Navbar () {
-  const classes = Style()
+  const classes = styles()
 
   const items = [
-    { Icon: <HomeRoundedIcon/>, title: 'Home', arrow: false, toggleMenu: false, to: '/home' },
-    { Icon: <SupervisorAccountRoundedIcon/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network' },
-    { Icon: <BusinessCenterRoundedIcon/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
-    { Icon: <SmsRoundedIcon/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
-    { Icon: <NotificationsRoundedIcon/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
-    { Icon: <AccountCircleRoundedIcon/>, title: 'Me', arrow: true, toggleMenu: true, to: '/personal' }
+    { Icon: <HomeRoundedIcon fontSize='inherit'/>, title: 'Home', arrow: false, toggleMenu: false, to: '/home' },
+    { Icon: <SupervisorAccountRoundedIcon fontSize='inherit'/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network' },
+    { Icon: <BusinessCenterRoundedIcon fontSize='inherit'/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
+    { Icon: <SmsRoundedIcon fontSize='inherit'/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
+    { Icon: <NotificationsRoundedIcon fontSize='inherit'/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
+    { Icon: <AccountCircleRoundedIcon fontSize='inherit'/>, title: 'Me', arrow: true, toggleMenu: true, to: '/personal' }
   ]
 
   return (

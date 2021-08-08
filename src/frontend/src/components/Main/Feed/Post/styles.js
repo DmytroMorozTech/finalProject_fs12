@@ -63,7 +63,7 @@ export default makeStyles((theme) => ({
   },
 
   worldIcon: {
-    fontSize: theme.typography.icons.small.fontSize,
+    fontSize: theme.typography.icons.extraSmall.fontSize,
     color: theme.palette.grey[600]
   },
 
