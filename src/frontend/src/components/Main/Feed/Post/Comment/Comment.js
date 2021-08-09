@@ -34,7 +34,7 @@ function Comment (props) {
             </div>
             <div className={classes.commentRow}>
               <div className={classes.time}>{getTimeSinceCreated(createdDate)}</div>
-              <div className={classes.dots}><MoreHorizIcon/></div>
+              <div className={classes.dots}><MoreHorizIcon fontSize='inherit'/></div>
             </div>
           </div>
           <Typography variant="body1" gutterBottom className={classes.commentText}>

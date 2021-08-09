@@ -1,11 +1,11 @@
 import React from 'react'
-import Style from './styles'
+import styles from './styles'
 import Button from '@material-ui/core/Button'
 import {NavLink} from 'react-router-dom'
 import {MenuItem} from '@material-ui/core'
 
 function UserData () {
-  const classes = Style()
+  const classes = styles()
   return (
     <div className={classes.root}>
       {/* temporary hardcoded data */}
