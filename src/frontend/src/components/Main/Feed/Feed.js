@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import Style from './styles'
+import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
 import { connect } from 'react-redux'
 
 function Feed (props) {
   const { posts } = props
-  const classes = Style()
+  const classes = styles()
 
   useEffect(() => {
   }, [posts])

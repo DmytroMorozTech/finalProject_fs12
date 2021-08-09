@@ -3,35 +3,37 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import SmallDot from '../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
-import Style from './styles'
+import styles from './styles'
+import clsx from 'clsx'
+import Avatar from '../../../../../shared/Avatar/Avatar'
 
 function Comment (props) {
   let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
   let {fullName, avatarUrl, positionAndCompany} = user
 
-  const classes = Style()
+  const classes = styles()
 
   const [commentLiked, setCommentLiked] = useState(false)
 
   return (
     <div className={classes.comment}>
-      <div>
-        <img src={avatarUrl} alt={'comment avatar'} className={classes.commentAvatar}/>
+      <div className={classes.commentAvatar}>
+        <Avatar avatarUrl={avatarUrl}/>
       </div>
       <div className= {classes.commentWrapper}>
         <div className={classes.commentBackground}>
-          <div className={[classes.commentRow, classes.commentHeader].join(' ')}>
+          <div className={clsx(classes.commentRow, classes.commentHeader)}>
             <div className={classes.commentColumn}>
-              <Typography variant="body1" className={[classes.name, classes.commentUserInfo].join(' ')}>
+              <Typography variant="h5" className={clsx(classes.name, classes.commentUserInfo)}>
                 {fullName}
               </Typography>
-              <Typography variant="body2" className={[classes.position, classes.commentUserInfo].join(' ')}>
+              <Typography variant="h6" className={classes.commentUserInfo}>
                 {positionAndCompany}
               </Typography>
             </div>
             <div className={classes.commentRow}>
               <div className={classes.time}>{timePassedSinceCreated}</div>
-              <div className={classes.dots}><MoreHorizIcon/></div>
+              <div className={classes.dots}><MoreHorizIcon fontSize='inherit'/></div>
             </div>
           </div>
           <Typography variant="body1" gutterBottom className={classes.commentText}>
@@ -40,9 +42,9 @@ function Comment (props) {
         </div>
         <div className={classes.commentLikes}>
           <span
-            className={commentLiked ? [classes.commentLike, classes.commentLiked].join(' ') : [classes.commentLike, classes.commentNotLiked].join(' ')}
+            className={clsx(classes.commentLike, commentLiked ? classes.commentLiked : classes.commentNotLiked)}
             onClick={() => setCommentLiked(!commentLiked)}>Like</span>
-          <span className={quantityOfCommentsLike === 0 ? [classes.hiddenQuantityOfCommentsLike, classes.commentRow].join(' ') : classes.commentRow}>
+          <span className={clsx(classes.commentRow, quantityOfCommentsLike === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
             <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
           </span>

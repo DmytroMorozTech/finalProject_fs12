@@ -1,29 +1,31 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   comment: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    marginBottom: '15px'
+    marginBottom: theme.spacing(3)
   },
 
   commentAvatar: {
-    width: '47px',
-    borderRadius: '50%',
-    marginLeft: '18px'
+    width: theme.avatar.small,
+    marginLeft: theme.spacing(3),
+    marginTop: theme.spacing(1)
   },
 
   commentWrapper: {
-    width: 'calc(100% - 100px)'
+    width: 'calc(100% - 75px)'
   },
 
   commentBackground: {
     backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: '0 10px 10px 10px',
-    padding: '8px 12px',
-    margin: '0 5px',
+    borderRadius: theme.border.comment,
+    padding: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(1),
     width: '100%'
   },
 
@@ -42,79 +44,71 @@ export default makeStyles(() => ({
   },
 
   name: {
-    'fontWeight': 600,
-    marginBottom: '-3px',
     alignSelf: 'self-start',
     '&:hover': {
-      color: '#0a66c2',
+      color: theme.palette.primary.main,
       textDecoration: 'underline'
     }
-  },
-
-  position: {
-    color: 'grey'
   },
 
   time: {
     display: 'flex',
     flexDirection: 'row',
-    color: 'grey',
-    fontSize: '12px'
+    color: theme.palette.grey[500],
+    fontSize: theme.typography.h6.fontSize
   },
 
   dots: {
     cursor: 'pointer',
-    marginLeft: '2px',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 18
-    }
+    marginLeft: theme.spacing(0.5),
+    fontSize: theme.typography.icons.medium.fontSize
   },
 
   commentUserInfo: {
-    fontSize: '12px',
+    fontSize: theme.typography.h6.fontSize,
     cursor: 'pointer'
   },
 
   commentText: {
-    marginTop: '10px'
+    marginTop: theme.spacing(2)
   },
 
   commentLikes: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: '3px',
-    marginLeft: '15px',
+    marginTop: theme.spacing(0.5),
+    marginLeft: theme.spacing(3),
     '& > span': {
-      fontSize: '12px',
+      fontSize: theme.typography.h6.fontSize,
       cursor: 'pointer'
     }
   },
 
   commentLike: {
-    padding: '0 5px',
-    marginRight: '-2px',
-    fontWeight: '600'
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    fontWeight: theme.typography.h3.fontWeight
   },
 
   commentNotLiked: {
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.05)',
-      borderRadius: '5px'
+      borderRadius: theme.shape.small
     }
   },
 
   commentLiked: {
     backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: '5px',
-    color: '#0a66c2'
+    borderRadius: theme.shape.small,
+    color: theme.palette.primary.main
   },
 
   quantityOfCommentsLike: {
     display: 'flex',
     cursor: 'pointer',
-    marginLeft: '3px',
+    marginLeft: theme.spacing(0.5),
     '&:hover': {
-      color: '#0a66c2'
+      color: theme.palette.primary.main
     }
   },
 
