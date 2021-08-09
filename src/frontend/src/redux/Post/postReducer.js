@@ -20,7 +20,7 @@ const postReducer = (state = initialState, action) => {
       return { ...state, postsList: [...state.postsList, action.payload] }
 
     case actions.UPDATE_POST:
-      let updatedPost = action.payload
+      const updatedPost = action.payload
 
       const currentPost = state.postsList.find((post) => post.id === updatedPost.id)
 
@@ -31,7 +31,7 @@ const postReducer = (state = initialState, action) => {
       })
 
     case actions.SAVE_USERS_WHO_LIKED_POST:
-      let {usersList, id} = action.payload
+      const {usersList, id} = action.payload
       return { ...state, usersWhoLikedPost: {...state.usersWhoLikedPost, [id]: usersList} }
 
     case actions.ADD_NEW_COMMENT_FOR_POST:

@@ -1,20 +1,14 @@
 import {makeStyles} from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   btn: {
-    margin: '5px',
-    borderRadius: 30,
+    margin: theme.spacing(1),
+    borderRadius: theme.shape.large,
     boxShadow: 'none',
-    paddingTop: '2px',
-    paddingBottom: '2px',
+    fontSize: theme.typography.button.fontSize,
     '&:hover': {
       boxShadow: 'none'
-    },
-
-    '&:disabled': {
-      cursor: 'not-allowed',
-      pointerEvents: 'auto'
     }
   }
 }))

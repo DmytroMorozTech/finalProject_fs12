@@ -1,5 +1,7 @@
 import * as actions from './postActionTypes'
 import http from '../../services/httpService'
+import toggleModalAction from '../Modal/modalActions'
+import {SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
 
 export const getAllPostsAction = () => (dispatch) => {
   dispatch({ type: actions.LOADING_POSTS, payload: true })
@@ -49,8 +51,12 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
     .get(`/api/users/who_liked_post/${id}`)
     .then((res) => res.data)
     .then((usersList) => {
-      dispatch({type: actions.SAVE_USERS_WHO_LIKED_POST, payload: {usersList, id}})
+      dispatch({
+        type: actions.SAVE_USERS_WHO_LIKED_POST,
+        payload: {usersList, id}})
     })
+    .then(() =>
+      dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, id: id})))
 }
 
 export const toggleLikeAction = (payload) => (dispatch) => {
