@@ -22,8 +22,9 @@ function ShareBox (props) {
         <div className={classes.mediumAvatar}>
           <Avatar avatarUrl={avatarUrl}/>
         </div>
-        <button className={classes.postButton} onClick={() => dispatch(toggleModalAction(ADD_NEW_POST))}
-          disabled={!!props.loading}>
+        <button className={classes.postButton} onClick={() =>
+          dispatch(toggleModalAction({modalType: ADD_NEW_POST}))}
+        disabled={!!props.loading}>
           Start a post
         </button>
       </div>
