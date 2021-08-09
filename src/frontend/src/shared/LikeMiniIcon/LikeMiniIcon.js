@@ -1,12 +1,10 @@
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
-import Style from './styles'
+import styles from './styles'
 
 function LikeMiniIcon () {
-  const classes = Style()
+  const classes = styles()
   return (
-    <div>
-      <ThumbUpAltIcon className={classes.likeMini}/>
-    </div>
+    <ThumbUpAltIcon className={classes.likeMini}/>
   )
 }
 

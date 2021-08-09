@@ -1,12 +1,12 @@
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import Style from './styles'
+import styles from './styles'
 
 function LinkedinLogo () {
-  const classes = Style()
+  const classes = styles()
   return (
     <div className={classes.logo}>
       <span>Linked</span>
-      <LinkedInIcon/>
+      <LinkedInIcon fontSize='inherit'/>
     </div>
   )
 }
