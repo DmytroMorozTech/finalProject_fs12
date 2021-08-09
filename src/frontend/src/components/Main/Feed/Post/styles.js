@@ -70,7 +70,6 @@ export default makeStyles((theme) => ({
   text: {
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4)
-
   },
 
   picture: {
@@ -148,7 +147,8 @@ export default makeStyles((theme) => ({
 
   smallAvatar: {
     width: theme.avatar.small,
-    marginTop: theme.spacing(1.5)
+    marginTop: theme.spacing(1.5),
+    flexShrink: 0
   },
 
   newComment: {
@@ -160,7 +160,8 @@ export default makeStyles((theme) => ({
     borderRadius: theme.shape.large,
     padding: theme.spacing(2.5),
     margin: theme.spacing(1),
-    width: 'calc(100% - 10px)'
+    width: 'calc(100% - 10px)',
+    flexShrink: 1
   },
 
   hidden: {
