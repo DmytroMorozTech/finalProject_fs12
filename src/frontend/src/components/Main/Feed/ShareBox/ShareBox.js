@@ -7,7 +7,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
-import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../../Modal/modalTypes'
+import {ADD_NEW_POST} from '../../../Modal/modalTypes'
 import {Hidden} from '@material-ui/core'
 
 function ShareBox (props) {
