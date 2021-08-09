@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Style from './styles'
 import TemporaryAvatar from '../../../temporaryImages/avatar.jpg'
 import TemporaryAvatarOne from '../../../temporaryImages/avatarTempMessage.png'
@@ -15,8 +15,10 @@ import clsx from 'clsx'
 import SharedButton from '../../../shared/Button/SharedButton'
 import ImageUpload from './imageUpload'
 import AllUpload from './allUpload'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import UserMessage from './UserMessage'
+import {createMessageAction} from '../../../redux/Message/messageActions'
+import {allMessages} from '../../../redux/Message/messageSelector'
 
 function Messages ({
   userAvatar = TemporaryAvatar,
@@ -34,6 +36,8 @@ function Messages ({
   const classes = Style()
   const [SearchValue, setSearchValue] = useState('')
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
+  const messagesList = useSelector(allMessages)
+
   const handleSearchInputChange = e => {
     let SearchInputVal = e.currentTarget.value
     setSearchValue(SearchInputVal)
@@ -46,12 +50,16 @@ function Messages ({
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
     setMessageValue(messageInputVal)
-    console.log(messageInputVal)
+  }
+
+  const handleSendMessageButton = () => {
+    dispatch(createMessageAction({chatId: 1, text: messageValue}))
+    setMessageValue('')
   }
 
   return (
     <main className={classes.layoutListDetail}>
-      <div className={ classes.listDetailInner}>
+      <div className={classes.listDetailInner}>
         <section className={classes.layoutList}>
 
           <div className={classes.containerHeader}>
@@ -101,7 +109,8 @@ function Messages ({
                     </div>
                     <div className={classes.conversationCardTitleRow}>
                       <div className={classes.flexGrow2}>
-                        <p className={classes.conversationCardMessageSnippet}><span>{userName + ':  ' + lastText}</span></p>
+                        <p className={classes.conversationCardMessageSnippet}><span>{userName + ':  ' + lastText}</span>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -163,7 +172,8 @@ function Messages ({
           <div className={classes.scaffoldLayout}>
             <div className={classes.sharedTitleBarContainer}>
               <div className={classes.titleBar}>
-                <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'} className={classes.threadLinkToProfile}>
+                <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'}
+                  className={classes.threadLinkToProfile}>
                   <div className={classes.entityLockup}>
                     {userName}
                   </div>
@@ -191,7 +201,8 @@ function Messages ({
                       <div style={{display: 'block'}}>
                         <div className={classes.entityLockupImage}>
                           <div className={classes.presenceEntity}>
-                            <img src={userAvatar} alt={'user avatar'} className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
+                            <img src={userAvatar} alt={'user avatar'}
+                              className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                             <div className={classes.presenceEntityIndicator}>
 
                             </div>
@@ -199,7 +210,8 @@ function Messages ({
                         </div>
                         <div className={classes.entityLockupContent}>
                           <div className={classes.entityLockupTitle}>
-                            <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'} className={classes.profileLink}>
+                            <a href={'https://www.linkedin.com/in/vadym-meshcheriakov-a77140188/'}
+                              className={classes.profileLink}>
                               {userName}
                             </a>
                           </div>
@@ -214,7 +226,7 @@ function Messages ({
                   </li>
                   <li>
                     <time className={classes.messageListTimeHeading}>{dataMessage}</time>
-                    <UserMessage/>
+                    {messagesList.map(m => <UserMessage text={m.text}/>)}
                   </li>
                 </ul>
               </div>
@@ -229,33 +241,32 @@ function Messages ({
                         fullWidth={true}
                         multiline={true}
                         value={messageValue}
-                        om
                         onChange={handleMessageInputChange}/>
                     </div>
                   </div>
                 </div>
                 <footer className={classes.msgFormFooter}>
-                  <div style={{ display: 'flex' }}>
-                    <div style={{ display: 'inline-block' }}>
+                  <div style={{display: 'flex'}}>
+                    <div style={{display: 'inline-block'}}>
                       <ImageUpload/>
                     </div>
-                    <div style={{ display: 'inline-block' }}>
+                    <div style={{display: 'inline-block'}}>
                       <AllUpload/>
                     </div>
-                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                    <div style={{display: 'inline-block'}} className={classes.menu}>
                       <GifOutlinedIcon/>
                     </div>
-                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                    <div style={{display: 'inline-block'}} className={classes.menu}>
                       <SentimentSatisfiedOutlinedIcon/>
                     </div>
-                    <div style={{ display: 'inline-block' }} className={classes.menu}>
+                    <div style={{display: 'inline-block'}} className={classes.menu}>
                       <VideoCallIcon/>
                     </div>
                   </div>
-                  <div style={{ display: 'flex' }}>
-                    <div >
-                      <SharedButton onCli className={classes.btnDisabled} disabled={messageValue.length === 0 }
-                        title="Message"/>
+                  <div style={{display: 'flex'}}>
+                    <div onClick={handleSendMessageButton}>
+                      <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
+                        title="Message" />
                     </div>
                     <div className={classes.menu}>
                       <MoreHorizIcon/>

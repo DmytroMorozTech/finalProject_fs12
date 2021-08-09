@@ -36,6 +36,7 @@ public class MessageController {
 
   @PostMapping
   public ResponseEntity<?> createMessage(@Valid @RequestBody MessageRq rq) {
+    System.out.println("MessageRq: " + rq);
     MessageRs message = messageFacade.createMessage(rq);
     return ResponseEntity.ok(message);
   }

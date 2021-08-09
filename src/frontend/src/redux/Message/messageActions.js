@@ -12,11 +12,11 @@ export const createChatAction = () => (dispatch) => {
 }
 
 export const createMessageAction = ({chatId, text}) => (dispatch) => {
-  return axios.post('/api/messages', {chatId, text})
+  return axios.post('/api/messages', {chatId: chatId, text: text})
     .then(res => {
       const newMessageData = res.data
       dispatch({
-        type: actions.CREATE_MESSAGE, dispatch: newMessageData
+        type: actions.CREATE_MESSAGE, payload: newMessageData
       })
     })
 }
@@ -26,7 +26,7 @@ export const addUserAction = ({chatId, userId}) => (dispatch) => {
     .then(res => {
       const updatedChat = res.data
       dispatch({
-        type: actions.ADD_USER, dispatch: updatedChat
+        type: actions.ADD_USER, payload: updatedChat
       })
     })
 }

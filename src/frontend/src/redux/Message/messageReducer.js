@@ -1,8 +1,8 @@
 import * as actions from './messageActionTypes'
 
 const initialState = {
-  chats: [],
-  messages: []
+  chatsList: [],
+  messagesList: []
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -10,12 +10,12 @@ const messageReducer = (state = initialState, action) => {
     case actions.CREATE_CHAT:
       return {
         ...state,
-        chats: [...state.chats, action.payload]
+        chatsList: [...state.chatsList, action.payload]
       }
     case actions.CREATE_MESSAGE:
       return {
         ...state,
-        messages: [...state.messages, action.payload]
+        messagesList: [...state.messagesList, action.payload]
       }
     case actions.ADD_USER:
       const {chatId} = action.payload
@@ -23,7 +23,7 @@ const messageReducer = (state = initialState, action) => {
       chatsCopy.filter(chat => chat.id === chatId)[0] = action.payload
       return {
         ...state,
-        chats: chatsCopy
+        chatsList: chatsCopy
       }
     default: {
       return state
