@@ -9,10 +9,10 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700]
   },
   likeMini: {
-    color: '#fff',
-    fontSize: 24,
-    backgroundColor: '#0a66c2',
-    borderRadius: 30
+    color: theme.palette.common.white,
+    fontSize: theme.typography.icons.large.fontSize,
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: theme.shape.large
   },
   word: {
     fontWeight: theme.typography.fontWeightBold
@@ -26,7 +26,8 @@ export default makeStyles((theme) => ({
   },
   avatar: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: theme.avatar.medium
   },
   userAvatar: {
     position: 'relative'
