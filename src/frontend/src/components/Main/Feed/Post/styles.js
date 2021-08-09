@@ -1,30 +1,31 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   post: {
     display: 'flex',
     width: '100%',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginTop: '10px',
-    border: '1px solid #e0e0e0',
-    borderRadius: '10px',
-    marginBottom: '15px',
-    backgroundColor: 'white'
+    marginTop: theme.spacing(2),
+    border: theme.border.simple,
+    borderRadius: theme.shape.medium,
+    backgroundColor: theme.palette.common.white,
+    paddingBottom: theme.spacing(1)
+  },
+
+  hiddenMenu: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    width: '98%'
   },
 
   postAuthor: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '10px',
-    paddingLeft: '10px',
+    margin: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
     alignItems: 'center'
-  },
-
-  hiddenMenu: {
-    marginLeft: '93%',
-    margin: '2px 0'
   },
 
   line: {
@@ -32,7 +33,11 @@ export default makeStyles(() => ({
     height: '0.5px',
     border: '0',
     margin: '0 auto',
-    backgroundColor: '#e0e0e0'
+    backgroundColor: theme.palette.grey[300]
+  },
+
+  mediumAvatar: {
+    width: theme.avatar.medium
   },
 
   userInfo: {
@@ -40,40 +45,32 @@ export default makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'baseline',
     cursor: 'pointer',
-    marginLeft: '10px'
-  },
-
-  position: {
-    color: 'grey'
-  },
-
-  time: {
-    display: 'flex',
-    flexDirection: 'row',
-    color: 'grey',
-    fontSize: '12px'
-  },
-
-  worldIcon: {
-    color: 'grey',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 14,
-      fontWeight: 600
-    }
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1)
   },
 
   name: {
-    'fontWeight': 600,
-    marginBottom: '-3px',
     alignSelf: 'self-start',
     '&:hover': {
-      color: '#0a66c2',
+      color: theme.palette.primary.main,
       textDecoration: 'underline'
     }
   },
 
+  time: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+
+  worldIcon: {
+    fontSize: theme.typography.icons.small.fontSize,
+    color: theme.palette.grey[600]
+  },
+
   text: {
-    padding: '0 10px'
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4)
+
   },
 
   picture: {
@@ -83,9 +80,9 @@ export default makeStyles(() => ({
 
   block: {
     display: 'flex',
-    color: 'grey',
-    marginLeft: '10px',
-    marginTop: '4px'
+    color: theme.palette.grey[600],
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1)
   },
 
   item: {
@@ -93,49 +90,42 @@ export default makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     transition: 'all 0.35s ease',
-    paddingLeft: '15px',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    paddingRight: '15px',
-    borderRadius: '5px',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 30
-    },
+    padding: theme.spacing(2),
+    borderRadius: theme.shape.small,
+    fontSize: theme.typography.icons.large.fontSize,
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.10)'
     },
     '& > span': {
-      fontSize: 15,
-      fontWeight: 500,
-      paddingLeft: '5px'
+      fontSize: theme.typography.h4.fontSize,
+      fontWeight: theme.typography.h4.fontWeight,
+      paddingLeft: theme.spacing(1)
     }
   },
 
   quantity: {
-    paddingLeft: '10px',
+    paddingLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
-    marginLeft: '15px',
-    '& > .MuiSvgIcon-root': {
-      fontSize: 3
-    }
+    marginLeft: theme.spacing(3)
   },
 
   quantityText: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: '5px',
-    color: '#9e9e9e',
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    color: theme.palette.grey[500],
     '&:hover': {
       textDecoration: 'underline',
-      color: '#0a66c2'
+      color: theme.palette.primary.main
     }
   },
 
   liked: {
-    color: '#0a66c2'
+    color: theme.palette.primary.main
   },
 
   hiddenAddComment: {
@@ -151,22 +141,26 @@ export default makeStyles(() => ({
   addComment: {
     display: 'flex',
     alignItems: 'flex-start',
-    paddingLeft: '20px',
-    paddingRight: '10px',
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(2),
     width: '100%'
   },
 
-  avatar: {
-    paddingTop: '5px',
-    paddingRight: '10px'
+  smallAvatar: {
+    width: theme.avatar.small,
+    marginTop: theme.spacing(1.5)
+  },
+
+  newComment: {
+    width: '100%'
   },
 
   commentField: {
-    border: '1px solid #e0e0e0',
-    borderRadius: '35px',
-    padding: '14px',
-    margin: '8px 0px',
-    width: 'calc(100% - 100px)'
+    border: theme.border.simple,
+    borderRadius: theme.shape.large,
+    padding: theme.spacing(2.5),
+    margin: theme.spacing(1),
+    width: 'calc(100% - 10px)'
   },
 
   hidden: {
@@ -175,27 +169,27 @@ export default makeStyles(() => ({
 
   showedButton: {
     display: 'flex',
-    marginLeft: '80px',
-    marginBottom: '10px'
+    marginBottom: theme.spacing(2)
   },
 
   comments: {
     boxSizing: 'border-box',
-    padding: '5px',
+    padding: theme.spacing(1),
     width: '100%',
-    color: 'grey'
+    color: theme.palette.grey[500]
   },
 
   loadMoreComments: {
-    margin: '15px 0 8px 15px',
-    fontWeight: 600,
-    fontSize: '14px',
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(3),
+    fontWeight: theme.typography.h5.fontWeight,
+    fontSize: theme.typography.h5.fontSize,
+    cursor: 'pointer',
     '& > span': {
-      padding: '5px',
-      cursor: 'pointer',
+      padding: theme.spacing(1),
       '&:hover': {
         backgroundColor: 'rgba(0,0,0,0.05)',
-        borderRadius: '5px'
+        borderRadius: theme.shape.small
       }
     }
   }
