@@ -17,6 +17,6 @@ public class WorkPlaceRq {
   @NotNull(message = "Finish date should should be specified.")
   private LocalDate dateFinish;
 
-  @NotNull(message = "Organization id position should be specified.")
+  @NotNull(message = "Organization id should be specified.")
   private String organization_id;
 }
