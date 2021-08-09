@@ -57,36 +57,36 @@ export default makeStyles((theme) => ({
       }
     }
   },
+
   headerButtonSearch: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
     paddingTop: theme.spacing(2),
     transition: 'all 0.4s ease',
-    paddingLeft: theme.spacing(3),
     fontSize: theme.typography.icons.large.fontSize,
     color: theme.palette.grey[700],
     cursor: 'pointer',
     '&:hover': {
       color: theme.palette.common.black
-    },
-    '& > span': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: theme.spacing(16),
-      height: theme.spacing(3),
-      fontSize: theme.typography.h6.fontSize,
-      fontWeight: theme.typography.header.fontWeight
-    },
-    icon: {
-      width: theme.spacing(8),
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: theme.typography.icons.large.fontSize
     }
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: theme.spacing(16),
+    height: theme.spacing(3),
+    fontSize: theme.typography.h6.fontSize,
+    fontWeight: theme.typography.header.fontWeight
+  },
+  icon: {
+    width: theme.spacing(8),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: theme.typography.icons.large.fontSize
   }
 }))

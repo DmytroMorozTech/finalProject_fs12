@@ -7,6 +7,7 @@ import SmsRoundedIcon from '@material-ui/icons/SmsRounded'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import React from 'react'
+import { Hidden } from '@material-ui/core'
 
 function Navbar () {
   const classes = styles()
@@ -25,6 +26,9 @@ function Navbar () {
       {items.map(({ Icon, title, arrow, toggleMenu, onClick, to }, i) => (
         <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} onClick={onClick} to={to} />
       ))}
+      <Hidden mdDown>
+        <span className={classes.margin}> </span>
+      </Hidden>
     </div>
   )
 }

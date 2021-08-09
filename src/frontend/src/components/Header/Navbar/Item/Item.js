@@ -11,8 +11,7 @@ const Item = ({ Icon, title, arrow, toggleMenu, onClick, to }) => {
   const classes = styles()
 
   const renderMenuItem = (
-    <NavLink // style={clickBehaviour}
-      className={clsx(classes.itemPrimary)}
+    <NavLink className={clsx(classes.itemPrimary)}
       activeClassName={classes.itemPrimaryActive}
       exact
       to={to}

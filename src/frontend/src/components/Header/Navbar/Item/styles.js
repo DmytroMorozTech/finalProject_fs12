@@ -7,7 +7,6 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     paddingTop: theme.spacing(1),
     transition: 'all 0.4s ease',
-    width: '100%',
     lineHeight: theme.typography.h4.lineHeight,
     '&:hover': {
       color: theme.palette.common.black

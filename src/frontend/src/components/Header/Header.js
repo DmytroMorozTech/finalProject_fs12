@@ -3,8 +3,8 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import styles from './styles'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import { Hidden } from '@material-ui/core'
-import {useSelector} from 'react-redux'
-import {openModalSelector} from '../../redux/Modal/modalSelector'
+import { useSelector } from 'react-redux'
+import { openModalSelector } from '../../redux/Modal/modalSelector'
 import CustomizedDialogs from '../Modal/Modal'
 
 function Header () {
@@ -17,18 +17,20 @@ function Header () {
       <div className={classes.header}>
         <div className={classes.headerLogoSearch}>
           <div className={classes.headerLogo}>
-            <LinkedInIcon fontSize='inherit'/>
+            <LinkedInIcon fontSize="inherit"/>
           </div>
-          <Hidden mdDown>
+          <Hidden smDown>
             <div className={classes.headerSearch}>
-              <SearchRoundedIcon fontSize='inherit'/>
+              <SearchRoundedIcon fontSize="inherit"/>
               <input placeholder="Search"/>
             </div>
           </Hidden>
-          <Hidden lgUp>
+          <Hidden mdUp>
             <div className={classes.headerButtonSearch}>
-              <SearchRoundedIcon fontSize='inherit' className={classes.icon}/>
-              <span>Search</span>
+              <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
+              <Hidden xsDown>
+                <div className={classes.title}>Search</div>
+              </Hidden>
             </div>
           </Hidden>
         </div>
