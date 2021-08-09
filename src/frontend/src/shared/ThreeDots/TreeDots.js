@@ -1,12 +1,12 @@
-import Style from './styles'
+import styles from './styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import React from 'react'
 
 function ThreeDots () {
-  const classes = Style()
+  const classes = styles()
   return (
     <div className={classes.dots}>
-      <MoreHorizIcon/>
+      <MoreHorizIcon className={classes.icon}/>
     </div>
   )
 }
