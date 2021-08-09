@@ -18,5 +18,5 @@ public class WorkPlaceRq {
   private LocalDate dateFinish;
 
   @NotNull(message = "Organization id should be specified.")
-  private String organization_id;
+  private String organizationId;
 }
