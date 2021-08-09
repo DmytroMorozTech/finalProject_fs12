@@ -11,16 +11,16 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
-import Style from './styles'
+import styles from './styles'
 import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
+import SharedButton from '../../../../shared/Button/SharedButton'
 
-const styles = (theme) => ({
+const style = (theme) => ({
 
   root: {
     width: '500px',
@@ -35,14 +35,14 @@ const styles = (theme) => ({
   }
 })
 
-const DialogTitle = withStyles(styles)((props) => {
+const DialogTitle = withStyles(style)((props) => {
   const { children, classes, onClose, ...other } = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose && (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
+          <CloseIcon/>
         </IconButton>
       )}
     </MuiDialogTitle>
@@ -51,7 +51,7 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(4)
   }
 }))(MuiDialogContent)
 
@@ -63,49 +63,63 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
+const LightTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.grey[800],
+    boxShadow: theme.shadows[1],
+    padding: theme.spacing(2),
+    fontSize: theme.typography.h5.fontSize
+  }
+}))(Tooltip)
+
 const AddNewPost = () => {
   const dispatch = useDispatch()
   const activeUser = useSelector(activeUserSelector)
 
   const onPostSubmitHandler = () => {
-    dispatch(createNewPostAction({text: postInputText}))
+    dispatch(createNewPostAction({ text: postInputText }))
     dispatch(toggleModalAction())
   }
 
-  const classes = Style()
+  const classes = styles()
+
   const [postInputText, setPostInputText] = React.useState('')
+
   const handlePostInputChange = e => {
     let postInputVal = e.currentTarget.value
     setPostInputText(postInputVal)
   }
 
   let btnIsDisabled = postInputText.length === 0
-  const longText1 = `Add photo`
-  const longText2 = `Add video`
-  const longText3 = `Add documents`
+  const longText1 = `Add a photo`
+  const longText2 = `Add a video`
+  const longText3 = `Add a documents`
   return (
     <div>
       <div className={classes.title}>
-        <h4>Create post</h4>
+        Create a post
       </div>
-      <DialogTitle id="customized-dialog-title" onClose={() => dispatch(toggleModalAction())} >
-
+      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler}>
       </DialogTitle>
-
       <DialogContent dividers>
         <div className={classes.userInfo}>
           <div className={classes.avatar}>
             <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
           </div>
           <div className={classes.buttonGroup}>
-            <span>{activeUser.fullName}</span>
+            <Typography variant="h5">
+              {activeUser.fullName}
+            </Typography>
             <button className={classes.shareComment}>
-              <div className={classes.worldIcon}>
-                <PublicIcon/>
+              <div className={classes.icons}>
+                <PublicIcon fontSize="inherit"/>
               </div>
-              <span>Anyone</span>
-              <div className={classes.arrow}>
-                <ArrowDropDownIcon/>
+              <Typography variant="h4">
+                Anyone
+              </Typography>
+              <div className={classes.icons}>
+                <ArrowDropDownIcon fontSize="inherit"/>
               </div>
             </button>
           </div>
@@ -114,34 +128,32 @@ const AddNewPost = () => {
           placeholder="What do you want to talk about?"
           fullWidth={true}
           multiline={true}
+          minRows={7}
           value={postInputText}
           onChange={handlePostInputChange}
           className={classes.editor}
         />
       </DialogContent>
-      
       <DialogActions>
         <div className={classes.shareButtons}>
-          <Tooltip title={longText1} placement={'top'}>
-            <div className={classes.photo}>
+          <LightTooltip title={longText1} placement={'top'} className={classes.tool}>
+            <div className={classes.shareButton}>
               <PhotoSizeSelectActualIcon/>
             </div>
-          </Tooltip>
-          <Tooltip title={longText2} placement={'top'}>
-            <div className={classes.video}>
+          </LightTooltip>
+          <LightTooltip title={longText2} placement={'top'} className={classes.tool}>
+            <div className={classes.shareButton}>
               <YouTubeIcon/>
             </div>
-          </Tooltip>
-          <Tooltip title={longText3} placement={'top'}>
-            <div className={classes.docs}>
+          </LightTooltip>
+          <LightTooltip title={longText3} placement={'top'} className={classes.tool}>
+            <div className={classes.shareButton}>
               <EventNoteIcon/>
             </div>
-          </Tooltip>
-          <div className={classes.vl}></div>
+          </LightTooltip>
+          <hr className={classes.line}/>
         </div>
-        <Button autoFocus onClick={onPostSubmitHandler} disabled={btnIsDisabled} color={'primary'}>
-          POST
-        </Button>
+        <SharedButton title="Post" disabled={btnIsDisabled} onClick={onPostSubmitHandler}/>
       </DialogActions>
     </div>
   )
