@@ -8,6 +8,7 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,7 +45,7 @@ public class ChatService extends GeneralService<Chat> {
     Optional<Chat> chatOpt = chatRepository.findById(chatId);
     if (chatOpt.isEmpty()) {
       String msg = String.format("An error while trying to add user to chat. "
-        + "Chat with id %d could not be found in DB", userId);
+        + "Chat with id %d could not be found in DB", chatId);
       throw new BadRequestException(msg);
     }
 
@@ -54,5 +55,29 @@ public class ChatService extends GeneralService<Chat> {
     chatRepository.save(chat);
 
     return chat;
+  }
+
+  public List<User> getChatUsers(Long chatId) {
+    Optional<Chat> chatOpt = chatRepository.findById(chatId);
+    if (chatOpt.isEmpty()) {
+      String msg = String.format("An error while trying to add user to chat. "
+        + "Chat with id %d could not be found in DB", chatId);
+      throw new BadRequestException(msg);
+    }
+    Chat chat = chatOpt.get();
+
+    return chat.getUsers();
+  }
+
+  public List<Chat> getUserChats(Long userId) {
+    Optional<User> userOpt = userRepository.findById(userId);
+    if (userOpt.isEmpty()) {
+      String msg = String.format("An error while trying to add user to chat. "
+        + "User with id %d could not be found in DB", userId);
+      throw new BadRequestException(msg);
+    }
+    User user = userOpt.get();
+
+    return user.getChats();
   }
 }

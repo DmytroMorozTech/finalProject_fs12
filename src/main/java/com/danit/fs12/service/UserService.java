@@ -6,6 +6,7 @@ import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.exception.NotFoundException;
 import com.danit.fs12.repository.PostRepository;
+import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService extends GeneralService<User> {
   private final PostRepository postRepository;
+  private final UserRepository userRepository;
 
   public User getActiveUser(Long id) {
 
@@ -78,6 +80,16 @@ public class UserService extends GeneralService<User> {
     List<Like> likes = post.getLikes();
     List<User> usersList = likes.stream().map(Like::getUser).collect(Collectors.toList());
     return usersList;
+  }
+
+  public User findUserById(Long id) {
+    Optional<User> userOpt = userRepository.findById(id);
+    if (userOpt.isEmpty()) {
+      String msg = String.format("An error while trying to find user. "
+        + "User with id %d could not be found in DB", id);
+      throw new BadRequestException(msg);
+    }
+    return userOpt.get();
   }
 
 }
