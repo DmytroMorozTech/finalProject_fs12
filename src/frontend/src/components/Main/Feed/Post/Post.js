@@ -3,7 +3,7 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
-import Style from './styles'
+import styles from './styles'
 import React, { useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
+import {activeUserSelector} from '../../../../redux/User/userSelector'
+import getTimeSinceCreated from '../../../../services/timePassedService'
 
 function Post (props) {
   const {
@@ -26,11 +28,12 @@ function Post (props) {
 
   const dispatch = useDispatch()
   const allComments = useSelector(allCommentsSelector)
+  const activeUser = useSelector(activeUserSelector)
   // we get all comments from Redux store using useSelector
   const commentsForPost = allComments[id] || []
   // we get from Redux an array of Comments for a particular Post by postId
 
-  const classes = Style()
+  const classes = styles()
   const [showedAddComment, setShowedAddComment] = useState(false)
   const [commentValue, setCommentValue] = useState('')
 
@@ -69,7 +72,7 @@ function Post (props) {
             {user.positionAndCompany}
           </Typography>
           <Typography variant="h6" className={classes.time}>
-            {createdDate}
+            {getTimeSinceCreated(createdDate)}
             <SmallDot/>
             <div className={classes.worldIcon}>
               <PublicIcon fontSize="inherit"/>
@@ -138,7 +141,7 @@ function Post (props) {
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
         <div className={classes.addComment}>
           <div className={classes.smallAvatar}>
-            <Avatar avatarUrl={user.avatarUrl}/>
+            <Avatar avatarUrl={activeUser.avatarUrl}/>
           </div>
           <div className={classes.newComment}>
             <InputBase

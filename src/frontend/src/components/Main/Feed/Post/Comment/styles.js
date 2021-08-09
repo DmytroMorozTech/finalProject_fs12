@@ -23,7 +23,9 @@ export default makeStyles((theme) => ({
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: theme.border.comment,
     padding: theme.spacing(2),
-    margin: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(1),
     width: '100%'
   },
 
@@ -85,7 +87,7 @@ export default makeStyles((theme) => ({
   commentLike: {
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
-    fontWeight: theme.typography.h6.fontWeight
+    fontWeight: theme.typography.h3.fontWeight
   },
 
   commentNotLiked: {

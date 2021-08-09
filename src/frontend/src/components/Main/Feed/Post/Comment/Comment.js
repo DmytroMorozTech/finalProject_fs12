@@ -3,15 +3,16 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import SmallDot from '../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
-import Style from './styles'
+import styles from './styles'
 import clsx from 'clsx'
 import Avatar from '../../../../../shared/Avatar/Avatar'
+import getTimeSinceCreated from '../../../../../services/timePassedService'
 
 function Comment (props) {
-  let {user, text, quantityOfCommentsLike = 3, timePassedSinceCreated} = props.comment
+  let {user, text, quantityOfCommentsLike = 3, createdDate} = props.comment
   let {fullName, avatarUrl, positionAndCompany} = user
 
-  const classes = Style()
+  const classes = styles()
 
   const [commentLiked, setCommentLiked] = useState(false)
 
@@ -32,8 +33,8 @@ function Comment (props) {
               </Typography>
             </div>
             <div className={classes.commentRow}>
-              <div className={classes.time}>{timePassedSinceCreated}</div>
-              <div className={classes.dots}><MoreHorizIcon fontSize='inherit'/></div>
+              <div className={classes.time}>{getTimeSinceCreated(createdDate)}</div>
+              <div className={classes.dots}><MoreHorizIcon/></div>
             </div>
           </div>
           <Typography variant="body1" gutterBottom className={classes.commentText}>

@@ -58,7 +58,7 @@ const theme = createTheme({
       color: '#616161'
     },
     h6: {
-      fontSize: '0.750rem', // 12px
+      fontSize: '0.750rem',
       fontWeight: 500,
       letterSpacing: '0.02em',
       lineHeight: 1.3,
@@ -86,7 +86,8 @@ const theme = createTheme({
     },
     button: {
       fontWeight: 600,
-      textTransform: 'none'
+      textTransform: 'none',
+      fontSize: '0.900rem'
     }
   },
   avatar: {
