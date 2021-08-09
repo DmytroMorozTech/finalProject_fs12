@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import Comment from './Comment/Comment'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
+import {activeUserSelector} from '../../../../redux/User/userSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 
 function Post (props) {
@@ -27,6 +28,7 @@ function Post (props) {
 
   const dispatch = useDispatch()
   const allComments = useSelector(allCommentsSelector)
+  const activeUser = useSelector(activeUserSelector)
   // we get all comments from Redux store using useSelector
   const commentsForPost = allComments[id] || []
   // we get from Redux an array of Comments for a particular Post by postId
@@ -137,7 +139,7 @@ function Post (props) {
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
         <div className={classes.addComment}>
           <div className={classes.avatar}>
-            <Avatar/>
+            <Avatar avatarUrl={activeUser.avatarUrl}/>
           </div>
           <InputBase
             placeholder="Add a comment..."

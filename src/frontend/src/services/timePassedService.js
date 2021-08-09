@@ -39,16 +39,11 @@ const calculateTime = (startTime) => {
   }
 
   if (diffInSeconds >= minute) {
-    const numbOfFullHours = Math.floor(diffInSeconds / minute)
-    return numbOfFullHours + 'm'
+    const numbOfFullMinutes = Math.floor(diffInSeconds / minute)
+    return numbOfFullMinutes + 'min'
   }
 
-  return diffInSeconds + 's'
+  return '1min'
 }
 
 export default calculateTime
-
-// console.log(calculateTime('2021-01-04 19:25:10.111222'))
-// console.log(calculateTime('2016-08-08 19:25:10.111222'))
-// console.log(calculateTime('2010-06-08 19:25:10.111222'))
-// console.log(calculateTime('2020-12-12 19:25:10.111222'))
