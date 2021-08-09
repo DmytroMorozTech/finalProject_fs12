@@ -1,71 +1,72 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   title: {
-    marginLeft: '20px',
-    color: 'gray'
+    marginLeft: theme.spacing(4),
+    marginTop: theme.spacing(4),
+    color: theme.palette.grey[700],
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.h4.fontWeight
   },
   avatar: {
     display: 'flex',
     flexDirection: 'column'
   },
-  userAvatar: {
-    width: '65px',
-    borderRadius: '50%'
-  },
   userInfo: {
     display: 'flex',
     flexDirection: 'row'
   },
+  userAvatar: {
+    width: theme.avatar.medium,
+    borderRadius: '50%'
+  },
   buttonGroup: {
-    paddingLeft: '10px'
+    paddingLeft: theme.spacing(2)
   },
   shareComment: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '5px',
-    fontSize: 10,
-    borderRadius: '15px',
-    cursor: 'pointer'
-  },
-  worldIcon: {
-    '& > .MuiSvgIcon-root': {
-      fontSize: 15,
-      color: 'grey'
+    borderRadius: theme.shape.large,
+    cursor: 'pointer',
+    color: theme.palette.grey[700],
+    backgroundColor: theme.palette.common.white,
+    border: theme.border.boldLight,
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.05)',
+      border: theme.border.boldDark
     }
   },
-  arrow: {
-    '& > .MuiSvgIcon-root': {
-      fontSize: 15,
-      color: 'grey'
-    }
+  icons: {
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    fontSize: theme.typography.icons.medium.fontSize,
+    color: theme.palette.grey[800]
   },
   editor: {
-    height: 150
+    marginTop: theme.spacing(4)
   },
   shareButtons: {
     display: 'flex',
     flexDirection: 'row',
-    color: 'gray',
+    color: theme.palette.grey[700],
+    marginLeft: theme.spacing(2)
+  },
+  shareButton: {
+    padding: theme.spacing(2),
     cursor: 'pointer',
-    marginLeft: '10px'
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.05)',
+      borderRadius: '50%'
+    }
   },
-  photo: {
-    marginRight: '10px'
+  tool: {
+    // padding: theme.spacing(1)
   },
-  video: {
-    marginRight: '10px'
-  },
-  docs: {
-    marginRight: '50px'
-  },
-  vl: {
-    borderLeft: '1px solid gray',
-    height: '30px',
-    left: '50%',
-    top: 0,
-    marginLeft: '10px'
+  line: {
+    borderLeft: theme.border.simple,
+    margin: theme.spacing(1)
   }
 }))
