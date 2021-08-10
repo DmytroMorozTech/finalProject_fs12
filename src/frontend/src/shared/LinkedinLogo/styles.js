@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     color: theme.palette.primary.main,
     fontSize: theme.typography.icons.extraLarge.fontSize,
+    cursor: 'pointer',
     '& > span': {
       fontSize: theme.typography.icons.header.fontSize,
       fontWeight: theme.typography.h3.fontWeight,

@@ -1,52 +1,52 @@
 import React from 'react'
 import { Paper } from '@material-ui/core'
-import Logo from '../../../temporaryImages/text_logo.png'
-import Style from './Style'
-import Button from '@material-ui/core/Button'
+import styles from './Style'
 import TextField from '@material-ui/core/TextField'
 import { GoogleLoginButton } from 'react-social-login-buttons'
+import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
+import SharedButton from '../../../shared/Button/SharedButton'
 
 const LoginCard = () => {
-  const classes = Style()
+  const classes = styles()
 
   return (
     <Paper elevation={3} className={classes.card}>
       <header className={classes.header}>
-        <img src={Logo} alt='logo' />
+        <LinkedinLogo/>
       </header>
 
       <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
-          variant='outlined'
-          margin='normal'
+          variant="outlined"
+          margin="normal"
           required
           fullWidth
-          id='email'
-          label='Email Address'
-          name='email'
-          autoComplete='email'
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
           autoFocus
         />
         <TextField
-          variant='outlined'
-          margin='normal'
+          variant="outlined"
+          margin="normal"
           required
           fullWidth
-          name='password'
-          label='Password'
-          type='password'
-          id='password'
-          autoComplete='current-password'
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
         />
-        <Button
-          type='submit'
+        <SharedButton
+          type="submit"
+          size="large"
+          title="Sign In"
           fullWidth
-          variant='contained'
-          color='primary'
-          className={classes.button}
+          variant="contained"
+          color="primary"
           onClick={() => alert('Hello')}
-        >    Sign In
-        </Button>
+        />
       </form>
 
       <div className={classes.google}>
@@ -55,7 +55,7 @@ const LoginCard = () => {
           <p>OR</p>
           <div/>
         </section>
-        <GoogleLoginButton className={classes.googleBtn} onClick={() => alert('Hello')} />
+        <GoogleLoginButton className={classes.googleBtn} onClick={() => alert('Hello')}/>
       </div>
     </Paper>
   )

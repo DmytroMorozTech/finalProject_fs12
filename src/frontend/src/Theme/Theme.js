@@ -64,6 +64,9 @@ const theme = createTheme({
       lineHeight: 1.3,
       color: '#9e9e9e'
     },
+    additions: {
+      lineHeight: 0.5
+    },
     icons: {
       smallest: {
         fontSize: '0.200rem'
@@ -95,7 +98,8 @@ const theme = createTheme({
   },
   avatar: {
     small: '45px',
-    medium: '50px'
+    medium: '50px',
+    large: '65px'
   },
   border: {
     simple: '1px solid #e0e0e0',
