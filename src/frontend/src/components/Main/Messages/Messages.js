@@ -18,7 +18,7 @@ import AllUpload from './allUpload'
 import {useDispatch, useSelector} from 'react-redux'
 import UserMessage from './UserMessage'
 import {createMessageAction} from '../../../redux/Message/messageActions'
-import {allMessages} from '../../../redux/Message/messageSelector'
+import {allChats, allMessages} from '../../../redux/Message/messageSelector'
 
 function Messages ({
   userAvatar = TemporaryAvatar,
@@ -37,6 +37,7 @@ function Messages ({
   const [SearchValue, setSearchValue] = useState('')
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
   const messagesList = useSelector(allMessages)
+  const chatsList = useSelector(allChats)
 
   const handleSearchInputChange = e => {
     let SearchInputVal = e.currentTarget.value

@@ -34,7 +34,7 @@ export const addUserAction = ({chatId, userId}) => (dispatch) => {
     })
 }
 
-export const getUserChats = (userId) => (dispatch) => {
+export const getUserChatsAction = (userId) => (dispatch) => {
   return http
     .get(`/api/chats/user/${userId}`)
     .then(res => {
@@ -45,7 +45,7 @@ export const getUserChats = (userId) => (dispatch) => {
     })
 }
 
-export const getChatMessages = (chatid) => (dispatch) => {
+export const getChatMessagesAction = (chatid) => (dispatch) => {
   return http
     .get(`/api/messages/chat/${chatid}`)
     .then(res => {
