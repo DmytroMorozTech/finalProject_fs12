@@ -5,6 +5,7 @@ import { getAllPostsAction } from './redux/Post/postActions'
 import { useEffect } from 'react'
 import {getUserChatsAction} from './redux/Message/messageActions'
 import {activeUserSelector} from './redux/User/userSelector'
+import {allChats} from './redux/Message/messageSelector'
 
 function App () {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ function App () {
   useEffect(() => {
     dispatch(getAllPostsAction())
     dispatch(getUserChatsAction(activeUser.id))
-  }, [])
+  }, [dispatch, activeUser.id])
 
   return (
     <div className="App">

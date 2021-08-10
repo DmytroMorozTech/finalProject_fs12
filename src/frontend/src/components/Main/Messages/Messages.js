@@ -38,6 +38,7 @@ function Messages ({
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
   const messagesList = useSelector(allMessages)
   const chatsList = useSelector(allChats)
+  console.log(chatsList)
 
   const handleSearchInputChange = e => {
     let SearchInputVal = e.currentTarget.value

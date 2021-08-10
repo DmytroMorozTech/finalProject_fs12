@@ -35,10 +35,12 @@ export const addUserAction = ({chatId, userId}) => (dispatch) => {
 }
 
 export const getUserChatsAction = (userId) => (dispatch) => {
+  console.log(userId)
   return http
     .get(`/api/chats/user/${userId}`)
     .then(res => {
       const userChats = res.data
+      console.log(userChats)
       dispatch({
         type: actions.GET_USER_CHATS, payload: userChats
       })
