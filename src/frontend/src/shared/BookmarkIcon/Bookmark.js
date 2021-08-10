@@ -1,12 +1,10 @@
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
-import Style from './styles'
+import styles from './styles'
 
 function Bookmark () {
-  const classes = Style()
+  const classes = styles()
   return (
-    <div>
-      <BookmarkBorderIcon className={classes.bookmark}/>
-    </div>
+    <BookmarkBorderIcon fontSize='inherit' className={classes.bookmark}/>
   )
 }
 

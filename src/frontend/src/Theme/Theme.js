@@ -65,6 +65,9 @@ const theme = createTheme({
       color: '#9e9e9e'
     },
     icons: {
+      smallest: {
+        fontSize: '0.200rem'
+      },
       extraSmall: {
         fontSize: '0.900rem'
       },
