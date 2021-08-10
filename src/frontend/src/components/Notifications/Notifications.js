@@ -1,5 +1,5 @@
 import React from 'react'
-import Style from './styles'
+import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import TemporaryAvatar from '../../temporaryImages/avatar.jpg'
 import ThreeDots from '../../shared/ThreeDots/TreeDots'
@@ -13,7 +13,7 @@ function Notifications ({
   userText = 'You can place a request in our Standard Product Catalogue following a few simple steps: ad your product to the cart, fill the contact form and complete your request.',
   notificationTime = '2d'
 }) {
-  const classes = Style()
+  const classes = styles()
   return (
     <div className={classes.notifications}>
       <div className={classes.notification}>
