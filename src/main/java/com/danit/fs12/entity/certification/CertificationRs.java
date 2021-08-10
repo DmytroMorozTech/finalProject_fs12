@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 public class CertificationRs {
 
-  private String id;
+  private Long id;
   private String name;
   private String issuingOrganization;
   private Boolean hasExpiryDate;
