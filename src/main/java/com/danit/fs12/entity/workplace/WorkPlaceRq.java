@@ -1,8 +1,11 @@
 package com.danit.fs12.entity.workplace;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Data
 public class WorkPlaceRq {
 
   @NotNull(message = "User job position should be specified.")
