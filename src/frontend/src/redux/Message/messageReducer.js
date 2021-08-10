@@ -20,7 +20,7 @@ const messageReducer = (state = initialState, action) => {
       }
     case actions.ADD_USER:
       const {chatId} = action.payload
-      const chatsCopy = [...state.chats]
+      const chatsCopy = [...state.chatsList]
       chatsCopy.filter(chat => chat.id === chatId)[0] = action.payload
       return {
         ...state,
@@ -30,6 +30,12 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         chatsList: action.payload
+      }
+    case actions.GET_CHAT_MESSAGES:
+      const {chatid, chatMessages} = action.payload
+      return {
+        ...state,
+        chatMessages: {...state.chatMessages, [chatid]: chatMessages}
       }
     default: {
       return state

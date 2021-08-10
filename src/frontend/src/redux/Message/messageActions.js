@@ -1,5 +1,4 @@
 import * as actions from './messageActionTypes'
-import axios from 'axios'
 import http from '../../services/httpService'
 
 export const createChatAction = () => (dispatch) => {
@@ -42,6 +41,17 @@ export const getUserChats = (userId) => (dispatch) => {
       const userChats = res.data
       dispatch({
         type: actions.GET_USER_CHATS, payload: userChats
+      })
+    })
+}
+
+export const getChatMessages = (chatid) => (dispatch) => {
+  return http
+    .get(`/api/messages/chat/${chatid}`)
+    .then(res => {
+      const chatMessages = res.data
+      dispatch({
+        type: actions.GET_CHAT_MESSAGES, payload: {chatid, chatMessages}
       })
     })
 }
