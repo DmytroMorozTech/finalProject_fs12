@@ -51,4 +51,9 @@ public abstract class GeneralService<E extends AbstractEntity> implements Servic
   public E getOne(Long id) {
     return repo.getOne(id);
   }
+
+  @Override
+  public E findEntityById(Long id) {
+    return repo.findEntityById(id);
+  }
 }

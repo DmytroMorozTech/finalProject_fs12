@@ -49,15 +49,8 @@ public class PostService extends GeneralService<Post> {
   }
 
   public Post toggleLike(Long postId) {
-    Optional<Post> postOpt = findById(postId);
-    if (postOpt.isEmpty()) {
-      String msg = String.format("An error while trying to find post with id %d. ", postId);
-      throw new BadRequestException(msg);
-    }
-    // логику выше нужно вынести в отдельную функцию
-    //    Post post = newMethod(postId)  inside check
+    Post post = findEntityById(postId);
 
-    Post post = postOpt.get();
     Boolean postIsLiked = post.getIsLikedByActiveUser();
 
     if (postIsLiked) {

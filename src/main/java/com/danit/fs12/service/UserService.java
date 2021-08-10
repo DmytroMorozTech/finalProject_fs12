@@ -66,7 +66,7 @@ public class UserService extends GeneralService<User> {
   //    }
   //  }
 
-  public List<User> findUserWhoLikedPost(Long id) {
+  public List<User> findUsersWhoLikedPost(Long id) {
     Optional<Post> postOpt = postRepository.findById(id);
 
     if (postOpt.isEmpty()) {
