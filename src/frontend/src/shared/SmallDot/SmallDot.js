@@ -1,12 +1,12 @@
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import React from 'react'
-import Style from './styles'
+import styles from './styles'
 
 function SmallDot () {
-  const classes = Style()
+  const classes = styles()
   return (
     <span className={classes.smallDot}>
-      <FiberManualRecordIcon/>
+      <FiberManualRecordIcon fontSize='inherit'/>
     </span>
   )
 }

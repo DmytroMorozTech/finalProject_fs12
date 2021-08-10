@@ -4,12 +4,12 @@ import Grow from '@material-ui/core/Grow'
 import Paper from '@material-ui/core/Paper'
 import Popper from '@material-ui/core/Popper'
 import MenuList from '@material-ui/core/MenuList'
-import Style from './styles'
+import styles from './styles'
 
 export default function SimpleMenu (props) {
   const [open, setOpen] = React.useState(false)
   const anchorRef = React.useRef(null)
-  const classes = Style()
+  const classes = styles()
   const {menuItem, userData} = props
 
   const handleToggle = () => {

@@ -1,14 +1,13 @@
 import {makeStyles} from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   likeMini: {
-    color: '#fff',
-    fontSize: 12,
-    backgroundColor: '#0a66c2',
-    borderRadius: 30,
+    color: theme.palette.common.white,
+    fontSize: theme.typography.h6.fontSize,
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: theme.shape.large,
     cursor: 'pointer',
-    marginTop: '3px',
-    marginRight: '3px'
+    marginRight: theme.spacing(1)
   }
 }))
