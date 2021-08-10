@@ -28,8 +28,8 @@ public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
     return convertToDto(chat);
   }
 
- public List<ChatRs> getUserChats(ChatRq chatRq) {
-    User user = userService.findUserById(chatRq.getUserId());
+ public List<ChatRs> getUserChats(Long userId) {
+    User user = userService.findUserById(userId);
     List<Chat> chats = user.getChats();
     List<ChatRs> chatsRs = chats.stream()
       .map(this::convertToDto)

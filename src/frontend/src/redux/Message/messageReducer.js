@@ -2,7 +2,8 @@ import * as actions from './messageActionTypes'
 
 const initialState = {
   chatsList: [],
-  messagesList: []
+  messagesList: [],
+  chatMessages: {}
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         chatsList: chatsCopy
+      }
+    case actions.GET_USER_CHATS:
+      return {
+        ...state,
+        chatsList: action.payload
       }
     default: {
       return state
