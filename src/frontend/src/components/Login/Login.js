@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import LoginCard from './loginCard/LoginCard'
 
-const Style = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   login: {
     width: '100vw',
     height: '100vh',
@@ -13,13 +13,12 @@ const Style = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0 50px'
+    alignItems: 'center'
   }
 }))
 
 const Login = () => {
-  const classes = Style()
+  const classes = styles()
   return (
     <div className={classes.login}>
       <div className={classes.loginCard}>

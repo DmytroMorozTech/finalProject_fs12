@@ -1,55 +1,60 @@
 import {makeStyles} from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   root: {
-    width: '20vw',
+    width: '264px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'flex-start',
     borderTopLeftRadius: '150%'
   },
+
   menuItem: {
-    width: '20vw'
+    width: '100%',
+    padding: theme.spacing(2)
   },
+
   avatarWrapper: {
-    width: '10vw',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   avatar: {
-    width: '5vw',
-    borderRadius: '50%'
+    width: theme.avatar.large,
+    borderRadius: '50%',
+    display: 'flex',
+    alignSelf: 'flex-start'
   },
+
   profileButton: {
     borderRadius: '100px',
-    width: '19vw',
     height: '1.5rem',
-    fontSize: '0.9vw',
-    margin: '1vh auto'
+    fontSize: theme.typography.button.fontSize,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    margin: theme.spacing(1)
+  },
 
-  },
   userDataWrapper: {
-    marginLeft: '1vw'
-  },
-  userName: {
-    fontSize: '1vw',
-    fontWeight: 'bold'
-  },
-  userProfession: {
-    width: '5vw',
-    fontSize: '0.8vw',
-    marginBottom: '2vh'
-  },
-  logoutLink: {
-    width: '20vw',
+    width: '100%',
+    marginLeft: theme.spacing(2),
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'grey',
-    fontSize: '0.9vw'
+    flexDirection: 'column',
+    alignSelf: 'flex-start'
+  },
+
+  userName: {
+    whiteSpace: 'normal',
+    fontSize: theme.typography.h5.fontSize,
+    fontWeight: theme.typography.h5.fontWeight
+  },
+
+  userProfession: {
+    width: '100%',
+    whiteSpace: 'normal',
+    fontSize: theme.typography.h6.fontSize
   }
 }))
