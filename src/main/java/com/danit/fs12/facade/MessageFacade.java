@@ -21,8 +21,8 @@ public class MessageFacade extends GeneralFacade<Message, MessageRq, MessageRs> 
     return convertToDto(message);
   }
 
-  public List<MessageRs> getMessagesByChatId(MessageRq rq) {
-    List<Message> messages = messageService.getMessagesByChatId(rq.getChatId());
+  public List<MessageRs> getMessagesByChatId(Long id) {
+    List<Message> messages = messageService.getMessagesByChatId(id);
     List<MessageRs> messageRs = messages.stream()
       .map(this::convertToDto)
       .collect(Collectors.toList());
