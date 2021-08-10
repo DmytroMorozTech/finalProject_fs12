@@ -17,34 +17,34 @@ const LoginCard = () => {
 
       <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
-          variant="outlined"
-          margin="normal"
+          variant='outlined'
+          margin='normal'
           required
           fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
+          id='email'
+          label='Email Address'
+          name='email'
+          autoComplete='email'
           autoFocus
         />
         <TextField
-          variant="outlined"
-          margin="normal"
+          variant='outlined'
+          margin='normal'
           required
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
+          name='password'
+          label='Password'
+          type='password'
+          id='password'
+          autoComplete='current-password'
         />
         <SharedButton
-          type="submit"
-          size="large"
-          title="Sign In"
+          type='submit'
+          size='large'
+          title='Sign In'
           fullWidth
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           onClick={() => alert('Hello')}
         />
       </form>
