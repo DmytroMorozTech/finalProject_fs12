@@ -1,7 +1,10 @@
 package com.danit.fs12.entity.organization;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
+@Data
 public class OrganizationRq {
 
   @NotNull(message = "Organization name should be specified.")
