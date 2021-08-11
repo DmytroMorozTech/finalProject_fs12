@@ -42,8 +42,8 @@ public class UserController {
   }
 
   @GetMapping(path = "/who_liked_post/{id}")
-  public ResponseEntity<List<UserRs>> findUserWhoLikedPost(@PathVariable Long id) {
-    List<UserRs> usersList = userFacade.findUserWhoLikedPost(id);
+  public ResponseEntity<List<UserRs>> findUsersWhoLikedPost(@PathVariable Long id) {
+    List<UserRs> usersList = userFacade.findUsersWhoLikedPost(id);
     // in case User can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(usersList);
   }

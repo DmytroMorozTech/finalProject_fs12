@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
   private final UserService userService;
 
-  public List<UserRs> findUserWhoLikedPost(Long id) {
-    List<User> listUsers = userService.findUserWhoLikedPost(id);
+  public List<UserRs> findUsersWhoLikedPost(Long id) {
+    List<User> listUsers = userService.findUsersWhoLikedPost(id);
 
     List<UserRs> listUsersRs = listUsers.stream()
       .map(this::convertToDto).collect(Collectors.toList());

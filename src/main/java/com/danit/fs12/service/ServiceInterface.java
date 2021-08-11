@@ -1,6 +1,7 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.post.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface ServiceInterface<E extends AbstractEntity> {
   Optional<E> findById(Long id);
 
   E getOne(Long id);
+
+  E findEntityById(Long id);
 
 }

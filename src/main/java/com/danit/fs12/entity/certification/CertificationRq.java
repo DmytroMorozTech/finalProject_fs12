@@ -1,8 +1,11 @@
 package com.danit.fs12.entity.certification;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Data
 public class CertificationRq {
 
   @NotNull(message = "Certificate name should be specified.")

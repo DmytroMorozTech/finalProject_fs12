@@ -1,7 +1,10 @@
 package com.danit.fs12.entity.group;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
+@Data
 public class GroupRq {
 
   @NotNull(message = "Group name should be specified.")
