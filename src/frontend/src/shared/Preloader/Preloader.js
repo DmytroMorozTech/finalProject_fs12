@@ -1,8 +1,8 @@
 import styles from './styles'
 import LinkedinLogo from '../LinkedinLogo/LinkedinLogo'
-import { LinearProgress } from '@material-ui/core'
+import { CircularProgress, LinearProgress } from '@material-ui/core'
 
-function Preloader ({fullscreen = false}) {
+function Preloader ({ fullscreen = false }) {
   const classes = styles()
 
   if (fullscreen) {
@@ -27,9 +27,7 @@ function Preloader ({fullscreen = false}) {
   function FullscreenFalse () {
     return (
       <div className={classes.fullscreenFalse}>
-        <div className={classes.preloader}>
-          <LinearProgress/>
-        </div>
+        <CircularProgress/>
       </div>
     )
   }

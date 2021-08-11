@@ -6,22 +6,13 @@ export default makeStyles((theme) => ({
     height: '100vh',
     width: '100vw',
     backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 200
-  },
-
-  fullscreenFalse: {
+    zIndex: 200,
     display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.background.default,
-    height: '100%',
-    width: '100%',
-    margin: '0 auto'
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
 
   logo: {
@@ -32,6 +23,14 @@ export default makeStyles((theme) => ({
 
   preloader: {
     width: '100px',
+    margin: '0 auto'
+  },
+
+  fullscreenFalse: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
     margin: '0 auto'
   }
 }))
