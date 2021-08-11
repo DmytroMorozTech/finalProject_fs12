@@ -1,9 +1,9 @@
-import Style from './styles'
+import styles from './styles'
 
 function Avatar (props) {
   const { avatarUrl } = props
 
-  const classes = Style()
+  const classes = styles()
   return (
     <img src={avatarUrl} alt={avatarUrl} className={classes.userAvatar}/>
   )

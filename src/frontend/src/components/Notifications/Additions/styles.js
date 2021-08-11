@@ -1,23 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   itemWrapper: {
     display: 'flex'
   },
   icon: {
-    fontSize: 30,
-    color: 'grey'
+    color: theme.palette.grey[700]
   },
   itemTextWrapper: {
-    marginLeft: 10,
-    color: 'grey'
+    marginLeft: theme.spacing(2),
+    color: theme.palette.grey[700]
   },
   itemTextHeader: {
-    lineHeight: 0.5
+    lineHeight: theme.typography.additions.lineHeight
   },
   itemTextBody: {
-    lineHeight: 0.5,
-    fontSize: 12
+    lineHeight: theme.typography.additions.lineHeight,
+    fontSize: theme.typography.h6.fontSize
   }
 }))

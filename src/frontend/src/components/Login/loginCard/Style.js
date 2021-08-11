@@ -2,11 +2,11 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   card: {
-    width: 360,
+    width: 350,
     height: 500,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center'
   },
 
@@ -15,37 +15,21 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
-    '& > img': {
-      width: 'auto',
-      height: 35
-    }
+    marginBottom: theme.spacing(4)
   },
 
   form: {
-    width: 250,
-    height: 200,
+    width: '70%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     '& > input': {
-      outlineWidth: 0,
-      height: 35,
-      border: '1px solid lightgrey',
-      borderRadius: 2,
-      padding: '0 10px'
+      border: theme.border.simple,
+      borderRadius: theme.shape.extraSmall,
+      padding: theme.spacing(2)
     }
+  },
 
-  },
-  button: {
-    height: 30,
-    border: '1px solid lightgrey',
-    borderRadius: 4,
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 600,
-    backgroundColor: '#5d98d4'
-  },
   google: {
     width: '100%',
     display: 'flex',
@@ -57,29 +41,27 @@ export default makeStyles((theme) => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '0 10px',
+      padding: theme.spacing(2),
       '& > div': {
         flex: 1,
-        height: 1,
+        height: 0.5,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightgrey',
-        opacity: 0.5
+        backgroundColor: theme.palette.grey[500]
       },
       '& > p': {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '0 10px',
-        fontSize: 12,
-        color: 'grey'
+        padding: theme.spacing(2),
+        color: theme.palette.grey[500]
       }
     }
   },
+
   googleBtn: {
-    width: '100%',
-    fontSize: 5,
+    width: '70%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

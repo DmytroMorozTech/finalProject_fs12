@@ -1,19 +1,17 @@
 import {makeStyles} from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   logo: {
     display: 'flex',
-    alignItems: 'flex-end',
-    color: '#0a66c2',
-    paddingTop: '3px',
+    alignItems: 'center',
+    color: theme.palette.primary.main,
+    fontSize: theme.typography.icons.extraLarge.fontSize,
+    cursor: 'pointer',
     '& > span': {
-      fontSize: 32,
-      fontWeight: 700,
-      paddingBottom: '1px'
-    },
-    '& > .MuiSvgIcon-root': {
-      fontSize: 45
+      fontSize: theme.typography.icons.header.fontSize,
+      fontWeight: theme.typography.h3.fontWeight,
+      paddingTop: theme.spacing(0.5)
     }
   }
 }))

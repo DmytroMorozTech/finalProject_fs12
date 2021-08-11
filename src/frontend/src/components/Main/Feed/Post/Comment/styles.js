@@ -61,7 +61,7 @@ export default makeStyles((theme) => ({
   dots: {
     cursor: 'pointer',
     marginLeft: theme.spacing(0.5),
-    fontSize: theme.typography.icons.medium.fontSize
+    fontSize: theme.typography.icons.small.fontSize
   },
 
   commentUserInfo: {

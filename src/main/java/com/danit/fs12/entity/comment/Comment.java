@@ -16,7 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity(name = "Comment")
 @Table(name = "comments")
@@ -66,7 +66,7 @@ public class Comment extends AbstractEntity {
   }
 
   public String getTimePassedSinceCreated() {
-    Date createdDate = getCreatedDate();
+    LocalDateTime createdDate = getCreatedDate();
     return "2h"; // hardcoded temporarily
   }
 

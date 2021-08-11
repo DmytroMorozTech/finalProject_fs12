@@ -1,11 +1,12 @@
 import CancelIcon from '@material-ui/icons/Cancel'
-import Style from './styles'
+import styles from './styles'
 
 function Cross () {
-  const classes = Style()
+  const classes = styles()
   return (
+
     <div className={classes.cross}>
-      <CancelIcon/>
+      <CancelIcon fontSize='inherit'/>
     </div>
   )
 }
