@@ -107,6 +107,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     cursor: 'pointer',
     marginLeft: theme.spacing(0.5),
+    alignItems: 'center',
     '&:hover': {
       color: theme.palette.primary.main
     }
