@@ -1,7 +1,8 @@
 import React from 'react'
 import Feed from '../Main/Feed/Feed'
 import Grid from '@material-ui/core/Grid'
-import MainLeft from './MainLeft'
+import MainLeft from './MainLeft/MainLeft'
+import MainLeftSticky from './MainSticky/MainLeftSticky'
 import styleMain from './styleMain'
 import { Container, Hidden } from '@material-ui/core'
 
@@ -15,6 +16,7 @@ function Main () {
         <Hidden smDown>
           <Grid item sm={3} md={3} lg={2} xl={2}>
             <MainLeft />
+            <MainLeftSticky />
           </Grid>
         </Hidden>
 
