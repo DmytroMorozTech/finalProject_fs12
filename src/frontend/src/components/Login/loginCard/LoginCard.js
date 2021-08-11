@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper } from '@material-ui/core'
-import styles from './Style'
+import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import { GoogleLoginButton } from 'react-social-login-buttons'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
@@ -55,7 +55,9 @@ const LoginCard = () => {
           <p>OR</p>
           <div/>
         </section>
-        <GoogleLoginButton className={classes.googleBtn} onClick={() => alert('Hello')}/>
+        <div className={classes.googleBtn}>
+          <GoogleLoginButton onClick={() => alert('Hello')}/>
+        </div>
       </div>
     </Paper>
   )
