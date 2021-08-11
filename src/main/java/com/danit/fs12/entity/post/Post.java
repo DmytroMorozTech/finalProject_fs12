@@ -64,10 +64,6 @@ public class Post extends AbstractEntity {
     this.text = text;
   }
 
-  public Long getPostAuthorId() {
-    return user.getId();
-  }
-
   public Long getNumberOfLikes() {
     return (long) likes.size();
   }
