@@ -25,9 +25,7 @@ public class CommentService extends GeneralService<Comment> {
     User user = userRepository.findEntityById(hardCodedActiveUserId);
     Post post = postRepository.findEntityById(postId);
 
-    Comment comment = save(new Comment(text)); // we have id assigned, created_date, modified_date, text
-    comment.setUser(user);
-    comment.setPost(post);
+    Comment comment = save(new Comment(text, post, user));
     post.getComments().add(comment);
     user.getComments().add(comment);
 

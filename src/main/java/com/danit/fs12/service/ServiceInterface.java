@@ -1,7 +1,6 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.post.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
