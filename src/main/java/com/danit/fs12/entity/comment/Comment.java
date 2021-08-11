@@ -32,16 +32,16 @@ public class Comment extends AbstractEntity {
   @ManyToOne(
     cascade = {CascadeType.PERSIST},
     fetch = FetchType.LAZY
-  )
-  @JoinColumn(name="post_id")
+    )
+  @JoinColumn(name = "post_id")
   private Post post;
 
   @JsonIgnore
   @ManyToOne(
     cascade = {CascadeType.PERSIST},
     fetch = FetchType.LAZY
-  )
-  @JoinColumn(name="user_id")
+    )
+  @JoinColumn(name = "user_id")
   private User user;
 
 }
