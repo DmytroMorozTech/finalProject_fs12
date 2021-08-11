@@ -4,14 +4,12 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
-import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,16 +22,9 @@ public class CommentService extends GeneralService<Comment> {
     Long postId = rq.getPostId();
     String text = rq.getText();
 
-    Optional<User> userOpt = userRepository.findById(hardCodedActiveUserId);
-    Optional<Post> postOpt = postRepository.findById(postId);
-    if (userOpt.isEmpty() || postOpt.isEmpty()) {
-      String msg = String.format("An error while trying to add new comment. Extra data: "
-        + "activeUserId: %d, postId: %d, text: %s", hardCodedActiveUserId, postId, text);
-      throw new BadRequestException(msg);
-    }
+    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    Post post = postRepository.findEntityById(postId);
 
-    User user = userOpt.get();
-    Post post = postOpt.get();
     Comment comment = save(new Comment(text)); // we have id assigned, created_date, modified_date, text
     comment.setUser(user);
     comment.setPost(post);
@@ -47,12 +38,6 @@ public class CommentService extends GeneralService<Comment> {
   }
 
   public List<Comment> getCommentsForPost(Long postId) {
-    Optional<Post> postOpt = postRepository.findById(postId);
-    if (postOpt.isEmpty()) {
-      String msg = String.format("An error while trying to unwrap post Optional with id %d", postId);
-      throw new BadRequestException(msg);
-    }
-
-    return postOpt.get().getComments();
+    return postRepository.findEntityById(postId).getComments();
   }
 }
