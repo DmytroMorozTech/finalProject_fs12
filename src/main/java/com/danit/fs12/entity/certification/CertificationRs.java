@@ -16,5 +16,5 @@ public class CertificationRs {
   private LocalDate expirationDate;
   private String credentialId;
   private String credentialUrl;
-  private UserRs userRs;
+  private UserRs user;
 }
