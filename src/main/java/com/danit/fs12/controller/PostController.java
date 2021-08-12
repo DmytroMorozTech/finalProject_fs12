@@ -5,16 +5,21 @@ import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.facade.PostFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -24,6 +29,20 @@ public class PostController {
   private final PostFacade postFacade;
 
   @GetMapping
+  Page<PostRs> getPostsForActiveUser(
+    @RequestParam Optional<Integer> page, //pageNumber
+    @RequestParam Optional<String> sortBy
+  ) {
+    return postFacade.getPostsForActiveUser(
+      PageRequest.of(
+        page.orElse(0),
+        5, // size of page is defined only here
+        Sort.Direction.DESC, sortBy.orElse("id")
+      )
+    );
+  }
+
+  @GetMapping("/all")
   List<PostRs> findAll() {
     return postFacade.findAll();
   }

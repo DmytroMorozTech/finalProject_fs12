@@ -5,6 +5,8 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -48,5 +50,9 @@ public class PostService extends GeneralService<Post> {
       post.getLikes().add(like);
       return save(post);
     }
+  }
+
+  public Page<Post> getPostsForActiveUser(PageRequest pageRequest){
+    return findAll(pageRequest);
   }
 }
