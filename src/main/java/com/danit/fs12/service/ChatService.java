@@ -20,14 +20,7 @@ public class ChatService extends GeneralService<Chat> {
 
   public Chat createChat() {
     Long userId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
-    Optional<User> userOpt = userRepository.findById(userId);
-    if (userOpt.isEmpty()) {
-      String msg = String.format("An error while trying to create chat. "
-        + "User with id %d could not be found in DB", userId);
-      throw new BadRequestException(msg);
-    }
-
-    User user = userOpt.get();
+    User user = userRepository.findEntityById(userId);
     Chat chat = save(new Chat());
     user.addChat(chat);
     userRepository.save(user);
@@ -36,21 +29,8 @@ public class ChatService extends GeneralService<Chat> {
   }
 
   public Chat addUser(Long userId, Long chatId) {
-    Optional<User> userOpt = userRepository.findById(userId);
-    if (userOpt.isEmpty()) {
-      String msg = String.format("An error while trying to add user to chat. "
-        + "User with id %d could not be found in DB", userId);
-      throw new BadRequestException(msg);
-    }
-    Optional<Chat> chatOpt = chatRepository.findById(chatId);
-    if (chatOpt.isEmpty()) {
-      String msg = String.format("An error while trying to add user to chat. "
-        + "Chat with id %d could not be found in DB", chatId);
-      throw new BadRequestException(msg);
-    }
-
-    User user = userOpt.get();
-    Chat chat = chatOpt.get();
+    User user = userRepository.findEntityById(userId);
+    Chat chat = chatRepository.findEntityById(chatId);
     chat.addUser(user);
     chatRepository.save(chat);
 
@@ -58,25 +38,13 @@ public class ChatService extends GeneralService<Chat> {
   }
 
   public List<User> getChatUsers(Long chatId) {
-    Optional<Chat> chatOpt = chatRepository.findById(chatId);
-    if (chatOpt.isEmpty()) {
-      String msg = String.format("An error while trying to add user to chat. "
-        + "Chat with id %d could not be found in DB", chatId);
-      throw new BadRequestException(msg);
-    }
-    Chat chat = chatOpt.get();
+    Chat chat = chatRepository.findEntityById(chatId);
 
     return chat.getUsers();
   }
 
   public List<Chat> getUserChats(Long userId) {
-    Optional<User> userOpt = userRepository.findById(userId);
-    if (userOpt.isEmpty()) {
-      String msg = String.format("An error while trying to add user to chat. "
-        + "User with id %d could not be found in DB", userId);
-      throw new BadRequestException(msg);
-    }
-    User user = userOpt.get();
+    User user = userRepository.findEntityById(userId);
 
     return user.getChats();
   }

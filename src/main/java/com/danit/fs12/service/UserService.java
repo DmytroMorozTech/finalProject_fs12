@@ -66,13 +66,6 @@ public class UserService extends GeneralService<User> {
   }
 
   public User findUserById(Long id) {
-    Optional<User> userOpt = userRepository.findById(id);
-    if (userOpt.isEmpty()) {
-      String msg = String.format("An error while trying to find user. "
-        + "User with id %d could not be found in DB", id);
-      throw new BadRequestException(msg);
-    }
-    return userOpt.get();
+    return findEntityById(id);
   }
-
 }
