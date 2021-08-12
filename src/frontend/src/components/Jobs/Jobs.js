@@ -1,11 +1,11 @@
 import React from 'react'
-import Style from './styles'
+import styles from './styles'
 
 function Jobs () {
-  const classes = Style()
+  const classes = styles()
   return (
     <h1 className={classes.text}>
-      Welcome to the Network page!
+      Welcome to the Jobs page!
     </h1>
   )
 }

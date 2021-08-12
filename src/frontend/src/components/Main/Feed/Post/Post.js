@@ -1,58 +1,31 @@
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
-import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
-import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
-import TelegramIcon from '@material-ui/icons/Telegram'
 import PublicIcon from '@material-ui/icons/Public'
 import styles from './styles'
-import React, { useState } from 'react'
+import React from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
-import { Hidden } from '@material-ui/core'
-import InputBase from '@material-ui/core/InputBase'
-import SharedButton from '../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewCommentAction, getCommentsForPostAction, toggleLikeAction, getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
-import Comment from './Comment/Comment'
+import { getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
-import {activeUserSelector} from '../../../../redux/User/userSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
+import PostButtons from './PostButton/PostButtons'
 
 function Post (props) {
   const {
-    id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
+    id: postId, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
     numberOfViews = 244688
   } = props.post
 
   const dispatch = useDispatch()
   const allComments = useSelector(allCommentsSelector)
-  const activeUser = useSelector(activeUserSelector)
+  // const activeUser = useSelector(activeUserSelector)
   // we get all comments from Redux store using useSelector
-  const commentsForPost = allComments[id] || []
+  const commentsForPost = allComments[postId] || []
   // we get from Redux an array of Comments for a particular Post by postId
 
   const classes = styles()
-  const [showedAddComment, setShowedAddComment] = useState(false)
-  const [commentValue, setCommentValue] = useState('')
-
-  const handleCommentInputChange = e => {
-    let commentInputVal = e.currentTarget.value
-    setCommentValue(commentInputVal)
-  }
-
-  const handleEnterPressed = (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault()
-      handleButtonPost()
-    }
-  }
-
-  const handleButtonPost = () => {
-    dispatch(createNewCommentAction({ text: commentValue, id: id }))
-    setCommentValue('')
-  }
 
   return (
     <div className={classes.post}>
@@ -83,11 +56,8 @@ function Post (props) {
       <Typography variant="body1" gutterBottom className={classes.text}>
         {text}
       </Typography>
-      {/* <div> */}
-      {/*  <img src={user.avatarUrl} alt={user.avatarUrl} className={classes.picture}/> */}
-      {/* </div> */}
       <div className={classes.quantity}>
-        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
+        <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
           <Typography variant="body2" className={classes.quantityText}>
             <LikeMiniIcon/>
             {numberOfLikes}
@@ -103,71 +73,7 @@ function Post (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      {/* -------  We should move the component below into a separate react Component */}
-      <div className={classes.block}>
-        <div className={isLikedByActiveUser ? classes.liked : ''}>
-          <div className={classes.item} onClick={() => dispatch(toggleLikeAction(id))}>
-            <ThumbUpOutlinedIcon fontSize="inherit"/>
-            <Hidden xsDown>
-              <span className="like">Like</span>
-            </Hidden>
-          </div>
-        </div>
-        <div className={classes.item} onClick={() => {
-          if (!showedAddComment) {
-            dispatch(getCommentsForPostAction(id))
-            setShowedAddComment(!showedAddComment)
-          }
-        }}>
-          <ChatOutlinedIcon fontSize="inherit"/>
-          <Hidden xsDown>
-            <span>Comment</span>
-          </Hidden>
-        </div>
-        <div className={classes.item}>
-          <RedoOutlinedIcon fontSize="inherit"/>
-          <Hidden xsDown>
-            <span>Share</span>
-          </Hidden>
-        </div>
-        <div className={classes.item}>
-          <TelegramIcon fontSize="inherit"/>
-          <Hidden xsDown>
-            <span>Send</span>
-          </Hidden>
-        </div>
-      </div>
-      {/* -------  */}
-      <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <div className={classes.addComment}>
-          <div className={classes.smallAvatar}>
-            <Avatar avatarUrl={activeUser.avatarUrl}/>
-          </div>
-          <div className={classes.newComment}>
-            <InputBase
-              placeholder="Add a comment..."
-              multiline={true}
-              value={commentValue}
-              onChange={handleCommentInputChange}
-              className={classes.commentField}
-              id="input"
-              autoFocus={true}
-              onKeyDown={handleEnterPressed}
-            />
-            <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
-              <SharedButton title="Post"/>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className={classes.comments}>
-            {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
-            <div className={classes.loadMoreComments}>
-              <span>Load more comments</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PostButtons postId={postId} isLikedByActiveUser={isLikedByActiveUser}/>
     </div>
   )
 }

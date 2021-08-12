@@ -1,6 +1,8 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.AbstractEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,12 @@ public interface ServiceInterface<E extends AbstractEntity> {
 
   List<E> findAll();
 
+  Page<E> findAll(Pageable pageable);
+
   Optional<E> findById(Long id);
 
   E getOne(Long id);
+
+  E findEntityById(Long id);
 
 }

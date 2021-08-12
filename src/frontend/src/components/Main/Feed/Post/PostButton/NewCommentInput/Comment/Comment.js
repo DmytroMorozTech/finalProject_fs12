@@ -1,12 +1,12 @@
 import Typography from '@material-ui/core/Typography'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
-import SmallDot from '../../../../../shared/SmallDot/SmallDot'
-import LikeMiniIcon from '../../../../../shared/LikeMiniIcon/LikeMiniIcon'
+import SmallDot from '../../../../../../../shared/SmallDot/SmallDot'
+import LikeMiniIcon from '../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React, { useState } from 'react'
 import styles from './styles'
 import clsx from 'clsx'
-import Avatar from '../../../../../shared/Avatar/Avatar'
-import getTimeSinceCreated from '../../../../../services/timePassedService'
+import Avatar from '../../../../../../../shared/Avatar/Avatar'
+import getTimeSinceCreated from '../../../../../../../services/timePassedService'
 
 function Comment (props) {
   let {user, text, quantityOfCommentsLike = 3, createdDate} = props.comment

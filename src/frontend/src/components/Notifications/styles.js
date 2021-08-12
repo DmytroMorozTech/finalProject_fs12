@@ -1,15 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   notifications: {
-    margin: '75px auto',
+    margin: '75px auto', // this style will change
     maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
-    border: '1px solid #e0e0e0',
-    borderRadius: '10px',
-    backgroundColor: 'white'
+    border: theme.border.simple,
+    borderRadius: theme.shape.medium,
+    backgroundColor: theme.palette.common.white
   },
 
   notification: {
@@ -18,36 +18,36 @@ export default makeStyles(() => ({
   },
 
   userAvatar: {
-    width: '65px',
+    width: theme.avatar.large,
     borderRadius: '50%',
-    marginTop: '10px',
-    marginLeft: '15px'
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(3)
   },
 
   content: {
-    margin: '15px',
+    margin: theme.spacing(3),
     cursor: 'pointer'
   },
 
   userName: {
-    fontWeight: 600,
-    color: '#616161'
+    fontWeight: theme.typography.h5.fontWeight,
+    color: theme.palette.grey[700]
   },
 
   actionAndText: {
-    color: '#616161'
+    color: theme.palette.grey[700]
   },
 
   notificationTimeAndMenu: {
-    color: 'grey',
+    color: theme.palette.grey[500],
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    margin: '10px'
+    margin: theme.spacing(2)
   },
 
   notificationTime: {
-    fontSize: 12,
-    marginRight: '10px'
+    fontSize: theme.typography.h6.fontSize,
+    marginRight: theme.spacing(2)
   }
 }))

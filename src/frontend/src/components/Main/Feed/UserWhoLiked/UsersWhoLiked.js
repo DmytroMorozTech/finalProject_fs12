@@ -52,7 +52,7 @@ const UsersWhoLiked = (props) => {
       <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler}>
         <div className={classes.title}>
           <Typography variant="body1" className={clsx(classes.word)}>
-            <p>All</p>
+            All
           </Typography>
           <Typography variant="body1" className={clsx(classes.icon)}>
             <ThumbUpAltIcon className={classes.likeMini}/>

@@ -1,18 +1,18 @@
 import React from 'react'
 import { Paper } from '@material-ui/core'
-import Logo from '../../../temporaryImages/text_logo.png'
-import Style from './Style'
-import Button from '@material-ui/core/Button'
+import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import { GoogleLoginButton } from 'react-social-login-buttons'
+import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
+import SharedButton from '../../../shared/Button/SharedButton'
 
 const LoginCard = () => {
-  const classes = Style()
+  const classes = styles()
 
   return (
     <Paper elevation={3} className={classes.card}>
       <header className={classes.header}>
-        <img src={Logo} alt='logo' />
+        <LinkedinLogo/>
       </header>
 
       <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
@@ -38,15 +38,15 @@ const LoginCard = () => {
           id='password'
           autoComplete='current-password'
         />
-        <Button
+        <SharedButton
           type='submit'
+          size='large'
+          title='Sign In'
           fullWidth
           variant='contained'
           color='primary'
-          className={classes.button}
           onClick={() => alert('Hello')}
-        >    Sign In
-        </Button>
+        />
       </form>
 
       <div className={classes.google}>
@@ -55,7 +55,9 @@ const LoginCard = () => {
           <p>OR</p>
           <div/>
         </section>
-        <GoogleLoginButton className={classes.googleBtn} onClick={() => alert('Hello')} />
+        <div className={classes.googleBtn}>
+          <GoogleLoginButton onClick={() => alert('Hello')}/>
+        </div>
       </div>
     </Paper>
   )

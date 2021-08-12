@@ -2,7 +2,6 @@ package com.danit.fs12.entity.message;
 
 import lombok.Data;
 
-
 @Data
 public class MessageRs {
 
