@@ -24,7 +24,7 @@ function Navbar () {
   return (
     <div className={classes.navbar}>
       {items.map(({ Icon, title, arrow, toggleMenu, onClick, to }, i) => (
-        <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} onClick={onClick} to={to} />
+        <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} to={to} />
       ))}
       <Hidden mdDown>
         <span className={classes.margin}> </span>
