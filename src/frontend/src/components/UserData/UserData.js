@@ -19,7 +19,7 @@ function UserData () {
           </div>
         </div>
       </MenuItem>
-      <Button component={NavLink} to="/personal" className={classes.profileButton} variant="outlined" color="primary">
+      <Button component={NavLink} to="/profile" className={classes.profileButton} variant="outlined" color="primary">
         View Profile
       </Button>
       <Button className={classes.profileButton} variant="outlined" color="secondary">
