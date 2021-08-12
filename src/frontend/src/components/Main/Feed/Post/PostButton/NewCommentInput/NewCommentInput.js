@@ -33,7 +33,6 @@ function NewCommentInput (props) {
       if (e.ctrlKey) {
         let commentInputVal = e.currentTarget.value + '\n'
         setCommentValue(commentInputVal)
-        console.log(commentInputVal)
       } else {
         e.preventDefault()
         handleButtonPost()

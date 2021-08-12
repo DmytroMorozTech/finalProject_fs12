@@ -12,8 +12,6 @@ import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 import PostButtons from './PostButton/PostButtons'
 
-// import { activeUserSelector } from '../../../../redux/User/userSelector'
-
 function Post (props) {
   const {
     id: postId, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,

@@ -70,7 +70,8 @@ export default makeStyles((theme) => ({
   },
 
   commentText: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
+    whiteSpace: 'pre-wrap'
   },
 
   commentLikes: {
