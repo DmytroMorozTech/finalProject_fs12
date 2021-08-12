@@ -22,7 +22,7 @@ const Item = ({ Icon, title, arrow, toggleMenu, onClick, to }) => {
           <span>{title}</span>
           {arrow && <ArrowDropDownIcon fontSize="inherit" className={classes.arrow} />}
         </div>
-        <hr className={clsx(classes.line)} />
+        <hr className={classes.line} />
       </Hidden>
     </NavLink>
   )

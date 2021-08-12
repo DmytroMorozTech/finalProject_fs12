@@ -10,7 +10,9 @@ import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import NewCommentInput from './NewCommentInput/NewCommentInput'
 
-function PostButton ({id, isLikedByActiveUser}) {
+function PostButtons (props) {
+  const {postId, isLikedByActiveUser} = props
+
   const classes = styles()
 
   const dispatch = useDispatch()
@@ -18,12 +20,12 @@ function PostButton ({id, isLikedByActiveUser}) {
   const [showedAddComment, setShowedAddComment] = useState(false)
 
   const handleLike = () => {
-    dispatch(toggleLikeAction(id))
+    dispatch(toggleLikeAction(postId))
   }
 
   const handleComment = () => {
     if (!showedAddComment) {
-      dispatch(getCommentsForPostAction(id))
+      dispatch(getCommentsForPostAction(postId))
       setShowedAddComment(!showedAddComment)
     }
   }
@@ -44,7 +46,7 @@ function PostButton ({id, isLikedByActiveUser}) {
   ]
 
   return (
-    <div className={classes.postButton}>
+    <div className={classes.postButtonsWrapper}>
       <div className={classes.block}>
         {items.map(({ icon, title, onClick, className }) => (
           <div className={className} onClick={onClick}>
@@ -56,10 +58,10 @@ function PostButton ({id, isLikedByActiveUser}) {
         ))}
       </div>
       <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <NewCommentInput props={{ id }}/>
+        <NewCommentInput postId={postId}/>
       </div>
     </div>
   )
 }
 
-export default PostButton
+export default PostButtons

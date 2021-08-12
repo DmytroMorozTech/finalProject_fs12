@@ -9,7 +9,8 @@ import { activeUserSelector } from '../../../../../../redux/User/userSelector'
 import { createNewCommentAction } from '../../../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../../../redux/Post/postSelector'
 
-function NewCommentInput ({id}) {
+function NewCommentInput (props) {
+  const {postId} = props
   const classes = styles()
 
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ function NewCommentInput ({id}) {
   // we get all comments from Redux store using useSelector
 
   const allComments = useSelector(allCommentsSelector)
-  const commentsForPost = allComments[id] || []
+  const commentsForPost = allComments[postId] || []
 
   const [commentValue, setCommentValue] = useState('')
 
@@ -28,18 +29,20 @@ function NewCommentInput ({id}) {
   }
 
   const handleEnterPressed = (e) => {
-    if (e.keyCode === 13 && !e.ctrlKey) {
-      e.preventDefault()
-      handleButtonPost()
-    }
-    if (e.keyCode === 13 && e.ctrlKey) {
-      e.preventDefault()
-      return commentValue + '/n'
+    if (e.keyCode === 13) {
+      if (e.ctrlKey) {
+        let commentInputVal = e.currentTarget.value + '\n'
+        setCommentValue(commentInputVal)
+        console.log(commentInputVal)
+      } else {
+        e.preventDefault()
+        handleButtonPost()
+      }
     }
   }
 
   const handleButtonPost = () => {
-    dispatch(createNewCommentAction({ text: commentValue, id: id }))
+    dispatch(createNewCommentAction({ text: commentValue, id: postId }))
     setCommentValue('')
   }
 

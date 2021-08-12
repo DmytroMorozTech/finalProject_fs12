@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
-import PostButton from './PostButton/PostButton'
+import PostButtons from './PostButton/PostButtons'
+
 // import { activeUserSelector } from '../../../../redux/User/userSelector'
 
 function Post (props) {
   const {
-    id, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
+    id: postId, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
     numberOfViews = 244688
   } = props.post
 
@@ -23,7 +24,7 @@ function Post (props) {
   const allComments = useSelector(allCommentsSelector)
   // const activeUser = useSelector(activeUserSelector)
   // we get all comments from Redux store using useSelector
-  const commentsForPost = allComments[id] || []
+  const commentsForPost = allComments[postId] || []
   // we get from Redux an array of Comments for a particular Post by postId
 
   const classes = styles()
@@ -58,7 +59,7 @@ function Post (props) {
         {text}
       </Typography>
       <div className={classes.quantity}>
-        <div onClick={() => dispatch(getUsersWhoLikedPostAction(id))}>
+        <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
           <Typography variant="body2" className={classes.quantityText}>
             <LikeMiniIcon/>
             {numberOfLikes}
@@ -74,7 +75,7 @@ function Post (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <PostButton props={{ id, isLikedByActiveUser }} />
+      <PostButtons postId={postId} isLikedByActiveUser={isLikedByActiveUser}/>
     </div>
   )
 }
