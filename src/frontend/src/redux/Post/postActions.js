@@ -1,26 +1,14 @@
 import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
-import {SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
-
-export const getAllPostsAction = () => (dispatch) => {
-  dispatch({ type: actions.LOADING_POSTS, payload: true })
-
-  return http
-    .get('api/posts')
-    .then((result) => result.data)
-    .then((listOfPosts) => {
-      dispatch({type: actions.SAVE_POSTS, payload: listOfPosts})
-      dispatch({ type: actions.LOADING_POSTS, payload: false })
-    })
-}
+import { SHOW_USERS_WHO_LIKED_POST } from '../../components/Modal/modalTypes'
 
 export const createNewPostAction = (payload) => (dispatch) => {
   return http
-    .post('/api/posts', {text: payload.text})
+    .post('/api/posts', { text: payload.text })
     .then((res) => res.data)
     .then((newPostObj) => {
-      dispatch({type: actions.ADD_NEW_POST, payload: newPostObj})
+      dispatch({ type: actions.ADD_NEW_POST, payload: newPostObj })
     })
 }
 
@@ -29,13 +17,13 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
     .get(`/api/comments/for_post/${postId}`)
     .then((res) => res.data)
     .then((listOfComments) => {
-      dispatch({type: actions.SAVE_COMMENTS_FOR_POST, payload: {listOfComments, postId}})
+      dispatch({ type: actions.SAVE_COMMENTS_FOR_POST, payload: { listOfComments, postId } })
     })
 }
 
-export const createNewCommentAction = ({text, id}) => (dispatch) => {
+export const createNewCommentAction = ({ text, id }) => (dispatch) => {
   return http
-    .post('/api/comments', {text: text, postId: id})
+    .post('/api/comments', { text: text, postId: id })
     .then((res) => res.data)
     .then((newCommentObj) => {
       dispatch({
@@ -53,10 +41,11 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
     .then((usersList) => {
       dispatch({
         type: actions.SAVE_USERS_WHO_LIKED_POST,
-        payload: {usersList, id}})
+        payload: { usersList, id }
+      })
     })
     .then(() =>
-      dispatch(toggleModalAction({modalType: SHOW_USERS_WHO_LIKED_POST, id: id})))
+      dispatch(toggleModalAction({ modalType: SHOW_USERS_WHO_LIKED_POST, id: id })))
 }
 
 export const toggleLikeAction = (payload) => (dispatch) => {
@@ -66,6 +55,6 @@ export const toggleLikeAction = (payload) => (dispatch) => {
     .post(`/api/posts/toggle_like/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
-      dispatch({type: actions.UPDATE_POST, payload: newPostObj})
+      dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
     })
 }
