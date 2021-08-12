@@ -10,11 +10,11 @@ public class EducationRs {
 
   private Long id;
   private String school;
-  private String degree;
+  private String degreeReceived;
   private String activities;
   private String description;
   private String fieldOfStudy;
   private LocalDate dateStart;
   private LocalDate dateFinish;
-  private UserRs userRs;
+  private UserRs user;
 }

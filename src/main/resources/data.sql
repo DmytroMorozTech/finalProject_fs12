@@ -175,3 +175,15 @@ VALUES (10, 1, date '2015-01-20', date '2015-01-20'),
        (1, 2, date '2018-12-30', date '2018-12-30'),
        (1, 3, date '2018-12-30', date '2018-12-30'),
        (1, 4, date '2018-12-30', date '2018-12-30');
+
+INSERT INTO EDUCATIONS (created_date, modified_date, activities,
+                        date_finish, date_start, degree_received, field_of_study, school,
+                        user_id, description)
+VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
+        date '2017-07-08', date '2015-07-08', 'Phd',
+        'Chemistry',
+        'NY High-school for Humanitarians', 2, 'High-level of education; nice capmus; ...'),
+       (date '2016-02-02', date '2016-02-02', 'Working hard; Writing scientifica articles',
+        date '2011-03-03', date '2015-04-04', 'Bachelor',
+        'Electronics',
+        'MIT', 1, 'High-level of education; nice capmus; ...');

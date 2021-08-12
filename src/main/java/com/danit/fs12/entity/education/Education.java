@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @Table(name = "educations")
 public class Education extends AbstractEntity {
   private String school;
-  private String degree;
+  private String degreeReceived;
   private String activities; // example: Marching Band, Volleyball, Choir
   private String description;
 
