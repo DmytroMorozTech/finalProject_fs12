@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
@@ -12,7 +12,7 @@ function Feed (props) {
   const dispatch = useDispatch()
   const classes = styles()
 
-  const load = () => {
+  const load = useCallback(() => {
     console.log(`Load function has triggered!`)
     dispatch({ type: actions.LOADING_POSTS, payload: true })
 
@@ -31,7 +31,7 @@ function Feed (props) {
         dispatch({ type: actions.SAVE_NEW_POSTS, payload: page })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
-  }
+  }, [pageNumber, pageSize, sortBy, dispatch])
 
   const loader = React.useRef(load)
 
@@ -75,7 +75,7 @@ function Feed (props) {
       </div>
 
       {loading && <Preloader/>}
-      {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}></p>}
+      {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}
     </>
   )
 }
