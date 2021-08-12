@@ -11,7 +11,6 @@ import clsx from 'clsx'
 import NewCommentInput from './NewCommentInput/NewCommentInput'
 
 function PostButton ({id, isLikedByActiveUser}) {
-
   const classes = styles()
 
   const dispatch = useDispatch()
@@ -45,7 +44,7 @@ function PostButton ({id, isLikedByActiveUser}) {
   ]
 
   return (
-    <div>
+    <div className={classes.postButton}>
       <div className={classes.block}>
         {items.map(({ icon, title, onClick, className }) => (
           <div className={className} onClick={onClick}>

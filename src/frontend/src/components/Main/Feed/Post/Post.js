@@ -11,6 +11,7 @@ import { getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 import PostButton from './PostButton/PostButton'
+// import { activeUserSelector } from '../../../../redux/User/userSelector'
 
 function Post (props) {
   const {
@@ -20,7 +21,7 @@ function Post (props) {
 
   const dispatch = useDispatch()
   const allComments = useSelector(allCommentsSelector)
-  const activeUser = useSelector(activeUserSelector)
+  // const activeUser = useSelector(activeUserSelector)
   // we get all comments from Redux store using useSelector
   const commentsForPost = allComments[id] || []
   // we get from Redux an array of Comments for a particular Post by postId

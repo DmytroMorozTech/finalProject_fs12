@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
+  newCommentInput: {
+    width: '100%'
+  },
+
   addComment: {
     display: 'flex',
     alignItems: 'flex-start',

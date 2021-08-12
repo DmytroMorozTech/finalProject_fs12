@@ -10,7 +10,6 @@ import { createNewCommentAction } from '../../../../../../redux/Post/postActions
 import { allCommentsSelector } from '../../../../../../redux/Post/postSelector'
 
 function NewCommentInput ({id}) {
-
   const classes = styles()
 
   const dispatch = useDispatch()
@@ -29,9 +28,13 @@ function NewCommentInput ({id}) {
   }
 
   const handleEnterPressed = (e) => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && !e.ctrlKey) {
       e.preventDefault()
       handleButtonPost()
+    }
+    if (e.keyCode === 13 && e.ctrlKey) {
+      e.preventDefault()
+      return commentValue + '/n'
     }
   }
 
@@ -41,7 +44,7 @@ function NewCommentInput ({id}) {
   }
 
   return (
-    <div>
+    <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
         <div className={classes.smallAvatar}>
           <Avatar avatarUrl={activeUser.avatarUrl}/>
