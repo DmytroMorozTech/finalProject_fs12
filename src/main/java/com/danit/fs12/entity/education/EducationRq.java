@@ -8,14 +8,11 @@ import java.time.LocalDate;
 @Data
 public class EducationRq {
 
-  @NotNull(message = "User id should be specified.")
-  private Long userId;
-
   @NotNull(message = "School should be specified.")
   private String school;
 
   @NotNull(message = "Education degree should be specified.")
-  private String degree;
+  private String degreeReceived;
 
   @NotNull(message = "Activities should be specified.")
   private String activities;
