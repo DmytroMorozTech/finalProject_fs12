@@ -7,6 +7,7 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -52,7 +53,8 @@ public class PostService extends GeneralService<Post> {
     }
   }
 
-  public Page<Post> getPostsForActiveUser(PageRequest pageRequest){
+  public Page<Post> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
+    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
     return findAll(pageRequest);
   }
 }

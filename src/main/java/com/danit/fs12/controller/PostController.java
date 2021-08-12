@@ -6,8 +6,6 @@ import com.danit.fs12.facade.PostFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -30,16 +27,11 @@ public class PostController {
 
   @GetMapping
   Page<PostRs> getPostsForActiveUser(
-    @RequestParam Optional<Integer> page, //pageNumber
-    @RequestParam Optional<String> sortBy
+    @RequestParam(defaultValue = "0") Integer pageNumber,
+    @RequestParam(defaultValue = "5") Integer pageSize,
+    @RequestParam(defaultValue = "id") String sortBy
   ) {
-    return postFacade.getPostsForActiveUser(
-      PageRequest.of(
-        page.orElse(0),
-        5, // size of page is defined only here
-        Sort.Direction.DESC, sortBy.orElse("id")
-      )
-    );
+    return postFacade.getPostsForActiveUser(pageNumber, pageSize, sortBy);
   }
 
   @GetMapping("/all")
