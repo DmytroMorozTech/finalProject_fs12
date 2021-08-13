@@ -10,12 +10,15 @@ import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfie
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/Button/SharedButton'
 import Style from './styles'
-import {createMessageAction} from '../../../redux/Message/messageActions'
+import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
-import {allMessages, chatMessages} from '../../../redux/Message/messageSelector'
+import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
+import {withRouter} from 'react-router-dom'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Chat (props) {
-  const {avatarUrl, fullName} = props.user
+  // const {id, fullName, avatarUrl} = props.user
+  const {match} = props
   const daysAgoOnline = '4 days'
   const dataMessage = '31 july 2021 year'
   const classes = Style()
@@ -24,8 +27,13 @@ function Chat (props) {
   const dispatch = useDispatch()
   const messagesList = useSelector(allMessages)
   const userChatMessages = useSelector(chatMessages)
+  const chatsList = useSelector(allChats)
+  const chatId = match.params.id
+  const activeUser = useSelector(activeUserSelector)
 
-  useEffect(() => {}, [messagesList, userChatMessages])
+  useEffect(() => {
+    dispatch(getChatMessagesAction(chatId))
+  }, [messagesList])
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
@@ -33,9 +41,19 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
-    dispatch(createMessageAction({chatId: 1, text: messageValue}))
+    dispatch(createMessageAction({chatId, text: messageValue}))
     setMessageValue('')
   }
+
+  const getChatMember = () => {
+    let chatMember
+    chatsList.map(c => {
+      chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
+    })
+    return chatMember
+  }
+
+  console.log(getChatMember())
 
   return (
     <section className={classes.messagingDetail}>
@@ -43,7 +61,7 @@ function Chat (props) {
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {fullName}
+              {getChatMember().fullName}
             </div>
             <div>
               <div className={classes.statusUserRight}/>
@@ -65,7 +83,7 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={avatarUrl} alt={fullName}
+                        <img src={getChatMember().avatarUrl} alt={getChatMember().fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
 
@@ -74,11 +92,11 @@ function Chat (props) {
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {fullName}
+                        {getChatMember() && getChatMember().fullName}
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
-                          React/Node Developer, Looking for opportunities
+                          {getChatMember() && getChatMember().positionAndCompany}
                         </div>
                       </div>
                     </div>
@@ -87,7 +105,7 @@ function Chat (props) {
               </li>
               <li>
                 <time className={classes.messageListTimeHeading}>{dataMessage}</time>
-                {messagesList.map(m => <UserMessage text={m.text}/>)}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage text={m.text} />)}
               </li>
             </ul>
           </div>
@@ -141,4 +159,4 @@ function Chat (props) {
   )
 }
 
-export default Chat
+export default withRouter(Chat)

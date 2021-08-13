@@ -21,6 +21,7 @@ export const createMessageAction = ({chatId, text}) => (dispatch) => {
         type: actions.CREATE_MESSAGE, payload: newMessageData
       })
     })
+    .then(() => dispatch(getChatMessagesAction(chatId)))
 }
 
 export const addUserAction = ({chatId, userId}) => (dispatch) => {
@@ -39,7 +40,6 @@ export const getUserChatsAction = (userId) => (dispatch) => {
     .get(`/api/chats/user/${userId}`)
     .then(res => {
       const userChats = res.data
-      console.log(userChats)
       dispatch({
         type: actions.GET_USER_CHATS, payload: userChats
       })

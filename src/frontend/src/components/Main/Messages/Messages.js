@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import Style from './styles'
-import TemporaryAvatar from '../../../temporaryImages/avatar.jpg'
-import TemporaryAvatarOne from '../../../temporaryImages/avatarTempMessage.png'
-import TemporaryAvatarTwo from '../../../temporaryImages/avatarTempMassegeTwo.png'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import OpenInNewSharpIcon from '@material-ui/icons/OpenInNewSharp'
 // import MenuSharpIcon from '@material-ui/icons/MenuSharp'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import clsx from 'clsx'
 import {useDispatch, useSelector} from 'react-redux'
-import {getChatMessagesAction, getUserChatsAction} from '../../../redux/Message/messageActions'
+import {getUserChatsAction} from '../../../redux/Message/messageActions'
 import {allChats} from '../../../redux/Message/messageSelector'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 import ChatsList from './ChatsList'
 import Chat from './Chat'
+import {NavLink} from 'react-router-dom'
 
 function Messages () {
   const classes = Style()
@@ -24,7 +22,6 @@ function Messages () {
   useEffect(() => {
     dispatch(getUserChatsAction(activeUser.id))
   }, [])
-  console.log(chatsList)
 
   const [SearchValue, setSearchValue] = useState('')
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
@@ -67,13 +64,14 @@ function Messages () {
           </div>
           {chatsList.map(c => {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
-            dispatch(getChatMessagesAction(c.id))
             return (
-              <ChatsList chatId={c.id} user={chatMember} />
+              <NavLink to={`/messages/${c.id}`}>
+                <ChatsList chatId={c.id} activeUserId={activeUser.id} user={chatMember} />
+              </NavLink>
             )
           })}
         </section>
-        <Chat user={activeUser}/>
+        <Chat/>
       </div>
     </main>
   )

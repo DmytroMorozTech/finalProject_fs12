@@ -9,6 +9,6 @@ public class MessageRs {
   private Long userId;
   private Long chatId;
   private String text;
-  private String created_date;
+  private String createdDate;
 
 }
