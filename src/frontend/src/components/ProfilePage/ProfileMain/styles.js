@@ -46,6 +46,9 @@ export default makeStyles((theme) => ({
   rightPanel: {
     marginRight: theme.spacing(10)
   },
+  schoolName: {
+    fontWeight: theme.typography.fontWeightBold
+  },
   info: {
     display: 'flex',
     flexDirection: 'row'

@@ -49,19 +49,17 @@ const UsersWhoLiked = (props) => {
 
   return (
     <div>
-      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler}>
-        <div className={classes.title}>
-          <Typography variant="body1" className={clsx(classes.word)}>
+      <div className={classes.title}>
+        <Typography variant="body1" className={clsx(classes.word)}>
             All
-          </Typography>
-          <Typography variant="body1" className={clsx(classes.icon)}>
-            <ThumbUpAltIcon className={classes.likeMini}/>
-          </Typography>
-          <Typography variant="body1" className={clsx(classes.number)}>
-            {usersWhoLikedThisPost.length}
-          </Typography>
-        </div>
-      </DialogTitle>
+        </Typography>
+        <Typography variant="body1" className={clsx(classes.icon)}>
+          <ThumbUpAltIcon className={classes.likeMini}/>
+        </Typography>
+        <Typography variant="body1" className={clsx(classes.number)}>
+          {usersWhoLikedThisPost.length}
+        </Typography>
+      </div>
       {usersWhoLikedThisPost.map(user => <UserWhoLikedItem key={user.id} user={user}/>)}
     </div>
   )

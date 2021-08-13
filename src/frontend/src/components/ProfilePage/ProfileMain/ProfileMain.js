@@ -47,7 +47,7 @@ function ProfileMain (props) {
             </div>
           </div>
           <div className={classes.rightPanel}>
-            <Typography variant="body1">
+            <Typography variant="body1" className={classes.schoolName}>
               {lastEducation}
             </Typography>
           </div>

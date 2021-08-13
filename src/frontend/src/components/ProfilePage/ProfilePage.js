@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core'
 import styles from './styles'
 import ProfileMain from './ProfileMain/ProfileMain'
 import ProfileRight from './ProfileRight/ProfileRight'
+import ProfileEducation from './ProfileEducation/ProfileEducation'
 
 function ProfilePage () {
   const classes = styles()
@@ -13,6 +14,7 @@ function ProfilePage () {
       <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'} >
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <ProfileMain/>
+          <ProfileEducation/>
         </Grid>
 
         <Grid item sm={3} md={3} lg={2} xl={2}>

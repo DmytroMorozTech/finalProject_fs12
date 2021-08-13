@@ -20,35 +20,6 @@ import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
 import SharedButton from '../../../../shared/Button/SharedButton'
 
-const style = (theme) => ({
-
-  root: {
-    width: '500px',
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
-})
-
-const DialogTitle = withStyles(style)((props) => {
-  const { children, classes, onClose, ...other } = props
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose && (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon/>
-        </IconButton>
-      )}
-    </MuiDialogTitle>
-  )
-})
-
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(4)
@@ -100,8 +71,6 @@ const AddNewPost = () => {
       <div className={classes.title}>
         Create a post
       </div>
-      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler}>
-      </DialogTitle>
       <DialogContent dividers>
         <div className={classes.userInfo}>
           <div className={classes.avatar}>
