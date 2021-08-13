@@ -9,6 +9,7 @@ import Login from '../components/Login/Login'
 import MainD from '../components/MainD/MainD'
 import ProfilePage from '../components/ProfilePage/ProfilePage'
 import Page404 from '../components/Main/Page404/Page404'
+import SavedPosts from '../components/Main/SavedPosts/SavedPosts'
 
 const MainRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const MainRoutes = () => {
       <Route exact path="/notifications" render={() => <Notifications/>}/>
       <Route exact path="/personal" render={() => <Profile/>}/>
       <Route exact path="/profile" render={() => <ProfilePage/>}/>
+      <Route exact path="/saved" render={() => <SavedPosts/>}/>
       <Route exact path="*" render={() => <Page404/>}/>
     </Switch>
   )
