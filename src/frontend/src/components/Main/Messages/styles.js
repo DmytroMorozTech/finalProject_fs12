@@ -591,7 +591,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column'
   },
   chatContainer: {
-    height: '40vh',
+    height: '35vh',
     overflow: 'auto'
   },
   messageGroupMetaText: {
