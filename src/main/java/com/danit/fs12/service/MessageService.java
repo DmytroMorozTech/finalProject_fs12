@@ -6,10 +6,12 @@ import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
+import com.danit.fs12.repository.MessageRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class MessageService extends GeneralService<Message> {
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
+  private final MessageRepository messageRepository;
 
   public Message createMessage(Long chatId, String text) {
     Long activeUserId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
@@ -38,5 +41,9 @@ public class MessageService extends GeneralService<Message> {
     chatRepository.save(chat);
 
     return message;
+  }
+
+  public List<Message> getMessagesByChatId(Long chatId) {
+    return messageRepository.findMessagesByChat_Id(chatId);
   }
 }
