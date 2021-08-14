@@ -10,5 +10,4 @@ public class ChatRs {
 
   private Long id;
   private List<User> users;
-  private List<Chat> chats;
 }

@@ -27,7 +27,49 @@ function ChatsList (props) {
   }
 
   function getMessageSentTime () {
-    return allChatMessages && chatMessagesLength && allChatMessages[chatMessagesLength].createdDate
+    return allChatMessages && chatMessagesLength && getDateTitle(allChatMessages[chatMessagesLength].createdDate)
+  }
+
+  const getDateTitle = (time) => {
+    const localTime = new Date()
+    switch (true) {
+      case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
+        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
+      default:
+        const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
+        return splitDate[0] + ':' + splitDate[1]
+    }
+  }
+
+  const getMonthText = (date) => {
+    switch (date) {
+      case '01':
+        return 'jan'
+      case '02':
+        return 'feb'
+      case '03':
+        return 'mar'
+      case '04':
+        return 'apr'
+      case '05':
+        return 'may'
+      case '06':
+        return 'jun'
+      case '07':
+        return 'jul'
+      case '08':
+        return 'aug'
+      case '09':
+        return 'sep'
+      case '10':
+        return 'oct'
+      case '11':
+        return 'nov'
+      case '12':
+        return 'dec'
+    }
   }
 
   return (

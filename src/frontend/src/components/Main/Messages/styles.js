@@ -596,5 +596,8 @@ export default makeStyles((theme) => ({
   },
   messageGroupMetaText: {
     fontWeight: 'bold'
+  },
+  searchInput: {
+
   }
 }))
