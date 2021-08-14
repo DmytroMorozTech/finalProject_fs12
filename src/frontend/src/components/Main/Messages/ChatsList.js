@@ -69,6 +69,8 @@ function ChatsList (props) {
         return 'nov'
       case '12':
         return 'dec'
+      default:
+        return 'incorrect data'
     }
   }
 
@@ -93,7 +95,8 @@ function ChatsList (props) {
               </div>
               <div className={classes.conversationCardTitleRow}>
                 <div className={classes.flexGrow2}>
-                  <p className={classes.conversationCardMessageSnippet}><span>{getSenderName()} :  &laquo;{getLastChatMessage()}&raquo;</span>
+                  <p className={classes.conversationCardMessageSnippet}>
+                    <span>{getSenderName()} :  &laquo;{getLastChatMessage()}&raquo;</span>
                   </p>
                 </div>
               </div>

@@ -51,6 +51,8 @@ function UserMessage ({text, time}) {
         return 'NOVEMBER'
       case '12':
         return 'DECEMBER'
+      default:
+        return 'incorrect data'
     }
   }
 
