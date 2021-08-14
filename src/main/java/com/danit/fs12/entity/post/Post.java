@@ -65,7 +65,7 @@ public class Post extends AbstractEntity {
     mappedBy = "post",
     cascade = CascadeType.ALL,
     orphanRemoval = true
-  )
+    )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore

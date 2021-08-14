@@ -19,6 +19,8 @@ export default makeStyles((theme) => ({
     marginBottom: theme.spacing(3)
   },
   savedElementsHeading: {
+    display: 'flex',
+    alignItems: 'center',
     color: theme.palette.grey[500],
     fontSize: '18px',
     paddingLeft: '35px',

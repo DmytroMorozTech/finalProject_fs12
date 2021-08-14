@@ -6,6 +6,8 @@ import { Hidden } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import { openModalSelector } from '../../redux/Modal/modalSelector'
 import CustomizedDialogs from '../Modal/Modal'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 function Header () {
   const classes = styles()
@@ -16,9 +18,11 @@ function Header () {
     <>
       <div className={classes.header}>
         <div className={classes.headerLogoSearch}>
-          <div className={classes.headerLogo}>
-            <LinkedInIcon fontSize="inherit"/>
-          </div>
+          <Link exact to='/home'>
+            <div className={classes.headerLogo}>
+              <LinkedInIcon fontSize="inherit"/>
+            </div>
+          </Link>
           <Hidden smDown>
             <div className={classes.headerSearch}>
               <SearchRoundedIcon fontSize="inherit"/>

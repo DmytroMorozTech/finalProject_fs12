@@ -7,6 +7,7 @@ import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -77,12 +78,20 @@ public class PostService extends GeneralService<Post> {
     return findAll(pageRequest);
   }
 
-  public List<Post> getBookmarkedPostsForActiveUser() {
+  public Page<Post> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
+    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+
     User user = userRepository.findEntityById(hardCodedActiveUserId);
     List<Long> postsIds = user.getBookmarks().stream()
       .map(b -> b.getPost().getId())
       .collect(Collectors.toList());
 
-    return findAllById(postsIds);
+    List<Post> listOfBookmarkedPosts = findAllById(postsIds);
+    long totalPosts = listOfBookmarkedPosts.size();
+
+    int maxArrIndex = (int) totalPosts;
+    int startIndex = pageNumber * pageSize;
+    int endIndex = Math.min((startIndex + pageSize), maxArrIndex);
+    return new PageImpl<>(listOfBookmarkedPosts.subList(startIndex, endIndex), pageRequest, totalPosts);
   }
 }

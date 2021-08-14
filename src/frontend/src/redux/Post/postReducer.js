@@ -4,13 +4,23 @@ import update from 'immutability-helper'
 const initialState = {
   postsList: [],
   loading: false,
-  pageNumber: 0,
-  pageSize: 4,
-  totalPages: 0,
-  hasMore: true,
+  pagination: {
+    pageNumber: 0,
+    pageSize: 4,
+    totalPages: 0,
+    hasMore: true
+  },
+  bookmarked: {
+    postsList: [],
+    pagination: {
+      pageNumber: 0,
+      pageSize: 4,
+      totalPages: 0,
+      hasMore: true
+    }
+  },
   comments: {}, // key - postId, value - [commentRs, commentRs,...]
-  usersWhoLikedPost: {}, // key - postId, value - [userRs, userRs,...]
-  bookmarkedPosts: []
+  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
 }
 
 const postReducer = (state = initialState, action) => {
@@ -23,14 +33,32 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         postsList: [...state.postsList, ...content],
-        pageNumber: pageNumber + 1,
-        pageSize: pageSize,
-        totalPages: totalPages,
-        hasMore: !last
+        pagination: {
+          pageNumber: pageNumber + 1,
+          pageSize: pageSize,
+          totalPages: totalPages,
+          hasMore: !last
+        }
+      }
+
+    case actions.SAVE_NEW_BOOKMARKED_POSTS:
+      const { content: content1, size: pageSize1, number: pageNumber1, last: last1, totalPages: totalPages1 } =
+        action.payload
+      return {
+        ...state,
+        bookmarked: {
+          postsList: [...state.bookmarked.postsList, ...content1],
+          pagination: {
+            pageNumber: pageNumber1 + 1,
+            pageSize: pageSize1,
+            totalPages: totalPages1,
+            hasMore: !last1
+          }
+        }
       }
 
     case actions.ADD_NEW_POST:
-      return { ...state, postsList: [...state.postsList, action.payload] }
+      return { ...state, postsList: [ action.payload, ...state.postsList ] }
 
     case actions.UPDATE_POST:
       const updatedPost = action.payload
