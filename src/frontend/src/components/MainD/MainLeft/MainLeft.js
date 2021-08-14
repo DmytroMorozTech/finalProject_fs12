@@ -17,7 +17,7 @@ function MainLeft (props) {
         <div className={classes.mediumAvatar}>
           <Avatar avatarUrl={avatarUrl} />
         </div>
-        <Link href="#" className={classes.name} onClick={preventDefault}>
+        <Link className={classes.name} onClick={preventDefault}>
             Richard West
         </Link>
         <Typography color="textSecondary">
