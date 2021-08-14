@@ -19,7 +19,6 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 function Chat (props) {
   const {match} = props
   const daysAgoOnline = '4 days'
-  const dataMessage = '31 july 2021 year'
   const classes = Style()
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
