@@ -13,25 +13,20 @@ function UserMessage ({text, time}) {
       case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
         return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
       case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
-        return time.split('T')[0].split('-')[2] + '.' + time.split('T')[0].split('-')[1] + '.' + time.split('T')[0].split('-')[0]
-      case localTime.getDate() === +time.split('T')[0].split('-')[2] && localTime.getFullYear() === +time.split('T')[0].split('-')[0]:
-        const splitDate3 = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
-        return splitDate3[0] + ':' + splitDate3[1]
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
       default:
         const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
         return splitDate[0] + ':' + splitDate[1]
     }
   }
 
-  console.log(time.split('T')[0].split('-')[0])
-
   const getDate = () => {
     const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
     return splitDate[0] + ':' + splitDate[1]
   }
 
-  const getMonthText = () => {
-    switch (true) {
+  const getMonthText = (date) => {
+    switch (date) {
       case '01':
         return 'JANUARY'
       case '02':
