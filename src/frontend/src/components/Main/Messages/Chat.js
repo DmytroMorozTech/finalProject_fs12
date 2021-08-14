@@ -28,12 +28,14 @@ function Chat (props) {
   const messagesList = useSelector(allMessages)
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
-  const chatId = match.params.id
+  const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
+
+  const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
 
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
-  }, [messagesList])
+  }, [dispatch, chatId, messagesList])
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
@@ -46,14 +48,10 @@ function Chat (props) {
   }
 
   const getChatMember = () => {
-    let chatMember
-    chatsList.map(c => {
-      chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
-    })
-    return chatMember
+    const currentChat = chatsList.filter(c => c.id === +chatId)[0]
+    const currentChatUsers = currentChat && currentChat.users
+    return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
   }
-
-  console.log(getChatMember())
 
   return (
     <section className={classes.messagingDetail}>
@@ -61,7 +59,7 @@ function Chat (props) {
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {getChatMember().fullName}
+              {getChatMember() && getChatMember().fullName}
             </div>
             <div>
               <div className={classes.statusUserRight}/>
@@ -83,7 +81,7 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember().avatarUrl} alt={getChatMember().fullName}
+                        <img src={getChatMember() && getChatMember().avatarUrl} alt={getChatMember() && getChatMember().fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
 
@@ -105,7 +103,7 @@ function Chat (props) {
               </li>
               <li>
                 <time className={classes.messageListTimeHeading}>{dataMessage}</time>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage text={m.text} />)}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text} time={m.createdDate} />)}
               </li>
             </ul>
           </div>

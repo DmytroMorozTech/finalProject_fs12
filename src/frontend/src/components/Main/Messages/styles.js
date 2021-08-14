@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   layoutListDetail: {
     margin: '75px auto',
@@ -21,7 +21,7 @@ export default makeStyles(() => ({
   },
 
   layoutList: {
-    maxWidth: '40%',
+    width: '30vw',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'inset -1px 0 0 0 #8080802b'
@@ -220,7 +220,9 @@ export default makeStyles(() => ({
     width: 0,
     whiteSpace: 'nowrap!important',
     overflow: 'hidden!important',
-    textOverflow: 'ellipsis!important'
+    textOverflow: 'ellipsis!important',
+    color: theme.palette.common.black,
+    fontSize: 16
   },
 
   dataMessage: {
@@ -244,7 +246,7 @@ export default makeStyles(() => ({
     flex: 1,
     color: 'rgba(0, 0, 0, 0.6)',
     boxSizing: 'inherit',
-    fontSize: 13
+    fontSize: 15
   },
 
   messagingDetail: {
@@ -300,7 +302,8 @@ export default makeStyles(() => ({
     minWidth: 0,
     fontWeight: 600,
     width: '100%',
-    padding: '0 12px 0 0'
+    padding: '0 12px 0 0',
+    fontSize: 15
   },
 
   statusUserRight: {
@@ -459,7 +462,8 @@ export default makeStyles(() => ({
     position: 'absolute',
     lineHeight: 1,
     marginBottom: 4,
-    padding: '0 0 0 65px'
+    padding: '0 0 0 65px',
+    fontSize: 15
   },
 
   messageGroupName: {
@@ -572,6 +576,11 @@ export default makeStyles(() => ({
       width: '40px',
       height: '40px'
     }
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  messageSentTime: {
+    color: theme.palette.grey[600]
   }
-
 }))

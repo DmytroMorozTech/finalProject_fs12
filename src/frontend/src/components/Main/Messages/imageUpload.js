@@ -24,7 +24,7 @@ const ImageUpload = () => {
     inputFile.current.click()
   }
 
-  console.log('imageimage', image)
+  // console.log('imageimage', image)
   return (
     <div>
       <input

@@ -24,7 +24,7 @@ const AllUpload = () => {
     inputFile.current.click()
   }
 
-  console.log('allall', allFile)
+  // console.log('allall', allFile)
   return (
     <div>
       <input

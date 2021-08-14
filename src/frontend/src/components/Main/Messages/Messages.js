@@ -21,7 +21,7 @@ function Messages () {
 
   useEffect(() => {
     dispatch(getUserChatsAction(activeUser.id))
-  }, [])
+  }, [dispatch, activeUser.id])
 
   const [SearchValue, setSearchValue] = useState('')
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
@@ -65,13 +65,13 @@ function Messages () {
           {chatsList.map(c => {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
             return (
-              <NavLink to={`/messages/${c.id}`}>
-                <ChatsList chatId={c.id} activeUserId={activeUser.id} user={chatMember} />
+              <NavLink className={`${classes.link}`} key={c.id} to={`/messages/${c.id}`}>
+                <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember} />
               </NavLink>
             )
           })}
         </section>
-        <Chat/>
+        <Chat user={activeUser}/>
       </div>
     </main>
   )

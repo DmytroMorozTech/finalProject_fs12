@@ -13,7 +13,7 @@ function ChatsList (props) {
 
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
-  }, [])
+  }, [dispatch, chatId])
   const allChatMessages = userChatMessages[chatId]
 
   const chatMessagesLength = allChatMessages && allChatMessages.length - 1
@@ -51,7 +51,7 @@ function ChatsList (props) {
               </div>
               <div className={classes.conversationCardTitleRow}>
                 <div className={classes.flexGrow2}>
-                  <p className={classes.conversationCardMessageSnippet}><span>{getSenderName() + ':  ' + getLastChatMessage()}</span>
+                  <p className={classes.conversationCardMessageSnippet}><span>{getSenderName() + ':  "' + getLastChatMessage() + '"'}</span>
                   </p>
                 </div>
               </div>

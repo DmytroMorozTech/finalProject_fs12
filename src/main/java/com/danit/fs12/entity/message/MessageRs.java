@@ -2,6 +2,8 @@ package com.danit.fs12.entity.message;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class MessageRs {
 
@@ -9,6 +11,6 @@ public class MessageRs {
   private Long userId;
   private Long chatId;
   private String text;
-  private String createdDate;
+  private LocalDateTime createdDate;
 
 }
