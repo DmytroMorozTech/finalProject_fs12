@@ -10,15 +10,7 @@ export default makeStyles((theme) => ({
     padding: '8px 12px',
     backgroundColor: 'transparent',
     color: theme.palette.grey[600],
-    marginLeft: '25px'
-  },
-  savedElementsBtnArticles: {
-    borderRadius: '1.99rem',
-    fontSize: '1.6rem',
-    padding: '8px 12px',
-    backgroundColor: 'transparent',
-    color: theme.palette.grey[600],
-    marginLeft: '25px'
+    marginLeft: '22.5px'
   },
   savedElementsPanel: {
     border: theme.border.simple,
@@ -29,7 +21,8 @@ export default makeStyles((theme) => ({
   savedElementsHeading: {
     color: theme.palette.grey[500],
     fontSize: '18px',
-    paddingLeft: '35px'
+    paddingLeft: '35px',
+    fontWeight: 'bold'
   },
   savedElementsSubheading: {
     color: theme.palette.grey[500],

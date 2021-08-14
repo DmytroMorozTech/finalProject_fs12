@@ -23,7 +23,7 @@ const MainRoutes = () => {
       <Route exact path="/notifications" render={() => <Notifications/>}/>
       <Route exact path="/personal" render={() => <Profile/>}/>
       <Route exact path="/profile" render={() => <ProfilePage/>}/>
-      <Route exact path="/saved" render={() => <SavedPosts/>}/>
+      <Route exact path="/bookmarked" render={() => <SavedPosts/>}/>
       <Route exact path="*" render={() => <Page404/>}/>
     </Switch>
   )
