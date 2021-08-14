@@ -60,11 +60,8 @@ function Chat (props) {
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
               {getChatMember() && getChatMember().fullName}
-            </div>
-            <div>
-              <div className={classes.statusUserRight}/>
-              <span>&#8226;</span>
               <div className={classes.userDeviceStyle}>
+                <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
               </div>
             </div>
@@ -81,7 +78,8 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember() && getChatMember().avatarUrl} alt={getChatMember() && getChatMember().fullName}
+                        <img src={getChatMember() && getChatMember().avatarUrl}
+                          alt={getChatMember() && getChatMember().fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
 
@@ -103,7 +101,8 @@ function Chat (props) {
               </li>
               <li>
                 <time className={classes.messageListTimeHeading}>{dataMessage}</time>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text} time={m.createdDate} />)}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text}
+                  time={m.createdDate}/>)}
               </li>
             </ul>
           </div>
@@ -143,7 +142,7 @@ function Chat (props) {
               <div style={{display: 'flex'}}>
                 <div onClick={handleSendMessageButton}>
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
-                    title="Message" />
+                    title="Message"/>
                 </div>
                 <div className={classes.menu}>
                   <MoreHorizIcon/>

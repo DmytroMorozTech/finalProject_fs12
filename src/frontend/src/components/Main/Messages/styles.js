@@ -297,7 +297,8 @@ export default makeStyles((theme) => ({
 
   entityLockup: {
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'start',
     flexGrow: 1,
     minWidth: 0,
     fontWeight: 600,
@@ -315,13 +316,13 @@ export default makeStyles((theme) => ({
     borderRadius: '50%',
     background: '#fff',
     boxSizing: 'border-box',
-    boxShadow: '0 0 0 2px #fff'
+    boxShadow: '0 0 0 2px #fff',
+    marginRight: '0.5rem'
   },
 
   userDeviceStyle: {
     display: 'inline-block',
     fontSize: 12,
-    marginLeft: 10,
     marginRight: 10
   },
 
@@ -582,5 +583,8 @@ export default makeStyles((theme) => ({
   },
   messageSentTime: {
     color: theme.palette.grey[600]
+  },
+  statusLine: {
+    display: 'flex'
   }
 }))
