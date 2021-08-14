@@ -3,9 +3,13 @@ import style from './styles'
 import Typography from '@material-ui/core/Typography'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import ProfileEducationItem from './ProfileEducationItem'
+import {useDispatch} from 'react-redux'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import {ADD_EDUCATION} from '../../Modal/modalTypes'
 
 function ProfileEducation (props) {
   const classes = style()
+  const dispatch = useDispatch()
 
   return (
     <div className={classes.root}>
@@ -13,7 +17,10 @@ function ProfileEducation (props) {
         <Typography variant="h3">
           Education
         </Typography>
-        <AddCircleOutlineIcon/>
+        <div onClick={() =>
+          dispatch(toggleModalAction({modalType: ADD_EDUCATION}))}>
+          <AddCircleOutlineIcon/>
+        </div>
       </div>
       <div>
         <ProfileEducationItem/>
