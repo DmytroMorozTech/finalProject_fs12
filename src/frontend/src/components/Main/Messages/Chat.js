@@ -17,7 +17,6 @@ import {withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Chat (props) {
-  // const {id, fullName, avatarUrl} = props.user
   const {match} = props
   const daysAgoOnline = '4 days'
   const dataMessage = '31 july 2021 year'
@@ -82,7 +81,6 @@ function Chat (props) {
                           alt={getChatMember() && getChatMember().fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
-
                         </div>
                       </div>
                     </div>
@@ -99,8 +97,7 @@ function Chat (props) {
                   </div>
                 </div>
               </li>
-              <li>
-                <time className={classes.messageListTimeHeading}>{dataMessage}</time>
+              <li className={classes.chatContainer}>
                 {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text}
                   time={m.createdDate}/>)}
               </li>

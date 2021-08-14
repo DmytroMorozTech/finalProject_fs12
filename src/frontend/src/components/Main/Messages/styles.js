@@ -439,7 +439,7 @@ export default makeStyles((theme) => ({
 
   eventListItem: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     listStyle: 'none',
     boxSizing: 'border-box',
     position: 'relative',
@@ -463,7 +463,7 @@ export default makeStyles((theme) => ({
     position: 'absolute',
     lineHeight: 1,
     marginBottom: 4,
-    padding: '0 0 0 65px',
+    padding: '10px 0 0 15px',
     fontSize: 15
   },
 
@@ -484,7 +484,7 @@ export default makeStyles((theme) => ({
   },
 
   eventListItemMessageBubble: {
-    minHeight: 140,
+    minHeight: 40,
     display: 'inline-block',
     maxWidth: '100%',
     padding: 0,
@@ -493,8 +493,7 @@ export default makeStyles((theme) => ({
 
   eventListItemBody: {
     fontSize: 13,
-    paddingRight: 12,
-    margin: '26px 0 4px 67px',
+    margin: '30px 0 4px 15px',
     color: '#000000e6',
     wordWrap: 'break-word',
     whiteSpace: 'pre-line'
@@ -586,5 +585,16 @@ export default makeStyles((theme) => ({
   },
   statusLine: {
     display: 'flex'
+  },
+  messageWrapper: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  chatContainer: {
+    height: '40vh',
+    overflow: 'auto'
+  },
+  messageGroupMetaText: {
+    fontWeight: 'bold'
   }
 }))
