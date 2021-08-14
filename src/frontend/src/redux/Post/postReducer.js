@@ -9,7 +9,8 @@ const initialState = {
   totalPages: 0,
   hasMore: true,
   comments: {}, // key - postId, value - [commentRs, commentRs,...]
-  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
+  usersWhoLikedPost: {}, // key - postId, value - [userRs, userRs,...]
+  bookmarkedPosts: []
 }
 
 const postReducer = (state = initialState, action) => {

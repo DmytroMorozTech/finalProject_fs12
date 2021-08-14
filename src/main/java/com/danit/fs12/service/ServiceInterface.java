@@ -26,4 +26,6 @@ public interface ServiceInterface<E extends AbstractEntity> {
 
   E findEntityById(Long id);
 
+  List<E> findAllById(Iterable<Long> listOfIds);
+
 }

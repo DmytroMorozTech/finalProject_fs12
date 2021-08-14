@@ -58,3 +58,14 @@ export const toggleLikeAction = (payload) => (dispatch) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
     })
 }
+
+export const toggleBookmarkAction = (payload) => (dispatch) => {
+  const id = payload
+
+  return http
+    .post(`/api/posts/toggle_bookmark/${id}`)
+    .then((res) => res.data)
+    .then((newPostObj) => {
+      dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
+    })
+}

@@ -14,7 +14,6 @@ const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
-      {/* <Route exact path="/home" render={() => <Feed/>}/> */}
       <Route exact path="/home" render={() => <MainD/>}/>
       <Route exact path="/network" render={() => <Network/>}/>
       <Route exact path="/jobs" render={() => <Jobs/>}/>

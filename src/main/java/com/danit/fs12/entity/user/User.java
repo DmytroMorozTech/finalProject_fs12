@@ -1,6 +1,7 @@
 package com.danit.fs12.entity.user;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.certification.Certification;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.comment.Comment;
@@ -148,6 +149,14 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   @JsonIgnore
   private List<Like> likes = new ArrayList<>();
+
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Bookmark> bookmarks = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",

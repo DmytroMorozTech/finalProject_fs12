@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Component
 public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
@@ -23,9 +26,22 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return convertToDto(post);
   }
 
+  public PostRs toggleBookmark(Long postId) {
+    Post post = postService.toggleBookmark(postId);
+    return convertToDto(post);
+  }
+
   public Page<PostRs> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     Page<Post> postsPage = postService.getPostsForActiveUser(pageNumber, pageSize, sortBy);
     return postsPage.map(this::convertToDto);
+  }
+
+  public List<PostRs> getBookmarkedPostsForActiveUser() {
+    List<Post> listOfPosts = postService.getBookmarkedPostsForActiveUser();
+
+    List<PostRs> listOfPostsRs = listOfPosts.stream()
+      .map(this::convertToDto).collect(Collectors.toList());
+    return listOfPostsRs;
   }
 }
 

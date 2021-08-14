@@ -1,5 +1,6 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
@@ -10,7 +11,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,8 +56,33 @@ public class PostService extends GeneralService<Post> {
     }
   }
 
+  public Post toggleBookmark(Long postId) {
+    Post post = findEntityById(postId);
+
+    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
+
+    if (postIsBookmarked) {
+      post.getBookmarks().removeIf(bookmark -> Objects.equals(bookmark.getUser().getId(), hardCodedActiveUserId));
+      return save(post);
+    } else {
+      User user = userRepository.findEntityById(hardCodedActiveUserId);
+      Bookmark bookmark = new Bookmark(user, post);
+      post.getBookmarks().add(bookmark);
+      return save(post);
+    }
+  }
+
   public Page<Post> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
     return findAll(pageRequest);
+  }
+
+  public List<Post> getBookmarkedPostsForActiveUser() {
+    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    List<Long> postsIds = user.getBookmarks().stream()
+      .map(b -> b.getPost().getId())
+      .collect(Collectors.toList());
+
+    return findAllById(postsIds);
   }
 }

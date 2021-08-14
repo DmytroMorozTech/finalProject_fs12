@@ -14,7 +14,7 @@ import PostButtons from './PostButton/PostButtons'
 
 function Post (props) {
   const {
-    id: postId, isLikedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
+    id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
     numberOfViews = 244688
   } = props.post
 
@@ -73,7 +73,11 @@ function Post (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <PostButtons postId={postId} isLikedByActiveUser={isLikedByActiveUser}/>
+      <PostButtons
+        postId={postId}
+        isLikedByActiveUser={isLikedByActiveUser}
+        isBookmarkedByActiveUser = {isBookmarkedByActiveUser}
+      />
     </div>
   )
 }

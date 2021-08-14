@@ -34,6 +34,7 @@ public class PostController {
     return postFacade.getPostsForActiveUser(pageNumber, pageSize, sortBy);
   }
 
+
   @GetMapping("/all")
   List<PostRs> findAll() {
     return postFacade.findAll();
@@ -55,6 +56,17 @@ public class PostController {
   @PostMapping(path = "/toggle_like/{postId}")
   public ResponseEntity<PostRs> toggleLike(@PathVariable Long postId) {
     PostRs post = postFacade.toggleLike(postId);
+    return ResponseEntity.ok(post);
+  }
+
+  @GetMapping("/bookmarked")
+  List<PostRs> getBookmarkedPostsForActiveUser() {
+    return postFacade.getBookmarkedPostsForActiveUser();
+  }
+
+  @PostMapping(path = "/toggle_bookmark/{postId}")
+  public ResponseEntity<PostRs> toggleBookmark(@PathVariable Long postId) {
+    PostRs post = postFacade.toggleBookmark(postId);
     return ResponseEntity.ok(post);
   }
 

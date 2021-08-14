@@ -13,7 +13,6 @@ function Feed (props) {
   const classes = styles()
 
   const load = useCallback(() => {
-    console.log(`Load function has triggered!`)
     dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http

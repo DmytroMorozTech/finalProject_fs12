@@ -1,6 +1,7 @@
 package com.danit.fs12.entity.post;
 
 import com.danit.fs12.entity.AbstractEntity;
+import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.user.User;
@@ -60,6 +61,16 @@ public class Post extends AbstractEntity {
   @JsonIgnore
   private List<Like> likes = new ArrayList<>();
 
+  @OneToMany(
+    mappedBy = "post",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
+  )
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Bookmark> bookmarks = new ArrayList<>();
+
   public Post(String text) {
     this.text = text;
   }
@@ -74,6 +85,11 @@ public class Post extends AbstractEntity {
 
   public Boolean getIsLikedByActiveUser() {
     return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
+  }
+
+  public Boolean getIsBookmarkedByActiveUser() {
+    return bookmarks.stream()
+      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), 1L));
   }
 
 }
