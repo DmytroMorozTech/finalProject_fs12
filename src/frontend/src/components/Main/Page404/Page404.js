@@ -11,11 +11,13 @@ function Page404 () {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
-        <LinkedinLogo/>
+        <Link exact to='/home' className={classes.link}>
+          <LinkedinLogo/>
+        </Link>
       </div>
       <img alt="page 404" src={imgPage} className={classes.pageImg}/>
       <h1>This page doesn't exist</h1>
-      <h2>Please check your URL or return to LinkedIn home.</h2>
+      <h2 className={classes.text}>Please check your URL or return to LinkedIn home.</h2>
       <Link exact to='/home' className={classes.link}>
         <SharedButton title="Go to your feed" variant="outlined"/>
       </Link>

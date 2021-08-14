@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    width: '100%',
+    width: '100vw',
     zIndex: 100,
     backgroundColor: theme.palette.common.white,
     borderBottom: theme.border.simple,
