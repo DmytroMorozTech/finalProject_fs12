@@ -14,7 +14,7 @@ const AllUpload = () => {
 
       let parts = filename.split('.')
       const fileType = parts[parts.length - 1]
-      // console.log('fileType', fileType) // ex: zip, rar, jpg, svg etc.
+      console.log('fileType', fileType) // ex: zip, rar, jpg, svg etc.
 
       setAllFile(files[0])
     }
@@ -24,7 +24,7 @@ const AllUpload = () => {
     inputFile.current.click()
   }
 
-  // console.log('allall', allFile)
+  console.log('allall', allFile)
   return (
     <div>
       <input
