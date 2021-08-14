@@ -2,14 +2,12 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.user.User;
-import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +43,7 @@ public class ChatService extends GeneralService<Chat> {
 
   public List<Chat> getUserChats(Long userId) {
     User user = userRepository.findEntityById(userId);
+    System.out.println(user);
 
     return user.getChats();
   }
