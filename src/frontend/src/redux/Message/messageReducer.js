@@ -37,7 +37,8 @@ const messageReducer = (state = initialState, action) => {
         ...state,
         chatMessages: {...state.chatMessages, [chatid]: chatMessages}
       }
-    default: {
+    default
+    : {
       return state
     }
   }

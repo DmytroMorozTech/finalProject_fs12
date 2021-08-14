@@ -23,8 +23,8 @@ function Messages () {
     dispatch(getUserChatsAction(activeUser.id))
   }, [dispatch, activeUser.id])
 
-  const [SearchValue, setSearchValue] = useState('')
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
+  const [SearchValue, setSearchValue] = useState('')
 
   const handleSearchInputChange = e => {
     let SearchInputVal = e.currentTarget.value
@@ -35,7 +35,6 @@ function Messages () {
     <main className={classes.layoutListDetail}>
       <div className={classes.listDetailInner}>
         <section className={classes.layoutList}>
-
           <div className={classes.containerHeader}>
             <div className={classes.containerTitle}>
               <h1 className={classes.flexGrow}>Messages</h1>
@@ -66,7 +65,7 @@ function Messages () {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
             return (
               <NavLink className={`${classes.link}`} key={c.id} to={`/messages/${c.id}`}>
-                <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember} />
+                <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember}/>
               </NavLink>
             )
           })}
