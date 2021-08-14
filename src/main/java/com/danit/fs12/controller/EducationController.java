@@ -1,6 +1,5 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.education.EducationRq;
 import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.facade.EducationFacade;
