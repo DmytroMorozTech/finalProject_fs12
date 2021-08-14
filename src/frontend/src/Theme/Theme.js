@@ -113,7 +113,9 @@ const theme = createTheme({
     extraSmall: 3,
     small: 5,
     medium: 10,
-    large: 35
+    large: 35,
+    up: '10px 10px 0 0',
+    down: '0 0 10px 10px'
   }
 })
 
