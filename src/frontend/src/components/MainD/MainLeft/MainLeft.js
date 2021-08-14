@@ -4,11 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '../../../shared/Avatar/Avatar'
 import avatarUrl from '../../../temporaryImages/avatar.jpg'
 import BookmarkIcon from '@material-ui/icons/Bookmark'
-import { Link } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 function MainLeft (props) {
   const {
-    id = 1,
     userName = 'Richard West',
     jobPosition = 'Junior Java developer',
     numberOfConnections = 45,
@@ -20,18 +19,18 @@ function MainLeft (props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <div className={classes.largeAvatar}>
-          <Avatar avatarUrl={avatarUrl}/>
-        </div>
-        <Link href="#" className={classes.name} onClick={preventDefault}>
-          {userName}
+        <Link exact to="/profile" className={classes.link}>
+          <div className={classes.largeAvatar}>
+            <Avatar avatarUrl={avatarUrl}/>
+          </div>
+          <div className={classes.name}>{userName}</div>
         </Link>
         <Typography variant="h6" color="textSecondary" align="center">
           {jobPosition}
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <Link href="#" onClick={preventDefault} underline="none">
+      <Link href="#" onClick={preventDefault} className={classes.link}>
         <div className={classes.connection}>
           <div className={classes.connectionLink}>
             <span>Connections</span>
@@ -40,14 +39,14 @@ function MainLeft (props) {
           <span className={classes.connectionText}>Grow your network</span>
         </div>
       </Link>
-      <Link href="#" onClick={preventDefault} underline="none">
+      <Link href="#" onClick={preventDefault} className={classes.link}>
         <div className={classes.views}>
           <span>Who viewed your profile</span>
           <span className={classes.number}>{numberOfViews}</span>
         </div>
       </Link>
       <hr className={classes.line}/>
-      <Link href="#" onClick={preventDefault} underline="none">
+      <Link href="#" onClick={preventDefault} className={classes.link}>
         <div className={classes.items}>
           <BookmarkIcon/>
           <span>My items</span>

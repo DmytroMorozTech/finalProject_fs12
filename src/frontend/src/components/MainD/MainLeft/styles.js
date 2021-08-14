@@ -22,9 +22,9 @@ export default makeStyles((theme) => ({
 
   largeAvatar: {
     width: theme.avatar.large,
-    cursor: 'pointer',
     border: '2px solid white',
-    borderRadius: '50%'
+    borderRadius: '50%',
+    margin: '0 auto'
   },
 
   line: {
@@ -40,21 +40,24 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.h3.fontWeight,
     color: theme.palette.grey[700],
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline',
+      textDecorationColor: theme.palette.primary.main,
+      textDecorationThickness: '2px'
+    }
   },
 
   link: {
-    underline: 'none'
+    textDecoration: 'none'
   },
 
   connection: {
-    // display: 'flex',
     color: theme.palette.grey[700],
     padding: theme.spacing(2),
-    // alignItems: 'center',
-    // justifyContent: 'center',
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      backgroundColor: 'rgba(0,0,0,0.1)'
     }
   },
 
@@ -76,7 +79,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     padding: theme.spacing(2),
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      backgroundColor: 'rgba(0,0,0,0.1)'
     }
   },
 
@@ -95,7 +98,7 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     '&:hover': {
       borderRadius: theme.shape.down,
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      backgroundColor: 'rgba(0,0,0,0.1)'
     }
   }
 }))
