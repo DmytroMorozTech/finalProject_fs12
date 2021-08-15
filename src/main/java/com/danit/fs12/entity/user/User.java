@@ -163,6 +163,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Education> educations = new ArrayList<>();
 
   @OneToMany(

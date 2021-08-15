@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 
   layoutListDetail: {
     margin: '75px auto',
@@ -21,7 +21,7 @@ export default makeStyles(() => ({
   },
 
   layoutList: {
-    maxWidth: '40%',
+    width: '30vw',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'inset -1px 0 0 0 #8080802b'
@@ -220,7 +220,9 @@ export default makeStyles(() => ({
     width: 0,
     whiteSpace: 'nowrap!important',
     overflow: 'hidden!important',
-    textOverflow: 'ellipsis!important'
+    textOverflow: 'ellipsis!important',
+    color: theme.palette.common.black,
+    fontSize: 16
   },
 
   dataMessage: {
@@ -244,7 +246,7 @@ export default makeStyles(() => ({
     flex: 1,
     color: 'rgba(0, 0, 0, 0.6)',
     boxSizing: 'inherit',
-    fontSize: 13
+    fontSize: 15
   },
 
   messagingDetail: {
@@ -295,12 +297,14 @@ export default makeStyles(() => ({
 
   entityLockup: {
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'start',
     flexGrow: 1,
     minWidth: 0,
     fontWeight: 600,
     width: '100%',
-    padding: '0 12px 0 0'
+    padding: '0 12px 0 0',
+    fontSize: 15
   },
 
   statusUserRight: {
@@ -312,13 +316,13 @@ export default makeStyles(() => ({
     borderRadius: '50%',
     background: '#fff',
     boxSizing: 'border-box',
-    boxShadow: '0 0 0 2px #fff'
+    boxShadow: '0 0 0 2px #fff',
+    marginRight: '0.5rem'
   },
 
   userDeviceStyle: {
     display: 'inline-block',
     fontSize: 12,
-    marginLeft: 10,
     marginRight: 10
   },
 
@@ -435,7 +439,7 @@ export default makeStyles(() => ({
 
   eventListItem: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     listStyle: 'none',
     boxSizing: 'border-box',
     position: 'relative',
@@ -459,7 +463,8 @@ export default makeStyles(() => ({
     position: 'absolute',
     lineHeight: 1,
     marginBottom: 4,
-    padding: '0 0 0 65px'
+    padding: '10px 0 0 15px',
+    fontSize: 15
   },
 
   messageGroupName: {
@@ -479,7 +484,7 @@ export default makeStyles(() => ({
   },
 
   eventListItemMessageBubble: {
-    minHeight: 140,
+    minHeight: 40,
     display: 'inline-block',
     maxWidth: '100%',
     padding: 0,
@@ -488,8 +493,7 @@ export default makeStyles(() => ({
 
   eventListItemBody: {
     fontSize: 13,
-    paddingRight: 12,
-    margin: '26px 0 4px 67px',
+    margin: '30px 0 4px 15px',
     color: '#000000e6',
     wordWrap: 'break-word',
     whiteSpace: 'pre-line'
@@ -572,6 +576,28 @@ export default makeStyles(() => ({
       width: '40px',
       height: '40px'
     }
-  }
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  messageSentTime: {
+    color: theme.palette.grey[600]
+  },
+  statusLine: {
+    display: 'flex'
+  },
+  messageWrapper: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  chatContainer: {
+    height: '35vh',
+    overflow: 'auto'
+  },
+  messageGroupMetaText: {
+    fontWeight: 'bold'
+  },
+  searchInput: {
 
+  }
 }))

@@ -1,73 +1,93 @@
 import { makeStyles } from '@material-ui/core/styles'
+import ProfileBgMini from '../../../temporaryImages/ProfileBgMini.png'
 
 export default makeStyles((theme) => ({
   root: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(2)
   },
+
   header: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: theme.spacing(3)
+    padding: theme.spacing(3),
+    borderRadius: theme.shape.up,
+    backgroundImage: 'url(' + ProfileBgMini + ')',
+    backgroundSize: '100% 33%',
+    backgroundRepeat: 'no-repeat'
   },
-  mediumAvatar: {
-    width: theme.avatar.medium,
-    cursor: 'pointer'
+
+  largeAvatar: {
+    width: theme.avatar.large,
+    border: '2px solid white',
+    borderRadius: '50%',
+    margin: '0 auto'
   },
+
   line: {
     width: '100%',
     height: '0.5px',
     border: '0',
     margin: '0 auto',
-    marginTop: theme.spacing(3),
     backgroundColor: theme.palette.grey[300]
   },
+
   name: {
     fontSize: theme.typography.h4.fontSize,
     fontWeight: theme.typography.h3.fontWeight,
     color: theme.palette.grey[700],
-    paddingTop: theme.spacing(4)
-  },
-  link: {
-    underline: 'none'
-  },
-  connection: {
-    color: theme.palette.grey[700],
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
+    cursor: 'pointer',
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      textDecoration: 'underline',
+      textDecorationColor: theme.palette.primary.main,
+      textDecorationThickness: '2px'
     }
   },
+
+  link: {
+    textDecoration: 'none'
+  },
+
+  connection: {
+    color: theme.palette.grey[700],
+    padding: theme.spacing(2),
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.1)'
+    }
+  },
+
   connectionLink: {
     display: 'flex',
     justifyContent: 'space-between',
-    fontSize: theme.typography.h6.fontSize,
-    marginTop: theme.spacing(3),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    fontSize: theme.typography.h6.fontSize
   },
+
   connectionText: {
     fontSize: theme.typography.h6.fontSize,
-    fontWeight: theme.typography.fontWeightBold,
-    paddingLeft: theme.spacing(2)
+    fontWeight: theme.typography.fontWeightBold
   },
+
   views: {
     display: 'flex',
     justifyContent: 'space-between',
     fontSize: theme.typography.h6.fontSize,
     color: theme.palette.grey[700],
-    marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    padding: theme.spacing(2),
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      backgroundColor: 'rgba(0,0,0,0.1)'
     }
   },
+
   number: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
+    fontSize: theme.typography.h6.fontSize
   },
+
   items: {
     display: 'flex',
     flexDirection: 'row',
@@ -75,9 +95,10 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     fontSize: theme.typography.h6.fontSize,
     fontWeight: theme.typography.fontWeightBold,
-    paddingLeft: theme.spacing(2),
+    padding: theme.spacing(2),
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)'
+      borderRadius: theme.shape.down,
+      backgroundColor: 'rgba(0,0,0,0.1)'
     }
   }
 }))

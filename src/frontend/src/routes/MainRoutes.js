@@ -19,6 +19,7 @@ const MainRoutes = () => {
       <Route exact path="/network" render={() => <Network/>}/>
       <Route exact path="/jobs" render={() => <Jobs/>}/>
       <Route exact path="/messages" render={() => <Messages/>}/>
+      <Route exact path="/messages/:id/" render={() => <Messages/>}/>
       <Route exact path="/notifications" render={() => <Notifications/>}/>
       <Route exact path="/personal" render={() => <Profile/>}/>
       <Route exact path="/profile" render={() => <ProfilePage/>}/>
