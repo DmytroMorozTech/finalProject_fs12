@@ -9,7 +9,7 @@ import Login from '../components/Login/Login'
 import MainD from '../components/MainD/MainD'
 import ProfilePage from '../components/ProfilePage/ProfilePage'
 import Page404 from '../components/Main/Page404/Page404'
-import BookmarkedPosts from '../components/Main/SavedPosts/BookmarkedPosts'
+import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 
 const MainRoutes = () => {
   return (

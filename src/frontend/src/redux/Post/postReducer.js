@@ -64,6 +64,7 @@ const postReducer = (state = initialState, action) => {
       const updatedPost = action.payload
 
       const currentPost = state.postsList.find((post) => post.id === updatedPost.id)
+      if (currentPost === null) return state
 
       const indexOfCurrentPost = state.postsList.indexOf(currentPost)
 
@@ -82,6 +83,17 @@ const postReducer = (state = initialState, action) => {
       return update(state, {bookmarked:
           {postsList: {$splice: [[indexOfCurrentPost1, 1, updatedPost1]]}}})
 
+    case actions.DELETE_BOOKMARKED_POST:
+      const postId4 = action.payload
+      const updatedBookmarkedPosts = state.bookmarked.postsList.filter((post) => post.id !== postId4)
+      return { ...state, bookmarked: { ...state.bookmarked, postsList: [...updatedBookmarkedPosts] } }
+
+    case actions.SAVE_BOOKMARKED_POST:
+      const newPost = action.payload
+      return { ...state,
+        bookmarked: { ...state.bookmarked,
+          postsList: [...state.bookmarked.postsList, newPost] } }
+
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
       return { ...state, usersWhoLikedPost: { ...state.usersWhoLikedPost, [id]: usersList } }
@@ -99,17 +111,6 @@ const postReducer = (state = initialState, action) => {
       const updatedComments = state.comments[postId3].filter(c => c.id !== commentId)
 
       return { ...state, comments: { ...state.comments, [postId3]: updatedComments } }
-
-    case actions.DELETE_BOOKMARKED_POST:
-      const postId4 = action.payload
-      const updatedBookmarkedPosts = state.bookmarked.postsList.filter((post) => post.id !== postId4)
-      return { ...state, bookmarked: { ...state.bookmarked, postsList: [...updatedBookmarkedPosts] } }
-
-    case actions.SAVE_BOOKMARKED_POST:
-      const newPost = action.payload
-      return { ...state,
-        bookmarked: { ...state.bookmarked,
-          postsList: [...state.bookmarked.postsList, newPost] } }
 
     default: {
       return state

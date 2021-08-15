@@ -14,7 +14,6 @@ function MainLeft (props) {
     numberOfViews = 40
   } = props
   const classes = styles()
-  const preventDefault = (event) => event.preventDefault()
 
   return (
     <div className={classes.root}>
