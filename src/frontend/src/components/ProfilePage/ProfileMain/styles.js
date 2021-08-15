@@ -64,7 +64,7 @@ export default makeStyles((theme) => ({
   },
 
   leftPanel: {
-    width: '68%'
+    minWidth: '68%'
   },
 
   rightPanel: {
