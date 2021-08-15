@@ -8,5 +8,4 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.h4.fontWeight,
     marginBottom: theme.spacing(3)
   }
-  
 }))
