@@ -1,66 +1,86 @@
 import { makeStyles } from '@material-ui/core/styles'
+import ProfileBg from '../../../temporaryImages/ProfileBg.png'
 
 export default makeStyles((theme) => ({
+
   root: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(4)
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(4),
+    backgroundImage: 'url(' + ProfileBg + ')',
+    backgroundSize: '100% 160px',
+    backgroundRepeat: 'no-repeat'
   },
+
   header: {
     display: 'flex',
     justifyContent: 'flex-end'
   },
+
   photoIcon: {
-    paddingTop: theme.spacing(3),
-    '&:hover': {
-      backgroundColor: 'transparent'
-    }
-  },
-  bigAvatar: {
-    width: theme.spacing(30),
-    height: theme.spacing(30),
+    fontSize: theme.typography.icons.extraSmall.fontSize,
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    padding: theme.spacing(1.5),
+    backgroundColor: theme.palette.common.white,
+    borderRadius: '50%',
     cursor: 'pointer'
   },
-  editName: {
+
+  row: {
     display: 'flex',
-    justifyContent: 'flex-end'
-  },
-  btnCreate: {
-    '&:hover': {
-      backgroundColor: 'transparent'
-    }
-  },
-  createIcon: {
-    color: theme.palette.grey[700],
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.05)',
-      borderRadius: theme.shape.large
-    }
-  },
-  name: {
-    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
     justifyContent: 'space-between'
   },
-  rightPanel: {
-    marginRight: theme.spacing(10)
+
+  bigAvatar: {
+    width: theme.spacing(31),
+    height: theme.spacing(31),
+    border: '4px solid white',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    marginBottom: theme.spacing(3)
   },
-  schoolName: {
-    fontWeight: theme.typography.fontWeightBold
+
+  editName: {
+    cursor: 'pointer',
+    color: theme.palette.grey[700],
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    borderRadius: '50%',
+    padding: theme.spacing(1.3),
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.1)'
+    }
   },
+
   info: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: theme.spacing(1)
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
+
+  leftPanel: {
+    minWidth: '68%'
   },
-  number: {
+
+  rightPanel: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+
+  businessIcon: {
+    backgroundColor: theme.palette.grey[300],
     marginRight: theme.spacing(1)
   },
+
+  bold: {
+    fontWeight: theme.typography.fontWeightBold
+  },
+
   box: {
     width: '50%',
     display: 'flex',
@@ -68,18 +88,18 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[200],
     borderRadius: theme.shape.small,
     marginTop: theme.spacing(2),
-    padding: theme.spacing(1)
-    
+    padding: theme.spacing(2)
   },
-  linkText: {
+
+  column: {
     display: 'flex',
     flexDirection: 'column'
   },
-  firstLine: {
+
+  createIcon: {
+    cursor: 'pointer',
     color: theme.palette.grey[700],
-    fontWeight: theme.typography.fontWeightBold
-  },
-  secondLine: {
-    color: theme.palette.grey[700]
+    width: theme.spacing(3),
+    height: theme.spacing(3)
   }
 }))

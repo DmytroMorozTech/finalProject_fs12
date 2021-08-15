@@ -5,78 +5,85 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
 import avatarUrl from '../../../temporaryImages/avatar.jpg'
 import style from './styles'
-import {Link} from '@material-ui/core'
+import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
+import SmallDot from '../../../shared/SmallDot/SmallDot'
+import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 
 function ProfileMain (props) {
-  const {fullName = 'Alan Prost', positionAndCompany = 'Junior Java developer',
-    lastEducation = 'DANIT', country = 'Ukraine', numberOfConnections = 45} = props
+  const {
+    fullName = 'Alan Frost', position = 'Junior Java developer',
+    company = 'DAN.IT', city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
+  } = props
   const classes = style()
-  const bull = <span className={classes.bullet}>•</span>
   const preventDefault = (event) => event.preventDefault()
-    
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
         <div className={classes.photoIcon} onClick={preventDefault}>
-          <PhotoCameraIcon color={'primary'}/>
+          <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
-      <div className={classes.content}>
-        <Avatar src={avatarUrl} alt={avatarUrl} className={classes.bigAvatar}/>
-        <div className={classes.editName}>
-          <div className={classes.btnCreate}>
-            <CreateIcon className={classes.createIcon}/>
-          </div>
+      <div>
+        <div className={classes.row}>
+          <Avatar src={avatarUrl} alt={avatarUrl} className={classes.bigAvatar}/>
+          <CreateIcon className={classes.editName}/>
         </div>
-        <div className={classes.name}>
+        <div className={classes.info}>
           <div className={classes.leftPanel}>
             <Typography variant="h3">
               {fullName}
             </Typography>
             <Typography variant="body1">
-              {positionAndCompany}
+              {position} — {company}
             </Typography>
             <div className={classes.info}>
-              <Typography variant="body2">
-                {country}{bull}
+              <Typography variant="body1" color="secondary">
+                {city}, {country}
               </Typography>
-              <Link className={classes.contactInfo} onClick={preventDefault}>
-                Contact info
+              <SmallDot/>
+              <Link onClick={preventDefault}>
+                <Typography variant="body1" color="primary" className={classes.bold}>
+                  Contact info
+                </Typography>
+              </Link>
+            </div>
+            <div>
+              <Link href="#" onClick={preventDefault}>
+                <Typography variant="body1" color="primary" className={classes.bold}>
+                  {numberOfConnections} connections
+                </Typography>
               </Link>
             </div>
           </div>
-          <div className={classes.rightPanel}>
-            <Typography variant="body1" className={classes.schoolName}>
-              {lastEducation}
-            </Typography>
+          <div>
+            <Hidden xsDown>
+              <Typography variant="h5" className={classes.rightPanel}>
+                <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
+                <span>{company}</span>
+              </Typography>
+            </Hidden>
           </div>
         </div>
         <div>
-          <Link href="#" onClick={preventDefault}>
-            <span className={classes.number}>{numberOfConnections}</span>
-            <span>connections</span>
-          </Link>
-        </div>
-        <div className={classes.dropDownBtn}>
           <SharedButton title="Open to"/>
-          <SharedButton title="Add section" color="default"/>
-          <SharedButton title="More" color="default"/>
+          <SharedButton title="Add section" variant="outlined" color="secondary"/>
+          <SharedButton title="More" variant="outlined" color="secondary"/>
         </div>
         <div className={classes.box}>
-          <Link href="#" onClick={preventDefault}>
-            <div className={classes.linkText}>
-              <span className={classes.firstLine}>Open to work</span>
-              <span className={classes.secondLine}>{positionAndCompany}</span>
-              <span>See all details</span>
-            </div>
+          <Link href="#" onClick={preventDefault} className={classes.column}>
+            <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
+            <Typography variant="body1" color="secondary">{position}</Typography>
+            <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
-          <div className={classes.btnCreate}>
-            <CreateIcon className={classes.createIcon} fontSize={'small'}/>
+          <div>
+            <CreateIcon fontSize="inherit" className={classes.createIcon}/>
           </div>
         </div>
       </div>
     </div>
   )
 }
+
 export default ProfileMain

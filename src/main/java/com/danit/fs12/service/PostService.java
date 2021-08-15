@@ -1,16 +1,20 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,8 +57,41 @@ public class PostService extends GeneralService<Post> {
     }
   }
 
+  public Post toggleBookmark(Long postId) {
+    Post post = findEntityById(postId);
+
+    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
+
+    if (postIsBookmarked) {
+      post.getBookmarks().removeIf(bookmark -> Objects.equals(bookmark.getUser().getId(), hardCodedActiveUserId));
+      return save(post);
+    } else {
+      User user = userRepository.findEntityById(hardCodedActiveUserId);
+      Bookmark bookmark = new Bookmark(user, post);
+      post.getBookmarks().add(bookmark);
+      return save(post);
+    }
+  }
+
   public Page<Post> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
     return findAll(pageRequest);
+  }
+
+  public Page<Post> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
+    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+
+    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    List<Long> postsIds = user.getBookmarks().stream()
+      .map(b -> b.getPost().getId())
+      .collect(Collectors.toList());
+
+    List<Post> listOfBookmarkedPosts = findAllById(postsIds);
+    long totalPosts = listOfBookmarkedPosts.size();
+
+    int maxArrIndex = (int) totalPosts;
+    int startIndex = pageNumber * pageSize;
+    int endIndex = Math.min((startIndex + pageSize), maxArrIndex);
+    return new PageImpl<>(listOfBookmarkedPosts.subList(startIndex, endIndex), pageRequest, totalPosts);
   }
 }

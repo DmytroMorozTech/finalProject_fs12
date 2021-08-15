@@ -1,4 +1,4 @@
-import { getCommentsForPostAction, toggleLikeAction } from '../../../../../redux/Post/postActions'
+import { getCommentsForPostAction, toggleBookmarkAction, toggleLikeAction } from '../../../../../redux/Post/postActions'
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import { Hidden } from '@material-ui/core'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
@@ -9,9 +9,10 @@ import styles from './styles'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import NewCommentInput from './NewCommentInput/NewCommentInput'
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
 
 function PostButtons (props) {
-  const {postId, isLikedByActiveUser} = props
+  const {postId, isLikedByActiveUser, isBookmarkedByActiveUser} = props
 
   const classes = styles()
 
@@ -38,11 +39,16 @@ function PostButtons (props) {
 
   }
 
+  const handleBookmarkPost = () => {
+    dispatch(toggleBookmarkAction(postId))
+  }
+
   const items = [
     { icon: <ThumbUpOutlinedIcon fontSize="inherit"/>, title: 'Like', onClick: handleLike, className: clsx(classes.item, isLikedByActiveUser && classes.liked) },
     { icon: <ChatOutlinedIcon fontSize="inherit"/>, title: 'Comment', onClick: handleComment, className: classes.item },
     { icon: <RedoOutlinedIcon fontSize="inherit"/>, title: 'Share', onClick: handleShare, className: classes.item },
-    { icon: <TelegramIcon fontSize="inherit"/>, title: 'Send', onClick: handleSend, className: classes.item }
+    { icon: <TelegramIcon fontSize="inherit"/>, title: 'Send', onClick: handleSend, className: classes.item },
+    { icon: <BookmarkBorderIcon fontSize="inherit"/>, title: isBookmarkedByActiveUser ? 'Unsave' : 'Save', onClick: handleBookmarkPost, className: clsx(classes.item, isBookmarkedByActiveUser && classes.liked) }
   ]
 
   return (

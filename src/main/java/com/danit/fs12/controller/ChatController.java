@@ -46,4 +46,9 @@ public class ChatController {
   List<ChatRs> findAll() {
     return chatFacade.findAll();
   }
+
+  @GetMapping(path = "/user/{id}")
+  List<ChatRs> getUserChats(@PathVariable Long id) {
+    return chatFacade.getUserChats(id);
+  }
 }

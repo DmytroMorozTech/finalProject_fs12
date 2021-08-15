@@ -8,12 +8,15 @@ import * as actions from '../../../redux/Post/postActionTypes'
 import http from '../../../services/httpService'
 
 function Feed (props) {
-  const { posts, pageNumber, pageSize, hasMore = true, loading = true, sortBy } = props
+  const { type, loading = true, postsState, bookmarkedPostsState } = props
   const dispatch = useDispatch()
   const classes = styles()
 
-  const load = useCallback(() => {
-    console.log(`Load function has triggered!`)
+  const localState = (type === 'posts') ? postsState : bookmarkedPostsState
+  const { postsList: posts, pagination } = localState
+  const {pageNumber, pageSize, hasMore} = pagination
+
+  const loadPosts = useCallback(() => {
     dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http
@@ -21,8 +24,7 @@ function Feed (props) {
         {
           params: {
             pageNumber: pageNumber,
-            pageSize: pageSize,
-            sortBy: sortBy // so far this property is not used
+            pageSize: pageSize
           }
         }
       )
@@ -31,7 +33,28 @@ function Feed (props) {
         dispatch({ type: actions.SAVE_NEW_POSTS, payload: page })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
-  }, [pageNumber, pageSize, sortBy, dispatch])
+  }, [pageNumber, pageSize, dispatch])
+
+  const loadBookmarkedPosts = useCallback(() => {
+    dispatch({ type: actions.LOADING_POSTS, payload: true })
+
+    return http
+      .get('api/posts/bookmarked',
+        {
+          params: {
+            pageNumber: pageNumber,
+            pageSize: pageSize
+          }
+        }
+      )
+      .then((result) => result.data)
+      .then((page) => {
+        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page })
+        dispatch({ type: actions.LOADING_POSTS, payload: false })
+      })
+  }, [pageNumber, pageSize, dispatch])
+
+  const load = (type === 'posts') ? loadPosts : loadBookmarkedPosts
 
   const loader = React.useRef(load)
 
@@ -69,10 +92,16 @@ function Feed (props) {
 
   return (
     <>
+      {type === 'posts' &&
       <div className={classes.feed}>
         <ShareBox/>
         {posts.map(post => <Post key={post.id} post={post}/>)}
-      </div>
+      </div>}
+
+      {type === 'bookmarkedPosts' &&
+      <div className={classes.feed}>
+        {posts.map(post => <Post key={post.id} post={post}/>)}
+      </div>}
 
       {loading && <Preloader/>}
       {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}
@@ -83,11 +112,9 @@ function Feed (props) {
 const mapStateToProps = (state) => {
   return {
     activeUserId: state.user.activeUser.id,
-    posts: state.posts.postsList,
-    loading: state.posts.loading,
-    pageNumber: state.posts.pageNumber,
-    pageSize: state.posts.pageSize,
-    hasMore: state.posts.hasMore
+    postsState: state.posts,
+    bookmarkedPostsState: state.posts.bookmarked,
+    loading: state.posts.loading
   }
 }
 

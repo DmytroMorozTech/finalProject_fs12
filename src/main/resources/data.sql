@@ -176,6 +176,18 @@ VALUES (10, 1, date '2015-01-20', date '2015-01-20'),
        (1, 3, date '2018-12-30', date '2018-12-30'),
        (1, 4, date '2018-12-30', date '2018-12-30');
 
+INSERT INTO BOOKMARKS (user_id, post_id, created_date, modified_date)
+VALUES (1, 2, date '2015-01-20', date '2015-01-20'),
+       (1, 3, date '2015-01-20', date '2015-01-20'),
+       (1, 5, date '2015-01-20', date '2015-01-20'),
+       (1, 7, date '2015-01-20', date '2015-01-20'),
+       (1, 10, date '2015-01-20', date '2015-01-20'),
+       (1, 11, date '2015-01-20', date '2015-01-20'),
+       (1, 13, date '2015-01-20', date '2015-01-20'),
+       (1, 15, date '2016-10-01', date '2016-10-01'),
+       (1, 18, date '2017-02-11', date '2017-02-11'),
+       (1, 20, date '2017-02-21', date '2017-02-21');
+
 INSERT INTO EDUCATIONS (created_date, modified_date, activities,
                         date_finish, date_start, degree_received, field_of_study, school,
                         user_id, description)
@@ -187,3 +199,43 @@ VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
         date '2011-03-03', date '2015-04-04', 'Bachelor',
         'Electronics',
         'MIT', 1, 'High-level of education; nice capmus; ...');
+
+INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
+                            credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
+                            name, user_id)
+VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
+        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
+        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
+        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 2);
+
+INSERT INTO CHATS (created_date, modified_date)
+VALUES (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20');
+
+
+INSERT INTO USERS_CHATS (user_id, chat_id)
+VALUES (1, 1),
+       (2, 1),
+       (1, 2),
+       (3, 2),
+       (1, 3),
+       (4, 3),
+       (1, 4),
+       (5, 4);
+
+INSERT INTO MESSAGES (created_date, modified_date, text, chat_id, user_id)
+VALUES (date '2015-01-20', date '2015-01-20', 'Message text', 1, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text2', 1, 2),
+       (date '2015-01-20', date '2015-01-20', 'Message text3', 2, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text4', 2, 3),
+       (date '2015-01-20', date '2015-01-20', 'Message text5', 2, 3),
+       (date '2015-01-20', date '2015-01-20', 'Message text6', 3, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text7', 3, 5),
+       (date '2016-10-01', date '2016-10-01', 'Message text8', 4, 4),
+       (date '2017-02-11', date '2017-02-11', 'Message text9', 4, 1),
+       (date '2017-02-21', date '2017-02-21', 'Message text10', 4, 4),
+       (date '2017-05-09', date '2017-05-09', 'Message text11', 4, 1);

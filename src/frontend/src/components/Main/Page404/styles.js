@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.background.paper,
     width: '100vw',
-    paddingLeft: '15vw'
+    paddingLeft: '30px'
   },
 
   pageImg: {
@@ -30,5 +30,10 @@ export default makeStyles((theme) => ({
 
   link: {
     textDecoration: 'none'
+  },
+
+  text: {
+    textAlign: 'center',
+    fontWeight: 400
   }
 }))

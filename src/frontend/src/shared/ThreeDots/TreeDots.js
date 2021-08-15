@@ -5,9 +5,7 @@ import React from 'react'
 function ThreeDots () {
   const classes = styles()
   return (
-    <div className={classes.dots}>
-      <MoreHorizIcon className={classes.icon}/>
-    </div>
+    <MoreHorizIcon className={classes.icon}/>
   )
 }
 

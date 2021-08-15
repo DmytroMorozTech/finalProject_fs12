@@ -1,7 +1,7 @@
-package com.danit.fs12.entity.message;
+package com.danit.fs12.entity.bookmark;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.chat.Chat;
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,35 +13,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "messages")
+@Table(name = "bookmarks")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Message extends AbstractEntity {
+public class Bookmark extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "chat_id")
-  private Chat chat;
-
-  private String text;
-
-  public Message(String text) {
-    this.text = text;
-  }
-
-  public Long getChatId() {
-    return chat.getId();
-  }
-
-  public Long getUserId() {
-    return user.getId();
-  }
+  @JoinColumn(name = "post_id")
+  private Post post;
 
 }

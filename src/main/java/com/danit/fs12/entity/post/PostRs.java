@@ -13,6 +13,7 @@ public class PostRs {
   private Long numberOfLikes;
   private Long numberOfComments;
   private Boolean isLikedByActiveUser;
+  private Boolean isBookmarkedByActiveUser;
   private LocalDateTime createdDate;
   private LocalDateTime lastModifiedDate;
   private UserRs user;
