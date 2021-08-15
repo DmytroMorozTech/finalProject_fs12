@@ -23,8 +23,20 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return convertToDto(post);
   }
 
+  public PostRs toggleBookmark(Long postId) {
+    Post post = postService.toggleBookmark(postId);
+    return convertToDto(post);
+  }
+
+  // after integration of Spring Security this method should be renamed to getPaginatedPosts
   public Page<PostRs> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     Page<Post> postsPage = postService.getPostsForActiveUser(pageNumber, pageSize, sortBy);
+    return postsPage.map(this::convertToDto);
+  }
+
+  public Page<PostRs> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
+    Page<Post> postsPage = postService.getBookmarkedPosts(pageNumber, pageSize, sortBy);
+
     return postsPage.map(this::convertToDto);
   }
 }

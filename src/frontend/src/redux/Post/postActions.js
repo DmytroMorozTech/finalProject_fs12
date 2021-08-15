@@ -56,5 +56,22 @@ export const toggleLikeAction = (payload) => (dispatch) => {
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
+      dispatch({ type: actions.UPDATE_BOOKMARKED_POST, payload: newPostObj })
+    })
+}
+
+export const toggleBookmarkAction = (payload) => (dispatch) => {
+  const id = payload
+
+  return http
+    .post(`/api/posts/toggle_bookmark/${id}`)
+    .then((res) => res.data)
+    .then((newPostObj) => {
+      dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
+      if (!newPostObj.isBookmarkedByActiveUser) {
+        dispatch({ type: actions.DELETE_BOOKMARKED_POST, payload: newPostObj.id })
+      } else if (newPostObj.isBookmarkedByActiveUser) {
+        dispatch({ type: actions.SAVE_BOOKMARKED_POST, payload: newPostObj })
+      }
     })
 }
