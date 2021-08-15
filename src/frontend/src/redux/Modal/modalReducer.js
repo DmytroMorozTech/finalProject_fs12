@@ -1,7 +1,8 @@
 import * as actions from './modalActionTypes'
-import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
+import { ADD_NEW_CERTIFICATION, ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST } from '../../components/Modal/modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
+import AddNewCertification from '../../components/ProfilePage/Certification/AddNewCertification'
 
 const initialState = {
   isModalOpen: false,
@@ -28,6 +29,10 @@ const modalReducer = (state = initialState, action) => {
           content = <AddNewPost/>
           break
 
+        case ADD_NEW_CERTIFICATION:
+          content = <AddNewCertification/>
+          break
+
         case SHOW_USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
           break
@@ -35,7 +40,7 @@ const modalReducer = (state = initialState, action) => {
         default:
           content = ''
       }
-      
+
       return {
         ...state,
         isModalOpen: !state.isModalOpen,
@@ -44,7 +49,7 @@ const modalReducer = (state = initialState, action) => {
         activePostId: id
       }
     }
-      
+
     default: {
       return state
     }

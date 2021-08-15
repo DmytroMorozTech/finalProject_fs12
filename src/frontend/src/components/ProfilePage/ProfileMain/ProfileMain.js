@@ -5,8 +5,15 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
 import avatarUrl from '../../../temporaryImages/avatar.jpg'
 import style from './styles'
-import {Link} from '@material-ui/core'
+import { Link, TextField } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
+import { ADD_NEW_CERTIFICATION } from '../../Modal/modalTypes'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import { useDispatch } from 'react-redux'
+// import DatePicker from '@material-ui/lab/DatePicker'
+// import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
+// import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
+// import Stack from '@material-ui/core/Stack'
 
 function ProfileMain (props) {
   const {fullName = 'Alan Prost', positionAndCompany = 'Junior Java developer',
@@ -14,7 +21,9 @@ function ProfileMain (props) {
   const classes = style()
   const bull = <span className={classes.bullet}>•</span>
   const preventDefault = (event) => event.preventDefault()
-    
+  const dispatch = useDispatch()
+  // const [value, setValue] = React.useState(new Date())
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
@@ -60,8 +69,44 @@ function ProfileMain (props) {
         </div>
         <div className={classes.dropDownBtn}>
           <SharedButton title="Open to"/>
-          <SharedButton title="Add section" color="default"/>
+          <div onClick={() =>
+            dispatch(toggleModalAction({modalType: ADD_NEW_CERTIFICATION}))}>
+            <SharedButton title="Add Certification" color="default"/>
+          </div>
+
           <SharedButton title="More" color="default"/>
+          <TextField
+            required
+            fullWidth
+            color="secondary"
+            size="small"
+            type="string"
+            id="filled-required"
+            label="Name"
+            placeholder="Ex: Microsoft certified network associate security"
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+            variant="outlined"
+          />
+          <TextField
+            size="small"
+            color="secondary"
+            fullWidth
+            type="string"
+            id="filled-read-only-input"
+            label="Issuing organization"
+            placeholder="Ex: Microsoft"
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+            variant="outlined"
+          />
+          <form className={classes.container} noValidate>
+
+          </form>
         </div>
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault}>
