@@ -77,31 +77,6 @@ export default makeStyles((theme) => ({
     height: 'auto'
   },
 
-  block: {
-    display: 'flex',
-    color: theme.palette.grey[600],
-    marginLeft: theme.spacing(2),
-    marginTop: theme.spacing(1)
-  },
-
-  item: {
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    transition: 'all 0.35s ease',
-    padding: theme.spacing(2),
-    borderRadius: theme.shape.small,
-    fontSize: theme.typography.icons.large.fontSize,
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.10)'
-    },
-    '& > span': {
-      fontSize: theme.typography.h4.fontSize,
-      fontWeight: theme.typography.h4.fontWeight,
-      paddingLeft: theme.spacing(1)
-    }
-  },
-
   quantity: {
     paddingLeft: theme.spacing(1),
     display: 'flex',
@@ -123,75 +98,7 @@ export default makeStyles((theme) => ({
     }
   },
 
-  liked: {
-    color: theme.palette.primary.main
-  },
-
   hiddenAddComment: {
     display: 'none'
-  },
-
-  showedAddComment: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%'
-  },
-
-  addComment: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    width: '100%'
-  },
-
-  smallAvatar: {
-    width: theme.avatar.small,
-    marginTop: theme.spacing(1.5),
-    flexShrink: 0
-  },
-
-  newComment: {
-    width: '100%'
-  },
-
-  commentField: {
-    border: theme.border.simple,
-    borderRadius: theme.shape.large,
-    padding: theme.spacing(2.5),
-    margin: theme.spacing(1),
-    width: 'calc(100% - 10px)',
-    flexShrink: 1
-  },
-
-  hidden: {
-    display: 'none'
-  },
-
-  showedButton: {
-    display: 'flex',
-    marginBottom: theme.spacing(2)
-  },
-
-  comments: {
-    boxSizing: 'border-box',
-    padding: theme.spacing(1),
-    width: '100%',
-    color: theme.palette.grey[500]
-  },
-
-  loadMoreComments: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(3),
-    fontWeight: theme.typography.h5.fontWeight,
-    fontSize: theme.typography.h5.fontSize,
-    cursor: 'pointer',
-    '& > span': {
-      padding: theme.spacing(1),
-      '&:hover': {
-        backgroundColor: 'rgba(0,0,0,0.05)',
-        borderRadius: theme.shape.small
-      }
-    }
   }
 }))

@@ -6,6 +6,8 @@ import com.danit.fs12.repository.RepositoryInterface;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,11 @@ public abstract class GeneralService<E extends AbstractEntity> implements Servic
   @Override
   public List<E> findAll() {
     return repo.findAll();
+  }
+
+  @Override
+  public Page<E> findAll(Pageable pageable) {
+    return repo.findAll(pageable);
   }
 
   @Override
@@ -56,4 +63,6 @@ public abstract class GeneralService<E extends AbstractEntity> implements Servic
   public E findEntityById(Long id) {
     return repo.findEntityById(id);
   }
+
+
 }

@@ -175,3 +175,45 @@ VALUES (10, 1, date '2015-01-20', date '2015-01-20'),
        (1, 2, date '2018-12-30', date '2018-12-30'),
        (1, 3, date '2018-12-30', date '2018-12-30'),
        (1, 4, date '2018-12-30', date '2018-12-30');
+
+INSERT INTO EDUCATIONS (created_date, modified_date, activities,
+                        date_finish, date_start, degree_received, field_of_study, school,
+                        user_id, description)
+VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
+        date '2017-07-08', date '2015-07-08', 'Phd',
+        'Chemistry',
+        'NY High-school for Humanitarians', 2, 'High-level of education; nice capmus; ...'),
+       (date '2016-02-02', date '2016-02-02', 'Working hard; Writing scientifica articles',
+        date '2011-03-03', date '2015-04-04', 'Bachelor',
+        'Electronics',
+        'MIT', 1, 'High-level of education; nice capmus; ...');
+
+INSERT INTO CHATS (created_date, modified_date)
+VALUES (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20'),
+       (date '2015-01-20', date '2015-01-20');
+
+
+INSERT INTO USERS_CHATS (user_id, chat_id)
+VALUES (1, 1),
+       (2, 1),
+       (1, 2),
+       (3, 2),
+       (1, 3),
+       (4, 3),
+       (1, 4),
+       (5, 4);
+
+INSERT INTO MESSAGES (created_date, modified_date, text, chat_id, user_id)
+VALUES (date '2015-01-20', date '2015-01-20', 'Message text', 1, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text2', 1, 2),
+       (date '2015-01-20', date '2015-01-20', 'Message text3', 2, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text4', 2, 3),
+       (date '2015-01-20', date '2015-01-20', 'Message text5', 2, 3),
+       (date '2015-01-20', date '2015-01-20', 'Message text6', 3, 1),
+       (date '2015-01-20', date '2015-01-20', 'Message text7', 3, 5),
+       (date '2016-10-01', date '2016-10-01', 'Message text8', 4, 4),
+       (date '2017-02-11', date '2017-02-11', 'Message text9', 4, 1),
+       (date '2017-02-21', date '2017-02-21', 'Message text10', 4, 4),
+       (date '2017-05-09', date '2017-05-09', 'Message text11', 4, 1);

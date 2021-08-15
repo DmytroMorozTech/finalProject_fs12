@@ -7,7 +7,7 @@ import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import UserData from '../../../UserData/UserData'
 import clsx from 'clsx'
 
-const Item = ({ Icon, title, arrow, toggleMenu, onClick, to }) => {
+const Item = ({ Icon, title, arrow, toggleMenu, to }) => {
   const classes = styles()
 
   const renderMenuItem = (
@@ -22,7 +22,7 @@ const Item = ({ Icon, title, arrow, toggleMenu, onClick, to }) => {
           <span>{title}</span>
           {arrow && <ArrowDropDownIcon fontSize="inherit" className={classes.arrow} />}
         </div>
-        <hr className={clsx(classes.line)} />
+        <hr className={classes.line} />
       </Hidden>
     </NavLink>
   )

@@ -39,4 +39,10 @@ public class MessageController {
     MessageRs message = messageFacade.createMessage(rq);
     return ResponseEntity.ok(message);
   }
+
+  @GetMapping(path = "/chat/{id}")
+  public List<MessageRs> getMessagesByChatId(@PathVariable Long id) {
+    return messageFacade.getMessagesByChatId(id);
+  }
+
 }

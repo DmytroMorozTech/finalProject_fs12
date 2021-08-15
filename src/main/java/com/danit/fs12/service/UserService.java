@@ -4,6 +4,7 @@ import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.PostRepository;
+import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService extends GeneralService<User> {
   private final PostRepository postRepository;
+  private final UserRepository userRepository;
 
   public User getActiveUser(Long id) {
 
@@ -63,4 +65,7 @@ public class UserService extends GeneralService<User> {
     return usersList;
   }
 
+  public User findUserById(Long id) {
+    return findEntityById(id);
+  }
 }

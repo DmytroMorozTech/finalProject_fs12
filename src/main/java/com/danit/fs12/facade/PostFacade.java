@@ -5,6 +5,7 @@ import com.danit.fs12.entity.post.PostRq;
 import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.service.PostService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
@@ -22,5 +23,9 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return convertToDto(post);
   }
 
+  public Page<PostRs> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
+    Page<Post> postsPage = postService.getPostsForActiveUser(pageNumber, pageSize, sortBy);
+    return postsPage.map(this::convertToDto);
+  }
 }
 
