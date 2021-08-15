@@ -188,9 +188,9 @@ VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
         'Electronics',
         'MIT', 1, 'High-level of education; nice capmus; ...');
 
-INSERT INTO CERTIFICATIONS (created_date, modified_date, CREDENTIAL_ID,
-                            CREDENTIAL_URL, EXPIRATION_DATE, HAS_EXPIRY_DATE, ISSUE_DATE, ISSUING_ORGANIZATION,
-                            NAME, USER_ID)
+INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
+                            credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
+                            name, user_id)
 VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
         date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 1),
        (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
