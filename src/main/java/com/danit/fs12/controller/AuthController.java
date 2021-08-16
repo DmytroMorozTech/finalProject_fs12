@@ -25,8 +25,12 @@ public class AuthController {
   @PostMapping("/register")
   public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
     User applicationUser = new User();
+    applicationUser.setFirstName(registrationRequest.getFirstName());
+    applicationUser.setLastName(registrationRequest.getLastName());
+    applicationUser.setAge(registrationRequest.getAge());
+    applicationUser.setPhoneNumber(registrationRequest.getPhoneNumber());
     applicationUser.setPasswordHash(registrationRequest.getPassword());
-    applicationUser.setEmail(registrationRequest.getLogin());
+    applicationUser.setEmail(registrationRequest.getEmail());
     userService.save(applicationUser);
     return "OK";
   }
