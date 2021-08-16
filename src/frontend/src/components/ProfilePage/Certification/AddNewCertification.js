@@ -7,197 +7,179 @@ import {TextField} from 'formik-material-ui'
 // import toggleModalAction from '../../../redux/Modal/modalActions'
 // import { createNewCertificationAction } from '../../../redux/Certification/certificationAction'
 import SharedButton from '../../../shared/Button/SharedButton'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 600,
-    height: 600,
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
   },
+
+  modal_header: {
+    borderBottom: '1px solid rgba(0,0,0,.15)',
+    paddingLeft: 30
+  },
+
   form: {
-    marginTop: 10
-  },
-  buttons_form: {
     marginTop: 15,
+    marginBottom: 15,
+    width: '90%',
+    margin: 'auto'
+  },
+
+  btn: {
+    borderTop: '1px solid rgba(0,0,0,.15)',
+    paddingRight: 25,
+    paddingTop: 10,
+    paddingBottom: 10,
+    textAlign: 'right'
+  },
+
+  container: {
     display: 'flex',
-    justifyContent: 'center'
+    flexWrap: 'wrap'
   },
-  button_distance_left: {
-    marginRight: 30
-  },
-  button_distance_right: {
-    marginLeft: 30
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200
   }
 }))
 
 const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
+  Name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Required'),
-  lastName: Yup.string()
+    .required('Name is a required field'),
+  issOrg: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Required')
+    .required('Issuing organization is a required field'),
+  IssueDate: Yup.string()
+    .required('Issue date is required'),
+  ExpirationDate: Yup.string()
+    .required('Expiration date is required')
 })
 
 export const AddNewCertification = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
-
     <div>
-      <h1>Signup</h1>
+      <div className={classes.modal_header}>
+        <h2>Add license or certification</h2>
+      </div>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: ''
+          Name: '',
+          issOrg: '',
+          toggle: true,
+          IssueDate: '',
+          ExpirationDate: '',
+          CredentialID: '',
+          CredentialUrl: ''
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {
           // same shape as initial values
           console.log(values)
+          dispatch(toggleModalAction())
         }}
+
       >
-        {({ values }) => (
+        {({values}) => (
           <Form className={classes.root}>
             <Field className={classes.form}
-              name="firstName"
+              name="Name"
               label="Name"
               required
               placeholder="Ex: Microsoft certified network associate security"
               type="text"
               variant="outlined"
               component={TextField}
-              fullWidth
               size="small"
               InputLabelProps={{
                 shrink: true
               }}/>
             <Field className={classes.form}
-              name="lastName"
-              label="lastName"
+              name="issOrg"
+              label="Issuing organization"
               required
               placeholder="Ex: Microsoft"
               type="text"
               variant="outlined"
               component={TextField}
-              fullWidth
               size="small"
               InputLabelProps={{
                 shrink: true
               }}/>
-            <button type="submit">
-              <SharedButton/>
-            </button>
+            <div className={classes.form}>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="toggle" />
+                <span>This credential does not expire</span>
+              </label>
+            </div>
+            <Field className={classes.form}
+              variant="outlined"
+              name="IssueDate"
+              id="date"
+              label="Issue Date"
+              type="date"
+              defaultValue="2017-05-24"
+              InputLabelProps={{
+                shrink: true
+              }}
+              component={TextField}
+              size="small"
+            />
+            <Field className={classes.form}
+              variant="outlined"
+              disabled={values.toggle === true}
+              name="ExpirationDate"
+              id="date"
+              label="Expiration Date"
+              type="date"
+              defaultValue="2017-05-24"
+              InputLabelProps={{
+                shrink: true
+              }}
+              component={TextField}
+              size="small"
+            />
+            <Field className={classes.form}
+              name="CredentialID"
+              label="Credential ID"
+              type="text"
+              variant="outlined"
+              component={TextField}
+              size="small"
+              InputLabelProps={{
+                shrink: true
+              }}/>
+            <Field className={classes.form}
+              name="CredentialUrl"
+              label="Credential URL"
+              type="text"
+              variant="outlined"
+              component={TextField}
+              size="small"
+              InputLabelProps={{
+                shrink: true
+              }}/>
+            <div className={classes.btn}>
+              <SharedButton title="Save" type="submit"/>
+            </div>
           </Form>
         )}
       </Formik>
     </div>
   )
 }
-// const AddNewCertification = () => {
-//   const classes = useStyles()
-//   // const dispatch = useDispatch()
-//   const [certificationInputName, setCertificationInputName] = React.useState('')
-//
-//   const handleCertificationInputChange = e => {
-//     let certificationInputVal = e.currentTarget.value
-//     setCertificationInputName(certificationInputVal)
-//   }
-//
-//   return (
-//     <div className='checkout'>
-//       <h4 align="center">{'Please enter customer data below'}</h4>
-//       <Formik
-//         initialValues={{
-//           name: '',
-//           Iss: '',
-//           toggle: false,
-//           checked: []
-//         }}
-//
-//         validationSchema={Yup.object().shape({
-//           name: Yup.string()
-//             .min(2, 'Too Short!')
-//             .max(50, 'Too Long!')
-//             .required('Required'),
-//           Iss: Yup.string()
-//             .min(2, 'Too Short!')
-//             .max(50, 'Too Long!')
-//             .required('Required'),
-//           cell: Yup.string()
-//             .matches('^(\\+\\d{1,3}( )?)?\\d{11}$', 'Cell number begins +380')
-//             .required('Cell number is required'),
-//           age: Yup.number()
-//             .moreThan(17, 'Your age should be not less than 18 years')
-//             .required('Age is required')
-//         })}
-//
-//         onSubmit={async (values) => {
-//           // eslint-disable-next-line promise/param-names
-//           await new Promise((r) => setTimeout(r, 500))
-//           alert(JSON.stringify(values, null, 2))
-//         }}
-//         // onSubmit={(fields) => {
-//         //   dispatch(createNewCertificationAction(fields))
-//         //   dispatch(toggleModalAction())
-//         // }}
-//       >
-//         render={({values, errors, status, touched}) => (
-//           <Form className={classes.root}>
-//             <div className={classes.form}>
-//               <Field component={TextField}
-//                 fullWidth
-//                 size="small"
-//                 value={certificationInputName}
-//                 onChange={handleCertificationInputChange}
-//                 label="Name"
-//                 placeholder="Ex: Microsoft certified network associate security"
-//                 name="name"
-//                 type="text"
-//                 variant="outlined"
-//                 required
-//                 InputLabelProps={{
-//                   shrink: true
-//                 }}
-//               />
-//             </div>
-//             <div className={classes.form}>
-//               <Field component={TextField}
-//                 fullWidth
-//                 size="small"
-//                 value={certificationInputName}
-//                 onChange={handleCertificationInputChange}
-//                 label="Issuing organization"
-//                 placeholder="Ex: Microsoft"
-//                 name="Iss"
-//                 type="text"
-//                 variant="outlined"
-//                 required
-//                 InputLabelProps={{
-//                   shrink: true
-//                 }}
-//               />
-//             </div>
-//             <div>
-//               <label>
-//                 <Field type="checkbox" name="toggle" />
-//                 {`${values.toggle}`}
-//               </label>
-//             </div>
-//             <div>
-//               <div className={classes.dropDownBtn}>
-//                 <SharedButton type="submit" title="Save">Save</SharedButton>
-//               </div>
-//             </div>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   )
-// }
-//
 export default AddNewCertification
