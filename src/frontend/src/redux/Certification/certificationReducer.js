@@ -2,12 +2,13 @@ import * as actions from './certificationActionTypes'
 import update from 'immutability-helper'
 
 const initialState = {
-  certificationsList: [],
-  loading: false,
-  pageNumber: 0,
-  pageSize: 4,
-  totalPages: 0,
-  hasMore: true
+  Name: '',
+  issOrg: '',
+  toggle: true,
+  IssueDate: '',
+  ExpirationDate: '',
+  CredentialID: '',
+  CredentialUrl: ''
 }
 
 const postReducer = (state = initialState, action) => {

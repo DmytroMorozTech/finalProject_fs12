@@ -3,7 +3,7 @@ import {ADD_EDUCATION, ADD_NEW_CERTIFICATION, ADD_NEW_POST, SHOW_USERS_WHO_LIKED
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
-import AddNewCertification from '../../components/ProfilePage/Certification/AddNewCertification'
+import AddNewCertification from '../../components/ProfilePage/AddNewCertification/AddNewCertification'
 
 const initialState = {
   isModalOpen: false,

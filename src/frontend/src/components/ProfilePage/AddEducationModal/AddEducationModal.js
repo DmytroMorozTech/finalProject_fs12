@@ -60,7 +60,7 @@ const AddEducationModal = () => {
       <Typography variant="subtitle1" className={classes.title}>
        Add education
       </Typography>
-     
+
       <Grid container>
         <Formik
           initialValues={{
@@ -144,7 +144,7 @@ const AddEducationModal = () => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton title="Save"/>
+              <SharedButton type="submit" title="Save"/>
             </DialogActions>
           </Form>
         </Formik>

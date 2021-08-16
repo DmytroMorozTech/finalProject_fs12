@@ -9,6 +9,7 @@ import {TextField} from 'formik-material-ui'
 import SharedButton from '../../../shared/Button/SharedButton'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
+import { createNewPostAction } from '../../../redux/Post/postActions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,11 +43,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
   }
 }))
 
@@ -62,7 +58,10 @@ const SignupSchema = Yup.object().shape({
   IssueDate: Yup.string()
     .required('Issue date is required'),
   ExpirationDate: Yup.string()
-    .required('Expiration date is required')
+    .required('Expiration date is required'),
+  CredentialID: Yup.string(),
+  CredentialUrl: Yup.string()
+
 })
 
 export const AddNewCertification = () => {
@@ -88,6 +87,7 @@ export const AddNewCertification = () => {
         onSubmit={values => {
           // same shape as initial values
           console.log(values)
+          dispatch(createNewPostAction({ text: values }))
           dispatch(toggleModalAction())
         }}
 
