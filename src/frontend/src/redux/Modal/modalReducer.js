@@ -1,7 +1,8 @@
 import * as actions from './modalActionTypes'
-import {ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
+import {ADD_EDUCATION, ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
+import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
 
 const initialState = {
   isModalOpen: false,
@@ -31,7 +32,11 @@ const modalReducer = (state = initialState, action) => {
         case SHOW_USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
           break
-
+        
+        case ADD_EDUCATION:
+          content = <AddEducationModal/>
+          break
+        
         default:
           content = ''
       }

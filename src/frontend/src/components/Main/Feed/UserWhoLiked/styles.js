@@ -6,7 +6,8 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: theme.spacing(2),
-    color: theme.palette.grey[700]
+    color: theme.palette.grey[700],
+    marginBottom: theme.spacing(3)
   },
   likeMini: {
     color: theme.palette.common.white,
