@@ -25,6 +25,9 @@ import java.util.List;
 public class PostController {
   private final PostFacade postFacade;
 
+  // how do I specify here what kind of JsonView for PostRs that is inside of Page's field 'content'
+  // I want to use ?
+
   @GetMapping
   Page<PostRs> getPostsForActiveUser(
     @RequestParam(defaultValue = "0") Integer pageNumber,

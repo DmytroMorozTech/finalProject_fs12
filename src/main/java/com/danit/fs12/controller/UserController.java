@@ -2,6 +2,7 @@ package com.danit.fs12.controller;
 
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,10 +29,10 @@ public class UserController {
     return allUsers;
   }
 
+  @JsonView(UserViews.External.class)
   @GetMapping(path = "{id}")
   public ResponseEntity<UserRs> findById(@PathVariable Long id) {
     UserRs user = userFacade.findById(id);
-    // in case User can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(user);
   }
 
