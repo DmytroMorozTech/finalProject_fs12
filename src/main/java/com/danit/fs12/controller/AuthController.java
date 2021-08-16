@@ -3,17 +3,26 @@ package com.danit.fs12.controller;
 import com.danit.fs12.entity.authentication.AuthRequest;
 import com.danit.fs12.entity.authentication.AuthResponse;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.entity.user.UserRs;
+import com.danit.fs12.facade.IAuthenticationFacade;
+import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.security.RegistrationRequest;
 import com.danit.fs12.security.jwt.JwtProvider;
 import com.danit.fs12.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthController {
 
   @Autowired
@@ -21,6 +30,11 @@ public class AuthController {
 
   @Autowired
   private JwtProvider jwtProvider;
+
+  @Autowired
+  private IAuthenticationFacade authenticationFacade;
+
+  private final UserFacade userFacade;
 
   @PostMapping("/register")
   public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
@@ -38,9 +52,15 @@ public class AuthController {
   @PostMapping("/auth")
   public AuthResponse auth(@RequestBody AuthRequest request) {
     User user = userService.findByEmailAndPassword(request.getLogin(), request.getPassword());
-    System.out.println("User3: " + user);
     String token = jwtProvider.generateToken(user.getEmail());
     return new AuthResponse(token);
+  }
+
+  @GetMapping("/activeuser")
+  public UserRs currentUserNameByPrincipal(Principal principal) {
+    Authentication authentication = authenticationFacade.getAuthentication();
+    UserRs user = userFacade.getActiveUser(authentication.getName());
+    return user;
   }
 
 }

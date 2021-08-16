@@ -24,5 +24,10 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return listUsersRs;
   }
 
+  public UserRs getActiveUser(String email) {
+    User user = userService.findByEmail(email);
+    return convertToDto(user);
+  }
+
 
 }
