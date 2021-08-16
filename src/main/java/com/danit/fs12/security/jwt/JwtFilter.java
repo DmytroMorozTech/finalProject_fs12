@@ -2,7 +2,6 @@ package com.danit.fs12.security.jwt;
 
 import com.danit.fs12.security.AuthUserDetails;
 import com.danit.fs12.security.AuthUserDetailsService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Component
-//@RequiredArgsConstructor
 @Log
 public class JwtFilter extends GenericFilterBean {
 
