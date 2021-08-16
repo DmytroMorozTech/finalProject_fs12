@@ -22,13 +22,11 @@ import java.io.IOException;
 public class JwtFilter extends GenericFilterBean {
 
 
+  public static final String AUTHORIZATION = "Authorization";
   @Autowired
   private JwtProvider jwtProvider;
-
   @Autowired
   private AuthUserDetailsService authUserDetailsService;
-
-  public static final String AUTHORIZATION = "Authorization";
 
   @Override
   public void doFilter(ServletRequest servletRequest,

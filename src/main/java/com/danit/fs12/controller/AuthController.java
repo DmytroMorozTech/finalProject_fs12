@@ -12,7 +12,6 @@ import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,16 +24,13 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class AuthController {
 
+  private final UserFacade userFacade;
   @Autowired
   private UserService userService;
-
   @Autowired
   private JwtProvider jwtProvider;
-
   @Autowired
   private IAuthenticationFacade authenticationFacade;
-
-  private final UserFacade userFacade;
 
   @PostMapping("/register")
   public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
@@ -59,8 +55,8 @@ public class AuthController {
   @GetMapping("/activeuser")
   public UserRs currentUserNameByPrincipal(Principal principal) {
     Authentication authentication = authenticationFacade.getAuthentication();
-    UserRs user = userFacade.getActiveUser(authentication.getName());
-    return user;
+    return userFacade.getActiveUser(authentication.getName());
+
   }
 
 }

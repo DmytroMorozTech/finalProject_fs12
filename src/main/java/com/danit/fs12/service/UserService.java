@@ -77,8 +77,6 @@ public class UserService extends GeneralService<User> {
   }
 
   public User findByEmail(String email) {
-    System.out.println(email);
-    System.out.println("USER1: " + userRepository.findUserByEmail(email));
     return userRepository.findUserByEmail(email);
   }
 
