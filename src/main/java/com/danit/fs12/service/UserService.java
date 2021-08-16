@@ -3,7 +3,6 @@ package com.danit.fs12.service;
 import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
-import com.danit.fs12.exception.NoSuchUserException;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,16 +71,26 @@ public class UserService extends GeneralService<User> {
     return findEntityById(id);
   }
 
+  public User saveUser(User user) {
+    user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+    return userRepository.save(user);
+  }
+
   public User findByEmail(String email) {
-    return userRepository.findByEmail(email);
+    System.out.println(email);
+    System.out.println("USER1: " + userRepository.findUserByEmail(email));
+    return userRepository.findUserByEmail(email);
   }
 
   public User findByEmailAndPassword(String email, String password) {
     User user = findByEmail(email);
+    System.out.println("USER2: " + user);
+    System.out.println("PassHashed: " + user.getPasswordHash());
     if (user != null) {
       if (passwordEncoder.matches(password, user.getPasswordHash())) {
         return user;
       }
     }
-    return null;  }
+    return null;
+  }
 }

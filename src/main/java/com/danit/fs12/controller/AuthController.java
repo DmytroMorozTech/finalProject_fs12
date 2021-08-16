@@ -31,13 +31,14 @@ public class AuthController {
     applicationUser.setPhoneNumber(registrationRequest.getPhoneNumber());
     applicationUser.setPasswordHash(registrationRequest.getPassword());
     applicationUser.setEmail(registrationRequest.getEmail());
-    userService.save(applicationUser);
+    userService.saveUser(applicationUser);
     return "OK";
   }
 
   @PostMapping("/auth")
   public AuthResponse auth(@RequestBody AuthRequest request) {
-    User user = userService.findByEmailAndPassword(request.getEmail(), request.getPasswordHash());
+    User user = userService.findByEmailAndPassword(request.getLogin(), request.getPassword());
+    System.out.println("User3: " + user);
     String token = jwtProvider.generateToken(user.getEmail());
     return new AuthResponse(token);
   }
