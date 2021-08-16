@@ -5,7 +5,9 @@ import com.danit.fs12.entity.certification.CertificationRs;
 import com.danit.fs12.facade.CertificationFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +40,12 @@ public class CertificationController {
   public ResponseEntity<CertificationRs> createCertification(@Valid @RequestBody CertificationRq rq) {
     CertificationRs certification = certificationFacade.createCertification(rq);
     return ResponseEntity.ok(certification);
+  }
+
+  @DeleteMapping(path = "{id}")
+  public ResponseEntity<?> deleteById(@PathVariable Long id) {
+    certificationFacade.deleteById(id);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
 }

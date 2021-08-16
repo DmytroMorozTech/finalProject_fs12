@@ -28,10 +28,25 @@ public class PostController {
   @GetMapping
   Page<PostRs> getPostsForActiveUser(
     @RequestParam(defaultValue = "0") Integer pageNumber,
-    @RequestParam(defaultValue = "5") Integer pageSize,
+    @RequestParam(defaultValue = "4") Integer pageSize,
     @RequestParam(defaultValue = "id") String sortBy
   ) {
     return postFacade.getPostsForActiveUser(pageNumber, pageSize, sortBy);
+  }
+
+  @GetMapping("/bookmarked")
+  Page<PostRs> getBookmarkedPosts(
+    @RequestParam(defaultValue = "0") Integer pageNumber,
+    @RequestParam(defaultValue = "4") Integer pageSize,
+    @RequestParam(defaultValue = "id") String sortBy
+  ) {
+    return postFacade.getBookmarkedPosts(pageNumber, pageSize, sortBy);
+  }
+
+  @PostMapping(path = "/toggle_bookmark/{postId}")
+  public ResponseEntity<PostRs> toggleBookmark(@PathVariable Long postId) {
+    PostRs post = postFacade.toggleBookmark(postId);
+    return ResponseEntity.ok(post);
   }
 
   @GetMapping("/all")
@@ -57,5 +72,6 @@ public class PostController {
     PostRs post = postFacade.toggleLike(postId);
     return ResponseEntity.ok(post);
   }
+
 
 }

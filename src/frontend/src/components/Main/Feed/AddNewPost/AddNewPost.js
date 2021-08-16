@@ -1,14 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { withStyles } from '@material-ui/core/styles'
+import {useDispatch, useSelector} from 'react-redux'
+import {withStyles} from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import InputBase from '@material-ui/core/InputBase'
-import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -16,38 +13,9 @@ import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import styles from './styles'
-import { activeUserSelector } from '../../../../redux/User/userSelector'
-import { createNewPostAction } from '../../../../redux/Post/postActions'
+import {activeUserSelector} from '../../../../redux/User/userSelector'
+import {createNewPostAction} from '../../../../redux/Post/postActions'
 import SharedButton from '../../../../shared/Button/SharedButton'
-
-const style = (theme) => ({
-
-  root: {
-    width: '500px',
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
-})
-
-const DialogTitle = withStyles(style)((props) => {
-  const { children, classes, onClose, ...other } = props
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose && (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon/>
-        </IconButton>
-      )}
-    </MuiDialogTitle>
-  )
-})
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -100,8 +68,6 @@ const AddNewPost = () => {
       <div className={classes.title}>
         Create a post
       </div>
-      <DialogTitle id="customized-dialog-title" onClose={onPostSubmitHandler}>
-      </DialogTitle>
       <DialogContent dividers>
         <div className={classes.userInfo}>
           <div className={classes.avatar}>

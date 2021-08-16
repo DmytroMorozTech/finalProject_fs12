@@ -14,7 +14,6 @@ function MainLeft (props) {
     numberOfViews = 40
   } = props
   const classes = styles()
-  const preventDefault = (event) => event.preventDefault()
 
   return (
     <div className={classes.root}>
@@ -30,7 +29,7 @@ function MainLeft (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <Link href="#" onClick={preventDefault} className={classes.link}>
+      <Link className={classes.link}>
         <div className={classes.connection}>
           <div className={classes.connectionLink}>
             <span>Connections</span>
@@ -39,14 +38,14 @@ function MainLeft (props) {
           <span className={classes.connectionText}>Grow your network</span>
         </div>
       </Link>
-      <Link href="#" onClick={preventDefault} className={classes.link}>
+      <Link className={classes.link}>
         <div className={classes.views}>
           <span>Who viewed your profile</span>
           <span className={classes.number}>{numberOfViews}</span>
         </div>
       </Link>
       <hr className={classes.line}/>
-      <Link href="#" onClick={preventDefault} className={classes.link}>
+      <Link exact to='/bookmarked' className={classes.link}>
         <div className={classes.items}>
           <BookmarkIcon/>
           <span>My items</span>
@@ -55,5 +54,4 @@ function MainLeft (props) {
     </div>
   )
 }
-
 export default MainLeft

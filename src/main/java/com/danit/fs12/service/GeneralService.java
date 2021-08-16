@@ -64,5 +64,10 @@ public abstract class GeneralService<E extends AbstractEntity> implements Servic
     return repo.findEntityById(id);
   }
 
+  @Override
+  public List<E> findAllById(Iterable<Long> listOfIds) {
+    return repo.findAllById(listOfIds);
+  }
+
 
 }

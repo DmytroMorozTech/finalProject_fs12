@@ -21,7 +21,7 @@ function Main () {
         </Hidden>
 
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          <Feed/>
+          <Feed type={'posts'}/>
         </Grid>
 
         <Hidden mdDown>
