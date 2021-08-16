@@ -171,6 +171,7 @@ public class User extends AbstractEntity {
     cascade = CascadeType.ALL)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Certification> certifications = new ArrayList<>();
 
 

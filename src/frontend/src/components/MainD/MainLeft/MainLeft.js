@@ -29,7 +29,7 @@ function MainLeft (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <Link underline="none">
+      <Link className={classes.link}>
         <div className={classes.connection}>
           <div className={classes.connectionLink}>
             <span>Connections</span>
@@ -38,14 +38,14 @@ function MainLeft (props) {
           <span className={classes.connectionText}>Grow your network</span>
         </div>
       </Link>
-      <Link underline="none">
+      <Link className={classes.link}>
         <div className={classes.views}>
           <span>Who viewed your profile</span>
           <span className={classes.number}>{numberOfViews}</span>
         </div>
       </Link>
       <hr className={classes.line}/>
-      <Link exact to='/bookmarked'>
+      <Link exact to='/bookmarked' className={classes.link}>
         <div className={classes.items}>
           <BookmarkIcon/>
           <span>My items</span>

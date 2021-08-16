@@ -11,6 +11,7 @@ import { getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 import PostButtons from './PostButton/PostButtons'
+import SeeMore from './SeeMore/SeeMore'
 
 function Post (props) {
   const {
@@ -54,7 +55,9 @@ function Post (props) {
         </div>
       </div>
       <Typography variant="body1" gutterBottom className={classes.text}>
-        {text}
+        <SeeMore numberOfLimitChar={200}>
+          {text}
+        </SeeMore>
       </Typography>
       <div className={classes.quantity}>
         <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
@@ -76,7 +79,7 @@ function Post (props) {
       <PostButtons
         postId={postId}
         isLikedByActiveUser={isLikedByActiveUser}
-        isBookmarkedByActiveUser = {isBookmarkedByActiveUser}
+        isBookmarkedByActiveUser={isBookmarkedByActiveUser}
       />
     </div>
   )
