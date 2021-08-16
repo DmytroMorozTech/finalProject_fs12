@@ -1,0 +1,1 @@
+export const GET_ACTIVE_USER = 'GET_ACTIVE_USER'

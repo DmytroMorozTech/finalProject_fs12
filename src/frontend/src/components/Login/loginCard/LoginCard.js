@@ -1,13 +1,42 @@
-import React from 'react'
-import { Paper } from '@material-ui/core'
+import React, {useRef} from 'react'
+import {Paper} from '@material-ui/core'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
-import { GoogleLoginButton } from 'react-social-login-buttons'
+import {GoogleLoginButton} from 'react-social-login-buttons'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/Button/SharedButton'
+import {useHistory} from 'react-router'
+import http from '../../../services/httpService'
 
 const LoginCard = () => {
   const classes = styles()
+  const history = useHistory()
+  const loginRef = useRef('')
+  const passwordRef = useRef('')
+
+  const handleSubmit = async (e) => {
+    console.log('here on submit')
+    e.preventDefault()
+
+    let inputtedLogin = loginRef.current.value
+    let inputtedPassword = passwordRef.current.value
+
+    http
+      .post('api/auth', {
+        login: inputtedLogin,
+        password: inputtedPassword
+      })
+      .then(res => {
+        if (res.status === 200) {
+          let token = res.data
+          console.log('Token? ' + token)
+          localStorage.setItem('token', token)
+          history.push('/home')
+        } else {
+          console.error('Invalid login or password')
+        }
+      })
+  }
 
   return (
     <Paper elevation={3} className={classes.card}>
@@ -15,37 +44,38 @@ const LoginCard = () => {
         <LinkedinLogo/>
       </header>
 
-      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
+      <form className={classes.form} noValidate onSubmit={handleSubmit}>
         <TextField
-          variant='outlined'
-          margin='normal'
+          variant="outlined"
+          margin="normal"
           required
           fullWidth
-          id='email'
-          label='Email Address'
-          name='email'
-          autoComplete='email'
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
           autoFocus
+          inputRef={loginRef}
         />
         <TextField
-          variant='outlined'
-          margin='normal'
+          variant="outlined"
+          margin="normal"
           required
           fullWidth
-          name='password'
-          label='Password'
-          type='password'
-          id='password'
-          autoComplete='current-password'
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          inputRef={passwordRef}
         />
         <SharedButton
-          type='submit'
-          size='large'
-          title='Sign In'
+          type="submit"
+          size="large"
+          title="Sign In"
           fullWidth
-          variant='contained'
-          color='primary'
-          onClick={() => alert('Hello')}
+          variant="contained"
+          color="primary"
         />
       </form>
 
