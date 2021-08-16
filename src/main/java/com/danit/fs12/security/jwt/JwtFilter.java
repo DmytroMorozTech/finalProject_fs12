@@ -4,6 +4,7 @@ import com.danit.fs12.security.AuthUserDetails;
 import com.danit.fs12.security.AuthUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -18,13 +19,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Log
 public class JwtFilter extends GenericFilterBean {
 
 
-  private final JwtProvider jwtProvider;
-  private final AuthUserDetailsService authUserDetailsService;
+  @Autowired
+  private JwtProvider jwtProvider;
+
+  @Autowired
+  private AuthUserDetailsService authUserDetailsService;
 
   public static final String AUTHORIZATION = "Authorization";
 
