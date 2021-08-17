@@ -9,6 +9,9 @@ import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import {EDIT_INTRO} from '../../Modal/modalTypes'
+import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
   const {
@@ -16,6 +19,7 @@ function ProfileMain (props) {
     company = 'DAN.IT', city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
   } = props
   const classes = style()
+  const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
 
   return (
@@ -28,7 +32,10 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Avatar src={avatarUrl} alt={avatarUrl} className={classes.bigAvatar}/>
-          <CreateIcon className={classes.editName}/>
+          <div onClick={() =>
+            dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
+            <CreateIcon className={classes.editName}/>
+          </div>
         </div>
         <div className={classes.info}>
           <div className={classes.leftPanel}>
