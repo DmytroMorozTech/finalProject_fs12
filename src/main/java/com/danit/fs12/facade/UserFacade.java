@@ -5,7 +5,6 @@ import com.danit.fs12.entity.user.UserRq;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(user);
   }
 
-  public UserRs findByEmailAndPassword(String email, String password){
+  public UserRs findByEmailAndPassword(String email, String password) {
     User user = userService.findByEmailAndPassword(email, password);
     return convertToDto(user);
   }

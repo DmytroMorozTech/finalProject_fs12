@@ -18,7 +18,7 @@ public class CommentService extends GeneralService<Comment> {
   private final PostRepository postRepository;
   private final UserService userService;
 
-  public Long activeUserId () {
+  public Long activeUserId() {
     return userService.getActiveUser().getId();
   }
 
