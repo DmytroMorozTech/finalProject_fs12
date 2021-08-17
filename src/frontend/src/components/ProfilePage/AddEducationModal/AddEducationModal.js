@@ -127,8 +127,15 @@ const AddEducationModal = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    name="grade"
+                    label="Grade"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
                     name="activitiesAndSocieties"
                     label="Activities and societies"
+                    helperText="Ex: Alpha Phi Omega, Marching band, Volleyball"
                     multiline={true}
                     row={2}
                   />

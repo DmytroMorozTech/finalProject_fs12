@@ -62,21 +62,18 @@ const EditIntroModal = () => {
                   <TextField
                     name="firstName"
                     label="First name"
-                    // helperText="Ex: Boston University"
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
                     name="lastName"
                     label="Last name"
-                    // helperText="Ex: Bachelor`s"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     name="position"
                     label="Position"
-                    helperText="Ex: Business"
                   />
                 </Grid>
               </Grid>
