@@ -8,7 +8,7 @@ import SharedButton from '../../../shared/Button/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
 import {useDispatch, useSelector} from 'react-redux'
-import {getActiveUserAction, hasAuthentication} from '../../../redux/User/userActions'
+import {getActiveUserAction, hasAuthenticationAction} from '../../../redux/User/userActions'
 import {hasAuthenticationSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
@@ -17,9 +17,9 @@ const LoginCard = () => {
   const loginRef = useRef('')
   const passwordRef = useRef('')
   const dispatch = useDispatch()
-  const authentication = useSelector(hasAuthenticationSelector)
+  const isAuthenticated = useSelector(hasAuthenticationSelector)
 
-  if (authentication) {
+  if (isAuthenticated) {
     history.push('/home')
   }
 
@@ -38,7 +38,7 @@ const LoginCard = () => {
         if (res.status === 200) {
           let token = res.data.token
           localStorage.setItem('token', token)
-          dispatch(hasAuthentication(true))
+          dispatch(hasAuthenticationAction(true))
           dispatch(getActiveUserAction())
           history.push('/home')
         } else {

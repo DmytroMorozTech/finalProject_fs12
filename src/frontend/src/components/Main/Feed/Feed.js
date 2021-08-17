@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, {useCallback, useEffect} from 'react'
 import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
@@ -9,28 +9,26 @@ import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Feed (props) {
-  const { type, loading = true, postsState, bookmarkedPostsState } = props
+  const {type, loading = true, postsState, bookmarkedPostsState} = props
   const dispatch = useDispatch()
   const classes = styles()
   const activeUser = useSelector(activeUserSelector)
 
   const localState = (type === 'posts') ? postsState : bookmarkedPostsState
-  const { postsList: posts, pagination } = localState
+  const {postsList: posts, pagination} = localState
   const {pageNumber, pageSize, hasMore} = pagination
 
-  const headers = {
-    'Authorization': 'Bearer ' + localStorage.getItem('token'),
-    'content-type': 'application/json',
-    'accept': 'application/json'
-  }
-
   const loadPosts = useCallback(() => {
-    dispatch({ type: actions.LOADING_POSTS, payload: true })
+    dispatch({type: actions.LOADING_POSTS, payload: true})
 
     return http
       .get('api/posts',
         {
-          headers: headers,
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'content-type': 'application/json',
+            'accept': 'application/json'
+          },
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
@@ -39,18 +37,22 @@ function Feed (props) {
       )
       .then((result) => result.data)
       .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_POSTS, payload: page })
-        dispatch({ type: actions.LOADING_POSTS, payload: false })
+        dispatch({type: actions.SAVE_NEW_POSTS, payload: page})
+        dispatch({type: actions.LOADING_POSTS, payload: false})
       })
   }, [pageNumber, pageSize, dispatch])
 
   const loadBookmarkedPosts = useCallback(() => {
-    dispatch({ type: actions.LOADING_POSTS, payload: true })
+    dispatch({type: actions.LOADING_POSTS, payload: true})
 
     return http
       .get('api/posts/bookmarked',
         {
-          headers: headers,
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'content-type': 'application/json',
+            'accept': 'application/json'
+          },
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
@@ -59,8 +61,8 @@ function Feed (props) {
       )
       .then((result) => result.data)
       .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page })
-        dispatch({ type: actions.LOADING_POSTS, payload: false })
+        dispatch({type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page})
+        dispatch({type: actions.LOADING_POSTS, payload: false})
       })
   }, [pageNumber, pageSize, dispatch])
 
@@ -76,7 +78,7 @@ function Feed (props) {
           loader.current()
         }
       },
-      { threshold: 1, rootMargin: '50px' }
+      {threshold: 1, rootMargin: '50px'}
     )
   )
   const [element, setElement] = React.useState(null)
@@ -114,7 +116,7 @@ function Feed (props) {
       </div>}
 
       {loading && <Preloader/>}
-      {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}
+      {!loading && hasMore && <p ref={setElement} style={{background: 'transparent'}}/>}
     </>
   )
 }

@@ -12,7 +12,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         hasAuthentication: action.payload
       }
-    case actions.GET_ACTIVE_USER:
+    case actions.SAVE_ACTIVE_USER:
       return {
         ...state,
         activeUser: action.payload

@@ -1,13 +1,7 @@
 import * as actions from './userActionTypes'
 import http from '../../services/httpService'
 
-const headers = {
-  'Authorization': 'Bearer ' + localStorage.getItem('token'),
-  'content-type': 'application/json',
-  'accept': 'application/json'
-}
-
-export const hasAuthentication = (status) => (dispatch) => {
+export const hasAuthenticationAction = (status) => (dispatch) => {
   dispatch({
     type: actions.HAS_AUTHENTICATION,
     payload: status
@@ -17,11 +11,15 @@ export const hasAuthentication = (status) => (dispatch) => {
 export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('api/activeuser', {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then(res => {
       dispatch({
-        type: actions.GET_ACTIVE_USER,
+        type: actions.SAVE_ACTIVE_USER,
         payload: res.data
       })
     })

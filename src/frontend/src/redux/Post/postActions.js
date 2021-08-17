@@ -3,16 +3,14 @@ import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
 import { SHOW_USERS_WHO_LIKED_POST } from '../../components/Modal/modalTypes'
 
-const headers = {
-  'Authorization': 'Bearer ' + localStorage.getItem('token'),
-  'content-type': 'application/json',
-  'accept': 'application/json'
-}
-
 export const createNewPostAction = (payload) => (dispatch) => {
   return http
     .post('/api/posts', { text: payload.text }, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((newPostObj) => {
@@ -23,7 +21,11 @@ export const createNewPostAction = (payload) => (dispatch) => {
 export const getCommentsForPostAction = (postId) => (dispatch) => {
   return http
     .get(`/api/comments/for_post/${postId}`, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((listOfComments) => {
@@ -34,7 +36,11 @@ export const getCommentsForPostAction = (postId) => (dispatch) => {
 export const createNewCommentAction = ({ text, id }) => (dispatch) => {
   return http
     .post('/api/comments', { text: text, postId: id }, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((newCommentObj) => {
@@ -49,7 +55,11 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
   const id = payload
   return http
     .get(`/api/users/who_liked_post/${id}`, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((usersList) => {
@@ -67,7 +77,11 @@ export const toggleLikeAction = (payload) => (dispatch) => {
 
   return http
     .post(`/api/posts/toggle_like/${id}`, {}, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((newPostObj) => {
@@ -81,7 +95,11 @@ export const toggleBookmarkAction = (payload) => (dispatch) => {
 
   return http
     .post(`/api/posts/toggle_bookmark/${id}`, {}, {
-      headers: headers
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
     })
     .then((res) => res.data)
     .then((newPostObj) => {
