@@ -5,16 +5,18 @@ import MainLeft from './MainLeft/MainLeft'
 import MainLeftSticky from './MainSticky/MainLeftSticky'
 import styleMain from './styleMain'
 import { Container, Hidden } from '@material-ui/core'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {getActiveUserAction} from '../../redux/User/userActions'
+import {activeUserSelector} from '../../redux/User/userSelector'
 
 function Main () {
   const classes = styleMain()
   const dispatch = useDispatch()
+  const activeUser = useSelector(activeUserSelector)
 
   useEffect(() => {
     dispatch(getActiveUserAction())
-  })
+  }, [dispatch])
 
   return (
     <Container className={classes.container} maxWidth={'lg'} >

@@ -7,6 +7,13 @@ const headers = {
   'accept': 'application/json'
 }
 
+export const hasAuthentication = (status) => (dispatch) => {
+  dispatch({
+    type: actions.HAS_AUTHENTICATION,
+    payload: status
+  })
+}
+
 export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('api/activeuser', {
@@ -18,4 +25,11 @@ export const getActiveUserAction = () => (dispatch) => {
         payload: res.data
       })
     })
+}
+
+export const signOutAction = () => (dispatch) => {
+  dispatch({
+    type: actions.SIGN_OUT,
+    payload: null
+  })
 }

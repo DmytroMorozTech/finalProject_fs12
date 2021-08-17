@@ -1,1 +1,3 @@
+export const HAS_AUTHENTICATION = 'HAS_AUTHENTICATION'
 export const GET_ACTIVE_USER = 'GET_ACTIVE_USER'
+export const SIGN_OUT = 'SIGN_OUT'
