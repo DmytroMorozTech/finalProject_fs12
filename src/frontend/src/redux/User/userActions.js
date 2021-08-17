@@ -7,7 +7,7 @@ const headers = {
   'accept': 'application/json'
 }
 
-export const getActiveUser = () => (dispatch) => {
+export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('api/activeuser', {
       headers: headers

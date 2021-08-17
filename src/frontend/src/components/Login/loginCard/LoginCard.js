@@ -7,15 +7,17 @@ import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/Button/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
+import {useDispatch} from 'react-redux'
+import {getActiveUserAction} from '../../../redux/User/userActions'
 
 const LoginCard = () => {
   const classes = styles()
   const history = useHistory()
   const loginRef = useRef('')
   const passwordRef = useRef('')
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
-    console.log('here on submit')
     e.preventDefault()
 
     let inputtedLogin = loginRef.current.value
@@ -28,9 +30,9 @@ const LoginCard = () => {
       })
       .then(res => {
         if (res.status === 200) {
-          let token = res.data
-          console.log('Token? ' + token)
+          let token = res.data.token
           localStorage.setItem('token', token)
+          dispatch(getActiveUserAction())
           history.push('/home')
         } else {
           console.error('Invalid login or password')

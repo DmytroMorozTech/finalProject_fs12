@@ -16,12 +16,19 @@ function Feed (props) {
   const { postsList: posts, pagination } = localState
   const {pageNumber, pageSize, hasMore} = pagination
 
+  const headers = {
+    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+    'content-type': 'application/json',
+    'accept': 'application/json'
+  }
+
   const loadPosts = useCallback(() => {
     dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http
       .get('api/posts',
         {
+          headers: headers,
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
