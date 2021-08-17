@@ -5,7 +5,11 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
+import com.danit.fs12.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -82,8 +86,6 @@ public class UserService extends GeneralService<User> {
 
   public User findByEmailAndPassword(String email, String password) {
     User user = findByEmail(email);
-    System.out.println("USER2: " + user);
-    System.out.println("PassHashed: " + user.getPasswordHash());
     if (user != null) {
       if (passwordEncoder.matches(password, user.getPasswordHash())) {
         return user;
@@ -91,4 +93,21 @@ public class UserService extends GeneralService<User> {
     }
     return null;
   }
+
+  public User getActiveUser() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    return findByEmail(authentication.getName());
+  }
+
+  public void registerUser(String firstName, String lastName, Integer age, String phoneNumber, String password, String email) {
+    User user = new User();
+    user.setFirstName(firstName);
+    user.setLastName(lastName);
+    user.setAge(age);
+    user.setPhoneNumber(phoneNumber);
+    user.setPasswordHash(password);
+    user.setEmail(email);
+    saveUser(user);
+  }
+
 }
