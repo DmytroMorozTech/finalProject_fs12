@@ -1,8 +1,10 @@
 import * as actions from './modalActionTypes'
-import {ADD_EDUCATION, ADD_NEW_POST, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
+import {ADD_EDUCATION, ADD_NEW_POST, EDIT_EDUCATION, EDIT_INTRO, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
+import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
+import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
 
 const initialState = {
   isModalOpen: false,
@@ -35,6 +37,14 @@ const modalReducer = (state = initialState, action) => {
         
         case ADD_EDUCATION:
           content = <AddEducationModal/>
+          break
+
+        case EDIT_EDUCATION:
+          content = <EditEducationModal/>
+          break
+
+        case EDIT_INTRO:
+          content = <EditIntroModal/>
           break
         
         default:
