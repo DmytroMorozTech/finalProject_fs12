@@ -9,7 +9,9 @@ import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
-import {useSelector} from 'react-redux'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import {EDIT_INTRO} from '../../Modal/modalTypes'
+import {useDispatch, useSelector} from 'react-redux'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function ProfileMain (props) {
@@ -18,6 +20,7 @@ function ProfileMain (props) {
     company = 'DAN.IT', city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
   } = props
   const classes = style()
+  const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
   const activeUser = useSelector(activeUserSelector)
 
@@ -31,7 +34,10 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Avatar src={activeUser.avatarUrl} alt={activeUser.fullName} className={classes.bigAvatar}/>
-          <CreateIcon className={classes.editName}/>
+          <div onClick={() =>
+            dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
+            <CreateIcon className={classes.editName}/>
+          </div>
         </div>
         <div className={classes.info}>
           <div className={classes.leftPanel}>
@@ -77,7 +83,7 @@ function ProfileMain (props) {
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault} className={classes.column}>
             <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
-            <Typography variant="body1" color="secondary">{activeUser.positionAndCompany}</Typography>
+            <Typography variant="body1" color="secondary">{position}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
           <div>
