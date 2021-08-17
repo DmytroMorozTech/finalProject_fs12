@@ -12,6 +12,7 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 import ChatsList from './ChatsList'
 import Chat from './Chat'
 import {NavLink} from 'react-router-dom'
+import {getActiveUserAction} from '../../../redux/User/userActions'
 
 function Messages () {
   const classes = Style()
@@ -21,6 +22,7 @@ function Messages () {
 
   useEffect(() => {
     dispatch(getUserChatsAction(activeUser.id))
+    dispatch(getActiveUserAction())
   }, [dispatch, activeUser.id])
 
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)

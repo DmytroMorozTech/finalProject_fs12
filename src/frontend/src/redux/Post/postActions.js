@@ -66,7 +66,7 @@ export const toggleLikeAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_like/${id}`, {
+    .post(`/api/posts/toggle_like/${id}`, {}, {
       headers: headers
     })
     .then((res) => res.data)
@@ -80,7 +80,7 @@ export const toggleBookmarkAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_bookmark/${id}`, {
+    .post(`/api/posts/toggle_bookmark/${id}`, {}, {
       headers: headers
     })
     .then((res) => res.data)

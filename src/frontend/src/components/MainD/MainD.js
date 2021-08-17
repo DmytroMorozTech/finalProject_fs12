@@ -1,13 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Feed from '../Main/Feed/Feed'
 import Grid from '@material-ui/core/Grid'
 import MainLeft from './MainLeft/MainLeft'
 import MainLeftSticky from './MainSticky/MainLeftSticky'
 import styleMain from './styleMain'
 import { Container, Hidden } from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {getActiveUserAction} from '../../redux/User/userActions'
 
 function Main () {
   const classes = styleMain()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getActiveUserAction())
+  })
 
   return (
     <Container className={classes.container} maxWidth={'lg'} >

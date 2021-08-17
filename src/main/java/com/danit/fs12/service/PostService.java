@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
   private final UserService userService;
-  private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
 
   public Long activeUserId () {
     return userService.getActiveUser().getId();

@@ -5,9 +5,7 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
-import com.danit.fs12.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -99,7 +97,7 @@ public class UserService extends GeneralService<User> {
     return findByEmail(authentication.getName());
   }
 
-  public void registerUser(String firstName, String lastName, Integer age, String phoneNumber, String password, String email) {
+  public void registerUser(String firstName, String lastName, Integer age, String phoneNumber, String password, String email, String avatar) {
     User user = new User();
     user.setFirstName(firstName);
     user.setLastName(lastName);
@@ -107,6 +105,7 @@ public class UserService extends GeneralService<User> {
     user.setPhoneNumber(phoneNumber);
     user.setPasswordHash(password);
     user.setEmail(email);
+    user.setAvatarUrl(avatar);
     saveUser(user);
   }
 

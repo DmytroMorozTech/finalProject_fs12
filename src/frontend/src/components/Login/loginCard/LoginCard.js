@@ -7,8 +7,9 @@ import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/Button/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {getActiveUserAction} from '../../../redux/User/userActions'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
@@ -16,6 +17,9 @@ const LoginCard = () => {
   const loginRef = useRef('')
   const passwordRef = useRef('')
   const dispatch = useDispatch()
+  const activeUser = useSelector(activeUserSelector)
+
+  if (activeUser) { history.push('/home') }
 
   const handleSubmit = async (e) => {
     e.preventDefault()

@@ -16,13 +16,17 @@ import java.util.List;
 public class CommentService extends GeneralService<Comment> {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
-  private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
+  private final UserService userService;
+
+  public Long activeUserId () {
+    return userService.getActiveUser().getId();
+  }
 
   public Comment createComment(CommentRq rq) {
     Long postId = rq.getPostId();
     String text = rq.getText();
 
-    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    User user = userRepository.findEntityById(activeUserId());
     Post post = postRepository.findEntityById(postId);
 
     Comment comment = save(new Comment(text, post, user));
