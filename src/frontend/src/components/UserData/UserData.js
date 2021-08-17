@@ -14,7 +14,7 @@ function UserData () {
 
   return (
     <div className={classes.root}>
-      <MenuItem component={NavLink} to="/personal" className={classes.menuItem}>
+      <MenuItem component={NavLink} to="/profile" className={classes.menuItem}>
         <div className={classes.avatarWrapper}>
           <img className={classes.avatar} src={activeUser.avatarUrl} alt={activeUser.fullName}/>
           <div className={classes.userDataWrapper}>

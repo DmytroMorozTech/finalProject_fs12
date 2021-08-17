@@ -9,6 +9,8 @@ import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
+import {useSelector} from 'react-redux'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function ProfileMain (props) {
   const {
@@ -17,6 +19,7 @@ function ProfileMain (props) {
   } = props
   const classes = style()
   const preventDefault = (event) => event.preventDefault()
+  const activeUser = useSelector(activeUserSelector)
 
   return (
     <div className={classes.root}>
@@ -27,16 +30,16 @@ function ProfileMain (props) {
       </div>
       <div>
         <div className={classes.row}>
-          <Avatar src={avatarUrl} alt={avatarUrl} className={classes.bigAvatar}/>
+          <Avatar src={activeUser.avatarUrl} alt={activeUser.fullName} className={classes.bigAvatar}/>
           <CreateIcon className={classes.editName}/>
         </div>
         <div className={classes.info}>
           <div className={classes.leftPanel}>
             <Typography variant="h3">
-              {fullName}
+              {activeUser.fullName}
             </Typography>
             <Typography variant="body1">
-              {position} — {company}
+              {activeUser.positionAndCompany}
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
@@ -61,7 +64,7 @@ function ProfileMain (props) {
             <Hidden xsDown>
               <Typography variant="h5" className={classes.rightPanel}>
                 <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
-                <span>{company}</span>
+                <span>{activeUser.positionAndCompany}</span>
               </Typography>
             </Hidden>
           </div>
@@ -74,7 +77,7 @@ function ProfileMain (props) {
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault} className={classes.column}>
             <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
-            <Typography variant="body1" color="secondary">{position}</Typography>
+            <Typography variant="body1" color="secondary">{activeUser.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
           <div>
