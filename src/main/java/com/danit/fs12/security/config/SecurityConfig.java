@@ -22,16 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+      .headers().frameOptions().disable()
+      .and()
       .httpBasic().disable()
       .csrf().disable()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       .and()
       .authorizeRequests()
-//      .antMatchers("/user").hasRole("USER")
       .antMatchers("/resources/**").permitAll()
-      .antMatchers("/h2/**").permitAll()
-      .antMatchers("/h2-console/**").permitAll()
       .antMatchers("/api/register", "/api/auth").permitAll()
+      .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()
       .and()
       .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
