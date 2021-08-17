@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
     paddingLeft: theme.spacing(2)
   },
 
-  shareComment: {
+  sharePost: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -57,7 +57,8 @@ export default makeStyles((theme) => ({
     color: theme.palette.error.main,
     alignItems: 'center',
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4)
+    paddingRight: theme.spacing(4),
+    paddingTop: theme.spacing(2)
   },
 
   hidden: {

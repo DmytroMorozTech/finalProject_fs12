@@ -20,7 +20,9 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(4),
+    maxHeight: '450px',
+    overflowY: 'auto'
   }
 }))(MuiDialogContent)
 
@@ -70,7 +72,7 @@ const AddNewPost = () => {
   let btnIsDisabled = postInputText.length === 0 || postInputText.length > numberCharacterToShowValidate
 
   return (
-    <div className={classes.component}>
+    <div>
       <div className={classes.title}>
         Create a post
       </div>
@@ -84,7 +86,7 @@ const AddNewPost = () => {
             <Typography variant="h5">
               {activeUser.fullName}
             </Typography>
-            <button className={classes.shareComment}>
+            <button className={classes.sharePost}>
               <div className={classes.icons}>
                 <PublicIcon fontSize="inherit"/>
               </div>

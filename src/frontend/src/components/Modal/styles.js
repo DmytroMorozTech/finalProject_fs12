@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   root: {
-    width: '500px',
+    width: '550px',
     maxWidth: '1200px',
     maxHeight: '800px',
     margin: 0,
