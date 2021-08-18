@@ -1,17 +1,12 @@
 import * as actions from './userActionTypes'
 
 const initialState = {
-  hasAuthentication: false,
+  loadingUser: false,
   activeUser: {}
 }
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.HAS_AUTHENTICATION:
-      return {
-        ...state,
-        hasAuthentication: action.payload
-      }
     case actions.SAVE_ACTIVE_USER:
       return {
         ...state,
@@ -22,8 +17,7 @@ const userReducer = (state = initialState, action) => {
       window.location.href = '/'
       return {
         ...state,
-        activeUser: action.payload,
-        hasAuthentication: false
+        activeUser: action.payload
       }
     default: {
       return state

@@ -7,9 +7,8 @@ import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/Button/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
-import {useDispatch, useSelector} from 'react-redux'
-import {getActiveUserAction, hasAuthenticationAction} from '../../../redux/User/userActions'
-import {hasAuthenticationSelector} from '../../../redux/User/userSelector'
+import {useDispatch} from 'react-redux'
+import {getActiveUserAction} from '../../../redux/User/userActions'
 
 const LoginCard = () => {
   const classes = styles()
@@ -17,9 +16,9 @@ const LoginCard = () => {
   const loginRef = useRef('')
   const passwordRef = useRef('')
   const dispatch = useDispatch()
-  const isAuthenticated = useSelector(hasAuthenticationSelector)
+  let initialToken = localStorage.getItem('token')
 
-  if (isAuthenticated) {
+  if (initialToken) {
     history.push('/home')
   }
 
@@ -38,7 +37,6 @@ const LoginCard = () => {
         if (res.status === 200) {
           let token = res.data.token
           localStorage.setItem('token', token)
-          dispatch(hasAuthenticationAction(true))
           dispatch(getActiveUserAction())
           history.push('/home')
         } else {

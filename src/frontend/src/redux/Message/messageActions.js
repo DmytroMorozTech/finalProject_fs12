@@ -1,15 +1,10 @@
 import * as actions from './messageActionTypes'
 import http from '../../services/httpService'
+import getHeaders from '../../services/headersService'
 
 export const createChatAction = () => (dispatch) => {
   return http
-    .post('/api/chats', {}, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    })
+    .post('/api/chats', {}, {headers: getHeaders()})
     .then(res => {
       const newChatData = res.data
       dispatch({
@@ -20,13 +15,7 @@ export const createChatAction = () => (dispatch) => {
 
 export const createMessageAction = ({chatId, text}) => (dispatch) => {
   return http
-    .post('/api/messages', {chatId: chatId, text: text}, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    })
+    .post('/api/messages', {chatId: chatId, text: text}, {headers: getHeaders()})
     .then(res => {
       const newMessageData = res.data
       dispatch({
@@ -38,13 +27,7 @@ export const createMessageAction = ({chatId, text}) => (dispatch) => {
 
 export const addUserAction = ({chatId, userId}) => (dispatch) => {
   return http
-    .put('/api/chats', {chatId, userId}, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    })
+    .put('/api/chats', {chatId, userId}, {headers: getHeaders()})
     .then(res => {
       const updatedChat = res.data
       dispatch({
@@ -55,13 +38,7 @@ export const addUserAction = ({chatId, userId}) => (dispatch) => {
 
 export const getUserChatsAction = (userId) => (dispatch) => {
   return http
-    .get(`/api/chats/user/${userId}`, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    })
+    .get(`/api/chats/user/${userId}`, {headers: getHeaders()})
     .then(res => {
       const userChats = res.data
       dispatch({
@@ -72,13 +49,7 @@ export const getUserChatsAction = (userId) => (dispatch) => {
 
 export const getChatMessagesAction = (chatid) => (dispatch) => {
   return http
-    .get(`/api/messages/chat/${chatid}`, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    })
+    .get(`/api/messages/chat/${chatid}`, {headers: getHeaders()})
     .then(res => {
       const chatMessages = res.data
       dispatch({

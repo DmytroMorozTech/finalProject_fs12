@@ -7,6 +7,7 @@ import Preloader from '../../../shared/Preloader/Preloader'
 import * as actions from '../../../redux/Post/postActionTypes'
 import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import getHeaders from '../../../services/headersService'
 
 function Feed (props) {
   const {type, loading = true, postsState, bookmarkedPostsState} = props
@@ -24,11 +25,7 @@ function Feed (props) {
     return http
       .get('api/posts',
         {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'content-type': 'application/json',
-            'accept': 'application/json'
-          },
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
@@ -48,11 +45,7 @@ function Feed (props) {
     return http
       .get('api/posts/bookmarked',
         {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'content-type': 'application/json',
-            'accept': 'application/json'
-          },
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
