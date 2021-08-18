@@ -10,19 +10,20 @@ function Jobs () {
   const classes = styles()
   return (
     <Container className={classes.jobsPage} maxWidth={'lg'}>
+      <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
 
-      <Grid item md={2} lg={2} xl={2}>
-        <JobsLeft/>
-      </Grid>
+        <Grid item md={2} lg={2} xl={2}>
+          <JobsLeft/>
+        </Grid>
 
-      <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'}>
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={5}>
+        <Grid item xs={12} sm={12} md={5} lg={5} xl={6}>
           <JobsMain/>
         </Grid>
 
-        <Grid item lg={3} xl={3}>
+        <Grid item xs={false} sm={false} md={false} lg={3} xl={3}>
           <JobsRight/>
         </Grid>
+
       </Grid>
     </Container>
   )

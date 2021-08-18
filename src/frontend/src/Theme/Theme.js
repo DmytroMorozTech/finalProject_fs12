@@ -26,6 +26,9 @@ const theme = createTheme({
       A400: '#303030',
       A700: '#616161'
     },
+    green: {
+      main: '#057642'
+    },
     error: {
       main: '#cc1016'
     }
