@@ -33,8 +33,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Data
 public class Post extends AbstractEntity {
-
-  @Column(length = 1000)
+  @Column(length = 3000)
   private String text;
 
   @ManyToOne(fetch = FetchType.LAZY)
@@ -85,12 +84,12 @@ public class Post extends AbstractEntity {
   }
 
   public Boolean getIsLikedByActiveUser() {
-    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 2L));
+    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
   }
 
   public Boolean getIsBookmarkedByActiveUser() {
     return bookmarks.stream()
-      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), 2L));
+      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), 1L));
   }
 
 }

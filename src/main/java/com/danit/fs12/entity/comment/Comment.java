@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Data
 public class Comment extends AbstractEntity {
 
-  @Column(name = "text")
+  @Column(name = "text", length = 1250)
   private String text;
 
   @JsonIgnore

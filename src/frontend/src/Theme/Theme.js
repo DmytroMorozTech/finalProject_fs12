@@ -25,6 +25,9 @@ const theme = createTheme({
       A200: '#aaaaaa',
       A400: '#303030',
       A700: '#616161'
+    },
+    error: {
+      main: '#cc1016'
     }
   },
   spacing: 5,
