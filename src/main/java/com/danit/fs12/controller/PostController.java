@@ -3,6 +3,7 @@ package com.danit.fs12.controller;
 import com.danit.fs12.entity.post.PostRq;
 import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.facade.PostFacade;
+import com.danit.fs12.utils.HeadersUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import java.util.List;
 
 @Slf4j
@@ -31,13 +33,14 @@ public class PostController {
   @JsonView(PostViews.Base.class)
   ResponseEntity<List<PostRs>> getPostsForActiveUser(
     @RequestParam(defaultValue = "0") Integer pageNumber,
-    @RequestParam(defaultValue = "4") Integer pageSize,
+    @RequestParam(defaultValue = "4") @Max(100) Integer pageSize, // to implement max in all pagination
     @RequestParam(defaultValue = "id") String sortBy
+    // in Connections we will also have ASC , DESC direction of sorting that will be passed from frontend
   ) {
 
     Page<PostRs> pageOfPosts = postFacade.getPostsForActiveUser(pageNumber, pageSize, sortBy);
     List<PostRs> content = pageOfPosts.getContent();
-    HttpHeaders responseHeaders = createHeaders(pageOfPosts);
+    HttpHeaders responseHeaders = HeadersUtils.createPaginationHeaders(pageOfPosts);
 
     return ResponseEntity.ok()
       .headers(responseHeaders)
@@ -53,7 +56,7 @@ public class PostController {
   ) {
     Page<PostRs> pageOfBookmarkedPosts = postFacade.getBookmarkedPosts(pageNumber, pageSize, sortBy);
     List<PostRs> content = pageOfBookmarkedPosts.getContent();
-    HttpHeaders responseHeaders = createHeaders(pageOfBookmarkedPosts);
+    HttpHeaders responseHeaders = HeadersUtils.createPaginationHeaders(pageOfBookmarkedPosts);
 
     return ResponseEntity.ok()
       .headers(responseHeaders)
@@ -91,18 +94,4 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
-  /**
-   * This is a helper method that takes in a Page of some entities as a parameter
-   * and creates corresponding headers for the Response object that will be sent to frontend
-   */
-  private HttpHeaders createHeaders(Page page) {
-    HttpHeaders responseHeaders = new HttpHeaders();
-    responseHeaders.set("pageSize", Integer.toString(page.getSize()));
-    responseHeaders.set("totalPages", Integer.toString(page.getTotalPages()));
-    responseHeaders.set("hasMore", Boolean.toString(page.hasNext()));
-    responseHeaders.set("pageNumber", Integer.toString(page.getNumber()));
-    return responseHeaders;
-  }
-
-
-}
+ }
