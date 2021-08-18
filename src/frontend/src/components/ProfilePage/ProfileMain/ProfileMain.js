@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
-import avatarUrl from '../../../temporaryImages/avatar.jpg'
 import style from './styles'
 import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
@@ -16,8 +15,7 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function ProfileMain (props) {
   const {
-    fullName = 'Alan Frost', position = 'Junior Java developer',
-    company = 'DAN.IT', city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
+    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
   } = props
   const classes = style()
   const dispatch = useDispatch()
@@ -83,7 +81,7 @@ function ProfileMain (props) {
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault} className={classes.column}>
             <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
-            <Typography variant="body1" color="secondary">{position}</Typography>
+            <Typography variant="body1" color="secondary">{activeUser.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
           <div>
