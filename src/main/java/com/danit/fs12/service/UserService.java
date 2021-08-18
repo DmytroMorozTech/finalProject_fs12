@@ -21,27 +21,27 @@ public class UserService extends GeneralService<User> {
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public User getActiveUser(Long id) {
-    //temporary to test
-    User user = User.builder()
-      .firstName("firstName")
-      .lastName("lastName")
-      .email("email")
-      .phoneNumber("+380503332211")
-      .age(30)
-      .passwordHash("userPassHash")
-      .build();
-
-    return user;
-  }
-
-  public void followUser(Long userId, Long followedUserId) {
-    User user = findEntityById(userId);
-    User followedUser = findEntityById(followedUserId);
-
-    user.getUsersFollowed().add(followedUser);
-    save(user);
-  }
+  //  public User getActiveUser(Long id) {
+  //    //temporary to test
+  //    User user = User.builder()
+  //      .firstName("firstName")
+  //      .lastName("lastName")
+  //      .email("email")
+  //      .phoneNumber("+380503332211")
+  //      .age(30)
+  //      .passwordHash("userPassHash")
+  //      .build();
+  //
+  //    return user;
+  //  }
+  //
+  //  public void followUser(Long userId, Long followedUserId) {
+  //    User user = findEntityById(userId);
+  //    User followedUser = findEntityById(followedUserId);
+  //
+  //    user.getUsersFollowed().add(followedUser);
+  //    save(user);
+  //  }
 
   //    user.addConnection(userBeingFollowed);
   //    // ее должен являться методом сущности! Вынести в СЕРВИС!
