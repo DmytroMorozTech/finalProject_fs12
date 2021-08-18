@@ -1,6 +1,6 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {withStyles} from '@material-ui/core/styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
@@ -13,20 +13,24 @@ import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import styles from './styles'
-import {activeUserSelector} from '../../../../redux/User/userSelector'
-import {createNewPostAction} from '../../../../redux/Post/postActions'
+import { activeUserSelector } from '../../../../redux/User/userSelector'
+import { createNewPostAction } from '../../../../redux/Post/postActions'
 import SharedButton from '../../../../shared/Button/SharedButton'
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(4),
+    maxHeight: '450px',
+    overflowY: 'auto'
   }
 }))(MuiDialogContent)
 
 const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(1),
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(0),
     justifyContent: 'space-between'
   }
 }))(MuiDialogActions)
@@ -59,16 +63,21 @@ const AddNewPost = () => {
     setPostInputText(postInputVal)
   }
 
-  let btnIsDisabled = postInputText.length === 0
   const longText1 = `Add a photo`
   const longText2 = `Add a video`
-  const longText3 = `Add a documents`
+  const longText3 = `Add a document`
+
+  const numberCharacterToShowValidate = 3000
+  const validateCount = (numberCharacterToShowValidate - postInputText.length)
+  let btnIsDisabled = postInputText.length === 0 || postInputText.length > numberCharacterToShowValidate
+
   return (
     <div>
       <div className={classes.title}>
         Create a post
       </div>
-      <DialogContent dividers>
+      <hr className={classes.horizontalLine}/>
+      <DialogContent>
         <div className={classes.userInfo}>
           <div className={classes.avatar}>
             <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
@@ -77,7 +86,7 @@ const AddNewPost = () => {
             <Typography variant="h5">
               {activeUser.fullName}
             </Typography>
-            <button className={classes.shareComment}>
+            <button className={classes.sharePost}>
               <div className={classes.icons}>
                 <PublicIcon fontSize="inherit"/>
               </div>
@@ -100,24 +109,34 @@ const AddNewPost = () => {
           className={classes.editor}
         />
       </DialogContent>
+      <div
+        className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
+        <div className={classes.validateMessage}>
+          <RemoveCircleIcon fontSize="inherit"/>
+          <div className={classes.validateInfo}>You have exceeded the maximum character limit.</div>
+        </div>
+        <div className={classes.validateInfo}>
+          {validateCount}
+        </div>
+      </div>
       <DialogActions>
         <div className={classes.shareButtons}>
-          <LightTooltip title={longText1} placement={'top'} className={classes.tool}>
+          <LightTooltip title={longText1} placement={'top'}>
             <div className={classes.shareButton}>
               <PhotoSizeSelectActualIcon/>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText2} placement={'top'} className={classes.tool}>
+          <LightTooltip title={longText2} placement={'top'}>
             <div className={classes.shareButton}>
               <YouTubeIcon/>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText3} placement={'top'} className={classes.tool}>
+          <LightTooltip title={longText3} placement={'top'}>
             <div className={classes.shareButton}>
               <EventNoteIcon/>
             </div>
           </LightTooltip>
-          <hr className={classes.line}/>
+          <hr className={classes.verticalLine}/>
         </div>
         <SharedButton title="Post" disabled={btnIsDisabled} onClick={onPostSubmitHandler}/>
       </DialogActions>

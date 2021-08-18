@@ -7,10 +7,11 @@ import styles from './styles'
 import clsx from 'clsx'
 import Avatar from '../../../../../../../shared/Avatar/Avatar'
 import getTimeSinceCreated from '../../../../../../../services/timePassedService'
+import SeeMore from '../../../SeeMore/SeeMore'
 
 function Comment (props) {
-  let {user, text, quantityOfCommentsLike = 3, createdDate} = props.comment
-  let {fullName, avatarUrl, positionAndCompany} = user
+  let { user, text, quantityOfCommentsLike = 3, createdDate } = props.comment
+  let { fullName, avatarUrl, positionAndCompany } = user
 
   const classes = styles()
 
@@ -21,7 +22,7 @@ function Comment (props) {
       <div className={classes.commentAvatar}>
         <Avatar avatarUrl={avatarUrl}/>
       </div>
-      <div className= {classes.commentWrapper}>
+      <div className={classes.commentWrapper}>
         <div className={classes.commentBackground}>
           <div className={clsx(classes.commentRow, classes.commentHeader)}>
             <div className={classes.commentColumn}>
@@ -34,18 +35,21 @@ function Comment (props) {
             </div>
             <div className={classes.commentRow}>
               <div className={classes.time}>{getTimeSinceCreated(createdDate)}</div>
-              <div className={classes.dots}><MoreHorizIcon fontSize='inherit'/></div>
+              <div className={classes.dots}><MoreHorizIcon fontSize="inherit"/></div>
             </div>
           </div>
           <Typography variant="body1" gutterBottom className={classes.commentText}>
-            {text}
+            <SeeMore>
+              {text}
+            </SeeMore>
           </Typography>
         </div>
         <div className={classes.commentLikes}>
           <span
             className={clsx(classes.commentLike, commentLiked ? classes.commentLiked : classes.commentNotLiked)}
             onClick={() => setCommentLiked(!commentLiked)}>Like</span>
-          <span className={clsx(classes.commentRow, quantityOfCommentsLike === 0 && classes.hiddenQuantityOfCommentsLike)}>
+          <span
+            className={clsx(classes.commentRow, quantityOfCommentsLike === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
             <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
           </span>
