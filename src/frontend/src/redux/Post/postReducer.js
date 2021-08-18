@@ -29,30 +29,35 @@ const postReducer = (state = initialState, action) => {
       return { ...state, loading: action.payload }
 
     case actions.SAVE_NEW_POSTS:
-      const { content, size: pageSize, number: pageNumber, last, totalPages } = action.payload
+      const { posts, headers } = action.payload
+      console.log('HEADERS IN REDUCER!')
+      console.log(headers)
+      const {pagenumber = 0, pagesize = 4, totalpages, hasmore} = headers
       return {
         ...state,
-        postsList: [...state.postsList, ...content],
+        postsList: [...state.postsList, ...posts],
         pagination: {
-          pageNumber: pageNumber + 1,
-          pageSize: pageSize,
-          totalPages: totalPages,
-          hasMore: !last
+          pageNumber: parseInt(pagenumber) + 1,
+          pageSize: parseInt(pagesize),
+          totalPages: parseInt(totalpages),
+          hasMore: hasmore === 'true'
         }
       }
 
     case actions.SAVE_NEW_BOOKMARKED_POSTS:
-      const { content: content1, size: pageSize1, number: pageNumber1, last: last1, totalPages: totalPages1 } =
-        action.payload
+      const { posts: postsBm, headers: headersBm } = action.payload
+      const {pagenumber: pageNumberBm = 0, pagesize: pageSizeBm = 4,
+        totalpages: totalPagesBm, hasmore: hasMoreBm} = headersBm
+
       return {
         ...state,
         bookmarked: {
-          postsList: [...state.bookmarked.postsList, ...content1],
+          postsList: [...state.bookmarked.postsList, ...postsBm],
           pagination: {
-            pageNumber: pageNumber1 + 1,
-            pageSize: pageSize1,
-            totalPages: totalPages1,
-            hasMore: !last1
+            pageNumber: parseInt(pageNumberBm) + 1,
+            pageSize: parseInt(pageSizeBm),
+            totalPages: parseInt(totalPagesBm),
+            hasMore: hasMoreBm === 'true'
           }
         }
       }

@@ -28,9 +28,10 @@ function Feed (props) {
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_POSTS, payload: page })
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_POSTS, payload: {posts, headers} })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
@@ -47,9 +48,10 @@ function Feed (props) {
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page })
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: {posts, headers} })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
