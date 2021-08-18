@@ -33,8 +33,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Data
 public class Post extends AbstractEntity {
-
-  @Column(length = 1000)
+  @Column(length = 3000)
   private String text;
 
   @ManyToOne(fetch = FetchType.LAZY)

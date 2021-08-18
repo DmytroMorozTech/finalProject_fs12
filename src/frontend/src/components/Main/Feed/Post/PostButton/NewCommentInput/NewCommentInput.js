@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { activeUserSelector } from '../../../../../../redux/User/userSelector'
 import { createNewCommentAction } from '../../../../../../redux/Post/postActions'
 import { allCommentsSelector } from '../../../../../../redux/Post/postSelector'
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 function NewCommentInput (props) {
   const {postId} = props
@@ -45,6 +46,9 @@ function NewCommentInput (props) {
     setCommentValue('')
   }
 
+  const numberCharacterToShowValidate = 1250
+  const validateCount = (numberCharacterToShowValidate - commentValue.length)
+
   return (
     <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
@@ -62,8 +66,18 @@ function NewCommentInput (props) {
             autoFocus={true}
             onKeyDown={handleEnterPressed}
           />
+          <div className={commentValue.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
+            <RemoveCircleIcon fontSize='inherit'/>
+            <div className={classes.validateMessage}>You have exceeded the maximum character limit.</div>
+          </div>
           <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
-            <SharedButton title="Post"/>
+            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate} size='small'/>
+            <div className={commentValue.length >= 1200 && commentValue.length <= numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
+              {commentValue.length}
+            </div>
+            <div className={commentValue.length > numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
+              <span>{validateCount}</span>
+            </div>
           </div>
         </div>
       </div>
