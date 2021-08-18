@@ -34,7 +34,13 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(user);
   }
 
-  public void registerUser(String firstName, String lastName, Integer age, String phoneNumber, String password, String email, String avatar) {
+  public void registerUser(String firstName,
+                           String lastName,
+                           Integer age,
+                           String phoneNumber,
+                           String password, 
+                           String email,
+                           String avatar) {
     userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);
   }
 

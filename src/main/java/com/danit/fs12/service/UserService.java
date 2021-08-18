@@ -22,7 +22,6 @@ public class UserService extends GeneralService<User> {
   private final PasswordEncoder passwordEncoder;
 
   public User getActiveUser(Long id) {
-
     //temporary to test
     User user = User.builder()
       .firstName("firstName")
@@ -97,7 +96,13 @@ public class UserService extends GeneralService<User> {
     return findByEmail(authentication.getName());
   }
 
-  public void registerUser(String firstName, String lastName, Integer age, String phoneNumber, String password, String email, String avatar) {
+  public void registerUser(String firstName,
+                           String lastName,
+                           Integer age,
+                           String phoneNumber,
+                           String password,
+                           String email,
+                           String avatar) {
     User user = new User();
     user.setFirstName(firstName);
     user.setLastName(lastName);
@@ -108,5 +113,4 @@ public class UserService extends GeneralService<User> {
     user.setAvatarUrl(avatar);
     saveUser(user);
   }
-
 }

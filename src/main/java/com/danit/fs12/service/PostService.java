@@ -47,7 +47,7 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
-//    Boolean postIsLiked = post.getIsLikedByActiveUser();
+    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
     List<Like> likes = post.getLikes();
     Boolean postIsLiked = likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
 
@@ -64,7 +64,7 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleBookmark(Long postId) {
     Post post = findEntityById(postId);
-//    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
+    //    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
     List<Bookmark> bookmarks = post.getBookmarks();
     Boolean postIsBookmarked = bookmarks.stream()
       .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId()));
