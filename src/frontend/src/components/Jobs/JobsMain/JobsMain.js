@@ -7,7 +7,7 @@ function JobsMain () {
   const classes = styles()
 
   return (
-    <div className={classes.root}>
+    <div className={classes.container}>
       <Typography variant="h5">
         Recommended for you
       </Typography>
