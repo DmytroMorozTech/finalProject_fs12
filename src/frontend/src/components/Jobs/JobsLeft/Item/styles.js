@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
     display: 'flex'
   },
 
-  title: {
+  titles: {
     marginLeft: theme.spacing(2)
   }
 }))
