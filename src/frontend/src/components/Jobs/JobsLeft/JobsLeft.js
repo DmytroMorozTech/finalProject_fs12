@@ -23,7 +23,7 @@ function JobsLeft () {
   ]
 
   return (
-    <div className={classes.root}>
+    <div className={classes.container}>
       {items.map(({ Icon, title, onClick }, i) => (
         <Item key={i} Icon={Icon} title={title} onClick={onClick}/>
       ))}

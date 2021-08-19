@@ -4,7 +4,7 @@ function JobsRight () {
   const classes = styles()
 
   return (
-    <div className={classes.root}>
+    <div className={classes.container}>
 
     </div>
   )
