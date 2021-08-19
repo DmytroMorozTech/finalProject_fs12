@@ -3,6 +3,8 @@ import React from 'react'
 import BookmarkIcon from '@material-ui/icons/Bookmark'
 import Button from '@material-ui/core/Button'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import SimpleMenu from '../../../shared/PopupMenu/PopupMenu'
+import JobsAdditions from './JobsAdditions/JobsAdditions'
 
 function JobsSmall () {
   const classes = styles()
@@ -17,9 +19,12 @@ function JobsSmall () {
           My Jobs
         </div>
       </div>
-      <Button color="secondary" endIcon={<ArrowDropDownIcon/>} className={classes.button}>
-        More
-      </Button>
+      <SimpleMenu menuItem={
+        <Button color="secondary" className={classes.button}>
+          More
+          <ArrowDropDownIcon/>
+        </Button>
+      } userData={<JobsAdditions/>}/>
     </div>
   )
 }

@@ -19,6 +19,6 @@ export default makeStyles((theme) => ({
   },
 
   titles: {
-    marginLeft: theme.spacing(2)
+    paddingLeft: theme.spacing(2)
   }
 }))
