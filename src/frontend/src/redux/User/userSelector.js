@@ -1,1 +1,2 @@
-export const activeUserSelector = (store) => store.user.activeUser
+export const activeUserSelector = (state) => state.user.activeUser
+export const isLoadingUserSelector = (state) => state.user.loadingUser
