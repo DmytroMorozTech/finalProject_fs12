@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import {EDIT_EDUCATION} from '../../Modal/modalTypes'
 
 const ProfileEducationItem = (props) => {
-  const {school, degreeReceived, dateStart, dateFinish} = props.user
+  const {school, degreeReceived, dateStart, dateFinish} = props.education
   const classes = style()
   const dash = <span className={classes.dash}>-</span>
   const dispatch = useDispatch()

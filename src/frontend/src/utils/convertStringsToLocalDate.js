@@ -17,8 +17,8 @@ const monthsMapping = {
 const convertStringsToLocalDate = (obj) => {
   const {startMonth, startYear, endMonth, endYear} = obj
 
-  const dateStart = '' + startYear + '-' + monthsMapping[startMonth] + '-' + '01'
-  const dateFinish = '' + endYear + '-' + monthsMapping[endMonth] + '-' + '01'
+  const dateStart = '' + startYear + '-' + monthsMapping[startMonth] + '-01'
+  const dateFinish = '' + endYear + '-' + monthsMapping[endMonth] + '-01'
 
   obj.dateStart = dateStart
   obj.dateFinish = dateFinish

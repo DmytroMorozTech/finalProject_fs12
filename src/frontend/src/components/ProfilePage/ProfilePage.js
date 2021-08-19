@@ -7,7 +7,8 @@ import ProfileRight from './ProfileRight/ProfileRight'
 import ProfileEducation from './ProfileEducation/ProfileEducation'
 import { getActiveProfileAction } from '../../redux/Profile/profileActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeProfileSelector } from '../../redux/Profile/profileSelector'
+import {activeProfileSelector, isLoadingProfileSelector} from '../../redux/Profile/profileSelector'
+import Preloader from '../../shared/Preloader/Preloader'
 
 function ProfilePage (props) {
   const classes = styles()
@@ -15,6 +16,7 @@ function ProfilePage (props) {
   const dispatch = useDispatch()
 
   const activeProfile = useSelector(activeProfileSelector)
+  const profileIsLoading = useSelector(isLoadingProfileSelector)
 
   useEffect(() => {
     dispatch(getActiveProfileAction(userId))
@@ -24,8 +26,13 @@ function ProfilePage (props) {
     <Container className={classes.profilePage} maxWidth={'lg'}>
       <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'}>
         <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
-          <ProfileMain profile={activeProfile}/>
-          <ProfileEducation educations = {activeProfile.educations}/>
+          {profileIsLoading && <Preloader/>}
+          {!profileIsLoading &&
+          <>
+            <ProfileMain profile={activeProfile}/>
+            <ProfileEducation educations={activeProfile.educations}/>
+          </>
+          }
         </Grid>
 
         <Grid item sm={3} md={3} lg={3} xl={3}>

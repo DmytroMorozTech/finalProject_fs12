@@ -14,7 +14,7 @@ import year from '../../../data/year.json'
 import SharedButton from '../../../shared/Button/SharedButton'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {createNewEducationAction} from '../../../redux/User/userActions'
+import {createNewEducationAction} from '../../../redux/Profile/profileActions'
 
 const DialogContent = withStyles((theme) => ({
   root: {
