@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Messages from '../components/Main/Messages/Messages'
-import Profile from '../components/Main/Profile/Profile'
 import Notifications from '../components/Notifications/Notifications'
 import Jobs from '../components/Jobs/Jobs'
 import Network from '../components/Network/Network'
@@ -22,8 +21,9 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
-      <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/>
-      <ProtectedRoutes exact path="/profile" render={() => <ProfilePage/>}/>
+      {/* <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/> */}
+      <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage} />
+
       <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
       <ProtectedRoutes exact path="*" render={() => <Page404/>}/>
     </Switch>
