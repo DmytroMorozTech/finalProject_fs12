@@ -5,6 +5,7 @@ import { Container, Hidden } from '@material-ui/core'
 import JobsLeft from './JobsLeft/JobsLeft'
 import JobsMain from './JobsMain/JobsMain'
 import JobsRight from './JobsRight/JobsRight'
+import JobsSmall from './JobsSmall/JobsSmall'
 
 function Jobs () {
   const classes = styles()
@@ -18,7 +19,10 @@ function Jobs () {
           </Grid>
         </Hidden>
 
-        <Grid item xs={12} sm={6} md={5} lg={6} xl={6}>
+        <Grid item xs={12} sm={7} md={5} lg={6} xl={6}>
+          <Hidden smUp>
+            <JobsSmall/>
+          </Hidden>
           <JobsMain/>
         </Grid>
 
