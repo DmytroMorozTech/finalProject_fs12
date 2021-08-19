@@ -17,7 +17,7 @@ function JobsSmall () {
           My Jobs
         </div>
       </div>
-      <Button variant="default" color="secondary" endIcon={<ArrowDropDownIcon/>} className={classes.button}>
+      <Button color="secondary" endIcon={<ArrowDropDownIcon/>} className={classes.button}>
         More
       </Button>
     </div>

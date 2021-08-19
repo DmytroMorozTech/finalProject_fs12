@@ -79,5 +79,13 @@ export default makeStyles((theme) => ({
     '&:hover': {
       opacity: 1
     }
+  },
+
+  line: {
+    width: '100%',
+    height: '0.5px',
+    border: '0',
+    margin: '0 auto',
+    backgroundColor: theme.palette.grey[300]
   }
 }))

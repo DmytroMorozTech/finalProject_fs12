@@ -19,7 +19,7 @@ function Jobs () {
           </Grid>
         </Hidden>
 
-        <Grid item xs={12} sm={6} md={5} lg={6} xl={6}>
+        <Grid item xs={12} sm={7} md={5} lg={6} xl={6}>
           <Hidden smUp>
             <JobsSmall/>
           </Hidden>
