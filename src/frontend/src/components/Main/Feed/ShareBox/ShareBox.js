@@ -9,10 +9,10 @@ import toggleModalAction from '../../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 import { ADD_NEW_POST } from '../../../Modal/modalTypes'
 import { Hidden } from '@material-ui/core'
-import avatarUrl from '../../../../temporaryImages/avatar.jpg'
 import clsx from 'clsx'
 
 function ShareBox (props) {
+  const {activeUser} = props
   const classes = styles()
   const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ function ShareBox (props) {
     <div className={classes.share}>
       <div className={classes.post}>
         <div className={classes.mediumAvatar}>
-          <Avatar avatarUrl={avatarUrl}/>
+          <Avatar avatarUrl={activeUser.avatarUrl}/>
         </div>
         <button className={classes.postButton} onClick={() =>
           dispatch(toggleModalAction({modalType: ADD_NEW_POST}))}

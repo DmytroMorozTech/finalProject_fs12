@@ -20,7 +20,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService extends GeneralService<Post> {
   private final UserRepository userRepository;
-  private final Long hardCodedActiveUserId = 1L; // later we will get this id from SpringSecurityContext
+  private final UserService userService;
+
+  public Long activeUserId() {
+    return userService.getActiveUser().getId();
+  }
 
   public Post createPost(Post incomingPost) {
     /**
@@ -31,7 +35,7 @@ public class PostService extends GeneralService<Post> {
      * additional configuration had to be done to ModelMapper -> setMatchingStrategy(MatchingStrategies.STRICT)
      * After that the problem was gone and implicit casting was ceased.
      */
-    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    User user = userRepository.findEntityById(activeUserId());
     incomingPost.setUser(user);
     Post post = save(incomingPost);
 
@@ -43,14 +47,15 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
-
-    Boolean postIsLiked = post.getIsLikedByActiveUser();
+    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
+    List<Like> likes = post.getLikes();
+    Boolean postIsLiked = likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
 
     if (postIsLiked) {
-      post.getLikes().removeIf(l -> Objects.equals(l.getUser().getId(), hardCodedActiveUserId));
+      post.getLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
       return save(post);
     } else {
-      User user = userRepository.findEntityById(hardCodedActiveUserId);
+      User user = userRepository.findEntityById(activeUserId());
       Like like = new Like(user, post);
       post.getLikes().add(like);
       return save(post);
@@ -59,14 +64,16 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleBookmark(Long postId) {
     Post post = findEntityById(postId);
-
-    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
+    //    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
+    List<Bookmark> bookmarks = post.getBookmarks();
+    Boolean postIsBookmarked = bookmarks.stream()
+      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId()));
 
     if (postIsBookmarked) {
-      post.getBookmarks().removeIf(bookmark -> Objects.equals(bookmark.getUser().getId(), hardCodedActiveUserId));
+      post.getBookmarks().removeIf(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId()));
       return save(post);
     } else {
-      User user = userRepository.findEntityById(hardCodedActiveUserId);
+      User user = userRepository.findEntityById(activeUserId());
       Bookmark bookmark = new Bookmark(user, post);
       post.getBookmarks().add(bookmark);
       return save(post);
@@ -81,7 +88,7 @@ public class PostService extends GeneralService<Post> {
   public Page<Post> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
 
-    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    User user = userRepository.findEntityById(activeUserId());
     List<Long> postsIds = user.getBookmarks().stream()
       .map(b -> b.getPost().getId())
       .collect(Collectors.toList());

@@ -1,16 +1,8 @@
-import update from 'immutability-helper'
-import * as actions from '../User/userActionTypes'
+import * as actions from './userActionTypes'
 
 const initialState = {
-  activeUser: {
-    id: 1,
-    fullName: 'Richard West',
-    email: 'richard@gmail.com',
-    phoneNumber: '+380502926823',
-    age: '20',
-    avatarUrl: 'https://res.cloudinary.com/dan-insta-step/image/upload/v1603372884/instagram/avatars/user_7_avatar_h4jghf.jpg',
-    positionAndCompany: 'Sales manager at Microsoft'
-  },
+  loadingUser: false,
+  activeUser: {},
   educations: [],
   certifications: [],
   workPlaces: []
@@ -18,6 +10,19 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.SAVE_ACTIVE_USER:
+      return {
+        ...state,
+        activeUser: action.payload
+      }
+    case actions.SIGN_OUT:
+      localStorage.clear()
+      window.location.href = '/'
+      return {
+        ...state,
+        activeUser: action.payload
+      }
+
     case actions.ADD_NEW_EDUCATION:
       return { ...state, educations: [ ...state.educations, action.payload ] }
 
