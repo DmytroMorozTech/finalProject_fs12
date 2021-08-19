@@ -50,7 +50,7 @@ export default function SimpleMenu (props) {
       >
         {menuItem}
       </span>
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} className={classes.popper} transition disablePortal>
+      <Popper open={open} anchorEl={anchorRef.current} role={undefined} className={classes.popper} transition disablePortal placement='bottom-end'>
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
