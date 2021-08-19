@@ -5,7 +5,7 @@ function SharedButton ({ title, color = 'primary', variant = 'contained', disabl
   const classes = styles()
 
   return (
-    <Button color={color} variant={variant} disabled={disabled} size={size} onClick={onClick} type="submit" className={classes.btn}>
+    <Button color={color} variant={variant} disabled={disabled} size={size} onClick={onClick} className={classes.btn}>
       {title}
     </Button>
   )

@@ -79,6 +79,7 @@ const AddEducationModal = () => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
+            console.log(values)
             dispatch(createNewEducationAction(values))
             dispatch(toggleModalAction())
           }}
@@ -181,7 +182,7 @@ const AddEducationModal = () => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton title="Save"/>
+              <SharedButton title="Save" type="submit"/>
             </DialogActions>
           </Form>
         </Formik>
