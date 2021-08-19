@@ -29,7 +29,7 @@ public class UserController {
     return allUsers;
   }
 
-  @JsonView(UserViews.External.class)
+  @JsonView(UserViews.Profile.class)
   @GetMapping(path = "{id}")
   public ResponseEntity<UserRs> findById(@PathVariable Long id) {
     UserRs user = userFacade.findById(id);
@@ -47,6 +47,13 @@ public class UserController {
     List<UserRs> usersList = userFacade.findUsersWhoLikedPost(id);
     // in case User can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(usersList);
+  }
+
+  @JsonView(UserViews.Profile.class)
+  @GetMapping(path = "/profiles/{id}")
+  public ResponseEntity<UserRs> getActiveProfile(@PathVariable Long id) {
+    UserRs user = userFacade.findById(id);
+    return ResponseEntity.ok(user);
   }
 
 }

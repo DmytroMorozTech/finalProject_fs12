@@ -35,7 +35,7 @@ public class PostController {
     @RequestParam(defaultValue = "0") Integer pageNumber,
     @RequestParam(defaultValue = "4") @Max(100) Integer pageSize, // to implement max in all pagination
     @RequestParam(defaultValue = "id") String sortBy
-    // in Connections we will also have ASC , DESC direction of sorting that will be passed from frontend
+  // in Connections we will also have ASC , DESC direction of sorting that will be passed from frontend
   ) {
 
     Page<PostRs> pageOfPosts = postFacade.getPostsForActiveUser(pageNumber, pageSize, sortBy);
@@ -94,4 +94,4 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
- }
+}

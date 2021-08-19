@@ -1,6 +1,5 @@
 package com.danit.fs12.entity.user;
 
-import com.danit.fs12.controller.UserViews;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.certification.Certification;
@@ -13,7 +12,6 @@ import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
