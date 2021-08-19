@@ -4,6 +4,7 @@ import React from 'react'
 import Vacancy from './Vacancy/Vacancy'
 import { Button } from '@material-ui/core'
 
+
 function JobsMain () {
   const classes = styles()
 

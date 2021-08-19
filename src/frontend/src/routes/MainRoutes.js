@@ -10,21 +10,22 @@ import MainD from '../components/MainD/MainD'
 import ProfilePage from '../components/ProfilePage/ProfilePage'
 import Page404 from '../components/Main/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
+import ProtectedRoutes from './ProtectedRoutes'
 
 const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
-      <Route exact path="/home" render={() => <MainD/>}/>
-      <Route exact path="/network" render={() => <Network/>}/>
-      <Route exact path="/jobs" render={() => <Jobs/>}/>
-      <Route exact path="/messages" render={() => <Messages/>}/>
-      <Route exact path="/messages/:id/" render={() => <Messages/>}/>
-      <Route exact path="/notifications" render={() => <Notifications/>}/>
-      <Route exact path="/personal" render={() => <Profile/>}/>
-      <Route exact path="/profile" render={() => <ProfilePage/>}/>
-      <Route exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
-      <Route exact path="*" render={() => <Page404/>}/>
+      <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
+      <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
+      <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
+      <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
+      <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
+      <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
+      <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/>
+      <ProtectedRoutes exact path="/profile" render={() => <ProfilePage/>}/>
+      <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
+      <ProtectedRoutes exact path="*" render={() => <Page404/>}/>
     </Switch>
   )
 }
