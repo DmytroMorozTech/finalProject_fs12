@@ -9,6 +9,7 @@ import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
 import {useDispatch} from 'react-redux'
 import {getActiveUserAction} from '../../../redux/User/userActions'
+import {toast} from 'react-toastify'
 
 const LoginCard = () => {
   const classes = styles()
@@ -39,9 +40,11 @@ const LoginCard = () => {
           localStorage.setItem('token', token)
           dispatch(getActiveUserAction())
           history.push('/home')
-        } else {
-          console.error('Invalid login or password')
         }
+      })
+      .catch(err => {
+        const errorMsg = err.response.data.message
+        toast.error(errorMsg)
       })
   }
 

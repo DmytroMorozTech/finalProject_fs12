@@ -5,7 +5,10 @@ import {useEffect} from 'react'
 import {getActiveUserAction} from './redux/User/userActions'
 import {isLoadingUserSelector} from './redux/User/userSelector'
 import Preloader from './shared/Preloader/Preloader'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 function App () {
   const dispatch = useDispatch()
   const isLoadingUser = useSelector(isLoadingUserSelector)
