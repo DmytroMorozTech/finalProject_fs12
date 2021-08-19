@@ -6,7 +6,7 @@ import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import TextField from '../../../shared/FormComponents/TextField/TextField'
+import FormikTextField from '../../../shared/FormComponents/TextField/TextField'
 import Select from '../../../shared/FormComponents/Select/Select'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../data/month.json'
@@ -75,21 +75,21 @@ const AddEducationModal = () => {
             <DialogContent dividers>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="school"
                     label="School"
                     helperText="Ex: Boston University"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="degree"
                     label="Degree"
                     helperText="Ex: Bachelor`s"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="fieldOfStudy"
                     label="Field of study"
                     helperText="Ex: Business"
@@ -126,7 +126,7 @@ const AddEducationModal = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="activitiesAndSocieties"
                     label="Activities and societies"
                     multiline={true}
@@ -134,7 +134,7 @@ const AddEducationModal = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="description"
                     label="Description"
                     multiline={true}

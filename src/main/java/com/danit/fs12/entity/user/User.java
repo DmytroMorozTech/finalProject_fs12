@@ -52,6 +52,7 @@ public class User extends AbstractEntity {
   private String phoneNumber;
 
   private String email;
+
   private Integer age;
 
   @Column(name = "password_hash")
@@ -190,7 +191,6 @@ public class User extends AbstractEntity {
     }
     return chat;
   }
-
 
   public String getFullName() {
     return firstName + " " + lastName;

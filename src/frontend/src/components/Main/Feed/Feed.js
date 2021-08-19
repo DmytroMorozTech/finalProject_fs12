@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react'
+import React, { useCallback, useEffect } from 'react'
 import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
@@ -10,17 +10,17 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 import getHeaders from '../../../services/headersService'
 
 function Feed (props) {
-  const {type, loading = true, postsState, bookmarkedPostsState} = props
+  const { type, loading = true, postsState, bookmarkedPostsState } = props
   const dispatch = useDispatch()
   const classes = styles()
   const activeUser = useSelector(activeUserSelector)
 
   const localState = (type === 'posts') ? postsState : bookmarkedPostsState
-  const {postsList: posts, pagination} = localState
+  const { postsList: posts, pagination } = localState
   const {pageNumber, pageSize, hasMore} = pagination
 
   const loadPosts = useCallback(() => {
-    dispatch({type: actions.LOADING_POSTS, payload: true})
+    dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http
       .get('api/posts',
@@ -32,15 +32,16 @@ function Feed (props) {
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({type: actions.SAVE_NEW_POSTS, payload: page})
-        dispatch({type: actions.LOADING_POSTS, payload: false})
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_POSTS, payload: {posts, headers} })
+        dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
 
   const loadBookmarkedPosts = useCallback(() => {
-    dispatch({type: actions.LOADING_POSTS, payload: true})
+    dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http
       .get('api/posts/bookmarked',
@@ -52,10 +53,11 @@ function Feed (props) {
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page})
-        dispatch({type: actions.LOADING_POSTS, payload: false})
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: {posts, headers} })
+        dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
 
@@ -71,7 +73,7 @@ function Feed (props) {
           loader.current()
         }
       },
-      {threshold: 1, rootMargin: '50px'}
+      { threshold: 1, rootMargin: '50px' }
     )
   )
   const [element, setElement] = React.useState(null)
@@ -109,7 +111,7 @@ function Feed (props) {
       </div>}
 
       {loading && <Preloader/>}
-      {!loading && hasMore && <p ref={setElement} style={{background: 'transparent'}}/>}
+      {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}
     </>
   )
 }

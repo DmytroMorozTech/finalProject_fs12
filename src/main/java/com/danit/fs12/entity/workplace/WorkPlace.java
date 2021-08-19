@@ -1,9 +1,12 @@
 package com.danit.fs12.entity.workplace;
 
 
+import com.danit.fs12.controller.UserViews;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.organization.Organization;
 import com.danit.fs12.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,6 +26,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @Table(name = "workPlaces")
+@JsonView(UserViews.Profile.class)
 public class WorkPlace extends AbstractEntity {
 
   private String position;
@@ -44,6 +48,7 @@ public class WorkPlace extends AbstractEntity {
   @JoinColumn(name = "user_id")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private User user;
 
   public String getPositionAndCompany() {
