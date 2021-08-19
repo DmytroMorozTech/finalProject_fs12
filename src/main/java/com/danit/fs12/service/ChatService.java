@@ -15,10 +15,11 @@ public class ChatService extends GeneralService<Chat> {
 
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
+  private final UserService userService;
 
   public Chat createChat() {
-    Long userId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
-    User user = userRepository.findEntityById(userId);
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
     Chat chat = save(new Chat());
     user.addChat(chat);
     userRepository.save(user);

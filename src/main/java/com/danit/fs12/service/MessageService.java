@@ -20,9 +20,10 @@ public class MessageService extends GeneralService<Message> {
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
   private final MessageRepository messageRepository;
+  private final UserService userService;
 
   public Message createMessage(Long chatId, String text) {
-    Long activeUserId = 1L; //we'll get "active user id" from SecurityContextHolder after implementing Spring Security
+    Long activeUserId = userService.getActiveUser().getId();
     Optional<User> userOpt = userRepository.findById(activeUserId);
     Optional<Chat> chatOpt = chatRepository.findById(chatId);
     if (userOpt.isEmpty() || chatOpt.isEmpty()) {

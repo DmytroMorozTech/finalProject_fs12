@@ -2,15 +2,18 @@ import React, { useCallback, useEffect } from 'react'
 import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
-import { connect, useDispatch } from 'react-redux'
+import {connect, useDispatch, useSelector} from 'react-redux'
 import Preloader from '../../../shared/Preloader/Preloader'
 import * as actions from '../../../redux/Post/postActionTypes'
 import http from '../../../services/httpService'
+import {activeUserSelector} from '../../../redux/User/userSelector'
+import getHeaders from '../../../services/headersService'
 
 function Feed (props) {
   const { type, loading = true, postsState, bookmarkedPostsState } = props
   const dispatch = useDispatch()
   const classes = styles()
+  const activeUser = useSelector(activeUserSelector)
 
   const localState = (type === 'posts') ? postsState : bookmarkedPostsState
   const { postsList: posts, pagination } = localState
@@ -22,6 +25,7 @@ function Feed (props) {
     return http
       .get('api/posts',
         {
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
@@ -42,6 +46,7 @@ function Feed (props) {
     return http
       .get('api/posts/bookmarked',
         {
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
@@ -96,7 +101,7 @@ function Feed (props) {
     <>
       {type === 'posts' &&
       <div className={classes.feed}>
-        <ShareBox/>
+        <ShareBox activeUser={activeUser}/>
         {posts.map(post => <Post key={post.id} post={post}/>)}
       </div>}
 

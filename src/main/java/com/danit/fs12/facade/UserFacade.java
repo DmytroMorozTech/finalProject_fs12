@@ -24,5 +24,25 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return listUsersRs;
   }
 
+  public UserRs getActiveUser() {
+    User user = userService.getActiveUser();
+    return convertToDto(user);
+  }
+
+  public UserRs findByEmailAndPassword(String email, String password) {
+    User user = userService.findByEmailAndPassword(email, password);
+    return convertToDto(user);
+  }
+
+  public void registerUser(String firstName,
+                           String lastName,
+                           Integer age,
+                           String phoneNumber,
+                           String password, 
+                           String email,
+                           String avatar) {
+    userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);
+  }
+
 
 }

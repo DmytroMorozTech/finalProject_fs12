@@ -33,13 +33,33 @@ export default makeStyles((theme) => ({
     flexShrink: 1
   },
 
+  showedValidateMessage: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: theme.spacing(1),
+    alignItems: 'center',
+    color: theme.palette.error.main,
+    fontSize: theme.typography.icons.small.fontSize
+  },
+
   showedButton: {
     display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: theme.spacing(2)
   },
 
   hidden: {
     display: 'none'
+  },
+
+  validateMessage: {
+    margin: theme.spacing(1),
+    fontSize: theme.typography.h6.fontSize,
+    fontWeight: theme.typography.fontWeightBold,
+    '& span': {
+      color: theme.palette.error.main
+    }
   },
 
   comments: {
