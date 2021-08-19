@@ -3,7 +3,26 @@ import * as actions from './userActionTypes'
 const initialState = {
   loadingUser: false,
   activeUser: {},
-  educations: [],
+  educations: [
+    { id: 7,
+      school: 'Boston University',
+      degreeReceived: 'Master`s',
+      activities: 'Football',
+      description: 'sdf',
+      fieldOfStudy: 'Business',
+      dateStart: '2001',
+      dateFinish: '2004'
+    },
+    {
+      school: 'DANIT',
+      degreeReceived: 'Master`s',
+      activities: 'Football',
+      description: 'sdf',
+      fieldOfStudy: 'Business',
+      dateStart: '2019',
+      dateFinish: '2021'
+    }
+  ],
   certifications: [],
   workPlaces: []
 }
@@ -24,8 +43,13 @@ const userReducer = (state = initialState, action) => {
       }
 
     case actions.ADD_NEW_EDUCATION:
-      return { ...state, educations: [ ...state.educations, action.payload ] }
-
+      return {
+        ...state,
+        educations:
+              [ state.educations
+                ? [ ...state.educations, action.payload ]
+                : action.payload]
+      }
     default: {
       return state
     }

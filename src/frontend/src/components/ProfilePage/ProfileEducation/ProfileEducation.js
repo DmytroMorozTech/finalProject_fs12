@@ -3,11 +3,12 @@ import style from './styles'
 import Typography from '@material-ui/core/Typography'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import ProfileEducationItem from './ProfileEducationItem'
-import {useDispatch} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {ADD_EDUCATION} from '../../Modal/modalTypes'
 
-function ProfileEducation (props) {
+const ProfileEducation = (props) => {
+  const { educations } = props
   const classes = style()
   const dispatch = useDispatch()
 
@@ -23,9 +24,14 @@ function ProfileEducation (props) {
         </div>
       </div>
       <div>
-        <ProfileEducationItem/>
+        {educations.map(user => <ProfileEducationItem key={user.id} user={user}/>)}
       </div>
     </div>
   )
 }
-export default ProfileEducation
+const mapStateToProps = (state) => {
+  return {
+    educations: state.user.educations
+  }
+}
+export default connect(mapStateToProps, null)(ProfileEducation)

@@ -79,7 +79,6 @@ const AddEducationModal = () => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log(values)
             dispatch(createNewEducationAction(values))
             dispatch(toggleModalAction())
           }}
