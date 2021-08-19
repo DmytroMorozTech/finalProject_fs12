@@ -1,0 +1,1 @@
+export const ADD_NEW_EDUCATION = 'ADD_NEW_EDUCATION'

@@ -6,7 +6,7 @@ import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import TextField from '../../../shared/FormComponents/TextField/TextField'
+import FormikTextField from '../../../shared/FormComponents/FormikTextField/FormikTextField'
 import Grid from '@material-ui/core/Grid'
 import SharedButton from '../../../shared/Button/SharedButton'
 
@@ -38,6 +38,7 @@ const EditIntroModal = () => {
     lastName: Yup.string()
       .required('Last name is required'),
     position: Yup.string()
+      .required('Position is required')
   })
   return (
     <div>
@@ -59,21 +60,33 @@ const EditIntroModal = () => {
             <DialogContent dividers>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <TextField
+                  <FormikTextField
                     name="firstName"
                     label="First name"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField
+                  <FormikTextField
                     name="lastName"
                     label="Last name"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="position"
                     label="Position"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
                   />
                 </Grid>
               </Grid>
