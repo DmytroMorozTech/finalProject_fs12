@@ -11,8 +11,9 @@ export default makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   popper: {
-    marginTop: '2vh',
-    maxWidth: 800
+    marginTop: '1vh',
+    maxWidth: 800,
+    zIndex: 10
   },
   menuBody: {
     borderRadius: theme.shape.medium,
