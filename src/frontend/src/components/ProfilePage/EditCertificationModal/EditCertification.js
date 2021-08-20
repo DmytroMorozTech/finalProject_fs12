@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 import month from '../../../data/month.json'
 import year from '../../../data/year.json'
 import Grid from '@material-ui/core/Grid'
-import Select from '../../../shared/FormComponents/Select/Select'
+import FormikSelect from '../../../shared/FormComponents/FormikSelect/FormikSelect'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import { updateCertificationAction } from '../../../redux/Certification/certificationAction'
@@ -145,7 +145,7 @@ const EditCertification = (props) => {
                   </label>
                 </Grid>
                 <Grid item xs={6}>
-                  <Select className={classes.formPadding}
+                  <FormikSelect className={classes.formPadding}
                     default ={IssueDateMonth}
                     size="small"
                     name="IssueDateMonth"
@@ -154,7 +154,7 @@ const EditCertification = (props) => {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select className={classes.formPadding}
+                  <FormikSelect className={classes.formPadding}
                     default ={IssueDateYear}
                     size="small"
                     name="IssueDateYear"
@@ -163,7 +163,7 @@ const EditCertification = (props) => {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select className={classes.formPadding}
+                  <FormikSelect className={classes.formPadding}
                     default ={ExpirationDateMonth}
                     disabled={values.doesNotExpire === true}
                     size="small"
@@ -173,7 +173,7 @@ const EditCertification = (props) => {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select className={classes.formPadding}
+                  <FormikSelect className={classes.formPadding}
                     default ={ExpirationDateYear}
                     disabled={values.doesNotExpire === true}
                     size="small"

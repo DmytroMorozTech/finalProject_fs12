@@ -2,12 +2,13 @@ import React from 'react'
 import style from './styles'
 import Typography from '@material-ui/core/Typography'
 import ProfileCertificationItem from './ProfileCertificationItem'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { ADD_NEW_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
 import AddIcon from '@material-ui/icons/Add'
 
 function ProfileCertification (props) {
+  const certifications = props.certifications
   const classes = style()
   const dispatch = useDispatch()
 
@@ -23,7 +24,8 @@ function ProfileCertification (props) {
         </div>
       </div>
       <div>
-        <ProfileCertificationItem/>
+        {certifications && certifications.map(
+          certification => <ProfileCertificationItem key={certification.id} certification = {certification}/>)}
       </div>
     </div>
   )

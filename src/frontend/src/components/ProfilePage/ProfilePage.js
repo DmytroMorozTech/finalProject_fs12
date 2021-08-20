@@ -32,7 +32,7 @@ function ProfilePage (props) {
           <>
             <ProfileMain profile={activeProfile}/>
             <ProfileEducation educations={activeProfile.educations}/>
-            <ProfileCertification/>
+            <ProfileCertification certifications={activeProfile.certifications}/>
           </>
           }
         </Grid>

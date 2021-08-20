@@ -5,31 +5,26 @@ import Typography from '@material-ui/core/Typography'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
 import { UPDATE_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
+import convertLocalDateToString from '../../../utils/convertLocalDateToString'
 
 function ProfileCertificationItem (props) {
-  const {
-    Name = 'DAN-IT Education',
-    issOrg = 'DAN-IT',
-    IssueDateMonth = 'April',
-    IssueDateYear = '2019',
-    ExpirationDateMonth = 'April',
-    ExpirationDateYear = '2049',
-    CredentialID = '2987553783',
-    CredentialUrl = 'https://https://dan-it.com.ua/'
-  } = props
+  const {certification: cert} = props
 
   const classes = style()
   const dispatch = useDispatch()
+  const issuedMonthAndYear = convertLocalDateToString(cert.issueDate)
+  const hasExpiryDate = cert.hasExpiryDate
+  const expirationMonthAndYear = hasExpiryDate ? convertLocalDateToString(cert.expirationDate) : ''
 
   return (
     <div className={classes.content}>
       <div className={classes.school}>
-        <Typography variant="body1" className={classes.schoolName}>{Name}</Typography>
-        <Typography>{issOrg}</Typography>
-        <Typography>Issued {IssueDateMonth} {IssueDateYear}</Typography>
-        <Typography>Expires {ExpirationDateMonth} {ExpirationDateYear}</Typography>
-        <Typography>Credential ID {CredentialID}</Typography>
-        <Typography>Credential URL {CredentialUrl}</Typography>
+        <Typography variant="body1" className={classes.schoolName}>{cert.name}</Typography>
+        <Typography>{cert.issuingOrganization}</Typography>
+        <Typography>Issued {issuedMonthAndYear}</Typography>
+        <Typography> {hasExpiryDate ? `Expires: ${expirationMonthAndYear}` : 'No Expiration Date'} </Typography>
+        <Typography>Credential ID: {cert.credentialId}</Typography>
+        <Typography>Credential URL: {cert.credentialUrl}</Typography>
       </div>
       <div className={classes.btnCreate} onClick={() =>
         dispatch(toggleModalAction({modalType: UPDATE_CERTIFICATION}))}>
