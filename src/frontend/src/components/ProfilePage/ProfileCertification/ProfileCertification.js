@@ -1,13 +1,13 @@
 import React from 'react'
 import style from './styles'
 import Typography from '@material-ui/core/Typography'
-import ProfileEducationItem from './ProfileEducationItem'
+import ProfileCertificationItem from './ProfileCertificationItem'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_EDUCATION} from '../../Modal/modalTypes'
+import { ADD_NEW_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
 import AddIcon from '@material-ui/icons/Add'
 
-function ProfileEducation (props) {
+function ProfileCertification (props) {
   const classes = style()
   const dispatch = useDispatch()
 
@@ -15,17 +15,17 @@ function ProfileEducation (props) {
     <div className={classes.root}>
       <div className={classes.header}>
         <Typography variant="h3">
-          Education
+          Certification
         </Typography>
         <div onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_EDUCATION}))}>
+          dispatch(toggleModalAction({modalType: ADD_NEW_CERTIFICATION}))}>
           <AddIcon className={classes.createIcon}/>
         </div>
       </div>
       <div>
-        <ProfileEducationItem/>
+        <ProfileCertificationItem/>
       </div>
     </div>
   )
 }
-export default ProfileEducation
+export default ProfileCertification

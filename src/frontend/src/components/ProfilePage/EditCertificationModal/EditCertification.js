@@ -12,16 +12,14 @@ import Grid from '@material-ui/core/Grid'
 import Select from '../../../shared/FormComponents/Select/Select'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import { createNewCertificationAction } from '../../../redux/Certification/certificationAction'
+import { updateCertificationAction } from '../../../redux/Certification/certificationAction'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
+import { DELETE_CERTIFICATION } from '../../Modal/modalTypes'
 
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(3)
-  },
-  children: {
-    paddingBottom: 25
   }
 }))(MuiDialogContent)
 
@@ -30,7 +28,7 @@ const DialogActions = withStyles((theme) => ({
     width: '100%',
     margin: 0,
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
 }))(MuiDialogActions)
@@ -65,18 +63,28 @@ const CertificationSchema = Yup.object().shape({
 
 })
 
-export const AddNewCertification = () => {
+const EditCertification = (props) => {
+  const {
+    Name = 'DAN-IT Education',
+    issOrg = 'DAN-IT',
+    IssueDateMonth = 'April',
+    IssueDateYear = '2019',
+    ExpirationDateMonth = 'April',
+    ExpirationDateYear = '2049',
+    CredentialID = '2987553783',
+    CredentialUrl = 'https://https://dan-it.com.ua/'
+  } = props
   const classes = styles()
   const dispatch = useDispatch()
 
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        Add certification
+        Edit certification
       </Typography>
       <Formik
         initialValues={{
-          Name: '',
+          Name: {Name},
           issOrg: '',
           doesNotExpire: true,
           IssueDateMonth: '',
@@ -88,9 +96,9 @@ export const AddNewCertification = () => {
         }}
         validationSchema={CertificationSchema}
         onSubmit={values => {
-          dispatch(toggleModalAction())
           console.log(values)
-          dispatch(createNewCertificationAction({ values }))
+          dispatch(updateCertificationAction({ values }))
+          dispatch(toggleModalAction())
         }}
       >
         {({values}) => (
@@ -101,6 +109,7 @@ export const AddNewCertification = () => {
                   <Field className={classes.formPadding}
                     name="Name"
                     label="Name"
+                    // value = {Name}
                     required
                     placeholder="Ex: Microsoft certified network associate security"
                     type="text"
@@ -113,6 +122,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
+                    default ={issOrg}
                     name="issOrg"
                     label="Issuing organization"
                     required
@@ -136,6 +146,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <Select className={classes.formPadding}
+                    default ={IssueDateMonth}
                     size="small"
                     name="IssueDateMonth"
                     label="Month"
@@ -144,6 +155,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <Select className={classes.formPadding}
+                    default ={IssueDateYear}
                     size="small"
                     name="IssueDateYear"
                     label="Year"
@@ -152,6 +164,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <Select className={classes.formPadding}
+                    default ={ExpirationDateMonth}
                     disabled={values.doesNotExpire === true}
                     size="small"
                     name="ExpirationDateMonth"
@@ -161,6 +174,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <Select className={classes.formPadding}
+                    default ={ExpirationDateYear}
                     disabled={values.doesNotExpire === true}
                     size="small"
                     name="ExpirationDateYear"
@@ -170,6 +184,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
+                    default ={CredentialID}
                     name="CredentialID"
                     label="Credential ID"
                     type="text"
@@ -182,6 +197,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
+                    default ={CredentialUrl}
                     name="CredentialUrl"
                     label="Credential URL"
                     type="text"
@@ -192,9 +208,12 @@ export const AddNewCertification = () => {
                       shrink: true
                     }}/>
                 </Grid>
+
               </Grid>
             </DialogContent>
-            <DialogActions>
+            <DialogActions classes='justifyContent'>
+              <SharedButton onClick={() =>
+                dispatch(toggleModalAction({modalType: DELETE_CERTIFICATION}))} variant="outlined" color="secondary" title="Delete license or certification"/>
               <SharedButton type="submit" title="Save"/>
             </DialogActions>
           </Form>
@@ -203,4 +222,4 @@ export const AddNewCertification = () => {
     </div>
   )
 }
-export default AddNewCertification
+export default EditCertification

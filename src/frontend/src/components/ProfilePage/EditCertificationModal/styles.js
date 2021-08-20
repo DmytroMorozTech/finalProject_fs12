@@ -12,5 +12,10 @@ export default makeStyles((theme) => ({
   formPadding: {
     paddingBottom: theme.spacing(6),
     width: '100%'
+  },
+
+  justifyContent: {
+    justifyContent: 'space-between'
   }
+
 }))

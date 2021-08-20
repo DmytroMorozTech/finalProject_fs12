@@ -4,9 +4,11 @@ import update from 'immutability-helper'
 const initialState = {
   Name: '',
   issOrg: '',
-  toggle: true,
-  IssueDate: '',
-  ExpirationDate: '',
+  doesNotExpire: true,
+  IssueDateMonth: '',
+  IssueDateYear: '',
+  ExpirationDateMonth: '',
+  ExpirationDateYear: '',
   CredentialID: '',
   CredentialUrl: ''
 }
