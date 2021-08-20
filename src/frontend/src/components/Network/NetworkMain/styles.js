@@ -2,6 +2,15 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
+  networkMain: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: '1',
+    flexBasis: '1',
+    // minWidth: '427px',
+    borderBox: 'border-box'
+  },
+
   invitations: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -24,8 +33,7 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4)
+    padding: theme.spacing(2)
   },
 
   mayKnow: {
@@ -33,13 +41,13 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.grey[700]
+    color: theme.palette.grey[700],
+    paddingLeft: theme.spacing(2)
   },
 
   miniProfiles: {
     display: 'flex',
-    justifyContent: 'space-between',
     flexWrap: 'wrap',
-    marginTop: theme.spacing(2)
+    paddingLeft: theme.spacing(1)
   }
 }))

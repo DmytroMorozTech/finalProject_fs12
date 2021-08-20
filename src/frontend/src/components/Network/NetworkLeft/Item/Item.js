@@ -6,7 +6,7 @@ function Item ({ Icon, title, number, onClick }) {
 
   return (
     <div className={classes.container} onClick={onClick}>
-      <div className={classes.items} >
+      <div className={classes.items}>
         <div className={classes.icons}>{Icon}</div>
         <div className={classes.titles}>{title}</div>
       </div>
