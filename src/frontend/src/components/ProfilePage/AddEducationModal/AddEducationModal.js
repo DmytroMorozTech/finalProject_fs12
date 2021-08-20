@@ -71,7 +71,7 @@ const AddEducationModal = () => {
       <Typography variant="subtitle1" className={classes.title}>
        Add education
       </Typography>
-     
+
       <Grid container>
         <Formik
           initialValues={{

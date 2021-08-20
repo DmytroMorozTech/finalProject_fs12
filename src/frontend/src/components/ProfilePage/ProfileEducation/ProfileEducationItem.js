@@ -4,7 +4,7 @@ import CreateIcon from '@material-ui/icons/Create'
 import Typography from '@material-ui/core/Typography'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
-import {EDIT_EDUCATION} from '../../Modal/modalTypes'
+import {EDIT_EDUCATION} from '../../../redux/Modal/modalTypes'
 
 const ProfileEducationItem = (props) => {
   const {school, degreeReceived, dateStart, dateFinish} = props.education

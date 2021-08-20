@@ -9,8 +9,8 @@ import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import { EDIT_INTRO } from '../../Modal/modalTypes'
-import { useDispatch } from 'react-redux'
+import { EDIT_INTRO } from '../../../redux/Modal/modalTypes'
+import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
   const {
