@@ -6,12 +6,15 @@ import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import TextField from '../../../shared/FormComponents/TextField/TextField'
-import Select from '../../../shared/FormComponents/Select/Select'
+import FormikTextField from '../../../shared/FormComponents/FormikTextField/FormikTextField'
+import FormikSelect from '../../../shared/FormComponents/FormikSelect/FormikSelect'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../data/month.json'
 import year from '../../../data/year.json'
 import SharedButton from '../../../shared/Button/SharedButton'
+import {useDispatch} from 'react-redux'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import {createNewEducationAction} from '../../../redux/Profile/profileActions'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -29,31 +32,39 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions)
 
 const AddEducationModal = () => {
+  const dispatch = useDispatch()
+
   const classes = styles()
   const INITIAL_FORM_STATE = {
     school: '',
-    degree: '',
+    degreeReceived: '',
     fieldOfStudy: '',
     startMonth: '',
     startYear: '',
     endMonth: '',
-    endDate: '',
-    grade: '',
-    activitiesAndSocieties: '',
+    endYear: '',
+    activities: '',
     description: ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     school: Yup.string()
-      .required('School is required'),
-    degree: Yup.string(),
-    fieldOfStudy: Yup.string(),
-    startMonth: Yup.string(),
-    startYear: Yup.number(),
-    endMonth: Yup.string(),
-    endDate: Yup.number(),
-    grade: Yup.string(),
-    activitiesAndSocieties: Yup.string(),
+      .required('Required'),
+    degreeReceived: Yup.string()
+      .required('Required'),
+    fieldOfStudy: Yup.string()
+      .required('Required'),
+    startMonth: Yup.string()
+      .required('Required'),
+    startYear: Yup.number()
+      .required('Required'),
+    endMonth: Yup.string()
+      .required('Required'),
+    endYear: Yup.number()
+      .required('Required'),
+    activities: Yup.string()
+      .required('Required'),
     description: Yup.string()
+      .required('Required')
   })
   return (
     <div>
@@ -69,74 +80,101 @@ const AddEducationModal = () => {
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
             console.log(values)
+            dispatch(createNewEducationAction(values))
+            dispatch(toggleModalAction())
           }}
         >
           <Form>
             <DialogContent dividers>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="school"
                     label="School"
-                    helperText="Ex: Boston University"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    placeholder="Ex: Boston University"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    name="degree"
+                  <FormikTextField
+                    name="degreeReceived"
                     label="Degree"
-                    helperText="Ex: Bachelor`s"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    placeholder="Ex: Bachelor`s"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="fieldOfStudy"
                     label="Field of study"
-                    helperText="Ex: Business"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    placeholder="Ex: Business"
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select
+                  <FormikSelect
                     name="startMonth"
                     label="Month"
+                    size="small"
                     options={month}
                     helperText="Start date"
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select
+                  <FormikSelect
                     name="startYear"
                     label="Year"
+                    size="small"
                     options={year}
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select
+                  <FormikSelect
                     name="endMonth"
                     label="Month"
+                    size="small"
                     options={month}
                     helperText="End date"
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Select
-                    name="endDate"
+                  <FormikSelect
+                    name="endYear"
                     label="Year"
+                    size="small"
                     options={year}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    name="activitiesAndSocieties"
+                  <FormikTextField
+                    name="activities"
                     label="Activities and societies"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    placeholder="Ex: Alpha Phi Omega, Marching band, Volleyball"
                     multiline={true}
                     row={2}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <FormikTextField
                     name="description"
                     label="Description"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
                     multiline={true}
                     row={4}
                   />
@@ -144,7 +182,7 @@ const AddEducationModal = () => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton type="submit" title="Save"/>
+              <SharedButton title="Save" type="submit"/>
             </DialogActions>
           </Form>
         </Formik>

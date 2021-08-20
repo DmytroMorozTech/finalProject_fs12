@@ -2,15 +2,18 @@ import React, { useCallback, useEffect } from 'react'
 import styles from './styles'
 import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
-import { connect, useDispatch } from 'react-redux'
+import {connect, useDispatch, useSelector} from 'react-redux'
 import Preloader from '../../../shared/Preloader/Preloader'
 import * as actions from '../../../redux/Post/postActionTypes'
 import http from '../../../services/httpService'
+import {activeUserSelector} from '../../../redux/User/userSelector'
+import getHeaders from '../../../services/headersService'
 
 function Feed (props) {
   const { type, loading = true, postsState, bookmarkedPostsState } = props
   const dispatch = useDispatch()
   const classes = styles()
+  const activeUser = useSelector(activeUserSelector)
 
   const localState = (type === 'posts') ? postsState : bookmarkedPostsState
   const { postsList: posts, pagination } = localState
@@ -22,15 +25,17 @@ function Feed (props) {
     return http
       .get('api/posts',
         {
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_POSTS, payload: page })
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_POSTS, payload: {posts, headers} })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
@@ -41,15 +46,17 @@ function Feed (props) {
     return http
       .get('api/posts/bookmarked',
         {
+          headers: getHeaders(),
           params: {
             pageNumber: pageNumber,
             pageSize: pageSize
           }
         }
       )
-      .then((result) => result.data)
-      .then((page) => {
-        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: page })
+      .then((result) => {
+        const posts = result.data
+        const headers = result.headers
+        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: {posts, headers} })
         dispatch({ type: actions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
@@ -94,7 +101,7 @@ function Feed (props) {
     <>
       {type === 'posts' &&
       <div className={classes.feed}>
-        <ShareBox/>
+        <ShareBox activeUser={activeUser}/>
         {posts.map(post => <Post key={post.id} post={post}/>)}
       </div>}
 

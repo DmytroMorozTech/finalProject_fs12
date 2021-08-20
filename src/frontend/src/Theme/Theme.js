@@ -26,6 +26,9 @@ const theme = createTheme({
       A400: '#303030',
       A700: '#616161'
     },
+    green: {
+      main: '#057642'
+    },
     error: {
       main: '#cc1016'
     }
@@ -103,7 +106,8 @@ const theme = createTheme({
   avatar: {
     small: '45px',
     medium: '50px',
-    large: '65px'
+    large: '65px',
+    extraLarge: '100px'
   },
   border: {
     simple: '1px solid #e0e0e0',

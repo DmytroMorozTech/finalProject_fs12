@@ -7,3 +7,6 @@ server:
 spring:
   profiles:
     active: "local"
+jwt:
+  header: Authorization
+  secret: my-very-secret-key

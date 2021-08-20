@@ -7,7 +7,8 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import {ADD_EDUCATION} from '../../Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
-function ProfileEducation (props) {
+const ProfileEducation = (props) => {
+  const educations = props.educations
   const classes = style()
   const dispatch = useDispatch()
 
@@ -23,9 +24,10 @@ function ProfileEducation (props) {
         </div>
       </div>
       <div>
-        <ProfileEducationItem/>
+        {educations && educations.map(education => <ProfileEducationItem key={education.id} education={education}/>)}
       </div>
     </div>
   )
 }
+
 export default ProfileEducation

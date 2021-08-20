@@ -1,5 +1,7 @@
 package com.danit.fs12.entity;
 
+import com.danit.fs12.controller.UserViews;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -8,8 +8,12 @@ import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import React from 'react'
 import { Hidden } from '@material-ui/core'
+import {useSelector} from 'react-redux'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Navbar () {
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser.id
   const classes = styles()
 
   const items = [
@@ -18,7 +22,7 @@ function Navbar () {
     { Icon: <BusinessCenterRoundedIcon fontSize='inherit'/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
     { Icon: <SmsRoundedIcon fontSize='inherit'/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
     { Icon: <NotificationsRoundedIcon fontSize='inherit'/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
-    { Icon: <AccountCircleRoundedIcon fontSize='inherit'/>, title: 'Me', arrow: true, toggleMenu: true, to: '/personal' }
+    { Icon: <AccountCircleRoundedIcon fontSize='inherit'/>, title: 'Me', arrow: true, toggleMenu: true, to: `/profiles/${activeUserId}` }
   ]
 
   return (

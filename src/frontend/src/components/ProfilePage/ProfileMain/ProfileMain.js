@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
-import avatarUrl from '../../../temporaryImages/avatar.jpg'
 import style from './styles'
 import { Hidden, Link } from '@material-ui/core'
 import SharedButton from '../../../shared/Button/SharedButton'
@@ -15,8 +14,7 @@ import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
   const {
-    fullName = 'Alan Frost', position = 'Junior Java developer',
-    company = 'DAN.IT', city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
+    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45, profile
   } = props
   const classes = style()
   const dispatch = useDispatch()
@@ -31,7 +29,7 @@ function ProfileMain (props) {
       </div>
       <div>
         <div className={classes.row}>
-          <Avatar src={avatarUrl} alt={avatarUrl} className={classes.bigAvatar}/>
+          <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
           <div onClick={() =>
             dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
             <CreateIcon className={classes.editName}/>
@@ -40,10 +38,10 @@ function ProfileMain (props) {
         <div className={classes.info}>
           <div className={classes.leftPanel}>
             <Typography variant="h3">
-              {fullName}
+              {profile.fullName}
             </Typography>
             <Typography variant="body1">
-              {position} — {company}
+              {profile.positionAndCompany}
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
@@ -68,7 +66,7 @@ function ProfileMain (props) {
             <Hidden xsDown>
               <Typography variant="h5" className={classes.rightPanel}>
                 <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
-                <span>{company}</span>
+                <span>{profile.positionAndCompany}</span>
               </Typography>
             </Hidden>
           </div>
@@ -82,7 +80,7 @@ function ProfileMain (props) {
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault} className={classes.column}>
             <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
-            <Typography variant="body1" color="secondary">{position}</Typography>
+            <Typography variant="body1" color="secondary">{profile.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
           <div>

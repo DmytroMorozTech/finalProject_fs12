@@ -6,8 +6,8 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
 import {EDIT_EDUCATION} from '../../Modal/modalTypes'
 
-function ProfileEducationItem (props) {
-  const {school = 'DANIT', degreeReceived = 'Bachelar', dateStart = 2019, dateFinish = 2021} = props
+const ProfileEducationItem = (props) => {
+  const {school, degreeReceived, dateStart, dateFinish} = props.education
   const classes = style()
   const dash = <span className={classes.dash}>-</span>
   const dispatch = useDispatch()
