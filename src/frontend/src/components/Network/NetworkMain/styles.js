@@ -4,11 +4,7 @@ export default makeStyles((theme) => ({
 
   networkMain: {
     display: 'flex',
-    flexDirection: 'column',
-    flexShrink: '1',
-    flexBasis: '1',
-    // minWidth: '427px',
-    borderBox: 'border-box'
+    flexDirection: 'column'
   },
 
   invitations: {
