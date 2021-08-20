@@ -106,7 +106,8 @@ const theme = createTheme({
   avatar: {
     small: '45px',
     medium: '50px',
-    large: '65px'
+    large: '65px',
+    extraLarge: '100px'
   },
   border: {
     simple: '1px solid #e0e0e0',
