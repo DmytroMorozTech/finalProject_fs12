@@ -1,5 +1,7 @@
 import * as actions from './modalActionTypes'
-import {ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION, UPDATE_CERTIFICATION, EDIT_EDUCATION, EDIT_INTRO, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
+import {ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION,
+  UPDATE_CERTIFICATION, EDIT_EDUCATION, EDIT_INTRO,
+  USERS_WHO_LIKED_POST} from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
@@ -41,7 +43,7 @@ const modalReducer = (state = initialState, action) => {
           content = <EditCertification/>
           break
 
-        case SHOW_USERS_WHO_LIKED_POST:
+        case USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
           break
 

@@ -19,7 +19,6 @@ const monthsMapping = {
 const convertLocalDateToString = (date) => {
   const month = monthsMapping[date.slice(5, 7)]
   const year = date.slice(0, 4)
-  const result = `${month} ${year}`
-  return result
+  return `${month} ${year}`
 }
 export default convertLocalDateToString

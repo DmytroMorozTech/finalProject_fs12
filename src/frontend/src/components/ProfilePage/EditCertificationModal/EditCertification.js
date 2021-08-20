@@ -12,10 +12,10 @@ import Grid from '@material-ui/core/Grid'
 import FormikSelect from '../../../shared/FormComponents/FormikSelect/FormikSelect'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import { updateCertificationAction } from '../../../redux/Certification/certificationAction'
+// import { updateCertificationAction } from '../../../redux/Certification/certificationAction'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
-import { DELETE_CERTIFICATION } from '../../Modal/modalTypes'
+import { DELETE_CERTIFICATION } from '../../../redux/Modal/modalTypes'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -42,19 +42,19 @@ const CertificationSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Issuing organization is a required field'),
-  doesNotExpire: Yup.boolean(),
+  hasExpiryDate: Yup.boolean(),
   IssueDateMonth: Yup.string()
     .required('Issue date Month is required'),
   IssueDateYear: Yup.string()
     .required('Issue date Year is required'),
   ExpirationDateMonth: Yup.string()
     .when('doesNotExpire', {
-      is: false,
+      is: true,
       then: Yup.string().required('Expiration date Month is required')
     }),
   ExpirationDateYear: Yup.string()
     .when('doesNotExpire', {
-      is: false,
+      is: true,
       then: Yup.string().required('Expiration date Year is required')
     }),
   CredentialID: Yup.string(),
@@ -84,9 +84,9 @@ const EditCertification = (props) => {
       </Typography>
       <Formik
         initialValues={{
-          Name: {Name},
+          Name: `${Name}`,
           issOrg: '',
-          doesNotExpire: true,
+          hasExpiryDate: false,
           IssueDateMonth: '',
           IssueDateYear: '',
           ExpirationDateMonth: '',
@@ -97,7 +97,7 @@ const EditCertification = (props) => {
         validationSchema={CertificationSchema}
         onSubmit={values => {
           console.log(values)
-          dispatch(updateCertificationAction({ values }))
+          // dispatch(updateCertificationAction({ values }))
           dispatch(toggleModalAction())
         }}
       >
@@ -109,7 +109,6 @@ const EditCertification = (props) => {
                   <Field className={classes.formPadding}
                     name="Name"
                     label="Name"
-                    // value = {Name}
                     required
                     placeholder="Ex: Microsoft certified network associate security"
                     type="text"
@@ -139,7 +138,7 @@ const EditCertification = (props) => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="doesNotExpire"
+                      name="hasExpiryDate"
                     />
                     <span>This credential does not expire</span>
                   </label>
@@ -165,7 +164,7 @@ const EditCertification = (props) => {
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     default ={ExpirationDateMonth}
-                    disabled={values.doesNotExpire === true}
+                    disabled={values.hasExpiryDate === false}
                     size="small"
                     name="ExpirationDateMonth"
                     label="Month"
@@ -175,7 +174,7 @@ const EditCertification = (props) => {
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     default ={ExpirationDateYear}
-                    disabled={values.doesNotExpire === true}
+                    disabled={values.hasExpiryDate === false}
                     size="small"
                     name="ExpirationDateYear"
                     label="Year"

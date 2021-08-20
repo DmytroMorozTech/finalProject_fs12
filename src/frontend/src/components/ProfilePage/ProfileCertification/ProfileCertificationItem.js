@@ -2,16 +2,16 @@ import React from 'react'
 import style from './styles'
 import CreateIcon from '@material-ui/icons/Create'
 import Typography from '@material-ui/core/Typography'
-import toggleModalAction from '../../../redux/Modal/modalActions'
-import {useDispatch} from 'react-redux'
-import { UPDATE_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
+// import toggleModalAction from '../../../redux/Modal/modalActions'
+// import {useDispatch} from 'react-redux'
+// import { UPDATE_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
 import convertLocalDateToString from '../../../utils/convertLocalDateToString'
 
 function ProfileCertificationItem (props) {
   const {certification: cert} = props
 
   const classes = style()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const issuedMonthAndYear = convertLocalDateToString(cert.issueDate)
   const hasExpiryDate = cert.hasExpiryDate
   const expirationMonthAndYear = hasExpiryDate ? convertLocalDateToString(cert.expirationDate) : ''
@@ -27,7 +27,9 @@ function ProfileCertificationItem (props) {
         <Typography>Credential URL: {cert.credentialUrl}</Typography>
       </div>
       <div className={classes.btnCreate} onClick={() =>
-        dispatch(toggleModalAction({modalType: UPDATE_CERTIFICATION}))}>
+        // dispatch(toggleModalAction({modalType: UPDATE_CERTIFICATION}))
+        console.log('Hello')
+      }>
         <CreateIcon className={classes.createIcon}/>
       </div>
     </div>

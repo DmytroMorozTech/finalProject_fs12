@@ -20,7 +20,6 @@ public class CertificationRq {
   @NotNull(message = "Certificate date of issue should be specified.")
   private LocalDate issueDate;
 
-  @NotNull(message = "Certificate date of expire should be specified.")
   private LocalDate expirationDate;
 
   @NotNull(message = "Certificate credential id should be specified.")

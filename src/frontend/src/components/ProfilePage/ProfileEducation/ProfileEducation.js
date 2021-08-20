@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ProfileEducationItem from './ProfileEducationItem'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_EDUCATION} from '../../Modal/modalTypes'
+import {ADD_EDUCATION} from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
 const ProfileEducation = (props) => {

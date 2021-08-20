@@ -9,7 +9,7 @@ import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import { ADD_NEW_CERTIFICATION, EDIT_INTRO } from '../../Modal/modalTypes'
+import { EDIT_INTRO } from '../../../redux/Modal/modalTypes'
 import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
@@ -73,8 +73,7 @@ function ProfileMain (props) {
         </div>
         <div>
           <SharedButton title="Open to"/>
-          <SharedButton onClick={() =>
-            dispatch(toggleModalAction({modalType: ADD_NEW_CERTIFICATION}))} title="Add section" variant="outlined" color="secondary"/>
+          <SharedButton title="Add section" variant="outlined" color="secondary"/>
           <SharedButton title="More" variant="outlined" color="secondary"/>
         </div>
         <div className={classes.box}>

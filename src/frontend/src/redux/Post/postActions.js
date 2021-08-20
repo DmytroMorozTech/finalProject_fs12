@@ -1,7 +1,7 @@
 import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
-import { SHOW_USERS_WHO_LIKED_POST } from '../../components/Modal/modalTypes'
+import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
 import getHeaders from '../../services/headersService'
 
 export const createNewPostAction = (payload) => (dispatch) => {
@@ -46,7 +46,7 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
       })
     })
     .then(() =>
-      dispatch(toggleModalAction({ modalType: SHOW_USERS_WHO_LIKED_POST, id: id })))
+      dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_POST, id: id })))
 }
 
 export const toggleLikeAction = (payload) => (dispatch) => {

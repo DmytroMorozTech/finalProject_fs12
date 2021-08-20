@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ProfileCertificationItem from './ProfileCertificationItem'
 import { useDispatch } from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import { ADD_NEW_CERTIFICATION } from '../../../redux/Certification/certificationActionTypes'
+import { ADD_NEW_CERTIFICATION } from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
 function ProfileCertification (props) {

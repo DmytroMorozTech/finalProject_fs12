@@ -25,6 +25,15 @@ const profileReducer = (state = initialState, action) => {
         }
       }
 
+    case actions.ADD_NEW_CERTIFICATION:
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          certifications: [...state.activeProfile.certifications, action.payload]
+        }
+      }
+
     default: {
       return state
     }

@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import FormikSelect from '../../../shared/FormComponents/FormikSelect/FormikSelect'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import { createNewCertificationAction } from '../../../redux/Certification/certificationAction'
+import {createNewCertificationAction} from '../../../redux/Profile/profileActions'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
 
@@ -36,31 +36,31 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions)
 
 const CertificationSchema = Yup.object().shape({
-  Name: Yup.string()
+  name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Name is a required field'),
-  issOrg: Yup.string()
+  issuingOrganization: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Issuing organization is a required field'),
-  doesNotExpire: Yup.boolean(),
-  IssueDateMonth: Yup.string()
+  hasExpiryDate: Yup.boolean(),
+  issueDateMonth: Yup.string()
     .required('Issue date Month is required'),
-  IssueDateYear: Yup.string()
+  issueDateYear: Yup.string()
     .required('Issue date Year is required'),
-  ExpirationDateMonth: Yup.string()
+  expirationDateMonth: Yup.string()
     .when('doesNotExpire', {
-      is: false,
+      is: true,
       then: Yup.string().required('Expiration date Month is required')
     }),
-  ExpirationDateYear: Yup.string()
+  expirationDateYear: Yup.string()
     .when('doesNotExpire', {
-      is: false,
+      is: true,
       then: Yup.string().required('Expiration date Year is required')
     }),
-  CredentialID: Yup.string(),
-  CredentialUrl: Yup.string()
+  credentialId: Yup.string(),
+  credentialUrl: Yup.string()
     .url()
 
 })
@@ -76,21 +76,21 @@ export const AddNewCertification = () => {
       </Typography>
       <Formik
         initialValues={{
-          Name: '',
-          issOrg: '',
-          doesNotExpire: true,
-          IssueDateMonth: '',
-          IssueDateYear: '',
-          ExpirationDateMonth: '',
-          ExpirationDateYear: '',
-          CredentialID: '',
-          CredentialUrl: ''
+          name: '',
+          issuingOrganization: '',
+          hasExpiryDate: false,
+          issueDateMonth: '',
+          issueDateYear: '',
+          expirationDateMonth: '',
+          expirationDateYear: '',
+          credentialId: '',
+          credentialUrl: ''
         }}
         validationSchema={CertificationSchema}
         onSubmit={values => {
+          dispatch(createNewCertificationAction(values))
           dispatch(toggleModalAction())
           console.log(values)
-          dispatch(createNewCertificationAction({ values }))
         }}
       >
         {({values}) => (
@@ -99,7 +99,7 @@ export const AddNewCertification = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
-                    name="Name"
+                    name="name"
                     label="Name"
                     required
                     placeholder="Ex: Microsoft certified network associate security"
@@ -113,7 +113,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
-                    name="issOrg"
+                    name="issuingOrganization"
                     label="Issuing organization"
                     required
                     placeholder="Ex: Microsoft"
@@ -129,15 +129,15 @@ export const AddNewCertification = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="doesNotExpire"
+                      name="hasExpiryDate"
                     />
-                    <span>This credential does not expire</span>
+                    <span>Has expiration date</span>
                   </label>
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
-                    name="IssueDateMonth"
+                    name="issueDateMonth"
                     label="Month"
                     options={month}
                   />
@@ -145,32 +145,32 @@ export const AddNewCertification = () => {
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
-                    name="IssueDateYear"
+                    name="issueDateYear"
                     label="Year"
                     options={year}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
-                    disabled={values.doesNotExpire === true}
+                    disabled={values.hasExpiryDate === false}
                     size="small"
-                    name="ExpirationDateMonth"
+                    name="expirationDateMonth"
                     label="Month"
                     options={month}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
-                    disabled={values.doesNotExpire === true}
+                    disabled={values.hasExpiryDate === false}
                     size="small"
-                    name="ExpirationDateYear"
+                    name="expirationDateYear"
                     label="Year"
                     options={year}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
-                    name="CredentialID"
+                    name="credentialId"
                     label="Credential ID"
                     type="text"
                     variant="outlined"
@@ -182,7 +182,7 @@ export const AddNewCertification = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field className={classes.formPadding}
-                    name="CredentialUrl"
+                    name="credentialUrl"
                     label="Credential URL"
                     type="text"
                     variant="outlined"
