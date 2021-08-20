@@ -9,6 +9,7 @@ import { getActiveProfileAction } from '../../redux/Profile/profileActions'
 import { useDispatch, useSelector } from 'react-redux'
 import {activeProfileSelector, isLoadingProfileSelector} from '../../redux/Profile/profileSelector'
 import Preloader from '../../shared/Preloader/Preloader'
+import ProfileCertification from './ProfileCertification/ProfileCertification'
 
 function ProfilePage (props) {
   const classes = styles()
@@ -31,6 +32,7 @@ function ProfilePage (props) {
           <>
             <ProfileMain profile={activeProfile}/>
             <ProfileEducation educations={activeProfile.educations}/>
+            <ProfileCertification certifications={activeProfile.certifications}/>
           </>
           }
         </Grid>

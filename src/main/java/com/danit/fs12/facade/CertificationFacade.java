@@ -18,5 +18,12 @@ public class CertificationFacade extends GeneralFacade<Certification, Certificat
     return convertToDto(savedCertification);
   }
 
+//  public CertificationRs updateCertification(CertificationRq rq, Long id) {
+//    Certification certification = convertToEntity(rq);
+//    Certification updatedCertification =
+//      certificationService.updateCertification(Certification certification, Long id);
+//    return convertToDto(updatedCertification);
+//  }
+
 }
 
