@@ -3,6 +3,7 @@ package com.danit.fs12.controller;
 import com.danit.fs12.entity.education.EducationRq;
 import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.facade.EducationFacade;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,7 @@ public class EducationController {
   }
 
   @PostMapping
+  @JsonView(UserViews.Profile.class)
   public ResponseEntity<EducationRs> createEducation(@Valid @RequestBody EducationRq rq) {
     EducationRs education = educationFacade.createEducation(rq);
     return ResponseEntity.ok(education);

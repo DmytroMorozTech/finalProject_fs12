@@ -3,6 +3,7 @@ package com.danit.fs12.controller;
 import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.facade.CommentFacade;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +37,14 @@ public class CommentController {
   }
 
   @PostMapping
+  @JsonView(CommentViews.Base.class)
   public ResponseEntity<?> createComment(@Valid @RequestBody CommentRq rq) {
     CommentRs comment = commentFacade.createComment(rq);
     return ResponseEntity.ok(comment);
   }
 
   @GetMapping(path = "/for_post/{postId}")
+  @JsonView(CommentViews.Base.class)
   public ResponseEntity<List<CommentRs>> getCommentsForPost(@PathVariable Long postId) {
     List<CommentRs> comments = commentFacade.getCommentsForPost(postId);
     return ResponseEntity.ok(comments);

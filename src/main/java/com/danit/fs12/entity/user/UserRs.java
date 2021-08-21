@@ -1,11 +1,12 @@
 package com.danit.fs12.entity.user;
 
+import com.danit.fs12.controller.CommentViews;
 import com.danit.fs12.controller.PostViews;
 import com.danit.fs12.controller.UserViews;
-import com.danit.fs12.entity.certification.Certification;
-import com.danit.fs12.entity.education.Education;
+import com.danit.fs12.entity.certification.CertificationRs;
+import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.entity.group.Group;
-import com.danit.fs12.entity.workplace.WorkPlace;
+import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
@@ -16,10 +17,10 @@ import java.util.Set;
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class})
+  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
   private Long id;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class})
+  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
   private LocalDateTime createdDate;
 
   private LocalDateTime lastModifiedDate;
@@ -28,13 +29,13 @@ public class UserRs {
 
   private String lastName;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class})
+  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
   private String fullName;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class})
+  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
   private String avatarUrl;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class})
+  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
   private String positionAndCompany;
 
   @JsonView(UserViews.Profile.class)
@@ -50,19 +51,19 @@ public class UserRs {
   private List<Group> groups;
 
   @JsonView(UserViews.Profile.class)
-  private Set<User> usersFollowed;
+  private Set<UserRs> usersFollowed;
 
   @JsonView(UserViews.Profile.class)
-  private Set<User> usersFollowing;
+  private Set<UserRs> usersFollowing;
 
   @JsonView(UserViews.Profile.class)
-  private List<WorkPlace> workPlaces;
+  private List<WorkPlaceRs> workPlaces;
 
   @JsonView(UserViews.Profile.class)
-  private List<Education> educations;
+  private List<EducationRs> educations;
 
   @JsonView(UserViews.Profile.class)
-  private List<Certification> certifications;
+  private List<CertificationRs> certifications;
 
 
 

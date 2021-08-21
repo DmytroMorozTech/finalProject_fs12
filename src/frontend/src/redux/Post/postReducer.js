@@ -81,7 +81,7 @@ const postReducer = (state = initialState, action) => {
       const updatedPost1 = action.payload
 
       const currentPost1 = state.bookmarked.postsList.find((post) => post.id === updatedPost1.id)
-      if (currentPost1 === null) return state
+      if (currentPost1 == null) return state
 
       const indexOfCurrentPost1 = state.bookmarked.postsList.indexOf(currentPost1)
 

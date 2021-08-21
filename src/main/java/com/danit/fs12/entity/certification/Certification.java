@@ -1,10 +1,7 @@
 package com.danit.fs12.entity.certification;
 
-import com.danit.fs12.controller.UserViews;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +20,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @Table(name = "certifications")
-@JsonView(UserViews.Profile.class)
 public class Certification extends AbstractEntity {
   private String name;
 
@@ -46,7 +42,6 @@ public class Certification extends AbstractEntity {
   private String credentialUrl;
 
   @ManyToOne
-  @JsonIgnore
   @JoinColumn(name = "user_id")
   private User user;
 
