@@ -8,6 +8,7 @@ import { Container, Hidden } from '@material-ui/core'
 import {useSelector} from 'react-redux'
 import {isLoadingUserSelector} from '../../redux/User/userSelector'
 import Preloader from '../../shared/Preloader/Preloader'
+import MainRight from './MainRight/MainRight'
 
 function Main () {
   const classes = styleMain()
@@ -29,8 +30,8 @@ function Main () {
         </Grid>
 
         <Hidden mdDown>
-          <Grid item lg={2} xl={2}>
-            <MainLeft/>
+          <Grid item lg={3} xl={3}>
+            <MainRight/>
           </Grid>
         </Hidden>
 
