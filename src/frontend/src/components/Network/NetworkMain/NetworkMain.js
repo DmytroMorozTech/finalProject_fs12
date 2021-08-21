@@ -6,7 +6,7 @@ function NetworkMain () {
   const classes = styles()
 
   return (
-    <div>
+    <div className={classes.networkMain}>
       <div className={classes.invitations}>
         No pending invitations
         <Button color="secondary" className={classes.button}>
