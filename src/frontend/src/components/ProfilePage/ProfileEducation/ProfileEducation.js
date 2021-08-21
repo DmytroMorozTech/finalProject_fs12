@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ProfileEducationItem from './ProfileEducationItem'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_EDUCATION} from '../../../redux/Modal/modalTypes'
+import {ADD_NEW_EDUCATION} from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
 const ProfileEducation = (props) => {
@@ -19,7 +19,7 @@ const ProfileEducation = (props) => {
           Education
         </Typography>
         <div onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_EDUCATION}))}>
+          dispatch(toggleModalAction({modalType: ADD_NEW_EDUCATION}))}>
           <AddIcon className={classes.createIcon}/>
         </div>
       </div>

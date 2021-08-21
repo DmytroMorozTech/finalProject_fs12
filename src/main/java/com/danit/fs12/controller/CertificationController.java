@@ -33,11 +33,11 @@ public class CertificationController {
     return certificationFacade.findAll();
   }
 
-//  @GetMapping(path = "{id}")
-//  public ResponseEntity<CertificationRs> findById(@PathVariable Long id) {
-//    CertificationRs certification = certificationFacade.findById(id);
-//    return ResponseEntity.ok(certification);
-//  }
+  //  @GetMapping(path = "{id}")
+  //  public ResponseEntity<CertificationRs> findById(@PathVariable Long id) {
+  //    CertificationRs certification = certificationFacade.findById(id);
+  //    return ResponseEntity.ok(certification);
+  //  }
 
   @PostMapping
   @JsonView(UserViews.Profile.class)
@@ -46,13 +46,13 @@ public class CertificationController {
     return ResponseEntity.ok(certification);
   }
 
-    @PutMapping(path = "{id}")
-    @JsonView(UserViews.Profile.class)
-    public ResponseEntity<CertificationRs> updateCertification(@Valid @RequestBody CertificationRq rq,
-                                                               @PathVariable Long id) {
-      CertificationRs certification = certificationFacade.updateCertification(rq, id);
-      return ResponseEntity.ok(certification);
-    }
+  @PutMapping(path = "{id}")
+  @JsonView(UserViews.Profile.class)
+  public ResponseEntity<CertificationRs> updateCertification(@Valid @RequestBody CertificationRq rq,
+                                                             @PathVariable Long id) {
+    CertificationRs certification = certificationFacade.updateCertification(rq, id);
+    return ResponseEntity.ok(certification);
+  }
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {

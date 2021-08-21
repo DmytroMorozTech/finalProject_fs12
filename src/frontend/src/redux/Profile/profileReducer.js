@@ -41,6 +41,32 @@ const profileReducer = (state = initialState, action) => {
         }
       })
 
+    case actions.DELETE_EDUCATION:
+      const educationId = action.payload
+
+      const filteredEducations = state.activeProfile.educations.filter(e => e.id !== educationId)
+
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          educations: [...filteredEducations]
+        }
+      }
+
+    case actions.DELETE_CERTIFICATION:
+      const certificationId = action.payload
+
+      const filteredCertifications = state.activeProfile.certifications.filter(cert => cert.id !== certificationId)
+
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          certifications: [...filteredCertifications]
+        }
+      }
+
     case actions.ADD_NEW_CERTIFICATION:
       return {
         ...state,
@@ -49,6 +75,21 @@ const profileReducer = (state = initialState, action) => {
           certifications: [...state.activeProfile.certifications, action.payload]
         }
       }
+
+    case actions.UPDATE_CERTIFICATION:
+      const updatedCertification = action.payload
+
+      const currentCertification = state.activeProfile.certifications
+        .find((certification) => certification.id === updatedCertification.id)
+      if (currentCertification == null) return state
+
+      const indexOfCurrentCertification = state.activeProfile.certifications.indexOf(currentCertification)
+
+      return update(state, {
+        activeProfile: {
+          certifications: { $splice: [[indexOfCurrentCertification, 1, updatedCertification]] }
+        }
+      })
 
     default: {
       return state

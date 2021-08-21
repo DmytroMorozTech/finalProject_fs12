@@ -13,7 +13,7 @@ import month from '../../../data/month.json'
 import year from '../../../data/year.json'
 import SharedButton from '../../../shared/Button/SharedButton'
 import convertLocalDateToYearMonthObj from '../../../utils/convertLocalDateToYearMonthObj'
-import { updateEducationAction } from '../../../redux/Profile/profileActions'
+import { updateEducationAction, deleteEducationAction } from '../../../redux/Profile/profileActions'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 
@@ -185,7 +185,12 @@ const EditEducationModal = (props) => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton title="Delete education" variant="outlined" color="secondary"/>
+              <SharedButton title="Delete education" variant="outlined" color="secondary"
+                onClick={() => {
+                  dispatch(deleteEducationAction(education.id))
+                  dispatch(toggleModalAction())
+                }}/>
+
               <SharedButton title="Save" type="submit"/>
             </DialogActions>
           </Form>
