@@ -1,7 +1,9 @@
 import * as actions from './modalActionTypes'
-import {ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION,
+import {
+  ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION,
   UPDATE_CERTIFICATION, EDIT_EDUCATION, EDIT_INTRO,
-  USERS_WHO_LIKED_POST} from './modalTypes'
+  USERS_WHO_LIKED_POST, ADD_BACKGROUND_PHOTO
+} from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
@@ -9,6 +11,7 @@ import AddNewCertification from '../../components/ProfilePage/AddNewCertificatio
 import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
 import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
 import EditCertification from '../../components/ProfilePage/EditCertificationModal/EditCertification'
+import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
 
 const initialState = {
   isModalOpen: false,
@@ -57,6 +60,10 @@ const modalReducer = (state = initialState, action) => {
 
         case EDIT_INTRO:
           content = <EditIntroModal/>
+          break
+
+        case ADD_BACKGROUND_PHOTO:
+          content = <AddBackGroundPhotoModal/>
           break
 
         default:

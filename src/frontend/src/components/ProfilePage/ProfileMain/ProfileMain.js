@@ -9,7 +9,7 @@ import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import { EDIT_INTRO } from '../../../redux/Modal/modalTypes'
+import {ADD_BACKGROUND_PHOTO, EDIT_INTRO} from '../../../redux/Modal/modalTypes'
 import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
@@ -23,7 +23,8 @@ function ProfileMain (props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <div className={classes.photoIcon} onClick={preventDefault}>
+        <div className={classes.photoIcon} onClick={() =>
+          dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
