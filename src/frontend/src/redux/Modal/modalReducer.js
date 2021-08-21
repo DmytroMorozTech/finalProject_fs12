@@ -52,7 +52,7 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case EDIT_EDUCATION:
-          content = <EditEducationModal/>
+          content = <EditEducationModal education={action.payload.education}/>
           break
 
         case EDIT_INTRO:

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,14 @@ public class EducationController {
   @JsonView(UserViews.Profile.class)
   public ResponseEntity<EducationRs> createEducation(@Valid @RequestBody EducationRq rq) {
     EducationRs education = educationFacade.createEducation(rq);
+    return ResponseEntity.ok(education);
+  }
+
+  @PutMapping(path = "{id}")
+  @JsonView(UserViews.Profile.class)
+  public ResponseEntity<EducationRs> updateEducation(@Valid @RequestBody EducationRq rq,
+                                                     @PathVariable Long id) {
+    EducationRs education = educationFacade.updateEducation(rq, id);
     return ResponseEntity.ok(education);
   }
 

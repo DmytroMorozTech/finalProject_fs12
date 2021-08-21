@@ -18,4 +18,10 @@ public class EducationFacade extends GeneralFacade<Education, EducationRq, Educa
     return convertToDto(savedEducation);
   }
 
+  public EducationRs updateEducation(EducationRq rq, Long id) {
+    Education education = convertToEntity(rq);
+    Education updatedEducation = educationService.updateEducation(education, id);
+    return convertToDto(updatedEducation);
+  }
+
 }

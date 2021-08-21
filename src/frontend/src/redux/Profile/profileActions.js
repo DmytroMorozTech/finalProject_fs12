@@ -30,6 +30,18 @@ export const createNewEducationAction = (payload) => (dispatch) => {
     })
 }
 
+export const updateEducationAction = (payload, id) => (dispatch) => {
+  convertStringsToLocalDate(payload)
+  return http
+    .put(`/api/educations/${id}`, payload,
+      {headers: getHeaders()}
+    )
+    .then((res) => res.data)
+    .then((education) => {
+      dispatch({ type: actions.UPDATE_EDUCATION, payload: education })
+    })
+}
+
 export const createNewCertificationAction = (payload) => (dispatch) => {
   convertStringsToLocalDateCert(payload)
 

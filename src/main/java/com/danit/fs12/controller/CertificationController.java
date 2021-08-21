@@ -9,13 +9,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -24,10 +27,11 @@ import javax.validation.Valid;
 public class CertificationController {
   private final CertificationFacade certificationFacade;
 
-//  @GetMapping
-//  List<CertificationRs> findAll() {
-//    return certificationFacade.findAll();
-//  }
+  @GetMapping
+  @JsonView(UserViews.Profile.class)
+  List<CertificationRs> findAll() {
+    return certificationFacade.findAll();
+  }
 
 //  @GetMapping(path = "{id}")
 //  public ResponseEntity<CertificationRs> findById(@PathVariable Long id) {
@@ -42,12 +46,13 @@ public class CertificationController {
     return ResponseEntity.ok(certification);
   }
 
-  //  @PutMapping(path = "{id}")
-  //  public ResponseEntity<CertificationRs> updateCertification(@Valid @RequestBody CertificationRq rq,
-  //                                                             @PathVariable Long id) {
-  //    CertificationRs certification = certificationFacade.updateCertification(rq, id);
-  //    return ResponseEntity.ok(certification);
-  //  }
+    @PutMapping(path = "{id}")
+    @JsonView(UserViews.Profile.class)
+    public ResponseEntity<CertificationRs> updateCertification(@Valid @RequestBody CertificationRq rq,
+                                                               @PathVariable Long id) {
+      CertificationRs certification = certificationFacade.updateCertification(rq, id);
+      return ResponseEntity.ok(certification);
+    }
 
   @DeleteMapping(path = "{id}")
   public ResponseEntity<?> deleteById(@PathVariable Long id) {
