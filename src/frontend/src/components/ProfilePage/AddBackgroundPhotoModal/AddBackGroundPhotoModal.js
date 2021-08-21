@@ -4,7 +4,6 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
-import {useDispatch} from 'react-redux'
 import SharedButton from '../../../shared/Button/SharedButton'
 import imgPage from '../../../temporaryImages/internet.jpg'
 
@@ -27,8 +26,6 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions)
 
 const AddBackgroundModal = () => {
-  const dispatch = useDispatch()
-
   const classes = styles()
    
   return (
@@ -37,8 +34,8 @@ const AddBackgroundModal = () => {
                 Add background photo
       </Typography>
       <DialogContent dividers>
-        <div >
-          <img alt="internet" src={imgPage} className={classes.pageImg} />
+        <div>
+          <img alt="internet" src={imgPage} className={classes.pageImg}/>
         </div>
         <Typography variant="subtitle1">
             Showcase your personality, interests, team moments or notable milestones
