@@ -8,10 +8,15 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: theme.shape.medium,
-    width: '190px',
+    maxWidth: '190px',
+    width: '100%',
     height: '280px',
     border: theme.border.simple,
-    marginBottom: theme.spacing(2)
+    margin: theme.spacing(1),
+    '&:hover': {
+      boxShadow: theme.shadows[4],
+      transitionDuration: '0.5s'
+    }
   },
 
   removed: {
