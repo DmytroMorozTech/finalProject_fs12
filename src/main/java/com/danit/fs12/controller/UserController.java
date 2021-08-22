@@ -43,6 +43,7 @@ public class UserController {
   }
 
   @GetMapping(path = "/who_liked_post/{id}")
+  @JsonView(UserViews.Base.class)
   public ResponseEntity<List<UserRs>> findUsersWhoLikedPost(@PathVariable Long id) {
     List<UserRs> usersList = userFacade.findUsersWhoLikedPost(id);
     // in case User can not be found by id in Facade, an error will be thrown

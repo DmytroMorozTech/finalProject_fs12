@@ -5,7 +5,7 @@ import getHeaders from '../../services/headersService'
 export const getActiveUserAction = () => (dispatch) => {
   dispatch({type: actions.LOADING_USERS, payload: true})
   return http
-    .get('api/activeuser', {headers: getHeaders()})
+    .get('../api/activeuser', {headers: getHeaders()})
     .then(res => {
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
