@@ -4,7 +4,9 @@ export default makeStyles((theme) => ({
   container: {
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingTop: '155px',
+    justifyContent: 'center'
   },
   mainText: {
     fontSize: '16px'
@@ -13,7 +15,7 @@ export default makeStyles((theme) => ({
     fontSize: '14px'
   },
   form: {
-    width: '70%',
+    width: '30%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'

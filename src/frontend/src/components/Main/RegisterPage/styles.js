@@ -4,10 +4,11 @@ export default makeStyles((theme) => ({
   container: {
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingTop: '90px'
   },
   form: {
-    width: '70%',
+    width: '20%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
@@ -16,13 +17,13 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default
   },
   google: {
-    width: '100%',
+    width: '15%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     '& > section': {
-      width: '100%',
+      width: '10%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -46,7 +47,7 @@ export default makeStyles((theme) => ({
   },
 
   googleBtn: {
-    width: '70%',
+    width: '120%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -57,10 +58,12 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontSize: '16px'
   },
 
   emailTitle: {
-    fontSize: '18px'
+    fontSize: '18px',
+    textAlign: 'center'
   }
 }))
