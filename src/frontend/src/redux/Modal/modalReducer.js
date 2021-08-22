@@ -1,8 +1,13 @@
 import * as actions from './modalActionTypes'
 import {
-  ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION,
-  UPDATE_CERTIFICATION, EDIT_EDUCATION, EDIT_INTRO,
-  USERS_WHO_LIKED_POST, ADD_BACKGROUND_PHOTO
+  ADD_NEW_CERTIFICATION,
+  ADD_NEW_EDUCATION,
+  ADD_NEW_POST,
+  EDIT_CERTIFICATION,
+  EDIT_EDUCATION,
+  EDIT_INTRO,
+  USERS_WHO_LIKED_POST,
+  ADD_BACKGROUND_PHOTO
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
@@ -42,20 +47,20 @@ const modalReducer = (state = initialState, action) => {
           content = <AddNewCertification/>
           break
 
-        case UPDATE_CERTIFICATION:
-          content = <EditCertification/>
+        case EDIT_CERTIFICATION:
+          content = <EditCertification certification={action.payload.certification}/>
           break
 
         case USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
           break
 
-        case ADD_EDUCATION:
+        case ADD_NEW_EDUCATION:
           content = <AddEducationModal/>
           break
 
         case EDIT_EDUCATION:
-          content = <EditEducationModal/>
+          content = <EditEducationModal education={action.payload.education}/>
           break
 
         case EDIT_INTRO:
