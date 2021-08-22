@@ -4,8 +4,8 @@ export default makeStyles((theme) => ({
 
   connection: {
     display: 'flex',
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     justifyContent: 'space-between'
@@ -42,6 +42,10 @@ export default makeStyles((theme) => ({
   buttons: {
     display: 'flex',
     alignItems: 'center'
+  },
+
+  threeDots: {
+    marginLeft: theme.spacing(2)
   },
 
   line: {

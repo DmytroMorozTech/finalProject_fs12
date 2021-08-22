@@ -43,7 +43,7 @@ function Connection (props) {
             <div>
               <SharedButton title="Message" size='medium' variant="outlined"/>
             </div>
-            <div>
+            <div className={classes.threeDots}>
               <TreeDots/>
             </div>
           </div>
