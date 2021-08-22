@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
   },
 
   commentAvatar: {
-    width: theme.avatar.small,
+    width: theme.avatar.extraSmall,
     marginLeft: theme.spacing(3),
     marginTop: theme.spacing(1)
   },

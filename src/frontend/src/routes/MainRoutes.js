@@ -12,6 +12,7 @@ import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
 import ForgotPage from '../components/Main/ForgotPage/ForgotPage'
 import RegisterPage from '../components/Main/RegisterPage/RegisterPage'
+import Connections from '../components/Network/Connections/Connections'
 
 const MainRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
       <Route exact path="/" render={() => <Login/>}/>
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
+      <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>

@@ -27,7 +27,7 @@ export default makeStyles((theme) => ({
   },
 
   userAvatar: {
-    width: theme.avatar.medium,
+    width: theme.avatar.small,
     borderRadius: '50%'
   },
 

@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
   },
 
   avatar: {
-    width: theme.avatar.large,
+    width: theme.avatar.medium,
     borderRadius: '50%',
     display: 'flex',
     alignSelf: 'flex-start'
