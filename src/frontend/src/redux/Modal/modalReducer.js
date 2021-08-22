@@ -2,7 +2,7 @@ import * as actions from './modalActionTypes'
 import {
   ADD_EDUCATION, ADD_NEW_POST, ADD_NEW_CERTIFICATION,
   UPDATE_CERTIFICATION, EDIT_EDUCATION, EDIT_INTRO,
-  USERS_WHO_LIKED_POST, ADD_BACKGROUND_PHOTO
+  USERS_WHO_LIKED_POST, ADD_BACKGROUND_PHOTO, ADD_EXPERIENCE
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
@@ -12,6 +12,7 @@ import EditEducationModal from '../../components/ProfilePage/EditEducationModal/
 import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
 import EditCertification from '../../components/ProfilePage/EditCertificationModal/EditCertification'
 import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
+import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
 
 const initialState = {
   isModalOpen: false,
@@ -64,6 +65,10 @@ const modalReducer = (state = initialState, action) => {
 
         case ADD_BACKGROUND_PHOTO:
           content = <AddBackGroundPhotoModal/>
+          break
+
+        case ADD_EXPERIENCE:
+          content = <AddExperienceModal/>
           break
 
         default:

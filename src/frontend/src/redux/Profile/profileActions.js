@@ -42,3 +42,16 @@ export const createNewCertificationAction = (payload) => (dispatch) => {
       dispatch({ type: actions.ADD_NEW_CERTIFICATION, payload: certification })
     })
 }
+
+export const createNewExperienceAction = (payload) => (dispatch) => {
+  convertStringsToLocalDateCert(payload)
+
+  return http
+    .post('/api/workPlaces', payload,
+      {headers: getHeaders()}
+    )
+    .then((res) => res.data)
+    .then((certification) => {
+      dispatch({ type: actions.ADD_NEW_EXPERIENCE, payload: certification })
+    })
+}

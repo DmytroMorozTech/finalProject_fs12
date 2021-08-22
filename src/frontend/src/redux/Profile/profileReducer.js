@@ -1,4 +1,5 @@
 import * as actions from './profileActionTypes'
+import {ADD_NEW_EXPERIENCE} from './profileActionTypes'
 
 const initialState = {
   loading: true,
@@ -31,6 +32,15 @@ const profileReducer = (state = initialState, action) => {
         activeProfile: {
           ...state.activeProfile,
           certifications: [...state.activeProfile.certifications, action.payload]
+        }
+      }
+
+    case actions.ADD_NEW_EXPERIENCE:
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          workPlaces: [...state.activeProfile.workPlaces, action.payload]
         }
       }
 
