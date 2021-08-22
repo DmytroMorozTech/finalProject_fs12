@@ -17,6 +17,6 @@ export default makeStyles((theme) => ({
   },
   menuBody: {
     borderRadius: theme.shape.medium,
-    borderBottomRightRadius: 0
+    borderTopRightRadius: 0
   }
 }))

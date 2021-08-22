@@ -11,6 +11,10 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
 
+  removed: {
+    display: 'none'
+  },
+
   flex: {
     display: 'flex'
   },
@@ -44,8 +48,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center'
   },
 
-  threeDots: {
-    marginLeft: theme.spacing(2)
+  button: {
+    marginRight: theme.spacing(2)
   },
 
   line: {
