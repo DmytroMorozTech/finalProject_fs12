@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(2)
   },
   mediumAvatar: {
-    width: theme.avatar.medium,
+    width: theme.avatar.small,
     marginTop: theme.spacing(1),
     marginLeft: theme.spacing(4)
   },

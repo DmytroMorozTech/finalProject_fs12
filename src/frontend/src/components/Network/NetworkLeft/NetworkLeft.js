@@ -36,48 +36,56 @@ function NetworkLeft (props) {
       Icon: <SupervisorAccountRoundedIcon fontSize="inherit"/>,
       title: 'Connections',
       number: numberConnections,
+      to: '/network/connections',
       onClick: () => console.log('Connections')
     },
     {
       Icon: <PermContactCalendarOutlinedIcon fontSize="inherit"/>,
       title: 'Contacts',
       number: numberContacts,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Contacts')
     },
     {
       Icon: <PermIdentityOutlinedIcon fontSize="inherit"/>,
       title: 'People I Follow',
       number: numberPeopleIFollow,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('People I Follow')
     },
     {
       Icon: <GroupIcon fontSize="inherit"/>,
       title: 'Groups',
       number: numberGroups,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Groups')
     },
     {
       Icon: <EventIcon fontSize="inherit"/>,
       title: 'Events',
       number: numberEvents,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Events')
     },
     {
       Icon: <DashboardIcon fontSize="inherit"/>,
       title: 'Pages',
       number: numberPages,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Pages')
     },
     {
       Icon: <ListAltIcon fontSize="inherit"/>,
       title: 'Newsletters',
       number: numberNewsletters,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Newsletters')
     },
     {
       Icon: <GridOnIcon fontSize="inherit"/>,
       title: 'Hashtags',
       number: numberHashtags,
+      to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Hashtags')
     }
   ]
@@ -94,11 +102,11 @@ function NetworkLeft (props) {
       <div className={classes.items}>
         <div>
           {showMore
-            ? items.map(({ Icon, title, number, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} onClick={onClick}/>
+            ? items.map(({ Icon, title, number, to, onClick }, i) => (
+              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))
-            : shortItems.map(({ Icon, title, number, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} onClick={onClick}/>
+            : shortItems.map(({ Icon, title, number, to, onClick }, i) => (
+              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))}
           <Button variant="contained" endIcon={showMore ? <ExpandLessIcon/> : <ExpandMoreIcon/>} className={classes.btn} onClick={() => setShowMore(!showMore)}>
             {showMore ? 'Show less' : 'Show more'}

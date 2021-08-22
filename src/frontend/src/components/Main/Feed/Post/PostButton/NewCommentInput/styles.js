@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
   },
 
   smallAvatar: {
-    width: theme.avatar.small,
+    width: theme.avatar.extraSmall,
     marginTop: theme.spacing(1.5),
     flexShrink: 0
   },

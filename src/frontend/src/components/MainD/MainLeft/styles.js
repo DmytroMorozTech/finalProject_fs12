@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
   },
 
   largeAvatar: {
-    width: theme.avatar.large,
+    width: theme.avatar.medium,
     border: '2px solid white',
     borderRadius: '50%',
     margin: '0 auto'

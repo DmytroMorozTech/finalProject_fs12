@@ -10,6 +10,7 @@ import ProfilePage from '../components/ProfilePage/ProfilePage'
 import Page404 from '../components/Main/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
+import Connections from '../components/Network/Connections/Connections'
 
 const MainRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const MainRoutes = () => {
       <Route exact path="/" render={() => <Login/>}/>
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
+      <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
