@@ -10,10 +10,16 @@ import clsx from 'clsx'
 const Item = ({ Icon, title, arrow, toggleMenu, to }) => {
   const classes = styles()
 
+  const notLink = (e) => {
+    e.preventDefault()
+  }
+
   const renderMenuItem = (
     <NavLink className={clsx(classes.itemPrimary)}
+      onClick={(e) => toggleMenu && notLink(e)}
       activeClassName={classes.itemPrimaryActive}
       exact
+
       to={to}
     >
       <div className={classes.icons}>{Icon}</div>
