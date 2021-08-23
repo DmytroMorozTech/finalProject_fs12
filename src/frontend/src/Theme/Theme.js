@@ -51,6 +51,9 @@ const theme = createTheme({
       fontWeight: 700,
       lineHeight: 1.5
     },
+    sh3: {
+      fontSize: '1.1rem'
+    },
     h4: {
       fontSize: '0.900rem',
       fontWeight: 500,
@@ -104,9 +107,11 @@ const theme = createTheme({
     }
   },
   avatar: {
-    small: '45px',
-    medium: '50px',
-    large: '65px'
+    extraSmall: '45px',
+    small: '50px',
+    medium: '65px',
+    large: '72px',
+    extraLarge: '100px'
   },
   border: {
     simple: '1px solid #e0e0e0',

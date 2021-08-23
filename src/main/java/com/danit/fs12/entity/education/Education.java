@@ -1,6 +1,5 @@
 package com.danit.fs12.entity.education;
 
-
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;

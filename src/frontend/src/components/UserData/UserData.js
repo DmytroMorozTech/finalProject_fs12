@@ -10,11 +10,12 @@ import {signOutAction} from '../../redux/User/userActions'
 function UserData () {
   const classes = styles()
   const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser.id
   const dispatch = useDispatch()
 
   return (
     <div className={classes.root}>
-      <MenuItem component={NavLink} to="/profile" className={classes.menuItem}>
+      <MenuItem component={NavLink} to={`/profiles/${activeUserId}`} className={classes.menuItem}>
         <div className={classes.avatarWrapper}>
           <img className={classes.avatar} src={activeUser.avatarUrl} alt={activeUser.fullName}/>
           <div className={classes.userDataWrapper}>
@@ -23,7 +24,7 @@ function UserData () {
           </div>
         </div>
       </MenuItem>
-      <Button component={NavLink} to="/profile" className={classes.profileButton} variant="outlined" color="primary">
+      <Button component={NavLink} to={`/profiles/${activeUserId}`} className={classes.profileButton} variant="outlined" color="primary">
         View Profile
       </Button>
       <Button className={classes.profileButton} variant="outlined" color="secondary" onClick={() => dispatch(signOutAction())}>

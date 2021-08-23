@@ -9,29 +9,28 @@ import SharedButton from '../../../shared/Button/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {EDIT_INTRO} from '../../Modal/modalTypes'
-import {useDispatch, useSelector} from 'react-redux'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import {ADD_BACKGROUND_PHOTO, EDIT_INTRO} from '../../../redux/Modal/modalTypes'
+import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
   const {
-    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45
+    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45, profile
   } = props
   const classes = style()
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
-  const activeUser = useSelector(activeUserSelector)
 
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <div className={classes.photoIcon} onClick={preventDefault}>
+        <div className={classes.photoIcon} onClick={() =>
+          dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
       <div>
         <div className={classes.row}>
-          <Avatar src={activeUser.avatarUrl} alt={activeUser.fullName} className={classes.bigAvatar}/>
+          <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
           <div onClick={() =>
             dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
             <CreateIcon className={classes.editName}/>
@@ -40,10 +39,10 @@ function ProfileMain (props) {
         <div className={classes.info}>
           <div className={classes.leftPanel}>
             <Typography variant="h3">
-              {activeUser.fullName}
+              {profile.fullName}
             </Typography>
             <Typography variant="body1">
-              {activeUser.positionAndCompany}
+              {profile.positionAndCompany}
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
@@ -68,7 +67,7 @@ function ProfileMain (props) {
             <Hidden xsDown>
               <Typography variant="h5" className={classes.rightPanel}>
                 <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
-                <span>{activeUser.positionAndCompany}</span>
+                <span>{profile.positionAndCompany}</span>
               </Typography>
             </Hidden>
           </div>
@@ -81,7 +80,7 @@ function ProfileMain (props) {
         <div className={classes.box}>
           <Link href="#" onClick={preventDefault} className={classes.column}>
             <Typography variant="body1" color="secondary" className={classes.bold}>Open to work</Typography>
-            <Typography variant="body1" color="secondary">{activeUser.positionAndCompany}</Typography>
+            <Typography variant="body1" color="secondary">{profile.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
           <div>

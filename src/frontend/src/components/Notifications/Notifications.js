@@ -1,39 +1,39 @@
 import React from 'react'
 import styles from './styles'
-import Typography from '@material-ui/core/Typography'
-import TemporaryAvatar from '../../temporaryImages/avatar.jpg'
-import ThreeDots from '../../shared/ThreeDots/TreeDots'
-import SimpleMenu from '../../shared/PopupMenu/PopupMenu'
-import NotificationAdditions from './Additions/NotificationAdditions'
+import Grid from '@material-ui/core/Grid'
+import { Container, Hidden } from '@material-ui/core'
+import NotificationsMain from './NotificationsMain/NotificationsMain'
+import NotificationsRight from './NotificationsRight/NotificationsRight'
+import NotificationsLeft from './NotificationsLeft/NotificationsLeft'
+import SmallNotification from './SmallNotification/SmallNotification'
 
-function Notifications ({
-  userAvatar = TemporaryAvatar,
-  userName = 'Fred Grint',
-  userAction = 'shared a post:',
-  userText = 'You can place a request in our Standard Product Catalogue following a few simple steps: ad your product to the cart, fill the contact form and complete your request.',
-  notificationTime = '2d'
-}) {
+function Notifications () {
   const classes = styles()
   return (
-    <div className={classes.notifications}>
-      <div className={classes.notification}>
-        <div>
-          <img src={userAvatar} alt={'user avatar'} className={classes.userAvatar}/>
-        </div>
-        <div className={classes.content}>
-          <Typography variant="body1">
-            <span className={classes.userName}>{userName + ' '}</span>
-            <span className={classes.actionAndText}>{userAction + ' ' + userText}</span>
-          </Typography>
-        </div>
-        <div className={classes.notificationTimeAndMenu}>
-          <div className={classes.notificationTime}>
-            {notificationTime}
-          </div>
-          <SimpleMenu menuItem={<ThreeDots/>} userData={<NotificationAdditions userName={userName}/>}/>
-        </div>
-      </div>
-    </div>
+    <Container className={classes.notifications} maxWidth={'lg'}>
+      <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
+
+        <Hidden smDown>
+          <Grid item md={3} lg={2} xl={2}>
+            <NotificationsLeft/>
+          </Grid>
+        </Hidden>
+
+        <Grid item xs={12} sm={10} md={5} lg={5} xl={5}>
+          <Hidden mdUp>
+            <SmallNotification/>
+          </Hidden>
+          <NotificationsMain/>
+        </Grid>
+
+        <Hidden mdDown>
+          <Grid item md={4} lg={3} xl={3}>
+            <NotificationsRight/>
+          </Grid>
+        </Hidden>
+
+      </Grid>
+    </Container>
   )
 }
 

@@ -1,10 +1,22 @@
 import * as actions from './modalActionTypes'
-import {ADD_EDUCATION, ADD_NEW_POST, EDIT_EDUCATION, EDIT_INTRO, SHOW_USERS_WHO_LIKED_POST} from '../../components/Modal/modalTypes'
+import {
+  ADD_NEW_CERTIFICATION,
+  ADD_NEW_EDUCATION,
+  ADD_NEW_POST,
+  EDIT_CERTIFICATION,
+  EDIT_EDUCATION,
+  EDIT_INTRO,
+  USERS_WHO_LIKED_POST,
+  ADD_BACKGROUND_PHOTO
+} from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
+import AddNewCertification from '../../components/ProfilePage/AddNewCertification/AddNewCertification'
 import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
 import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
+import EditCertification from '../../components/ProfilePage/EditCertificationModal/EditCertification'
+import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
 
 const initialState = {
   isModalOpen: false,
@@ -31,26 +43,38 @@ const modalReducer = (state = initialState, action) => {
           content = <AddNewPost/>
           break
 
-        case SHOW_USERS_WHO_LIKED_POST:
+        case ADD_NEW_CERTIFICATION:
+          content = <AddNewCertification/>
+          break
+
+        case EDIT_CERTIFICATION:
+          content = <EditCertification certification={action.payload.certification}/>
+          break
+
+        case USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
           break
-        
-        case ADD_EDUCATION:
+
+        case ADD_NEW_EDUCATION:
           content = <AddEducationModal/>
           break
 
         case EDIT_EDUCATION:
-          content = <EditEducationModal/>
+          content = <EditEducationModal education={action.payload.education}/>
           break
 
         case EDIT_INTRO:
           content = <EditIntroModal/>
           break
-        
+
+        case ADD_BACKGROUND_PHOTO:
+          content = <AddBackGroundPhotoModal/>
+          break
+
         default:
           content = ''
       }
-      
+
       return {
         ...state,
         isModalOpen: !state.isModalOpen,
@@ -59,7 +83,7 @@ const modalReducer = (state = initialState, action) => {
         activePostId: id
       }
     }
-      
+
     default: {
       return state
     }

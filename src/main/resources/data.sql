@@ -198,16 +198,20 @@ VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
        (date '2016-02-02', date '2016-02-02', 'Working hard; Writing scientifica articles',
         date '2011-03-03', date '2015-04-04', 'Bachelor',
         'Electronics',
-        'MIT', 1, 'High-level of education; nice capmus; ...');
+        'MIT', 1, 'High-level of education; nice capmus; ...'),
+       (date '2020-04-05', date '2020-04-05', 'Doing mathematical calculations all day long',
+        date '2019-03-03', date '2017-03-03', 'Msc',
+        'Math',
+        'Michigan state University', 1, 'Best calculus ever');
 
 INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
                             credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
                             name, user_id)
-VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
-        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 1),
-       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
-        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 1),
-       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'dan-it.com.ua',
+VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
+        date '2026-01-01', true,  date '2016-01-01', 'DAN-IT', 'Spring data jpa', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
+        null, false,  date '2017-07-08', 'DAN-IT', 'Hibernate basics', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
         date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 2);
 
 INSERT INTO CHATS (created_date, modified_date)

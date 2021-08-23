@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CertificationService extends GeneralService<Certification> {
   private final UserRepository userRepository;
-  private final Long hardCodedActiveUserId = 1L;
+  private final UserService userService;
 
   public Certification createCertification(Certification certification) {
-    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
     certification.setUser(user);
 
     Certification savedInDbCertification = save(certification);
@@ -23,6 +24,19 @@ public class CertificationService extends GeneralService<Certification> {
     userRepository.save(user);
 
     return savedInDbCertification;
+  }
+
+  public Certification updateCertification(Certification certification, Long id) {
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
+    Certification certificationFromDb = findEntityById(id);
+    user.getCertifications().remove(certificationFromDb);
+    certification.setId(id);
+    certification.setUser(user);
+    Certification savedCertification = save(certification);
+    user.getCertifications().add(savedCertification);
+    userRepository.save(user);
+    return savedCertification;
   }
 
 }

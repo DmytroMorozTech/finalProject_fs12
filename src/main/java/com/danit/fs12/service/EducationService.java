@@ -10,14 +10,31 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EducationService extends GeneralService<Education> {
   private final UserRepository userRepository;
-  private final Long hardCodedActiveUserId = 1L;
+  private final UserService userService;
 
   public Education createEducation(Education education) {
-    User user = userRepository.findEntityById(hardCodedActiveUserId);
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
     education.setUser(user);
 
     Education savedInDbEducation = save(education); // with id from db
 
+    user.getEducations().add(savedInDbEducation);
+    userRepository.save(user);
+
+    return savedInDbEducation;
+  }
+
+  public Education updateEducation(Education education, Long id) {
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
+    Education educationFromDb = findEntityById(id);
+
+    user.getEducations().remove(educationFromDb);
+
+    education.setId(id);
+    education.setUser(user);
+    Education savedInDbEducation = save(education);
     user.getEducations().add(savedInDbEducation);
     userRepository.save(user);
 

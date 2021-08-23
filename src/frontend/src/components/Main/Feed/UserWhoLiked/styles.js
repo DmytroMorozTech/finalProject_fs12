@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
   avatar: {
     display: 'flex',
     flexDirection: 'column',
-    width: theme.avatar.medium
+    width: theme.avatar.small
   },
   userAvatar: {
     position: 'relative'
