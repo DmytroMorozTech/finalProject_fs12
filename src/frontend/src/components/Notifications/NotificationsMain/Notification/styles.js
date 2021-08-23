@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
   },
 
   userAvatar: {
-    width: theme.avatar.large,
+    width: theme.avatar.medium,
     borderRadius: '50%',
     marginTop: theme.spacing(2),
     marginLeft: theme.spacing(3)

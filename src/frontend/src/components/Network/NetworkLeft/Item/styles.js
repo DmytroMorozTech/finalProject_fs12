@@ -10,6 +10,7 @@ export default makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
     cursor: 'pointer',
+    textDecoration: 'none',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.1)'
     }
