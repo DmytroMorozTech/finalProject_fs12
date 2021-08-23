@@ -6,6 +6,7 @@ import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.security.RegistrationRequest;
 import com.danit.fs12.security.jwt.JwtProvider;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,7 @@ public class AuthController {
   }
 
   @GetMapping("/activeuser")
+  @JsonView(UserViews.Base.class)
   public UserRs currentUser() {
     return userFacade.getActiveUser();
   }

@@ -26,17 +26,17 @@ public class CertificationService extends GeneralService<Certification> {
     return savedInDbCertification;
   }
 
-//  public Certification updateCertification(Certification certification, Long id) {
-//    Long activeUserId = userService.getActiveUser().getId();
-//    User user = userRepository.findEntityById(activeUserId);
-//    Certification certificationFromDb = findEntityById(id);
-//    user.getCertifications().remove(certificationFromDb);
-//    certification.setId(id);
-//    certification.setUser(user);
-//    Certification savedCertification = save(certification);
-//    user.getCertifications().add(savedCertification);
-//    userRepository.save(user);
-//    return savedCertification;
-//  }
+  public Certification updateCertification(Certification certification, Long id) {
+    Long activeUserId = userService.getActiveUser().getId();
+    User user = userRepository.findEntityById(activeUserId);
+    Certification certificationFromDb = findEntityById(id);
+    user.getCertifications().remove(certificationFromDb);
+    certification.setId(id);
+    certification.setUser(user);
+    Certification savedCertification = save(certification);
+    user.getCertifications().add(savedCertification);
+    userRepository.save(user);
+    return savedCertification;
+  }
 
 }

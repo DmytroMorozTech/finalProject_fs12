@@ -64,6 +64,7 @@ public class PostController {
   }
 
   @PostMapping(path = "/toggle_bookmark/{postId}")
+  @JsonView(PostViews.Base.class)
   public ResponseEntity<PostRs> toggleBookmark(@PathVariable Long postId) {
     PostRs post = postFacade.toggleBookmark(postId);
     return ResponseEntity.ok(post);
@@ -73,6 +74,7 @@ public class PostController {
   List<PostRs> findAll() {
     return postFacade.findAll();
   }
+  // we will probably not use this method in real app
 
   @GetMapping(path = "{id}")
   @JsonView(PostViews.Base.class)
@@ -83,12 +85,14 @@ public class PostController {
   }
 
   @PostMapping
+  @JsonView(PostViews.Base.class)
   public ResponseEntity<PostRs> createPost(@Valid @RequestBody PostRq rq) {
     PostRs post = postFacade.createPost(rq);
     return ResponseEntity.ok(post);
   }
 
   @PostMapping(path = "/toggle_like/{postId}")
+  @JsonView(PostViews.Base.class)
   public ResponseEntity<PostRs> toggleLike(@PathVariable Long postId) {
     PostRs post = postFacade.toggleLike(postId);
     return ResponseEntity.ok(post);
