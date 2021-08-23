@@ -4,7 +4,7 @@ export default makeStyles(() => ({
 
   img: {
     display: 'flex',
-    maxWidth: '300px',
+    maxWidth: '350px',
     margin: '0 auto',
     width: '100%'
   }

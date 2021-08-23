@@ -9,6 +9,9 @@ export default makeStyles((theme) => ({
   },
 
   menuItem: {
-    minHeight: theme.spacing(7)
+    minHeight: theme.spacing(7),
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.08)'
+    }
   }
 }))
