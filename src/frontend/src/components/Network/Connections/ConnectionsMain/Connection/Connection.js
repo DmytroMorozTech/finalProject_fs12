@@ -1,11 +1,13 @@
 import styles from './styles'
 import avatar from '../../../../../temporaryImages/avatar.jpg'
 import Avatar from '../../../../../shared/Avatar/Avatar'
-import React from 'react'
+import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/Button/SharedButton'
 import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
 import { Link } from 'react-router-dom'
+import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
+import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
 
 function Connection (props) {
   const classes = styles()
@@ -17,8 +19,14 @@ function Connection (props) {
     dateCreated = '3 days ago'
   } = props
 
+  const [removedConnection, setRemovedConnection] = useState(false)
+
+  const handleRemoved = () => {
+    setRemovedConnection(!removedConnection)
+  }
+
   return (
-    <div>
+    <div className={removedConnection ? classes.removed : ''}>
       <div>
         <div className={classes.connection}>
           <div className={classes.flex}>
@@ -40,11 +48,13 @@ function Connection (props) {
             </div>
           </div>
           <div className={classes.buttons}>
-            <div>
-              <SharedButton title="Message" size='medium' variant="outlined"/>
+            <div className={classes.button}>
+              <SharedButton title="Message" size="medium" variant="outlined"/>
             </div>
-            <div className={classes.threeDots}>
-              <TreeDots/>
+            <div>
+              <SimpleMenu menuItem={
+                <TreeDots/>
+              } userData={<ConnectionAddition onClick={handleRemoved}/>}/>
             </div>
           </div>
         </div>
