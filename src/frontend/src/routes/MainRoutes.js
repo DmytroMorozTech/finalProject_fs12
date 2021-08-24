@@ -11,6 +11,7 @@ import Page404 from '../components/Main/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
 import Connections from '../components/Network/Connections/Connections'
+import MyJobs from '../components/Jobs/MyJobs/MyJobs'
 
 const MainRoutes = () => {
   return (
@@ -20,12 +21,12 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
+      <ProtectedRoutes exact path="/jobs/my-jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       {/* <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/> */}
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage} />
-
       <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
       <ProtectedRoutes exact path="*" render={() => <Page404/>}/>
     </Switch>

@@ -1,14 +1,17 @@
 import React from 'react'
 import styles from './styles'
+import { Link } from 'react-router-dom'
 
-function Item ({ Icon, title, onClick }) {
+function Item ({ Icon, title, to, onClick }) {
   const classes = styles()
 
   return (
-    <div className={classes.item} onClick={onClick}>
-      <div className={classes.icons}>{Icon}</div>
-      <div className={classes.titles}>{title}</div>
-    </div>
+    <Link to={to} className={classes.container} onClick={onClick}>
+      <div className={classes.item}>
+        <div className={classes.icons}>{Icon}</div>
+        <div className={classes.titles}>{title}</div>
+      </div>
+    </Link>
   )
 }
 

@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
+
   vacancy: {
     display: 'flex',
     paddingTop: theme.spacing(3),
@@ -15,21 +16,25 @@ export default makeStyles((theme) => ({
 
   vacancyImg: {
     width: theme.spacing(10),
-    margin: theme.spacing(1)
-  },
-
-  vacancyInfo: {
-    paddingLeft: theme.spacing(1)
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3)
   },
 
   link: {
     display: 'flex',
     fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.grey[900],
     cursor: 'pointer',
     '&:hover': {
-      textDecoration: 'underline'
+      color: theme.palette.primary.main,
+      textDecoration: 'underline',
+      textDecorationThickness: '2px'
     }
+  },
+
+  org: {
+    color: theme.palette.grey[900]
   },
 
   recruiting: {
@@ -55,30 +60,9 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightBold
   },
 
-  icons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
-  },
-
-  icon: {
-    display: 'flex',
-    cursor: 'pointer',
-    fontSize: theme.typography.icons.medium.fontSize,
-    color: theme.palette.grey[700],
-    padding: theme.spacing(1),
-    borderRadius: '50%',
-    '&:hover': {
-      transitionDuration: '0.5s',
-      backgroundColor: 'rgba(0,0,0,0.1)'
-    }
-  },
-
-  hover: {
-    opacity: 0,
-    '&:hover': {
-      opacity: 1
-    }
+  popupMenu: {
+    marginRight: theme.spacing(5),
+    marginTop: theme.spacing(2)
   },
 
   line: {

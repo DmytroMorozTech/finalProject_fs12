@@ -13,19 +13,19 @@ function JobsLeft () {
   const classes = styles()
 
   const items = [
-    { Icon: <BookmarkIcon fontSize="inherit"/>, title: 'My Jobs', onClick: () => console.log('My Jobs') },
-    { Icon: <NotificationsRoundedIcon fontSize="inherit"/>, title: 'Job Alerts', onClick: () => console.log('Job Alerts') },
-    { Icon: <LocalAtmIcon fontSize="inherit"/>, title: 'Salary', onClick: () => console.log('Salary') },
-    { Icon: <AssignmentTurnedInOutlinedIcon fontSize="inherit"/>, title: 'Skill Assessments', onClick: () => console.log('Skill Assessments') },
-    { Icon: <NoteIcon fontSize="inherit"/>, title: 'Interview Prep', onClick: () => console.log('Interview Prep') },
-    { Icon: <InsertDriveFileOutlinedIcon fontSize="inherit"/>, title: 'Resume Builder', onClick: () => console.log('Resume Builder') },
-    { Icon: <SettingsIcon fontSize="inherit"/>, title: 'Application Settings', onClick: () => console.log('Application Settings') }
+    { Icon: <BookmarkIcon fontSize="inherit"/>, title: 'My Jobs', to: '/jobs/my-jobs', onClick: () => console.log('My Jobs') },
+    { Icon: <NotificationsRoundedIcon fontSize="inherit"/>, title: 'Job Alerts', to: '/jobs/my-jobs', onClick: () => console.log('Job Alerts') },
+    { Icon: <LocalAtmIcon fontSize="inherit"/>, title: 'Salary', to: '/jobs/my-jobs', onClick: () => console.log('Salary') },
+    { Icon: <AssignmentTurnedInOutlinedIcon fontSize="inherit"/>, title: 'Skill Assessments', to: '/jobs/my-jobs', onClick: () => console.log('Skill Assessments') },
+    { Icon: <NoteIcon fontSize="inherit"/>, title: 'Interview Prep', to: '/jobs/my-jobs', onClick: () => console.log('Interview Prep') },
+    { Icon: <InsertDriveFileOutlinedIcon fontSize="inherit"/>, title: 'Resume Builder', to: '/jobs/my-jobs', onClick: () => console.log('Resume Builder') },
+    { Icon: <SettingsIcon fontSize="inherit"/>, title: 'Application Settings', to: '/jobs/my-jobs', onClick: () => console.log('Application Settings') }
   ]
 
   return (
     <div className={classes.container}>
-      {items.map(({ Icon, title, onClick }, i) => (
-        <Item key={i} Icon={Icon} title={title} onClick={onClick}/>
+      {items.map(({ Icon, title, to, onClick }, i) => (
+        <Item key={i} Icon={Icon} title={title} to={to} onClick={onClick}/>
       ))}
     </div>
   )
