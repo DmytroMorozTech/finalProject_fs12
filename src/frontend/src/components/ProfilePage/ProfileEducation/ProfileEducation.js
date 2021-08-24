@@ -24,7 +24,10 @@ const ProfileEducation = (props) => {
         </div>
       </div>
       <div>
-        {educations && educations.map(education => <ProfileEducationItem key={education.id} education={education}/>)}
+        {educations &&
+        educations
+          .sort((edu1, edu2) => edu2.dateStart.localeCompare(edu1.dateStart))
+          .map(education => <ProfileEducationItem key={education.id} education={education}/>)}
       </div>
     </div>
   )

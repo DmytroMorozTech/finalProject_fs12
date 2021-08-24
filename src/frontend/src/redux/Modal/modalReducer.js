@@ -8,7 +8,7 @@ import {
   EDIT_INTRO,
   USERS_WHO_LIKED_POST,
   ADD_BACKGROUND_PHOTO,
-  ADD_EXPERIENCE
+  ADD_NEW_EXPERIENCE
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
@@ -73,7 +73,7 @@ const modalReducer = (state = initialState, action) => {
           content = <AddBackGroundPhotoModal/>
           break
 
-        case ADD_EXPERIENCE:
+        case ADD_NEW_EXPERIENCE:
           content = <AddExperienceModal/>
           break
 

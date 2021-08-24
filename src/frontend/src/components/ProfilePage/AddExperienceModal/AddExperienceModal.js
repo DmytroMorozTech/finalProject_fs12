@@ -4,7 +4,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
-import {Form, Formik} from 'formik'
+import {Field, Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import FormikTextField from '../../../shared/FormComponents/FormikTextField'
 import FormikSelect from '../../../shared/FormComponents/FormikSelect'
@@ -14,8 +14,7 @@ import year from '../../../data/year.json'
 import SharedButton from '../../../shared/Button/SharedButton'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {createNewExperienceAction} from '../../../redux/Profile/profileActions'
-import FormikCheckBox from '../../../shared/FormComponents/FormikCheckBox'
+import {createNewWorkPlaceAction} from '../../../redux/Profile/profileActions'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -38,9 +37,8 @@ const AddExperienceModal = () => {
   const classes = styles()
   const INITIAL_FORM_STATE = {
     position: '',
-    organization: '',
-    location: '',
-    hasCurrentlyWorking: false,
+    organizationId: '',
+    isCurrentlyEmployed: true,
     startMonth: '',
     startYear: '',
     endMonth: '',
@@ -50,22 +48,20 @@ const AddExperienceModal = () => {
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
       .required('Required'),
-    organization: Yup.string()
+    organizationId: Yup.string()
       .required('Required'),
-    location: Yup.string()
-      .required('Required'),
-    hasCurrentlyWorking: Yup.boolean(),
+    isCurrentlyEmployed: Yup.boolean(),
     startMonth: Yup.string()
       .required('Required'),
-    startYear: Yup.number()
+    startYear: Yup.string()
       .required('Required'),
     endMonth: Yup.string()
-      .when('doesNotExpire', {
+      .when('!isCurrentlyEmployed', {
         is: true,
         then: Yup.string().required('Required')
       }),
-    endYear: Yup.number()
-      .when('doesNotExpire', {
+    endYear: Yup.string()
+      .when('!isCurrentlyEmployed', {
         is: true,
         then: Yup.string().required('Required')
       }),
@@ -86,7 +82,7 @@ const AddExperienceModal = () => {
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
             console.log(values)
-            dispatch(createNewExperienceAction(values))
+            dispatch(createNewWorkPlaceAction(values))
             dispatch(toggleModalAction())
           }}
         >
@@ -107,8 +103,9 @@ const AddExperienceModal = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <FormikTextField
-                      name="organization"
-                      label="Company"
+                      name="organizationId"
+                      label="Organization ID"
+                      // later on a drop-down list with organizations should be implemented
                       size="small"
                       InputLabelProps={{
                         shrink: true
@@ -117,21 +114,13 @@ const AddExperienceModal = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormikTextField
-                      name="location"
-                      label="Location"
-                      size="small"
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      placeholder="Ex: Kyiv, Ukraine"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormikCheckBox
-                      name="hasCurrentlyWorking"
-                      label="I am currently working in this role"
-                    />
+                    <label>
+                      <Field
+                        type="checkbox"
+                        name="isCurrentlyEmployed"
+                      />
+                      <span>I am currently working in this role</span>
+                    </label>
                   </Grid>
                   <Grid item xs={6}>
                     <FormikSelect
@@ -152,7 +141,7 @@ const AddExperienceModal = () => {
                   </Grid>
                   <Grid item xs={6}>
                     <FormikSelect
-                      disabled={values.hasCurrentlyWorking === true}
+                      disabled={values.isCurrentlyEmployed === true}
                       name="endMonth"
                       label="Month"
                       size="small"
@@ -162,7 +151,7 @@ const AddExperienceModal = () => {
                   </Grid>
                   <Grid item xs={6}>
                     <FormikSelect
-                      disabled={values.hasCurrentlyWorking === true}
+                      disabled={values.isCurrentlyEmployed === true}
                       name="endYear"
                       label="Year"
                       size="small"

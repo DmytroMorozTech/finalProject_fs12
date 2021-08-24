@@ -32,7 +32,7 @@ function ProfilePage (props) {
           {!profileIsLoading &&
           <>
             <ProfileMain profile={activeProfile}/>
-            <ProfileExperience workplaces={activeProfile.workplaces}/>
+            <ProfileExperience workPlaces={activeProfile.workPlaces}/>
             <ProfileEducation educations={activeProfile.educations}/>
             <ProfileCertification certifications={activeProfile.certifications}/>
           </>

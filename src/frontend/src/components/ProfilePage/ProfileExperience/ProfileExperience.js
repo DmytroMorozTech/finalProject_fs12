@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ProfileExperienceItem from './ProfileExperienceItem'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_EXPERIENCE} from '../../../redux/Modal/modalTypes'
+import {ADD_NEW_EXPERIENCE} from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
 const ProfileExperience = (props) => {
@@ -19,12 +19,15 @@ const ProfileExperience = (props) => {
                     Experience
         </Typography>
         <div onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_EXPERIENCE}))}>
+          dispatch(toggleModalAction({modalType: ADD_NEW_EXPERIENCE}))}>
           <AddIcon className={classes.createIcon}/>
         </div>
       </div>
       <div>
-        {workPlaces && workPlaces.map(workPlace => <ProfileExperienceItem key={workPlace.id} workPlace={workPlace}/>)}
+        {workPlaces &&
+        workPlaces
+          .sort((wp1, wp2) => wp2.dateStart.localeCompare(wp1.dateStart)) // sorting in DESCENDING ORDER
+          .map(workPlace => <ProfileExperienceItem key={workPlace.id} workPlace={workPlace}/>)}
       </div>
     </div>
   )

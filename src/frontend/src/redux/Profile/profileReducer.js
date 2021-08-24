@@ -1,6 +1,5 @@
 import * as actions from './profileActionTypes'
 import update from 'immutability-helper'
-import {ADD_NEW_EXPERIENCE} from './profileActionTypes'
 
 const initialState = {
   loading: true,
@@ -100,6 +99,21 @@ const profileReducer = (state = initialState, action) => {
           workPlaces: [...state.activeProfile.workPlaces, action.payload]
         }
       }
+
+    case actions.UPDATE_EXPERIENCE:
+      const updatedExperience = action.payload
+
+      const currentExperience = state.activeProfile.workPlaces
+        .find((workPlace) => workPlace.id === updatedExperience.id)
+      if (currentExperience == null) return state
+
+      const indexOfCurrentExperience = state.activeProfile.workPlaces.indexOf(currentExperience)
+
+      return update(state, {
+        activeProfile: {
+          workPlaces: { $splice: [[indexOfCurrentExperience, 1, updatedExperience]] }
+        }
+      })
 
     default: {
       return state
