@@ -1,15 +1,17 @@
 import React from 'react'
 import styles from './styles'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/Button/SharedButton'
 import {GoogleLoginButton} from 'react-social-login-buttons'
 import TextField from '@material-ui/core/TextField'
-import { Link } from '@material-ui/core'
+import { Link, Paper } from '@material-ui/core'
+import LinkedinLogo from '../../../../shared/LinkedinLogo/LinkedinLogo'
 
 function RegisterPage () {
   const classes = styles()
 
   return (
-    <div className={classes.container}>
+    <Paper elevation={3} className={classes.registerPageCard}>
+      <LinkedinLogo/>
       <p className={classes.emailTitle}>Email Address</p>
       <form className={classes.form}>
         <TextField
@@ -54,12 +56,10 @@ function RegisterPage () {
         </div>
       </div>
       <div className={classes.readyLinkedIn}>
-        <p>Already have Linkedin account</p>
-        <Link exact to='/login'>
-          <SharedButton title='Sign In' variant='outlined'/>
-        </Link>
+        <h4>Already have Linkedin account</h4>
+        <Link exact to='/login' title='Sign In' variant='outlined'></Link>
       </div>
-    </div>
+    </Paper>
   )
 }
 

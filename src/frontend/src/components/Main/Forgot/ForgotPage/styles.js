@@ -1,13 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
-  container: {
+  forgotPageCard: {
+    width: 350,
+    height: 500,
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: '155px',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+
+  header: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: theme.spacing(4)
+  },
+  
   mainText: {
     fontSize: '16px'
   },

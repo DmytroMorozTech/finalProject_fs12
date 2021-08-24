@@ -1,23 +1,26 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
-  container: {
+  registerPageCard: {
+    width: 350,
+    height: 500,
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: '90px'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   form: {
-    width: '20%',
+    width: '19.5%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
   link: {
     backgroundColor: theme.palette.background.default
+
   },
   google: {
-    width: '15%',
+    width: '17.5%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -59,7 +62,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '16px'
+    fontSize: theme.typography
   },
 
   emailTitle: {

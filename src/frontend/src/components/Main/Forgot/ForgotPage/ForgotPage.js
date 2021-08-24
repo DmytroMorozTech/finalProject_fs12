@@ -2,13 +2,17 @@ import React from 'react'
 import styles from './styles'
 import SharedButton from '../../../shared/Button/SharedButton'
 import TextField from '@material-ui/core/TextField'
-import {Button, Link} from '@material-ui/core'
+import {Button, Link, Paper} from '@material-ui/core'
+import LinkedinLogo from '../../../../shared/LinkedinLogo/LinkedinLogo'
 
 function ForgotPage () {
   const classes = styles()
 
   return (
-    <div className={classes.container}>
+    <Paper elevation={3} className={classes.forgotPageCard}>
+      <header className={classes.header}>
+        <LinkedinLogo/>
+      </header>
       <h2 className={classes.mainText}>Forgot your password?</h2>
       <p className={classes.subText}>Change password by doing two simple steps</p>
       <form className={classes.form}>
@@ -30,7 +34,7 @@ function ForgotPage () {
       <Link exact to='/login' className={classes.link}>
         <Button title='Return' className={classes.returnBtn}/>
       </Link>
-    </div>
+    </Paper>
   )
 }
 
