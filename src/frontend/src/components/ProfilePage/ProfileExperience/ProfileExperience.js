@@ -1,14 +1,14 @@
 import React from 'react'
 import style from './styles'
 import Typography from '@material-ui/core/Typography'
-import ProfileEducationItem from './ProfileEducationItem'
+import ProfileExperienceItem from './ProfileExperienceItem'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_NEW_EDUCATION} from '../../../redux/Modal/modalTypes'
+import {ADD_NEW_EXPERIENCE} from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 
-const ProfileEducation = (props) => {
-  const educations = props.educations
+const ProfileExperience = (props) => {
+  const workPlaces = props.workPlaces
   const classes = style()
   const dispatch = useDispatch()
 
@@ -16,21 +16,21 @@ const ProfileEducation = (props) => {
     <div className={classes.root}>
       <div className={classes.header}>
         <Typography variant="h3">
-          Education
+                    Experience
         </Typography>
         <div onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_NEW_EDUCATION}))}>
+          dispatch(toggleModalAction({modalType: ADD_NEW_EXPERIENCE}))}>
           <AddIcon className={classes.createIcon}/>
         </div>
       </div>
       <div>
-        {educations &&
-        educations
-          .sort((edu1, edu2) => edu2.dateStart.localeCompare(edu1.dateStart))
-          .map(education => <ProfileEducationItem key={education.id} education={education}/>)}
+        {workPlaces &&
+        workPlaces
+          .sort((wp1, wp2) => wp2.dateStart.localeCompare(wp1.dateStart)) // sorting in DESCENDING ORDER
+          .map(workPlace => <ProfileExperienceItem key={workPlace.id} workPlace={workPlace}/>)}
       </div>
     </div>
   )
 }
 
-export default ProfileEducation
+export default ProfileExperience

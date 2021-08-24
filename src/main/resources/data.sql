@@ -1,9 +1,11 @@
 INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_hash, avatar_url, created_date,
                    modified_date)
-VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20, '$2a$10$VyCoVteS/iZ/5ZYTIGI0EOZEytTbZphdioSm0uXqNCQ29vK6giI0q',
+VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
+        '$2a$10$VyCoVteS/iZ/5ZYTIGI0EOZEytTbZphdioSm0uXqNCQ29vK6giI0q',
         'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/lym68lkrrt61xno2ybhn.jpg',
         timestamp '2015-01-01 18:22:32.123123', CURRENT_DATE),
-       ('Frank', 'Jackson', '+380674974924', 'test2@gmail.com', 32, '$2a$10$ihFhDPp8TDs72rrtlD5tIewV7D6dvNGMXatbBz7e9zmrLDsHhai/O',
+       ('Frank', 'Jackson', '+380674974924', 'test2@gmail.com', 32,
+        '$2a$10$ihFhDPp8TDs72rrtlD5tIewV7D6dvNGMXatbBz7e9zmrLDsHhai/O',
         'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/kgpkn4a4fudfjpebyegx.jpg',
         timestamp '2015-03-03 22:22:32.123123', CURRENT_DATE),
        ('Laura', 'Lee', '+380677623175', 'laura@gmail.com', 62, 'passwordHashed3',
@@ -55,25 +57,29 @@ VALUES ('Microsoft', 'office@microsoft.com', 'microsoft.com', 'Software developm
 
 
 INSERT INTO WORK_PLACES (organization_id, user_id, position, responsibilities, date_start,
-                         date_finish, created_date, modified_date)
-VALUES (3, 1, 'Chief Operational Officer', 'Responsibilities list 1',
-        date '2000-12-31', date '2010-06-12', CURRENT_DATE, CURRENT_DATE),
-       (2, 1, 'CEO', 'Responsibilities list 2',
-        date '2010-06-20', date '2013-11-22', CURRENT_DATE, CURRENT_DATE),
-       (1, 1, 'Sales manager', 'Responsibilities list 3',
-        date '2014-01-20', null, CURRENT_DATE, CURRENT_DATE),
-       (1, 2, 'Chief Operational Officer', 'Responsibilities list 4',
-        date '2000-12-31', date '2010-06-12', CURRENT_DATE, CURRENT_DATE),
+                         date_finish, is_currently_employed, created_date, modified_date)
+VALUES (3, 1, 'Chief Operational Officer',
+        'Quisque id rhoncus mauris. Phasellus quis diam aliquet, gravida massa in, suscipit felis. Aliquam ac turpis arcu. Nunc fermentum dui augue, et aliquam eros ullamcorper imperdiet.',
+        date '2000-12-31', date '2010-06-12', false, CURRENT_DATE, CURRENT_DATE),
+       (2, 1, 'CEO',
+        'Fusce lacinia, nisl et vestibulum ultricies, orci risus luctus urna, et consectetur sem nibh non mauris. Phasellus ac aliquam libero, eu luctus lorem. Nulla tempor risus eu tortor mattis, id eleifend tellus semper. ',
+        date '2010-06-20', date '2013-11-22', false, CURRENT_DATE, CURRENT_DATE),
+       (1, 1, 'Sales manager',
+        'Phasellus vitae interdum mauris, eget luctus neque. Aenean at venenatis mauris, venenatis convallis velit. Suspendisse hendrerit lectus dolor, sit amet tristique odio lobortis sit amet. Donec ante purus, ',
+        date '2014-01-20', null, true, CURRENT_DATE, CURRENT_DATE),
+       (1, 2, 'Chief Operational Officer',
+        'Volutpat eget metus sit amet, volutpat blandit felis. Sed faucibus ante urna, quis consequat mi semper et. Duis faucibus felis nulla, et hendrerit turpis pharetra eu.',
+        date '2000-12-31', date '2010-06-12', false, CURRENT_DATE, CURRENT_DATE),
        (2, 2, 'Sales manager', 'Responsibilities list 5',
-        date '2010-06-20', date '2013-11-22', CURRENT_DATE, CURRENT_DATE),
+        date '2010-06-20', date '2013-11-22', false, CURRENT_DATE, CURRENT_DATE),
        (2, 2, 'Head of CIS region', 'Responsibilities list 6',
-        date '2014-01-20', null, CURRENT_DATE, CURRENT_DATE),
+        date '2014-01-20', null, true, CURRENT_DATE, CURRENT_DATE),
        (2, 3, 'Intern in UI design', 'Making design for simple UI elements',
-        date '2005-01-01', date '2006-06-03', CURRENT_DATE, CURRENT_DATE),
+        date '2005-01-01', date '2006-06-03', false, CURRENT_DATE, CURRENT_DATE),
        (2, 3, 'Designer of interfaces', 'Designing UI interfaces with team',
-        date '2006-06-03', date '2010-12-05', CURRENT_DATE, CURRENT_DATE),
+        date '2006-06-03', date '2010-12-05', false, CURRENT_DATE, CURRENT_DATE),
        (2, 3, 'Head of design Unit', 'Responsibilities list ',
-        date '2010-12-05', null, CURRENT_DATE, CURRENT_DATE);
+        date '2010-12-05', null, true, CURRENT_DATE, CURRENT_DATE);
 
 
 INSERT INTO POSTS (text, user_id, created_date, modified_date)
@@ -207,12 +213,12 @@ VALUES (date '2018-12-30', date '2018-12-30', 'Studying hard, reading a lot',
 INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
                             credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
                             name, user_id)
-VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
-        date '2026-01-01', true,  date '2016-01-01', 'DAN-IT', 'Spring data jpa', 1),
-       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
-        null, false,  date '2017-07-08', 'DAN-IT', 'Hibernate basics', 1),
-       (date '2018-12-30', date '2018-12-30', 'PS35092', 	'https://dan-it.com.ua',
-        date '2025-07-08', true,  date '2016-07-08', 'DAN-IT', 'Spring data jpa', 2);
+VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua',
+        date '2026-01-01', true, date '2016-01-01', 'DAN-IT', 'Spring data jpa', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua',
+        null, false, date '2017-07-08', 'DAN-IT', 'Hibernate basics', 1),
+       (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua',
+        date '2025-07-08', true, date '2016-07-08', 'DAN-IT', 'Spring data jpa', 2);
 
 INSERT INTO CHATS (created_date, modified_date)
 VALUES (date '2015-01-20', date '2015-01-20'),

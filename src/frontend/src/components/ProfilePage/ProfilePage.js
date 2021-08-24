@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {activeProfileSelector, isLoadingProfileSelector} from '../../redux/Profile/profileSelector'
 import Preloader from '../../shared/Preloader/Preloader'
 import ProfileCertification from './ProfileCertification/ProfileCertification'
+import ProfileExperience from './ProfileExperience/ProfileExperience'
 
 function ProfilePage (props) {
   const classes = styles()
@@ -31,6 +32,7 @@ function ProfilePage (props) {
           {!profileIsLoading &&
           <>
             <ProfileMain profile={activeProfile}/>
+            <ProfileExperience workPlaces={activeProfile.workPlaces}/>
             <ProfileEducation educations={activeProfile.educations}/>
             <ProfileCertification certifications={activeProfile.certifications}/>
           </>
