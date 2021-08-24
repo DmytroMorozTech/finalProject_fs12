@@ -17,7 +17,8 @@ export default makeStyles((theme) => ({
   hiddenMenu: {
     display: 'flex',
     flexDirection: 'row-reverse',
-    width: '98%'
+    width: '98%',
+    marginTop: theme.spacing(1)
   },
 
   postAuthor: {
