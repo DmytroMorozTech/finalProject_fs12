@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './styles'
-import SharedButton from '../../../shared/Button/SharedButton'
 import TextField from '@material-ui/core/TextField'
 import {Button, Link, Paper} from '@material-ui/core'
 import LinkedinLogo from '../../../../shared/LinkedinLogo/LinkedinLogo'
@@ -29,10 +28,10 @@ function ForgotPage () {
         />
       </form>
       <Link exact to='/home' className={classes.link}>
-        <SharedButton title="Reset password" variant="outlined"/>
+        <p>Return</p>
       </Link>
       <Link exact to='/login' className={classes.link}>
-        <Button title='Return' className={classes.returnBtn}/>
+        <Button title='Return to login page' className={classes.returnBtn}/>
       </Link>
     </Paper>
   )
