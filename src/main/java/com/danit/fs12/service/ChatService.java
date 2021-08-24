@@ -44,7 +44,6 @@ public class ChatService extends GeneralService<Chat> {
 
   public List<Chat> getUserChats(Long userId) {
     User user = userRepository.findEntityById(userId);
-    System.out.println(user);
 
     return user.getChats();
   }
