@@ -12,6 +12,8 @@ import { allCommentsSelector } from '../../../../redux/Post/postSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 import PostButtons from './PostButton/PostButtons'
 import SeeMore from './SeeMore/SeeMore'
+import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
+import PostAddition from './PostAddition/PostAddition'
 
 function Post (props) {
   const {
@@ -31,7 +33,9 @@ function Post (props) {
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
-        <ThreeDots/>
+        <SimpleMenu menuItem={
+          <ThreeDots/>
+        } userData={<PostAddition postId={postId} isBookmarkedByActiveUser={isBookmarkedByActiveUser}/>}/>
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
