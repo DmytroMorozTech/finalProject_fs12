@@ -2,16 +2,12 @@ import React from 'react'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import {Button, Link, Paper} from '@material-ui/core'
-import LinkedinLogo from '../../../../shared/LinkedinLogo/LinkedinLogo'
 
 function ForgotPage () {
   const classes = styles()
 
   return (
     <Paper elevation={3} className={classes.forgotPageCard}>
-      <header className={classes.header}>
-        <LinkedinLogo/>
-      </header>
       <h2 className={classes.mainText}>Forgot your password?</h2>
       <p className={classes.subText}>Change password by doing two simple steps</p>
       <form className={classes.form}>

@@ -2,15 +2,15 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   registerPageCard: {
-    width: 350,
-    height: 500,
+    width: 450,
+    height: 550,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
   form: {
-    width: '19.5%',
+    width: '50.5%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
 
   },
   google: {
-    width: '17.5%',
+    width: '48.5%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

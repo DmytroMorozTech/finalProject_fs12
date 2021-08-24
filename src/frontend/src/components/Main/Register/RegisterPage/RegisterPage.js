@@ -4,15 +4,12 @@ import SharedButton from '../../../../shared/Button/SharedButton'
 import {GoogleLoginButton} from 'react-social-login-buttons'
 import TextField from '@material-ui/core/TextField'
 import { Link, Paper } from '@material-ui/core'
-import LinkedinLogo from '../../../../shared/LinkedinLogo/LinkedinLogo'
 
 function RegisterPage () {
   const classes = styles()
 
   return (
     <Paper elevation={3} className={classes.registerPageCard}>
-      <LinkedinLogo/>
-      <p className={classes.emailTitle}>Email Address</p>
       <form className={classes.form}>
         <TextField
           variant="outlined"

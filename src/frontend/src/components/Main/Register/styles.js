@@ -11,7 +11,8 @@ export default makeStyles(theme => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 150
+    zIndex: 150,
+    flexDirection: 'column'
   },
   registerPage: {
     height: '100%',
