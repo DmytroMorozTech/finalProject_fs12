@@ -54,7 +54,9 @@ function RegisterPage () {
       </div>
       <div className={classes.readyLinkedIn}>
         <h4>Already have Linkedin account</h4>
-        <Link exact to='/login' title='Sign In' variant='outlined'></Link>
+        <Link exact to='/login' className={classes.link}>
+          <SharedButton title='Return to login page'/>
+        </Link>
       </div>
     </Paper>
   )

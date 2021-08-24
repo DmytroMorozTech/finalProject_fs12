@@ -19,5 +19,15 @@ export default makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  registerHeader: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 80,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  registerHeaderText: {
+    fontSize: 24
   }
 }))

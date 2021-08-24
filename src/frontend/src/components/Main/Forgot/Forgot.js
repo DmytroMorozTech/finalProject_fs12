@@ -3,6 +3,7 @@ import styles from './styles'
 import ForgotPage from './ForgotPage/ForgotPage'
 import { Link } from 'react-router-dom'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
+import SharedButton from '../../../shared/Button/SharedButton'
 
 const Forgot = () => {
   const classes = styles()
@@ -12,6 +13,11 @@ const Forgot = () => {
         <Link exact to='/home' className={classes.link}>
           <LinkedinLogo/>
         </Link>
+        <div className={classes.headerLinkSignIn}>
+          <Link exact to='/login' className={classes.linkBtn}>
+            <SharedButton title='Sign In'/>
+          </Link>
+        </div>
       </div>
       <div className={classes.forgotPage}>
         <ForgotPage/>

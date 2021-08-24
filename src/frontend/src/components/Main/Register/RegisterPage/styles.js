@@ -15,10 +15,6 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
-  link: {
-    backgroundColor: theme.palette.background.default
-
-  },
   google: {
     width: '48.5%',
     display: 'flex',

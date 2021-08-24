@@ -10,21 +10,26 @@ export default makeStyles((theme) => ({
     alignItems: 'center'
   },
   mainText: {
-    fontSize: '16px'
+    fontSize: '16px',
+    marginBottom: 390,
+    position: 'absolute'
   },
   subText: {
-    fontSize: '14px'
+    fontSize: '14px',
+    marginBottom: 270,
+    position: 'absolute'
   },
   form: {
-    width: '50%',
+    width: '60%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
   link: {
-    backgroundColor: theme.palette.background.default
-  },
-  returnBtn: {
-    backgroundColor: theme.palette.grey
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    paddingTop: '15px',
+    textDecoration: 'none'
   }
 }))

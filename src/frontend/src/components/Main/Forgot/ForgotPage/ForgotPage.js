@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
-import {Button, Link, Paper} from '@material-ui/core'
+import {Link, Paper} from '@material-ui/core'
+import SharedButton from '../../../../shared/Button/SharedButton'
 
 function ForgotPage () {
   const classes = styles()
@@ -24,10 +25,10 @@ function ForgotPage () {
         />
       </form>
       <Link exact to='/home' className={classes.link}>
-        <p>Return</p>
+        <SharedButton title='Return to home page'/>
       </Link>
       <Link exact to='/login' className={classes.link}>
-        <Button title='Return to login page' className={classes.returnBtn}/>
+        <SharedButton title='Return to login page'/>
       </Link>
     </Paper>
   )

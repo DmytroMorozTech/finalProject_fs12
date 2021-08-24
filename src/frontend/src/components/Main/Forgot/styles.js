@@ -27,5 +27,16 @@ export default makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none'
+  },
+  linkBtn: {
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'flex-end',
+    flexDirection: 'column'
+  },
+  headerLinkSignIn: {
+    margin: 'auto',
+    padding: 'auto'
+
   }
 }))
