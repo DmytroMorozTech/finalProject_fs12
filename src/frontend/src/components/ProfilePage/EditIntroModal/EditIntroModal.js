@@ -6,7 +6,7 @@ import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import FormikTextField from '../../../shared/FormComponents/FormikTextField/FormikTextField'
+import FormikTextField from '../../../shared/FormComponents/FormikTextField'
 import Grid from '@material-ui/core/Grid'
 import SharedButton from '../../../shared/Button/SharedButton'
 
