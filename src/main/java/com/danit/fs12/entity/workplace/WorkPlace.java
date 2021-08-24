@@ -38,6 +38,9 @@ public class WorkPlace extends AbstractEntity {
   @Column(name = "date_finish")
   private LocalDate dateFinish;
 
+  @Column(name = "is_currently_employed")
+  private Boolean isCurrentlyEmployed;
+
   @ManyToOne
   @JoinColumn(name = "organization_id")
   @ToString.Exclude

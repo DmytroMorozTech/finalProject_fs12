@@ -38,7 +38,7 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
                            String lastName,
                            Integer age,
                            String phoneNumber,
-                           String password, 
+                           String password,
                            String email,
                            String avatar) {
     userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);

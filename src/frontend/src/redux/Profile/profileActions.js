@@ -123,3 +123,39 @@ export const deleteCertificationAction = (id) => (dispatch) => {
       toast.error(errorMsg)
     })
 }
+
+export const createNewWorkPlaceAction = (payload) => (dispatch) => {
+  convertStringsToLocalDate(payload)
+  if (payload.isCurrentlyEmployed) { payload.dateFinish = '' }
+
+  return http
+    .post(`/api/work-places/${payload.organizationId}`, payload,
+      {headers: getHeaders()}
+    )
+    .then((res) => res.data)
+    .then((workPlace) => {
+      console.log(workPlace)
+      dispatch({ type: actions.ADD_NEW_EXPERIENCE, payload: workPlace })
+      toast.info('New working experience was added',
+        {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
+    })
+}
+
+// this method should be refactored!
+export const updateExperienceAction = (payload, id) => (dispatch) => {
+  convertStringsToLocalDate(payload)
+  return http
+    .put(`/api/workPlaces/${id}`, payload,
+      {headers: getHeaders()}
+    )
+    .then((res) => res.data)
+    .then((workPlace) => {
+      dispatch({ type: actions.UPDATE_EXPERIENCE, payload: workPlace })
+      toast.info('Workplace was updated',
+        {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}

@@ -24,8 +24,11 @@ function ProfileCertification (props) {
         </div>
       </div>
       <div>
-        {certifications && certifications.map(
-          certification => <ProfileCertificationItem key={certification.id} certification = {certification}/>)}
+        {certifications &&
+        certifications
+          .sort((cert1, cert2) => cert2.issueDate.localeCompare(cert1.issueDate))
+          .map(
+            certification => <ProfileCertificationItem key={certification.id} certification = {certification}/>)}
       </div>
     </div>
   )

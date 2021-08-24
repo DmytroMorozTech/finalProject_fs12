@@ -91,6 +91,30 @@ const profileReducer = (state = initialState, action) => {
         }
       })
 
+    case actions.ADD_NEW_EXPERIENCE:
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          workPlaces: [...state.activeProfile.workPlaces, action.payload]
+        }
+      }
+
+    case actions.UPDATE_EXPERIENCE:
+      const updatedExperience = action.payload
+
+      const currentExperience = state.activeProfile.workPlaces
+        .find((workPlace) => workPlace.id === updatedExperience.id)
+      if (currentExperience == null) return state
+
+      const indexOfCurrentExperience = state.activeProfile.workPlaces.indexOf(currentExperience)
+
+      return update(state, {
+        activeProfile: {
+          workPlaces: { $splice: [[indexOfCurrentExperience, 1, updatedExperience]] }
+        }
+      })
+
     default: {
       return state
     }
