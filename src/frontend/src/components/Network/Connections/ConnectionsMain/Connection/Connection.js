@@ -4,7 +4,7 @@ import Avatar from '../../../../../shared/Avatar/Avatar'
 import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/Button/SharedButton'
-import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
+import ThreeDots from '../../../../../shared/ThreeDots/TreeDots'
 import { Link } from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
@@ -53,7 +53,7 @@ function Connection (props) {
             </div>
             <div>
               <SimpleMenu menuItem={
-                <TreeDots/>
+                <ThreeDots/>
               } userData={<ConnectionAddition onClick={handleRemoved}/>}/>
             </div>
           </div>
