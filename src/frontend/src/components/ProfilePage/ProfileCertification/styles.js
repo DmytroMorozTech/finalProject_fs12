@@ -15,6 +15,8 @@ export default makeStyles((theme) => ({
   content: {
     display: 'flex',
     justifyContent: 'space-between',
+    borderBottom: '1px solid #f1f1f1',
+    paddingBottom: theme.spacing(4),
     marginTop: theme.spacing(3)
   },
   btnCreate: {

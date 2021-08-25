@@ -16,7 +16,7 @@ function ProfileCertification (props) {
     <div className={classes.root}>
       <div className={classes.header}>
         <Typography variant="h3">
-          Certification
+          Licenses & certifications
         </Typography>
         <div onClick={() =>
           dispatch(toggleModalAction({modalType: ADD_NEW_CERTIFICATION}))}>
