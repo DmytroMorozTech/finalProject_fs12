@@ -28,8 +28,10 @@ export default makeStyles((theme) => ({
   },
 
   title: {
-    marginLeft: theme.spacing(2),
-    color: theme.palette.grey[600]
+    paddingLeft: theme.spacing(2),
+    color: theme.palette.grey[600],
+    fontSize: theme.typography.h5.fontSize,
+    fontWeight: theme.typography.fontWeightRegular
   },
 
   button: {
