@@ -9,10 +9,10 @@ function JobsMain () {
 
   return (
     <div className={classes.container}>
-      <Typography variant="h5">
+      <Typography variant="h3">
         Recommended for you
       </Typography>
-      <Typography variant="h6">
+      <Typography variant="h5" className={classes.regular}>
         Based on your profile and search history
       </Typography>
       <Vacancy/>

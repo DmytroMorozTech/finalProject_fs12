@@ -18,8 +18,8 @@ function Navbar () {
 
   const items = [
     { Icon: <HomeRoundedIcon fontSize='inherit'/>, title: 'Home', arrow: false, toggleMenu: false, to: '/home' },
-    { Icon: <SupervisorAccountRoundedIcon fontSize='inherit'/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network' },
-    { Icon: <BusinessCenterRoundedIcon fontSize='inherit'/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs' },
+    { Icon: <SupervisorAccountRoundedIcon fontSize='inherit'/>, title: 'Network', arrow: false, toggleMenu: false, to: '/network', exact: false },
+    { Icon: <BusinessCenterRoundedIcon fontSize='inherit'/>, title: 'Jobs', arrow: false, toggleMenu: false, to: '/jobs', exact: false },
     { Icon: <SmsRoundedIcon fontSize='inherit'/>, title: 'Messages', arrow: false, toggleMenu: false, to: '/messages' },
     { Icon: <NotificationsRoundedIcon fontSize='inherit'/>, title: 'Notifications', arrow: false, toggleMenu: false, to: '/notifications' },
     { Icon: <AccountCircleRoundedIcon fontSize='inherit'/>, title: 'Me', arrow: true, toggleMenu: true, to: `/profiles/${activeUserId}` }
@@ -27,8 +27,8 @@ function Navbar () {
 
   return (
     <div className={classes.navbar}>
-      {items.map(({ Icon, title, arrow, toggleMenu, onClick, to }, i) => (
-        <Item key={i} Icon={Icon} title={title} arrow={arrow} toggleMenu={toggleMenu} to={to} />
+      {items.map(({ Icon, ...rest }, i) => (
+        <Item key={i} Icon={Icon} {...rest} />
       ))}
       <Hidden mdDown>
         <span className={classes.margin}> </span>

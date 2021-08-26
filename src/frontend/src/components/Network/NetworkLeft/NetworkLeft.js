@@ -4,10 +4,10 @@ import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRo
 import PermContactCalendarOutlinedIcon from '@material-ui/icons/PermContactCalendarOutlined'
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined'
 import GroupIcon from '@material-ui/icons/Group'
-import EventIcon from '@material-ui/icons/Event'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import ListAltIcon from '@material-ui/icons/ListAlt'
-import GridOnIcon from '@material-ui/icons/GridOn'
+// import EventIcon from '@material-ui/icons/Event'
+// import DashboardIcon from '@material-ui/icons/Dashboard'
+// import ListAltIcon from '@material-ui/icons/ListAlt'
+// import GridOnIcon from '@material-ui/icons/GridOn'
 import Item from './Item/Item'
 import jobs from '../../../temporaryImages/jobs.jpg'
 import { Link } from 'react-router-dom'
@@ -24,11 +24,11 @@ function NetworkLeft (props) {
     numberConnections = 100,
     numberContacts,
     numberPeopleIFollow,
-    numberGroups,
-    numberEvents,
-    numberPages,
-    numberNewsletters,
-    numberHashtags
+    numberGroups
+    // numberEvents,
+    // numberPages,
+    // numberNewsletters,
+    // numberHashtags
   } = props
 
   const items = [
@@ -59,35 +59,35 @@ function NetworkLeft (props) {
       number: numberGroups,
       to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Groups')
-    },
-    {
-      Icon: <EventIcon fontSize="inherit"/>,
-      title: 'Events',
-      number: numberEvents,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Events')
-    },
-    {
-      Icon: <DashboardIcon fontSize="inherit"/>,
-      title: 'Pages',
-      number: numberPages,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Pages')
-    },
-    {
-      Icon: <ListAltIcon fontSize="inherit"/>,
-      title: 'Newsletters',
-      number: numberNewsletters,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Newsletters')
-    },
-    {
-      Icon: <GridOnIcon fontSize="inherit"/>,
-      title: 'Hashtags',
-      number: numberHashtags,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Hashtags')
     }
+    // {
+    //   Icon: <EventIcon fontSize="inherit"/>,
+    //   title: 'Events',
+    //   number: numberEvents,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Events')
+    // },
+    // {
+    //   Icon: <DashboardIcon fontSize="inherit"/>,
+    //   title: 'Pages',
+    //   number: numberPages,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Pages')
+    // },
+    // {
+    //   Icon: <ListAltIcon fontSize="inherit"/>,
+    //   title: 'Newsletters',
+    //   number: numberNewsletters,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Newsletters')
+    // },
+    // {
+    //   Icon: <GridOnIcon fontSize="inherit"/>,
+    //   title: 'Hashtags',
+    //   number: numberHashtags,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Hashtags')
+    // }
   ]
 
   const [showMore, setShowMore] = useState(false)

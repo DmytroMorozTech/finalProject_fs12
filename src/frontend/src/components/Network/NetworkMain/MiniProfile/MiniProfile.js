@@ -29,19 +29,19 @@ function MiniProfile (props) {
     <div className={clsx(classes.miniProfile, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
-          <CloseIcon fontSize='inherit'/>
+          <CloseIcon fontSize="inherit"/>
         </div>
-        <Link exact to="/profile" className={classes.link}>
+        <Link exact to="/profile/:id" className={classes.link}>
           <div className={classes.avatar}>
             <Avatar avatarUrl={avatarUrl}/>
           </div>
           <Typography variant="h5" align="center" className={classes.name}>
             {fullName}
           </Typography>
+          <Typography variant="body1" color="textSecondary" align="center">
+            {positionAndCompany}
+          </Typography>
         </Link>
-        <Typography variant="body1" color="textSecondary" align="center">
-          {positionAndCompany}
-        </Typography>
       </div>
       <div className={classes.connectionGroup}>
         <div className={classes.connection}>
