@@ -19,7 +19,9 @@ const initialState = {
       hasMore: true
     }
   },
-  comments: {}, // key - postId, value - [commentRs, commentRs,...]
+  comments: {
+    usersWhoLikedComment: {}
+  }, // key - postId, value - [commentRs, commentRs,...]
   usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
 }
 
@@ -102,6 +104,10 @@ const postReducer = (state = initialState, action) => {
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
       return { ...state, usersWhoLikedPost: { ...state.usersWhoLikedPost, [id]: usersList } }
+
+    case actions.SAVE_USERS_WHO_LIKED_COMMENT:
+      const { usersList1, id1 } = action.payload
+      return { ...state, usersWhoLikedComment: { ...state.usersWhoLikedComment, [id1]: usersList1 } }
 
     case actions.ADD_NEW_COMMENT_FOR_POST:
       let { comment, postId: postId2 } = { ...action.payload }
