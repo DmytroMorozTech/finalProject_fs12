@@ -19,10 +19,6 @@ function Connection (props) {
   const chats = useSelector(allChats)
   const activeChat = chats[0] && chats[0].id
 
-  useEffect(() => {
-    dispatch(getUserChatsAction(activeUser && activeUser.id))
-  }, [activeChat])
-
   const {
     id = 3,
     avatarUrl = 'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/p1qwriz6hzjgwkaihwpa.jpg',
@@ -31,14 +27,14 @@ function Connection (props) {
     dateCreated = '3 days ago'
   } = props
 
+  useEffect(() => {
+    dispatch(getUserChatsAction(id && id))
+  }, [activeChat])
+
   const [removedConnection, setRemovedConnection] = useState(false)
 
   const handleRemoved = () => {
     setRemovedConnection(!removedConnection)
-  }
-
-  const redirectToChats = () => {
-    dispatch(getUserChatsAction(id))
   }
 
   return (
@@ -66,7 +62,7 @@ function Connection (props) {
           <div className={classes.buttons}>
             <div className={classes.button}>
               <NavLink className={`${classes.linkButton}`} key={id} to={`/messages/${activeChat}`}>
-                <SharedButton onClick={() => redirectToChats()} title="Message" size="medium" variant="outlined"/>
+                <SharedButton title="Message" size="medium" variant="outlined"/>
               </NavLink>
             </div>
             <div>
