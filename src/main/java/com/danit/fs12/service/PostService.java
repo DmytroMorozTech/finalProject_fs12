@@ -2,7 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.post.Post;
-import com.danit.fs12.entity.postLike.PostLike;
+import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

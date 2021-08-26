@@ -1,7 +1,7 @@
 package com.danit.fs12.entity.comment;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.commentLike.CommentLike;
+import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,7 +38,7 @@ public class Comment extends AbstractEntity {
   @ManyToOne(
     cascade = {CascadeType.PERSIST},
     fetch = FetchType.LAZY
-  )
+    )
   @JoinColumn(name = "post_id")
   private Post post;
 
@@ -46,7 +46,7 @@ public class Comment extends AbstractEntity {
   @ManyToOne(
     cascade = {CascadeType.PERSIST},
     fetch = FetchType.LAZY
-  )
+    )
   @JoinColumn(name = "user_id")
   private User user;
 
@@ -54,7 +54,7 @@ public class Comment extends AbstractEntity {
     mappedBy = "comment",
     cascade = CascadeType.ALL,
     orphanRemoval = true
-  )
+    )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore

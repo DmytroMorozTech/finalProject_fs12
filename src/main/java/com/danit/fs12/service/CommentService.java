@@ -2,7 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.comment.CommentRq;
-import com.danit.fs12.entity.commentLike.CommentLike;
+import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.PostRepository;

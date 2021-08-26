@@ -3,7 +3,7 @@ package com.danit.fs12.entity.post;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.comment.Comment;
-import com.danit.fs12.entity.postLike.PostLike;
+import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -55,7 +55,7 @@ public class Post extends AbstractEntity {
     mappedBy = "post",
     cascade = CascadeType.ALL,
     orphanRemoval = true
-  )
+    )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
@@ -65,7 +65,7 @@ public class Post extends AbstractEntity {
     mappedBy = "post",
     cascade = CascadeType.ALL,
     orphanRemoval = true
-  )
+    )
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
