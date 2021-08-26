@@ -59,5 +59,9 @@ export default makeStyles((theme) => ({
     margin: '0',
     marginLeft: '100px',
     backgroundColor: theme.palette.grey[300]
+  },
+
+  linkButton: {
+    textDecoration: 'none'
   }
 }))

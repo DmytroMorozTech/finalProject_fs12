@@ -57,10 +57,10 @@ function UserMessage ({text, time, messageSender}) {
     <>
       <time className={classes.messageListTimeHeading}>{getDateTitle()}</time>
       <div className={classes.eventListItem}>
-        <img src={messageSender.avatarUrl} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
+        <img src={messageSender && messageSender.avatarUrl} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
         <div className={classes.messageWrapper}>
           <div className={classes.messageGroupMeta}>
-            <span className={classes.messageGroupMetaText}>{messageSender.fullName}</span>
+            <span className={classes.messageGroupMetaText}>{messageSender && messageSender.fullName}</span>
             <span className={classes.messageSentTime}> &bull; {getDate()}</span>
           </div>
           <div className={classes.eventListItemMessageBubble}>

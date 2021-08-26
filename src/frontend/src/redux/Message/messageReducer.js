@@ -3,7 +3,8 @@ import * as actions from './messageActionTypes'
 const initialState = {
   chatsList: [],
   messagesList: [],
-  chatMessages: {}
+  chatMessages: {},
+  isLoading: false
 }
 
 const messageReducer = (state = initialState, action) => {
