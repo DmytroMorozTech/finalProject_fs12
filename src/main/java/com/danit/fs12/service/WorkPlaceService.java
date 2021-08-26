@@ -37,13 +37,13 @@ public class WorkPlaceService extends GeneralService<WorkPlace> {
   public WorkPlace updateWorkPlace(WorkPlace workPlace, Long id) {
     Long activeUserId = userService.getActiveUser().getId();
     User user = userRepository.findEntityById(activeUserId);
-    WorkPlace workPlaceFromDb = findEntityById(id);
-    user.getWorkPlaces().remove(workPlaceFromDb);
+
+    Organization organization = findEntityById(id).getOrganization();
+
     workPlace.setId(id);
     workPlace.setUser(user);
-    WorkPlace savedWorkPlace = save(workPlace);
-    user.getWorkPlaces().add(savedWorkPlace);
-    userRepository.save(user);
-    return savedWorkPlace;
+    workPlace.setOrganization(organization);
+
+    return save(workPlace);
   }
 }

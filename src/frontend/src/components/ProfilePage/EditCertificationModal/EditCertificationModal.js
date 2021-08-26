@@ -63,7 +63,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 })
 
-const EditCertification = (props) => {
+const EditCertificationModal = (props) => {
   const certification = props.certification
   const {hasExpiryDate} = certification
   const classes = styles()
@@ -222,4 +222,4 @@ const EditCertification = (props) => {
     </div>
   )
 }
-export default EditCertification
+export default EditCertificationModal
