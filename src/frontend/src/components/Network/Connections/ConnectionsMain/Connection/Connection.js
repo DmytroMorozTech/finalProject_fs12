@@ -8,16 +8,19 @@ import {Link, NavLink} from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUserChatsAction} from '../../../../../redux/Message/messageActions'
-import {allChats} from '../../../../../redux/Message/messageSelector'
+import {createChatAction, getUserChatsAction} from '../../../../../redux/Message/messageActions'
+import {allChats, newChatData} from '../../../../../redux/Message/messageSelector'
 import {activeUserSelector} from '../../../../../redux/User/userSelector'
 
 function Connection (props) {
   const classes = styles()
   const dispatch = useDispatch()
-  const activeUser = useSelector(activeUserSelector)
   const chats = useSelector(allChats)
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser && activeUser.id
   const activeChat = chats[0] && chats[0].id
+  const newChat = useSelector(newChatData)
+  console.log('user chats: ' + chats)
 
   const {
     id = 3,
@@ -29,12 +32,30 @@ function Connection (props) {
 
   useEffect(() => {
     dispatch(getUserChatsAction(id && id))
-  }, [activeChat])
+  }, [dispatch, id])
 
   const [removedConnection, setRemovedConnection] = useState(false)
 
   const handleRemoved = () => {
     setRemovedConnection(!removedConnection)
+  }
+
+  const findIfChatExist = () => {
+    let existChatId = ''
+    chats && chats.forEach(c => {
+      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+        existChatId = c.id
+      } else existChatId = null
+    })
+    console.log('Chat exist: ' + existChatId)
+    return existChatId !== null ? existChatId : startNewChatting()
+  }
+
+  const startNewChatting = () => {
+    dispatch(createChatAction())
+    const newChatId = newChat && newChat.id
+    console.log('New chat id: ' + newChatId)
+    return newChatId
   }
 
   return (
@@ -61,8 +82,8 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              <NavLink className={`${classes.linkButton}`} key={id} to={`/messages/${activeChat}`}>
-                <SharedButton title="Message" size="medium" variant="outlined"/>
+              <NavLink onClick={() => findIfChatExist()} className={`${classes.linkButton}`} key={id} to={`/messages/${activeChat}`}>
+                <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" />
               </NavLink>
             </div>
             <div>

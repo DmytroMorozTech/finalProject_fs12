@@ -4,15 +4,18 @@ const initialState = {
   chatsList: [],
   messagesList: [],
   chatMessages: {},
+  newChatData: [],
   isLoading: false
 }
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CREATE_CHAT:
+      console.log(action.payload)
       return {
         ...state,
-        chatsList: [...state.chatsList, action.payload]
+        chatsList: [...state.chatsList, action.payload],
+        newChatData: action.payload
       }
     case actions.CREATE_MESSAGE:
       return {

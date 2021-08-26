@@ -1,4 +1,5 @@
 export const allMessages = (store) => store.messages.messagesList
 export const allChats = (store) => store.messages.chatsList
 export const chatMessages = (store) => store.messages.chatMessages
+export const newChatData = (store) => store.messages.newChatData
 export const loading = (store) => store.messages.loading
