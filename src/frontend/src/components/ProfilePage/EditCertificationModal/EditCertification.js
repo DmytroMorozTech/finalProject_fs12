@@ -140,6 +140,9 @@ const EditCertification = (props) => {
                     <span>This credential has expiration date</span>
                   </label>
                 </Grid>
+                <Grid item xs={12}>
+                  <span>Issue date</span>
+                </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
@@ -155,6 +158,9 @@ const EditCertification = (props) => {
                     label="Year"
                     options={year}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Expiration date</span>
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}

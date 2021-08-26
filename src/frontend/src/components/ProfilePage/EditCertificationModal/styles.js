@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
   },
 
   formPadding: {
-    paddingBottom: theme.spacing(6),
+    paddingBottom: theme.spacing(4),
     width: '100%'
   },
 
