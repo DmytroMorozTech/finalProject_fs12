@@ -11,6 +11,10 @@ export default makeStyles((theme) => ({
     paddingRight: theme.spacing(3)
   },
 
+  regular: {
+    fontWeight: theme.typography.fontWeightRegular
+  },
+
   seeMore: {
     display: 'flex',
     justifyContent: 'center',
