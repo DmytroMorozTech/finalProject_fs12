@@ -24,6 +24,15 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return listUsersRs;
   }
 
+  public List<UserRs> findUsersWhoLikedComment(Long id) {
+    List<User> listUsers = userService.findUsersWhoLikedComment(id);
+
+    List<UserRs> listUsersRs = listUsers.stream()
+      .map(this::convertToDto).collect(Collectors.toList());
+
+    return listUsersRs;
+  }
+
   public UserRs getActiveUser() {
     User user = userService.getActiveUser();
     return convertToDto(user);
