@@ -65,7 +65,7 @@ const CertificationSchema = Yup.object().shape({
 
 })
 
-export const AddNewCertification = () => {
+export const AddNewCertificationModal = () => {
   const classes = styles()
   const dispatch = useDispatch()
 
@@ -208,4 +208,4 @@ export const AddNewCertification = () => {
     </div>
   )
 }
-export default AddNewCertification
+export default AddNewCertificationModal

@@ -3,6 +3,7 @@ import http from '../../services/httpService'
 import getHeaders from '../../services/headersService'
 import convertStringsToLocalDate from '../../utils/convertStringsToLocalDate'
 import convertStringsToLocalDateCert from '../../utils/convertStringsToLocalDateCert'
+import convertStrToLocalDateExperience from '../../utils/convertStrToLocalDateExperience'
 import {toast} from 'react-toastify'
 
 export const getActiveProfileAction = (userId) => (dispatch) => {
@@ -134,18 +135,16 @@ export const createNewWorkPlaceAction = (payload) => (dispatch) => {
     )
     .then((res) => res.data)
     .then((workPlace) => {
-      console.log(workPlace)
       dispatch({ type: actions.ADD_NEW_EXPERIENCE, payload: workPlace })
       toast.info('New working experience was added',
         {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
     })
 }
 
-// this method should be refactored!
-export const updateExperienceAction = (payload, id) => (dispatch) => {
-  convertStringsToLocalDate(payload)
+export const updateWorkPlaceAction = (payload, id) => (dispatch) => {
+  convertStrToLocalDateExperience(payload)
   return http
-    .put(`/api/workPlaces/${id}`, payload,
+    .put(`/api/work-places/${id}`, payload,
       {headers: getHeaders()}
     )
     .then((res) => res.data)
@@ -153,6 +152,24 @@ export const updateExperienceAction = (payload, id) => (dispatch) => {
       dispatch({ type: actions.UPDATE_EXPERIENCE, payload: workPlace })
       toast.info('Workplace was updated',
         {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
+
+export const deleteWorkPlaceAction = (id) => (dispatch) => {
+  return http
+    .delete(`/api/work-places/${id}`, {headers: getHeaders()}
+    )
+    .then((res) => res.status)
+    .then((status) => {
+      if (parseInt(status) === 200 || parseInt(status) === 204) {
+        dispatch({ type: actions.DELETE_EXPERIENCE, payload: id })
+        toast.info('Workplace was deleted',
+          {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
+      }
     })
     .catch(err => {
       const errorMsg = err.response.data.message
