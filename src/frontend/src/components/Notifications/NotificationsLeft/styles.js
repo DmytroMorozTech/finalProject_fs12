@@ -6,7 +6,9 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    width: '225px',
+    margin: theme.spacing(1)
   },
 
   notifications: {

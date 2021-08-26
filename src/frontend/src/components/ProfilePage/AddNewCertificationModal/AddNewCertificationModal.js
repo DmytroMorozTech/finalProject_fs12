@@ -72,7 +72,7 @@ export const AddNewCertificationModal = () => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        Add certification
+        Add license or certification
       </Typography>
       <Formik
         initialValues={{
@@ -90,7 +90,6 @@ export const AddNewCertificationModal = () => {
         onSubmit={values => {
           dispatch(createNewCertificationAction(values))
           dispatch(toggleModalAction())
-          console.log(values)
         }}
       >
         {({values}) => (
@@ -134,6 +133,9 @@ export const AddNewCertificationModal = () => {
                     <span>Has expiration date</span>
                   </label>
                 </Grid>
+                <Grid item xs={12}>
+                  <span>Issue date</span>
+                </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
@@ -149,6 +151,9 @@ export const AddNewCertificationModal = () => {
                     label="Year"
                     options={year}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Expiration date</span>
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}

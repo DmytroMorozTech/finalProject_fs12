@@ -1,6 +1,9 @@
 import { createTheme } from '@material-ui/core/styles'
 
 const theme = createTheme({
+  breakpoints: {
+    values: {xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920}
+  },
   palette: {
     primary: { main: '#0a66c2', light: '#0b76e0', dark: '#0a56a3', contrastText: '#fff' },
     secondary: {
@@ -26,8 +29,8 @@ const theme = createTheme({
       A400: '#303030',
       A700: '#616161'
     },
-    green: {
-      main: '#057642'
+    success: {
+      main: '#057642', light: '#08a45d', dark: '#04532f', contrastText: '#fff'
     },
     error: {
       main: '#cc1016'

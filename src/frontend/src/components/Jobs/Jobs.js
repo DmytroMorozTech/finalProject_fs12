@@ -9,6 +9,7 @@ import JobsSmall from './JobsSmall/JobsSmall'
 
 function Jobs () {
   const classes = styles()
+
   return (
     <Container className={classes.jobsPage} maxWidth={'lg'}>
       <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
@@ -27,9 +28,7 @@ function Jobs () {
         </Grid>
 
         <Hidden smDown>
-          <Grid item md={3} lg={3} xl={3}>
-            <JobsRight/>
-          </Grid>
+          <JobsRight/>
         </Hidden>
 
       </Grid>

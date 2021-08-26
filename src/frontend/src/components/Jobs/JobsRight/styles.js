@@ -9,7 +9,9 @@ export default makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2)
+    paddingLeft: theme.spacing(2),
+    width: '300px',
+    margin: theme.spacing(1)
   },
 
   bestPracticesBlock: {
@@ -18,6 +20,10 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     padding: theme.spacing(3),
     display: 'flex'
+  },
+
+  title: {
+    fontWeight: theme.typography.fontWeightRegular
   },
 
   bulb: {
