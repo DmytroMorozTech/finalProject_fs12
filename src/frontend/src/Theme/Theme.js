@@ -26,8 +26,8 @@ const theme = createTheme({
       A400: '#303030',
       A700: '#616161'
     },
-    green: {
-      main: '#057642'
+    success: {
+      main: '#057642', light: '#08a45d', dark: '#04532f', contrastText: '#fff'
     },
     error: {
       main: '#cc1016'

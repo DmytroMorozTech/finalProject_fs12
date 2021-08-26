@@ -2,15 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
-  container: {
-    textDecoration: 'none'
-  },
-
   item: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: theme.spacing(4),
     fontSize: theme.typography.h6.fontSize,
     fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.grey[700],
@@ -18,7 +13,7 @@ export default makeStyles((theme) => ({
   },
 
   icons: {
-    fontSize: theme.typography.icons.medium.fontSize,
+    fontSize: theme.typography.icons.large.fontSize,
     display: 'flex'
   },
 
