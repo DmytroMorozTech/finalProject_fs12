@@ -1,4 +1,4 @@
-package com.danit.fs12.entity.like;
+package com.danit.fs12.entity.postLike;
 
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.post.Post;
@@ -14,12 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "likes")
+@Table(name = "posts_likes")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Like extends AbstractEntity {
+public class PostLike extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "user_id")

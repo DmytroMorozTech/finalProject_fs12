@@ -19,9 +19,6 @@ const initialState = {
       hasMore: true
     }
   },
-  comments: {
-    usersWhoLikedComment: {}
-  }, // key - postId, value - [commentRs, commentRs,...]
   usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
 }
 
@@ -104,24 +101,6 @@ const postReducer = (state = initialState, action) => {
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
       return { ...state, usersWhoLikedPost: { ...state.usersWhoLikedPost, [id]: usersList } }
-
-    case actions.SAVE_USERS_WHO_LIKED_COMMENT:
-      const { usersList1, id1 } = action.payload
-      return { ...state, usersWhoLikedComment: { ...state.usersWhoLikedComment, [id1]: usersList1 } }
-
-    case actions.ADD_NEW_COMMENT_FOR_POST:
-      let { comment, postId: postId2 } = { ...action.payload }
-      return { ...state, comments: { ...state.comments, [postId2]: [...(state.comments[postId2] || []), comment] } }
-
-    case actions.SAVE_COMMENTS_FOR_POST:
-      const { listOfComments, postId } = action.payload
-      return { ...state, comments: { ...state.comments, [postId]: listOfComments } }
-
-    case actions.DELETE_COMMENT:
-      const { commentId, postId: postId3 } = action.payload
-      const updatedComments = state.comments[postId3].filter(c => c.id !== commentId)
-
-      return { ...state, comments: { ...state.comments, [postId3]: updatedComments } }
 
     default: {
       return state

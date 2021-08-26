@@ -50,7 +50,7 @@ public class CommentController {
     return ResponseEntity.ok(comments);
   }
 
-  @PostMapping(path = "/toggle_comment_like/{commentId}")
+  @PostMapping(path = "/toggle_like/{commentId}")
   @JsonView(CommentViews.Base.class)
   public ResponseEntity<CommentRs> toggleCommentLike(@PathVariable Long commentId) {
     CommentRs comment = commentFacade.toggleCommentLike(commentId);

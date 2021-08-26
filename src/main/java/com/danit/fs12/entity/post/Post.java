@@ -3,7 +3,7 @@ package com.danit.fs12.entity.post;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.comment.Comment;
-import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.postLike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -59,7 +59,7 @@ public class Post extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
-  private List<Like> likes = new ArrayList<>();
+  private List<PostLike> postLikes = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "post",
@@ -76,7 +76,7 @@ public class Post extends AbstractEntity {
   }
 
   public Long getNumberOfLikes() {
-    return (long) likes.size();
+    return (long) postLikes.size();
   }
 
   public Long getNumberOfComments() {
@@ -84,7 +84,7 @@ public class Post extends AbstractEntity {
   }
 
   public Boolean getIsLikedByActiveUser() {
-    return likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
+    return postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
   }
 
   public Boolean getIsBookmarkedByActiveUser() {

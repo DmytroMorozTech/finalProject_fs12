@@ -60,11 +60,11 @@ public class Comment extends AbstractEntity {
   @JsonIgnore
   private List<CommentLike> commentLikes = new ArrayList<>();
 
-  public Long getNumberOfCommentLikes() {
+  public Long getNumberOfLikes() {
     return (long) commentLikes.size();
   }
 
-  public Boolean getIsCommentLikedByActiveUser() {
+  public Boolean getIsLikedByActiveUser() {
     return commentLikes.stream().anyMatch(cl -> Objects.equals(cl.getUser().getId(), 1L));
   }
 }

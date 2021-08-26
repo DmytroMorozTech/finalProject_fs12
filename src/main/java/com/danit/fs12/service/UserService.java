@@ -2,7 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentLike.CommentLike;
-import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.postLike.PostLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.ForbiddenException;
@@ -28,8 +28,8 @@ public class UserService extends GeneralService<User> {
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
-    List<Like> likes = post.getLikes();
-    List<User> usersList = likes.stream().map(Like::getUser).collect(Collectors.toList());
+    List<PostLike> postLikes = post.getPostLikes();
+    List<User> usersList = postLikes.stream().map(PostLike::getUser).collect(Collectors.toList());
     return usersList;
   }
 

@@ -1,4 +1,5 @@
-import { getCommentsForPostAction, toggleLikeAction } from '../../../../../redux/Post/postActions'
+import { togglePostLikeAction } from '../../../../../redux/Post/postActions'
+import {getCommentsForPostAction} from '../../../../../redux/Comment/commentActions'
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import { Hidden } from '@material-ui/core'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
@@ -20,7 +21,7 @@ function PostButtons (props) {
   const [showedAddComment, setShowedAddComment] = useState(false)
 
   const handleLike = () => {
-    dispatch(toggleLikeAction(postId))
+    dispatch(togglePostLikeAction(postId))
   }
 
   const handleComment = () => {

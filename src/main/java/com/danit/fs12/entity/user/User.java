@@ -8,7 +8,7 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentLike.CommentLike;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
-import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.postLike.PostLike;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.workplace.WorkPlace;
@@ -152,7 +152,7 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
-  private List<Like> likes = new ArrayList<>();
+  private List<PostLike> postLikes = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
