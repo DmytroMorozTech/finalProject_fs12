@@ -28,6 +28,6 @@ export default makeStyles(theme => ({
     alignItems: 'center'
   },
   registerHeaderText: {
-    fontSize: 24
+    fontSize: theme.typography.h1
   }
 }))

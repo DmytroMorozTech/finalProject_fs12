@@ -10,12 +10,12 @@ export default makeStyles((theme) => ({
     alignItems: 'center'
   },
   mainText: {
-    fontSize: '16px',
+    fontSize: theme.typography.h3.fontSize,
     marginBottom: 390,
     position: 'absolute'
   },
   subText: {
-    fontSize: '14px',
+    fontSize: theme.typography.h5.fontSize,
     marginBottom: 270,
     position: 'absolute'
   },

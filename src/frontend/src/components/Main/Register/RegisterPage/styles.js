@@ -58,11 +58,11 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: theme.typography
+    fontSize: theme.typography.h5.fontSize
   },
 
   emailTitle: {
-    fontSize: '18px',
+    fontSize: theme.typography.h5.fontSize,
     textAlign: 'center'
   }
 }))
