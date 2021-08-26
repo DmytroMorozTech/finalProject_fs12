@@ -8,17 +8,19 @@ import {
   EDIT_INTRO,
   USERS_WHO_LIKED_POST,
   ADD_BACKGROUND_PHOTO,
-  ADD_NEW_EXPERIENCE
+  ADD_NEW_EXPERIENCE,
+  EDIT_EXPERIENCE
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
 import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
-import AddNewCertification from '../../components/ProfilePage/AddNewCertification/AddNewCertification'
+import AddNewCertificationModal from '../../components/ProfilePage/AddNewCertificationModal/AddNewCertificationModal'
 import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
 import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
-import EditCertification from '../../components/ProfilePage/EditCertificationModal/EditCertification'
+import EditCertificationModal from '../../components/ProfilePage/EditCertificationModal/EditCertificationModal'
 import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
 import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
+import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
 
 const initialState = {
   isModalOpen: false,
@@ -46,11 +48,11 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_CERTIFICATION:
-          content = <AddNewCertification/>
+          content = <AddNewCertificationModal/>
           break
 
         case EDIT_CERTIFICATION:
-          content = <EditCertification certification={action.payload.certification}/>
+          content = <EditCertificationModal certification={action.payload.certification}/>
           break
 
         case USERS_WHO_LIKED_POST:
@@ -75,6 +77,10 @@ const modalReducer = (state = initialState, action) => {
 
         case ADD_NEW_EXPERIENCE:
           content = <AddExperienceModal/>
+          break
+
+        case EDIT_EXPERIENCE :
+          content = <EditExperienceModal workPlace={action.payload.workPlace}/>
           break
 
         default:

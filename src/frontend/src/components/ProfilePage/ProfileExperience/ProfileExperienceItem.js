@@ -4,8 +4,8 @@ import CreateIcon from '@material-ui/icons/Create'
 import Typography from '@material-ui/core/Typography'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
-import {UPDATE_EXPERIENCE} from '../../../redux/Profile/profileActionTypes'
 import convertLocalDateToString from '../../../utils/convertLocalDateToString'
+import {EDIT_EXPERIENCE} from '../../../redux/Modal/modalTypes'
 
 const ProfileExperienceItem = (props) => {
   const {organization, position, dateStart, dateFinish, responsibilities} = props.workPlace
@@ -25,7 +25,7 @@ const ProfileExperienceItem = (props) => {
         <Typography>Responsibilities:{responsibilities}</Typography>
       </div>
       <div className={classes.btnCreate} onClick={() =>
-        dispatch(toggleModalAction({modalType: UPDATE_EXPERIENCE, workPlace: props.workPlaces}))}>
+        dispatch(toggleModalAction({modalType: EDIT_EXPERIENCE, workPlace: props.workPlace}))}>
         <CreateIcon className={classes.createIcon}/>
       </div>
     </div>
