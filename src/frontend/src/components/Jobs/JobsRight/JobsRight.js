@@ -8,7 +8,7 @@ function JobsRight () {
 
   return (
     <div className={classes.container}>
-      <Typography variant="h5">
+      <Typography variant="h3" className={classes.title}>
         Ways to prepare
       </Typography>
       <div className={classes.bestPracticesBlock}>
@@ -22,7 +22,7 @@ function JobsRight () {
             </Typography>
           </div>
           <div>
-            <Typography variant="h6" className={classes.description}>
+            <Typography variant="h5" className={classes.description}>
               Get the most out of your job search and stand out to recruiters
             </Typography>
           </div>

@@ -14,9 +14,7 @@ function Notifications () {
       <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
 
         <Hidden smDown>
-          <Grid item md={3} lg={2} xl={2}>
-            <NotificationsLeft/>
-          </Grid>
+          <NotificationsLeft/>
         </Hidden>
 
         <Grid item xs={12} sm={10} md={5} lg={5} xl={5}>

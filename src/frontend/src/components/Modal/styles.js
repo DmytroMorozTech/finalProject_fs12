@@ -1,10 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
-  root: {
-    width: '550px',
-    maxWidth: '1200px',
+  paperRoot: {
+    width: '100%',
+    minWidth: '300px',
+    maxWidth: '800px',
     maxHeight: '800px',
+    [theme.breakpoints.down('sm')]: {
+      margin: 0
+    }
+  },
+  root: {
     margin: 0,
     padding: theme.spacing(2)
   },

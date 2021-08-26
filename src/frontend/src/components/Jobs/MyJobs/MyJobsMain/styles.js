@@ -15,9 +15,8 @@ export default makeStyles((theme) => ({
   },
 
   btn: {
-    backgroundColor: theme.palette.success,
-    color: theme.palette.common.white,
-    marginLeft: theme.spacing(3)
+    marginLeft: theme.spacing(3),
+    marginBottom: theme.spacing(1)
   },
 
   line: {
