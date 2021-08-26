@@ -1,16 +1,18 @@
 import styles from './styles'
 import avatar from '../../../../../temporaryImages/avatar.jpg'
 import Avatar from '../../../../../shared/Avatar/Avatar'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/Button/SharedButton'
 import ThreeDots from '../../../../../shared/ThreeDots/TreeDots'
-import { Link } from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
+import {useDispatch} from 'react-redux'
 
 function Connection (props) {
   const classes = styles()
+  const dispatch = useDispatch()
 
   const {
     avatarUrl = avatar,
@@ -49,7 +51,9 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              <SharedButton title="Message" size="medium" variant="outlined"/>
+              <NavLink className={`${classes.linkButton}`} key={id} to={`/messages/${activeChat}`}>
+                <SharedButton title="Message" size="medium" variant="outlined"/>
+              </NavLink>
             </div>
             <div>
               <SimpleMenu menuItem={
