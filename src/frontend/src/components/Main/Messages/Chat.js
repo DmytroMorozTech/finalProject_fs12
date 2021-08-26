@@ -17,7 +17,7 @@ import {withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Chat (props) {
-  const {match} = props
+  const {match, chats} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
   const [messageValue, setMessageValue] = useState('')
@@ -49,6 +49,12 @@ function Chat (props) {
     const currentChat = chatsList.filter(c => c.id === +chatId)[0]
     const currentChatUsers = currentChat && currentChat.users
     return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
+  }
+
+  const getMessageSender = (userId) => {
+    const chat = chats.filter(c => c.id === +chatId)[0]
+    const chatUsers = chat && chat.users
+    return chatUsers && chatUsers.filter(u => u.id === userId)[0]
   }
 
   return (
@@ -97,7 +103,7 @@ function Chat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} messageSender={getMessageSender(m.userId)} text={m.text}
                   time={m.createdDate}/>)}
               </li>
             </ul>

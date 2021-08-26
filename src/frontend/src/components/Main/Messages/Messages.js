@@ -70,7 +70,7 @@ function Messages () {
             )
           })}
         </section>
-        <Chat user={activeUser}/>
+        <Chat user={activeUser} chats={chatsList}/>
       </div>
     </main>
   )
