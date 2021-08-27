@@ -10,11 +10,17 @@ import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfie
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/Button/SharedButton'
 import Style from './styles'
-import {createChatAction, createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
+import {
+  addUserAction,
+  createChatAction,
+  createMessageAction,
+  getUserChatsAction
+} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages, newChatData} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
+import {findUserByIdAction} from '../../../redux/User/userActions'
 
 function Chat (props) {
   const {match} = props
@@ -27,34 +33,47 @@ function Chat (props) {
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
   const chatIdFromUrl = match.params.id
+  const userIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
   const newChat = useSelector(newChatData)
+  const currentUser = useSelector(currentUserSelector)
 
-  const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
+  let chatId = null
+
   const currentChat = chatsList.filter(c => c.id === +chatId)[0]
   const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
-    dispatch(getChatMessagesAction(chatId))
-  }, [dispatch, chatId, messagesList])
+    dispatch(findUserByIdAction(userIdFromUrl))
+  }, [userIdFromUrl, messagesList, chatsList])
 
   const findIfChatExist = () => {
     let existChatId = ''
     chatsList && chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         existChatId = c.id
-      } else existChatId = null
+      } else {
+        existChatId = null
+      }
     })
     console.log('Chat exist: ' + existChatId)
-    return existChatId !== null ? existChatId : 'new'
+    if (existChatId !== null) {
+      chatId = existChatId && existChatId
+      // return chatId
+    } else return startNewChatting()
   }
 
   const startNewChatting = () => {
     dispatch(createChatAction())
+    dispatch(getUserChatsAction(activeUserId))
+    console.log(newChat)
     const newChatId = newChat && newChat.id
     console.log('New chat id: ' + newChatId)
-    return newChatId
+    console.log('User from url: ' + userIdFromUrl)
+    chatId = newChatId && newChatId
+    dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
+    // return chatId
   }
 
   const handleMessageInputChange = e => {
@@ -63,13 +82,14 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
+    findIfChatExist()
     dispatch(createMessageAction({chatId, text: messageValue}))
     setMessageValue('')
   }
 
-  const getChatMember = () => {
-    return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
-  }
+  // const getChatMember = () => {
+  //   return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
+  // }
 
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
@@ -81,7 +101,7 @@ function Chat (props) {
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {getChatMember() && getChatMember().fullName}
+              {currentUser && currentUser.fullName}
               <div className={classes.userDeviceStyle}>
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
@@ -100,8 +120,8 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember() && getChatMember().avatarUrl}
-                          alt={getChatMember() && getChatMember().fullName}
+                        <img src={currentUser && currentUser.avatarUrl}
+                          alt={currentUser && currentUser.fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
                         </div>
@@ -109,11 +129,11 @@ function Chat (props) {
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {getChatMember() && getChatMember().fullName}
+                        {currentUser && currentUser.fullName}
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
-                          {getChatMember() && getChatMember().positionAndCompany}
+                          {currentUser && currentUser.positionAndCompany}
                         </div>
                       </div>
                     </div>
@@ -121,7 +141,9 @@ function Chat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} messageSender={getMessageSender(m.userId)} text={m.text}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id}
+                  messageSender={getMessageSender(m.userId)}
+                  text={m.text}
                   time={m.createdDate}/>)}
               </li>
             </ul>

@@ -12,6 +12,8 @@ import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
 import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
+import Chat from '../components/Main/Messages/Chat'
+import NewChat from '../components/Main/Messages/NewChat'
 
 const MainRoutes = () => {
   return (
@@ -24,6 +26,8 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/jobs/my-jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id" render={() => <Messages/>}/>
+      <ProtectedRoutes exact path="/chat/:id" render={() => <Chat/>}/>
+      <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       {/* <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/> */}
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage} />

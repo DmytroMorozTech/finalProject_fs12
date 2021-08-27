@@ -257,7 +257,9 @@ export default makeStyles((theme) => ({
   },
 
   scaffoldLayout: {
-    maxWidth: 'initial',
+    margin: '0 auto',
+    backgroundColor: 'white',
+    maxWidth: 640,
     minWidth: 'initial',
     height: '100%',
     minHeight: 340,

@@ -48,7 +48,7 @@ function Connection (props) {
       } else existChatId = null
     })
     console.log('Chat exist: ' + existChatId)
-    return existChatId !== null ? existChatId : startNewChatting()
+    return existChatId !== null ? existChatId : 'new/' + id
   }
 
   const startNewChatting = () => {
@@ -82,7 +82,7 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              <NavLink onClick={() => findIfChatExist()} className={`${classes.linkButton}`} key={id} to={`/messages/${activeChat}`}>
+              <NavLink className={`${classes.linkButton}`} key={id} to={`/chat/${findIfChatExist()}`}>
                 <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" />
               </NavLink>
             </div>
