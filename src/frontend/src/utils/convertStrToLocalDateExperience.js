@@ -1,28 +1,13 @@
-
-const monthsMapping = {
-  'January': '01',
-  'February': '02',
-  'March': '03',
-  'April': '04',
-  'May': '05',
-  'June': '06',
-  'July': '07',
-  'August': '08',
-  'September': '09',
-  'October': '10',
-  'November': '11',
-  'December': '12'
-}
+import convertYearMonthToLocalDate from './convertYearMonthToLocalDate'
 
 const convertStrToLocalDateExperience = (obj) => {
   const {startMonth, startYear, endMonth, endYear, isCurrentlyEmployed} = obj
 
-  const dateStart = '' + startYear + '-' + monthsMapping[startMonth] + '-01'
-  obj.dateStart = dateStart
+  obj.dateStart = convertYearMonthToLocalDate(startYear, startMonth)
 
   if (!isCurrentlyEmployed) {
-    const dateFinish = '' + endYear + '-' + monthsMapping[endMonth] + '-01'
-    obj.dateFinish = dateFinish
+    obj.dateFinish = convertYearMonthToLocalDate(endYear, endMonth)
   }
 }
+
 export default convertStrToLocalDateExperience

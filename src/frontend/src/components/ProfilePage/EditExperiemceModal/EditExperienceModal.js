@@ -16,6 +16,7 @@ import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {deleteWorkPlaceAction, updateWorkPlaceAction} from '../../../redux/Profile/profileActions'
 import convertLocalDateToYearMonthObj from '../../../utils/convertLocalDateToYearMonthObj'
+import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -63,12 +64,38 @@ const EditExperienceModal = (props) => {
     endMonth: Yup.string()
       .when('isCurrentlyEmployed', {
         is: false,
-        then: Yup.string().required('Required')
+        then: Yup.string()
+          .required('Required')
+          .test(
+            'chronological_order',
+            'You should follow chronological order',
+            function () {
+              const {startMonth, startYear, endMonth, endYear} = this.parent
+              if (!endMonth || !endYear) return true
+              const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+              const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+              const startDateMillis = Date.parse(startDateStr)
+              const endDateMillis = Date.parse(endDateStr)
+              return (endDateMillis - startDateMillis) > 0
+            })
       }),
     endYear: Yup.string()
       .when('isCurrentlyEmployed', {
         is: false,
-        then: Yup.string().required('Required')
+        then: Yup.string()
+          .required('Required')
+          .test(
+            'chronological_order',
+            'You should follow chronological order',
+            function () {
+              const {startMonth, startYear, endMonth, endYear} = this.parent
+              if (!endMonth || !endYear) return true
+              const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+              const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+              const startDateMillis = Date.parse(startDateStr)
+              const endDateMillis = Date.parse(endDateStr)
+              return (endDateMillis - startDateMillis) > 0
+            })
       }),
     responsibilities: Yup.string()
       .required('Required')
