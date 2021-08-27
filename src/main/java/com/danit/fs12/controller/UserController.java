@@ -50,6 +50,14 @@ public class UserController {
     return ResponseEntity.ok(usersList);
   }
 
+  @GetMapping(path = "/who_liked_comment/{id}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> findUsersWhoLikedComment(@PathVariable Long id) {
+    List<UserRs> usersList = userFacade.findUsersWhoLikedComment(id);
+    // in case User can not be found by id in Facade, an error will be thrown
+    return ResponseEntity.ok(usersList);
+  }
+
   @JsonView(UserViews.Profile.class)
   @GetMapping(path = "/profiles/{id}")
   public ResponseEntity<UserRs> getActiveProfile(@PathVariable Long id) {
