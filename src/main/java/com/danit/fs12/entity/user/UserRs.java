@@ -20,7 +20,7 @@ public class UserRs {
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private Long id;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class})
   private LocalDateTime createdDate;
 
   private LocalDateTime lastModifiedDate;

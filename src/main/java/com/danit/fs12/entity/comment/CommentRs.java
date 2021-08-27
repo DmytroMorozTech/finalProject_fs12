@@ -25,4 +25,9 @@ public class CommentRs {
   @JsonView(CommentViews.Base.class)
   private LocalDateTime lastModifiedDate;
 
+  @JsonView(CommentViews.Base.class)
+  private Boolean isLikedByActiveUser;
+
+  @JsonView(CommentViews.Base.class)
+  private Long numberOfLikes;
 }

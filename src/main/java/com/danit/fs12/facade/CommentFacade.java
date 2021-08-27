@@ -20,6 +20,11 @@ public class CommentFacade extends GeneralFacade<Comment, CommentRq, CommentRs> 
     return convertToDto(comment);
   }
 
+  public CommentRs toggleCommentLike(Long commentId) {
+    Comment comment = commentService.toggleCommentLike(commentId);
+    return convertToDto(comment);
+  }
+
   public List<CommentRs> getCommentsForPost(Long postId) {
     List<Comment> commentsList = commentService.getCommentsForPost(postId);
     List<CommentRs> listCommentRs = commentsList.stream()
