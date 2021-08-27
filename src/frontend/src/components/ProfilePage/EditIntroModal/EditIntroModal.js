@@ -9,9 +9,6 @@ import * as Yup from 'yup'
 import FormikTextField from '../../../shared/FormComponents/FormikTextField'
 import Grid from '@material-ui/core/Grid'
 import SharedButton from '../../../shared/Button/SharedButton'
-import {useDispatch} from 'react-redux'
-import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_NEW_EXPERIENCE} from '../../../redux/Modal/modalTypes'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -30,9 +27,6 @@ const DialogActions = withStyles((theme) => ({
 
 const EditIntroModal = () => {
   const classes = styles()
-  const dispatch = useDispatch()
-  // const activeUser = useSelector(activeUserSelector)
-  // const activeUserId = activeUser.id
   
   const INITIAL_FORM_STATE = {
     firstName: '',
@@ -111,11 +105,6 @@ const EditIntroModal = () => {
                     }}
                   />
                 </Grid>
-
-                <SharedButton title='Add new position' onClick={() =>
-                  dispatch(toggleModalAction({modalType: ADD_NEW_EXPERIENCE}))}>
-                </SharedButton>
-
                 <Grid item xs={12}>
                   <FormikTextField
                     name="position"
