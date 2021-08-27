@@ -23,7 +23,7 @@ export default makeStyles(theme => ({
   registerHeader: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 80,
+    marginTop: theme.spacing(5),
     flexDirection: 'column',
     alignItems: 'center'
   },

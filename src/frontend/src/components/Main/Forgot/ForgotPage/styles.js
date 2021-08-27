@@ -11,13 +11,11 @@ export default makeStyles((theme) => ({
   },
   mainText: {
     fontSize: theme.typography.h3.fontSize,
-    marginBottom: 390,
-    position: 'absolute'
+    paddingBottom: theme.spacing(1)
   },
   subText: {
     fontSize: theme.typography.h5.fontSize,
-    marginBottom: 270,
-    position: 'absolute'
+    marginBottom: theme.spacing(3)
   },
   form: {
     width: '60%',
@@ -26,10 +24,13 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-around'
   },
   link: {
-    display: 'flex',
-    flexDirection: 'column',
+    marginTop: theme.spacing(2),
     justifyContent: 'space-around',
-    paddingTop: '15px',
+    paddingTop: theme.spacing(2),
     textDecoration: 'none'
+  },
+  cardBtn: {
+    display: 'flex',
+    flexDirection: 'column'
   }
 }))

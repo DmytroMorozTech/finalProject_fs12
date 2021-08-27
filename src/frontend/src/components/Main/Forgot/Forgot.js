@@ -13,11 +13,9 @@ const Forgot = () => {
         <Link exact to='/home' className={classes.link}>
           <LinkedinLogo/>
         </Link>
-        <div className={classes.headerLinkSignIn}>
-          <Link exact to='/login' className={classes.linkBtn}>
-            <SharedButton title='Sign In'/>
-          </Link>
-        </div>
+        <Link exact to='/login' className={classes.link}>
+          <SharedButton title='Sign In'/>
+        </Link>
       </div>
       <div className={classes.forgotPage}>
         <ForgotPage/>

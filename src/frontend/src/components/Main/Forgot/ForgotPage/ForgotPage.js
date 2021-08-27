@@ -24,12 +24,14 @@ function ForgotPage () {
           autoFocus
         />
       </form>
-      <Link exact to='/home' className={classes.link}>
-        <SharedButton title='Return to home page'/>
-      </Link>
-      <Link exact to='/login' className={classes.link}>
-        <SharedButton title='Return to login page'/>
-      </Link>
+      <div className={classes.cardBtn}>
+        <Link exact to='/home' className={classes.link}>
+          <SharedButton title='Return to home page'/>
+        </Link>
+        <Link exact to='/login' className={classes.link}>
+          <SharedButton title='Return to login page'/>
+        </Link>
+      </div>
     </Paper>
   )
 }

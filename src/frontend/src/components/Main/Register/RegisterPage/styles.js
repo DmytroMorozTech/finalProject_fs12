@@ -26,7 +26,7 @@ export default makeStyles((theme) => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
       '& > div': {
         flex: 1,
         height: 0.5,
@@ -39,7 +39,7 @@ export default makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
         color: theme.palette.grey[500]
       }
     }

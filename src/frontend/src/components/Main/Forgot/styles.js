@@ -23,20 +23,12 @@ export default makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.background.paper,
     width: '100vw',
-    paddingLeft: '30px'
+    paddingLeft: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   link: {
     textDecoration: 'none'
-  },
-  linkBtn: {
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'flex-end',
-    flexDirection: 'column'
-  },
-  headerLinkSignIn: {
-    margin: 'auto',
-    padding: 'auto'
-
   }
 }))
