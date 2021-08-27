@@ -22,7 +22,7 @@ import EditCertificationModal from '../../components/ProfilePage/EditCertificati
 import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
 import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
 import UsersWhoLikedComment
-  from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UserWhoLikedComment'
+  from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
 
 const initialState = {
