@@ -6,8 +6,8 @@ import Comment from './Comment/Comment'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeUserSelector } from '../../../../../../redux/User/userSelector'
-import { createNewCommentAction } from '../../../../../../redux/Post/postActions'
-import { allCommentsSelector } from '../../../../../../redux/Post/postSelector'
+import { createNewCommentAction } from '../../../../../../redux/Comment/commentActions'
+import { allCommentsSelector } from '../../../../../../redux/Comment/commentSelector'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 function NewCommentInput (props) {
@@ -83,7 +83,7 @@ function NewCommentInput (props) {
       </div>
       <div>
         <div className={classes.comments}>
-          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
+          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
           <div className={classes.loadMoreComments}>
             <span>Load more comments</span>
           </div>

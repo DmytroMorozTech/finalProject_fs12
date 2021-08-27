@@ -7,6 +7,7 @@ import {
   EDIT_EDUCATION,
   EDIT_INTRO,
   USERS_WHO_LIKED_POST,
+  USERS_WHO_LIKED_COMMENT,
   ADD_BACKGROUND_PHOTO,
   ADD_NEW_EXPERIENCE,
   EDIT_EXPERIENCE
@@ -20,13 +21,16 @@ import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntr
 import EditCertificationModal from '../../components/ProfilePage/EditCertificationModal/EditCertificationModal'
 import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
 import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
+import UsersWhoLikedComment
+  from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UserWhoLikedComment'
 import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
 
 const initialState = {
   isModalOpen: false,
   modalOpenType: null,
   modalContent: null,
-  activePostId: null
+  activePostId: null,
+  activeCommentId: null
 }
 
 const modalReducer = (state = initialState, action) => {
@@ -37,6 +41,7 @@ const modalReducer = (state = initialState, action) => {
 
   const modalType = action.payload ? getModalType() : null
   const id = (modalType && action.payload.id) ? action.payload.id : null
+  const commentId = (modalType && action.payload.commentId) ? action.payload.commentId : null
 
   switch (action.type) {
     case actions.TOGGLE_MODAL:
@@ -57,6 +62,10 @@ const modalReducer = (state = initialState, action) => {
 
         case USERS_WHO_LIKED_POST:
           content = <UsersWhoLiked/>
+          break
+
+        case USERS_WHO_LIKED_COMMENT:
+          content = <UsersWhoLikedComment/>
           break
 
         case ADD_NEW_EDUCATION:
@@ -92,7 +101,8 @@ const modalReducer = (state = initialState, action) => {
         isModalOpen: !state.isModalOpen,
         modalOpenType: modalType,
         modalContent: content,
-        activePostId: id
+        activePostId: id,
+        activeCommentId: commentId
       }
     }
 

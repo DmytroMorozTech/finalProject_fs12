@@ -161,7 +161,7 @@ VALUES (10, 1, 'Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111'
         'Comment 2 for Post No.2; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam venenatis accumsan.',
         timestamp '2016-10-05 13:48:10.111222', timestamp '2016-10-05 13:48:10.111222');
 
-INSERT INTO LIKES (user_id, post_id, created_date, modified_date)
+INSERT INTO POSTS_LIKES (user_id, post_id, created_date, modified_date)
 VALUES (10, 1, date '2015-01-20', date '2015-01-20'),
        (9, 1, date '2015-01-20', date '2015-01-20'),
        (8, 1, date '2015-01-20', date '2015-01-20'),

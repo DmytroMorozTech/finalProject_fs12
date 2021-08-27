@@ -1,8 +1,8 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.bookmark.Bookmark;
-import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,16 +48,16 @@ public class PostService extends GeneralService<Post> {
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
     //    Boolean postIsLiked = post.getIsLikedByActiveUser();
-    List<Like> likes = post.getLikes();
-    Boolean postIsLiked = likes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
+    List<PostLike> postLikes = post.getPostLikes();
+    Boolean postIsLiked = postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
 
     if (postIsLiked) {
-      post.getLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
+      post.getPostLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
       return save(post);
     } else {
       User user = userRepository.findEntityById(activeUserId());
-      Like like = new Like(user, post);
-      post.getLikes().add(like);
+      PostLike postLike = new PostLike(user, post);
+      post.getPostLikes().add(postLike);
       return save(post);
     }
   }
