@@ -11,14 +11,14 @@ export default makeStyles((theme) => ({
   },
   mainText: {
     fontSize: theme.typography.h3.fontSize,
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(3)
   },
   subText: {
     fontSize: theme.typography.h5.fontSize,
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(5)
   },
   form: {
-    width: '60%',
+    width: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'

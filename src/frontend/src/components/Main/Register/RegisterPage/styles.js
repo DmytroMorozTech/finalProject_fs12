@@ -10,13 +10,13 @@ export default makeStyles((theme) => ({
     alignItems: 'center'
   },
   form: {
-    width: '50.5%',
+    width: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
   google: {
-    width: '48.5%',
+    width: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -46,7 +46,7 @@ export default makeStyles((theme) => ({
   },
 
   googleBtn: {
-    width: '120%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
