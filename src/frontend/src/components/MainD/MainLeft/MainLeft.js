@@ -19,7 +19,7 @@ function MainLeft (props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Link exact to="/profile" className={classes.link}>
+        <Link exact to="/personal" className={classes.link}>
           <div className={classes.largeAvatar}>
             <Avatar avatarUrl={activeUser.avatarUrl}/>
           </div>

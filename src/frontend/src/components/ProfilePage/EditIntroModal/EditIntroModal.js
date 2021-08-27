@@ -9,6 +9,9 @@ import * as Yup from 'yup'
 import FormikTextField from '../../../shared/FormComponents/FormikTextField'
 import Grid from '@material-ui/core/Grid'
 import SharedButton from '../../../shared/Button/SharedButton'
+import {useDispatch} from 'react-redux'
+import toggleModalAction from '../../../redux/Modal/modalActions'
+import {ADD_NEW_EXPERIENCE} from '../../../redux/Modal/modalTypes'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -27,18 +30,37 @@ const DialogActions = withStyles((theme) => ({
 
 const EditIntroModal = () => {
   const classes = styles()
+  const dispatch = useDispatch()
+  // const activeUser = useSelector(activeUserSelector)
+  // const activeUserId = activeUser.id
+  
   const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
-    position: ''
+    headline: '',
+    position: '',
+    education: '',
+    postalCode: '',
+    location: '',
+    industry: ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     firstName: Yup.string()
       .required('First name is required'),
     lastName: Yup.string()
       .required('Last name is required'),
+    headline: Yup.string()
+      .required('Required'),
     position: Yup.string()
-      .required('Position is required')
+      .required('Position is required'),
+    education: Yup.string()
+      .required('Required'),
+    postalCode: Yup.string()
+      .required('Required'),
+    location: Yup.string()
+      .required('Required'),
+    industry: Yup.string()
+      .required('Required')
   })
   return (
     <div>
@@ -81,8 +103,63 @@ const EditIntroModal = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <FormikTextField
+                    name="headline"
+                    label="Headline"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+
+                <SharedButton title='Add new position' onClick={() =>
+                  dispatch(toggleModalAction({modalType: ADD_NEW_EXPERIENCE}))}>
+                </SharedButton>
+
+                <Grid item xs={12}>
+                  <FormikTextField
                     name="position"
                     label="Position"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormikTextField
+                    name="education"
+                    label="Education"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <FormikTextField
+                    name="postalCode"
+                    label="Postal code"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={8}>
+                  <FormikTextField
+                    name="location"
+                    label="Location"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormikTextField
+                    name="industry"
+                    label="Industry"
                     size="small"
                     InputLabelProps={{
                       shrink: true

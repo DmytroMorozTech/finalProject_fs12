@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Messages from '../components/Main/Messages/Messages'
 import Notifications from '../components/Notifications/Notifications'
 import Jobs from '../components/Jobs/Jobs'
