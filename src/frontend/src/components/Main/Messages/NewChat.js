@@ -32,7 +32,6 @@ function Chat (props) {
   const messagesList = useSelector(allMessages)
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
-  const chatIdFromUrl = match.params.id
   const userIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
@@ -46,35 +45,34 @@ function Chat (props) {
 
   useEffect(() => {
     dispatch(findUserByIdAction(userIdFromUrl))
-  }, [userIdFromUrl, messagesList, chatsList])
+  }, [userIdFromUrl, messagesList, chatsList, userChatMessages])
 
   const findIfChatExist = () => {
-    let existChatId = ''
     chatsList && chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
-        existChatId = c.id
+        chatId = c.id
       } else {
-        existChatId = null
+        dispatch(createChatAction())
+        // dispatch(getUserChatsAction(activeUserId))
+        chatId = newChat && newChat.id
+        dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
       }
     })
-    console.log('Chat exist: ' + existChatId)
-    if (existChatId !== null) {
-      chatId = existChatId && existChatId
-      // return chatId
-    } else return startNewChatting()
+    return chatId
   }
 
-  const startNewChatting = () => {
-    dispatch(createChatAction())
-    dispatch(getUserChatsAction(activeUserId))
-    console.log(newChat)
-    const newChatId = newChat && newChat.id
-    console.log('New chat id: ' + newChatId)
-    console.log('User from url: ' + userIdFromUrl)
-    chatId = newChatId && newChatId
-    dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
-    // return chatId
-  }
+  // const startNewChatting = () => {
+  //   dispatch(createChatAction())
+  //   dispatch(getUserChatsAction(activeUserId))
+  //   console.log(newChat)
+  //   const newChatId = newChat && newChat.id
+  //   console.log('New chat id: ' + newChatId)
+  //   console.log('User from url: ' + userIdFromUrl)
+  //   chatId = newChatId && newChatId
+  //   dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
+  //   // return chatId
+  //   return chatId
+  // }
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
@@ -82,8 +80,10 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
-    findIfChatExist()
-    dispatch(createMessageAction({chatId, text: messageValue}))
+    // findIfChatExist()
+    // const newChatId = chatId && chatId
+    // console.log('!!!!!!!!!!!!!!!!!! Chat id when sending message: ' + newChatId)
+    dispatch(createMessageAction({chatId: findIfChatExist(), text: messageValue}))
     setMessageValue('')
   }
 

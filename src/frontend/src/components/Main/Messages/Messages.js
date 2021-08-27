@@ -17,11 +17,12 @@ function Messages () {
   const classes = Style()
   const dispatch = useDispatch()
   const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser && activeUser.id
   const chatsList = useSelector(allChats)
 
   useEffect(() => {
-    dispatch(getUserChatsAction(activeUser.id))
-  }, [dispatch, activeUser.id])
+    dispatch(getUserChatsAction(activeUserId))
+  }, [dispatch, activeUserId])
 
   const [inputIsFocusedSearch, setInputIsFocusedSearch] = useState(false)
   const [SearchValue, setSearchValue] = useState('')
@@ -61,8 +62,9 @@ function Messages () {
               </div>
             </div>
           </div>
-          {chatsList.map(c => {
+          {chatsList && chatsList.map(c => {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
+            console.log('Chat member: ' + chatMember)
             return (
               <NavLink className={`${classes.link}`} key={c.id} to={`/messages/${c.id}`}>
                 <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember}/>
