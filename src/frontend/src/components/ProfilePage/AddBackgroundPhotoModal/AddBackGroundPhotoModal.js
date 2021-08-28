@@ -4,7 +4,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import imgPage from '../../../temporaryImages/internet.jpg'
 
 const DialogContent = withStyles((theme) => ({

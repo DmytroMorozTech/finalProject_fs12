@@ -7,38 +7,24 @@ export default makeStyles((theme) => ({
     flexDirection: 'column'
   },
 
-  invitations: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  block: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
     marginBottom: theme.spacing(2),
-    fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.grey[700]
-  },
-
-  button: {
-    padding: 0
-  },
-
-  people: {
-    border: theme.border.simple,
-    borderRadius: theme.shape.medium,
-    backgroundColor: theme.palette.common.white,
     padding: theme.spacing(2)
   },
 
-  mayKnow: {
+  header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingLeft: theme.spacing(2),
     fontSize: theme.typography.h5.fontSize,
     color: theme.palette.grey[700],
-    paddingLeft: theme.spacing(2)
+    '& > div': {
+      paddingTop: theme.spacing(1)
+    }
   },
 
   miniProfiles: {

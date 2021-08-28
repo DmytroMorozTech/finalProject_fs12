@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import {Link, Paper} from '@material-ui/core'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 
 function ForgotPage () {
   const classes = styles()
