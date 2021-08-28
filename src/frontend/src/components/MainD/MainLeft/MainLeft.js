@@ -30,7 +30,8 @@ function MainLeft (props) {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <Link className={classes.link}>
+      {/* Link is hardcoded below */}
+      <Link to='/home' className={classes.link}>
         <div className={classes.connection}>
           <div className={classes.connectionLink}>
             <span>Connections</span>
@@ -39,7 +40,8 @@ function MainLeft (props) {
           <span className={classes.connectionText}>Grow your network</span>
         </div>
       </Link>
-      <Link className={classes.link}>
+      {/* Link is hardcoded below */}
+      <Link to='/home' className={classes.link}>
         <div className={classes.views}>
           <span>Who viewed your profile</span>
           <span className={classes.number}>{numberOfViews}</span>

@@ -12,7 +12,8 @@ function SmallNotification () {
         <NotificationsNoneOutlinedIcon fontSize="inherit" className={classes.icon}/>
         <span className={classes.title}>Improve your notifications</span>
       </div>
-      <Link className={classes.link}>
+      {/* Link is hardcoded below */}
+      <Link to='/notifications' className={classes.link}>
         View settings
       </Link>
     </div>

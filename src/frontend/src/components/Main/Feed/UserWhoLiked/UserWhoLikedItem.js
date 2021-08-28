@@ -1,9 +1,8 @@
 import React from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
-import Style from './styles'
+import styles from './styles'
 import Avatar from '../../../../shared/Avatar/Avatar'
-import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 
@@ -15,7 +14,7 @@ const DialogContent = withStyles((theme) => ({
 
 const UserWhoLikedPostItem = (props) => {
   const {avatarUrl, positionAndCompany, fullName} = props.user
-  const classes = Style()
+  const classes = styles()
 
   return (
     <DialogContent dividers>
@@ -29,10 +28,10 @@ const UserWhoLikedPostItem = (props) => {
           </div>
         </div>
         <div className={classes.buttonGroup}>
-          <Typography variant="body1" className={clsx(classes.name)}>
+          <Typography variant="body1" className={classes.name}>
             {fullName}
           </Typography>
-          <Typography variant="body1" className={clsx(classes.position)}>
+          <Typography variant="body1" className={classes.position}>
             {positionAndCompany}
           </Typography>
         </div>
@@ -41,4 +40,5 @@ const UserWhoLikedPostItem = (props) => {
     </DialogContent>
   )
 }
+
 export default UserWhoLikedPostItem

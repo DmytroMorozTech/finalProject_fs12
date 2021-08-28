@@ -29,8 +29,6 @@ const postReducer = (state = initialState, action) => {
 
     case actions.SAVE_NEW_POSTS:
       const { posts, headers } = action.payload
-      console.log('HEADERS IN REDUCER!')
-      console.log(headers)
       const {pagenumber = 0, pagesize = 4, totalpages, hasmore} = headers
       return {
         ...state,

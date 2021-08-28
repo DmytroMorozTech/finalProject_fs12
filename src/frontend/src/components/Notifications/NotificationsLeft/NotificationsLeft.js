@@ -20,7 +20,8 @@ function NotificationsLeft () {
         <Typography variant="body1" color="textSecondary" align="center">
           Improve your notifications
         </Typography>
-        <Link className={classes.link}>
+        {/* Link is hardcoded below */}
+        <Link to='/notifications' className={classes.link}>
           View settings
         </Link>
       </div>
