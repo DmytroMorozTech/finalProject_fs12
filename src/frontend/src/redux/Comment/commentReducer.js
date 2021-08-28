@@ -3,7 +3,7 @@ import update from 'immutability-helper'
 
 const initialState = {
   comments: {}, // key - postId, value - [commentRs, commentRs...]
-  usersWhoLikedComment: {}
+  usersWhoLikedComment: {} // key - commentId, value - [userRs, userRs,...]
 }
 
 const commentReducer = (state = initialState, action) => {
@@ -29,7 +29,7 @@ const commentReducer = (state = initialState, action) => {
       })
 
     case actions.SAVE_USERS_WHO_LIKED_COMMENT:
-      const { usersList1, id1 } = action.payload
+      const { usersList: usersList1, commentId: id1 } = action.payload
       return { ...state, usersWhoLikedComment: { ...state.usersWhoLikedComment, [id1]: usersList1 } }
 
     case actions.DELETE_COMMENT:
