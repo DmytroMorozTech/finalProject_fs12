@@ -12,7 +12,7 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-const UserWhoLikedCommentItem = (props) => {
+const UsersWhoLikedCommentItem = (props) => {
   const {avatarUrl, positionAndCompany, fullName} = props.user
   const classes = styles()
 
@@ -41,4 +41,4 @@ const UserWhoLikedCommentItem = (props) => {
   )
 }
 
-export default UserWhoLikedCommentItem
+export default UsersWhoLikedCommentItem

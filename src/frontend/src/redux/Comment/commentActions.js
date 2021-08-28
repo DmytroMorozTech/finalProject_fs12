@@ -1,6 +1,8 @@
 import http from '../../services/httpService'
 import getHeaders from '../../services/headersService'
 import * as actions from '../Comment/commentActionTypes'
+import { USERS_WHO_LIKED_COMMENT } from '../Modal/modalTypes'
+import toggleModalAction from '../Modal/modalActions'
 
 export const getCommentsForPostAction = (postId) => (dispatch) => {
   return http
@@ -33,19 +35,16 @@ export const toggleCommentLikeAction = (commentId, postId) => (dispatch) => {
     })
 }
 
-// to be refactored later
-
-// export const getUsersWhoLikedCommentAction = (payload) => (dispatch) => {
-//   const id = payload
-//   return http
-//     .get(`/api/users/who_liked_comment/${id}`, {headers: getHeaders()})
-//     .then((res) => res.data)
-//     .then((usersList) => {
-//       dispatch({
-//         type: actions.SAVE_USERS_WHO_LIKED_COMMENT,
-//         payload: { usersList, id }
-//       })
-//     })
-//     .then(() =>
-//       dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_COMMENT, id: id })))
-// }
+export const getUsersWhoLikedCommentAction = (commentId) => (dispatch) => {
+  return http
+    .get(`/api/users/who_liked_comment/${commentId}`, {headers: getHeaders()})
+    .then((res) => res.data)
+    .then((usersList) => {
+      dispatch({
+        type: actions.SAVE_USERS_WHO_LIKED_COMMENT,
+        payload: { usersList, commentId }
+      })
+    })
+    .then(() =>
+      dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_COMMENT, commentId: commentId })))
+}

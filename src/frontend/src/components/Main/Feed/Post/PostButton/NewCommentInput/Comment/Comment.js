@@ -9,7 +9,10 @@ import Avatar from '../../../../../../../shared/Avatar/Avatar'
 import getTimeSinceCreated from '../../../../../../../services/timePassedService'
 import SeeMore from '../../../SeeMore/SeeMore'
 import { useDispatch } from 'react-redux'
-import { toggleCommentLikeAction } from '../../../../../../../redux/Comment/commentActions'
+import {
+  getUsersWhoLikedCommentAction,
+  toggleCommentLikeAction
+} from '../../../../../../../redux/Comment/commentActions'
 
 function Comment (props) {
   const { id: commentId, user, text, numberOfLikes = 0, createdDate, isLikedByActiveUser } = props.comment
@@ -21,6 +24,10 @@ function Comment (props) {
 
   const handleCommentLike = () => {
     dispatch(toggleCommentLikeAction(commentId, postId))
+  }
+
+  const handleModalWhoLikedComment = () => {
+    dispatch(getUsersWhoLikedCommentAction(commentId))
   }
 
   return (
@@ -59,7 +66,10 @@ function Comment (props) {
           <span
             className={clsx(classes.commentRow, numberOfLikes === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
-            <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{numberOfLikes}</span>
+            <span className={classes.quantityOfCommentsLike} onClick={handleModalWhoLikedComment}>
+              <LikeMiniIcon/>
+              {numberOfLikes}
+            </span>
           </span>
         </div>
       </div>
