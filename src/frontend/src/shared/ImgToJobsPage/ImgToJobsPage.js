@@ -6,7 +6,7 @@ function ImgToJobsPage () {
   const classes = styles()
 
   return (
-    <Link exact to="/jobs">
+    <Link to="/jobs">
       <img alt="jobs" src={jobs} className={classes.img}/>
     </Link>
   )

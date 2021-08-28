@@ -31,7 +31,7 @@ function MiniProfile (props) {
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
         </div>
-        <Link exact to="/profile/:id" className={classes.link}>
+        <Link to="/profile/:id" className={classes.link}>
           <div className={classes.avatar}>
             <Avatar avatarUrl={avatarUrl}/>
           </div>

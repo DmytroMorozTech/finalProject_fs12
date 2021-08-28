@@ -8,7 +8,7 @@ import GroupIcon from '@material-ui/icons/Group'
 // import DashboardIcon from '@material-ui/icons/Dashboard'
 // import ListAltIcon from '@material-ui/icons/ListAlt'
 // import GridOnIcon from '@material-ui/icons/GridOn'
-import Item from './Item/Item'
+import NetworkLeftItem from './NetworkLeftItem/NetworkLeftItem'
 import jobs from '../../../temporaryImages/jobs.jpg'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
@@ -103,10 +103,10 @@ function NetworkLeft (props) {
         <div>
           {showMore
             ? items.map(({ Icon, title, number, to, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
+              <NetworkLeftItem key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))
             : shortItems.map(({ Icon, title, number, to, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
+              <NetworkLeftItem key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))}
           <Button variant="contained" endIcon={showMore ? <ExpandLessIcon/> : <ExpandMoreIcon/>} className={classes.btn} onClick={() => setShowMore(!showMore)}>
             {showMore ? 'Show less' : 'Show more'}
@@ -114,12 +114,12 @@ function NetworkLeft (props) {
         </div>
       </div>
       <hr className={classes.line}/>
-      <Link exact to="/jobs">
+      <Link to="/jobs">
         <img alt="jobs" src={jobs} className={classes.img}/>
       </Link>
       <hr className={classes.line}/>
       {/* Link is hardcoded below */}
-      <Link exact to="/network" className={classes.link}>
+      <Link to="/network" className={classes.link}>
         <Typography variant="h5" color="primary" align="center">
           Grow your network
         </Typography>

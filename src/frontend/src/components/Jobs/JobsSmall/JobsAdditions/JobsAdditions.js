@@ -7,7 +7,7 @@ import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutli
 import SettingsIcon from '@material-ui/icons/Settings'
 import React from 'react'
 import { MenuItem } from '@material-ui/core'
-import Item from '../../JobsLeft/Item/Item'
+import JobsLeftItem from '../../JobsLeft/JobsLeftItem/JobsLeftItem'
 
 function JobsAdditions () {
   const classes = styles()
@@ -49,7 +49,7 @@ function JobsAdditions () {
     <div className={classes.container}>
       {items.map(({ Icon, title, onClick }, i) => (
         <MenuItem className={classes.menuItem}>
-          <Item key={i} Icon={Icon} title={title} onClick={onClick}/>
+          <JobsLeftItem key={i} Icon={Icon} title={title} onClick={onClick}/>
         </MenuItem>
       ))}
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles'
 
-function Item ({ Icon, title, onClick }) {
+function SavedVacancyAdditionsItem ({ Icon, title, onClick }) {
   const classes = styles()
 
   return (
@@ -12,4 +12,4 @@ function Item ({ Icon, title, onClick }) {
   )
 }
 
-export default Item
+export default SavedVacancyAdditionsItem

@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import Style from './styles'
 import UserWhoLikedItem from './UserWhoLikedItem'
-import clsx from 'clsx'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 
 const UsersWhoLiked = (props) => {
@@ -14,13 +13,13 @@ const UsersWhoLiked = (props) => {
   return (
     <div>
       <div className={classes.title}>
-        <Typography variant="body1" className={clsx(classes.word)}>
+        <Typography variant="body1" className={classes.word}>
             All
         </Typography>
-        <Typography variant="body1" className={clsx(classes.icon)}>
+        <Typography variant="body1" className={classes.icon}>
           <ThumbUpAltIcon className={classes.likeMini}/>
         </Typography>
-        <Typography variant="body1" className={clsx(classes.number)}>
+        <Typography variant="body1" className={classes.number}>
           {usersWhoLikedThisPost.length}
         </Typography>
       </div>
@@ -28,10 +27,12 @@ const UsersWhoLiked = (props) => {
     </div>
   )
 }
+
 const mapStateToProps = (state) => {
   return {
     usersWhoLikedPost: state.posts.usersWhoLikedPost,
     postId: state.modal.activePostId
   }
 }
+
 export default connect(mapStateToProps, null)(UsersWhoLiked)

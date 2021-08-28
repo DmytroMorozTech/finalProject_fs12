@@ -49,8 +49,8 @@ function PostButtons (props) {
   return (
     <div className={classes.postButtonsWrapper}>
       <div className={classes.block}>
-        {items.map(({ icon, title, onClick, className }) => (
-          <div className={className} onClick={onClick}>
+        {items.map(({ icon, title, onClick, className }, i) => (
+          <div key={i} className={className} onClick={onClick}>
             {icon}
             <Hidden xsDown>
               <span>{title}</span>

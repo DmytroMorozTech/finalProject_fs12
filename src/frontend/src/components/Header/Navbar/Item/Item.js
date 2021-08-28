@@ -5,7 +5,6 @@ import styles from './styles'
 import { NavLink } from 'react-router-dom'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import UserData from '../../../UserData/UserData'
-import clsx from 'clsx'
 
 const Item = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
   const classes = styles()
@@ -15,7 +14,7 @@ const Item = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
   }
 
   const renderMenuItem = (
-    <NavLink className={clsx(classes.itemPrimary)}
+    <NavLink className={classes.itemPrimary}
       onClick={(e) => toggleMenu && notLink(e)}
       activeClassName={classes.itemPrimaryActive}
       exact={exact}
