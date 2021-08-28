@@ -7,7 +7,7 @@ import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedI
 import NoteIcon from '@material-ui/icons/Note'
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined'
 import SettingsIcon from '@material-ui/icons/Settings'
-import Item from './Item/Item'
+import JobsLeftItem from './JobsLeftItem/JobsLeftItem'
 
 function JobsLeft () {
   const classes = styles()
@@ -25,7 +25,7 @@ function JobsLeft () {
   return (
     <div className={classes.container}>
       {items.map(({ Icon, title, to, onClick }, i) => (
-        <Item key={i} Icon={Icon} title={title} to={to} onClick={onClick}/>
+        <JobsLeftItem key={i} Icon={Icon} title={title} to={to} onClick={onClick}/>
       ))}
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles'
 import { Link } from 'react-router-dom'
 
-function Item ({ Icon, title, to, onClick }) {
+function JobsLeftItem ({ Icon, title, to, onClick }) {
   const classes = styles()
 
   return (
@@ -15,4 +15,4 @@ function Item ({ Icon, title, to, onClick }) {
   )
 }
 
-export default Item
+export default JobsLeftItem
