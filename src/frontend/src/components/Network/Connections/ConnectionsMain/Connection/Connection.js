@@ -8,8 +8,8 @@ import {Link, NavLink} from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
 import {useDispatch, useSelector} from 'react-redux'
-import {createChatAction, getUserChatsAction} from '../../../../../redux/Message/messageActions'
-import {allChats, newChatData} from '../../../../../redux/Message/messageSelector'
+import {getUserChatsAction} from '../../../../../redux/Message/messageActions'
+import {allChats} from '../../../../../redux/Message/messageSelector'
 import {activeUserSelector} from '../../../../../redux/User/userSelector'
 
 function Connection (props) {
@@ -18,9 +18,6 @@ function Connection (props) {
   const chats = useSelector(allChats)
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
-  const activeChat = chats[0] && chats[0].id
-  const newChat = useSelector(newChatData)
-  console.log('user chats: ' + chats)
 
   const {
     id = 3,
@@ -41,21 +38,13 @@ function Connection (props) {
   }
 
   const findIfChatExist = () => {
-    let existChatId = ''
+    let existChatId = null
     chats && chats.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         existChatId = c.id
-      } else existChatId = null
+      }
     })
-    console.log('Chat exist: ' + existChatId)
     return existChatId !== null ? existChatId : 'new/' + id
-  }
-
-  const startNewChatting = () => {
-    dispatch(createChatAction())
-    const newChatId = newChat && newChat.id
-    console.log('New chat id: ' + newChatId)
-    return newChatId
   }
 
   return (

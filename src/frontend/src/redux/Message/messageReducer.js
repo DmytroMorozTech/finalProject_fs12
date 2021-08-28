@@ -5,13 +5,13 @@ const initialState = {
   messagesList: [],
   chatMessages: {},
   newChatData: [],
+  newChatId: '',
   isLoading: false
 }
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CREATE_CHAT:
-      console.log(action.payload)
       return {
         ...state,
         chatsList: [...state.chatsList, action.payload],
@@ -24,7 +24,6 @@ const messageReducer = (state = initialState, action) => {
       }
     case actions.ADD_USER:
       const {chatId} = action.payload
-      console.log('Action payload in Add_user reducer: ' + action.payload)
       const chatsCopy = [...state.chatsList]
       chatsCopy.filter(chat => chat.id === chatId)[0] = action.payload
       return {
@@ -41,6 +40,15 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         chatMessages: {...state.chatMessages, [chatid]: chatMessages}
+      }
+    case actions.CREATE_CHAT_WITH_BOTH_MEMBERS:
+      const newChat = action.payload
+      console.log('In reducer chat id: ' + newChat.id)
+      return {
+        ...state,
+        chatsList: [...state.chatsList, action.payload],
+        newChatData: action.payload,
+        newChatId: newChat.id
       }
     default
     : {

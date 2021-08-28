@@ -63,3 +63,18 @@ export const getChatMessagesAction = (chatid) => (dispatch) => {
       dispatch({type: actions.LOADING_MESSAGES, payload: false})
     })
 }
+
+export const createChatWithBothMembersAction = ({userId, text}) => (dispatch) => {
+  let newChatId = null
+  return http
+    .put(`../../api/chats/new/${userId}`, {text}, {headers: getHeaders()})
+    .then(res => {
+      const newChat = res.data
+      newChatId = newChat.id
+      dispatch({
+        type: actions.CREATE_CHAT_WITH_BOTH_MEMBERS, payload: newChat
+      })
+    })
+    .then(() => dispatch(getUserChatsAction(userId)))
+    // .then(() => dispatch(getChatMessagesAction(newChatId)))
+}

@@ -53,8 +53,8 @@ public class ChatController {
   }
 
   @PutMapping(path = "/new/{id}")
-  public ResponseEntity<ChatRs> createChatIfNoExist(@PathVariable Long userId) {
-    ChatRs chatRs = chatFacade.createChatIfNoExist(userId);
+  public ResponseEntity<ChatRs> createChatIfNoExist(@PathVariable Long id, @RequestBody ChatRq rq) {
+    ChatRs chatRs = chatFacade.createChatIfNoExist(id, rq);
     return ResponseEntity.ok(chatRs);
   }
 }

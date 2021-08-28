@@ -16,6 +16,7 @@ public class ChatService extends GeneralService<Chat> {
   private final UserRepository userRepository;
   private final ChatRepository chatRepository;
   private final UserService userService;
+  private final MessageService messageService;
 
   public Chat createChat() {
     Long activeUserId = userService.getActiveUser().getId();
@@ -48,9 +49,11 @@ public class ChatService extends GeneralService<Chat> {
     return user.getChats();
   }
 
-  public Chat createChatIfNoExist(Long userId) {
+  public Chat createChatIfNoExist(Long userId, String text) {
     Chat chat = createChat();
     Long chatId = chat.getId();
+    messageService.createMessage(chatId, text);
+
     return addUser(userId, chatId);
   }
 }

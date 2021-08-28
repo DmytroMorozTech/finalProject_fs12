@@ -11,18 +11,24 @@ import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/Button/SharedButton'
 import Style from './styles'
 import {
-  addUserAction,
-  createChatAction,
+  createChatWithBothMembersAction,
   createMessageAction,
-  getUserChatsAction
+  getChatMessagesAction
 } from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
-import {allChats, allMessages, chatMessages, newChatData} from '../../../redux/Message/messageSelector'
+import {
+  allChats,
+  allMessages,
+  chatMessages,
+  newChatData,
+  newChatId,
+  newChatIdSelector
+} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
 import {findUserByIdAction} from '../../../redux/User/userActions'
 
-function Chat (props) {
+function NewChat (props) {
   const {match} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
@@ -36,6 +42,7 @@ function Chat (props) {
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
   const newChat = useSelector(newChatData)
+  const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
 
   let chatId = null
@@ -45,33 +52,23 @@ function Chat (props) {
 
   useEffect(() => {
     dispatch(findUserByIdAction(userIdFromUrl))
-  }, [userIdFromUrl, messagesList, chatsList, userChatMessages])
+  }, [userIdFromUrl])
+
+  useEffect(() => {
+    dispatch(getChatMessagesAction(newChatId))
+  }, [newChatId])
 
   const findIfChatExist = () => {
     chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         chatId = c.id
+        dispatch(createMessageAction({chatId, text: messageValue}))
       } else {
-        dispatch(createChatAction())
+        dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
         chatId = newChat && newChat.id
-        dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
       }
     })
-    return chatId
   }
-
-  // const startNewChatting = () => {
-  //   dispatch(createChatAction())
-  //   dispatch(getUserChatsAction(activeUserId))
-  //   console.log(newChat)
-  //   const newChatId = newChat && newChat.id
-  //   console.log('New chat id: ' + newChatId)
-  //   console.log('User from url: ' + userIdFromUrl)
-  //   chatId = newChatId && newChatId
-  //   dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
-  //   // return chatId
-  //   return chatId
-  // }
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
@@ -79,16 +76,9 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
-    // findIfChatExist()
-    // const newChatId = chatId && chatId
-    // console.log('!!!!!!!!!!!!!!!!!! Chat id when sending message: ' + newChatId)
-    dispatch(createMessageAction({chatId: findIfChatExist(), text: messageValue}))
+    findIfChatExist()
     setMessageValue('')
   }
-
-  // const getChatMember = () => {
-  //   return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
-  // }
 
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
@@ -197,4 +187,4 @@ function Chat (props) {
   )
 }
 
-export default withRouter(Chat)
+export default withRouter(NewChat)
