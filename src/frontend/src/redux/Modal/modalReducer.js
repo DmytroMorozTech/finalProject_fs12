@@ -77,7 +77,7 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case EDIT_INTRO:
-          content = <EditIntroModal/>
+          content = <EditIntroModal profile={action.payload}/>
           break
 
         case ADD_BACKGROUND_PHOTO:

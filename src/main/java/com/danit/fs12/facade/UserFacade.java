@@ -1,6 +1,7 @@
 package com.danit.fs12.facade;
 
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRq;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.service.UserService;
@@ -53,5 +54,9 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);
   }
 
+  public UserRs updateIntro(UserEditIntroRq rq) {
+    User updateIntro = userService.updateIntro(rq);
+    return convertToDto(updateIntro);
+  }
 
 }
