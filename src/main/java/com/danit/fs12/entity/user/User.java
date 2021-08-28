@@ -49,6 +49,15 @@ public class User extends AbstractEntity {
   @Column(name = "last_name")
   private String lastName;
 
+  @Column(name = "headline")
+  private String headline;
+
+  @Column(name = "country")
+  private String country;
+
+  @Column(name = "city")
+  private String city;
+
   @Column(name = "phone_number")
   private String phoneNumber;
 

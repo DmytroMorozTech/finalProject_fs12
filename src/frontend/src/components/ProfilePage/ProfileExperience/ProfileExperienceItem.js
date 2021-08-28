@@ -20,7 +20,7 @@ const ProfileExperienceItem = (props) => {
     <div className={classes.content}>
       <div className={classes.school}>
         <Typography variant="body1" className={classes.schoolName}>Position:{position}</Typography>
-        <Typography>Organisation: {organization.name}</Typography>
+        <Typography>Organization: {organization.name}</Typography>
         <Typography>{dateStartConverted}{dash}{dateFinish ? dateFinishConverted : 'Present time'}</Typography>
         <Typography>Responsibilities:{responsibilities}</Typography>
       </div>

@@ -14,8 +14,9 @@ import {useDispatch} from 'react-redux'
 
 function ProfileMain (props) {
   const {
-    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45, profile
+    numberOfConnections = 45
   } = props
+  const profile = props.profile
   const classes = style()
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
@@ -32,7 +33,7 @@ function ProfileMain (props) {
         <div className={classes.row}>
           <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
           <div onClick={() =>
-            dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
+            dispatch(toggleModalAction({modalType: EDIT_INTRO, profile: props.profile}))}>
             <CreateIcon className={classes.editName}/>
           </div>
         </div>
@@ -42,11 +43,11 @@ function ProfileMain (props) {
               {profile.fullName}
             </Typography>
             <Typography variant="body1">
-              {profile.positionAndCompany}
+              {profile.headline}
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
-                {city}, {country}
+                {profile.city}, {profile.country}
               </Typography>
               <SmallDot/>
               <Link onClick={preventDefault}>

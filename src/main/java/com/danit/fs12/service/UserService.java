@@ -5,6 +5,7 @@ import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
@@ -84,5 +85,16 @@ public class UserService extends GeneralService<User> {
     user.setEmail(email);
     user.setAvatarUrl(avatar);
     saveUser(user);
+  }
+
+  public User updateIntro(UserEditIntroRq rq) {
+    User activeUser = findEntityById(getActiveUser().getId());
+    activeUser.setFirstName(rq.getFirstName());
+    activeUser.setLastName(rq.getLastName());
+    activeUser.setCountry(rq.getCountry());
+    activeUser.setCity(rq.getCity());
+    activeUser.setHeadline(rq.getHeadline());
+
+    return save(activeUser);
   }
 }
