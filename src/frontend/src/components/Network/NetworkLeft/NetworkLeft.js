@@ -114,12 +114,12 @@ function NetworkLeft (props) {
         </div>
       </div>
       <hr className={classes.line}/>
-      <Link exact to="/jobs">
+      <Link to="/jobs">
         <img alt="jobs" src={jobs} className={classes.img}/>
       </Link>
       <hr className={classes.line}/>
       {/* Link is hardcoded below */}
-      <Link exact to="/network" className={classes.link}>
+      <Link to="/network" className={classes.link}>
         <Typography variant="h5" color="primary" align="center">
           Grow your network
         </Typography>
