@@ -11,8 +11,8 @@ import SavedVacancyAdditions from './SavedVacancyAdditions/SavedVacancyAdditions
 function SavedVacancy (props) {
   const {
     titleOfVacancy = 'Junior Java Developer',
-    organisationName = 'GlobalLogic',
-    organisationLocation = 'Kyiv, Ukraine',
+    organizationName = 'GlobalLogic',
+    organizationLocation = 'Kyiv, Ukraine',
     createdDate = '3 weeks ago',
     applicants = 2
   } = props
@@ -32,10 +32,10 @@ function SavedVacancy (props) {
                 {titleOfVacancy}
               </div>
               <Typography variant="h6" className={classes.org}>
-                {organisationName}
+                {organizationName}
               </Typography>
               <Typography variant="h6">
-                {organisationLocation}
+                {organizationLocation}
               </Typography>
               <div className={classes.recruiting}>
                 <TrackChangesIcon fontSize="inherit" className={classes.iconTarget}/>

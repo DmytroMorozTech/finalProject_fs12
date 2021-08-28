@@ -176,3 +176,20 @@ export const deleteWorkPlaceAction = (id) => (dispatch) => {
       toast.error(errorMsg)
     })
 }
+
+export const editIntroAction = (payload) => (dispatch) => {
+  return http
+    .put(`/api/users/profiles/intro`, payload,
+      {headers: getHeaders()}
+    )
+    .then((res) => res.data)
+    .then((profile) => {
+      dispatch({ type: actions.SAVE_ACTIVE_PROFILE, payload: profile })
+      toast.info('User intro was updated',
+        {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
