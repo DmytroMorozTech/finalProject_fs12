@@ -48,12 +48,11 @@ function Chat (props) {
   }, [userIdFromUrl, messagesList, chatsList, userChatMessages])
 
   const findIfChatExist = () => {
-    chatsList && chatsList.forEach(c => {
+    chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         chatId = c.id
       } else {
         dispatch(createChatAction())
-        // dispatch(getUserChatsAction(activeUserId))
         chatId = newChat && newChat.id
         dispatch(addUserAction({userId: +userIdFromUrl, chatId}))
       }

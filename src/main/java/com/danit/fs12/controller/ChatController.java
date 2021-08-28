@@ -51,4 +51,10 @@ public class ChatController {
   List<ChatRs> getUserChats(@PathVariable Long id) {
     return chatFacade.getUserChats(id);
   }
+
+  @PutMapping(path = "/new/{id}")
+  public ResponseEntity<ChatRs> createChatIfNoExist(@PathVariable Long userId) {
+    ChatRs chatRs = chatFacade.createChatIfNoExist(userId);
+    return ResponseEntity.ok(chatRs);
+  }
 }

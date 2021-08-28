@@ -28,8 +28,6 @@ function Chat (props) {
   const chatsList = useSelector(allChats)
   const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
-  const activeUserId = activeUser && activeUser.id
-  const newChat = useSelector(newChatData)
 
   const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
   const currentChat = chatsList.filter(c => c.id === +chatId)[0]
@@ -38,24 +36,6 @@ function Chat (props) {
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
   }, [dispatch, chatId, messagesList])
-
-  const findIfChatExist = () => {
-    let existChatId = ''
-    chatsList && chatsList.forEach(c => {
-      if (c.users.filter(u => u.id === activeUserId).length > 0) {
-        existChatId = c.id
-      } else existChatId = null
-    })
-    console.log('Chat exist: ' + existChatId)
-    return existChatId !== null ? existChatId : 'new'
-  }
-
-  const startNewChatting = () => {
-    dispatch(createChatAction())
-    const newChatId = newChat && newChat.id
-    console.log('New chat id: ' + newChatId)
-    return newChatId
-  }
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value

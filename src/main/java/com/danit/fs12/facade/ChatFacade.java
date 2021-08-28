@@ -35,4 +35,9 @@ public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
 
     return chatsRs;
   }
+
+  public ChatRs createChatIfNoExist(Long userId) {
+    Chat chat = chatService.createChatIfNoExist(userId);
+    return convertToDto(chat);
+  }
 }

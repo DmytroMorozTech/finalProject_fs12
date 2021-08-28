@@ -64,7 +64,6 @@ function Messages () {
           </div>
           {chatsList && chatsList.map(c => {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
-            console.log('Chat member: ' + chatMember)
             return (
               <NavLink className={`${classes.link}`} key={c.id} to={`/messages/${c.id}`}>
                 <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember}/>

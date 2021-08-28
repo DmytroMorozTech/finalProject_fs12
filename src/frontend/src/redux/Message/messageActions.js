@@ -26,7 +26,7 @@ export const createMessageAction = ({chatId, text}) => (dispatch) => {
 }
 
 export const addUserAction = ({userId, chatId}) => (dispatch) => {
-  console.log(chatId + '' + userId)
+  console.log('Chat id in message actions when adding new user: ' + chatId)
   return http
     .put('../../api/chats', {userId, chatId}, {headers: getHeaders()})
     .then(res => {
@@ -35,6 +35,7 @@ export const addUserAction = ({userId, chatId}) => (dispatch) => {
         type: actions.ADD_USER, payload: updatedChat
       })
     })
+    .then(() => dispatch(getUserChatsAction(userId)))
 }
 
 export const getUserChatsAction = (userId) => (dispatch) => {

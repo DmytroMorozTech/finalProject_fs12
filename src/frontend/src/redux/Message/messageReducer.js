@@ -24,6 +24,7 @@ const messageReducer = (state = initialState, action) => {
       }
     case actions.ADD_USER:
       const {chatId} = action.payload
+      console.log('Action payload in Add_user reducer: ' + action.payload)
       const chatsCopy = [...state.chatsList]
       chatsCopy.filter(chat => chat.id === chatId)[0] = action.payload
       return {
