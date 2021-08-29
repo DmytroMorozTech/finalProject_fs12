@@ -6,7 +6,8 @@ const initialState = {
   chatMessages: {},
   newChatData: [],
   newChatId: '',
-  isLoading: false
+  isLoading: false,
+  isTemporaryChatOpen: false
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -43,12 +44,16 @@ const messageReducer = (state = initialState, action) => {
       }
     case actions.CREATE_CHAT_WITH_BOTH_MEMBERS:
       const newChat = action.payload
-      console.log('In reducer chat id: ' + newChat.id)
       return {
         ...state,
         chatsList: [...state.chatsList, action.payload],
         newChatData: action.payload,
         newChatId: newChat.id
+      }
+    case actions.TEMPORARY_CHAT_STATUS:
+      return {
+        ...state,
+        isTemporaryChatOpen: action.payload
       }
     default
     : {

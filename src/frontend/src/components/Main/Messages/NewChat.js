@@ -13,20 +13,20 @@ import Style from './styles'
 import {
   createChatWithBothMembersAction,
   createMessageAction,
-  getChatMessagesAction
+  isTemporaryChatOpenAction
 } from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {
   allChats,
   allMessages,
-  chatMessages,
+  chatMessages, isTemporaryChatOpenSelector,
   newChatData,
-  newChatId,
   newChatIdSelector
 } from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
 import {findUserByIdAction} from '../../../redux/User/userActions'
+import {useHistory} from 'react-router'
 
 function NewChat (props) {
   const {match} = props
@@ -44,6 +44,9 @@ function NewChat (props) {
   const newChat = useSelector(newChatData)
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
+  const isChatOpen = useSelector(isTemporaryChatOpenSelector)
+  console.log('User chat messages' + userChatMessages)
+  console.log('Messages list' + messagesList)
 
   let chatId = null
 
@@ -54,18 +57,20 @@ function NewChat (props) {
     dispatch(findUserByIdAction(userIdFromUrl))
   }, [userIdFromUrl])
 
-  useEffect(() => {
-    dispatch(getChatMessagesAction(newChatId))
-  }, [newChatId])
+  // useEffect(() => {
+  //   dispatch(getChatMessagesAction(newChatId))
+  // }, [newChatId])
 
   const findIfChatExist = () => {
     chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         chatId = c.id
         dispatch(createMessageAction({chatId, text: messageValue}))
+      } else if (isChatOpen) {
+        dispatch(createMessageAction({newChatId, text: messageValue}))
       } else {
         dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
-        chatId = newChat && newChat.id
+        dispatch(isTemporaryChatOpenAction(true))
       }
     })
   }
@@ -78,6 +83,7 @@ function NewChat (props) {
   const handleSendMessageButton = () => {
     findIfChatExist()
     setMessageValue('')
+    // history.push(`/messages/${newChatId}`)
   }
 
   const getMessageSender = (userId) => {

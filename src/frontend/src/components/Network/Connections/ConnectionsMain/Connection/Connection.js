@@ -8,7 +8,7 @@ import {Link, NavLink} from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUserChatsAction} from '../../../../../redux/Message/messageActions'
+import {getUserChatsAction, isTemporaryChatOpenAction} from '../../../../../redux/Message/messageActions'
 import {allChats} from '../../../../../redux/Message/messageSelector'
 import {activeUserSelector} from '../../../../../redux/User/userSelector'
 
@@ -38,6 +38,7 @@ function Connection (props) {
   }
 
   const findIfChatExist = () => {
+    dispatch(isTemporaryChatOpenAction(false))
     let existChatId = null
     chats && chats.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
