@@ -23,7 +23,7 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
-      <ProtectedRoutes exact path="/jobs/my-jobs" render={() => <MyJobs/>}/>
+      <ProtectedRoutes exact path="/jobs/my_jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>

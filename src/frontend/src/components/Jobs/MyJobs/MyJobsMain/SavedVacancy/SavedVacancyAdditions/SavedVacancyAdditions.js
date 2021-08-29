@@ -42,7 +42,7 @@ function SavedVacancyAdditions () {
   return (
     <div>
       {items.map(({ Icon, title, onClick }, i) => (
-        <MenuItem className={classes.menuItem}>
+        <MenuItem className={classes.menuItem} key={i}>
           <SavedVacancyAdditionsItem key={i} Icon={Icon} title={title} onClick={onClick}/>
         </MenuItem>
       ))}

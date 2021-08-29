@@ -3,7 +3,7 @@ import styles from './styles'
 import ForgotPage from './ForgotPage/ForgotPage'
 import { Link } from 'react-router-dom'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 
 const Forgot = () => {
   const classes = styles()

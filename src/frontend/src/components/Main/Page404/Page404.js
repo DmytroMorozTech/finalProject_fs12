@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles'
 import imgPage from '../../../temporaryImages/page404img.png'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import { Link } from 'react-router-dom'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 

@@ -13,19 +13,19 @@ function JobsLeft () {
   const classes = styles()
 
   const items = [
-    { Icon: <BookmarkIcon fontSize="inherit"/>, title: 'My Jobs', to: '/jobs/my-jobs' },
-    { Icon: <NotificationsRoundedIcon fontSize="inherit"/>, title: 'Job Alerts', to: '/jobs/my-jobs' },
-    // { Icon: <LocalAtmIcon fontSize="inherit"/>, title: 'Salary', to: '/jobs/my-jobs' },
-    { Icon: <AssignmentTurnedInOutlinedIcon fontSize="inherit"/>, title: 'Skill Assessments', to: '/jobs/my-jobs' },
-    { Icon: <NoteIcon fontSize="inherit"/>, title: 'Interview Prep', to: '/jobs/my-jobs' },
-    { Icon: <InsertDriveFileOutlinedIcon fontSize="inherit"/>, title: 'Resume Builder', to: '/jobs/my-jobs' },
-    { Icon: <SettingsIcon fontSize="inherit"/>, title: 'Application Settings', to: '/jobs/my-jobs' }
+    { Icon: <BookmarkIcon fontSize="inherit"/>, title: 'My Jobs', to: '/jobs/my_jobs' },
+    { Icon: <NotificationsRoundedIcon fontSize="inherit"/>, title: 'Job Alerts', to: '#' },
+    // { Icon: <LocalAtmIcon fontSize="inherit"/>, title: 'Salary', to: '#' },
+    { Icon: <AssignmentTurnedInOutlinedIcon fontSize="inherit"/>, title: 'Skill Assessments', to: '#' },
+    { Icon: <NoteIcon fontSize="inherit"/>, title: 'Interview Prep', to: '#' },
+    { Icon: <InsertDriveFileOutlinedIcon fontSize="inherit"/>, title: 'Resume Builder', to: '#' },
+    { Icon: <SettingsIcon fontSize="inherit"/>, title: 'Application Settings', to: '#' }
   ]
 
   return (
     <div className={classes.container}>
-      {items.map(({ Icon, title, to }, i) => (
-        <JobsLeftItem key={i} Icon={Icon} title={title} to={to}/>
+      {items.map(({ Icon, ...rest }, i) => (
+        <JobsLeftItem key={i} Icon={Icon} {...rest}/>
       ))}
     </div>
   )

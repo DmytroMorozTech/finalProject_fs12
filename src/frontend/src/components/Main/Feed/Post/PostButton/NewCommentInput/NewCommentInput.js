@@ -1,7 +1,7 @@
 import styles from './styles'
 import Avatar from '../../../../../../shared/Avatar/Avatar'
 import InputBase from '@material-ui/core/InputBase'
-import SharedButton from '../../../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../../../shared/SharedButton/SharedButton'
 import Comment from './Comment/Comment'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
