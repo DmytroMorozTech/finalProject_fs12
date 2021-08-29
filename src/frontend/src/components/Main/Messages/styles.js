@@ -600,6 +600,8 @@ export default makeStyles((theme) => ({
     fontWeight: 'bold'
   },
   searchInput: {
-
+  },
+  addTopMargin: {
+    marginTop: 70
   }
 }))

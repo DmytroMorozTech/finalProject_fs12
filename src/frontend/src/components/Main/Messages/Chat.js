@@ -10,14 +10,15 @@ import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfie
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/Button/SharedButton'
 import Style from './styles'
-import {createChatAction, createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
+import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
-import {allChats, allMessages, chatMessages, newChatData} from '../../../redux/Message/messageSelector'
+import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
 function Chat (props) {
   const {match} = props
+  const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
   const [messageValue, setMessageValue] = useState('')
@@ -54,14 +55,13 @@ function Chat (props) {
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
   }
-
   return (
-    <section className={classes.messagingDetail}>
+    <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {getChatMember() && getChatMember().fullName}
+              {getChatMember() && getChatMember().fullNamef}
               <div className={classes.userDeviceStyle}>
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}

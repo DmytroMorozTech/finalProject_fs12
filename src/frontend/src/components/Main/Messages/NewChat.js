@@ -29,6 +29,7 @@ import {findUserByIdAction} from '../../../redux/User/userActions'
 
 function NewChat (props) {
   const {match} = props
+  const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
   const [messageValue, setMessageValue] = useState('')
@@ -50,10 +51,9 @@ function NewChat (props) {
 
   useEffect(() => {
     dispatch(findUserByIdAction(userIdFromUrl))
-  }, [userIdFromUrl])
+  }, [dispatch, userIdFromUrl])
 
   useEffect(() => {
-
   }, [newChatId, messagesList])
 
   const findIfChatExist = () => {
@@ -79,7 +79,6 @@ function NewChat (props) {
   const handleSendMessageButton = () => {
     findIfChatExist()
     setMessageValue('')
-    // history.push(`/messages/${newChatId}`)
   }
 
   const getMessageSender = (userId) => {
@@ -87,7 +86,7 @@ function NewChat (props) {
   }
 
   return (
-    <section className={classes.messagingDetail}>
+    <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>

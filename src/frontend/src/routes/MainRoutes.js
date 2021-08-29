@@ -26,8 +26,8 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/jobs/my-jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
       <ProtectedRoutes exact path="/messages/:id" render={() => <Messages/>}/>
-      <ProtectedRoutes exact path="/chat/:id" render={() => <Chat/>}/>
-      <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat/>}/>
+      <ProtectedRoutes exact path="/chat/:id" render={() => <Chat isSeparateChat={true}/>}/>
+      <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat isSeparateChat={true}/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       {/* <ProtectedRoutes exact path="/personal" render={() => <Profile/>}/> */}
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage} />
