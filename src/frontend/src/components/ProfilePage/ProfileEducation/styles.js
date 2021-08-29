@@ -40,5 +40,8 @@ export default makeStyles((theme) => ({
   },
   schoolName: {
     fontWeight: theme.typography.fontWeightBold
+  },
+  hidden: {
+    visibility: 'hidden'
   }
 }))

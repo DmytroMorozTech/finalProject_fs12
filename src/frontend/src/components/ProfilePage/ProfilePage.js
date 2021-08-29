@@ -11,6 +11,7 @@ import {activeProfileSelector, isLoadingProfileSelector} from '../../redux/Profi
 import Preloader from '../../shared/Preloader/Preloader'
 import ProfileCertification from './ProfileCertification/ProfileCertification'
 import ProfileExperience from './ProfileExperience/ProfileExperience'
+import { activeUserSelector } from '../../redux/User/userSelector'
 
 function ProfilePage (props) {
   const classes = styles()
@@ -19,6 +20,8 @@ function ProfilePage (props) {
 
   const activeProfile = useSelector(activeProfileSelector)
   const profileIsLoading = useSelector(isLoadingProfileSelector)
+  const activeUser = useSelector(activeUserSelector)
+  const isEditable = activeProfile.id === activeUser.id
 
   useEffect(() => {
     dispatch(getActiveProfileAction(userId))
@@ -31,10 +34,10 @@ function ProfilePage (props) {
           {profileIsLoading && <Preloader/>}
           {!profileIsLoading &&
           <>
-            <ProfileMain profile={activeProfile}/>
-            <ProfileExperience workPlaces={activeProfile.workPlaces}/>
-            <ProfileEducation educations={activeProfile.educations}/>
-            <ProfileCertification certifications={activeProfile.certifications}/>
+            <ProfileMain profile={activeProfile} isEditable={isEditable}/>
+            <ProfileExperience workPlaces={activeProfile.workPlaces} isEditable={isEditable}/>
+            <ProfileEducation educations={activeProfile.educations} isEditable={isEditable}/>
+            <ProfileCertification certifications={activeProfile.certifications} isEditable={isEditable}/>
           </>
           }
         </Grid>

@@ -212,7 +212,16 @@ VALUES (date '2014-10-02', date '2014-10-02', 'Studying Data-structures and algo
        (date '2020-04-05', date '2020-04-05', 'Doing mathematical calculations all day long',
         date '2019-03-03', date '2017-03-03', 'Msc',
         'Math',
-        'Michigan state University', 1, 'Best calculus ever');
+        'Michigan state University', 1, 'Best calculus ever'),
+       (date '2016-02-02', date '2016-02-02', 'Studying best practices of Financial Analysis',
+        date '2016-03-05', date '2012-01-02', 'Bachelor',
+        'Economy and Finance',
+        'Mount Royal University', 3,
+        'Studying  risk management and behavioral finance principles to understand the real-world functioning of securities, insurance, and banking industries.'),
+       (date '2020-04-05', date '2020-04-05', 'Studying best practices of Financial Analysis',
+        date '2019-03-03', date '2017-03-03', 'Msc',
+        'Economy and Finance',
+        'University of Calgary', 4, 'Learning ideas, methods, and institutions that permit human society to manage risks and foster enterprise. Emphasis on financially-savvy leadership skills. ');
 
 INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
                             credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
@@ -224,7 +233,15 @@ VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua'
        (date '2018-04-03', date '2018-04-03', 'MK98123HAP', 'https://dan-it.com.ua',
         date '2025-07-08', true, date '2016-07-08', 'DAN-IT', 'Spring data jpa', 2),
        (date '2018-04-03', date '2018-04-03', 'MK98123HAP', 'https://dan-it.com.ua',
-        date '2023-03-02', true, date '2016-03-06', 'DAN-IT', 'Mongo DB course', 2);
+        date '2023-03-02', true, date '2016-03-06', 'DAN-IT', 'Mongo DB course', 2),
+       (date '2018-04-03', date '2018-04-03', 'FG8892348', 'https://www.udemy.com/',
+        date '2025-07-08', true, date '2016-07-08', 'UDEMY', 'Financial accounting for entrepreneurs', 3),
+       (date '2018-04-03', date '2018-04-03', 'JK9928402', 'https://www.udemy.com/',
+        date '2023-03-02', true, date '2016-03-06', 'UDEMY', 'Soft skills upgrade', 3),
+       (date '2018-04-03', date '2018-04-03', 'OP2983849', 'https://www.udemy.com/',
+        date '2025-07-08', true, date '2016-07-08', 'UDEMY', 'Interpersonal communications', 4),
+       (date '2018-04-03', date '2018-04-03', 'MW99128430', 'https://www.udemy.com/',
+        date '2023-03-02', true, date '2016-03-06', 'UDEMY', 'Software development', 4);
 
 INSERT INTO CHATS (created_date, modified_date)
 VALUES (date '2015-01-20', date '2015-01-20'),

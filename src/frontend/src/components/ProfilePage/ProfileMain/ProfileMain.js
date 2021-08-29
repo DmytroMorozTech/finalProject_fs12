@@ -11,11 +11,10 @@ import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {ADD_BACKGROUND_PHOTO, EDIT_INTRO} from '../../../redux/Modal/modalTypes'
 import {useDispatch} from 'react-redux'
+import clsx from 'clsx'
 
 function ProfileMain (props) {
-  const {
-    numberOfConnections = 45
-  } = props
+  const { numberOfConnections = 45, isEditable } = props
   const profile = props.profile
   const classes = style()
   const dispatch = useDispatch()
@@ -24,16 +23,20 @@ function ProfileMain (props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <div className={classes.photoIcon} onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
+        <div
+          className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
+          onClick={() =>
+            dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
       <div>
         <div className={classes.row}>
           <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
-          <div onClick={() =>
-            dispatch(toggleModalAction({modalType: EDIT_INTRO, profile: props.profile}))}>
+          <div
+            className={clsx(!isEditable && classes.hidden)}
+            onClick={() =>
+              dispatch(toggleModalAction({modalType: EDIT_INTRO, profile: props.profile}))}>
             <CreateIcon className={classes.editName}/>
           </div>
         </div>
@@ -84,7 +87,7 @@ function ProfileMain (props) {
             <Typography variant="body1" color="secondary">{profile.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
-          <div>
+          <div className={clsx(!isEditable && classes.hidden)}>
             <CreateIcon fontSize="inherit" className={classes.createIcon}/>
           </div>
         </div>

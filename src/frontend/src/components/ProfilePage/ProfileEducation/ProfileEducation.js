@@ -6,9 +6,10 @@ import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {ADD_NEW_EDUCATION} from '../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
+import clsx from 'clsx'
 
 const ProfileEducation = (props) => {
-  const educations = props.educations
+  const {educations, isEditable} = props
   const classes = style()
   const dispatch = useDispatch()
 
@@ -18,8 +19,10 @@ const ProfileEducation = (props) => {
         <Typography variant="h3">
           Education
         </Typography>
-        <div onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_NEW_EDUCATION}))}>
+        <div
+          className={clsx(!isEditable && classes.hidden)}
+          onClick={() =>
+            dispatch(toggleModalAction({modalType: ADD_NEW_EDUCATION}))}>
           <AddIcon className={classes.createIcon}/>
         </div>
       </div>
@@ -27,7 +30,11 @@ const ProfileEducation = (props) => {
         {educations &&
         educations
           .sort((edu1, edu2) => edu2.dateStart.localeCompare(edu1.dateStart))
-          .map(education => <ProfileEducationItem key={education.id} education={education}/>)}
+          .map(education => <ProfileEducationItem
+            key={education.id}
+            education={education}
+            isEditable = {isEditable}
+          />)}
       </div>
     </div>
   )
