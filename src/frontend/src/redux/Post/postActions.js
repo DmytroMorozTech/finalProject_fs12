@@ -13,27 +13,6 @@ export const createNewPostAction = (payload) => (dispatch) => {
     })
 }
 
-export const getCommentsForPostAction = (postId) => (dispatch) => {
-  return http
-    .get(`/api/comments/for_post/${postId}`, {headers: getHeaders()})
-    .then((res) => res.data)
-    .then((listOfComments) => {
-      dispatch({ type: actions.SAVE_COMMENTS_FOR_POST, payload: { listOfComments, postId } })
-    })
-}
-
-export const createNewCommentAction = ({ text, id }) => (dispatch) => {
-  return http
-    .post('/api/comments', { text: text, postId: id }, {headers: getHeaders()})
-    .then((res) => res.data)
-    .then((newCommentObj) => {
-      dispatch({
-        type: actions.ADD_NEW_COMMENT_FOR_POST,
-        payload: { comment: newCommentObj, postId: id }
-      })
-    })
-}
-
 export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
   const id = payload
   return http
@@ -49,7 +28,7 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
       dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_POST, id: id })))
 }
 
-export const toggleLikeAction = (payload) => (dispatch) => {
+export const togglePostLikeAction = (payload) => (dispatch) => {
   const id = payload
 
   return http

@@ -18,7 +18,7 @@ function Header () {
     <>
       <div className={classes.header}>
         <div className={classes.headerLogoSearch}>
-          <Link exact to='/home'>
+          <Link to='/home'>
             <div className={classes.headerLogo}>
               <LinkedInIcon fontSize="inherit"/>
             </div>

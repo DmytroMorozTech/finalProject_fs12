@@ -11,10 +11,11 @@ import FormikSelect from '../../../shared/FormComponents/FormikSelect'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../data/month.json'
 import year from '../../../data/year.json'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {createNewWorkPlaceAction} from '../../../redux/Profile/profileActions'
+import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const AddExperienceModal = () => {
   const INITIAL_FORM_STATE = {
     position: '',
     organizationId: '',
-    isCurrentlyEmployed: true,
+    isCurrentlyEmployed: false,
     startMonth: '',
     startYear: '',
     endMonth: '',
@@ -56,14 +57,40 @@ const AddExperienceModal = () => {
     startYear: Yup.string()
       .required('Required'),
     endMonth: Yup.string()
-      .when('!isCurrentlyEmployed', {
-        is: true,
-        then: Yup.string().required('Required')
+      .when('isCurrentlyEmployed', {
+        is: false,
+        then: Yup.string()
+          .required('Required')
+          .test(
+            'chronological_order',
+            'You should follow chronological order',
+            function () {
+              const {startMonth, startYear, endMonth, endYear} = this.parent
+              if (!endMonth || !endYear) return true
+              const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+              const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+              const startDateMillis = Date.parse(startDateStr)
+              const endDateMillis = Date.parse(endDateStr)
+              return (endDateMillis - startDateMillis) > 0
+            })
       }),
     endYear: Yup.string()
-      .when('!isCurrentlyEmployed', {
-        is: true,
-        then: Yup.string().required('Required')
+      .when('isCurrentlyEmployed', {
+        is: false,
+        then: Yup.string()
+          .required('Required')
+          .test(
+            'chronological_order',
+            'You should follow chronological order',
+            function () {
+              const {startMonth, startYear, endMonth, endYear} = this.parent
+              if (!endMonth || !endYear) return true
+              const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+              const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+              const startDateMillis = Date.parse(startDateStr)
+              const endDateMillis = Date.parse(endDateStr)
+              return (endDateMillis - startDateMillis) > 0
+            })
       }),
     responsibilities: Yup.string()
       .required('Required')

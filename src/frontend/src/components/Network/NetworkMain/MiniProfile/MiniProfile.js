@@ -4,7 +4,7 @@ import Avatar from '../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
 import React, { useState } from 'react'
 import avatar from '../../../../temporaryImages/avatar.jpg'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
@@ -29,19 +29,19 @@ function MiniProfile (props) {
     <div className={clsx(classes.miniProfile, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
-          <CloseIcon fontSize='inherit'/>
+          <CloseIcon fontSize="inherit"/>
         </div>
-        <Link exact to="/profile" className={classes.link}>
+        <Link to="/profile/:id" className={classes.link}>
           <div className={classes.avatar}>
             <Avatar avatarUrl={avatarUrl}/>
           </div>
           <Typography variant="h5" align="center" className={classes.name}>
             {fullName}
           </Typography>
+          <Typography variant="body1" color="textSecondary" align="center">
+            {positionAndCompany}
+          </Typography>
         </Link>
-        <Typography variant="body1" color="textSecondary" align="center">
-          {positionAndCompany}
-        </Typography>
       </div>
       <div className={classes.connectionGroup}>
         <div className={classes.connection}>

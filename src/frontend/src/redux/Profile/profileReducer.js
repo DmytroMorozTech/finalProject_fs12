@@ -115,6 +115,19 @@ const profileReducer = (state = initialState, action) => {
         }
       })
 
+    case actions.DELETE_EXPERIENCE:
+      const workPlaceId = action.payload
+
+      const filteredWorkPlaces = state.activeProfile.workPlaces.filter(wp => wp.id !== workPlaceId)
+
+      return {
+        ...state,
+        activeProfile: {
+          ...state.activeProfile,
+          workPlaces: [...filteredWorkPlaces]
+        }
+      }
+
     default: {
       return state
     }

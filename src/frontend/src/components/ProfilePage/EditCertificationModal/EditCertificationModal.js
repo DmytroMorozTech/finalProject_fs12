@@ -3,7 +3,7 @@ import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { withStyles } from '@material-ui/core/styles'
 import { TextField } from 'formik-material-ui'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 import month from '../../../data/month.json'
@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography'
 import styles from './styles'
 import convertLocalDateToYearMonthObj from '../../../utils/convertLocalDateToYearMonthObj'
 import { deleteCertificationAction, updateCertificationAction } from '../../../redux/Profile/profileActions'
+import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -50,12 +51,37 @@ const FORM_VALIDATION = Yup.object().shape({
   expirationDateMonth: Yup.string()
     .when('hasExpiryDate', {
       is: true,
-      then: Yup.string().required('Expiration date Month is required')
+      then: Yup.string()
+        .required('Expiration month is required')
+        .test(
+          'chronological_order',
+          'You should follow chronological order',
+          function () {
+            const {issueDateMonth, issueDateYear, expirationDateMonth, expirationDateYear} = this.parent
+            if (!expirationDateMonth || !expirationDateYear) return true
+            const startDateStr = convertYearMonthToLocalDate(issueDateYear, issueDateMonth)
+            const endDateStr = convertYearMonthToLocalDate(expirationDateYear, expirationDateMonth)
+            const startDateMillis = Date.parse(startDateStr)
+            const endDateMillis = Date.parse(endDateStr)
+            return (endDateMillis - startDateMillis) > 0
+          })
     }),
   expirationDateYear: Yup.string()
     .when('hasExpiryDate', {
       is: true,
-      then: Yup.string().required('Expiration date Year is required')
+      then: Yup.string()
+        .required('Expiration year is required')
+        .test(
+          'chronological_order',
+          'You should follow chronological order',
+          function () {
+            const {issueDateMonth, issueDateYear, expirationDateMonth, expirationDateYear} = this.parent
+            const startDateStr = convertYearMonthToLocalDate(issueDateYear, issueDateMonth)
+            const endDateStr = convertYearMonthToLocalDate(expirationDateYear, expirationDateMonth)
+            const startDateMillis = Date.parse(startDateStr)
+            const endDateMillis = Date.parse(endDateStr)
+            return (endDateMillis - startDateMillis) > 0
+          })
     }),
   credentialID: Yup.string(),
   credentialUrl: Yup.string()
@@ -63,7 +89,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 })
 
-const EditCertification = (props) => {
+const EditCertificationModal = (props) => {
   const certification = props.certification
   const {hasExpiryDate} = certification
   const classes = styles()
@@ -140,6 +166,9 @@ const EditCertification = (props) => {
                     <span>This credential has expiration date</span>
                   </label>
                 </Grid>
+                <Grid item xs={12}>
+                  <span>Issue date</span>
+                </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
@@ -155,6 +184,9 @@ const EditCertification = (props) => {
                     label="Year"
                     options={year}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Expiration date</span>
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
@@ -216,4 +248,4 @@ const EditCertification = (props) => {
     </div>
   )
 }
-export default EditCertification
+export default EditCertificationModal

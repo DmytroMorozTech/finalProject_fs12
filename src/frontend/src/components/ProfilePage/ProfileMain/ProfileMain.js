@@ -5,17 +5,17 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
 import style from './styles'
 import { Hidden, Link } from '@material-ui/core'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import {ADD_BACKGROUND_PHOTO, EDIT_INTRO} from '../../../redux/Modal/modalTypes'
 import {useDispatch} from 'react-redux'
+import clsx from 'clsx'
 
 function ProfileMain (props) {
-  const {
-    city = 'Kyiv', country = 'Ukraine', numberOfConnections = 45, profile
-  } = props
+  const { numberOfConnections = 45, isEditable } = props
+  const profile = props.profile
   const classes = style()
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
@@ -23,16 +23,20 @@ function ProfileMain (props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <div className={classes.photoIcon} onClick={() =>
-          dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
+        <div
+          className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
+          onClick={() =>
+            dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
       <div>
         <div className={classes.row}>
           <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
-          <div onClick={() =>
-            dispatch(toggleModalAction({modalType: EDIT_INTRO}))}>
+          <div
+            className={clsx(!isEditable && classes.hidden)}
+            onClick={() =>
+              dispatch(toggleModalAction({modalType: EDIT_INTRO, profile: props.profile}))}>
             <CreateIcon className={classes.editName}/>
           </div>
         </div>
@@ -42,11 +46,11 @@ function ProfileMain (props) {
               {profile.fullName}
             </Typography>
             <Typography variant="body1">
-              {profile.positionAndCompany}
+              {profile.headline}
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
-                {city}, {country}
+                {profile.city}, {profile.country}
               </Typography>
               <SmallDot/>
               <Link onClick={preventDefault}>
@@ -83,7 +87,7 @@ function ProfileMain (props) {
             <Typography variant="body1" color="secondary">{profile.positionAndCompany}</Typography>
             <Typography variant="body1" color="primary" className={classes.bold}>See all details</Typography>
           </Link>
-          <div>
+          <div className={clsx(!isEditable && classes.hidden)}>
             <CreateIcon fontSize="inherit" className={classes.createIcon}/>
           </div>
         </div>

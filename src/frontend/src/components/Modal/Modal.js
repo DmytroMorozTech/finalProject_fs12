@@ -1,8 +1,8 @@
 import React from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import toggleModalAction from '../../redux/Modal/modalActions'
-import {useDispatch, useSelector} from 'react-redux'
-import {modalContentSelector, openModalSelector} from '../../redux/Modal/modalSelector'
+import { useDispatch, useSelector } from 'react-redux'
+import { modalContentSelector, openModalSelector } from '../../redux/Modal/modalSelector'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -20,7 +20,7 @@ export default function CustomizedDialogs () {
   }
 
   const DialogTitle = (props) => {
-    const {children, onClose, ...other} = props
+    const { children, onClose, ...other } = props
     return (
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
         <Typography variant="h6">{children}</Typography>
@@ -33,12 +33,10 @@ export default function CustomizedDialogs () {
     )
   }
   return (
-    <div>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        </DialogTitle>
-        {modalContent}
-      </Dialog>
-    </div>
+    <Dialog classes={{paper: classes.paperRoot}} onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpened}>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+      </DialogTitle>
+      {modalContent}
+    </Dialog>
   )
 }

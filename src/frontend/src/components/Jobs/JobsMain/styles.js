@@ -11,14 +11,20 @@ export default makeStyles((theme) => ({
     paddingRight: theme.spacing(3)
   },
 
-  seeMore: {
+  regular: {
+    fontWeight: theme.typography.fontWeightRegular
+  },
+
+  seeMoreBlock: {
     display: 'flex',
     justifyContent: 'center',
     padding: theme.spacing(2)
   },
 
-  button: {
-    fontSize: theme.typography.h6.fontSize,
-    padding: theme.spacing(1)
+  seeMore: {
+    color: theme.palette.primary.main + ' !important',
+    '&:hover': {
+      backgroundColor: 'rgba(10, 102, 194, 0.1) !important'
+    }
   }
 }))

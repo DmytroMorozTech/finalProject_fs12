@@ -11,11 +11,12 @@ import FormikSelect from '../../../shared/FormComponents/FormikSelect'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../data/month.json'
 import year from '../../../data/year.json'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import convertLocalDateToYearMonthObj from '../../../utils/convertLocalDateToYearMonthObj'
 import { updateEducationAction, deleteEducationAction } from '../../../redux/Profile/profileActions'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
+import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -62,9 +63,33 @@ const EditEducationModal = (props) => {
     startYear: Yup.number()
       .required('Required'),
     endMonth: Yup.string()
-      .required('Required'),
+      .required('Required')
+      .test(
+        'chronological_order',
+        'You should follow chronological order',
+        function () {
+          const {startMonth, startYear, endMonth, endYear} = this.parent
+          if (!endMonth || !endYear) return true
+          const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+          const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+          const startDateMillis = Date.parse(startDateStr)
+          const endDateMillis = Date.parse(endDateStr)
+          return (endDateMillis - startDateMillis) > 0
+        }),
     endYear: Yup.number()
-      .required('Required'),
+      .required('Required')
+      .test(
+        'chronological_order',
+        'You should follow chronological order',
+        function () {
+          const {startMonth, startYear, endMonth, endYear} = this.parent
+          if (!endMonth || !endYear) return true
+          const startDateStr = convertYearMonthToLocalDate(startYear, startMonth)
+          const endDateStr = convertYearMonthToLocalDate(endYear, endMonth)
+          const startDateMillis = Date.parse(startDateStr)
+          const endDateMillis = Date.parse(endDateStr)
+          return (endDateMillis - startDateMillis) > 0
+        }),
     activities: Yup.string()
       .required('Required'),
     description: Yup.string()

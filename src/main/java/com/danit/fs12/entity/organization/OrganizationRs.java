@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class OrganizationRs {
 
+  @JsonView(UserViews.Profile.class)
   private Long id;
 
   @JsonView(UserViews.Profile.class)

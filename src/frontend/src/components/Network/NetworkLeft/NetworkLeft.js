@@ -4,11 +4,11 @@ import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRo
 import PermContactCalendarOutlinedIcon from '@material-ui/icons/PermContactCalendarOutlined'
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined'
 import GroupIcon from '@material-ui/icons/Group'
-import EventIcon from '@material-ui/icons/Event'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import ListAltIcon from '@material-ui/icons/ListAlt'
-import GridOnIcon from '@material-ui/icons/GridOn'
-import Item from './Item/Item'
+// import EventIcon from '@material-ui/icons/Event'
+// import DashboardIcon from '@material-ui/icons/Dashboard'
+// import ListAltIcon from '@material-ui/icons/ListAlt'
+// import GridOnIcon from '@material-ui/icons/GridOn'
+import NetworkLeftItem from './NetworkLeftItem/NetworkLeftItem'
 import jobs from '../../../temporaryImages/jobs.jpg'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
@@ -24,11 +24,11 @@ function NetworkLeft (props) {
     numberConnections = 100,
     numberContacts,
     numberPeopleIFollow,
-    numberGroups,
-    numberEvents,
-    numberPages,
-    numberNewsletters,
-    numberHashtags
+    numberGroups
+    // numberEvents,
+    // numberPages,
+    // numberNewsletters,
+    // numberHashtags
   } = props
 
   const items = [
@@ -59,35 +59,35 @@ function NetworkLeft (props) {
       number: numberGroups,
       to: '/network/connections', // this is temporary hardcoded
       onClick: () => console.log('Groups')
-    },
-    {
-      Icon: <EventIcon fontSize="inherit"/>,
-      title: 'Events',
-      number: numberEvents,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Events')
-    },
-    {
-      Icon: <DashboardIcon fontSize="inherit"/>,
-      title: 'Pages',
-      number: numberPages,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Pages')
-    },
-    {
-      Icon: <ListAltIcon fontSize="inherit"/>,
-      title: 'Newsletters',
-      number: numberNewsletters,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Newsletters')
-    },
-    {
-      Icon: <GridOnIcon fontSize="inherit"/>,
-      title: 'Hashtags',
-      number: numberHashtags,
-      to: '/network/connections', // this is temporary hardcoded
-      onClick: () => console.log('Hashtags')
     }
+    // {
+    //   Icon: <EventIcon fontSize="inherit"/>,
+    //   title: 'Events',
+    //   number: numberEvents,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Events')
+    // },
+    // {
+    //   Icon: <DashboardIcon fontSize="inherit"/>,
+    //   title: 'Pages',
+    //   number: numberPages,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Pages')
+    // },
+    // {
+    //   Icon: <ListAltIcon fontSize="inherit"/>,
+    //   title: 'Newsletters',
+    //   number: numberNewsletters,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Newsletters')
+    // },
+    // {
+    //   Icon: <GridOnIcon fontSize="inherit"/>,
+    //   title: 'Hashtags',
+    //   number: numberHashtags,
+    //   to: '/network/connections', // this is temporary hardcoded
+    //   onClick: () => console.log('Hashtags')
+    // }
   ]
 
   const [showMore, setShowMore] = useState(false)
@@ -103,10 +103,10 @@ function NetworkLeft (props) {
         <div>
           {showMore
             ? items.map(({ Icon, title, number, to, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
+              <NetworkLeftItem key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))
             : shortItems.map(({ Icon, title, number, to, onClick }, i) => (
-              <Item key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
+              <NetworkLeftItem key={i} Icon={Icon} title={title} number={number} to={to} onClick={onClick}/>
             ))}
           <Button variant="contained" endIcon={showMore ? <ExpandLessIcon/> : <ExpandMoreIcon/>} className={classes.btn} onClick={() => setShowMore(!showMore)}>
             {showMore ? 'Show less' : 'Show more'}
@@ -114,12 +114,12 @@ function NetworkLeft (props) {
         </div>
       </div>
       <hr className={classes.line}/>
-      <Link exact to="/jobs">
+      <Link to="/jobs">
         <img alt="jobs" src={jobs} className={classes.img}/>
       </Link>
       <hr className={classes.line}/>
       {/* Link is hardcoded below */}
-      <Link exact to="/network" className={classes.link}>
+      <Link to="/network" className={classes.link}>
         <Typography variant="h5" color="primary" align="center">
           Grow your network
         </Typography>

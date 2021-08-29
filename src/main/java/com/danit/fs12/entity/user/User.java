@@ -5,11 +5,12 @@ import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.certification.Certification;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.comment.Comment;
+import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
-import com.danit.fs12.entity.like.Like;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.workplace.WorkPlace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -48,6 +49,15 @@ public class User extends AbstractEntity {
   @Column(name = "last_name")
   private String lastName;
 
+  @Column(name = "headline")
+  private String headline;
+
+  @Column(name = "country")
+  private String country;
+
+  @Column(name = "city")
+  private String city;
+
   @Column(name = "phone_number")
   private String phoneNumber;
 
@@ -75,13 +85,11 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Comment> comments = new ArrayList<>();
 
-
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
   private List<Message> messages = new ArrayList<>();
-
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
@@ -99,7 +107,6 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Chat> chats = new ArrayList<>();
 
-
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
     name = "user_has_groups",
@@ -116,7 +123,6 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
-
   @ManyToMany
   @JoinTable(name = "followers",
     joinColumns = @JoinColumn(name = "userId"),
@@ -124,7 +130,6 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowed; // users that current User follows
-
 
   @ManyToMany
   @JoinTable(name = "followers",
@@ -142,6 +147,13 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<WorkPlace> workPlaces = new ArrayList<>();
 
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<CommentLike> commentLikes = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
@@ -149,7 +161,7 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   @JsonIgnore
-  private List<Like> likes = new ArrayList<>();
+  private List<PostLike> postLikes = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
@@ -174,7 +186,6 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   @JsonIgnore
   private List<Certification> certifications = new ArrayList<>();
-
 
   public Message addMessage(Message message) {
     if (!this.messages.contains(message)) {
@@ -207,7 +218,3 @@ public class User extends AbstractEntity {
       : "";
   }
 }
-
-
-
-

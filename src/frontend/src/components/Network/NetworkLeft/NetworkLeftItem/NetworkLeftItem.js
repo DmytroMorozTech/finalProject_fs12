@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles'
 import { Link } from 'react-router-dom'
 
-function Item ({ Icon, title, number, to, onClick }) {
+function NetworkLeftItem ({ Icon, title, number, to, onClick }) {
   const classes = styles()
 
   return (
@@ -16,4 +16,4 @@ function Item ({ Icon, title, number, to, onClick }) {
   )
 }
 
-export default Item
+export default NetworkLeftItem

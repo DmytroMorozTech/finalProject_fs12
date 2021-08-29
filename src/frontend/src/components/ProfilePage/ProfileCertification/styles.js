@@ -15,6 +15,8 @@ export default makeStyles((theme) => ({
   content: {
     display: 'flex',
     justifyContent: 'space-between',
+    borderBottom: '1px solid #f1f1f1',
+    paddingBottom: theme.spacing(4),
     marginTop: theme.spacing(3)
   },
   btnCreate: {
@@ -38,7 +40,10 @@ export default makeStyles((theme) => ({
     margin: '0 2px',
     transform: 'scale(0.8)'
   },
-  schoolName: {
+  title: {
     fontWeight: theme.typography.fontWeightBold
+  },
+  hidden: {
+    visibility: 'hidden'
   }
 }))

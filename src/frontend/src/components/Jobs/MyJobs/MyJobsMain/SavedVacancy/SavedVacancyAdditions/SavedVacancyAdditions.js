@@ -3,7 +3,7 @@ import React from 'react'
 import TelegramIcon from '@material-ui/icons/Telegram'
 import LinkIcon from '@material-ui/icons/Link'
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
-import Item from './Item/Item'
+import SavedVacancyAdditionsItem from './SavedVacancyAdditionsItem/SavedVacancyAdditionsItem'
 import { MenuItem } from '@material-ui/core'
 
 function SavedVacancyAdditions () {
@@ -42,8 +42,8 @@ function SavedVacancyAdditions () {
   return (
     <div>
       {items.map(({ Icon, title, onClick }, i) => (
-        <MenuItem className={classes.menuItem}>
-          <Item key={i} Icon={Icon} title={title} onClick={onClick}/>
+        <MenuItem className={classes.menuItem} key={i}>
+          <SavedVacancyAdditionsItem key={i} Icon={Icon} title={title} onClick={onClick}/>
         </MenuItem>
       ))}
     </div>

@@ -2,20 +2,33 @@ import Typography from '@material-ui/core/Typography'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import SmallDot from '../../../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles'
 import clsx from 'clsx'
 import Avatar from '../../../../../../../shared/Avatar/Avatar'
 import getTimeSinceCreated from '../../../../../../../services/timePassedService'
 import SeeMore from '../../../SeeMore/SeeMore'
+import { useDispatch } from 'react-redux'
+import {
+  getUsersWhoLikedCommentAction,
+  toggleCommentLikeAction
+} from '../../../../../../../redux/Comment/commentActions'
 
 function Comment (props) {
-  let { user, text, quantityOfCommentsLike = 3, createdDate } = props.comment
-  let { fullName, avatarUrl, positionAndCompany } = user
+  const { id: commentId, user, text, numberOfLikes = 0, createdDate, isLikedByActiveUser } = props.comment
+  const postId = props.postId
+  const { fullName, avatarUrl, positionAndCompany } = user
 
   const classes = styles()
+  const dispatch = useDispatch()
 
-  const [commentLiked, setCommentLiked] = useState(false)
+  const handleCommentLike = () => {
+    dispatch(toggleCommentLikeAction(commentId, postId))
+  }
+
+  const handleModalWhoLikedComment = () => {
+    dispatch(getUsersWhoLikedCommentAction(commentId))
+  }
 
   return (
     <div className={classes.comment}>
@@ -46,12 +59,17 @@ function Comment (props) {
         </div>
         <div className={classes.commentLikes}>
           <span
-            className={clsx(classes.commentLike, commentLiked ? classes.commentLiked : classes.commentNotLiked)}
-            onClick={() => setCommentLiked(!commentLiked)}>Like</span>
+            className={clsx(classes.commentLike, isLikedByActiveUser ? classes.commentLiked : classes.commentNotLiked)}
+            onClick={handleCommentLike}>
+            Like
+          </span>
           <span
-            className={clsx(classes.commentRow, quantityOfCommentsLike === 0 && classes.hiddenQuantityOfCommentsLike)}>
+            className={clsx(classes.commentRow, numberOfLikes === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
-            <span className={classes.quantityOfCommentsLike}><LikeMiniIcon/>{quantityOfCommentsLike}</span>
+            <span className={classes.quantityOfCommentsLike} onClick={handleModalWhoLikedComment}>
+              <LikeMiniIcon/>
+              {numberOfLikes}
+            </span>
           </span>
         </div>
       </div>

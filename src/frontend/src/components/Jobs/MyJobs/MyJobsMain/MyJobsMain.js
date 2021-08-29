@@ -1,6 +1,6 @@
 import styles from './styles'
 import React from 'react'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import SavedVacancy from './SavedVacancy/SavedVacancy'
 
 function MyJobsMain () {

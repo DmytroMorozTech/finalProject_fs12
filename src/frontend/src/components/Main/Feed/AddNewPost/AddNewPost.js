@@ -15,7 +15,7 @@ import EventNoteIcon from '@material-ui/icons/EventNote'
 import styles from './styles'
 import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 const DialogContent = withStyles((theme) => ({

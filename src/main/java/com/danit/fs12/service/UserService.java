@@ -1,9 +1,13 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.like.Like;
+import com.danit.fs12.entity.comment.Comment;
+import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.ForbiddenException;
+import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +24,20 @@ import java.util.stream.Collectors;
 public class UserService extends GeneralService<User> {
   private final PostRepository postRepository;
   private final UserRepository userRepository;
+  private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
-    List<Like> likes = post.getLikes();
-    List<User> usersList = likes.stream().map(Like::getUser).collect(Collectors.toList());
+    List<PostLike> postLikes = post.getPostLikes();
+    List<User> usersList = postLikes.stream().map(PostLike::getUser).collect(Collectors.toList());
+    return usersList;
+  }
+
+  public List<User> findUsersWhoLikedComment(Long id) {
+    Comment comment = commentRepository.findEntityById(id);
+    List<CommentLike> commentLikes = comment.getCommentLikes();
+    List<User> usersList = commentLikes.stream().map(CommentLike::getUser).collect(Collectors.toList());
     return usersList;
   }
 
@@ -73,5 +85,16 @@ public class UserService extends GeneralService<User> {
     user.setEmail(email);
     user.setAvatarUrl(avatar);
     saveUser(user);
+  }
+
+  public User updateIntro(UserEditIntroRq rq) {
+    User activeUser = findEntityById(getActiveUser().getId());
+    activeUser.setFirstName(rq.getFirstName());
+    activeUser.setLastName(rq.getLastName());
+    activeUser.setCountry(rq.getCountry());
+    activeUser.setCity(rq.getCity());
+    activeUser.setHeadline(rq.getHeadline());
+
+    return save(activeUser);
   }
 }

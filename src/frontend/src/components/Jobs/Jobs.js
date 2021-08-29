@@ -28,9 +28,7 @@ function Jobs () {
         </Grid>
 
         <Hidden smDown>
-          <Grid item md={3} lg={3} xl={3}>
-            <JobsRight/>
-          </Grid>
+          <JobsRight/>
         </Hidden>
 
       </Grid>

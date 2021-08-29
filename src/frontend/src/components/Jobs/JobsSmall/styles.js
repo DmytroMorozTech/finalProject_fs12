@@ -19,26 +19,21 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.h6.fontSize,
     fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.grey[700],
+    textDecoration: 'none',
     cursor: 'pointer'
   },
 
   icon: {
+    paddingTop: theme.spacing(1),
     fontSize: theme.typography.icons.medium.fontSize,
     display: 'flex'
   },
 
   title: {
-    paddingLeft: theme.spacing(2),
+    paddingTop: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
     color: theme.palette.grey[600],
     fontSize: theme.typography.h5.fontSize,
     fontWeight: theme.typography.fontWeightRegular
-  },
-
-  button: {
-    color: theme.palette.grey[600],
-    '&:hover': {
-      transitionDuration: '0.5s',
-      backgroundColor: 'rgba(0,0,0,0.1)'
-    }
   }
 }))

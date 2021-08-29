@@ -1,9 +1,9 @@
 import React from 'react'
-import { Formik, Field, Form } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { withStyles } from '@material-ui/core/styles'
-import {TextField} from 'formik-material-ui'
-import SharedButton from '../../../shared/Button/SharedButton'
+import { TextField } from 'formik-material-ui'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import toggleModalAction from '../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 import month from '../../../data/month.json'
@@ -12,9 +12,10 @@ import Grid from '@material-ui/core/Grid'
 import FormikSelect from '../../../shared/FormComponents/FormikSelect'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import {createNewCertificationAction} from '../../../redux/Profile/profileActions'
+import { createNewCertificationAction } from '../../../redux/Profile/profileActions'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
+import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -50,29 +51,54 @@ const CertificationSchema = Yup.object().shape({
   issueDateYear: Yup.string()
     .required('Issue date Year is required'),
   expirationDateMonth: Yup.string()
-    .when('doesNotExpire', {
+    .when('hasExpiryDate', {
       is: true,
-      then: Yup.string().required('Expiration date Month is required')
+      then: Yup.string()
+        .required('Expiration month is required')
+        .test(
+          'chronological_order',
+          'You should follow chronological order',
+          function () {
+            const {issueDateMonth, issueDateYear, expirationDateMonth, expirationDateYear} = this.parent
+            if (!expirationDateMonth || !expirationDateYear) return true
+            const startDateStr = convertYearMonthToLocalDate(issueDateYear, issueDateMonth)
+            const endDateStr = convertYearMonthToLocalDate(expirationDateYear, expirationDateMonth)
+            const startDateMillis = Date.parse(startDateStr)
+            const endDateMillis = Date.parse(endDateStr)
+            return (endDateMillis - startDateMillis) > 0
+          })
     }),
   expirationDateYear: Yup.string()
-    .when('doesNotExpire', {
+    .when('hasExpiryDate', {
       is: true,
-      then: Yup.string().required('Expiration date Year is required')
+      then: Yup.string()
+        .required('Expiration year is required')
+        .test(
+          'chronological_order',
+          'You should follow chronological order',
+          function () {
+            const {issueDateMonth, issueDateYear, expirationDateMonth, expirationDateYear} = this.parent
+            console.log(expirationDateYear)
+            if (!expirationDateMonth || !expirationDateYear) return true
+            const startDateStr = convertYearMonthToLocalDate(issueDateYear, issueDateMonth)
+            const endDateStr = convertYearMonthToLocalDate(expirationDateYear, expirationDateMonth)
+            const startDateMillis = Date.parse(startDateStr)
+            const endDateMillis = Date.parse(endDateStr)
+            return (endDateMillis - startDateMillis) > 0
+          })
     }),
   credentialId: Yup.string(),
-  credentialUrl: Yup.string()
-    .url()
-
+  credentialUrl: Yup.string().url()
 })
 
-export const AddNewCertification = () => {
+export const AddNewCertificationModal = () => {
   const classes = styles()
   const dispatch = useDispatch()
 
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        Add certification
+        Add license or certification
       </Typography>
       <Formik
         initialValues={{
@@ -90,7 +116,6 @@ export const AddNewCertification = () => {
         onSubmit={values => {
           dispatch(createNewCertificationAction(values))
           dispatch(toggleModalAction())
-          console.log(values)
         }}
       >
         {({values}) => (
@@ -134,6 +159,9 @@ export const AddNewCertification = () => {
                     <span>Has expiration date</span>
                   </label>
                 </Grid>
+                <Grid item xs={12}>
+                  <span>Issue date</span>
+                </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
                     size="small"
@@ -149,6 +177,9 @@ export const AddNewCertification = () => {
                     label="Year"
                     options={year}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Expiration date</span>
                 </Grid>
                 <Grid item xs={6}>
                   <FormikSelect className={classes.formPadding}
@@ -203,4 +234,4 @@ export const AddNewCertification = () => {
     </div>
   )
 }
-export default AddNewCertification
+export default AddNewCertificationModal

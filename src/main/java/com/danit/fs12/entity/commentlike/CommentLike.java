@@ -1,7 +1,7 @@
-package com.danit.fs12.entity.like;
+package com.danit.fs12.entity.commentlike;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,19 +14,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "likes")
+@Table(name = "comments_likes")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Like extends AbstractEntity {
+public class CommentLike extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "post_id")
-  private Post post;
+  @JoinColumn(name = "comment_id")
+  private Comment comment;
 
 }

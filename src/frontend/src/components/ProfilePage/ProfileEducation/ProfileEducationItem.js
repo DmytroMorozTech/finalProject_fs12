@@ -6,10 +6,12 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
 import {EDIT_EDUCATION} from '../../../redux/Modal/modalTypes'
 import convertLocalDateToString from '../../../utils/convertLocalDateToString'
+import clsx from 'clsx'
 
 const ProfileEducationItem = (props) => {
   const {school, degreeReceived, dateStart, dateFinish,
     fieldOfStudy, description, activities} = props.education
+  const {isEditable} = props
   const classes = style()
   const dash = <span className={classes.dash}>-</span>
   const dispatch = useDispatch()
@@ -27,8 +29,10 @@ const ProfileEducationItem = (props) => {
         <Typography>Description: {description}</Typography>
         <Typography>Activities: {activities}</Typography>
       </div>
-      <div className={classes.btnCreate} onClick={() =>
-        dispatch(toggleModalAction({modalType: EDIT_EDUCATION, education: props.education}))}>
+      <div
+        className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
+        onClick={() =>
+          dispatch(toggleModalAction({modalType: EDIT_EDUCATION, education: props.education}))}>
         <CreateIcon className={classes.createIcon}/>
       </div>
     </div>
