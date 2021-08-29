@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import {GoogleLoginButton} from 'react-social-login-buttons'
 import TextField from '@material-ui/core/TextField'
 import { Link, Paper } from '@material-ui/core'

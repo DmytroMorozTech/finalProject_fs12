@@ -1,24 +1,28 @@
 import styles from './styles'
-import Button from '@material-ui/core/Button'
 import MiniProfile from './MiniProfile/MiniProfile'
+import SharedLinkSquare from '../../../shared/SharedLinkSquare/SharedLinkSquare'
 
 function NetworkMain () {
   const classes = styles()
 
   return (
     <div className={classes.networkMain}>
-      <div className={classes.invitations}>
-        No pending invitations
-        <Button color="secondary" className={classes.button}>
-          Manage
-        </Button>
+      <div className={classes.block}>
+        <div className={classes.header}>
+          <div>
+            No pending invitations
+          </div>
+          {/* Link is hardcoded below */}
+          <SharedLinkSquare title='Manage' to='#'/>
+        </div>
       </div>
-      <div className={classes.people}>
-        <div className={classes.mayKnow}>
-          People you may know
-          <Button color="secondary" className={classes.button}>
-            See all
-          </Button>
+      <div className={classes.block}>
+        <div className={classes.header}>
+          <div>
+            People you may know
+          </div>
+          {/* Link is hardcoded below */}
+          <SharedLinkSquare title='See all' to='#'/>
         </div>
         <div className={classes.miniProfiles}>
           <MiniProfile/>
