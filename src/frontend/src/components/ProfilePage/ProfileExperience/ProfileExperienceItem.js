@@ -6,9 +6,11 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
 import convertLocalDateToString from '../../../utils/convertLocalDateToString'
 import {EDIT_EXPERIENCE} from '../../../redux/Modal/modalTypes'
+import clsx from 'clsx'
 
 const ProfileExperienceItem = (props) => {
   const {organization, position, dateStart, dateFinish, responsibilities} = props.workPlace
+  const {isEditable} = props
   const dateStartConverted = convertLocalDateToString(dateStart)
   const dateFinishConverted = dateFinish ? convertLocalDateToString(dateFinish) : ''
 
@@ -19,13 +21,15 @@ const ProfileExperienceItem = (props) => {
   return (
     <div className={classes.content}>
       <div className={classes.school}>
-        <Typography variant="body1" className={classes.schoolName}>Position:{position}</Typography>
+        <Typography variant="body1" className={classes.title}>Position:{position}</Typography>
         <Typography>Organization: {organization.name}</Typography>
         <Typography>{dateStartConverted}{dash}{dateFinish ? dateFinishConverted : 'Present time'}</Typography>
         <Typography>Responsibilities:{responsibilities}</Typography>
       </div>
-      <div className={classes.btnCreate} onClick={() =>
-        dispatch(toggleModalAction({modalType: EDIT_EXPERIENCE, workPlace: props.workPlace}))}>
+      <div
+        className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
+        onClick={() =>
+          dispatch(toggleModalAction({modalType: EDIT_EXPERIENCE, workPlace: props.workPlace}))}>
         <CreateIcon className={classes.createIcon}/>
       </div>
     </div>

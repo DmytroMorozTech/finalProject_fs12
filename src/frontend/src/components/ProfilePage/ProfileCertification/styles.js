@@ -40,7 +40,10 @@ export default makeStyles((theme) => ({
     margin: '0 2px',
     transform: 'scale(0.8)'
   },
-  schoolName: {
+  title: {
     fontWeight: theme.typography.fontWeightBold
+  },
+  hidden: {
+    visibility: 'hidden'
   }
 }))

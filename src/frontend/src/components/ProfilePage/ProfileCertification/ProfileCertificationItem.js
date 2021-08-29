@@ -6,9 +6,12 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
 import convertLocalDateToString from '../../../utils/convertLocalDateToString'
 import { EDIT_CERTIFICATION } from '../../../redux/Modal/modalTypes'
+import clsx from 'clsx'
 
 function ProfileCertificationItem (props) {
-  const {name, expirationDate, issueDate, hasExpiryDate, issuingOrganization, credentialId, credentialUrl} = props.certification
+  const {name, expirationDate, issueDate, hasExpiryDate,
+    issuingOrganization, credentialId, credentialUrl} = props.certification
+  const {isEditable} = props
 
   const classes = style()
   const dispatch = useDispatch()
@@ -18,16 +21,19 @@ function ProfileCertificationItem (props) {
   return (
     <div className={classes.content}>
       <div className={classes.school}>
-        <Typography variant="body1" className={classes.schoolName}>{name}</Typography>
+        <Typography variant="body1" className={classes.title}>{name}</Typography>
         <Typography>{issuingOrganization}</Typography>
         <Typography>Issued: {issuedMonthAndYear}</Typography>
         <Typography> {hasExpiryDate ? `Expires: ${expirationMonthAndYear}` : 'No Expiration Date'} </Typography>
-        <Typography>Credential ID: {credentialId}</Typography>
-        <Typography>Credential URL: {credentialUrl}</Typography>
+        {credentialId && <Typography>Credential ID: {credentialId}</Typography>}
+        {credentialUrl && <Typography>Credential URL: {credentialUrl}</Typography>}
       </div>
-      <div className={classes.btnCreate} onClick={() =>
-        dispatch(toggleModalAction({modalType: EDIT_CERTIFICATION, certification: props.certification}))
-      }>
+      <div
+        className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
+        onClick={() => dispatch(toggleModalAction(
+          {modalType: EDIT_CERTIFICATION, certification: props.certification}
+        ))}
+      >
         <CreateIcon className={classes.createIcon}/>
       </div>
     </div>

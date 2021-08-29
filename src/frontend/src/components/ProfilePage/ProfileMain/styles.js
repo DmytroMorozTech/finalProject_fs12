@@ -101,5 +101,8 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     width: theme.spacing(3),
     height: theme.spacing(3)
+  },
+  hidden: {
+    visibility: 'hidden'
   }
 }))
