@@ -3,7 +3,11 @@ import * as actions from './messageActionTypes'
 const initialState = {
   chatsList: [],
   messagesList: [],
-  chatMessages: {}
+  chatMessages: {},
+  newChatData: [],
+  newChatId: '',
+  isLoading: false,
+  isTemporaryChatOpen: false
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -11,7 +15,8 @@ const messageReducer = (state = initialState, action) => {
     case actions.CREATE_CHAT:
       return {
         ...state,
-        chatsList: [...state.chatsList, action.payload]
+        chatsList: [...state.chatsList, action.payload],
+        newChatData: action.payload
       }
     case actions.CREATE_MESSAGE:
       return {
@@ -36,6 +41,19 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         chatMessages: {...state.chatMessages, [chatid]: chatMessages}
+      }
+    case actions.CREATE_CHAT_WITH_BOTH_MEMBERS:
+      const newChat = action.payload
+      return {
+        ...state,
+        chatsList: [...state.chatsList, action.payload],
+        newChatData: action.payload,
+        newChatId: newChat.id
+      }
+    case actions.TEMPORARY_CHAT_STATUS:
+      return {
+        ...state,
+        isTemporaryChatOpen: action.payload
       }
     default
     : {

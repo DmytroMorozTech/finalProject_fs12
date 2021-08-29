@@ -2,7 +2,8 @@ import * as actions from './userActionTypes'
 
 const initialState = {
   loadingUser: false,
-  activeUser: {}
+  activeUser: {},
+  currentUser: {}
 }
 
 const userReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         activeUser: action.payload
+      }
+    case actions.FIND_USER_BY_ID:
+      return {
+        ...state,
+        currentUser: action.payload
       }
 
     default: {

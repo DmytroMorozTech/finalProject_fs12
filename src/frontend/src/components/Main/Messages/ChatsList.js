@@ -14,7 +14,7 @@ function ChatsList (props) {
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
   }, [dispatch, chatId])
-  const allChatMessages = userChatMessages[chatId]
+  const allChatMessages = userChatMessages && userChatMessages[chatId]
 
   const chatMessagesLength = allChatMessages && allChatMessages.length - 1
 

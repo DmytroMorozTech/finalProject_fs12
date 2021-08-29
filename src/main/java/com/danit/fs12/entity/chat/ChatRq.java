@@ -12,4 +12,6 @@ public class ChatRq {
 
   @NotNull(message = "ChatsList id should be specified.")
   private Long chatId;
+
+  private String text;
 }

@@ -14,6 +14,8 @@ import Forgot from '../components/Main/Forgot/Forgot'
 import Register from '../components/Main/Register/Register'
 import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
+import Chat from '../components/Main/Messages/Chat'
+import NewChat from '../components/Main/Messages/NewChat'
 
 const MainRoutes = () => {
   return (
@@ -25,7 +27,9 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
       <ProtectedRoutes exact path="/jobs/my_jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>
-      <ProtectedRoutes exact path="/messages/:id/" render={() => <Messages/>}/>
+      <ProtectedRoutes exact path="/messages/:id" render={() => <Messages/>}/>
+      <ProtectedRoutes exact path="/chat/:id" render={() => <Chat isSeparateChat={true}/>}/>
+      <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat isSeparateChat={true}/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       <ProtectedRoutes exact path="/forgot" render={() => <Forgot/>}/>
       <ProtectedRoutes exact path="/register" render={() => <Register/>}/>

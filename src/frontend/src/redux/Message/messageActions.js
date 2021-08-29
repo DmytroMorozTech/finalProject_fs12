@@ -4,7 +4,7 @@ import getHeaders from '../../services/headersService'
 
 export const createChatAction = () => (dispatch) => {
   return http
-    .post('/api/chats', {}, {headers: getHeaders()})
+    .post('../../api/chats', {}, {headers: getHeaders()})
     .then(res => {
       const newChatData = res.data
       dispatch({
@@ -15,7 +15,7 @@ export const createChatAction = () => (dispatch) => {
 
 export const createMessageAction = ({chatId, text}) => (dispatch) => {
   return http
-    .post('/api/messages', {chatId: chatId, text: text}, {headers: getHeaders()})
+    .post('../../api/messages', {chatId: chatId, text: text}, {headers: getHeaders()})
     .then(res => {
       const newMessageData = res.data
       dispatch({
@@ -25,35 +25,58 @@ export const createMessageAction = ({chatId, text}) => (dispatch) => {
     .then(() => dispatch(getChatMessagesAction(chatId)))
 }
 
-export const addUserAction = ({chatId, userId}) => (dispatch) => {
+export const addUserAction = ({userId, chatId}) => (dispatch) => {
   return http
-    .put('/api/chats', {chatId, userId}, {headers: getHeaders()})
+    .put('../../api/chats', {userId, chatId}, {headers: getHeaders()})
     .then(res => {
       const updatedChat = res.data
       dispatch({
         type: actions.ADD_USER, payload: updatedChat
       })
     })
+    .then(() => dispatch(getUserChatsAction(userId)))
 }
 
 export const getUserChatsAction = (userId) => (dispatch) => {
+  dispatch({type: actions.LOADING_MESSAGES, payload: true})
   return http
-    .get(`/api/chats/user/${userId}`, {headers: getHeaders()})
+    .get(`../../api/chats/user/${userId}`, {headers: getHeaders()})
     .then(res => {
       const userChats = res.data
       dispatch({
         type: actions.GET_USER_CHATS, payload: userChats
       })
+      dispatch({type: actions.LOADING_MESSAGES, payload: false})
     })
 }
 
 export const getChatMessagesAction = (chatid) => (dispatch) => {
+  dispatch({type: actions.LOADING_MESSAGES, payload: true})
   return http
-    .get(`/api/messages/chat/${chatid}`, {headers: getHeaders()})
+    .get(`../../api/messages/chat/${chatid}`, {headers: getHeaders()})
     .then(res => {
       const chatMessages = res.data
       dispatch({
         type: actions.GET_CHAT_MESSAGES, payload: {chatid, chatMessages}
       })
+      dispatch({type: actions.LOADING_MESSAGES, payload: false})
     })
+}
+
+export const createChatWithBothMembersAction = ({userId, text}) => (dispatch) => {
+  let newChatId = null
+  return http
+    .put(`../../api/chats/new/${userId}`, {text}, {headers: getHeaders()})
+    .then(res => {
+      const newChat = res.data
+      newChatId = newChat.id
+      dispatch({
+        type: actions.CREATE_CHAT_WITH_BOTH_MEMBERS, payload: newChat
+      })
+    })
+    .then(() => dispatch(getChatMessagesAction(newChatId)))
+}
+
+export const isTemporaryChatOpenAction = (status) => (dispatch) => {
+  dispatch({ type: actions.TEMPORARY_CHAT_STATUS, payload: status })
 }

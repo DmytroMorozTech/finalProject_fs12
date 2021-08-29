@@ -1,23 +1,35 @@
 import styles from './styles'
-import avatar from '../../../../../temporaryImages/avatar.jpg'
 import Avatar from '../../../../../shared/Avatar/Avatar'
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/SharedButton/SharedButton'
-import ThreeDots from '../../../../../shared/ThreeDots/TreeDots'
-import { Link } from 'react-router-dom'
+import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
+import {Link, NavLink} from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
+import {useDispatch, useSelector} from 'react-redux'
+import {getUserChatsAction, isTemporaryChatOpenAction} from '../../../../../redux/Message/messageActions'
+import {allChats} from '../../../../../redux/Message/messageSelector'
+import {activeUserSelector} from '../../../../../redux/User/userSelector'
 
 function Connection (props) {
   const classes = styles()
+  const dispatch = useDispatch()
+  const chats = useSelector(allChats)
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser && activeUser.id
 
   const {
-    avatarUrl = avatar,
-    fullName = 'George Lupin',
-    positionAndCompany = 'Fullstack Developer — GlobalLogic',
+    id = 3,
+    avatarUrl = 'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/p1qwriz6hzjgwkaihwpa.jpg',
+    fullName = 'Laura Lee',
+    positionAndCompany = 'Sales manager at Microsoft',
     dateCreated = '3 days ago'
   } = props
+
+  useEffect(() => {
+    dispatch(getUserChatsAction(id && id))
+  }, [dispatch, id])
 
   const [removedConnection, setRemovedConnection] = useState(false)
 
@@ -25,18 +37,29 @@ function Connection (props) {
     setRemovedConnection(!removedConnection)
   }
 
+  const findIfChatExist = () => {
+    dispatch(isTemporaryChatOpenAction(false))
+    let existChatId = null
+    chats && chats.forEach(c => {
+      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+        existChatId = c.id
+      }
+    })
+    return existChatId !== null ? existChatId : 'new/' + id
+  }
+
   return (
     <div className={removedConnection ? classes.removed : ''}>
       <div>
         <div className={classes.connection}>
           <div className={classes.flex}>
-            <Link to="/profiles/:id">
+            <Link to={`/profiles/${id}`}>
               <div className={classes.avatar}>
                 <Avatar avatarUrl={avatarUrl}/>
               </div>
             </Link>
             <div className={classes.userInfo}>
-              <Link to="/profiles/:id" className={classes.link}>
+              <Link to={`/profiles/${id}`} className={classes.link}>
                 {fullName}
               </Link>
               <Typography variant="body1" color="textSecondary">
@@ -49,11 +72,13 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              <SharedButton title="Message" size="medium" variant="outlined"/>
+              <NavLink className={`${classes.linkButton}`} key={id} to={`/chat/${findIfChatExist()}`}>
+                <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" />
+              </NavLink>
             </div>
             <div>
               <SimpleMenu menuItem={
-                <ThreeDots/>
+                <TreeDots/>
               } userData={<ConnectionAddition onClick={handleRemoved}/>}/>
             </div>
           </div>
