@@ -26,7 +26,6 @@ import {
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
 import {findUserByIdAction} from '../../../redux/User/userActions'
-import {useHistory} from 'react-router'
 
 function NewChat (props) {
   const {match} = props
@@ -45,23 +44,20 @@ function NewChat (props) {
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
   const isChatOpen = useSelector(isTemporaryChatOpenSelector)
-  console.log('User chat messages' + userChatMessages)
-  console.log('Messages list' + messagesList)
 
-  let chatId = null
-
-  const currentChat = chatsList.filter(c => c.id === +chatId)[0]
+  const currentChat = chatsList.filter(c => c.id === newChat.id)[0]
   const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
     dispatch(findUserByIdAction(userIdFromUrl))
   }, [userIdFromUrl])
 
-  // useEffect(() => {
-  //   dispatch(getChatMessagesAction(newChatId))
-  // }, [newChatId])
+  useEffect(() => {
+
+  }, [newChatId, messagesList])
 
   const findIfChatExist = () => {
+    let chatId = ''
     chatsList.forEach(c => {
       if (c.users.filter(u => u.id === activeUserId).length > 0) {
         chatId = c.id
@@ -136,7 +132,7 @@ function NewChat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id}
+                {userChatMessages[newChat.id] && userChatMessages[newChat.id].map(m => <UserMessage key={m.id}
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
                   time={m.createdDate}/>)}

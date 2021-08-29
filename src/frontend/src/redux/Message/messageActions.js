@@ -1,7 +1,6 @@
 import * as actions from './messageActionTypes'
 import http from '../../services/httpService'
 import getHeaders from '../../services/headersService'
-import { push } from 'react-router-redux'
 
 export const createChatAction = () => (dispatch) => {
   return http
@@ -75,7 +74,7 @@ export const createChatWithBothMembersAction = ({userId, text}) => (dispatch) =>
         type: actions.CREATE_CHAT_WITH_BOTH_MEMBERS, payload: newChat
       })
     })
-  // .then(() => dispatch(getChatMessagesAction(newChatId)))
+    .then(() => dispatch(getChatMessagesAction(newChatId)))
 }
 
 export const isTemporaryChatOpenAction = (status) => (dispatch) => {
