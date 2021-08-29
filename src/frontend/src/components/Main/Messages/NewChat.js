@@ -8,7 +8,7 @@ import AllUpload from './allUpload'
 import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import VideoCallIcon from '@material-ui/icons/VideoCall'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
   createChatWithBothMembersAction,
