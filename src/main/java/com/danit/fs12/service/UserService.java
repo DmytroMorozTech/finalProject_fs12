@@ -6,6 +6,7 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
+import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
 import com.danit.fs12.repository.CommentRepository;
@@ -67,7 +68,8 @@ public class UserService extends GeneralService<User> {
   }
 
   public User getActiveUser() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Authentication authentication = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).orElseThrow(() ->
+      new AuthenticationException("Impossible to get authentication context."));
     return Optional.ofNullable(findByEmail(authentication.getName())).orElseThrow(() ->
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
