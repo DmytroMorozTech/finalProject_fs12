@@ -4,6 +4,7 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
+import com.danit.fs12.entity.user.Provider;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.ForbiddenException;
@@ -96,5 +97,16 @@ public class UserService extends GeneralService<User> {
     activeUser.setHeadline(rq.getHeadline());
 
     return save(activeUser);
+  }
+
+  public void processOAuthPostLogin(String email) {
+    User existUser = userRepository.findUserByEmail(email);
+
+    if (existUser == null) {
+      User newUser = new User();
+      newUser.setEmail(email);
+      newUser.setProvider(Provider.GOOGLE);
+      userRepository.save(newUser);
+    }
   }
 }
