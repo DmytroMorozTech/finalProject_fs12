@@ -44,5 +44,4 @@ public class MessageController {
   public List<MessageRs> getMessagesByChatId(@PathVariable Long id) {
     return messageFacade.getMessagesByChatId(id);
   }
-
 }

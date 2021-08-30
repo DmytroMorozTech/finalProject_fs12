@@ -1,6 +1,5 @@
 import * as actions from './profileActionTypes'
 import http from '../../services/httpService'
-import getHeaders from '../../services/headersService'
 import convertStringsToLocalDate from '../../utils/convertStringsToLocalDate'
 import convertStringsToLocalDateCert from '../../utils/convertStringsToLocalDateCert'
 import convertStrToLocalDateExperience from '../../utils/convertStrToLocalDateExperience'
@@ -9,7 +8,7 @@ import {toast} from 'react-toastify'
 export const getActiveProfileAction = (userId) => (dispatch) => {
   dispatch({type: actions.LOADING_PROFILE, payload: true})
   return http
-    .get(`../api/users/profiles/${userId}`, {headers: getHeaders()})
+    .get(`../api/users/profiles/${userId}`)
     .then(res => {
       dispatch({
         type: actions.SAVE_ACTIVE_PROFILE,
@@ -27,9 +26,7 @@ export const createNewEducationAction = (payload) => (dispatch) => {
   convertStringsToLocalDate(payload)
 
   return http
-    .post('/api/educations', payload,
-      {headers: getHeaders()}
-    )
+    .post('/api/educations', payload)
     .then((res) => res.data)
     .then((education) => {
       dispatch({ type: actions.ADD_NEW_EDUCATION, payload: education })
@@ -41,9 +38,7 @@ export const createNewEducationAction = (payload) => (dispatch) => {
 export const updateEducationAction = (payload, id) => (dispatch) => {
   convertStringsToLocalDate(payload)
   return http
-    .put(`/api/educations/${id}`, payload,
-      {headers: getHeaders()}
-    )
+    .put(`/api/educations/${id}`, payload)
     .then((res) => res.data)
     .then((education) => {
       dispatch({ type: actions.UPDATE_EDUCATION, payload: education })
@@ -58,8 +53,7 @@ export const updateEducationAction = (payload, id) => (dispatch) => {
 
 export const deleteEducationAction = (id) => (dispatch) => {
   return http
-    .delete(`/api/educations/${id}`, {headers: getHeaders()}
-    )
+    .delete(`/api/educations/${id}`)
     .then((res) => res.status)
     .then((status) => {
       if (parseInt(status) === 200 || parseInt(status) === 204) {
@@ -78,9 +72,7 @@ export const createNewCertificationAction = (payload) => (dispatch) => {
   convertStringsToLocalDateCert(payload)
 
   return http
-    .post('/api/certifications', payload,
-      {headers: getHeaders()}
-    )
+    .post('/api/certifications', payload)
     .then((res) => res.data)
     .then((certification) => {
       dispatch({ type: actions.ADD_NEW_CERTIFICATION, payload: certification })
@@ -92,9 +84,7 @@ export const createNewCertificationAction = (payload) => (dispatch) => {
 export const updateCertificationAction = (payload, id) => (dispatch) => {
   convertStringsToLocalDateCert(payload)
   return http
-    .put(`/api/certifications/${id}`, payload,
-      {headers: getHeaders()}
-    )
+    .put(`/api/certifications/${id}`, payload)
     .then((res) => res.data)
     .then((certification) => {
       dispatch({ type: actions.UPDATE_CERTIFICATION, payload: certification })
@@ -109,8 +99,7 @@ export const updateCertificationAction = (payload, id) => (dispatch) => {
 
 export const deleteCertificationAction = (id) => (dispatch) => {
   return http
-    .delete(`/api/certifications/${id}`, {headers: getHeaders()}
-    )
+    .delete(`/api/certifications/${id}`)
     .then((res) => res.status)
     .then((status) => {
       if (parseInt(status) === 200 || parseInt(status) === 204) {
@@ -130,9 +119,7 @@ export const createNewWorkPlaceAction = (payload) => (dispatch) => {
   if (payload.isCurrentlyEmployed) { payload.dateFinish = '' }
 
   return http
-    .post(`/api/work-places/${payload.organizationId}`, payload,
-      {headers: getHeaders()}
-    )
+    .post(`/api/work-places/${payload.organizationId}`, payload)
     .then((res) => res.data)
     .then((workPlace) => {
       dispatch({ type: actions.ADD_NEW_EXPERIENCE, payload: workPlace })
@@ -144,9 +131,7 @@ export const createNewWorkPlaceAction = (payload) => (dispatch) => {
 export const updateWorkPlaceAction = (payload, id) => (dispatch) => {
   convertStrToLocalDateExperience(payload)
   return http
-    .put(`/api/work-places/${id}`, payload,
-      {headers: getHeaders()}
-    )
+    .put(`/api/work-places/${id}`, payload)
     .then((res) => res.data)
     .then((workPlace) => {
       dispatch({ type: actions.UPDATE_EXPERIENCE, payload: workPlace })
@@ -161,8 +146,7 @@ export const updateWorkPlaceAction = (payload, id) => (dispatch) => {
 
 export const deleteWorkPlaceAction = (id) => (dispatch) => {
   return http
-    .delete(`/api/work-places/${id}`, {headers: getHeaders()}
-    )
+    .delete(`/api/work-places/${id}`)
     .then((res) => res.status)
     .then((status) => {
       if (parseInt(status) === 200 || parseInt(status) === 204) {
@@ -179,9 +163,7 @@ export const deleteWorkPlaceAction = (id) => (dispatch) => {
 
 export const editIntroAction = (payload) => (dispatch) => {
   return http
-    .put(`/api/users/profiles/intro`, payload,
-      {headers: getHeaders()}
-    )
+    .put(`/api/users/profiles/intro`, payload)
     .then((res) => res.data)
     .then((profile) => {
       dispatch({ type: actions.SAVE_ACTIVE_PROFILE, payload: profile })

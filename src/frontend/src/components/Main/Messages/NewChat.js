@@ -10,13 +10,24 @@ import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfie
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
 import Style from './styles'
-import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
+import {
+  createChatWithBothMembersAction,
+  createMessageAction,
+  isTemporaryChatOpenAction
+} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
-import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
+import {
+  allChats,
+  allMessages,
+  chatMessages, isTemporaryChatOpenSelector,
+  newChatData,
+  newChatIdSelector
+} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
+import {findUserByIdAction} from '../../../redux/User/userActions'
 
-function Chat (props) {
+function NewChat (props) {
   const {match} = props
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
@@ -27,16 +38,38 @@ function Chat (props) {
   const messagesList = useSelector(allMessages)
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
-  const chatIdFromUrl = match.params.id
+  const userIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser && activeUser.id
+  const newChat = useSelector(newChatData)
+  const newChatId = useSelector(newChatIdSelector)
+  const currentUser = useSelector(currentUserSelector)
+  const isChatOpen = useSelector(isTemporaryChatOpenSelector)
 
-  const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
-  const currentChat = chatsList.filter(c => c.id === +chatId)[0]
+  const currentChat = chatsList.filter(c => c.id === newChat.id)[0]
   const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
-    dispatch(getChatMessagesAction(chatId))
-  }, [dispatch, chatId, messagesList])
+    dispatch(findUserByIdAction(userIdFromUrl))
+  }, [dispatch, userIdFromUrl])
+
+  useEffect(() => {
+  }, [newChatId, messagesList])
+
+  const findIfChatExist = () => {
+    let chatId = ''
+    chatsList.forEach(c => {
+      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+        chatId = c.id
+        dispatch(createMessageAction({chatId, text: messageValue}))
+      } else if (isChatOpen) {
+        dispatch(createMessageAction({newChatId, text: messageValue}))
+      } else {
+        dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
+        dispatch(isTemporaryChatOpenAction(true))
+      }
+    })
+  }
 
   const handleMessageInputChange = e => {
     let messageInputVal = e.currentTarget.value
@@ -44,24 +77,21 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
-    dispatch(createMessageAction({chatId, text: messageValue}))
+    findIfChatExist()
     setMessageValue('')
-  }
-
-  const getChatMember = () => {
-    return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
   }
 
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
   }
+
   return (
     <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {getChatMember() && getChatMember().fullNamef}
+              {currentUser && currentUser.fullName}
               <div className={classes.userDeviceStyle}>
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
@@ -80,8 +110,8 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember() && getChatMember().avatarUrl}
-                          alt={getChatMember() && getChatMember().fullName}
+                        <img src={currentUser && currentUser.avatarUrl}
+                          alt={currentUser && currentUser.fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>
                         </div>
@@ -89,11 +119,11 @@ function Chat (props) {
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {getChatMember() && getChatMember().fullName}
+                        {currentUser && currentUser.fullName}
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
-                          {getChatMember() && getChatMember().positionAndCompany}
+                          {currentUser && currentUser.positionAndCompany}
                         </div>
                       </div>
                     </div>
@@ -101,7 +131,9 @@ function Chat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} messageSender={getMessageSender(m.userId)} text={m.text}
+                {userChatMessages[newChat.id] && userChatMessages[newChat.id].map(m => <UserMessage key={m.id}
+                  messageSender={getMessageSender(m.userId)}
+                  text={m.text}
                   time={m.createdDate}/>)}
               </li>
             </ul>
@@ -156,4 +188,4 @@ function Chat (props) {
   )
 }
 
-export default withRouter(Chat)
+export default withRouter(NewChat)

@@ -1,11 +1,8 @@
 import React from 'react'
 import Style from './styles'
-import {useSelector} from 'react-redux'
-import {activeUserSelector} from '../../../redux/User/userSelector'
 
-function UserMessage ({text, time}) {
+function UserMessage ({text, time, messageSender}) {
   const classes = Style()
-  const {fullName, avatarUrl} = useSelector(activeUserSelector)
 
   const getDateTitle = () => {
     const localTime = new Date()
@@ -60,10 +57,10 @@ function UserMessage ({text, time}) {
     <>
       <time className={classes.messageListTimeHeading}>{getDateTitle()}</time>
       <div className={classes.eventListItem}>
-        <img src={avatarUrl} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
+        <img src={messageSender && messageSender.avatarUrl} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
         <div className={classes.messageWrapper}>
           <div className={classes.messageGroupMeta}>
-            <span className={classes.messageGroupMetaText}>{fullName}</span>
+            <span className={classes.messageGroupMetaText}>{messageSender && messageSender.fullName}</span>
             <span className={classes.messageSentTime}> &bull; {getDate()}</span>
           </div>
           <div className={classes.eventListItemMessageBubble}>
