@@ -1,6 +1,7 @@
 package com.danit.fs12.security.config;
 
 import com.danit.fs12.security.jwt.JwtFilter;
+import com.danit.fs12.security.oauth2.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private JwtFilter jwtFilter;
 
+  @Autowired
+  private CustomOAuth2UserService oauthUserService;
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
@@ -30,11 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .authorizeRequests()
       .antMatchers("/resources/**").permitAll()
-      .antMatchers("/api/register", "/api/auth").permitAll()
+      .antMatchers("/api/register", "/api/auth", "/oauth/**").permitAll()
       .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()
       .and()
-      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+      .oauth2Login()
+        .userInfoEndpoint()
+          .userService(oauthUserService);
   }
 
   @Bean

@@ -23,6 +23,8 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -71,6 +73,9 @@ public class User extends AbstractEntity {
   @Column(name = "avatar_url")
   private String avatarUrl;
 
+  @Enumerated(EnumType.STRING)
+  private Provider provider;
+  
   @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude

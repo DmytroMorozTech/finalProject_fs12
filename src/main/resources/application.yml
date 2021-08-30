@@ -7,6 +7,16 @@ server:
 spring:
   profiles:
     active: "local"
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 645730785365-d5vadpe6d75f91ndn86g9bl54bhvjkq0.apps.googleusercontent.com
+            clientSecret: sggzy0Ri9HXqAaVutGAMkRT8
+            scope:
+             - email
+             - profile
 jwt:
   header: Authorization
   secret: my-very-secret-key

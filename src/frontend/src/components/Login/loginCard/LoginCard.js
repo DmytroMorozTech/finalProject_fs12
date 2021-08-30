@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {Paper} from '@material-ui/core'
+import {Link, Paper} from '@material-ui/core'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import {GoogleLoginButton} from 'react-social-login-buttons'
@@ -96,7 +96,9 @@ const LoginCard = () => {
           <div/>
         </section>
         <div className={classes.googleBtn}>
-          <GoogleLoginButton onClick={() => alert('Hello')}/>
+          <Link to="/oauth2/authorization/google">
+            <GoogleLoginButton/>
+          </Link>
         </div>
       </div>
     </Paper>
