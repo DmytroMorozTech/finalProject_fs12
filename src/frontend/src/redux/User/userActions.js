@@ -1,11 +1,10 @@
 import * as actions from './userActionTypes'
 import http from '../../services/httpService'
-import getHeaders from '../../services/headersService'
 
 export const getActiveUserAction = () => (dispatch) => {
   dispatch({type: actions.LOADING_USERS, payload: true})
   return http
-    .get('../../api/activeuser', {headers: getHeaders()})
+    .get('../../api/activeuser')
     .then(res => {
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
@@ -24,7 +23,7 @@ export const signOutAction = () => (dispatch) => {
 
 export const findUserByIdAction = (id) => (dispatch) => {
   return http
-    .get(`../../api/users/${id}`, {headers: getHeaders()})
+    .get(`../../api/users/${id}`)
     .then(res => {
       console.log('Res data from curr user: ' + res.data)
       dispatch({

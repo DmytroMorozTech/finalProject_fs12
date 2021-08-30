@@ -1,10 +1,9 @@
 import * as actions from './messageActionTypes'
 import http from '../../services/httpService'
-import getHeaders from '../../services/headersService'
 
 export const createChatAction = () => (dispatch) => {
   return http
-    .post('../../api/chats', {}, {headers: getHeaders()})
+    .post('../../api/chats')
     .then(res => {
       const newChatData = res.data
       dispatch({
@@ -15,7 +14,7 @@ export const createChatAction = () => (dispatch) => {
 
 export const createMessageAction = ({chatId, text}) => (dispatch) => {
   return http
-    .post('../../api/messages', {chatId: chatId, text: text}, {headers: getHeaders()})
+    .post('../../api/messages', {chatId: chatId, text: text})
     .then(res => {
       const newMessageData = res.data
       dispatch({
@@ -27,7 +26,7 @@ export const createMessageAction = ({chatId, text}) => (dispatch) => {
 
 export const addUserAction = ({userId, chatId}) => (dispatch) => {
   return http
-    .put('../../api/chats', {userId, chatId}, {headers: getHeaders()})
+    .put('../../api/chats', {userId, chatId})
     .then(res => {
       const updatedChat = res.data
       dispatch({
@@ -40,7 +39,7 @@ export const addUserAction = ({userId, chatId}) => (dispatch) => {
 export const getUserChatsAction = (userId) => (dispatch) => {
   dispatch({type: actions.LOADING_MESSAGES, payload: true})
   return http
-    .get(`../../api/chats/user/${userId}`, {headers: getHeaders()})
+    .get(`../../api/chats/user/${userId}`)
     .then(res => {
       const userChats = res.data
       dispatch({
@@ -53,7 +52,7 @@ export const getUserChatsAction = (userId) => (dispatch) => {
 export const getChatMessagesAction = (chatid) => (dispatch) => {
   dispatch({type: actions.LOADING_MESSAGES, payload: true})
   return http
-    .get(`../../api/messages/chat/${chatid}`, {headers: getHeaders()})
+    .get(`../../api/messages/chat/${chatid}`)
     .then(res => {
       const chatMessages = res.data
       dispatch({
@@ -66,7 +65,7 @@ export const getChatMessagesAction = (chatid) => (dispatch) => {
 export const createChatWithBothMembersAction = ({userId, text}) => (dispatch) => {
   let newChatId = null
   return http
-    .put(`../../api/chats/new/${userId}`, {text}, {headers: getHeaders()})
+    .put(`../../api/chats/new/${userId}`, {text})
     .then(res => {
       const newChat = res.data
       newChatId = newChat.id

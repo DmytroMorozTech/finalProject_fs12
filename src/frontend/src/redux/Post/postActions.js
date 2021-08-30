@@ -2,11 +2,10 @@ import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
 import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
-import getHeaders from '../../services/headersService'
 
 export const createNewPostAction = (payload) => (dispatch) => {
   return http
-    .post('/api/posts', { text: payload.text }, {headers: getHeaders()})
+    .post('/api/posts', { text: payload.text })
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.ADD_NEW_POST, payload: newPostObj })
@@ -16,7 +15,7 @@ export const createNewPostAction = (payload) => (dispatch) => {
 export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
   const id = payload
   return http
-    .get(`/api/users/who_liked_post/${id}`, {headers: getHeaders()})
+    .get(`/api/users/who_liked_post/${id}`)
     .then((res) => res.data)
     .then((usersList) => {
       dispatch({
@@ -32,7 +31,7 @@ export const togglePostLikeAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_like/${id}`, {}, {headers: getHeaders()})
+    .post(`/api/posts/toggle_like/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
@@ -44,7 +43,7 @@ export const toggleBookmarkAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_bookmark/${id}`, {}, {headers: getHeaders()})
+    .post(`/api/posts/toggle_bookmark/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
