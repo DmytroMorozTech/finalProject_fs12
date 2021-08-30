@@ -5,6 +5,7 @@ import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class MediaController {
       file,
       ObjectUtils.asMap(
         "folder", "myfolder/mysubfolder/",
-        "public_id", "my_name",
+        "public_id", "kitty",
         "use_filename", "true",
         "unique_filename", "true",
         "resource_type", "auto"
@@ -48,15 +49,35 @@ public class MediaController {
   }
 
   @PostMapping("/upload")
-  public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
-
+  public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    System.out.println(file.getContentType());
+    System.out.println(file.getSize());
+    System.out.println("MEDIA CONTROLLER  /upload method");
 //    File file1 = new File(String.valueOf(file));
     String contents = new String(file.getBytes());
     System.out.println("POST -> /file contents=%s");
-    System.out.println(contents);
+//    System.out.println(contents);
+
+//    String fileName = file.getName();
+
+    Map uploadResult = cloudinary.uploader().upload(
+      file.getBytes(),
+      ObjectUtils.asMap(
+        "folder", "myfolder/mysubfolder/",
+        "public_id", "fileName",
+        "use_filename", "true",
+        "unique_filename", "true",
+        "resource_type", "auto"
+      )
+    );
+    System.out.println(uploadResult.get("url"));
+
+//    cloudinary.uploader().upload()
+
+
 //    Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
 //    System.out.println(uploadResult.get("url"));
-    return "DONE WELL";
+    return ResponseEntity.ok(uploadResult);
   }
 
   @GetMapping("/test-url")

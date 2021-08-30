@@ -8,6 +8,7 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import imgPage from '../../../temporaryImages/internet.jpg'
 import { useDispatch } from 'react-redux'
 import { uploadImageToCloudinary } from '../../../redux/Image/imageActions'
+import { toast } from 'react-toastify'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -31,14 +32,14 @@ const AddBackgroundModal = () => {
   const classes = styles()
   const [photoIsChosen, setPhotoIsChosen] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
-  const [urlOfUploadedImg, setUrlOfUploadedImg] = useState('')
   const dispatch = useDispatch()
 
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault()
-    const fileExtension = '.' + selectedFile.type.replace(/(.*)\//g, '')
-    console.log(`File extension: ${fileExtension}`)
-    console.log(`File size: ${JSON.stringify(selectedFile)}`)
+    // const fileExtension = '.' + selectedFile.type.replace(/(.*)\//g, '')
+    // console.log(`File extension: ${fileExtension}`)
+
+    console.log(`File size: ${selectedFile.size}`)
     console.log(selectedFile)
     dispatch(uploadImageToCloudinary(selectedFile))
   }
@@ -68,15 +69,19 @@ const AddBackgroundModal = () => {
               type="file"
               id="file"
               accept="image/*"
-              // value={selectedFile}
+              style={{display: 'none'}}
+              required
               onChange={(event) => {
                 const file = event.target.files[0]
-                // console.log('EVENT TARGET ON INPUT')
-                // console.log(file)
+                if (file.size > 4194304) {
+                  toast.error('The size of profile background image should not exceed 4MB')
+                  return
+                }
+
                 setSelectedFile(file)
                 setPhotoIsChosen(true)
               }}
-              style={{display: 'none'}}
+
             />}
           />
           <SharedButton type={'submit'} title={'UPLOAD'} disabled={!photoIsChosen}/>
