@@ -16,11 +16,6 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[100]
   },
 
-  avatar: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-
   userInfo: {
     display: 'flex',
     flexDirection: 'row'

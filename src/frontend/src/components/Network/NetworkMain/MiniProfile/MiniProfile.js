@@ -13,6 +13,7 @@ function MiniProfile (props) {
   const classes = styles()
 
   const {
+    id = 4,
     avatarUrl = avatar,
     fullName = 'George Lupin',
     positionAndCompany = 'Fullstack Developer — GlobalLogic',
@@ -25,13 +26,15 @@ function MiniProfile (props) {
     setRemovedMiniProfile(!removedMiniProfile)
   }
 
+  const linkToUserProfile = '/profiles/' + id
+
   return (
     <div className={clsx(classes.miniProfile, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
         </div>
-        <Link to="/profile/:id" className={classes.link}>
+        <Link to={linkToUserProfile} className={classes.link}>
           <div className={classes.avatar}>
             <Avatar avatarUrl={avatarUrl}/>
           </div>

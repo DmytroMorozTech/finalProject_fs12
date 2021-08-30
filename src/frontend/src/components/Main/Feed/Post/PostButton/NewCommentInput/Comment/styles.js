@@ -43,6 +43,13 @@ export default makeStyles((theme) => ({
     flexDirection: 'column'
   },
 
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  },
+
   name: {
     alignSelf: 'self-start',
     '&:hover': {

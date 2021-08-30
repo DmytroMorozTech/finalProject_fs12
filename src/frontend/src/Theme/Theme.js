@@ -122,7 +122,8 @@ const theme = createTheme({
     dark: '1px solid #757575',
     boldLight: '2px solid #bdbdbd',
     boldDark: '2px solid #757575',
-    comment: '0 10px 10px 10px'
+    comment: '0 10px 10px 10px',
+    likesModal: '4px solid #057642'
   },
   shape: {
     extraSmall: 3,

@@ -13,6 +13,7 @@ import {
   getUsersWhoLikedCommentAction,
   toggleCommentLikeAction
 } from '../../../../../../../redux/Comment/commentActions'
+import { Link } from 'react-router-dom'
 
 function Comment (props) {
   const { id: commentId, user, text, numberOfLikes = 0, createdDate, isLikedByActiveUser } = props.comment
@@ -30,18 +31,24 @@ function Comment (props) {
     dispatch(getUsersWhoLikedCommentAction(commentId))
   }
 
+  const linkToUserProfile = '/profiles/' + user.id
+
   return (
     <div className={classes.comment}>
       <div className={classes.commentAvatar}>
-        <Avatar avatarUrl={avatarUrl}/>
+        <Link to={linkToUserProfile}>
+          <Avatar avatarUrl={avatarUrl}/>
+        </Link>
       </div>
       <div className={classes.commentWrapper}>
         <div className={classes.commentBackground}>
           <div className={clsx(classes.commentRow, classes.commentHeader)}>
             <div className={classes.commentColumn}>
-              <Typography variant="h5" className={clsx(classes.name, classes.commentUserInfo)}>
-                {fullName}
-              </Typography>
+              <Link to={linkToUserProfile} className={classes.link}>
+                <Typography variant="h5" className={clsx(classes.name, classes.commentUserInfo)}>
+                  {fullName}
+                </Typography>
+              </Link>
               <Typography variant="h6" className={classes.commentUserInfo}>
                 {positionAndCompany}
               </Typography>

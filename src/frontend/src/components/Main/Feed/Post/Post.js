@@ -14,6 +14,7 @@ import PostButtons from './PostButton/PostButtons'
 import SeeMore from './SeeMore/SeeMore'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import PostAddition from './PostAddition/PostAddition'
+import { Link } from 'react-router-dom'
 
 function Post (props) {
   const {
@@ -30,6 +31,8 @@ function Post (props) {
 
   const classes = styles()
 
+  const linkToUserProfile = '/profiles/' + user.id
+
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
@@ -40,12 +43,16 @@ function Post (props) {
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
         <div className={classes.mediumAvatar}>
-          <Avatar avatarUrl={user.avatarUrl}/>
+          <Link to={linkToUserProfile}>
+            <Avatar avatarUrl={user.avatarUrl}/>
+          </Link>
         </div>
         <div className={classes.userInfo}>
-          <Typography variant="h5" className={classes.name}>
-            {user.fullName}
-          </Typography>
+          <Link to={linkToUserProfile} className={classes.link}>
+            <Typography variant="h5" className={classes.name}>
+              {user.fullName}
+            </Typography>
+          </Link>
           <Typography variant="h6">
             {user.positionAndCompany}
           </Typography>
