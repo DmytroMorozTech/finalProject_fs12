@@ -68,8 +68,8 @@ public class UserService extends GeneralService<User> {
   }
 
   public User getActiveUser() {
-    Authentication authentication = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).orElseThrow(() ->
-      new AuthenticationException("Impossible to get authentication context."));
+    Authentication authentication = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+      .orElseThrow(() -> new AuthenticationException("Impossible to get authentication context."));
     return Optional.ofNullable(findByEmail(authentication.getName())).orElseThrow(() ->
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
