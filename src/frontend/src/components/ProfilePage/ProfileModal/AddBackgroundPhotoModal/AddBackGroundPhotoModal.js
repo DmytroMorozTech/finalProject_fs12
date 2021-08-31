@@ -2,10 +2,10 @@ import React from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import styles from './styles'
+import styles from '../styles'
 import Typography from '@material-ui/core/Typography'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
-import imgPage from '../../../temporaryImages/internet.jpg'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
+import imgPage from '../../../../temporaryImages/internet.jpg'
 
 const DialogContent = withStyles((theme) => ({
   root: {
