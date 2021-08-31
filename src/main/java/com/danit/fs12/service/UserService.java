@@ -6,7 +6,9 @@ import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
+import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
+import com.danit.fs12.exception.NoSuchUserException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
@@ -17,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,8 +68,10 @@ public class UserService extends GeneralService<User> {
   }
 
   public User getActiveUser() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    return findByEmail(authentication.getName());
+    Authentication authentication = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+      .orElseThrow(() -> new AuthenticationException("Impossible to get authentication context."));
+    return Optional.ofNullable(findByEmail(authentication.getName())).orElseThrow(() ->
+      new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
   public void registerUser(String firstName,
