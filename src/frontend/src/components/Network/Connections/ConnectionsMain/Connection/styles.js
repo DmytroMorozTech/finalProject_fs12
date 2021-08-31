@@ -53,7 +53,7 @@ export default makeStyles((theme) => ({
   },
 
   line: {
-    width: 'calc(100%-100px)',
+    width: 'calc(100% - 100px)',
     height: '0.5px',
     border: '0',
     margin: '0',

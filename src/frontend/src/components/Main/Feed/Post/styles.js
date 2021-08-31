@@ -50,6 +50,13 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(1)
   },
 
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  },
+
   name: {
     alignSelf: 'self-start',
     '&:hover': {
