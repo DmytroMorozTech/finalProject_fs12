@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles'
-import ProfileBg from '../../../temporaryImages/ProfileBg.png'
 
 export default makeStyles((theme) => ({
 
@@ -9,7 +8,6 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
     marginBottom: theme.spacing(2),
     padding: theme.spacing(4),
-    backgroundImage: 'url(' + ProfileBg + ')',
     backgroundSize: '100% 160px',
     backgroundRepeat: 'no-repeat'
   },

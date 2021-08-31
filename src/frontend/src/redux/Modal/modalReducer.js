@@ -8,9 +8,9 @@ import {
   EDIT_INTRO,
   USERS_WHO_LIKED_POST,
   USERS_WHO_LIKED_COMMENT,
-  ADD_BACKGROUND_PHOTO,
+  UPLOAD_PROFILE_BACKGROUND_IMG,
   ADD_NEW_EXPERIENCE,
-  EDIT_EXPERIENCE
+  EDIT_EXPERIENCE, UPLOAD_AVATAR_IMG
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
@@ -19,11 +19,12 @@ import AddNewCertificationModal from '../../components/ProfilePage/AddNewCertifi
 import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
 import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
 import EditCertificationModal from '../../components/ProfilePage/EditCertificationModal/EditCertificationModal'
-import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
+import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
 import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
+import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
 
 const initialState = {
   isModalOpen: false,
@@ -80,8 +81,12 @@ const modalReducer = (state = initialState, action) => {
           content = <EditIntroModal profile={action.payload}/>
           break
 
-        case ADD_BACKGROUND_PHOTO:
-          content = <AddBackGroundPhotoModal/>
+        case UPLOAD_PROFILE_BACKGROUND_IMG:
+          content = <UploadProfileBgImgModal/>
+          break
+
+        case UPLOAD_AVATAR_IMG:
+          content = <UploadAvatarModal/>
           break
 
         case ADD_NEW_EXPERIENCE:

@@ -45,6 +45,9 @@ public class UserRs {
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String avatarUrl;
 
+  @JsonView(UserViews.Profile.class)
+  private String profileBgUrl;
+
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String positionAndCompany;
 

@@ -13,7 +13,7 @@ function MiniProfile (props) {
   const classes = styles()
 
   const {
-    avatarUrl = avatar,
+    avatarUrl = 'linkedin/avatars/fiztv2grxh6p62y72j6a.jpg',
     fullName = 'George Lupin',
     positionAndCompany = 'Fullstack Developer — GlobalLogic',
     numberOfConnection = 1

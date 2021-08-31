@@ -71,6 +71,9 @@ public class User extends AbstractEntity {
   @Column(name = "avatar_url")
   private String avatarUrl;
 
+  @Column(name = "profile_bg_url")
+  private String profileBgUrl;
+
   @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude

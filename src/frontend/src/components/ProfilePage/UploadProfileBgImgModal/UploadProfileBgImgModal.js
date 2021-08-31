@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import {withStyles} from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
-import imgPage from '../../../temporaryImages/internet.jpg'
 import { useDispatch } from 'react-redux'
-import { uploadImageToCloudinary } from '../../../redux/Image/imageActions'
+import { uploadProfileBgImgAction } from '../../../redux/Image/imageActions'
 import { toast } from 'react-toastify'
+import { Image, Transformation } from 'cloudinary-react'
+import Preloader from '../../../shared/Preloader/Preloader'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -28,20 +29,19 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const AddBackgroundModal = () => {
+const UploadProfileBgImgModal = () => {
   const classes = styles()
   const [photoIsChosen, setPhotoIsChosen] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
   const dispatch = useDispatch()
 
+  const [imgIsUploading, setImgIsUploading] = useState(false)
+
   const onSubmitHandler = (e) => {
     e.preventDefault()
-    // const fileExtension = '.' + selectedFile.type.replace(/(.*)\//g, '')
-    // console.log(`File extension: ${fileExtension}`)
-
-    console.log(`File size: ${selectedFile.size}`)
-    console.log(selectedFile)
-    dispatch(uploadImageToCloudinary(selectedFile))
+    setImgIsUploading(true)
+    setPhotoIsChosen(false)
+    dispatch(uploadProfileBgImgAction(selectedFile))
   }
 
   return (
@@ -49,22 +49,32 @@ const AddBackgroundModal = () => {
       <Typography variant="subtitle1" className={classes.title}>
                 Add background photo
       </Typography>
+
       <DialogContent dividers>
-        <div>
-          <img alt="internet" src={imgPage} className={classes.pageImg}/>
-        </div>
+        <Image
+          className={classes.pageImg}
+          publicId = {'linkedin/profile-bg/nsewq705uhl3whyqmlnx'}
+        >
+          <Transformation
+            width="300"
+            quality="70"
+            format="auto"
+          />
+        </Image>
+
         <Typography variant="subtitle1">
             Showcase your personality, interests, team moments or notable milestones
         </Typography>
         <Typography variant="subtitle2">
             A good background photo will help you stand out.
         </Typography>
+        {imgIsUploading && <Preloader/>}
       </DialogContent>
       <DialogActions>
         <form onSubmit={onSubmitHandler} id ="imageForm">
           <SharedButton
             component = 'label'
-            title= "BTN"
+            title= "CHOOSE IMAGE"
             children={<input
               type="file"
               id="file"
@@ -73,7 +83,7 @@ const AddBackgroundModal = () => {
               required
               onChange={(event) => {
                 const file = event.target.files[0]
-                if (file.size > 4194304) {
+                if (file && file.size > 4194304) {
                   toast.error('The size of profile background image should not exceed 4MB')
                   return
                 }
@@ -87,8 +97,7 @@ const AddBackgroundModal = () => {
           <SharedButton type={'submit'} title={'UPLOAD'} disabled={!photoIsChosen}/>
         </form>
       </DialogActions>
-      {/* {urlOfUploadedImg ? <img src={urlOfUploadedImg}/> : null } */}
     </div>
   )
 }
-export default AddBackgroundModal
+export default UploadProfileBgImgModal

@@ -9,6 +9,7 @@ import theme from './Theme/Theme'
 import {Provider} from 'react-redux'
 import store from './redux/configureStore'
 import {CssBaseline} from '@material-ui/core'
+import { CloudinaryContext } from 'cloudinary-react'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -16,7 +17,9 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <CssBaseline />
-          <App/>
+          <CloudinaryContext cloudName="dan-insta-step">
+            <App/>
+          </CloudinaryContext>
         </BrowserRouter>
       </ThemeProvider>
     </React.StrictMode>
