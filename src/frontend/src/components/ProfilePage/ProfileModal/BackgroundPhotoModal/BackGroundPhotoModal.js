@@ -25,7 +25,7 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const AddBackgroundModal = () => {
+const BackgroundModal = () => {
   const classes = styles()
    
   return (
@@ -51,4 +51,4 @@ const AddBackgroundModal = () => {
   )
 }
 
-export default AddBackgroundModal
+export default BackgroundModal

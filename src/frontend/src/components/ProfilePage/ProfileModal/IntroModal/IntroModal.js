@@ -28,7 +28,7 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const EditIntroModal = (props) => {
+const IntroModal = (props) => {
   const dispatch = useDispatch()
   const profile = props.profile.profile
   const classes = styles()
@@ -138,4 +138,4 @@ const EditIntroModal = (props) => {
   )
 }
 
-export default EditIntroModal
+export default IntroModal
