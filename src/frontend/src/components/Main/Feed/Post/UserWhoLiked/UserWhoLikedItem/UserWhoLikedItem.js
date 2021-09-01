@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './styles'
-import Avatar from '../../../../../../../../shared/Avatar/Avatar'
+import Avatar from '../../../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
-import LikeMiniIcon from '../../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
+import LikeMiniIcon from '../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import { Link } from 'react-router-dom'
 
-const UsersWhoLikedCommentItem = (props) => {
+const UsersWhoLikedItem = (props) => {
   const {id, avatarUrl, positionAndCompany, fullName} = props.user
 
   const classes = styles()
@@ -13,7 +13,7 @@ const UsersWhoLikedCommentItem = (props) => {
   const linkToUserProfile = '/profiles/' + id
 
   return (
-    <div className={classes.width}>
+    <div>
       <div className={classes.userWhoLiked}>
         <div className={classes.userInfo}>
           <div className={classes.userAvatar}>
@@ -43,4 +43,4 @@ const UsersWhoLikedCommentItem = (props) => {
   )
 }
 
-export default UsersWhoLikedCommentItem
+export default UsersWhoLikedItem
