@@ -33,7 +33,7 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const EditEducationModal = (props) => {
+const EducationModal = (props) => {
   const dispatch = useDispatch()
   const education = props.education
   const start = convertLocalDateToYearMonthObj(education.dateStart)
@@ -41,15 +41,15 @@ const EditEducationModal = (props) => {
 
   const classes = styles()
   const INITIAL_FORM_STATE = {
-    school: education.school,
-    degreeReceived: education.degreeReceived,
-    fieldOfStudy: education.fieldOfStudy,
-    startMonth: start.month,
-    startYear: start.year,
-    endMonth: end.month,
-    endYear: end.year,
-    activities: education.activities,
-    description: education.description
+    school: education.school || '',
+    degreeReceived: education.degreeReceived || '',
+    fieldOfStudy: education.fieldOfStudy || '',
+    startMonth: start.month || '',
+    startYear: start.year || '',
+    endMonth: end.month || '',
+    endYear: end.year || '',
+    activities: education.activities || '',
+    description: education.description || ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     school: Yup.string()
@@ -232,4 +232,4 @@ const EditEducationModal = (props) => {
     </div>
   )
 }
-export default EditEducationModal
+export default EducationModal

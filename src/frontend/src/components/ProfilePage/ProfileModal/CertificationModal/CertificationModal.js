@@ -15,7 +15,11 @@ import MuiDialogActions from '@material-ui/core/DialogActions'
 import Typography from '@material-ui/core/Typography'
 import styles from '../styles'
 import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
-import { deleteCertificationAction, updateCertificationAction } from '../../../../redux/Profile/profileActions'
+import {
+  createNewCertificationAction,
+  deleteCertificationAction,
+  updateCertificationAction
+} from '../../../../redux/Profile/profileActions'
 import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
@@ -89,24 +93,29 @@ const FORM_VALIDATION = Yup.object().shape({
 
 })
 
-const EditCertificationModal = (props) => {
-  const certification = props.certification
-  const {hasExpiryDate} = certification
+const CertificationModal = (props) => {
   const classes = styles()
   const dispatch = useDispatch()
-  const start = convertLocalDateToYearMonthObj(certification.issueDate)
-  const end = hasExpiryDate ? convertLocalDateToYearMonthObj(certification.expirationDate) : null
+
+  const certification = props.certification
+  let start, end
+
+  if (certification) {
+    const hasExpiryDate = certification.hasExpiryDate
+    start = convertLocalDateToYearMonthObj(certification.issueDate)
+    end = hasExpiryDate ? convertLocalDateToYearMonthObj(certification.expirationDate) : null
+  }
 
   const INITIAL_FORM_STATE = {
-    name: certification.name,
-    issuingOrganization: certification.issuingOrganization,
-    hasExpiryDate: certification.hasExpiryDate,
-    issueDateMonth: start.month,
-    issueDateYear: start.year,
-    expirationDateMonth: end ? end.month : '',
-    expirationDateYear: end ? end.year : '',
-    credentialId: certification.credentialId,
-    credentialUrl: certification.credentialUrl
+    name: certification?.name || '',
+    issuingOrganization: certification?.issuingOrganization || '',
+    hasExpiryDate: certification?.hasExpiryDate || false,
+    issueDateMonth: start?.month || '',
+    issueDateYear: start?.year || '',
+    expirationDateMonth: (end ? end.month : '') || '',
+    expirationDateYear: (end ? end.year : '') || '',
+    credentialId: certification?.credentialId || '',
+    credentialUrl: certification?.credentialUrl || ''
   }
 
   return (
@@ -120,9 +129,15 @@ const EditCertificationModal = (props) => {
         }}
         validationSchema={FORM_VALIDATION}
         onSubmit={values => {
-          console.log(values)
-          dispatch(updateCertificationAction(values, certification.id))
-          dispatch(toggleModalAction())
+          if (props) {
+            console.log('props true')
+            dispatch(updateCertificationAction(values, certification.id))
+            dispatch(toggleModalAction())
+          } else {
+            console.log('props false')
+            dispatch(createNewCertificationAction(values))
+            dispatch(toggleModalAction())
+          }
         }}
       >
         {({values}) => (
@@ -249,4 +264,4 @@ const EditCertificationModal = (props) => {
   )
 }
 
-export default EditCertificationModal
+export default CertificationModal

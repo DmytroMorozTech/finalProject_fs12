@@ -33,7 +33,7 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const EditExperienceModal = (props) => {
+const ExperienceModal = (props) => {
   const dispatch = useDispatch()
   const workPlace = props.workPlace
   const {isCurrentlyEmployed} = workPlace
@@ -42,14 +42,14 @@ const EditExperienceModal = (props) => {
   const end = !isCurrentlyEmployed ? convertLocalDateToYearMonthObj(workPlace.dateFinish) : null
 
   const INITIAL_FORM_STATE = {
-    position: workPlace.position,
-    organizationId: workPlace.organization.id,
-    isCurrentlyEmployed: workPlace.isCurrentlyEmployed,
-    startMonth: start.month,
-    startYear: start.year,
-    endMonth: end ? end.month : '',
-    endYear: end ? end.year : '',
-    responsibilities: workPlace.responsibilities
+    position: workPlace.position || '',
+    organizationId: workPlace.organization.id || '',
+    isCurrentlyEmployed: workPlace.isCurrentlyEmployed || false,
+    startMonth: start.month || '',
+    startYear: start.year || '',
+    endMonth: (end ? end.month : '') || '',
+    endYear: (end ? end.year : '') || '',
+    responsibilities: workPlace.responsibilities || ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
@@ -228,4 +228,4 @@ const EditExperienceModal = (props) => {
     </div>
   )
 }
-export default EditExperienceModal
+export default ExperienceModal
