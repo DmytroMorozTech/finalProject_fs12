@@ -41,7 +41,7 @@ const EditEducationModal = (props) => {
 
   const classes = styles()
   const INITIAL_FORM_STATE = {
-    school: education.school,
+    school: education.school || '',
     degreeReceived: education.degreeReceived,
     fieldOfStudy: education.fieldOfStudy,
     startMonth: start.month,

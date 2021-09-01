@@ -15,11 +15,12 @@ import SeeMore from './SeeMore/SeeMore'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
+import { Image, Transformation } from 'cloudinary-react'
 
 function Post (props) {
   const {
     id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    numberOfViews = 244688
+    numberOfViews = 244688, imgUrl
   } = props.post
 
   const dispatch = useDispatch()
@@ -70,6 +71,22 @@ function Post (props) {
           {text}
         </SeeMore>
       </Typography>
+
+      <Image
+        key = {imgUrl}
+        publicId = {imgUrl}
+        crop = "crop"
+      >
+        <Transformation
+          // height="160"
+          width="500"
+          crop="fill"
+          // gravity="face"
+          quality="90"
+        />
+      </Image>
+      {/* TODO: unify in one element */}
+
       <div className={classes.quantity}>
         <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
           <Typography variant="body2" className={classes.quantityText}>

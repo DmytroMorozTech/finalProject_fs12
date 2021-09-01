@@ -5,6 +5,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
+import com.danit.fs12.service.ImageServiceCloudinaryImpl;
 import com.danit.fs12.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/images/upload")
 public class ImageController {
+  private final ImageServiceCloudinaryImpl imageService;
   private final Cloudinary cloudinary;
   private final UserService userService;
   private final UserFacade userFacade;
@@ -46,9 +48,9 @@ public class ImageController {
         "resource_type", "auto"
       )
     );
-    String newAvatarUrl = (String) uploadResult.get("public_id");
+    String imgPublicId = (String) uploadResult.get("public_id");
     // we will store in DB not the full URL, but only Cloudinary public_id that is needed to render the image
-    System.out.println(newAvatarUrl);
+    System.out.println(imgPublicId);
 
     // if our uploadRequest succeeded, than uploadResult.status == 200 and we can read uploadResult.public_id from it
 
@@ -60,7 +62,7 @@ public class ImageController {
       cloudinary.uploader().destroy(currentAvatarUrl, uploadOptions);
     }
 
-    activeUser.setAvatarUrl(newAvatarUrl);
+    activeUser.setAvatarUrl(imgPublicId);
     User savedUser = userService.save(activeUser);
 
 //    Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
@@ -92,8 +94,7 @@ public class ImageController {
     }
 
     activeUser.setProfileBgUrl(newProfileBgUrl);
-    User savedUser = userService.save(activeUser);
-    return ResponseEntity.ok(userFacade.convertToDto(savedUser));
+    return ResponseEntity.ok(userFacade.save(activeUser));
   }
 
   private String getPublicIdFromImgUrl(String imgUrl) {

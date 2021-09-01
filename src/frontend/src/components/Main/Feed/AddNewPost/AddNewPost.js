@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
@@ -17,6 +17,7 @@ import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
+import { toast } from 'react-toastify'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -49,6 +50,10 @@ const AddNewPost = () => {
   const dispatch = useDispatch()
   const activeUser = useSelector(activeUserSelector)
 
+  const [photoIsChosen, setPhotoIsChosen] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [imgIsUploading, setImgIsUploading] = useState(false)
+
   const onPostSubmitHandler = () => {
     dispatch(createNewPostAction({ text: postInputText }))
     dispatch(toggleModalAction())
@@ -62,10 +67,6 @@ const AddNewPost = () => {
     let postInputVal = e.currentTarget.value
     setPostInputText(postInputVal)
   }
-
-  const longText1 = `Add a photo`
-  const longText2 = `Add a video`
-  const longText3 = `Add a document`
 
   const numberCharacterToShowValidate = 3000
   const validateCount = (numberCharacterToShowValidate - postInputText.length)
@@ -108,6 +109,7 @@ const AddNewPost = () => {
           onChange={handlePostInputChange}
           className={classes.editor}
         />
+        {photoIsChosen ? <img src={URL.createObjectURL(selectedFile)}/> : null}
       </DialogContent>
       <div
         className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
@@ -121,17 +123,39 @@ const AddNewPost = () => {
       </div>
       <DialogActions>
         <div className={classes.shareButtons}>
-          <LightTooltip title={longText1} placement={'top'}>
-            <div className={classes.shareButton}>
-              <PhotoSizeSelectActualIcon/>
+
+          <LightTooltip title={`Add a photo`} placement={'top'}>
+            <div className={classes.shareButton} >
+              <label>
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  style={{display: 'none'}}
+                  required
+                  onChange={(event) => {
+                    const file = event.target.files[0]
+                    if (file.size > 4194304) {
+                      toast.error('The size of image should not exceed 4MB')
+                      return
+                    }
+
+                    setSelectedFile(file)
+                    setPhotoIsChosen(true)
+                  }}
+
+                />
+                <PhotoSizeSelectActualIcon/>
+              </label>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText2} placement={'top'}>
+
+          <LightTooltip title={`Add a video`} placement={'top'}>
             <div className={classes.shareButton}>
               <YouTubeIcon/>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText3} placement={'top'}>
+          <LightTooltip title={`Add a document`} placement={'top'}>
             <div className={classes.shareButton}>
               <EventNoteIcon/>
             </div>

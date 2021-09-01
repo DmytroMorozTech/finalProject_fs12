@@ -18,5 +18,7 @@ public class CloudinaryConfig {
       "api_secret", "HnYwqnw7fBFrk9yn16CLt7r_s-I");
     return new Cloudinary(config);
   }
+  //TODO: move to application.properties ! all values
+  // Separate cloudinaryService with methods Upload, Delete, Update
 
 }
