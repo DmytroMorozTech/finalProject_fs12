@@ -1,10 +1,10 @@
 import React from 'react'
-import {withStyles} from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from '../styles'
 import Typography from '@material-ui/core/Typography'
-import {Field, Form, Formik} from 'formik'
+import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import FormikTextField from '../../../../shared/FormComponents/FormikTextField'
 import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import month from '../../../../data/month.json'
 import year from '../../../../data/year.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import {
   createNewWorkPlaceAction,
@@ -32,6 +32,7 @@ const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
@@ -226,14 +227,16 @@ const ExperienceModal = (props) => {
                   </Grid>
                 </Grid>
               </DialogContent>
-              <DialogActions classes='justifyContent'>
-                <SharedButton title="Delete experience" variant="outlined" color="secondary"
-                  onClick={() => {
-                    dispatch(deleteWorkPlaceAction(workPlace.id))
-                    dispatch(toggleModalAction())
-                  }}/>
-
+              <DialogActions>
                 <SharedButton type="submit" title="Save"/>
+                {workPlace
+                  ? <SharedButton title="Delete experience" variant="outlined" color="secondary"
+                    onClick={() => {
+                      dispatch(deleteWorkPlaceAction(workPlace.id))
+                      dispatch(toggleModalAction())
+                    }}/>
+                  : ''
+                }
               </DialogActions>
             </Form>
           )}
@@ -242,4 +245,5 @@ const ExperienceModal = (props) => {
     </div>
   )
 }
+
 export default ExperienceModal

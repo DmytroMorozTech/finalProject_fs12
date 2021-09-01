@@ -33,6 +33,7 @@ const DialogActions = withStyles((theme) => ({
     width: '100%',
     margin: 0,
     display: 'flex',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
@@ -246,14 +247,15 @@ const CertificationModal = (props) => {
 
               </Grid>
             </DialogContent>
-            <DialogActions classes='justifyContent'>
-              <SharedButton title="Delete certification" variant="outlined" color="secondary"
-                onClick={() => {
-                  dispatch(deleteCertificationAction(certification.id))
-                  dispatch(toggleModalAction())
-                }}/>
-
+            <DialogActions>
               <SharedButton type="submit" title="Save"/>
+              {certification
+                ? <SharedButton title="Delete certification" variant="outlined" color="secondary"
+                  onClick={() => {
+                    dispatch(deleteCertificationAction(certification.id))
+                    dispatch(toggleModalAction())
+                  }}/>
+                : ''}
             </DialogActions>
           </Form>
         )}

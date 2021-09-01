@@ -32,6 +32,7 @@ const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
@@ -232,13 +233,14 @@ const EducationModal = (props) => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton title="Delete education" variant="outlined" color="secondary"
-                onClick={() => {
-                  dispatch(deleteEducationAction(education.id))
-                  dispatch(toggleModalAction())
-                }}/>
-
               <SharedButton title="Save" type="submit"/>
+              {education
+                ? <SharedButton title="Delete education" variant="outlined" color="secondary"
+                  onClick={() => {
+                    dispatch(deleteEducationAction(education.id))
+                    dispatch(toggleModalAction())
+                  }}/>
+                : ''}
             </DialogActions>
           </Form>
         </Formik>
