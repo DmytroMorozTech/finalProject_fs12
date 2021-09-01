@@ -14,12 +14,12 @@ import {
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
+import UsersWhoLikedComment
+  from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
 import EditIntroModal from '../../components/ProfilePage/ProfileModal/IntroModal/EditIntroModal'
 import CertificationModal from '../../components/ProfilePage/ProfileModal/CertificationModal/CertificationModal'
 import BackGroundPhotoModal from '../../components/ProfilePage/ProfileModal/BackgroundPhotoModal/BackGroundPhotoModal'
-import UsersWhoLikedComment
-  from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
 
 const initialState = {

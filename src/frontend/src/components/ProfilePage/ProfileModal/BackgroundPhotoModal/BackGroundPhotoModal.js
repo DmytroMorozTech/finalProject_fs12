@@ -31,7 +31,7 @@ const AddBackgroundModal = () => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-                Add background photo
+        Add background photo
       </Typography>
       <DialogContent dividers>
         <div>
@@ -41,7 +41,7 @@ const AddBackgroundModal = () => {
             Showcase your personality, interests, team moments or notable milestones
         </Typography>
         <Typography variant="subtitle2">
-            A good background photo will help you stand out.
+          A good background photo will help you stand out.
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -50,4 +50,5 @@ const AddBackgroundModal = () => {
     </div>
   )
 }
+
 export default AddBackgroundModal

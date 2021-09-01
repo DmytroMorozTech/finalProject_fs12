@@ -69,8 +69,6 @@ const EditIntroModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log('!!!!!!!!!!!')
-            console.log(`Values read from form: ${JSON.stringify(values)}`)
             dispatch(editIntroAction(values))
             dispatch(toggleModalAction())
           }}
@@ -139,4 +137,5 @@ const EditIntroModal = (props) => {
     </div>
   )
 }
+
 export default EditIntroModal
