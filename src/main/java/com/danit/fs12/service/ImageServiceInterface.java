@@ -1,19 +1,21 @@
 package com.danit.fs12.service;
 
-import com.danit.fs12.entity.post.PostRs;
-import com.danit.fs12.entity.user.UserRs;
+import com.danit.fs12.entity.post.Post;
+import com.danit.fs12.entity.user.User;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 public interface ImageServiceInterface {
-  UserRs uploadAvatar(MultipartFile file);
-  UserRs updateAvatar(MultipartFile file);
-  UserRs deleteAvatar();
+  User uploadAvatarImg(MultipartFile file) throws IOException;
+  User updateAvatarImg(MultipartFile file);
+  User deleteAvatarImg();
 
-  UserRs uploadProfileBgImg(MultipartFile file);
-  UserRs updateProfileBgImg(MultipartFile file);
-  UserRs deleteProfileBgImg();
+  User uploadProfileBgImg(MultipartFile file) throws IOException;
+  User updateProfileBgImg(MultipartFile file);
+  User deleteProfileBgImg();
 
-  PostRs uploadPostImg(MultipartFile file);
-  PostRs updatePostImg(MultipartFile file);
-  PostRs deletePostImg();
+  Post uploadPostImg(MultipartFile file);
+  Post updatePostImg(MultipartFile file);
+  Post deletePostImg();
 }
