@@ -14,13 +14,10 @@ import {
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
-import AddEducationModal from '../../components/ProfilePage/ProfileModal/AddEducationModal/AddEducationModal'
-// import AddNewCertificationModal from '../../components/ProfilePage/ProfileModal/AddNewCertificationModal/AddNewCertificationModal'
 import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
 import EditIntroModal from '../../components/ProfilePage/ProfileModal/IntroModal/EditIntroModal'
 import CertificationModal from '../../components/ProfilePage/ProfileModal/CertificationModal/CertificationModal'
-import AddBackGroundPhotoModal from '../../components/ProfilePage/ProfileModal/BackgroundPhotoModal/AddBackGroundPhotoModal'
-import AddExperienceModal from '../../components/ProfilePage/ProfileModal/AddExperienceModal/AddExperienceModal'
+import BackGroundPhotoModal from '../../components/ProfilePage/ProfileModal/BackgroundPhotoModal/BackGroundPhotoModal'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
@@ -69,7 +66,7 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_EDUCATION:
-          content = <AddEducationModal/>
+          content = <EducationModal/>
           break
 
         case EDIT_EDUCATION:
@@ -81,11 +78,11 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_BACKGROUND_PHOTO:
-          content = <AddBackGroundPhotoModal/>
+          content = <BackGroundPhotoModal/>
           break
 
         case ADD_NEW_EXPERIENCE:
-          content = <AddExperienceModal/>
+          content = <ExperienceModal/>
           break
 
         case EDIT_EXPERIENCE :

@@ -14,7 +14,11 @@ import year from '../../../../data/year.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
-import {deleteWorkPlaceAction, updateWorkPlaceAction} from '../../../../redux/Profile/profileActions'
+import {
+  createNewWorkPlaceAction,
+  deleteWorkPlaceAction,
+  updateWorkPlaceAction
+} from '../../../../redux/Profile/profileActions'
 import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
 import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
@@ -34,22 +38,27 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions)
 
 const ExperienceModal = (props) => {
-  const dispatch = useDispatch()
-  const workPlace = props.workPlace
-  const {isCurrentlyEmployed} = workPlace
   const classes = styles()
-  const start = convertLocalDateToYearMonthObj(workPlace.dateStart)
-  const end = !isCurrentlyEmployed ? convertLocalDateToYearMonthObj(workPlace.dateFinish) : null
+  const dispatch = useDispatch()
+
+  const workPlace = props.workPlace
+  let start, end
+
+  if (workPlace) {
+    const {isCurrentlyEmployed} = workPlace
+    start = convertLocalDateToYearMonthObj(workPlace.dateStart)
+    end = !isCurrentlyEmployed ? convertLocalDateToYearMonthObj(workPlace.dateFinish) : null
+  }
 
   const INITIAL_FORM_STATE = {
-    position: workPlace.position || '',
-    organizationId: workPlace.organization.id || '',
-    isCurrentlyEmployed: workPlace.isCurrentlyEmployed || false,
-    startMonth: start.month || '',
-    startYear: start.year || '',
+    position: workPlace?.position || '',
+    organizationId: workPlace?.organization.id || '',
+    isCurrentlyEmployed: workPlace?.isCurrentlyEmployed || false,
+    startMonth: start?.month || '',
+    startYear: start?.year || '',
     endMonth: (end ? end.month : '') || '',
     endYear: (end ? end.year : '') || '',
-    responsibilities: workPlace.responsibilities || ''
+    responsibilities: workPlace?.responsibilities || ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
@@ -113,8 +122,13 @@ const ExperienceModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            dispatch(updateWorkPlaceAction(values, workPlace.id))
-            dispatch(toggleModalAction())
+            if (workPlace) {
+              dispatch(updateWorkPlaceAction(values, workPlace.id))
+              dispatch(toggleModalAction())
+            } else {
+              dispatch(createNewWorkPlaceAction(values))
+              dispatch(toggleModalAction())
+            }
           }}
         >
           {({values}) => (

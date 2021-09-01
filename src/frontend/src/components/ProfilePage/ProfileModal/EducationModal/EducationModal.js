@@ -13,7 +13,11 @@ import month from '../../../../data/month.json'
 import year from '../../../../data/year.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
-import { updateEducationAction, deleteEducationAction } from '../../../../redux/Profile/profileActions'
+import {
+  updateEducationAction,
+  deleteEducationAction,
+  createNewEducationAction
+} from '../../../../redux/Profile/profileActions'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
@@ -35,21 +39,26 @@ const DialogActions = withStyles((theme) => ({
 
 const EducationModal = (props) => {
   const dispatch = useDispatch()
+
   const education = props.education
-  const start = convertLocalDateToYearMonthObj(education.dateStart)
-  const end = convertLocalDateToYearMonthObj(education.dateFinish)
+  let start, end
+
+  if (education) {
+    start = convertLocalDateToYearMonthObj(education.dateStart)
+    end = convertLocalDateToYearMonthObj(education.dateFinish)
+  }
 
   const classes = styles()
   const INITIAL_FORM_STATE = {
-    school: education.school || '',
-    degreeReceived: education.degreeReceived || '',
-    fieldOfStudy: education.fieldOfStudy || '',
-    startMonth: start.month || '',
-    startYear: start.year || '',
-    endMonth: end.month || '',
-    endYear: end.year || '',
-    activities: education.activities || '',
-    description: education.description || ''
+    school: education?.school || '',
+    degreeReceived: education?.degreeReceived || '',
+    fieldOfStudy: education?.fieldOfStudy || '',
+    startMonth: start?.month || '',
+    startYear: start?.year || '',
+    endMonth: end?.month || '',
+    endYear: end?.year || '',
+    activities: education?.activities || '',
+    description: education?.description || ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     school: Yup.string()
@@ -108,8 +117,13 @@ const EducationModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            dispatch(updateEducationAction(values, education.id))
-            dispatch(toggleModalAction())
+            if (education) {
+              dispatch(updateEducationAction(values, education.id))
+              dispatch(toggleModalAction())
+            } else {
+              dispatch(createNewEducationAction(values))
+              dispatch(toggleModalAction())
+            }
           }}
         >
           <Form>
@@ -232,4 +246,5 @@ const EducationModal = (props) => {
     </div>
   )
 }
+
 export default EducationModal

@@ -129,12 +129,10 @@ const CertificationModal = (props) => {
         }}
         validationSchema={FORM_VALIDATION}
         onSubmit={values => {
-          if (props) {
-            console.log('props true')
+          if (certification) {
             dispatch(updateCertificationAction(values, certification.id))
             dispatch(toggleModalAction())
           } else {
-            console.log('props false')
             dispatch(createNewCertificationAction(values))
             dispatch(toggleModalAction())
           }
