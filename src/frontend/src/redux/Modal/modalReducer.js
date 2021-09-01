@@ -14,16 +14,16 @@ import {
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
-import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
-import AddNewCertificationModal from '../../components/ProfilePage/AddNewCertificationModal/AddNewCertificationModal'
-import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
-import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
-import EditCertificationModal from '../../components/ProfilePage/EditCertificationModal/EditCertificationModal'
+import AddEducationModal from '../../components/ProfilePage/ProfileModal/AddEducationModal/AddEducationModal'
+import AddNewCertificationModal from '../../components/ProfilePage/ProfileModal/AddNewCertificationModal/AddNewCertificationModal'
+import EditEducationModal from '../../components/ProfilePage/ProfileModal/EditEducationModal/EditEducationModal'
+import EditIntroModal from '../../components/ProfilePage/ProfileModal/EditIntroModal/EditIntroModal'
+import EditCertificationModal from '../../components/ProfilePage/ProfileModal/EditCertificationModal/EditCertificationModal'
 import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
-import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
+import AddExperienceModal from '../../components/ProfilePage/ProfileModal/AddExperienceModal/AddExperienceModal'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
-import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
+import EditExperienceModal from '../../components/ProfilePage/ProfileModal/EditExperiemceModal/EditExperienceModal'
 import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
 
 const initialState = {

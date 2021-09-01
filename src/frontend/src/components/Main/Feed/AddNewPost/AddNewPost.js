@@ -79,7 +79,7 @@ const AddNewPost = () => {
       <hr className={classes.horizontalLine}/>
       <DialogContent>
         <div className={classes.userInfo}>
-          <div className={classes.avatar}>
+          <div>
             <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
           </div>
           <div className={classes.buttonGroup}>

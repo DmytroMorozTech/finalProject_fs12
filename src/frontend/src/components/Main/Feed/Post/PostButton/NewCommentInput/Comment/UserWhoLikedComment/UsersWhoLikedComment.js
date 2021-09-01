@@ -13,17 +13,20 @@ const UsersWhoLikedComment = (props) => {
   return (
     <div>
       <div className={classes.title}>
-        <Typography variant="body1" className={classes.word}>
-          All
+        <Typography variant="h3" className={classes.subtitle}>
+          All reactions
         </Typography>
-        <Typography variant="body1" className={classes.icon}>
+        <div>
           <ThumbUpAltIcon className={classes.likeMini}/>
-        </Typography>
-        <Typography variant="body1" className={classes.number}>
+        </div>
+        <Typography variant="h5" className={classes.number}>
           {usersWhoLikedThisComment.length}
         </Typography>
       </div>
-      {usersWhoLikedThisComment.map(user => <UsersWhoLikedCommentItem key={user.id} user={user}/>)}
+      <hr className={classes.line}/>
+      <div className={classes.usersWhoLiked}>
+        {usersWhoLikedThisComment.map(user => <UsersWhoLikedCommentItem key={user.id} user={user}/>)}
+      </div>
     </div>
   )
 }

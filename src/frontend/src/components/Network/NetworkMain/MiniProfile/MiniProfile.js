@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Avatar from '../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
 import React, { useState } from 'react'
-import avatar from '../../../../temporaryImages/avatar.jpg'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import CloseIcon from '@material-ui/icons/Close'
@@ -14,6 +13,7 @@ function MiniProfile (props) {
 
   const {
     avatarUrl = 'linkedin/avatars/fiztv2grxh6p62y72j6a.jpg',
+    id = 4,
     fullName = 'George Lupin',
     positionAndCompany = 'Fullstack Developer — GlobalLogic',
     numberOfConnection = 1
@@ -25,13 +25,15 @@ function MiniProfile (props) {
     setRemovedMiniProfile(!removedMiniProfile)
   }
 
+  const linkToUserProfile = '/profiles/' + id
+
   return (
     <div className={clsx(classes.miniProfile, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
         </div>
-        <Link to="/profile/:id" className={classes.link}>
+        <Link to={linkToUserProfile} className={classes.link}>
           <div className={classes.avatar}>
             <Avatar avatarUrl={avatarUrl}/>
           </div>

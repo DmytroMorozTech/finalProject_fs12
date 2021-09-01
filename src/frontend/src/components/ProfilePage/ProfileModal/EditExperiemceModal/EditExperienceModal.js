@@ -2,20 +2,21 @@ import React from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import styles from './styles'
+import styles from '../styles'
 import Typography from '@material-ui/core/Typography'
 import {Field, Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import FormikTextField from '../../../shared/FormComponents/FormikTextField'
-import FormikSelect from '../../../shared/FormComponents/FormikSelect'
+import FormikTextField from '../../../../shared/FormComponents/FormikTextField'
+import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
 import Grid from '@material-ui/core/Grid'
-import month from '../../../data/month.json'
-import year from '../../../data/year.json'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
+import month from '../../../../data/month.json'
+import year from '../../../../data/year.json'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import {useDispatch} from 'react-redux'
-import toggleModalAction from '../../../redux/Modal/modalActions'
-import {createNewWorkPlaceAction} from '../../../redux/Profile/profileActions'
-import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
+import {deleteWorkPlaceAction, updateWorkPlaceAction} from '../../../../redux/Profile/profileActions'
+import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
+import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -27,24 +28,28 @@ const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
 }))(MuiDialogActions)
 
-const AddExperienceModal = () => {
+const EditExperienceModal = (props) => {
   const dispatch = useDispatch()
-
+  const workPlace = props.workPlace
+  const {isCurrentlyEmployed} = workPlace
   const classes = styles()
+  const start = convertLocalDateToYearMonthObj(workPlace.dateStart)
+  const end = !isCurrentlyEmployed ? convertLocalDateToYearMonthObj(workPlace.dateFinish) : null
+
   const INITIAL_FORM_STATE = {
-    position: '',
-    organizationId: '',
-    isCurrentlyEmployed: false,
-    startMonth: '',
-    startYear: '',
-    endMonth: '',
-    endYear: '',
-    responsibilities: ''
+    position: workPlace.position,
+    organizationId: workPlace.organization.id,
+    isCurrentlyEmployed: workPlace.isCurrentlyEmployed,
+    startMonth: start.month,
+    startYear: start.year,
+    endMonth: end ? end.month : '',
+    endYear: end ? end.year : '',
+    responsibilities: workPlace.responsibilities
   }
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
@@ -98,7 +103,7 @@ const AddExperienceModal = () => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-                Add experience
+                Edit experience
       </Typography>
 
       <Grid container>
@@ -108,8 +113,7 @@ const AddExperienceModal = () => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log(values)
-            dispatch(createNewWorkPlaceAction(values))
+            dispatch(updateWorkPlaceAction(values, workPlace.id))
             dispatch(toggleModalAction())
           }}
         >
@@ -138,10 +142,11 @@ const AddExperienceModal = () => {
                         shrink: true
                       }}
                       placeholder="Ex: Microsoft"
+                      disabled = {true}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <label>
+                    <label className={classes.checkbox}>
                       <Field
                         type="checkbox"
                         name="isCurrentlyEmployed"
@@ -149,41 +154,49 @@ const AddExperienceModal = () => {
                       <span>I am currently working in this role</span>
                     </label>
                   </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      name="startMonth"
-                      label="Month"
-                      size="small"
-                      options={month}
-                      helperText="Start date"
-                    />
+                  <Grid container item spacing={2}>
+                    <Grid xs={12}>
+                      <Typography variant='h6' className={classes.subtitle}>Start date</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <FormikSelect
+                        name="startMonth"
+                        label="Month"
+                        size="small"
+                        options={month}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <FormikSelect
+                        name="startYear"
+                        label="Year"
+                        size="small"
+                        options={year}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      name="startYear"
-                      label="Year"
-                      size="small"
-                      options={year}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      disabled={values.isCurrentlyEmployed === true}
-                      name="endMonth"
-                      label="Month"
-                      size="small"
-                      options={month}
-                      helperText="End date"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      disabled={values.isCurrentlyEmployed === true}
-                      name="endYear"
-                      label="Year"
-                      size="small"
-                      options={year}
-                    />
+                  <Grid container item spacing={2}>
+                    <Grid xs={12}>
+                      <Typography variant='h6' className={classes.subtitle}>End date</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <FormikSelect
+                        disabled={values.isCurrentlyEmployed === true}
+                        name="endMonth"
+                        label="Month"
+                        size="small"
+                        options={month}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <FormikSelect
+                        disabled={values.isCurrentlyEmployed === true}
+                        name="endYear"
+                        label="Year"
+                        size="small"
+                        options={year}
+                      />
+                    </Grid>
                   </Grid>
                   <Grid item xs={12}>
                     <FormikTextField
@@ -199,8 +212,14 @@ const AddExperienceModal = () => {
                   </Grid>
                 </Grid>
               </DialogContent>
-              <DialogActions>
-                <SharedButton title="Save" type="submit"/>
+              <DialogActions classes='justifyContent'>
+                <SharedButton title="Delete experience" variant="outlined" color="secondary"
+                  onClick={() => {
+                    dispatch(deleteWorkPlaceAction(workPlace.id))
+                    dispatch(toggleModalAction())
+                  }}/>
+
+                <SharedButton type="submit" title="Save"/>
               </DialogActions>
             </Form>
           )}
@@ -209,4 +228,4 @@ const AddExperienceModal = () => {
     </div>
   )
 }
-export default AddExperienceModal
+export default EditExperienceModal

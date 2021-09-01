@@ -2,21 +2,20 @@ import React from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import styles from './styles'
+import styles from '../styles'
 import Typography from '@material-ui/core/Typography'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
-import FormikTextField from '../../../shared/FormComponents/FormikTextField'
-import FormikSelect from '../../../shared/FormComponents/FormikSelect'
+import FormikTextField from '../../../../shared/FormComponents/FormikTextField'
+import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
 import Grid from '@material-ui/core/Grid'
-import month from '../../../data/month.json'
-import year from '../../../data/year.json'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
-import convertLocalDateToYearMonthObj from '../../../utils/convertLocalDateToYearMonthObj'
-import { updateEducationAction, deleteEducationAction } from '../../../redux/Profile/profileActions'
-import toggleModalAction from '../../../redux/Modal/modalActions'
-import { useDispatch } from 'react-redux'
-import convertYearMonthToLocalDate from '../../../utils/convertYearMonthToLocalDate'
+import month from '../../../../data/month.json'
+import year from '../../../../data/year.json'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
+import {useDispatch} from 'react-redux'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
+import {createNewEducationAction} from '../../../../redux/Profile/profileActions'
+import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -28,28 +27,25 @@ const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     padding: theme.spacing(1)
   }
 }))(MuiDialogActions)
 
-const EditEducationModal = (props) => {
+const AddEducationModal = () => {
   const dispatch = useDispatch()
-  const education = props.education
-  const start = convertLocalDateToYearMonthObj(education.dateStart)
-  const end = convertLocalDateToYearMonthObj(education.dateFinish)
 
   const classes = styles()
   const INITIAL_FORM_STATE = {
-    school: education.school,
-    degreeReceived: education.degreeReceived,
-    fieldOfStudy: education.fieldOfStudy,
-    startMonth: start.month,
-    startYear: start.year,
-    endMonth: end.month,
-    endYear: end.year,
-    activities: education.activities,
-    description: education.description
+    school: '',
+    degreeReceived: '',
+    fieldOfStudy: '',
+    startMonth: '',
+    startYear: '',
+    endMonth: '',
+    endYear: '',
+    activities: '',
+    description: ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     school: Yup.string()
@@ -98,7 +94,7 @@ const EditEducationModal = (props) => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-                Edit education
+       Add education
       </Typography>
 
       <Grid container>
@@ -108,7 +104,8 @@ const EditEducationModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            dispatch(updateEducationAction(values, education.id))
+            console.log(values)
+            dispatch(createNewEducationAction(values))
             dispatch(toggleModalAction())
           }}
         >
@@ -148,39 +145,47 @@ const EditEducationModal = (props) => {
                     placeholder="Ex: Business"
                   />
                 </Grid>
-                <Grid item xs={6}>
-                  <FormikSelect
-                    name="startMonth"
-                    label="Month"
-                    size="small"
-                    options={month}
-                    helperText="Start date"
-                  />
+                <Grid container item spacing={2}>
+                  <Grid xs={12}>
+                    <Typography variant='h6' className={classes.subtitle}>Start date</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormikSelect
+                      name="startMonth"
+                      label="Month"
+                      size="small"
+                      options={month}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormikSelect
+                      name="startYear"
+                      label="Year"
+                      size="small"
+                      options={year}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <FormikSelect
-                    name="startYear"
-                    label="Year"
-                    size="small"
-                    options={year}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <FormikSelect
-                    name="endMonth"
-                    label="Month"
-                    size="small"
-                    options={month}
-                    helperText="End date"
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <FormikSelect
-                    name="endYear"
-                    label="Year"
-                    size="small"
-                    options={year}
-                  />
+                <Grid container item spacing={2}>
+                  <Grid xs={12}>
+                    <Typography variant='h6' className={classes.subtitle}>End date</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormikSelect
+                      name="endMonth"
+                      label="Month"
+                      size="small"
+                      options={month}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormikSelect
+                      name="endYear"
+                      label="Year"
+                      size="small"
+                      options={year}
+                    />
+                  </Grid>
                 </Grid>
                 <Grid item xs={12}>
                   <FormikTextField
@@ -210,12 +215,6 @@ const EditEducationModal = (props) => {
               </Grid>
             </DialogContent>
             <DialogActions>
-              <SharedButton title="Delete education" variant="outlined" color="secondary"
-                onClick={() => {
-                  dispatch(deleteEducationAction(education.id))
-                  dispatch(toggleModalAction())
-                }}/>
-
               <SharedButton title="Save" type="submit"/>
             </DialogActions>
           </Form>
@@ -224,4 +223,5 @@ const EditEducationModal = (props) => {
     </div>
   )
 }
-export default EditEducationModal
+
+export default AddEducationModal
