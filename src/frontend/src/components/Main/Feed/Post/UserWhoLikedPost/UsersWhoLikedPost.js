@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import UsersWhoLiked from '../UserWhoLiked/UserWhoLiked'
+import UsersWhoLiked from '../../../../../shared/UserWhoLiked/UserWhoLiked'
 
 const UsersWhoLikedPost = (props) => {
   const {usersWhoLikedPost, postId} = props

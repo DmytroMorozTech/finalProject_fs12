@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './styles'
-import Avatar from '../../../../../../shared/Avatar/Avatar'
+import Avatar from '../../Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
-import LikeMiniIcon from '../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
+import LikeMiniIcon from '../../LikeMiniIcon/LikeMiniIcon'
 import { Link } from 'react-router-dom'
 
 const UsersWhoLikedItem = (props) => {
