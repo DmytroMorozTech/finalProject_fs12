@@ -28,7 +28,7 @@ const DialogActions = withStyles((theme) => ({
   }
 }))(MuiDialogActions)
 
-const EditIntroModal = (props) => {
+const IntroModal = (props) => {
   const dispatch = useDispatch()
   const profile = props.profile.profile
   const classes = styles()
@@ -69,8 +69,6 @@ const EditIntroModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log('!!!!!!!!!!!')
-            console.log(`Values read from form: ${JSON.stringify(values)}`)
             dispatch(editIntroAction(values))
             dispatch(toggleModalAction())
           }}
@@ -139,4 +137,5 @@ const EditIntroModal = (props) => {
     </div>
   )
 }
-export default EditIntroModal
+
+export default IntroModal

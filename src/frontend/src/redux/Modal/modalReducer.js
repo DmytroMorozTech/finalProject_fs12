@@ -13,17 +13,15 @@ import {
   EDIT_EXPERIENCE, UPLOAD_AVATAR_IMG
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
-import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
-import AddEducationModal from '../../components/ProfilePage/ProfileModal/AddEducationModal/AddEducationModal'
-import AddNewCertificationModal from '../../components/ProfilePage/ProfileModal/AddNewCertificationModal/AddNewCertificationModal'
-import EditEducationModal from '../../components/ProfilePage/ProfileModal/EditEducationModal/EditEducationModal'
-import EditIntroModal from '../../components/ProfilePage/ProfileModal/EditIntroModal/EditIntroModal'
-import EditCertificationModal from '../../components/ProfilePage/ProfileModal/EditCertificationModal/EditCertificationModal'
-import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
-import AddExperienceModal from '../../components/ProfilePage/ProfileModal/AddExperienceModal/AddExperienceModal'
+import UsersWhoLikedPost from '../../components/Main/Feed/Post/UserWhoLikedPost/UsersWhoLikedPost'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
-import EditExperienceModal from '../../components/ProfilePage/ProfileModal/EditExperiemceModal/EditExperienceModal'
+import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
+import IntroModal from '../../components/ProfilePage/ProfileModal/IntroModal/IntroModal'
+import CertificationModal from '../../components/ProfilePage/ProfileModal/CertificationModal/CertificationModal'
+import BackGroundPhotoModal from '../../components/ProfilePage/ProfileModal/BackgroundPhotoModal/BackGroundPhotoModal'
+import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
+import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
 import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
 
 const initialState = {
@@ -54,15 +52,15 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_CERTIFICATION:
-          content = <AddNewCertificationModal/>
+          content = <CertificationModal/>
           break
 
         case EDIT_CERTIFICATION:
-          content = <EditCertificationModal certification={action.payload.certification}/>
+          content = <CertificationModal certification={action.payload.certification}/>
           break
 
         case USERS_WHO_LIKED_POST:
-          content = <UsersWhoLiked/>
+          content = <UsersWhoLikedPost/>
           break
 
         case USERS_WHO_LIKED_COMMENT:
@@ -70,15 +68,15 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_EDUCATION:
-          content = <AddEducationModal/>
+          content = <EducationModal/>
           break
 
         case EDIT_EDUCATION:
-          content = <EditEducationModal education={action.payload.education}/>
+          content = <EducationModal education={action.payload.education}/>
           break
 
         case EDIT_INTRO:
-          content = <EditIntroModal profile={action.payload}/>
+          content = <IntroModal profile={action.payload}/>
           break
 
         case UPLOAD_PROFILE_BACKGROUND_IMG:
@@ -90,11 +88,11 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_EXPERIENCE:
-          content = <AddExperienceModal/>
+          content = <ExperienceModal/>
           break
 
         case EDIT_EXPERIENCE :
-          content = <EditExperienceModal workPlace={action.payload.workPlace}/>
+          content = <ExperienceModal workPlace={action.payload.workPlace}/>
           break
 
         default:

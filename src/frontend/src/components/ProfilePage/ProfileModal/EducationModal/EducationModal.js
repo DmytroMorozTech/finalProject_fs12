@@ -12,9 +12,14 @@ import Grid from '@material-ui/core/Grid'
 import month from '../../../../data/month.json'
 import year from '../../../../data/year.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
-import {useDispatch} from 'react-redux'
+import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
+import {
+  updateEducationAction,
+  deleteEducationAction,
+  createNewEducationAction
+} from '../../../../redux/Profile/profileActions'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
-import {createNewEducationAction} from '../../../../redux/Profile/profileActions'
+import { useDispatch } from 'react-redux'
 import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
@@ -27,25 +32,34 @@ const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
-    justifyContent: 'flex-end',
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
 }))(MuiDialogActions)
 
-const AddEducationModal = () => {
+const EducationModal = (props) => {
   const dispatch = useDispatch()
+
+  const education = props.education
+  let start, end
+
+  if (education) {
+    start = convertLocalDateToYearMonthObj(education.dateStart)
+    end = convertLocalDateToYearMonthObj(education.dateFinish)
+  }
 
   const classes = styles()
   const INITIAL_FORM_STATE = {
-    school: '',
-    degreeReceived: '',
-    fieldOfStudy: '',
-    startMonth: '',
-    startYear: '',
-    endMonth: '',
-    endYear: '',
-    activities: '',
-    description: ''
+    school: education?.school || '',
+    degreeReceived: education?.degreeReceived || '',
+    fieldOfStudy: education?.fieldOfStudy || '',
+    startMonth: start?.month || '',
+    startYear: start?.year || '',
+    endMonth: end?.month || '',
+    endYear: end?.year || '',
+    activities: education?.activities || '',
+    description: education?.description || ''
   }
   const FORM_VALIDATION = Yup.object().shape({
     school: Yup.string()
@@ -94,7 +108,9 @@ const AddEducationModal = () => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-       Add education
+        {education
+          ? 'Edit education'
+          : 'Add education'}
       </Typography>
 
       <Grid container>
@@ -104,9 +120,13 @@ const AddEducationModal = () => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log(values)
-            dispatch(createNewEducationAction(values))
-            dispatch(toggleModalAction())
+            if (education) {
+              dispatch(updateEducationAction(values, education.id))
+              dispatch(toggleModalAction())
+            } else {
+              dispatch(createNewEducationAction(values))
+              dispatch(toggleModalAction())
+            }
           }}
         >
           <Form>
@@ -216,6 +236,13 @@ const AddEducationModal = () => {
             </DialogContent>
             <DialogActions>
               <SharedButton title="Save" type="submit"/>
+              {education
+                ? <SharedButton title="Delete education" variant="outlined" color="secondary"
+                  onClick={() => {
+                    dispatch(deleteEducationAction(education.id))
+                    dispatch(toggleModalAction())
+                  }}/>
+                : ''}
             </DialogActions>
           </Form>
         </Formik>
@@ -224,4 +251,4 @@ const AddEducationModal = () => {
   )
 }
 
-export default AddEducationModal
+export default EducationModal

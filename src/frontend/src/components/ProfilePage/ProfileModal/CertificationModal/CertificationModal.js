@@ -12,17 +12,19 @@ import Grid from '@material-ui/core/Grid'
 import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import { createNewCertificationAction } from '../../../../redux/Profile/profileActions'
 import Typography from '@material-ui/core/Typography'
 import styles from '../styles'
+import convertLocalDateToYearMonthObj from '../../../../utils/convertLocalDateToYearMonthObj'
+import {
+  createNewCertificationAction,
+  deleteCertificationAction,
+  updateCertificationAction
+} from '../../../../redux/Profile/profileActions'
 import convertYearMonthToLocalDate from '../../../../utils/convertYearMonthToLocalDate'
 
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(3)
-  },
-  children: {
-    paddingBottom: 25
   }
 }))(MuiDialogContent)
 
@@ -31,12 +33,13 @@ const DialogActions = withStyles((theme) => ({
     width: '100%',
     margin: 0,
     display: 'flex',
-    justifyContent: 'flex-end',
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
     padding: theme.spacing(1)
   }
 }))(MuiDialogActions)
 
-const CertificationSchema = Yup.object().shape({
+const FORM_VALIDATION = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
@@ -78,8 +81,6 @@ const CertificationSchema = Yup.object().shape({
           'You should follow chronological order',
           function () {
             const {issueDateMonth, issueDateYear, expirationDateMonth, expirationDateYear} = this.parent
-            console.log(expirationDateYear)
-            if (!expirationDateMonth || !expirationDateYear) return true
             const startDateStr = convertYearMonthToLocalDate(issueDateYear, issueDateMonth)
             const endDateStr = convertYearMonthToLocalDate(expirationDateYear, expirationDateMonth)
             const startDateMillis = Date.parse(startDateStr)
@@ -87,35 +88,57 @@ const CertificationSchema = Yup.object().shape({
             return (endDateMillis - startDateMillis) > 0
           })
     }),
-  credentialId: Yup.string(),
-  credentialUrl: Yup.string().url()
+  credentialID: Yup.string(),
+  credentialUrl: Yup.string()
+    .url()
+
 })
 
-export const AddNewCertificationModal = () => {
+const CertificationModal = (props) => {
   const classes = styles()
   const dispatch = useDispatch()
+
+  const certification = props.certification
+  let start, end
+
+  if (certification) {
+    const hasExpiryDate = certification.hasExpiryDate
+    start = convertLocalDateToYearMonthObj(certification.issueDate)
+    end = hasExpiryDate ? convertLocalDateToYearMonthObj(certification.expirationDate) : null
+  }
+
+  const INITIAL_FORM_STATE = {
+    name: certification?.name || '',
+    issuingOrganization: certification?.issuingOrganization || '',
+    hasExpiryDate: certification?.hasExpiryDate || false,
+    issueDateMonth: start?.month || '',
+    issueDateYear: start?.year || '',
+    expirationDateMonth: (end ? end.month : '') || '',
+    expirationDateYear: (end ? end.year : '') || '',
+    credentialId: certification?.credentialId || '',
+    credentialUrl: certification?.credentialUrl || ''
+  }
 
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        Add license or certification
+        {certification
+          ? 'Edit certification'
+          : 'Add certification'}
       </Typography>
       <Formik
         initialValues={{
-          name: '',
-          issuingOrganization: '',
-          hasExpiryDate: false,
-          issueDateMonth: '',
-          issueDateYear: '',
-          expirationDateMonth: '',
-          expirationDateYear: '',
-          credentialId: '',
-          credentialUrl: ''
+          ...INITIAL_FORM_STATE
         }}
-        validationSchema={CertificationSchema}
+        validationSchema={FORM_VALIDATION}
         onSubmit={values => {
-          dispatch(createNewCertificationAction(values))
-          dispatch(toggleModalAction())
+          if (certification) {
+            dispatch(updateCertificationAction(values, certification.id))
+            dispatch(toggleModalAction())
+          } else {
+            dispatch(createNewCertificationAction(values))
+            dispatch(toggleModalAction())
+          }
         }}
       >
         {({values}) => (
@@ -156,52 +179,48 @@ export const AddNewCertificationModal = () => {
                       type="checkbox"
                       name="hasExpiryDate"
                     />
-                    <p>Has expiration date</p>
+                    <span>This credential has expiration date</span>
                   </label>
                 </Grid>
-                <Grid container item spacing={2}>
-                  <Grid xs={12}>
-                    <Typography variant='h6' className={classes.subtitle}>Issue date</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      size="small"
-                      name="issueDateMonth"
-                      label="Month"
-                      options={month}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      size="small"
-                      name="issueDateYear"
-                      label="Year"
-                      options={year}
-                    />
-                  </Grid>
+                <Grid item xs={12}>
+                  <span>Issue date</span>
                 </Grid>
-                <Grid container item spacing={2}>
-                  <Grid xs={12}>
-                    <Typography variant='h6' className={classes.subtitle}>Expiration date</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      disabled={values.hasExpiryDate === false}
-                      size="small"
-                      name="expirationDateMonth"
-                      label="Month"
-                      options={month}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <FormikSelect
-                      disabled={values.hasExpiryDate === false}
-                      size="small"
-                      name="expirationDateYear"
-                      label="Year"
-                      options={year}
-                    />
-                  </Grid>
+                <Grid item xs={6}>
+                  <FormikSelect
+                    size="small"
+                    name="issueDateMonth"
+                    label="Month"
+                    options={month}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormikSelect
+                    size="small"
+                    name="issueDateYear"
+                    label="Year"
+                    options={year}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Expiration date</span>
+                </Grid>
+                <Grid item xs={6}>
+                  <FormikSelect
+                    disabled={values.hasExpiryDate === false}
+                    size="small"
+                    name="expirationDateMonth"
+                    label="Month"
+                    options={month}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormikSelect
+                    disabled={values.hasExpiryDate === false}
+                    size="small"
+                    name="expirationDateYear"
+                    label="Year"
+                    options={year}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
@@ -227,10 +246,18 @@ export const AddNewCertificationModal = () => {
                       shrink: true
                     }}/>
                 </Grid>
+
               </Grid>
             </DialogContent>
             <DialogActions>
               <SharedButton type="submit" title="Save"/>
+              {certification
+                ? <SharedButton title="Delete certification" variant="outlined" color="secondary"
+                  onClick={() => {
+                    dispatch(deleteCertificationAction(certification.id))
+                    dispatch(toggleModalAction())
+                  }}/>
+                : ''}
             </DialogActions>
           </Form>
         )}
@@ -239,4 +266,4 @@ export const AddNewCertificationModal = () => {
   )
 }
 
-export default AddNewCertificationModal
+export default CertificationModal
