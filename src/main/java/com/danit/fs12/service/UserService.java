@@ -67,6 +67,7 @@ public class UserService extends GeneralService<User> {
 
   public User getActiveUser() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
     return findByEmail(authentication.getName());
   }
 
@@ -99,14 +100,38 @@ public class UserService extends GeneralService<User> {
     return save(activeUser);
   }
 
-  public void processOAuthPostLogin(String email) {
+  public void processOAuthPostLogin(String email,
+                                    String avatarUrl,
+                                    String firstName,
+                                    String lastName) {
     User existUser = userRepository.findUserByEmail(email);
 
     if (existUser == null) {
       User newUser = new User();
       newUser.setEmail(email);
+      newUser.setAvatarUrl(avatarUrl);
+      newUser.setFirstName(firstName);
+      newUser.setLastName(lastName);
       newUser.setProvider(Provider.GOOGLE);
       userRepository.save(newUser);
     }
+  }
+
+  public void createNewUserAfterOAuthLoginSuccess(String email,
+                                                  String name,
+                                                  Provider provider) {
+    User user = new User();
+    user.setEmail(email);
+    user.setFirstName(name);
+    user.setProvider(provider);
+    userRepository.save(user);
+  }
+
+  public void updateUserAfterOAuthLoginSuccess(User user,
+                                               String name,
+                                               Provider provider) {
+    user.setFirstName(name);
+    user.setProvider(provider);
+    userRepository.save(user);
   }
 }

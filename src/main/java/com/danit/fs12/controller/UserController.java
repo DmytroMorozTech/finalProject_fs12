@@ -78,7 +78,6 @@ public class UserController {
     UserRs user = userFacade.updateIntro(rq);
     return ResponseEntity.ok(user);
   }
-
 }
 
 

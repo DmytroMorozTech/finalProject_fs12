@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
@@ -51,4 +52,11 @@ public class AuthController {
     return userFacade.getActiveUser();
   }
 
+  @GetMapping("/google_auth")
+  public RedirectView googleAuth() {
+    String url = "/oauth2/authorization/google";
+    RedirectView redirectView = new RedirectView();
+    redirectView.setUrl(url);
+    return redirectView;
+  }
 }

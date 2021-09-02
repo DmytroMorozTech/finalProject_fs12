@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {Link, Paper} from '@material-ui/core'
+import {Paper} from '@material-ui/core'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import {GoogleLoginButton} from 'react-social-login-buttons'
@@ -7,9 +7,10 @@ import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
-import {useDispatch} from 'react-redux'
-import {getActiveUserAction} from '../../../redux/User/userActions'
+import {useDispatch, useSelector} from 'react-redux'
+import {getActiveUserAction, userAuthenticationAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
+import {userAuthenticationSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
@@ -18,8 +19,9 @@ const LoginCard = () => {
   const passwordRef = useRef('')
   const dispatch = useDispatch()
   let initialToken = localStorage.getItem('token')
+  const authenticated = useSelector(userAuthenticationSelector)
 
-  if (initialToken) {
+  if (initialToken && authenticated) {
     history.push('/home')
   }
 
@@ -38,8 +40,24 @@ const LoginCard = () => {
         if (res.status === 200) {
           let token = res.data.token
           localStorage.setItem('token', token)
+          dispatch(userAuthenticationAction(true))
           dispatch(getActiveUserAction())
           history.push('/home')
+        }
+      })
+      .catch(err => {
+        const errorMsg = err.response.data.message
+        toast.error(errorMsg)
+      })
+  }
+
+  const authenticateByGoogle = () => {
+    http
+      .get('api/google_auth', { crossdomain: true })
+      .then(res => {
+        console.log(res.status)
+        if (res.status === 200) {
+          dispatch(userAuthenticationAction(true))
         }
       })
       .catch(err => {
@@ -96,9 +114,7 @@ const LoginCard = () => {
           <div/>
         </section>
         <div className={classes.googleBtn}>
-          <Link to="/oauth2/authorization/google">
-            <GoogleLoginButton/>
-          </Link>
+          <GoogleLoginButton onClick={() => authenticateByGoogle()}/>
         </div>
       </div>
     </Paper>

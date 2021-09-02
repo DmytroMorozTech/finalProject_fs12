@@ -2,8 +2,8 @@ import Header from './components/Header/Header'
 import MainRoutes from './routes/MainRoutes'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
-import {getActiveUserAction} from './redux/User/userActions'
-import {isLoadingUserSelector} from './redux/User/userSelector'
+import {getActiveUserAction, userAuthenticationAction} from './redux/User/userActions'
+import {isLoadingUserSelector, userAuthenticationSelector} from './redux/User/userSelector'
 import Preloader from './shared/Preloader/Preloader'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -15,6 +15,7 @@ function App () {
 
   useEffect(() => {
     dispatch(getActiveUserAction())
+    dispatch(userAuthenticationAction())
   })
   return isLoadingUser ? <Preloader/> : (
     <div className="App">

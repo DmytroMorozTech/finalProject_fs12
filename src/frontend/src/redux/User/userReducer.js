@@ -3,7 +3,8 @@ import * as actions from './userActionTypes'
 const initialState = {
   loadingUser: false,
   activeUser: {},
-  currentUser: {}
+  currentUser: {},
+  authenticated: true
 }
 
 const userReducer = (state = initialState, action) => {
@@ -18,14 +19,19 @@ const userReducer = (state = initialState, action) => {
       window.location.href = '/'
       return {
         ...state,
-        activeUser: action.payload
+        activeUser: action.payload,
+        authenticated: false
       }
     case actions.FIND_USER_BY_ID:
       return {
         ...state,
         currentUser: action.payload
       }
-
+    case actions.AUTHENTICATE:
+      return {
+        ...state,
+        authenticated: true
+      }
     default: {
       return state
     }

@@ -75,7 +75,7 @@ public class User extends AbstractEntity {
 
   @Enumerated(EnumType.STRING)
   private Provider provider;
-  
+
   @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
