@@ -8,9 +8,11 @@ import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import FormikTextField from '../../../../shared/FormComponents/FormikTextField'
 import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
+import FormikSearchField from '../../../../shared/FormComponents/FormikSearchField'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../../data/month.json'
 import year from '../../../../data/year.json'
+import companies from '../../../../data/companies.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import { useDispatch } from 'react-redux'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
@@ -125,6 +127,7 @@ const ExperienceModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
+            console.log(values)
             if (workPlace) {
               dispatch(updateWorkPlaceAction(values, workPlace.id))
               dispatch(toggleModalAction())
@@ -150,17 +153,27 @@ const ExperienceModal = (props) => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormikTextField
+                    <FormikSearchField
                       name="organizationId"
-                      label="Organization ID"
-                      // later on a drop-down list with organizations should be implemented
+                      label="Organisation"
                       size="small"
                       InputLabelProps={{
                         shrink: true
                       }}
                       placeholder="Ex: Microsoft"
-                      disabled = {true}
+                      // options={companies}
                     />
+                    {/* <FormikTextField */}
+                    {/*  name="organizationId" */}
+                    {/*  label="Organization ID" */}
+                    {/*  // later on a drop-down list with organizations should be implemented */}
+                    {/*  size="small" */}
+                    {/*  InputLabelProps={{ */}
+                    {/*    shrink: true */}
+                    {/*  }} */}
+                    {/*  placeholder="Ex: Microsoft" */}
+                    {/*  disabled = {true} */}
+                    {/* /> */}
                   </Grid>
                   <Grid item xs={12}>
                     <label className={classes.checkbox}>
