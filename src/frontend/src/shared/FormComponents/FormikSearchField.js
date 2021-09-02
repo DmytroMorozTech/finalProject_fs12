@@ -1,7 +1,8 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import {useField, useFormikContext} from 'formik'
 import {TextField} from '@material-ui/core'
 import _ from 'lodash'
+import http from '../../services/httpService'
 
 const FormikSearchField = ({
   name,
@@ -10,19 +11,48 @@ const FormikSearchField = ({
   const [field, meta, helpers] = useField(name)
   const {setFieldValue} = useFormikContext()
 
+  const [inputVal, setInputVal] = useState('')
+  const [foundOrganizations, setFoundOrganizations] = useState(null)
+  const [debouncedState, setDebouncedState] = useState('')
+
+  const findOrganizationsByName = (name) => {
+    return http
+      .get(`/api/organizations/${name}`)
+      .then((res) => res.data)
+  }
+
   const handleChange = (event) => {
     const {value} = event.target
-    setFieldValue(name, value)
-    // setState(event.target.value)
-    // debounce(event.target.value)
+    // setFieldValue(name, value)
+    setInputVal(value)
+    debounce(value)
   }
+
+  const debounce = useCallback(
+    _.debounce((_searchVal) => {
+      // setFoundOrganizations(null)
+      setDebouncedState(_searchVal)
+      console.log(`Debounce. ${_searchVal}`)
+      // send the server request here
+      findOrganizationsByName(_searchVal)
+        .then((organizationsList) => {
+          setFoundOrganizations(organizationsList)
+          console.log('FOUND ORGANIZATIONS')
+          console.log(organizationsList)
+          // console.log(foundOrganizations)
+        })
+    }, 1000),
+    []
+  )
+
   const configTextField = {
     ...field,
     helpers,
     ...otherProps,
     fullWidth: true,
     variant: 'outlined',
-    onChange: handleChange
+    onChange: handleChange,
+    value: inputVal
   }
   if (meta && meta.touched && meta.error) {
     configTextField.error = true
@@ -33,39 +63,3 @@ const FormikSearchField = ({
   )
 }
 export default FormikSearchField
-// const FormikSearchField = ({
-//   name,
-//   options,
-//   ...otherProps
-// }) => {
-//   const {setFieldValue} = useFormikContext()
-//   const [field, meta, helpers] = useField(name)
-//   const handleOnChange = event => {
-//     const {value} = event.target
-//     setFieldValue(name, value)
-//   }
-//   const configSelect = {
-//     ...field,
-//     ...otherProps,
-//     select: true,
-//     variant: 'outlined',
-//     fullWidth: true,
-//     onChange: handleOnChange
-//   }
-//   if (meta && meta.touched && meta.error) {
-//     configSelect.error = true
-//     configSelect.helperText = meta.error
-//   }
-//   return (
-//     <TextField {...configSelect}>
-//       {Object.keys(options).map((item, pos) => {
-//         return (
-//           <MenuItem key={pos} value={item}>
-//             {options[item]}
-//           </MenuItem>
-//         )
-//       })}
-//     </TextField>
-//   )
-// }
-// export default FormikSearchField
