@@ -10,7 +10,6 @@ import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -44,6 +43,9 @@ public class UserRs {
 
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String avatarUrl;
+
+  @JsonView(UserViews.Profile.class)
+  private String profileBgUrl;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String positionAndCompany;

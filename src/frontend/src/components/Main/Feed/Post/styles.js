@@ -108,5 +108,9 @@ export default makeStyles((theme) => ({
 
   hiddenAddComment: {
     display: 'none'
+  },
+
+  postImage: {
+    width: '100%'
   }
 }))

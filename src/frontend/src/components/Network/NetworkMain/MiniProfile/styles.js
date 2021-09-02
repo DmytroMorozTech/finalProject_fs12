@@ -59,8 +59,14 @@ export default makeStyles((theme) => ({
     margin: '0 auto'
   },
 
+  avatarWrapper: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+
   name: {
     color: theme.palette.grey[700],
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(1),
     cursor: 'pointer',
     '&:hover': {

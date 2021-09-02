@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
-import Avatar from '../../../shared/Avatar/Avatar'
 import BookmarkIcon from '@material-ui/icons/Bookmark'
 import { Link } from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import { useSelector } from 'react-redux'
+import { activeUserSelector } from '../../../redux/User/userSelector'
+import Image from '../../../shared/Image/Image'
 
 function MainLeft (props) {
   const activeUser = useSelector(activeUserSelector)
@@ -23,9 +23,11 @@ function MainLeft (props) {
     <div className={classes.root}>
       <div className={classes.header}>
         <Link to={linkToActiveUserProfile} className={classes.link}>
-          <div className={classes.largeAvatar}>
-            <Avatar avatarUrl={activeUser.avatarUrl}/>
-          </div>
+          <Image
+            imageUrl={activeUser.avatarUrl}
+            className={classes.largeAvatar}
+            type={'profileAvatar'}
+          />
           <div className={classes.name}>{activeUser.fullName}</div>
         </Link>
         <Typography variant="h6" color="textSecondary" align="center">

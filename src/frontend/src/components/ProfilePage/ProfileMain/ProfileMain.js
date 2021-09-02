@@ -1,6 +1,5 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import Avatar from '@material-ui/core/Avatar'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CreateIcon from '@material-ui/icons/Create'
 import style from './styles'
@@ -9,9 +8,11 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import SmallDot from '../../../shared/SmallDot/SmallDot'
 import BusinessTwoToneIcon from '@material-ui/icons/BusinessTwoTone'
 import toggleModalAction from '../../../redux/Modal/modalActions'
-import {ADD_BACKGROUND_PHOTO, EDIT_INTRO} from '../../../redux/Modal/modalTypes'
-import {useDispatch} from 'react-redux'
+import { EDIT_INTRO, UPLOAD_AVATAR_IMG, UPLOAD_PROFILE_BACKGROUND_IMG } from '../../../redux/Modal/modalTypes'
+import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
+// import {Image, Transformation} from 'cloudinary-react'
+import Image from '../../../../src/shared/Image/Image'
 
 function ProfileMain (props) {
   const { numberOfConnections = 45, isEditable } = props
@@ -20,23 +21,31 @@ function ProfileMain (props) {
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
 
+  const defaultBgUrl = 'url(https://res.cloudinary.com/dan-insta-step/image/upload/v1630405373/linkedin/general/u4aqln7amyyfdj0tehqy.png)'
+  const bgChosenByUser = `url(${profile.profileBgUrl})`
+  const profileBgImage = profile.profileBgUrl ? bgChosenByUser : defaultBgUrl
+
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ backgroundImage: profileBgImage }}>
       <div className={classes.header}>
         <div
           className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
-          onClick={() =>
-            dispatch(toggleModalAction({modalType: ADD_BACKGROUND_PHOTO}))}>
+          onClick={() => dispatch(toggleModalAction({ modalType: UPLOAD_PROFILE_BACKGROUND_IMG }))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
       <div>
         <div className={classes.row}>
-          <Avatar src={profile.avatarUrl} alt={profile.fullName} className={classes.bigAvatar}/>
+          <Image
+            imageUrl={profile.avatarUrl}
+            onClickHandler={() => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG }))}
+            className={classes.bigAvatar}
+            type={'profileAvatar'}
+            alt={'user avatar'}
+          />
           <div
             className={clsx(!isEditable && classes.hidden)}
-            onClick={() =>
-              dispatch(toggleModalAction({modalType: EDIT_INTRO, profile: props.profile}))}>
+            onClick={() => dispatch(toggleModalAction({ modalType: EDIT_INTRO, profile: props.profile }))}>
             <CreateIcon className={classes.editName}/>
           </div>
         </div>
