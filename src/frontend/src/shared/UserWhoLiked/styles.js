@@ -15,6 +15,11 @@ export default makeStyles((theme) => ({
     width: '160px'
   },
 
+  subtitle: {
+    display: 'flex',
+    fontWeight: theme.typography.fontWeightRegular
+  },
+
   likeMini: {
     display: 'flex',
     color: theme.palette.common.white,
@@ -23,16 +28,6 @@ export default makeStyles((theme) => ({
     borderRadius: theme.shape.large,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(1)
-  },
-
-  link: {
-    display: 'flex',
-    textDecoration: 'none'
-  },
-
-  subtitle: {
-    display: 'flex',
-    fontWeight: theme.typography.fontWeightRegular
   },
 
   number: {
@@ -48,56 +43,9 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[300]
   },
 
-  lineItem: {
-    marginLeft: theme.spacing(12),
-    width: 'calc(100% - 60px)',
-    height: '0.5px',
-    border: '0',
-    margin: '0',
-    backgroundColor: theme.palette.grey[300]
-  },
-
-  avatar: {
-    display: 'flex',
-    width: theme.avatar.small
-  },
-
-  userAvatar: {
-    position: 'relative'
-  },
-
-  iconStatus: {
-    position: 'absolute',
-    left: '70%',
-    top: '65%',
-    border: '2px solid white',
-    borderWidth: '2px',
-    borderRadius: '50%'
-  },
-
-  width: {
-    width: '100%'
-  },
-
   usersWhoLiked: {
     padding: theme.spacing(5),
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
-  },
-
-  userWhoLiked: {
-    padding: theme.spacing(2)
-  },
-
-  userInfo: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-
-  buttonGroup: {
-    paddingLeft: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
   }
 }))
