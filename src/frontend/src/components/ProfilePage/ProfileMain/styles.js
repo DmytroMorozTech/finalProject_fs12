@@ -35,8 +35,8 @@ export default makeStyles((theme) => ({
   },
 
   bigAvatar: {
-    width: theme.spacing(31),
-    height: theme.spacing(31),
+    width: theme.avatar.profileAvatar,
+    // height: theme.spacing(31),
     border: '4px solid white',
     borderRadius: '50%',
     cursor: 'pointer',

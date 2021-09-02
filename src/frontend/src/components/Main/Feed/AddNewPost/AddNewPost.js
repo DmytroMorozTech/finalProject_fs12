@@ -18,6 +18,7 @@ import { createNewPostAction } from '../../../../redux/Post/postActions'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import { toast } from 'react-toastify'
+import Image from '../../../../shared/Image/Image'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ const AddNewPost = () => {
 
   const [photoIsChosen, setPhotoIsChosen] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
-  const [imgIsUploading, setImgIsUploading] = useState(false)
+  // const [imgIsUploading, setImgIsUploading] = useState(false)
 
   const onPostSubmitHandler = () => {
     dispatch(createNewPostAction({ text: postInputText }))
@@ -81,7 +82,12 @@ const AddNewPost = () => {
       <DialogContent>
         <div className={classes.userInfo}>
           <div>
-            <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
+            <Image
+              imageUrl={activeUser.avatarUrl}
+              alt={'user avatar'}
+              className={classes.userAvatar}
+              type={'smallAvatar'}
+            />
           </div>
           <div className={classes.buttonGroup}>
             <Typography variant="h5">
@@ -109,7 +115,7 @@ const AddNewPost = () => {
           onChange={handlePostInputChange}
           className={classes.editor}
         />
-        {photoIsChosen ? <img src={URL.createObjectURL(selectedFile)}/> : null}
+        {photoIsChosen ? <img alt="preview" src={URL.createObjectURL(selectedFile)}/> : null}
       </DialogContent>
       <div
         className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>

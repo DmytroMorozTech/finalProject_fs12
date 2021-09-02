@@ -8,14 +8,20 @@ import java.io.IOException;
 
 public interface ImageServiceInterface {
   User uploadAvatarImg(MultipartFile file) throws IOException;
+
   User updateAvatarImg(MultipartFile file);
+
   User deleteAvatarImg();
 
   User uploadProfileBgImg(MultipartFile file) throws IOException;
+
   User updateProfileBgImg(MultipartFile file);
+
   User deleteProfileBgImg();
 
   Post uploadPostImg(MultipartFile file);
+
   Post updatePostImg(MultipartFile file);
+
   Post deletePostImg();
 }

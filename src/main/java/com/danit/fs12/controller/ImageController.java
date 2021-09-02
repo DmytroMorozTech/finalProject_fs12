@@ -39,6 +39,4 @@ public class ImageController {
     return ResponseEntity.ok(userRs);
   }
 
-
-
 }

@@ -180,8 +180,8 @@ export default makeStyles((theme) => ({
   },
 
   userAvatar: {
-    width: 56,
-    height: 56,
+    width: 50,
+    height: 50,
     borderRadius: '50%',
     marginTop: 10,
     marginLeft: 15,
@@ -372,8 +372,8 @@ export default makeStyles((theme) => ({
     height: 16,
     position: 'absolute',
     boxShadow: '0 0 0 2px #fff',
-    bottom: -12,
-    right: -12,
+    bottom: -10,
+    right: -10,
     borderWidth: 4
   },
 
@@ -447,7 +447,8 @@ export default makeStyles((theme) => ({
     position: 'relative',
     padding: 0,
     margin: 0,
-    width: '100%'
+    width: '100%',
+    alignItems: 'center'
   },
 
   eventListItemLink: {

@@ -5,7 +5,6 @@ import LikeMiniIcon from '../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React from 'react'
 import styles from './styles'
 import clsx from 'clsx'
-import Avatar from '../../../../../../../shared/Avatar/Avatar'
 import getTimeSinceCreated from '../../../../../../../services/timePassedService'
 import SeeMore from '../../../SeeMore/SeeMore'
 import { useDispatch } from 'react-redux'
@@ -14,6 +13,7 @@ import {
   toggleCommentLikeAction
 } from '../../../../../../../redux/Comment/commentActions'
 import { Link } from 'react-router-dom'
+import Image from '../../../../../../../shared/Image/Image'
 
 function Comment (props) {
   const { id: commentId, user, text, numberOfLikes = 0, createdDate, isLikedByActiveUser } = props.comment
@@ -37,7 +37,11 @@ function Comment (props) {
     <div className={classes.comment}>
       <div className={classes.commentAvatar}>
         <Link to={linkToUserProfile}>
-          <Avatar avatarUrl={avatarUrl}/>
+          <Image
+            imageUrl={avatarUrl}
+            alt={'user avatar'}
+            type={'extraSmallAvatar'}
+          />
         </Link>
       </div>
       <div className={classes.commentWrapper}>

@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import Image from '../../../shared/Image/Image'
 
 function Chat (props) {
   const {match} = props
@@ -82,11 +83,13 @@ function Chat (props) {
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
                         {/* TODO add link to Profile Page when we will edit Messages Page */}
-                        <img src={getChatMember() && getChatMember().avatarUrl}
-                          alt={getChatMember() && getChatMember().fullName}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
-                        <div className={classes.presenceEntityIndicator}>
-                        </div>
+                        <Image
+                          imageUrl={getChatMember() && getChatMember().avatarUrl}
+                          alt={'user avatar'}
+                          className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                          type={'extraLargeAvatar'}
+                        />
+                        <div className={classes.presenceEntityIndicator}></div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>

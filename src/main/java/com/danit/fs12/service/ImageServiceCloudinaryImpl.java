@@ -6,7 +6,6 @@ import com.cloudinary.utils.ObjectUtils;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,9 +38,11 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
     String imgPublicId = (String) uploadResult.get("public_id");
     System.out.println(imgPublicId);
 
-    Map<String, String> uploadOptions = new HashMap<>() {{
-      put("invalidate", "true");
-    }};
+    Map<String, String> uploadOptions = new HashMap<>() {
+      {
+        put("invalidate", "true");
+      }
+    };
 
     if (!currentAvatarUrl.isEmpty()) {
       cloudinary.uploader().destroy(currentAvatarUrl, uploadOptions);
@@ -82,7 +83,10 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
     if (!currentProfileBgUrl.isEmpty()) {
       cloudinary.uploader().destroy(
         currentProfileBgPublicId,
-        new HashMap<>() {{ put("invalidate", "true");}});
+        new HashMap<>() { {
+              put("invalidate", "true");
+          }
+        });
     }
 
     activeUser.setProfileBgUrl(newProfileBgUrl);

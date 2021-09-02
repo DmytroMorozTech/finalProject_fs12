@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Style from './styles'
-import {useDispatch, useSelector} from 'react-redux'
-import {chatMessages} from '../../../redux/Message/messageSelector'
-import {getChatMessagesAction} from '../../../redux/Message/messageActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { chatMessages } from '../../../redux/Message/messageSelector'
+import { getChatMessagesAction } from '../../../redux/Message/messageActions'
+import Image from '../../../shared/Image/Image'
 
 function ChatsList (props) {
-  const {user, chatId, activeUserId} = props
-  const {avatarUrl, firstName, fullName} = user
+  const { user, chatId, activeUserId } = props
+  const { avatarUrl, firstName, fullName } = user
   const classes = Style()
   const userChatMessages = useSelector(chatMessages)
   const dispatch = useDispatch()
@@ -83,7 +84,12 @@ function ChatsList (props) {
 
             <div className={classes.selectableEntity}>
               <div className={classes.absolut}>
-                <img src={avatarUrl} alt={fullName} className={classes.userAvatar}/>
+                <Image
+                  imageUrl={avatarUrl}
+                  alt={'user avatar'}
+                  className={classes.userAvatar}
+                  type={'extraSmallAvatar'}
+                />
                 <div className={classes.statusUserAvatar}/>
               </div>
             </div>

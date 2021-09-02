@@ -1,21 +1,21 @@
 import styles from './styles'
 import { Link } from 'react-router-dom'
-import Avatar from '../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
 import React, { useState } from 'react'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
+import Image from '../../../../shared/Image/Image'
 
 function MiniProfile (props) {
   const classes = styles()
 
   const {
-    avatarUrl = 'linkedin/avatars/fiztv2grxh6p62y72j6a.jpg',
-    id = 4,
-    fullName = 'George Lupin',
-    positionAndCompany = 'Fullstack Developer — GlobalLogic',
+    avatarUrl = 'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
+    id = 3,
+    fullName = 'Laura Lee',
+    positionAndCompany = 'Senior Java Developer',
     numberOfConnection = 1
   } = props
 
@@ -34,8 +34,13 @@ function MiniProfile (props) {
           <CloseIcon fontSize="inherit"/>
         </div>
         <Link to={linkToUserProfile} className={classes.link}>
-          <div className={classes.avatar}>
-            <Avatar avatarUrl={avatarUrl}/>
+          <div className={classes.avatarWrapper}>
+            <Image
+              imageUrl={avatarUrl}
+              alt={'user avatar'}
+              className={classes.avatar}
+              type={'extraLargeAvatar'}
+            />
           </div>
           <Typography variant="h5" align="center" className={classes.name}>
             {fullName}

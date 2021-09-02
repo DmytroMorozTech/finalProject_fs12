@@ -10,7 +10,6 @@ import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
