@@ -13,7 +13,7 @@ import {
   EDIT_EXPERIENCE
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
-import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
+import UsersWhoLikedPost from '../../components/Main/Feed/Post/UserWhoLikedPost/UsersWhoLikedPost'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
 import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
@@ -58,7 +58,7 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case USERS_WHO_LIKED_POST:
-          content = <UsersWhoLiked/>
+          content = <UsersWhoLikedPost/>
           break
 
         case USERS_WHO_LIKED_COMMENT:
