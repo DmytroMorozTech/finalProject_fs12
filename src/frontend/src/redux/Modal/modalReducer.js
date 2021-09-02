@@ -2,15 +2,16 @@ import * as actions from './modalActionTypes'
 import {
   ADD_NEW_CERTIFICATION,
   ADD_NEW_EDUCATION,
+  ADD_NEW_EXPERIENCE,
   ADD_NEW_POST,
   EDIT_CERTIFICATION,
   EDIT_EDUCATION,
+  EDIT_EXPERIENCE,
   EDIT_INTRO,
-  USERS_WHO_LIKED_POST,
+  UPLOAD_AVATAR_IMG,
+  UPLOAD_PROFILE_BACKGROUND_IMG,
   USERS_WHO_LIKED_COMMENT,
-  ADD_BACKGROUND_PHOTO,
-  ADD_NEW_EXPERIENCE,
-  EDIT_EXPERIENCE
+  USERS_WHO_LIKED_POST
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
 import UsersWhoLikedPost from '../../components/Main/Feed/Post/UserWhoLikedPost/UsersWhoLikedPost'
@@ -19,8 +20,9 @@ import UsersWhoLikedComment
 import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
 import IntroModal from '../../components/ProfilePage/ProfileModal/IntroModal/IntroModal'
 import CertificationModal from '../../components/ProfilePage/ProfileModal/CertificationModal/CertificationModal'
-import BackGroundPhotoModal from '../../components/ProfilePage/ProfileModal/BackgroundPhotoModal/BackGroundPhotoModal'
 import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
+import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
+import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
 
 const initialState = {
   isModalOpen: false,
@@ -77,8 +79,12 @@ const modalReducer = (state = initialState, action) => {
           content = <IntroModal profile={action.payload}/>
           break
 
-        case ADD_BACKGROUND_PHOTO:
-          content = <BackGroundPhotoModal/>
+        case UPLOAD_PROFILE_BACKGROUND_IMG:
+          content = <UploadProfileBgImgModal/>
+          break
+
+        case UPLOAD_AVATAR_IMG:
+          content = <UploadAvatarModal/>
           break
 
         case ADD_NEW_EXPERIENCE:

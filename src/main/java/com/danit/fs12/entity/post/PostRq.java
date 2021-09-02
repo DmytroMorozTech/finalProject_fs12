@@ -13,4 +13,7 @@ public class PostRq {
   @NotNull(message = "Post text should be specified")
   String text;
 
+  @Size(min = 1, max = 255, message = "Length of image URL should not exceed 255 characters")
+  private String imgUrl;
+
 }

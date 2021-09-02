@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles'
-import ProfileBg from '../../../temporaryImages/ProfileBg.png'
 
 export default makeStyles((theme) => ({
 
@@ -9,7 +8,6 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
     marginBottom: theme.spacing(2),
     padding: theme.spacing(4),
-    backgroundImage: 'url(' + ProfileBg + ')',
     backgroundSize: '100% 160px',
     backgroundRepeat: 'no-repeat'
   },
@@ -37,8 +35,8 @@ export default makeStyles((theme) => ({
   },
 
   bigAvatar: {
-    width: theme.spacing(31),
-    height: theme.spacing(31),
+    width: theme.avatar.profileAvatar,
+    // height: theme.spacing(31),
     border: '4px solid white',
     borderRadius: '50%',
     cursor: 'pointer',

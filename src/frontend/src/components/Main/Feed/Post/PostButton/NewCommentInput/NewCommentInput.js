@@ -1,5 +1,4 @@
 import styles from './styles'
-import Avatar from '../../../../../../shared/Avatar/Avatar'
 import InputBase from '@material-ui/core/InputBase'
 import SharedButton from '../../../../../../shared/SharedButton/SharedButton'
 import Comment from './Comment/Comment'
@@ -9,6 +8,7 @@ import { activeUserSelector } from '../../../../../../redux/User/userSelector'
 import { createNewCommentAction } from '../../../../../../redux/Comment/commentActions'
 import { allCommentsSelector } from '../../../../../../redux/Comment/commentSelector'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
+import Image from '../../../../../../shared/Image/Image'
 
 function NewCommentInput (props) {
   const {postId} = props
@@ -53,7 +53,11 @@ function NewCommentInput (props) {
     <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
         <div className={classes.smallAvatar}>
-          <Avatar avatarUrl={activeUser.avatarUrl}/>
+          <Image
+            imageUrl={activeUser.avatarUrl}
+            alt={'user avatar'}
+            type={'extraSmallAvatar'}
+          />
         </div>
         <div className={classes.newComment}>
           <InputBase
