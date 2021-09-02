@@ -113,7 +113,9 @@ const ExperienceModal = (props) => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-                Edit experience
+        {workPlace
+          ? 'Edit experience'
+          : 'Add experience'}
       </Typography>
 
       <Grid container>

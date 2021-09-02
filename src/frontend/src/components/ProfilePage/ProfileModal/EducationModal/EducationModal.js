@@ -108,7 +108,9 @@ const EducationModal = (props) => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-                Edit education
+        {education
+          ? 'Edit education'
+          : 'Add education'}
       </Typography>
 
       <Grid container>

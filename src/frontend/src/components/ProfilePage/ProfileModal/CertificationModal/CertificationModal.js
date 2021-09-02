@@ -122,7 +122,9 @@ const CertificationModal = (props) => {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        Edit certification
+        {certification
+          ? 'Edit certification'
+          : 'Add certification'}
       </Typography>
       <Formik
         initialValues={{
