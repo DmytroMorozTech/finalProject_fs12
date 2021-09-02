@@ -83,8 +83,8 @@ const UploadProfileBgImgModal = () => {
               required
               onChange={(event) => {
                 const file = event.target.files[0]
-                if (file && file.size > 4194304) {
-                  toast.error('The size of profile background image should not exceed 4MB')
+                if (file && file.size > 10485760) {
+                  toast.error('The size of profile background image should not exceed 10MB')
                   return
                 }
 

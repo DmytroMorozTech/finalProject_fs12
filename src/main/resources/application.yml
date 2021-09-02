@@ -9,8 +9,8 @@ spring:
     active: "local"
   servlet:
     multipart:
-      max-file-size: 4000KB
-      max-request-size: 4000KB
+      max-file-size: 10000KB
+      max-request-size: 10000KB
 jwt:
   header: Authorization
   secret: my-very-secret-key

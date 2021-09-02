@@ -84,8 +84,8 @@ const UploadAvatarModal = () => {
               required
               onChange={(event) => {
                 const file = event.target.files[0]
-                if (file.size > 4194304) {
-                  toast.error('The size of image should not exceed 4MB')
+                if (file.size > 10485760) {
+                  toast.error('The size of image should not exceed 10MB')
                   return
                 }
 
