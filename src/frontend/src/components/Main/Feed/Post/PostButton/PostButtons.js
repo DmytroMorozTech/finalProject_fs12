@@ -32,11 +32,11 @@ function PostButtons (props) {
   }
 
   const handleShare = () => {
-
+    // TODO: handleShare
   }
 
   const handleSend = () => {
-
+    // TODO: handleSend
   }
 
   const items = [

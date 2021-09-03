@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
   },
 
   largeAvatar: {
-    width: theme.avatar.medium,
+    width: theme.avatar.large,
     border: '2px solid white',
     borderRadius: '50%',
     margin: '0 auto'
@@ -50,7 +50,10 @@ export default makeStyles((theme) => ({
   },
 
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
 
   connection: {

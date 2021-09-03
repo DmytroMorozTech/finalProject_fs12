@@ -1,4 +1,4 @@
-import Item from './Item/Item'
+import NavbarItem from './NavbarItem/NavbarItem'
 import styles from './styles'
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded'
@@ -28,7 +28,7 @@ function Navbar () {
   return (
     <div className={classes.navbar}>
       {items.map(({ Icon, ...rest }, i) => (
-        <Item key={i} Icon={Icon} {...rest} />
+        <NavbarItem key={i} Icon={Icon} {...rest} />
       ))}
       <Hidden mdDown>
         <span className={classes.margin}> </span>
