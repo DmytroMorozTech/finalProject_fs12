@@ -1,11 +1,7 @@
-import styles from './styles'
-import { MenuItem } from '@material-ui/core'
 import React from 'react'
 import FollowingAdditionsItem from './FollowingAdditionsItem/FollowingAdditionsItem'
 
 function FollowingAdditions ({handleAll, handleConnections, handleOutOfNetwork, handleCompanies}) {
-  const classes = styles()
-
   const items = [
     {
       title: 'All',
@@ -32,9 +28,7 @@ function FollowingAdditions ({handleAll, handleConnections, handleOutOfNetwork, 
   return (
     <div>
       {items.map(({ title, ...rest }, i) => (
-        <MenuItem className={classes.menuItem} key={i}>
-          <FollowingAdditionsItem key={i} title={title} {...rest}/>
-        </MenuItem>
+        <FollowingAdditionsItem key={i} title={title} {...rest}/>
       ))}
     </div>
   )

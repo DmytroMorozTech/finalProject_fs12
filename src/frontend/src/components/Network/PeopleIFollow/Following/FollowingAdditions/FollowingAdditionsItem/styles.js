@@ -4,8 +4,12 @@ export default makeStyles((theme) => ({
 
   item: {
     display: 'flex',
+    alignItems: 'flex-start',
     flexDirection: 'column',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.1)'
+    }
   },
 
   title: {

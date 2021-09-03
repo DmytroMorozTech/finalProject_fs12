@@ -2,26 +2,26 @@ import { Typography } from '@material-ui/core'
 import styles from './styles'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import FilterListIcon from '@material-ui/icons/FilterList'
-import React from 'react'
+import React, { useState } from 'react'
 import FollowingAdditions from './FollowingAdditions/FollowingAdditions'
 import FollowProfile from '../FollowProfile/FollowProfile'
 
 function Following () {
   const classes = styles()
 
-  let kindOfFilter = 'All'
+  const [kindOfFilter, setKindOfFilter] = useState('All')
 
   const handleAll = () => {
-    kindOfFilter = 'All'
+    setKindOfFilter('All')
   }
   const handleConnections = () => {
-    kindOfFilter = 'Connections'
+    setKindOfFilter('Connections')
   }
   const handleOutOfNetwork = () => {
-    kindOfFilter = 'Out-of-Network'
+    setKindOfFilter('Out-of-Network')
   }
   const handleCompanies = () => {
-    kindOfFilter = 'Companies'
+    setKindOfFilter('Companies')
   }
 
   return (
@@ -34,7 +34,7 @@ function Following () {
           Filter by
           <span className={classes.kindOfFilter}> {kindOfFilter}</span>
         </div>
-        <div>
+        <div className={classes.filterMenu}>
           <SimpleMenu menuItem={
             <FilterListIcon/>
           } userData={
