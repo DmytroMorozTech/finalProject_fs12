@@ -161,6 +161,7 @@ const ExperienceModal = (props) => {
                         shrink: true
                       }}
                       placeholder="Ex: Microsoft"
+                      autocomplete='off'
                       // options={companies}
                     />
                     {/* <FormikTextField */}

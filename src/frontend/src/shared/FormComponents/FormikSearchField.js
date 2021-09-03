@@ -52,14 +52,24 @@ const FormikSearchField = ({
     fullWidth: true,
     variant: 'outlined',
     onChange: handleChange,
-    value: inputVal
+    value: inputVal,
+    autocomplete: 'off'
   }
   if (meta && meta.touched && meta.error) {
     configTextField.error = true
     configTextField.helperText = meta.error
   }
   return (
-    <TextField {...configTextField}/>
+    <>
+      <TextField {...configTextField}/>
+      {foundOrganizations &&
+      (
+        <ul>
+          {foundOrganizations.map(org => (<li>{org.name}</li>))}
+        </ul>
+      )
+      }
+    </>
   )
 }
 export default FormikSearchField
