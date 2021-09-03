@@ -119,18 +119,22 @@ public class UserService extends GeneralService<User> {
 
   public void createNewUserAfterOAuthLoginSuccess(String email,
                                                   String name,
+                                                  String avatarUrl,
                                                   Provider provider) {
     User user = new User();
     user.setEmail(email);
     user.setFirstName(name);
+    user.setAvatarUrl(avatarUrl);
     user.setProvider(provider);
     userRepository.save(user);
   }
 
   public void updateUserAfterOAuthLoginSuccess(User user,
                                                String name,
+                                               String avatarUrl,
                                                Provider provider) {
     user.setFirstName(name);
+    user.setAvatarUrl(avatarUrl);
     user.setProvider(provider);
     userRepository.save(user);
   }
