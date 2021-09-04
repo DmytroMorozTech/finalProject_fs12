@@ -54,7 +54,7 @@ function NewCommentInput (props) {
       <div className={classes.addComment}>
         <div className={classes.smallAvatar}>
           <Image
-            imageUrl={activeUser.avatarUrl}
+            imageUrl={activeUser.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
             alt={'user avatar'}
             type={'extraSmallAvatar'}
           />

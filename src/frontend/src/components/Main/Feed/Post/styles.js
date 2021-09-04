@@ -77,7 +77,8 @@ export default makeStyles((theme) => ({
 
   text: {
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4)
+    paddingRight: theme.spacing(4),
+    whiteSpace: 'pre-wrap'
   },
 
   picture: {

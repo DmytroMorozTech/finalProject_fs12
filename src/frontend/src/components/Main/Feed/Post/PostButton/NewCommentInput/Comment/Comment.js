@@ -38,7 +38,7 @@ function Comment (props) {
       <div className={classes.commentAvatar}>
         <Link to={linkToUserProfile}>
           <Image
-            imageUrl={avatarUrl}
+            imageUrl={avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
             alt={'user avatar'}
             type={'extraSmallAvatar'}
           />

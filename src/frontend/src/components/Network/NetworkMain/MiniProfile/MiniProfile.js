@@ -36,7 +36,7 @@ function MiniProfile (props) {
         <Link to={linkToUserProfile} className={classes.link}>
           <div className={classes.avatarWrapper}>
             <Image
-              imageUrl={avatarUrl}
+              imageUrl={avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
               alt={'user avatar'}
               className={classes.avatar}
               type={'extraLargeAvatar'}

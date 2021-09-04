@@ -24,7 +24,7 @@ function MainLeft (props) {
       <div className={classes.header}>
         <Link to={linkToActiveUserProfile} className={classes.link}>
           <Image
-            imageUrl={activeUser.avatarUrl}
+            imageUrl={activeUser.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
             className={classes.largeAvatar}
             type={'profileAvatar'}
           />

@@ -1,6 +1,6 @@
 import PublicIcon from '@material-ui/icons/Public'
 import styles from './styles'
-import React from 'react'
+import React, { useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Typography from '@material-ui/core/Typography'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
@@ -15,11 +15,12 @@ import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
 import Image from '../../../../../src/shared/Image/Image'
+import { getCommentsForPostAction } from '../../../../redux/Comment/commentActions'
 
 function Post (props) {
   const {
     id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    numberOfViews = 244688, imgUrl, videoUrl = ''
+    imgUrl, videoUrl = ''
   } = props.post
 
   const dispatch = useDispatch()
@@ -33,6 +34,15 @@ function Post (props) {
 
   const linkToUserProfile = '/profiles/' + user.id
 
+  const [showedAddComment, setShowedAddComment] = useState(false)
+
+  const handleComment = () => {
+    if (!showedAddComment) {
+      dispatch(getCommentsForPostAction(postId))
+      setShowedAddComment(!showedAddComment)
+    }
+  }
+
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
@@ -44,7 +54,7 @@ function Post (props) {
       <div className={classes.postAuthor}>
         <Link to={linkToUserProfile}>
           <Image
-            imageUrl={user.avatarUrl}
+            imageUrl={user.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
             alt={'user avatar'}
             type={'smallAvatar'}
             className={classes.mediumAvatar}
@@ -85,26 +95,32 @@ function Post (props) {
       {videoUrl && ' Some video content should be here'}
 
       <div className={classes.quantity}>
-        <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
-          <Typography variant="body2" className={classes.quantityText}>
-            <LikeMiniIcon/>
-            {numberOfLikes}
+        {numberOfLikes > 0
+          ? <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
+            <Typography variant="body2" className={classes.quantityText}>
+              <LikeMiniIcon/>
+              {numberOfLikes}
+            </Typography>
+          </div>
+          : ''
+        }
+        {numberOfLikes > 0 && numberOfComments > 0
+          ? <SmallDot/>
+          : ''
+        }
+        {numberOfComments > 0
+          ? <Typography variant="body2" className={classes.quantityText} onClick={handleComment}>
+            {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
           </Typography>
-        </div>
-        <SmallDot/>
-        <Typography variant="body2" className={classes.quantityText}>
-          {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
-        </Typography>
-        <SmallDot/>
-        <Typography variant="body2" className={classes.quantityText}>
-          {numberOfViews} views
-        </Typography>
+          : ''
+        }
       </div>
       <hr className={classes.line}/>
       <PostButtons
         postId={postId}
         isLikedByActiveUser={isLikedByActiveUser}
-        isBookmarkedByActiveUser={isBookmarkedByActiveUser}
+        showedAddComment={showedAddComment}
+        handleComment={handleComment}
       />
     </div>
   )
