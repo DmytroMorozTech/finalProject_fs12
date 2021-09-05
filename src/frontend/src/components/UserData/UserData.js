@@ -20,7 +20,7 @@ function UserData () {
         <div className={classes.avatarWrapper}>
           {/* <img className={classes.avatar} src={activeUser.avatarUrl} alt={}/> */}
           <Image
-            imageUrl={activeUser.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
+            imageUrl={activeUser.avatarUrl}
             alt={`Avatar of ${activeUser.fullName}`}
             className={classes.avatar}
             type={'smallAvatar'}

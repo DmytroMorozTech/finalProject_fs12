@@ -54,7 +54,7 @@ function Post (props) {
       <div className={classes.postAuthor}>
         <Link to={linkToUserProfile}>
           <Image
-            imageUrl={user.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
+            imageUrl={user.avatarUrl}
             alt={'user avatar'}
             type={'smallAvatar'}
             className={classes.mediumAvatar}
@@ -108,9 +108,9 @@ function Post (props) {
           ? <SmallDot/>
           : ''
         }
-        {numberOfComments > 0
+        {commentsForPost.length > 0
           ? <Typography variant="body2" className={classes.quantityText} onClick={handleComment}>
-            {commentsForPost.length > 0 ? commentsForPost.length : numberOfComments} comments
+            {commentsForPost.length} comments
           </Typography>
           : ''
         }

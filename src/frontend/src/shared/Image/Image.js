@@ -75,9 +75,18 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
     return transformation
   }
 
+  const getDefaultImgUrl = (type) => {
+    let defaultImgUrl
+    if (type === 'profileAvatar' || type === 'smallAvatar' ||
+      type === 'extraSmallAvatar' || type === 'extraLargeAvatar') {
+      defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+    }
+    return defaultImgUrl
+  }
+
   return (
     <CloudinaryImage
-      publicId={imageUrl}
+      publicId={imageUrl || getDefaultImgUrl(type) }
       onClick={onClickHandler}
       className={className}
       crop="crop"

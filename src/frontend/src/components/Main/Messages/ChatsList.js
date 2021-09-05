@@ -85,7 +85,7 @@ function ChatsList (props) {
             <div className={classes.selectableEntity}>
               <div className={classes.absolut}>
                 <Image
-                  imageUrl={avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
+                  imageUrl={avatarUrl}
                   alt={'user avatar'}
                   className={classes.userAvatar}
                   type={'extraSmallAvatar'}

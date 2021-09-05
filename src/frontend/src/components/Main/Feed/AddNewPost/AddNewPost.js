@@ -83,7 +83,7 @@ const AddNewPost = () => {
         <div className={classes.userInfo}>
           <div>
             <Image
-              imageUrl={activeUser.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
+              imageUrl={activeUser.avatarUrl}
               alt={'user avatar'}
               className={classes.userAvatar}
               type={'smallAvatar'}

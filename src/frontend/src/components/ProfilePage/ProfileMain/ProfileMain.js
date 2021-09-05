@@ -37,7 +37,7 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Image
-            imageUrl={profile.avatarUrl || 'linkedin/general/ghrchekikx3dnas6ivxm'}
+            imageUrl={profile.avatarUrl}
             onClickHandler={() => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG }))}
             className={classes.bigAvatar}
             type={'profileAvatar'}
