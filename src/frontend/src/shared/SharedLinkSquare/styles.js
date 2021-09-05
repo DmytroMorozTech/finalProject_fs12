@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     '&:hover': {
       borderRadius: theme.shape.small,
-      backgroundColor: theme.palette.grey[200]
+      backgroundColor: 'rgba(0, 0, 0, 0.1)'
     }
   }
 }))
