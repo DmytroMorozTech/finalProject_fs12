@@ -89,7 +89,9 @@ function Chat (props) {
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}
                           type={'extraLargeAvatar'}
                         />
-                        <div className={classes.presenceEntityIndicator}></div>
+                        <div className={classes.presenceEntityIndicator}>
+
+                        </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>

@@ -12,7 +12,6 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
             height={theme.avatar.profileAvatar}
             width={theme.avatar.profileAvatar}
             crop="fill"
-            radius="max"
             quality="100"
             // fetchFormat="auto"  - because of this some artifacts may appear
             drp="auto"
@@ -76,9 +75,18 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
     return transformation
   }
 
+  const getDefaultImgUrl = (type) => {
+    let defaultImgUrl
+    if (type === 'profileAvatar' || type === 'smallAvatar' ||
+      type === 'extraSmallAvatar' || type === 'extraLargeAvatar') {
+      defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+    }
+    return defaultImgUrl
+  }
+
   return (
     <CloudinaryImage
-      publicId={imageUrl}
+      publicId={imageUrl || getDefaultImgUrl(type) }
       onClick={onClickHandler}
       className={className}
       crop="crop"
