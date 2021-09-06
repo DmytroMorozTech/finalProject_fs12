@@ -19,7 +19,7 @@ public interface ImageServiceInterface {
 
   User deleteProfileBgImg();
 
-  Post uploadPostImg(MultipartFile file);
+  String uploadPostImg(MultipartFile file) throws IOException;
 
   Post updatePostImg(MultipartFile file);
 

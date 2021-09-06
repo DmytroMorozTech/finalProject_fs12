@@ -1,42 +1,32 @@
 import { togglePostLikeAction } from '../../../../../redux/Post/postActions'
-import {getCommentsForPostAction} from '../../../../../redux/Comment/commentActions'
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import { Hidden } from '@material-ui/core'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined'
 import TelegramIcon from '@material-ui/icons/Telegram'
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import NewCommentInput from './NewCommentInput/NewCommentInput'
 
 function PostButtons (props) {
-  const {postId, isLikedByActiveUser} = props
+  const {postId, isLikedByActiveUser, showedAddComment, handleComment} = props
 
   const classes = styles()
 
   const dispatch = useDispatch()
 
-  const [showedAddComment, setShowedAddComment] = useState(false)
-
   const handleLike = () => {
     dispatch(togglePostLikeAction(postId))
   }
 
-  const handleComment = () => {
-    if (!showedAddComment) {
-      dispatch(getCommentsForPostAction(postId))
-      setShowedAddComment(!showedAddComment)
-    }
-  }
-
   const handleShare = () => {
-
+    // TODO: handleShare
   }
 
   const handleSend = () => {
-
+    // TODO: handleSend
   }
 
   const items = [

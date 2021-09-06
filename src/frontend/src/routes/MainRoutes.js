@@ -16,6 +16,10 @@ import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
 import Chat from '../components/Main/Messages/Chat'
 import NewChat from '../components/Main/Messages/NewChat'
+import PeopleIFollowFollowers from '../components/Network/PeopleIFollow/PeopleIFollowFollowers'
+import PeopleIFollowFollowing from '../components/Network/PeopleIFollow/PeopleIFollowFollowing'
+import InvitationManagerReceived from '../components/Network/InvitationManager/InvitationManagerReceived'
+import InvitationManagerSent from '../components/Network/InvitationManager/InvitationManagerSent'
 
 const MainRoutes = () => {
   return (
@@ -24,6 +28,10 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
+      <ProtectedRoutes exact path="/network/following" render={() => <PeopleIFollowFollowing/>}/>
+      <ProtectedRoutes exact path="/network/followers" render={() => <PeopleIFollowFollowers/>}/>
+      <ProtectedRoutes exact path="/network/invitation_manager/received" render={() => <InvitationManagerReceived/>}/>
+      <ProtectedRoutes exact path="/network/invitation_manager/sent" render={() => <InvitationManagerSent/>}/>
       <ProtectedRoutes exact path="/jobs" render={() => <Jobs/>}/>
       <ProtectedRoutes exact path="/jobs/my_jobs" render={() => <MyJobs/>}/>
       <ProtectedRoutes exact path="/messages" render={() => <Messages/>}/>

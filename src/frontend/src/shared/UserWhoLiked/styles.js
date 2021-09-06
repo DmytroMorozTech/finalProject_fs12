@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     paddingBottom: theme.spacing(2),
-    borderBottom: theme.border.likesModal,
+    borderBottom: theme.border.success,
     width: '160px'
   },
 

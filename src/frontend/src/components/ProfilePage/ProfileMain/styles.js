@@ -3,13 +3,15 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
 
   root: {
+    position: 'relative',
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
     marginBottom: theme.spacing(2),
     padding: theme.spacing(4),
     backgroundSize: '100% 160px',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    zIndex: 0
   },
 
   header: {
@@ -41,6 +43,17 @@ export default makeStyles((theme) => ({
     borderRadius: '50%',
     cursor: 'pointer',
     marginBottom: theme.spacing(3)
+  },
+
+  profileBackgroundImg: {
+    width: '100%',
+    position: 'absolute',
+    maxHeight: '180px',
+    top: 0,
+    left: 0,
+    zIndex: -10,
+    borderTopRightRadius: theme.shape.medium,
+    borderTopLeftRadius: theme.shape.medium
   },
 
   editName: {

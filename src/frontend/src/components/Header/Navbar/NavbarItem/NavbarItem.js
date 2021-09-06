@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import UserData from '../../../UserData/UserData'
 
-const Item = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
+const NavbarItem = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
   const classes = styles()
 
   const notLink = (e) => {
@@ -42,4 +42,4 @@ const Item = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
   )
 }
 
-export default Item
+export default NavbarItem

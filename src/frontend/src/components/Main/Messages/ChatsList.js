@@ -7,7 +7,7 @@ import Image from '../../../shared/Image/Image'
 
 function ChatsList (props) {
   const { user, chatId, activeUserId } = props
-  const { avatarUrl, firstName, fullName } = user
+  const { avatarPublicId, firstName, fullName } = user
   const classes = Style()
   const userChatMessages = useSelector(chatMessages)
   const dispatch = useDispatch()
@@ -85,7 +85,7 @@ function ChatsList (props) {
             <div className={classes.selectableEntity}>
               <div className={classes.absolut}>
                 <Image
-                  imageUrl={avatarUrl}
+                  imageUrl={avatarPublicId}
                   alt={'user avatar'}
                   className={classes.userAvatar}
                   type={'extraSmallAvatar'}
