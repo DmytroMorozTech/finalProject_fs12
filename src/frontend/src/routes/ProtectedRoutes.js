@@ -6,7 +6,6 @@ import {activeUserSelector, userAuthenticationSelector} from '../redux/User/user
 const ProtectedRoutes = (props) => {
   const {...data} = props
   // let initialToken = localStorage.getItem('token')
-  const authenticated = useSelector(userAuthenticationSelector)
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser.id
 

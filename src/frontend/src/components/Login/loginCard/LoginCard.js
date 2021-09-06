@@ -18,9 +18,7 @@ const LoginCard = () => {
   const loginRef = useRef('')
   const passwordRef = useRef('')
   const dispatch = useDispatch()
-  // let initialToken = localStorage.getItem('token')
-  const authenticated = useSelector(userAuthenticationSelector)
-  // const activeUser = useSelector(activeUserSelector)
+
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser.id
 
