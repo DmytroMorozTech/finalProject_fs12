@@ -113,7 +113,10 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
       type === 'largeAvatar' || type === 'mediumAvatar' ||
       type === 'smallAvatar' || type === 'extraSmallAvatar') {
       defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+    } if (type === 'profileBgImg') {
+      defaultImgUrl = 'linkedin/general/u4aqln7amyyfdj0tehqy'
     }
+
     return defaultImgUrl
   }
 

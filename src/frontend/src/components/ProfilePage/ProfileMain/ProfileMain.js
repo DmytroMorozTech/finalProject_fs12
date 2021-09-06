@@ -20,14 +20,14 @@ function ProfileMain (props) {
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
 
-  const defaultBgUrl = 'url(https://res.cloudinary.com/dan-insta-step/image/upload/v1630405373/linkedin/general/u4aqln7amyyfdj0tehqy.png)'
-  const bgChosenByUser = `url(${profile.profileBgUrl})`
-  const profileBgImage = profile.profileBgUrl ? bgChosenByUser : defaultBgUrl
+  // const defaultBgUrl = 'url(https://res.cloudinary.com/dan-insta-step/image/upload/v1630405373/linkedin/general/u4aqln7amyyfdj0tehqy.png)'
+  // const bgChosenByUser = `url(${profile.profileBgUrl})`
+  // const profileBgImage = profile.profileBgPublicId ? bgChosenByUser : defaultBgUrl
 
   return (
     <div className={classes.root} >
       <Image
-        imageUrl={'linkedin/profile-bg/dwaufqbi9asbav96zken'}
+        imageUrl={profile.profileBgPublicId}
         className={classes.profileBackgroundImg}
         type={'profileBgImg'}
         alt={'profile background'}
