@@ -12,7 +12,7 @@ function MiniProfile (props) {
   const classes = styles()
 
   const {
-    avatarUrl,
+    avatarPublicId,
     id = 3,
     fullName = 'Laura Lee',
     positionAndCompany = 'Senior Java Developer',
@@ -36,7 +36,7 @@ function MiniProfile (props) {
         <Link to={linkToUserProfile} className={classes.link}>
           <div className={classes.avatarWrapper}>
             <Image
-              imageUrl={avatarUrl}
+              imageUrl={avatarPublicId}
               alt={'user avatar'}
               className={classes.avatar}
               type={'extraLargeAvatar'}

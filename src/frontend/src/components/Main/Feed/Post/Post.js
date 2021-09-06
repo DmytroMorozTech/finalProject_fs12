@@ -54,7 +54,7 @@ function Post (props) {
       <div className={classes.postAuthor}>
         <Link to={linkToUserProfile}>
           <Image
-            imageUrl={user.avatarUrl}
+            imageUrl={user.avatarPublicId}
             alt={'user avatar'}
             type={'smallAvatar'}
             className={classes.mediumAvatar}

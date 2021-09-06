@@ -17,7 +17,8 @@ export default makeStyles((theme) => ({
 
   avatar: {
     display: 'flex',
-    width: theme.avatar.small
+    width: theme.avatar.small,
+    borderRadius: '50%'
   },
 
   link: {

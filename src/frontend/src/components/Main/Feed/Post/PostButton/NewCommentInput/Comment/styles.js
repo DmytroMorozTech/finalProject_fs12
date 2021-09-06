@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
   commentAvatar: {
     width: theme.avatar.extraSmall,
     marginLeft: theme.spacing(3),
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    borderRadius: '50%'
   },
 
   commentWrapper: {

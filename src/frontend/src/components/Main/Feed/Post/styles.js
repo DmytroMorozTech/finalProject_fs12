@@ -38,7 +38,8 @@ export default makeStyles((theme) => ({
   },
 
   mediumAvatar: {
-    width: theme.avatar.small
+    width: theme.avatar.small,
+    borderRadius: '50%'
   },
 
   userInfo: {
