@@ -12,7 +12,7 @@ function MiniProfile (props) {
   const classes = styles()
 
   const {
-    avatarUrl = 'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
+    avatarUrl,
     id = 3,
     fullName = 'Laura Lee',
     positionAndCompany = 'Senior Java Developer',

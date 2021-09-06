@@ -11,8 +11,7 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    marginBottom: theme.spacing(2),
-    padding: theme.spacing(2)
+    overflow: 'hidden'
   },
 
   header: {
@@ -25,6 +24,17 @@ export default makeStyles((theme) => ({
     '& > div': {
       paddingTop: theme.spacing(1)
     }
+  },
+
+  invitationHeader: {
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(4),
+    padding: theme.spacing(1)
+  },
+
+  people: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(2)
   },
 
   miniProfiles: {
