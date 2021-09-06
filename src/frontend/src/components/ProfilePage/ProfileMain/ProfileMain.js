@@ -11,7 +11,6 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import { EDIT_INTRO, UPLOAD_AVATAR_IMG, UPLOAD_PROFILE_BACKGROUND_IMG } from '../../../redux/Modal/modalTypes'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
-// import {Image, Transformation} from 'cloudinary-react'
 import Image from '../../../../src/shared/Image/Image'
 
 function ProfileMain (props) {
@@ -26,7 +25,14 @@ function ProfileMain (props) {
   const profileBgImage = profile.profileBgUrl ? bgChosenByUser : defaultBgUrl
 
   return (
-    <div className={classes.root} style={{ backgroundImage: profileBgImage }}>
+    <div className={classes.root} >
+      <Image
+        imageUrl={'linkedin/profile-bg/dwaufqbi9asbav96zken'}
+        className={classes.profileBackgroundImg}
+        type={'profileBgImg'}
+        alt={'profile background'}
+      />
+
       <div className={classes.header}>
         <div
           className={clsx(classes.photoIcon, !isEditable && classes.hidden)}

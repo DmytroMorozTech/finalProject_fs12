@@ -90,6 +90,17 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
         )
         break
 
+      case 'profileBgImg':
+        transformation = (
+          <Transformation
+            width="800"
+            crop="fill"
+            quality="90"
+            drp="auto"
+          />
+        )
+        break
+
       default:
         break
     }
