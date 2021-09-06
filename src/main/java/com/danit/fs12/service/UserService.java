@@ -88,7 +88,7 @@ public class UserService extends GeneralService<User> {
     user.setPhoneNumber(phoneNumber);
     user.setPasswordHash(password);
     user.setEmail(email);
-    user.setAvatarUrl(avatar);
+    user.setAvatarPublicId(avatar);
     saveUser(user);
   }
 

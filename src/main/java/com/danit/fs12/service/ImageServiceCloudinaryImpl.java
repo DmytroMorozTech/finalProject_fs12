@@ -22,7 +22,7 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
   @Override
   public User uploadAvatarImg(MultipartFile file) throws IOException {
     User activeUser = userService.getActiveUser();
-    String currentAvatarUrl = activeUser.getAvatarUrl();
+    String currentAvatarPublicId = activeUser.getAvatarPublicId();
 
     Map uploadResult = cloudinary.uploader().upload(
       file.getBytes(),
@@ -35,8 +35,7 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
       )
     );
 
-    String imgPublicId = (String) uploadResult.get("public_id");
-    System.out.println(imgPublicId);
+    String newAvatarPublicId = (String) uploadResult.get("public_id");
 
     Map<String, String> uploadOptions = new HashMap<>() {
       {
@@ -44,11 +43,11 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
       }
     };
 
-    if (!currentAvatarUrl.isEmpty()) {
-      cloudinary.uploader().destroy(currentAvatarUrl, uploadOptions);
+    if (!currentAvatarPublicId.isEmpty()) {
+      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
     }
 
-    activeUser.setAvatarUrl(imgPublicId);
+    activeUser.setAvatarPublicId(newAvatarPublicId);
     return userService.save(activeUser);
   }
 
@@ -82,8 +81,9 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
     if (!currentProfileBgPublicId.isEmpty()) {
       cloudinary.uploader().destroy(
         currentProfileBgPublicId,
-        new HashMap<>() { {
-              put("invalidate", "true");
+        new HashMap<>() {
+          {
+            put("invalidate", "true");
           }
         });
     }

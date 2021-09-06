@@ -1,4 +1,4 @@
-INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_hash, avatar_url, profile_bg_public_id,
+INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_hash, avatar_public_id, profile_bg_public_id,
                    created_date, modified_date, country, city, headline)
 VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         '$2a$10$VyCoVteS/iZ/5ZYTIGI0EOZEytTbZphdioSm0uXqNCQ29vK6giI0q',

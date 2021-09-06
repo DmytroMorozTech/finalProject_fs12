@@ -52,13 +52,12 @@ function NewCommentInput (props) {
   return (
     <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
-        <div className={classes.smallAvatar}>
-          <Image
-            imageUrl={activeUser.avatarUrl}
-            alt={'user avatar'}
-            type={'extraSmallAvatar'}
-          />
-        </div>
+        <Image
+          imageUrl={activeUser.avatarPublicId}
+          alt={'user avatar'}
+          type={'extraSmallAvatar'}
+          className={classes.smallAvatar}
+        />
         <div className={classes.newComment}>
           <InputBase
             placeholder="Add a comment..."

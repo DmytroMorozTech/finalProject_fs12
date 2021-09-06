@@ -42,7 +42,7 @@ public class UserRs {
   private String fullName;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
-  private String avatarUrl;
+  private String avatarPublicId;
 
   @JsonView(UserViews.Profile.class)
   private String profileBgPublicId;

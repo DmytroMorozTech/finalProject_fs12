@@ -7,7 +7,7 @@ import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSquare'
 
 function Invitation (props) {
-  const {avatarUrl, fullName = 'Panny Hofstader', positionAndCompany = 'Senior JavaScript Developer', numberOfConnection = 1} = props
+  const {avatarPublicId, fullName = 'Panny Hofstader', positionAndCompany = 'Senior JavaScript Developer', numberOfConnection = 1} = props
 
   const classes = styles()
 
@@ -16,7 +16,7 @@ function Invitation (props) {
       <div className={classes.flex}>
         <div>
           <Image
-            imageUrl={avatarUrl}
+            imageUrl={avatarPublicId}
             alt={'user avatar'}
             className={classes.userAvatar}
             type={'largeAvatar'}

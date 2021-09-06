@@ -43,7 +43,7 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Image
-            imageUrl={profile.avatarUrl}
+            imageUrl={profile.avatarPublicId}
             onClickHandler={() => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG }))}
             className={classes.bigAvatar}
             type={'profileAvatar'}
