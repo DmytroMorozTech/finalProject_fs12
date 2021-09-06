@@ -143,18 +143,6 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
 
-//  @ManyToMany(cascade = CascadeType.ALL)
-//  @JoinTable(name="invitations",
-//    joinColumns={@JoinColumn(name="user_who_id")},
-//    inverseJoinColumns={@JoinColumn(name="user_whom_id")})
-//  private Set<User> invitedUsers = new HashSet<>();
-//
-//  @ManyToMany(cascade = CascadeType.ALL)
-//  @JoinTable(name="invitations",
-//    joinColumns={@JoinColumn(name="user_whom_id")},
-//    inverseJoinColumns={@JoinColumn(name="user_who_id")})
-//  private Set<User> invitingUsers = new HashSet<>();
-
   @ManyToMany
   @JoinTable(
     name = "invitations",
