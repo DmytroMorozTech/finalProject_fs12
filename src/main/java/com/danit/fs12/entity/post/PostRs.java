@@ -17,7 +17,10 @@ public class PostRs {
   private String text;
 
   @JsonView(PostViews.Base.class)
-  private String imgUrl;
+  private String imgPublicId;
+
+  @JsonView(PostViews.Base.class)
+  private String videoPublicId;
 
   @JsonView(PostViews.Base.class)
   private Long numberOfLikes;

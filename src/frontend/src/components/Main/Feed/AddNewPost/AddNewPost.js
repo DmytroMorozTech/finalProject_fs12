@@ -19,6 +19,8 @@ import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import { toast } from 'react-toastify'
 import Image from '../../../../shared/Image/Image'
+import CloseIcon from '@material-ui/icons/Close'
+import clsx from 'clsx'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -52,13 +54,33 @@ const AddNewPost = () => {
   const activeUser = useSelector(activeUserSelector)
 
   const [photoIsChosen, setPhotoIsChosen] = useState(false)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedImageFile, setSelectedImageFile] = useState(null)
+  // const [selectedVideoFile, setSelectedVideoFile] = useState(null)
+  const [imgWasRemoved, setImgWasRemoved] = useState(null)
   // const [imgIsUploading, setImgIsUploading] = useState(false)
 
   const onPostSubmitHandler = () => {
-    dispatch(createNewPostAction({ text: postInputText }))
+    dispatch(createNewPostAction({
+      text: postInputText,
+      image: selectedImageFile,
+      video: ''
+    }))
     dispatch(toggleModalAction())
   }
+
+  const handleCancelImgSelection = () => {
+    setImgWasRemoved(true)
+    setPhotoIsChosen(false)
+  }
+
+  const photoPreviewComponent = () => (
+    <div className={clsx(classes.previewImgWrapper, imgWasRemoved ? classes.removed : '')}>
+      <div className={classes.cross} onClick={handleCancelImgSelection}>
+        <CloseIcon fontSize="inherit"/>
+      </div>
+      <img className={classes.previewImg} alt="preview" src={URL.createObjectURL(selectedImageFile)}/>
+    </div>
+  )
 
   const classes = styles()
 
@@ -115,7 +137,7 @@ const AddNewPost = () => {
           onChange={handlePostInputChange}
           className={classes.editor}
         />
-        {photoIsChosen ? <img alt="preview" src={URL.createObjectURL(selectedFile)}/> : null}
+        {photoIsChosen ? photoPreviewComponent() : null}
       </DialogContent>
       <div
         className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
@@ -141,13 +163,16 @@ const AddNewPost = () => {
                   required
                   onChange={(event) => {
                     const file = event.target.files[0]
-                    if (file.size > 10485760) {
+                    if (file && file.size > 10485760) {
                       toast.error('The size of image should not exceed 10MB')
                       return
                     }
 
-                    setSelectedFile(file)
-                    setPhotoIsChosen(true)
+                    if (file) {
+                      setSelectedImageFile(file)
+                      setPhotoIsChosen(true)
+                      setImgWasRemoved(false)
+                    }
                   }}
 
                 />
