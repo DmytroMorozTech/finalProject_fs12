@@ -16,11 +16,11 @@ const userReducer = (state = initialState, action) => {
       }
     case actions.SIGN_OUT:
       localStorage.clear()
-      window.location.href = '/'
       return {
         ...state,
         activeUser: null
       }
+
     case actions.FIND_USER_BY_ID:
       return {
         ...state,

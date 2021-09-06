@@ -71,7 +71,7 @@ public class AuthController {
     if (auth != null) {
       new SecurityContextLogoutHandler().logout(request, response, auth);
     }
-    String url = "/login";
+    String url = "/";
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl(url);
     return redirectView;

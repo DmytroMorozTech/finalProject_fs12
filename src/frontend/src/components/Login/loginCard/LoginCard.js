@@ -21,8 +21,10 @@ const LoginCard = () => {
   // let initialToken = localStorage.getItem('token')
   const authenticated = useSelector(userAuthenticationSelector)
   // const activeUser = useSelector(activeUserSelector)
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser.id
 
-  if (authenticated) {
+  if (activeUserId) {
     history.push('/home')
   }
 
@@ -54,10 +56,9 @@ const LoginCard = () => {
 
   const authenticateByGoogle = () => {
     http
-      .get('api/google_auth')
+      .get('http://localhost:9000/oauth2/authorization/google')
       .then(res => {
         if (res.status === 200) {
-          dispatch(userAuthenticationAction(true))
           history.push('/home')
         }
       })

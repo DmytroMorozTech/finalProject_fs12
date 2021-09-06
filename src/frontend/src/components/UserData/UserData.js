@@ -14,8 +14,8 @@ function UserData () {
   const dispatch = useDispatch()
 
   const signOut = () => {
-    dispatch(userAuthenticationAction(false))
     dispatch(signOutAction())
+    dispatch(userAuthenticationAction(false))
   }
 
   return (

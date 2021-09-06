@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/resources/**").permitAll()
       .antMatchers("/oauth2/**").permitAll()
-      .antMatchers("/api/register", "/api/auth", "/", "/api/logout").permitAll()
+      .antMatchers("/api/register", "/api/auth", "/", "/api/logout", "api/google_auth").permitAll()
       .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()
       .and()
@@ -47,11 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
       .and()
       .formLogin()
-      .loginPage("/")
+      // temporary hardcoded redirect url (we must change redirect url to "/" before deploy)
+      .loginPage("http://localhost:3000/")
       .and()
       .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
       .oauth2Login()
-      // temporary hardcoded redirect url (we must change redirect url to "/login" before deploy)
+      // temporary hardcoded redirect url (we must change redirect url to "/" before deploy)
       .loginPage("http://localhost:3000/")
       .userInfoEndpoint().userService(oauthUserService)
       .and()
@@ -73,6 +74,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .addLogoutHandler(new SecurityContextLogoutHandler())
       // temporary hardcoded redirect url (we must change redirect url to "/login" before deploy)
       .logoutSuccessUrl("http://localhost:3000/");
-
   }
 }

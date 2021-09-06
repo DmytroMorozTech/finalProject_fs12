@@ -6,21 +6,26 @@ export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('../../api/activeuser')
     .then(res => {
+      console.log('Active user from redux:' + res.data)
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
         payload: res.data
       })
-      dispatch({ type: actions.LOADING_USERS, payload: false })
+      dispatch({type: actions.LOADING_USERS, payload: false})
     })
 }
 
 export const signOutAction = () => (dispatch) => {
+  dispatch({
+    type: actions.SIGN_OUT,
+    payload: null
+  })
   return http
-    .get('/logout')
-    .then(dispatch({
-      type: actions.SIGN_OUT,
-      payload: null
-    }))
+    .get('../../logout')
+    .then(() => {
+      window.location.href = '/'
+    }
+    )
 }
 
 export const findUserByIdAction = (id) => (dispatch) => {
