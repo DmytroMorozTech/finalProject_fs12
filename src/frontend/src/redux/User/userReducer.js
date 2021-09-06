@@ -19,8 +19,7 @@ const userReducer = (state = initialState, action) => {
       window.location.href = '/'
       return {
         ...state,
-        activeUser: null,
-        authenticated: false
+        activeUser: null
       }
     case actions.FIND_USER_BY_ID:
       return {

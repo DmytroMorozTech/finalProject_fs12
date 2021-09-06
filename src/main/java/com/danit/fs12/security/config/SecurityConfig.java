@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -37,28 +38,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .authorizeRequests()
       .antMatchers("/resources/**").permitAll()
-      .antMatchers("/api/register", "/api/auth", "/oauth/**", "/login").permitAll()
+      .antMatchers("/oauth2/**").permitAll()
+      .antMatchers("/api/register", "/api/auth", "/", "/api/logout").permitAll()
       .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()
       .and()
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
       .and()
+      .formLogin()
+      .loginPage("/")
+      .and()
       .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
       .oauth2Login()
-//      .loginPage("/login")
-      .userInfoEndpoint()
-          .userService(oauthUserService)
+      // temporary hardcoded redirect url (we must change redirect url to "/login" before deploy)
+      .loginPage("http://localhost:3000/")
+      .userInfoEndpoint().userService(oauthUserService)
       .and()
       .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
         CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-
         userService.processOAuthPostLogin(oauth2User.getEmail(),
           oauth2User.getAttribute("picture"),
           oauth2User.getAttribute("given_name"),
           oauth2User.getAttribute("family_name"));
         // temporary hardcoded redirect url (we must change redirect url to "/home" before deploy)
         httpServletResponse.sendRedirect("http://localhost:3000/home");
-      });
+      })
+      .and()
+      .logout().permitAll()
+//      .logoutUrl("api/logout")
+      .deleteCookies("JSESSIONID")
+      .invalidateHttpSession(true)
+      .clearAuthentication(true)
+      .addLogoutHandler(new SecurityContextLogoutHandler())
+      // temporary hardcoded redirect url (we must change redirect url to "/login" before deploy)
+      .logoutSuccessUrl("http://localhost:3000/");
+
   }
 }

@@ -15,10 +15,12 @@ export const getActiveUserAction = () => (dispatch) => {
 }
 
 export const signOutAction = () => (dispatch) => {
-  dispatch({
-    type: actions.SIGN_OUT,
-    payload: null
-  })
+  return http
+    .get('/logout')
+    .then(dispatch({
+      type: actions.SIGN_OUT,
+      payload: null
+    }))
 }
 
 export const findUserByIdAction = (id) => (dispatch) => {

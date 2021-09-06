@@ -8,10 +8,9 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
 import {useDispatch, useSelector} from 'react-redux'
-import {getActiveUserAction} from '../../../redux/User/userActions'
+import {getActiveUserAction, userAuthenticationAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
-import {userAuthenticationSelector} from '../../../redux/User/userSelector'
-import * as actions from '../../../redux/User/userActionTypes'
+import {activeUserSelector, userAuthenticationSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
@@ -21,6 +20,7 @@ const LoginCard = () => {
   const dispatch = useDispatch()
   // let initialToken = localStorage.getItem('token')
   const authenticated = useSelector(userAuthenticationSelector)
+  // const activeUser = useSelector(activeUserSelector)
 
   if (authenticated) {
     history.push('/home')
@@ -41,8 +41,8 @@ const LoginCard = () => {
         if (res.status === 200) {
           let token = res.data.token
           localStorage.setItem('token', token)
-          dispatch({type: actions.AUTHENTICATE, payload: true})
           dispatch(getActiveUserAction())
+          dispatch(userAuthenticationAction(true))
           history.push('/home')
         }
       })
@@ -57,7 +57,8 @@ const LoginCard = () => {
       .get('api/google_auth')
       .then(res => {
         if (res.status === 200) {
-          dispatch({type: actions.AUTHENTICATE, payload: true})
+          dispatch(userAuthenticationAction(true))
+          history.push('/home')
         }
       })
       .catch(err => {

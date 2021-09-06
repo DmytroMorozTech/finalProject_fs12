@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom'
 import { MenuItem } from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import {activeUserSelector} from '../../redux/User/userSelector'
-import {signOutAction} from '../../redux/User/userActions'
+import {signOutAction, userAuthenticationAction} from '../../redux/User/userActions'
 
 function UserData () {
   const classes = styles()
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser.id
   const dispatch = useDispatch()
+
+  const signOut = () => {
+    dispatch(userAuthenticationAction(false))
+    dispatch(signOutAction())
+  }
 
   return (
     <div className={classes.root}>
@@ -27,7 +32,7 @@ function UserData () {
       <Button component={Link} to={`/profiles/${activeUserId}`} className={classes.profileButton} variant="outlined" color="primary">
         View Profile
       </Button>
-      <Button className={classes.profileButton} variant="outlined" color="secondary" onClick={() => dispatch(signOutAction())}>
+      <Button className={classes.profileButton} variant="outlined" color="secondary" onClick={() => signOut()}>
         Sign Out
       </Button>
     </div>

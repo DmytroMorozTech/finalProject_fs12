@@ -7,7 +7,6 @@ const ProtectedRoutes = (props) => {
   const {...data} = props
   // let initialToken = localStorage.getItem('token')
   const authenticated = useSelector(userAuthenticationSelector)
-  console.log(authenticated)
 
   return (authenticated) ? (<Route {...data} />) : (<Redirect to={{pathname: '/'}}/>)
 }

@@ -31,6 +31,9 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         timestamp '2016-06-23 10:21:22.123123', CURRENT_DATE, 'Ukraine', 'Kharkiv', 'Junior Java Developer'),
        ('Barry', 'Evans', '+380955744442', 'barry@gmail.com', 28, 'passwordHashed10',
         'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418711/linkedin/avatars/vnxm3wl3erio9ajtezlr.jpg',
+        timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'React Developer'),
+       ('Сергій', 'Романюк', '+380955744442', 'romaniuk87@gmail.com', 28, 'passwordHashed10',
+        'https://res.cloudinary.com/dan-insta-step/image/upload/v1628418711/linkedin/avatars/vnxm3wl3erio9ajtezlr.jpg',
         timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'React Developer');
 
 
