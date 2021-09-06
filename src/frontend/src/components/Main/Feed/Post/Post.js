@@ -5,9 +5,8 @@ import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Typography from '@material-ui/core/Typography'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getUsersWhoLikedPostAction } from '../../../../redux/Post/postActions'
-import { allCommentsSelector } from '../../../../redux/Comment/commentSelector'
 import getTimeSinceCreated from '../../../../services/timePassedService'
 import PostButtons from './PostButton/PostButtons'
 import SeeMore from './SeeMore/SeeMore'
@@ -20,20 +19,12 @@ import { getCommentsForPostAction } from '../../../../redux/Comment/commentActio
 function Post (props) {
   const {
     id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    imgUrl, videoUrl = ''
+    imgPublicId, videoUrl = ''
   } = props.post
 
   const dispatch = useDispatch()
-  const allComments = useSelector(allCommentsSelector)
-  // const activeUser = useSelector(activeUserSelector)
-  // we get all comments from Redux store using useSelector
-  const commentsForPost = allComments[postId] || []
-  // we get from Redux an array of Comments for a particular Post by postId
-
   const classes = styles()
-
   const linkToUserProfile = '/profiles/' + user.id
-
   const [showedAddComment, setShowedAddComment] = useState(false)
 
   const handleComment = () => {
@@ -84,9 +75,9 @@ function Post (props) {
         </SeeMore>
       </Typography>
 
-      {imgUrl &&
+      {imgPublicId &&
         (<Image
-          imageUrl={imgUrl}
+          imageUrl={imgPublicId}
           className={classes.postImage}
           alt={`Image for post with id: ${postId}`}
           type={'postImg'}
@@ -108,9 +99,9 @@ function Post (props) {
           ? <SmallDot/>
           : ''
         }
-        {commentsForPost.length > 0
+        {numberOfComments > 0
           ? <Typography variant="body2" className={classes.quantityText} onClick={handleComment}>
-            {commentsForPost.length} comments
+            {numberOfComments} comments
           </Typography>
           : ''
         }

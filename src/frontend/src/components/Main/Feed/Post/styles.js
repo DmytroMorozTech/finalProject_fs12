@@ -11,7 +11,8 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
+    overflow: 'hidden'
   },
 
   hiddenMenu: {

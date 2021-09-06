@@ -103,8 +103,20 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
   }
 
   @Override
-  public Post uploadPostImg(MultipartFile file) {
-    return null;
+  public String uploadPostImg(MultipartFile file) throws IOException {
+    Map uploadResult = cloudinary.uploader().upload(
+      file.getBytes(),
+      ObjectUtils.asMap(
+        "folder", "linkedin/posts-img/",
+        "unique_filename", "true",
+        "resource_type", "auto",
+        "quality", "80",
+        "transformation", new Transformation().width(800).crop("fill").gravity("auto")
+      )
+    );
+
+    String postImgPublicId = (String) uploadResult.get("public_id");
+    return postImgPublicId;
   }
 
   @Override

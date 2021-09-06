@@ -1,5 +1,6 @@
 import http from '../../services/httpService'
 import * as actions from '../Comment/commentActionTypes'
+import {INCREMENT_COMMENTS_COUNTER_FOR_POST} from '../Post/postActionTypes'
 import { USERS_WHO_LIKED_COMMENT } from '../Modal/modalTypes'
 import toggleModalAction from '../Modal/modalActions'
 
@@ -20,6 +21,10 @@ export const createNewCommentAction = ({ text, id }) => (dispatch) => {
       dispatch({
         type: actions.ADD_NEW_COMMENT_FOR_POST,
         payload: { comment: newCommentObj, postId: id }
+      })
+      dispatch({
+        type: INCREMENT_COMMENTS_COUNTER_FOR_POST,
+        payload: { postId: id }
       })
     })
 }

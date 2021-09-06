@@ -4,7 +4,6 @@ import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
-import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,7 +18,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostService extends GeneralService<Post> {
-  private final UserRepository userRepository;
   private final UserService userService;
 
   public Long activeUserId() {
@@ -35,12 +33,12 @@ public class PostService extends GeneralService<Post> {
      * additional configuration had to be done to ModelMapper -> setMatchingStrategy(MatchingStrategies.STRICT)
      * After that the problem was gone and implicit casting was ceased.
      */
-    User user = userRepository.findEntityById(activeUserId());
+    User user = userService.getActiveUser();
     incomingPost.setUser(user);
     Post post = save(incomingPost);
 
     user.getPosts().add(post);
-    userRepository.save(user);
+    userService.save(user);
 
     return post;
   }
@@ -55,7 +53,7 @@ public class PostService extends GeneralService<Post> {
       post.getPostLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
       return save(post);
     } else {
-      User user = userRepository.findEntityById(activeUserId());
+      User user = userService.getActiveUser();
       PostLike postLike = new PostLike(user, post);
       post.getPostLikes().add(postLike);
       return save(post);
@@ -73,7 +71,7 @@ public class PostService extends GeneralService<Post> {
       post.getBookmarks().removeIf(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId()));
       return save(post);
     } else {
-      User user = userRepository.findEntityById(activeUserId());
+      User user = userService.getActiveUser();
       Bookmark bookmark = new Bookmark(user, post);
       post.getBookmarks().add(bookmark);
       return save(post);
@@ -88,7 +86,7 @@ public class PostService extends GeneralService<Post> {
   public Page<Post> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
 
-    User user = userRepository.findEntityById(activeUserId());
+    User user = userService.getActiveUser();
     List<Long> postsIds = user.getBookmarks().stream()
       .map(b -> b.getPost().getId())
       .collect(Collectors.toList());
