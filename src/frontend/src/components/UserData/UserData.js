@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { MenuItem } from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import {activeUserSelector} from '../../redux/User/userSelector'
+import Image from '../../shared/Image/Image'
 import {signOutAction, userAuthenticationAction} from '../../redux/User/userActions'
 
 function UserData () {
@@ -22,7 +23,13 @@ function UserData () {
     <div className={classes.root}>
       <MenuItem component={Link} to={`/profiles/${activeUserId}`} className={classes.menuItem}>
         <div className={classes.avatarWrapper}>
-          <img className={classes.avatar} src={activeUser.avatarUrl} alt={activeUser.fullName}/>
+          {/* <img className={classes.avatar} src={activeUser.avatarPublicId} alt={}/> */}
+          <Image
+            imageUrl={activeUser.avatarPublicId}
+            alt={`Avatar of ${activeUser.fullName}`}
+            className={classes.avatar}
+            type={'smallAvatar'}
+          />
           <div className={classes.userDataWrapper}>
             <span className={classes.userName}>{activeUser.fullName}</span>
             <div className={classes.userProfession}>{activeUser.positionAndCompany}</div>

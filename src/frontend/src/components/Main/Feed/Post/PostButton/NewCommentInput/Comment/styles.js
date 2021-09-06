@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
   commentAvatar: {
     width: theme.avatar.extraSmall,
     marginLeft: theme.spacing(3),
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    borderRadius: '50%'
   },
 
   commentWrapper: {
@@ -43,6 +44,13 @@ export default makeStyles((theme) => ({
     flexDirection: 'column'
   },
 
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  },
+
   name: {
     alignSelf: 'self-start',
     '&:hover': {
@@ -71,7 +79,7 @@ export default makeStyles((theme) => ({
 
   commentText: {
     marginTop: theme.spacing(2),
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'pre-line'
   },
 
   commentLikes: {

@@ -36,6 +36,12 @@ public class Post extends AbstractEntity {
   @Column(length = 3000)
   private String text;
 
+  @Column(name = "img_public_id")
+  private String imgPublicId;
+
+  @Column(name = "video_public_id")
+  private String videoPublicId;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
     name = "user_id",

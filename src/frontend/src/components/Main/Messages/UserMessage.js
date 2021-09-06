@@ -1,5 +1,6 @@
 import React from 'react'
 import Style from './styles'
+import Image from '../../../shared/Image/Image'
 
 function UserMessage ({text, time, messageSender}) {
   const classes = Style()
@@ -57,7 +58,12 @@ function UserMessage ({text, time, messageSender}) {
     <>
       <time className={classes.messageListTimeHeading}>{getDateTitle()}</time>
       <div className={classes.eventListItem}>
-        <img src={messageSender && messageSender.avatarUrl} alt={'user avatar'} className={`${classes.userAvatar} ${classes.myAvatarMessage}`}/>
+        <Image
+          imageUrl={messageSender && messageSender.avatarPublicId}
+          alt={'user avatar'}
+          className={classes.userAvatar}
+          type={'extraSmallAvatar'}
+        />
         <div className={classes.messageWrapper}>
           <div className={classes.messageGroupMeta}>
             <span className={classes.messageGroupMetaText}>{messageSender && messageSender.fullName}</span>

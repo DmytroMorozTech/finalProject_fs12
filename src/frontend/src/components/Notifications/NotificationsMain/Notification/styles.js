@@ -24,6 +24,10 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700]
   },
 
+  link: {
+    textDecoration: 'none'
+  },
+
   actionAndText: {
     color: theme.palette.grey[700]
   },

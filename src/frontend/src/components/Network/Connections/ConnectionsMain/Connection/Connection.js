@@ -1,27 +1,29 @@
 import styles from './styles'
-import Avatar from '../../../../../shared/Avatar/Avatar'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/SharedButton/SharedButton'
 import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
-import {Link, NavLink} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
-import {useDispatch, useSelector} from 'react-redux'
-import {getUserChatsAction, isTemporaryChatOpenAction} from '../../../../../redux/Message/messageActions'
-import {allChats} from '../../../../../redux/Message/messageSelector'
-import {activeUserSelector} from '../../../../../redux/User/userSelector'
+import { useDispatch } from 'react-redux'
+// import { useSelector } from 'react-redux'
+import { getUserChatsAction } from '../../../../../redux/Message/messageActions'
+import Image from '../../../../../shared/Image/Image'
+// import { isTemporaryChatOpenAction } from '../../../../../redux/Message/messageActions'
+// import { allChats } from '../../../../../redux/Message/messageSelector'
+// import { activeUserSelector } from '../../../../../redux/User/userSelector'
 
 function Connection (props) {
   const classes = styles()
   const dispatch = useDispatch()
-  const chats = useSelector(allChats)
-  const activeUser = useSelector(activeUserSelector)
-  const activeUserId = activeUser && activeUser.id
+  // const chats = useSelector(allChats)
+  // const activeUser = useSelector(activeUserSelector)
+  // const activeUserId = activeUser && activeUser.id
 
   const {
     id = 3,
-    avatarUrl = 'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/p1qwriz6hzjgwkaihwpa.jpg',
+    avatarPublicId = 'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
     fullName = 'Laura Lee',
     positionAndCompany = 'Sales manager at Microsoft',
     dateCreated = '3 days ago'
@@ -37,16 +39,16 @@ function Connection (props) {
     setRemovedConnection(!removedConnection)
   }
 
-  const findIfChatExist = () => {
-    dispatch(isTemporaryChatOpenAction(false))
-    let existChatId = null
-    chats && chats.forEach(c => {
-      if (c.users.filter(u => u.id === activeUserId).length > 0) {
-        existChatId = c.id
-      }
-    })
-    return existChatId !== null ? existChatId : 'new/' + id
-  }
+  // const findIfChatExist = () => {
+  //   dispatch(isTemporaryChatOpenAction(false))
+  //   let existChatId = null
+  //   chats && chats.forEach(c => {
+  //     if (c.users.filter(u => u.id === activeUserId).length > 0) {
+  //       existChatId = c.id
+  //     }
+  //   })
+  //   return existChatId !== null ? existChatId : 'new/' + id
+  // }
 
   return (
     <div className={removedConnection ? classes.removed : ''}>
@@ -54,9 +56,12 @@ function Connection (props) {
         <div className={classes.connection}>
           <div className={classes.flex}>
             <Link to={`/profiles/${id}`}>
-              <div className={classes.avatar}>
-                <Avatar avatarUrl={avatarUrl}/>
-              </div>
+              <Image
+                imageUrl={avatarPublicId}
+                alt={'user avatar'}
+                className={classes.avatar}
+                type={'largeAvatar'}
+              />
             </Link>
             <div className={classes.userInfo}>
               <Link to={`/profiles/${id}`} className={classes.link}>
@@ -72,9 +77,10 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              <NavLink className={`${classes.linkButton}`} key={id} to={`/chat/${findIfChatExist()}`}>
-                <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" />
-              </NavLink>
+              {/* <NavLink className={classes.linkButton} key={id} to={`/chat/${findIfChatExist()}`}> */}
+              <SharedButton title="Message" size="medium" variant="outlined" />
+              {/* <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" /> */}
+              {/* </NavLink> */}
             </div>
             <div>
               <SimpleMenu menuItem={

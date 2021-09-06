@@ -7,6 +7,10 @@ server:
 spring:
   profiles:
     active: "local"
+  servlet:
+    multipart:
+      max-file-size: 10000KB
+      max-request-size: 10000KB
   security:
     oauth2:
       client:
@@ -20,3 +24,4 @@ spring:
 jwt:
   header: Authorization
   secret: my-very-secret-key
+

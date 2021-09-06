@@ -70,8 +70,11 @@ public class User extends AbstractEntity {
   @Column(name = "password_hash")
   private String passwordHash;
 
-  @Column(name = "avatar_url")
-  private String avatarUrl;
+  @Column(name = "avatar_public_id")
+  private String avatarPublicId;
+
+  @Column(name = "profile_bg_public_id")
+  private String profileBgPublicId;
 
   @Enumerated(EnumType.STRING)
   private Provider provider;

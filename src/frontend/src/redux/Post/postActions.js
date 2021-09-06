@@ -2,10 +2,27 @@ import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
 import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
+import { uploadPostImgAction } from '../Image/imageActions'
 
-export const createNewPostAction = (payload) => (dispatch) => {
+export const createNewPostAction = (payload) => async (dispatch) => {
+  const { text, image, video } = payload
+  let uploadedImgPublicId = ''
+  let uploadedVideoPublicId = ''
+
+  if (image !== null) {
+    uploadedImgPublicId = await uploadPostImgAction(image)
+  }
+
+  if (!image && video) {
+    uploadedVideoPublicId = 'endpoint call should be here'
+  }
+
   return http
-    .post('/api/posts', { text: payload.text })
+    .post('/api/posts', {
+      text: text,
+      imgPublicId: uploadedImgPublicId,
+      videoPublicId: uploadedVideoPublicId
+    })
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.ADD_NEW_POST, payload: newPostObj })

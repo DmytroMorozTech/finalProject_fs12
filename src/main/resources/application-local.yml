@@ -15,3 +15,8 @@ spring:
     password:
     driver-class-name: org.h2.Driver
   data: data.sql
+info:
+  cloudinary:
+    cloud-name: "dan-insta-step"
+    api-key: "615942255258686"
+    api-secret: "HnYwqnw7fBFrk9yn16CLt7r_s-I"

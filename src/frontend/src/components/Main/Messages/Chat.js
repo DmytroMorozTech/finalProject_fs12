@@ -9,18 +9,19 @@ import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
-import Style from './styles'
+import styles from './styles'
 import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
 import {withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import Image from '../../../shared/Image/Image'
 
 function Chat (props) {
   const {match} = props
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
-  const classes = Style()
+  const classes = styles()
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
   const dispatch = useDispatch()
@@ -55,13 +56,14 @@ function Chat (props) {
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
   }
+
   return (
     <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
-              {getChatMember() && getChatMember().fullNamef}
+              {getChatMember() && getChatMember().fullName}
               <div className={classes.userDeviceStyle}>
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
@@ -80,10 +82,15 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember() && getChatMember().avatarUrl}
-                          alt={getChatMember() && getChatMember().fullName}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
+                        {/* TODO add link to Profile Page when we will edit Messages Page */}
+                        <Image
+                          imageUrl={getChatMember() && getChatMember().avatarPublicId}
+                          alt={'user avatar'}
+                          className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                          type={'extraLargeAvatar'}
+                        />
                         <div className={classes.presenceEntityIndicator}>
+
                         </div>
                       </div>
                     </div>

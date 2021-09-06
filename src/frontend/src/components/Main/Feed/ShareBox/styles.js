@@ -16,10 +16,11 @@ export default makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(2)
   },
-  mediumAvatar: {
+  smallAvatar: {
     width: theme.avatar.small,
     marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(4)
+    marginLeft: theme.spacing(4),
+    borderRadius: '50%'
   },
   postButton: {
     marginLeft: theme.spacing(2),
@@ -31,7 +32,7 @@ export default makeStyles((theme) => ({
     border: theme.border.normal,
     borderRadius: theme.shape.large,
     textAlign: 'left',
-    padding: theme.spacing(3.5),
+    padding: theme.spacing(3),
     backgroundColor: theme.palette.common.white,
     cursor: 'pointer',
     color: theme.palette.grey[500],
@@ -45,7 +46,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   shareButton: {
     display: 'flex',
@@ -73,7 +75,7 @@ export default makeStyles((theme) => ({
   },
   names: {
     fontWeight: theme.typography.h5.fontWeight,
-    fontSize: theme.typography.h4.fontSize,
+    fontSize: theme.typography.h5.fontSize,
     color: theme.palette.grey[500],
     marginLeft: theme.spacing(2),
     cursor: 'pointer'

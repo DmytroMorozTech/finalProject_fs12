@@ -2,28 +2,27 @@ import * as actions from './modalActionTypes'
 import {
   ADD_NEW_CERTIFICATION,
   ADD_NEW_EDUCATION,
+  ADD_NEW_EXPERIENCE,
   ADD_NEW_POST,
   EDIT_CERTIFICATION,
   EDIT_EDUCATION,
+  EDIT_EXPERIENCE,
   EDIT_INTRO,
-  USERS_WHO_LIKED_POST,
+  UPLOAD_AVATAR_IMG,
+  UPLOAD_PROFILE_BACKGROUND_IMG,
   USERS_WHO_LIKED_COMMENT,
-  ADD_BACKGROUND_PHOTO,
-  ADD_NEW_EXPERIENCE,
-  EDIT_EXPERIENCE
+  USERS_WHO_LIKED_POST
 } from './modalTypes'
 import AddNewPost from '../../components/Main/Feed/AddNewPost/AddNewPost'
-import UsersWhoLiked from '../../components/Main/Feed/UserWhoLiked/UsersWhoLiked'
-import AddEducationModal from '../../components/ProfilePage/AddEducationModal/AddEducationModal'
-import AddNewCertificationModal from '../../components/ProfilePage/AddNewCertificationModal/AddNewCertificationModal'
-import EditEducationModal from '../../components/ProfilePage/EditEducationModal/EditEducationModal'
-import EditIntroModal from '../../components/ProfilePage/EditIntroModal/EditIntroModal'
-import EditCertificationModal from '../../components/ProfilePage/EditCertificationModal/EditCertificationModal'
-import AddBackGroundPhotoModal from '../../components/ProfilePage/AddBackgroundPhotoModal/AddBackGroundPhotoModal'
-import AddExperienceModal from '../../components/ProfilePage/AddExperienceModal/AddExperienceModal'
+import UsersWhoLikedPost from '../../components/Main/Feed/Post/UserWhoLikedPost/UsersWhoLikedPost'
 import UsersWhoLikedComment
   from '../../components/Main/Feed/Post/PostButton/NewCommentInput/Comment/UserWhoLikedComment/UsersWhoLikedComment'
-import EditExperienceModal from '../../components/ProfilePage/EditExperiemceModal/EditExperienceModal'
+import EducationModal from '../../components/ProfilePage/ProfileModal/EducationModal/EducationModal'
+import IntroModal from '../../components/ProfilePage/ProfileModal/IntroModal/IntroModal'
+import CertificationModal from '../../components/ProfilePage/ProfileModal/CertificationModal/CertificationModal'
+import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
+import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
+import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
 
 const initialState = {
   isModalOpen: false,
@@ -53,15 +52,15 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_CERTIFICATION:
-          content = <AddNewCertificationModal/>
+          content = <CertificationModal/>
           break
 
         case EDIT_CERTIFICATION:
-          content = <EditCertificationModal certification={action.payload.certification}/>
+          content = <CertificationModal certification={action.payload.certification}/>
           break
 
         case USERS_WHO_LIKED_POST:
-          content = <UsersWhoLiked/>
+          content = <UsersWhoLikedPost/>
           break
 
         case USERS_WHO_LIKED_COMMENT:
@@ -69,27 +68,31 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case ADD_NEW_EDUCATION:
-          content = <AddEducationModal/>
+          content = <EducationModal/>
           break
 
         case EDIT_EDUCATION:
-          content = <EditEducationModal education={action.payload.education}/>
+          content = <EducationModal education={action.payload.education}/>
           break
 
         case EDIT_INTRO:
-          content = <EditIntroModal profile={action.payload}/>
+          content = <IntroModal profile={action.payload}/>
           break
 
-        case ADD_BACKGROUND_PHOTO:
-          content = <AddBackGroundPhotoModal/>
+        case UPLOAD_PROFILE_BACKGROUND_IMG:
+          content = <UploadProfileBgImgModal/>
+          break
+
+        case UPLOAD_AVATAR_IMG:
+          content = <UploadAvatarModal/>
           break
 
         case ADD_NEW_EXPERIENCE:
-          content = <AddExperienceModal/>
+          content = <ExperienceModal/>
           break
 
         case EDIT_EXPERIENCE :
-          content = <EditExperienceModal workPlace={action.payload.workPlace}/>
+          content = <ExperienceModal workPlace={action.payload.workPlace}/>
           break
 
         default:

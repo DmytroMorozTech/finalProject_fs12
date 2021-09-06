@@ -1,10 +1,7 @@
 package com.danit.fs12.controller;
 
 import com.danit.fs12.entity.user.UserEditIntroRq;
-import com.danit.fs12.entity.user.UserRq;
 import com.danit.fs12.entity.user.UserRs;
-import com.danit.fs12.entity.workplace.WorkPlaceRq;
-import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.danit.fs12.facade.UserFacade;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j

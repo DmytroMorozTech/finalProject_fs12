@@ -74,6 +74,20 @@ const postReducer = (state = initialState, action) => {
         postsList: { $splice: [[indexOfCurrentPost, 1, updatedPost]] }
       })
 
+    case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST:
+      const {postId} = action.payload
+
+      const currentPost2 = state.postsList.find((post) => post.id === postId)
+      if (currentPost2 === null) return state
+
+      const indexOfCurrentPost2 = state.postsList.indexOf(currentPost2)
+      const copyOfCurrentPost2 = { ...currentPost2, user: { ...currentPost2.user } }
+      copyOfCurrentPost2.numberOfComments += 1
+
+      return update(state, {
+        postsList: { $splice: [[indexOfCurrentPost2, 1, copyOfCurrentPost2]] }
+      })
+
     case actions.UPDATE_BOOKMARKED_POST:
       const updatedPost1 = action.payload
 

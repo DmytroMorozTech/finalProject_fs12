@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import OpenInNewSharpIcon from '@material-ui/icons/OpenInNewSharp'
 // import MenuSharpIcon from '@material-ui/icons/MenuSharp'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import clsx from 'clsx'
-import {useDispatch, useSelector} from 'react-redux'
-import {getUserChatsAction} from '../../../redux/Message/messageActions'
-import {allChats} from '../../../redux/Message/messageSelector'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserChatsAction } from '../../../redux/Message/messageActions'
+import { allChats } from '../../../redux/Message/messageSelector'
+import { activeUserSelector } from '../../../redux/User/userSelector'
 import ChatsList from './ChatsList'
 import Chat from './Chat'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Messages () {
   const classes = Style()

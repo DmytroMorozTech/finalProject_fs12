@@ -11,7 +11,8 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
+    overflow: 'hidden'
   },
 
   hiddenMenu: {
@@ -38,7 +39,8 @@ export default makeStyles((theme) => ({
   },
 
   mediumAvatar: {
-    width: theme.avatar.small
+    width: theme.avatar.small,
+    borderRadius: '50%'
   },
 
   userInfo: {
@@ -48,6 +50,13 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     marginLeft: theme.spacing(2),
     marginTop: theme.spacing(1)
+  },
+
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
 
   name: {
@@ -70,7 +79,8 @@ export default makeStyles((theme) => ({
 
   text: {
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4)
+    paddingRight: theme.spacing(4),
+    whiteSpace: 'pre-line'
   },
 
   picture: {
@@ -101,5 +111,9 @@ export default makeStyles((theme) => ({
 
   hiddenAddComment: {
     display: 'none'
+  },
+
+  postImage: {
+    width: '100%'
   }
 }))

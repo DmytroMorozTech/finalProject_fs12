@@ -110,11 +110,12 @@ const theme = createTheme({
     }
   },
   avatar: {
-    extraSmall: '45px',
-    small: '50px',
-    medium: '65px',
-    large: '72px',
-    extraLarge: '100px'
+    extraSmall: 45,
+    small: 50,
+    medium: 65,
+    large: 72,
+    extraLarge: 100,
+    profileAvatar: 155
   },
   border: {
     simple: '1px solid #e0e0e0',
@@ -122,7 +123,8 @@ const theme = createTheme({
     dark: '1px solid #757575',
     boldLight: '2px solid #bdbdbd',
     boldDark: '2px solid #757575',
-    comment: '0 10px 10px 10px'
+    comment: '0 10px 10px 10px',
+    success: '4px solid #057642'
   },
   shape: {
     extraSmall: 3,
