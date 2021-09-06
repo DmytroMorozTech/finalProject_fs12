@@ -19,18 +19,18 @@ function Main () {
       <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'} >
 
         <Hidden smDown>
-          <Grid item sm={3} md={3} lg={2} xl={2}>
+          <Grid item sm={3} md={3} lg={2}>
             <MainLeft />
             <MainLeftSticky />
           </Grid>
         </Hidden>
 
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
           <Feed type={'posts'}/>
         </Grid>
 
         <Hidden mdDown>
-          <Grid item lg={3} xl={3}>
+          <Grid item lg={3}>
             <MainRight/>
           </Grid>
         </Hidden>
