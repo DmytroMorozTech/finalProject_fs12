@@ -18,12 +18,11 @@ function NetworkMain (props) {
               ? 'Invitations'
               : 'No pending invitations'}
           </div>
-          {/* Link is hardcoded below */}
-          <SharedLinkSquare title='Manage' to='#'/>
+          <SharedLinkSquare title='Manage' to='/network/invitation_manager/received'/>
         </div>
         <div>
           {isInvitation
-            ? <Invitation/>
+            ? <Invitation isReceived={true} isManage={false}/>
             : ''}
         </div>
       </div>

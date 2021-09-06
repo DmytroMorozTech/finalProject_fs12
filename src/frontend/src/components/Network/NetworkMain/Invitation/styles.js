@@ -5,9 +5,13 @@ export default makeStyles((theme) => ({
   invitation: {
     display: 'flex',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(112, 181, 249, 0.2)',
     padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4)
+    paddingLeft: theme.spacing(4),
+    borderTop: theme.border.simple
+  },
+
+  newInvitation: {
+    backgroundColor: 'rgba(112, 181, 249, 0.2)'
   },
 
   flex: {
@@ -22,13 +26,11 @@ export default makeStyles((theme) => ({
     width: theme.avatar.large,
     borderRadius: '50%',
     display: 'flex'
-    // alignSelf: 'flex-start'
   },
 
   connection: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(2),
     color: theme.palette.grey[700],
     cursor: 'pointer',
     '&:hover': {
@@ -49,7 +51,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center'
   },
 
-  buttonIgnore: {
+  buttonSquare: {
     margin: theme.spacing(1)
   }
 }))
