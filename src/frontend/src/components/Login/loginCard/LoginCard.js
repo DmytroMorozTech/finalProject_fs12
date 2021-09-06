@@ -8,9 +8,9 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
 import {useDispatch, useSelector} from 'react-redux'
-import {getActiveUserAction, userAuthenticationAction} from '../../../redux/User/userActions'
+import {getActiveUserAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
-import {activeUserSelector, userAuthenticationSelector} from '../../../redux/User/userSelector'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
@@ -42,7 +42,6 @@ const LoginCard = () => {
           let token = res.data.token
           localStorage.setItem('token', token)
           dispatch(getActiveUserAction())
-          dispatch(userAuthenticationAction(true))
           history.push('/home')
         }
       })

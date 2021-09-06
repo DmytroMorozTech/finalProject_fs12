@@ -2,7 +2,6 @@ import * as actions from './userActionTypes'
 
 const initialState = {
   loadingUser: false,
-  authenticated: false,
   activeUser: {},
   currentUser: {}
 }
@@ -25,11 +24,6 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload
-      }
-    case actions.AUTHENTICATE:
-      return {
-        ...state,
-        authenticated: action.payload
       }
     default: {
       return state

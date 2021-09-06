@@ -6,7 +6,7 @@ import { MenuItem } from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import {activeUserSelector} from '../../redux/User/userSelector'
 import Image from '../../shared/Image/Image'
-import {signOutAction, userAuthenticationAction} from '../../redux/User/userActions'
+import {signOutAction} from '../../redux/User/userActions'
 
 function UserData () {
   const classes = styles()
@@ -16,7 +16,6 @@ function UserData () {
 
   const signOut = () => {
     dispatch(signOutAction())
-    dispatch(userAuthenticationAction(false))
   }
 
   return (

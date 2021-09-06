@@ -16,7 +16,6 @@ function App () {
 
   useEffect(() => {
     dispatch(getActiveUserAction())
-    dispatch(userAuthenticationAction())
   })
 
   console.log(document.cookie)

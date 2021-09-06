@@ -113,7 +113,7 @@ public class UserService extends GeneralService<User> {
     if (existUser == null) {
       User newUser = new User();
       newUser.setEmail(email);
-      newUser.setAvatarUrl(avatarUrl);
+      newUser.setAvatarPublicId(avatarUrl);
       newUser.setFirstName(firstName);
       newUser.setLastName(lastName);
       newUser.setProvider(Provider.GOOGLE);
@@ -128,7 +128,7 @@ public class UserService extends GeneralService<User> {
     User user = new User();
     user.setEmail(email);
     user.setFirstName(name);
-    user.setAvatarUrl(avatarUrl);
+    user.setAvatarPublicId(avatarUrl);
     user.setProvider(provider);
     userRepository.save(user);
   }
@@ -138,7 +138,7 @@ public class UserService extends GeneralService<User> {
                                                String avatarUrl,
                                                Provider provider) {
     user.setFirstName(name);
-    user.setAvatarUrl(avatarUrl);
+    user.setAvatarPublicId(avatarUrl);
     user.setProvider(provider);
     userRepository.save(user);
   }

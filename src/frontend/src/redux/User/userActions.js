@@ -6,7 +6,6 @@ export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('../../api/activeuser')
     .then(res => {
-      console.log('Active user from redux:' + res.data)
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
         payload: res.data
@@ -37,11 +36,4 @@ export const findUserByIdAction = (id) => (dispatch) => {
         payload: res.data
       })
     })
-}
-
-export const userAuthenticationAction = (status) => (dispatch) => {
-  dispatch({
-    type: actions.AUTHENTICATE,
-    payload: status
-  })
 }
