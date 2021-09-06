@@ -12,7 +12,6 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
             height={theme.avatar.profileAvatar}
             width={theme.avatar.profileAvatar}
             crop="fill"
-            radius="max"
             quality="100"
             // fetchFormat="auto"  - because of this some artifacts may appear
             drp="auto"
