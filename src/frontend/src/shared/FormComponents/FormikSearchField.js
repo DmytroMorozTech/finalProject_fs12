@@ -9,7 +9,7 @@ const FormikSearchField = ({
   ...otherProps
 }) => {
   const [field, meta, helpers] = useField(name)
-  const {setFieldValue} = useFormikContext()
+  // const {setFieldValue} = useFormikContext()
 
   const [inputVal, setInputVal] = useState('')
   const [foundOrganizations, setFoundOrganizations] = useState(null)
@@ -23,7 +23,6 @@ const FormikSearchField = ({
 
   const handleChange = (event) => {
     const {value} = event.target
-    // setFieldValue(name, value)
     setInputVal(value)
     debounce(value)
   }
