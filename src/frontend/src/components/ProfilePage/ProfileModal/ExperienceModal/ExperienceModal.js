@@ -1,20 +1,19 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
 import styles from '../styles'
 import Typography from '@material-ui/core/Typography'
-import { Field, Form, Formik } from 'formik'
+import {Field, Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import FormikTextField from '../../../../shared/FormComponents/FormikTextField'
 import FormikSelect from '../../../../shared/FormComponents/FormikSelect'
-import FormikSearchField from '../../../../shared/FormComponents/FormikSearchField'
+import FormikSearchField from '../../../../shared/FormComponents/FormikSearchField/FormikSearchField'
 import Grid from '@material-ui/core/Grid'
 import month from '../../../../data/month.json'
 import year from '../../../../data/year.json'
-import companies from '../../../../data/companies.json'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
-import { useDispatch } from 'react-redux'
+import {useDispatch} from 'react-redux'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import {
   createNewWorkPlaceAction,
@@ -138,7 +137,7 @@ const ExperienceModal = (props) => {
           }}
         >
           {({values}) => (
-            <Form>
+            <Form >
               <DialogContent dividers>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -161,20 +160,8 @@ const ExperienceModal = (props) => {
                         shrink: true
                       }}
                       placeholder="Ex: Microsoft"
-                      autocomplete='off'
-                      // options={companies}
+                      autoComplete='off'
                     />
-                    {/* <FormikTextField */}
-                    {/*  name="organizationId" */}
-                    {/*  label="Organization ID" */}
-                    {/*  // later on a drop-down list with organizations should be implemented */}
-                    {/*  size="small" */}
-                    {/*  InputLabelProps={{ */}
-                    {/*    shrink: true */}
-                    {/*  }} */}
-                    {/*  placeholder="Ex: Microsoft" */}
-                    {/*  disabled = {true} */}
-                    {/* /> */}
                   </Grid>
                   <Grid item xs={12}>
                     <label className={classes.checkbox}>

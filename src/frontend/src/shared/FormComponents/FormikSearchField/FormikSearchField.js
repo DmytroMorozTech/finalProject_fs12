@@ -2,7 +2,8 @@ import React, {useCallback, useState} from 'react'
 import {useField, useFormikContext} from 'formik'
 import {TextField} from '@material-ui/core'
 import _ from 'lodash'
-import http from '../../services/httpService'
+import http from '../../../services/httpService'
+import styles from './styles'
 
 const FormikSearchField = ({
   name,
@@ -14,6 +15,8 @@ const FormikSearchField = ({
   const [inputVal, setInputVal] = useState('')
   const [foundOrganizations, setFoundOrganizations] = useState(null)
   const [debouncedState, setDebouncedState] = useState('')
+  const [chosenOrganization, setChosenOrganization] = useState('')
+  const classes = styles()
 
   const findOrganizationsByName = (name) => {
     return http
@@ -59,16 +62,33 @@ const FormikSearchField = ({
     configTextField.helperText = meta.error
   }
   return (
-    <>
+    <div className={classes.searchFieldWrapper}>
       <TextField {...configTextField}/>
       {foundOrganizations &&
       (
-        <ul>
-          {foundOrganizations.map(org => (<li>{org.name}</li>))}
-        </ul>
+        <div className={classes.searchDropDownWrapper}>
+          {foundOrganizations.map(
+            (org, index) => (<button
+              type='button'
+              key={index}
+              className={classes.dropDownItem}
+              onClick={(ev) => {
+                setChosenOrganization(org)
+                setInputVal(org.name)
+                console.log('Chosen organization:')
+                console.log(org)
+                setFoundOrganizations(null)
+                // ev.preventDefault()
+                // ev.stopPropagation()
+                // ev.nativeEvent.stopImmediatePropagation()
+              }}
+            >
+              {org.name}
+            </button>))}
+        </div>
       )
       }
-    </>
+    </div>
   )
 }
 export default FormikSearchField
