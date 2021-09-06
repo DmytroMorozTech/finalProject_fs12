@@ -8,7 +8,7 @@ import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSqua
 import clsx from 'clsx'
 
 function Invitation (props) {
-  const {avatarUrl, fullName = 'Panny Hofstader',
+  const {avatarPublicId, fullName = 'Panny Hofstader',
     positionAndCompany = 'Senior JavaScript Developer',
     numberOfConnection = 1, isNewInvitation = false,
     createDate = '3 hours ago', isReceived, isManage} = props
@@ -20,7 +20,7 @@ function Invitation (props) {
       <div className={classes.flex}>
         <div>
           <Image
-            imageUrl={avatarUrl}
+            imageUrl={avatarPublicId}
             alt={'user avatar'}
             className={classes.userAvatar}
             type={'largeAvatar'}

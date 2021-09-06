@@ -22,7 +22,7 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
   @Override
   public User uploadAvatarImg(MultipartFile file) throws IOException {
     User activeUser = userService.getActiveUser();
-    String currentAvatarUrl = activeUser.getAvatarUrl();
+    String currentAvatarPublicId = activeUser.getAvatarPublicId();
 
     Map uploadResult = cloudinary.uploader().upload(
       file.getBytes(),
@@ -35,8 +35,7 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
       )
     );
 
-    String imgPublicId = (String) uploadResult.get("public_id");
-    System.out.println(imgPublicId);
+    String newAvatarPublicId = (String) uploadResult.get("public_id");
 
     Map<String, String> uploadOptions = new HashMap<>() {
       {
@@ -44,11 +43,11 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
       }
     };
 
-    if (!currentAvatarUrl.isEmpty()) {
-      cloudinary.uploader().destroy(currentAvatarUrl, uploadOptions);
+    if (!currentAvatarPublicId.isEmpty()) {
+      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
     }
 
-    activeUser.setAvatarUrl(imgPublicId);
+    activeUser.setAvatarPublicId(newAvatarPublicId);
     return userService.save(activeUser);
   }
 
@@ -65,8 +64,7 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
   @Override
   public User uploadProfileBgImg(MultipartFile file) throws IOException {
     User activeUser = userService.getActiveUser();
-    String currentProfileBgUrl = activeUser.getProfileBgUrl();
-    String currentProfileBgPublicId = getPublicIdFromImgUrl(currentProfileBgUrl);
+    String currentProfileBgPublicId = activeUser.getProfileBgPublicId();
 
     Map uploadResult = cloudinary.uploader().upload(
       file.getBytes(),
@@ -78,18 +76,19 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
         "transformation", new Transformation().width(1400).height(350).crop("fill").gravity("auto")
       )
     );
-    String newProfileBgUrl = (String) uploadResult.get("url");
+    String newProfileBgPublicId = (String) uploadResult.get("public_id");
 
-    if (!currentProfileBgUrl.isEmpty()) {
+    if (!currentProfileBgPublicId.isEmpty()) {
       cloudinary.uploader().destroy(
         currentProfileBgPublicId,
-        new HashMap<>() { {
-              put("invalidate", "true");
+        new HashMap<>() {
+          {
+            put("invalidate", "true");
           }
         });
     }
 
-    activeUser.setProfileBgUrl(newProfileBgUrl);
+    activeUser.setProfileBgPublicId(newProfileBgPublicId);
     return userService.save(activeUser);
   }
 
@@ -118,9 +117,5 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
     return null;
   }
 
-  private String getPublicIdFromImgUrl(String imgUrl) {
-    int startIndex = imgUrl.indexOf("linkedin");
-    int endIndex = imgUrl.lastIndexOf('.');
-    return imgUrl.substring(startIndex, endIndex);
-  }
+
 }

@@ -90,6 +90,17 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
         )
         break
 
+      case 'profileBgImg':
+        transformation = (
+          <Transformation
+            width="800"
+            crop="fill"
+            quality="90"
+            drp="auto"
+          />
+        )
+        break
+
       default:
         break
     }
@@ -102,7 +113,10 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
       type === 'largeAvatar' || type === 'mediumAvatar' ||
       type === 'smallAvatar' || type === 'extraSmallAvatar') {
       defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+    } if (type === 'profileBgImg') {
+      defaultImgUrl = 'linkedin/general/u4aqln7amyyfdj0tehqy'
     }
+
     return defaultImgUrl
   }
 

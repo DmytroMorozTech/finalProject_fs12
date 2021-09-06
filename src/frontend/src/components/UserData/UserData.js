@@ -18,9 +18,9 @@ function UserData () {
     <div className={classes.root}>
       <MenuItem component={Link} to={`/profiles/${activeUserId}`} className={classes.menuItem}>
         <div className={classes.avatarWrapper}>
-          {/* <img className={classes.avatar} src={activeUser.avatarUrl} alt={}/> */}
+          {/* <img className={classes.avatar} src={activeUser.avatarPublicId} alt={}/> */}
           <Image
-            imageUrl={activeUser.avatarUrl}
+            imageUrl={activeUser.avatarPublicId}
             alt={`Avatar of ${activeUser.fullName}`}
             className={classes.avatar}
             type={'smallAvatar'}

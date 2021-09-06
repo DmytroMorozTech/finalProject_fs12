@@ -1,5 +1,4 @@
 import styles from './styles'
-import Avatar from '../../../../../shared/Avatar/Avatar'
 import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/SharedButton/SharedButton'
@@ -10,6 +9,7 @@ import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
 import { useDispatch } from 'react-redux'
 // import { useSelector } from 'react-redux'
 import { getUserChatsAction } from '../../../../../redux/Message/messageActions'
+import Image from '../../../../../shared/Image/Image'
 // import { isTemporaryChatOpenAction } from '../../../../../redux/Message/messageActions'
 // import { allChats } from '../../../../../redux/Message/messageSelector'
 // import { activeUserSelector } from '../../../../../redux/User/userSelector'
@@ -23,7 +23,7 @@ function Connection (props) {
 
   const {
     id = 3,
-    avatarUrl = 'https://res.cloudinary.com/dan-insta-step/image/upload/v1628417806/linkedin/avatars/p1qwriz6hzjgwkaihwpa.jpg',
+    avatarPublicId = 'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
     fullName = 'Laura Lee',
     positionAndCompany = 'Sales manager at Microsoft',
     dateCreated = '3 days ago'
@@ -56,9 +56,12 @@ function Connection (props) {
         <div className={classes.connection}>
           <div className={classes.flex}>
             <Link to={`/profiles/${id}`}>
-              <div className={classes.avatar}>
-                <Avatar avatarUrl={avatarUrl}/>
-              </div>
+              <Image
+                imageUrl={avatarPublicId}
+                alt={'user avatar'}
+                className={classes.avatar}
+                type={'largeAvatar'}
+              />
             </Link>
             <div className={classes.userInfo}>
               <Link to={`/profiles/${id}`} className={classes.link}>

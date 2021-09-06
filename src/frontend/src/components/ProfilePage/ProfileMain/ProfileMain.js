@@ -11,7 +11,6 @@ import toggleModalAction from '../../../redux/Modal/modalActions'
 import { EDIT_INTRO, UPLOAD_AVATAR_IMG, UPLOAD_PROFILE_BACKGROUND_IMG } from '../../../redux/Modal/modalTypes'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
-// import {Image, Transformation} from 'cloudinary-react'
 import Image from '../../../../src/shared/Image/Image'
 
 function ProfileMain (props) {
@@ -21,12 +20,19 @@ function ProfileMain (props) {
   const dispatch = useDispatch()
   const preventDefault = (event) => event.preventDefault()
 
-  const defaultBgUrl = 'url(https://res.cloudinary.com/dan-insta-step/image/upload/v1630405373/linkedin/general/u4aqln7amyyfdj0tehqy.png)'
-  const bgChosenByUser = `url(${profile.profileBgUrl})`
-  const profileBgImage = profile.profileBgUrl ? bgChosenByUser : defaultBgUrl
+  // const defaultBgUrl = 'url(https://res.cloudinary.com/dan-insta-step/image/upload/v1630405373/linkedin/general/u4aqln7amyyfdj0tehqy.png)'
+  // const bgChosenByUser = `url(${profile.profileBgUrl})`
+  // const profileBgImage = profile.profileBgPublicId ? bgChosenByUser : defaultBgUrl
 
   return (
-    <div className={classes.root} style={{ backgroundImage: profileBgImage }}>
+    <div className={classes.root} >
+      <Image
+        imageUrl={profile.profileBgPublicId}
+        className={classes.profileBackgroundImg}
+        type={'profileBgImg'}
+        alt={'profile background'}
+      />
+
       <div className={classes.header}>
         <div
           className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
@@ -37,7 +43,7 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Image
-            imageUrl={profile.avatarUrl}
+            imageUrl={profile.avatarPublicId}
             onClickHandler={() => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG }))}
             className={classes.bigAvatar}
             type={'profileAvatar'}
