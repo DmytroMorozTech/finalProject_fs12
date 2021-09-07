@@ -13,7 +13,7 @@ import styles from './styles'
 import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 import Image from '../../../shared/Image/Image'
 
@@ -82,13 +82,14 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        {/* TODO add link to Profile Page when we will edit Messages Page */}
-                        <Image
-                          imageUrl={getChatMember() && getChatMember().avatarPublicId}
-                          alt={'user avatar'}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}
-                          type={'extraLargeAvatar'}
-                        />
+                        <Link to={`/profiles/${getChatMember() && getChatMember().id}`}>
+                          <Image
+                            imageUrl={getChatMember() && getChatMember().avatarPublicId}
+                            alt={getChatMember() && getChatMember().fullName}
+                            className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                            type={'extraLargeAvatar'}
+                          />
+                        </Link>
                         <div className={classes.presenceEntityIndicator}>
 
                         </div>
@@ -96,7 +97,9 @@ function Chat (props) {
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {getChatMember() && getChatMember().fullName}
+                        <Link to={`/profiles/${getChatMember() && getChatMember().id}`} className={classes.linkMain}>
+                          {getChatMember() && getChatMember().fullName}
+                        </Link>
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
@@ -108,7 +111,9 @@ function Chat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} messageSender={getMessageSender(m.userId)} text={m.text}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id}
+                  messageSender={getMessageSender(m.userId)}
+                  text={m.text}
                   time={m.createdDate}/>)}
               </li>
             </ul>

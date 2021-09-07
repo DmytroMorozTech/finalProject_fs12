@@ -604,5 +604,14 @@ export default makeStyles((theme) => ({
   },
   addTopMargin: {
     marginTop: 70
+  },
+  linkMain: {
+    textDecoration: 'none',
+    color: theme.palette.grey[900],
+    '&:hover': {
+      textDecoration: 'underline',
+      textDecorationThickness: '2px',
+      textDecorationColor: theme.palette.grey[700]
+    }
   }
 }))

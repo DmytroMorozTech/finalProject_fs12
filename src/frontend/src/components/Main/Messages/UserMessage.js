@@ -60,7 +60,7 @@ function UserMessage ({text, time, messageSender}) {
       <div className={classes.eventListItem}>
         <Image
           imageUrl={messageSender && messageSender.avatarPublicId}
-          alt={'user avatar'}
+          alt={messageSender && messageSender.fullName}
           className={classes.userAvatar}
           type={'extraSmallAvatar'}
         />

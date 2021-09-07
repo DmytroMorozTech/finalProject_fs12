@@ -19,13 +19,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import {
   allChats,
   allMessages,
-  chatMessages, isTemporaryChatOpenSelector,
+  chatMessages,
+  isTemporaryChatOpenSelector,
   newChatData,
   newChatIdSelector
 } from '../../../redux/Message/messageSelector'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
 import {findUserByIdAction} from '../../../redux/User/userActions'
+import Image from '../../../shared/Image/Image'
 
 function NewChat (props) {
   const {match} = props
@@ -110,16 +112,23 @@ function NewChat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={currentUser && currentUser.avatarPublicId}
-                          alt={currentUser && currentUser.fullName}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
+                        <Link to={`/profiles/${currentUser && currentUser.id}`}>
+                          <Image
+                            imageUrl={currentUser && currentUser.avatarPublicId}
+                            alt={currentUser && currentUser.fullName}
+                            className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                            type={'extraLargeAvatar'}
+                          />
+                        </Link>
                         <div className={classes.presenceEntityIndicator}>
                         </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {currentUser && currentUser.fullName}
+                        <Link to={`/profiles/${currentUser && currentUser.id}`} className={classes.linkMain}>
+                          {currentUser && currentUser.fullName}
+                        </Link>
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
