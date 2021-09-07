@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(4),
     padding: theme.spacing(4)
   },
   header: {

@@ -10,7 +10,7 @@ function BookmarkedPosts () {
 
   return (
     <Container className={classes.container} maxWidth={'lg'}>
-      <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'}>
+      <Grid container spacing={4} alignItems={'flex-start'} justifyContent={'center'}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <div className={classes.savedElementsPanel}>
             <h3 className={classes.savedElementsHeading}>
@@ -19,7 +19,6 @@ function BookmarkedPosts () {
             </h3>
             <p className={classes.savedElementsSubheading}>Anything you save is private.</p>
           </div>
-
           <Feed type={'bookmarkedPosts'}/>
         </Grid>
       </Grid>

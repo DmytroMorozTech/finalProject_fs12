@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   container: {
-    marginTop: '65px'
+    marginTop: '75px'
   },
   savedElementsBtnAll: {
     borderRadius: '1.99rem',
