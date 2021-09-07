@@ -8,8 +8,8 @@ const SelectWrapper = ({
   ...otherProps
 }) => {
   const {setFieldValue} = useFormikContext()
-  const [field, meta, helpers] = useField(name)
-  console.log(helpers)
+  const [field, meta] = useField(name)
+
   const handleOnChange = event => {
     const {value} = event.target
     setFieldValue(name, value)

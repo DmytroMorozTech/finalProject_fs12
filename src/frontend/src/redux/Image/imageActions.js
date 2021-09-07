@@ -46,3 +46,19 @@ export const uploadProfileBgImgAction = (file) => (dispatch) => {
       toast.error(errorMsg)
     })
 }
+
+export const uploadPostImgAction = (file) => {
+  const formData = new FormData()
+  formData.append('file', file)
+
+  return http
+    .post(`/api/images/upload/post`, formData,
+      {
+        headers: {'content-type': 'multipart/form-data'}
+      })
+    .then((res) => res.data) // postImgPublicId should be here
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}

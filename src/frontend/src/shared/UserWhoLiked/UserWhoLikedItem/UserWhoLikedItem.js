@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './styles'
-import Avatar from '../../Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
 import LikeMiniIcon from '../../LikeMiniIcon/LikeMiniIcon'
 import { Link } from 'react-router-dom'
+import Image from '../../Image/Image'
 
 const UsersWhoLikedItem = (props) => {
-  const {id, avatarUrl, positionAndCompany, fullName} = props.user
+  const {id, avatarPublicId, positionAndCompany, fullName} = props.user
 
   const classes = styles()
 
@@ -17,11 +17,14 @@ const UsersWhoLikedItem = (props) => {
       <div className={classes.userWhoLiked}>
         <div className={classes.userInfo}>
           <div className={classes.userAvatar}>
-            <div className={classes.avatar}>
-              <Link to={linkToUserProfile} className={classes.link}>
-                <Avatar avatarUrl={avatarUrl}/>
-              </Link>
-            </div>
+            <Link to={linkToUserProfile} className={classes.link}>
+              <Image
+                imageUrl={avatarPublicId}
+                alt={'user avatar'}
+                className={classes.avatar}
+                type={'smallAvatar'}
+              />
+            </Link>
             <div className={classes.iconStatus}>
               <LikeMiniIcon fontSize="inherit"/>
             </div>

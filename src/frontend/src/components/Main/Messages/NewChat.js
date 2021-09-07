@@ -110,7 +110,7 @@ function NewChat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={currentUser && currentUser.avatarUrl}
+                        <img src={currentUser && currentUser.avatarPublicId}
                           alt={currentUser && currentUser.fullName}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
                         <div className={classes.presenceEntityIndicator}>

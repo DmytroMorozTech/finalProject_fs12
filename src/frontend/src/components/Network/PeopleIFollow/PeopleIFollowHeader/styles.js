@@ -27,6 +27,6 @@ export default makeStyles((theme) => ({
 
   active: {
     color: theme.palette.success.main,
-    borderBottom: theme.border.likesModal
+    borderBottom: theme.border.success
   }
 }))

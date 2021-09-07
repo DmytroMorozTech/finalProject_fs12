@@ -104,5 +104,38 @@ export default makeStyles((theme) => ({
   verticalLine: {
     borderLeft: theme.border.simple,
     margin: theme.spacing(1)
+  },
+
+  previewImgWrapper: {
+    maxWidth: '50%',
+    maxHeight: '50%',
+    position: 'relative'
+  },
+
+  previewImg: {
+    width: '100%',
+    borderRadius: theme.shape.medium
+  },
+
+  cross: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    fontSize: theme.typography.icons.medium.fontSize,
+    color: theme.palette.common.white,
+    backgroundColor: 'rgba(0,0,0,.5)',
+    padding: theme.spacing(1),
+    borderRadius: '50%',
+    position: 'absolute',
+    top: theme.spacing(2),
+    right: theme.spacing(2),
+    cursor: 'pointer'
+  },
+
+  removed: {
+    display: 'none'
   }
+
 }))

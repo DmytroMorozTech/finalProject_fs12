@@ -18,7 +18,7 @@ import Image from '../../../../../../../shared/Image/Image'
 function Comment (props) {
   const { id: commentId, user, text, numberOfLikes = 0, createdDate, isLikedByActiveUser } = props.comment
   const postId = props.postId
-  const { fullName, avatarUrl, positionAndCompany } = user
+  const { fullName, avatarPublicId, positionAndCompany } = user
 
   const classes = styles()
   const dispatch = useDispatch()
@@ -35,15 +35,14 @@ function Comment (props) {
 
   return (
     <div className={classes.comment}>
-      <div className={classes.commentAvatar}>
-        <Link to={linkToUserProfile}>
-          <Image
-            imageUrl={avatarUrl}
-            alt={'user avatar'}
-            type={'extraSmallAvatar'}
-          />
-        </Link>
-      </div>
+      <Link to={linkToUserProfile}>
+        <Image
+          imageUrl={avatarPublicId}
+          alt={'user avatar'}
+          type={'extraSmallAvatar'}
+          className={classes.commentAvatar}
+        />
+      </Link>
       <div className={classes.commentWrapper}>
         <div className={classes.commentBackground}>
           <div className={clsx(classes.commentRow, classes.commentHeader)}>

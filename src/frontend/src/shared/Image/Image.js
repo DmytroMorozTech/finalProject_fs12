@@ -19,13 +19,48 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
         )
         break
 
+      case 'extraLargeAvatar':
+        transformation = (
+          <Transformation
+            height={theme.avatar.extraLarge}
+            width={theme.avatar.extraLarge}
+            crop="fill"
+            quality="100"
+            drp="auto"
+          />
+        )
+        break
+
+      case 'largeAvatar':
+        transformation = (
+          <Transformation
+            height={theme.avatar.large}
+            width={theme.avatar.large}
+            crop="fill"
+            quality="100"
+            drp="auto"
+          />
+        )
+        break
+
+      case 'mediumAvatar':
+        transformation = (
+          <Transformation
+            height={theme.avatar.medium}
+            width={theme.avatar.medium}
+            crop="fill"
+            quality="100"
+            drp="auto"
+          />
+        )
+        break
+
       case 'smallAvatar':
         transformation = (
           <Transformation
             height={theme.avatar.small}
             width={theme.avatar.small}
             crop="fill"
-            radius="max"
             quality="100"
             drp="auto"
           />
@@ -38,20 +73,6 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
             height={theme.avatar.extraSmall}
             width={theme.avatar.extraSmall}
             crop="fill"
-            radius="max"
-            quality="100"
-            drp="auto"
-          />
-        )
-        break
-
-      case 'extraLargeAvatar':
-        transformation = (
-          <Transformation
-            height={theme.avatar.extraLarge}
-            width={theme.avatar.extraLarge}
-            crop="fill"
-            radius="max"
             quality="100"
             drp="auto"
           />
@@ -69,15 +90,39 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
         )
         break
 
+      case 'profileBgImg':
+        transformation = (
+          <Transformation
+            width="800"
+            crop="fill"
+            quality="90"
+            drp="auto"
+          />
+        )
+        break
+
       default:
         break
     }
     return transformation
   }
 
+  const getDefaultImgUrl = (type) => {
+    let defaultImgUrl
+    if (type === 'profileAvatar' || type === 'extraLargeAvatar' ||
+      type === 'largeAvatar' || type === 'mediumAvatar' ||
+      type === 'smallAvatar' || type === 'extraSmallAvatar') {
+      defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+    } if (type === 'profileBgImg') {
+      defaultImgUrl = 'linkedin/general/u4aqln7amyyfdj0tehqy'
+    }
+
+    return defaultImgUrl
+  }
+
   return (
     <CloudinaryImage
-      publicId={imageUrl}
+      publicId={imageUrl || getDefaultImgUrl(type) }
       onClick={onClickHandler}
       className={className}
       crop="crop"

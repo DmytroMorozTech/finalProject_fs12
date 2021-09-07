@@ -39,4 +39,10 @@ public class ImageController {
     return ResponseEntity.ok(userRs);
   }
 
+  @PostMapping("/post")
+  public ResponseEntity<String> handlePostImgUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    String imgPublicId = imageService.uploadPostImg(file);
+    return ResponseEntity.ok(imgPublicId);
+  }
+
 }

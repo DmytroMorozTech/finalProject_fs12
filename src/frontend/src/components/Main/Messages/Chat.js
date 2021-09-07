@@ -84,12 +84,14 @@ function Chat (props) {
                       <div className={classes.presenceEntity}>
                         {/* TODO add link to Profile Page when we will edit Messages Page */}
                         <Image
-                          imageUrl={getChatMember() && getChatMember().avatarUrl}
+                          imageUrl={getChatMember() && getChatMember().avatarPublicId}
                           alt={'user avatar'}
                           className={`${classes.userAvatar} ${classes.presenceEntity}`}
                           type={'extraLargeAvatar'}
                         />
-                        <div className={classes.presenceEntityIndicator}></div>
+                        <div className={classes.presenceEntityIndicator}>
+
+                        </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>

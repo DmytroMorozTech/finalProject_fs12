@@ -19,7 +19,8 @@ export default makeStyles((theme) => ({
   smallAvatar: {
     width: theme.avatar.small,
     marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(4)
+    marginLeft: theme.spacing(4),
+    borderRadius: '50%'
   },
   postButton: {
     marginLeft: theme.spacing(2),
