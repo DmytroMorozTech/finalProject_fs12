@@ -7,26 +7,34 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Table(name = "invitations")
-public class Invitation extends AbstractEntity {
+public class Invitation{
+
+  @EmbeddedId
+  private InvitationId id;
+
   private String text;
 
   @ManyToOne
-  @JoinColumn(name = "user_who_id")
+  @MapsId("userWhoId")
+  @JoinColumn(name="user_who_id")
   private User userWho;
 
   @ManyToOne
-  @JoinColumn(name = "user_whom_id")
+  @MapsId("userWhomId")
+  @JoinColumn(name="user_whom_id")
   private User userWhom;
 
 }
