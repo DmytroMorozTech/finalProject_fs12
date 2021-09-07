@@ -128,10 +128,11 @@ export const createNewWorkPlaceAction = (payload) => (dispatch) => {
     })
 }
 
-export const updateWorkPlaceAction = (payload, id) => (dispatch) => {
+export const updateWorkPlaceAction = (payload, workPlaceId) => (dispatch) => {
   convertStrToLocalDateExperience(payload)
+
   return http
-    .put(`/api/work-places/${id}`, payload)
+    .put(`/api/work-places/${workPlaceId}`, payload)
     .then((res) => res.data)
     .then((workPlace) => {
       dispatch({ type: actions.UPDATE_EXPERIENCE, payload: workPlace })
