@@ -33,11 +33,11 @@ public class WorkPlaceController {
     return ResponseEntity.ok(workPlace);
   }
 
-  @PutMapping(path = "{id}")
+  @PutMapping(path = "{workPlaceId}")
   @JsonView(UserViews.Profile.class)
   public ResponseEntity<WorkPlaceRs> updateWorkPlace(@Valid @RequestBody WorkPlaceRq rq,
-                                                     @PathVariable Long id) {
-    WorkPlaceRs workPlace = workPlaceFacade.updateWorkPlace(rq, id);
+                                                     @PathVariable Long workPlaceId) {
+    WorkPlaceRs workPlace = workPlaceFacade.updateWorkPlace(rq, workPlaceId);
     return ResponseEntity.ok(workPlace);
   }
 
