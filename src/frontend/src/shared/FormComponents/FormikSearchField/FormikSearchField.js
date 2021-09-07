@@ -1,21 +1,22 @@
 import React, {useCallback, useState} from 'react'
-import {useField, useFormikContext} from 'formik'
+import {useField} from 'formik'
 import {TextField} from '@material-ui/core'
 import _ from 'lodash'
 import http from '../../../services/httpService'
 import styles from './styles'
+import clsx from 'clsx'
 
 const FormikSearchField = ({
   name,
   ...otherProps
 }) => {
   const [field, meta, helpers] = useField(name)
-  // const {setFieldValue} = useFormikContext()
+  const {setValue} = helpers
+
+  const {setOrgHandler} = otherProps
 
   const [inputVal, setInputVal] = useState('')
   const [foundOrganizations, setFoundOrganizations] = useState(null)
-  const [debouncedState, setDebouncedState] = useState('')
-  const [chosenOrganization, setChosenOrganization] = useState('')
   const classes = styles()
 
   const findOrganizationsByName = (name) => {
@@ -27,21 +28,21 @@ const FormikSearchField = ({
   const handleChange = (event) => {
     const {value} = event.target
     setInputVal(value)
+    setOrgHandler(null)
+    if (value.length === 0) {
+      setFoundOrganizations(null)
+      return
+    }
     debounce(value)
   }
 
+  // eslint-disable-next-line
   const debounce = useCallback(
     _.debounce((_searchVal) => {
-      // setFoundOrganizations(null)
-      setDebouncedState(_searchVal)
-      console.log(`Debounce. ${_searchVal}`)
       // send the server request here
       findOrganizationsByName(_searchVal)
         .then((organizationsList) => {
           setFoundOrganizations(organizationsList)
-          console.log('FOUND ORGANIZATIONS')
-          console.log(organizationsList)
-          // console.log(foundOrganizations)
         })
     }, 1000),
     []
@@ -66,21 +67,17 @@ const FormikSearchField = ({
       <TextField {...configTextField}/>
       {foundOrganizations &&
       (
-        <div className={classes.searchDropDownWrapper}>
+        <div className={clsx(classes.searchDropDownWrapper, inputVal.length === 0 ? classes.hidden : '')}>
           {foundOrganizations.map(
             (org, index) => (<button
               type='button'
               key={index}
               className={classes.dropDownItem}
-              onClick={(ev) => {
-                setChosenOrganization(org)
+              onClick={() => {
+                setOrgHandler(org)
+                setValue(org.name)
                 setInputVal(org.name)
-                console.log('Chosen organization:')
-                console.log(org)
                 setFoundOrganizations(null)
-                // ev.preventDefault()
-                // ev.stopPropagation()
-                // ev.nativeEvent.stopImmediatePropagation()
               }}
             >
               {org.name}

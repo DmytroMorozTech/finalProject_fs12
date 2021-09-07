@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
   searchDropDownWrapper: {
     width: '100%',
     position: 'absolute',
-    top: '60%',
+    top: '100%',
     left: 0
   },
 
@@ -23,6 +23,10 @@ export default makeStyles((theme) => ({
       backgroundColor: 'darkgray',
       cursor: 'pointer'
     }
+  },
+
+  hidden: {
+    display: 'none'
   }
 
 }))

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
@@ -42,8 +42,9 @@ const DialogActions = withStyles((theme) => ({
 const ExperienceModal = (props) => {
   const classes = styles()
   const dispatch = useDispatch()
+  const [chosenOrg, setChosenOrg] = useState(null)
 
-  const workPlace = props.workPlace
+  const { workPlace } = props
   let start, end
 
   if (workPlace) {
@@ -54,7 +55,7 @@ const ExperienceModal = (props) => {
 
   const INITIAL_FORM_STATE = {
     position: workPlace?.position || '',
-    organizationId: workPlace?.organization.id || '',
+    organizationName: workPlace?.organization.name || '',
     isCurrentlyEmployed: workPlace?.isCurrentlyEmployed || false,
     startMonth: start?.month || '',
     startYear: start?.year || '',
@@ -62,10 +63,12 @@ const ExperienceModal = (props) => {
     endYear: (end ? end.year : '') || '',
     responsibilities: workPlace?.responsibilities || ''
   }
+  
+  console.log(INITIAL_FORM_STATE)
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
       .required('Required'),
-    organizationId: Yup.string()
+    organizationName: Yup.string()
       .required('Required'),
     isCurrentlyEmployed: Yup.boolean(),
     startMonth: Yup.string()
@@ -128,9 +131,11 @@ const ExperienceModal = (props) => {
           onSubmit={values => {
             console.log(values)
             if (workPlace) {
+              values.organizationId = workPlace.organization.id
               dispatch(updateWorkPlaceAction(values, workPlace.id))
               dispatch(toggleModalAction())
             } else {
+              values.organizationId = chosenOrg.id
               dispatch(createNewWorkPlaceAction(values))
               dispatch(toggleModalAction())
             }
@@ -152,16 +157,29 @@ const ExperienceModal = (props) => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormikSearchField
-                      name="organizationId"
-                      label="Organisation"
-                      size="small"
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      placeholder="Ex: Microsoft"
-                      autoComplete='off'
-                    />
+                    {workPlace
+                      ? <FormikTextField
+                        name="organizationName"
+                        label="Organization"
+                        size="small"
+                        InputLabelProps={{
+                          shrink: true
+                        }}
+                        disabled={true}
+                      />
+                      : <FormikSearchField
+                        name="organizationName"
+                        label="Organization"
+                        size="small"
+                        InputLabelProps={{
+                          shrink: true
+                        }}
+                        placeholder="Enter your organization"
+                        autoComplete='off'
+                        setOrgHandler = {setChosenOrg}
+                      />
+                    }
+
                   </Grid>
                   <Grid item xs={12}>
                     <label className={classes.checkbox}>
