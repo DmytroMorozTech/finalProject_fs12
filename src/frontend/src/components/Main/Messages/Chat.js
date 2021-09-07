@@ -30,6 +30,7 @@ function Chat (props) {
   const chatsList = useSelector(allChats)
   const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
+  let dateTitleTemporaryMemory = ''
 
   const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
   const currentChat = chatsList.filter(c => c.id === +chatId)[0]
@@ -55,6 +56,63 @@ function Chat (props) {
 
   const getMessageSender = (userId) => {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
+  }
+
+  const checkIfNeedToRenderDateTitle = (time) => {
+    if (dateTitleTemporaryMemory === getDateTitle(time)) {
+      return ''
+    } else {
+      dateTitleTemporaryMemory = getDateTitle(time)
+      return getDateTitle(time)
+    }
+  }
+
+  const getDateTitle = (time) => {
+    const localTime = new Date()
+    switch (true) {
+      case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
+        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
+      default:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
+    }
+  }
+
+  const getDate = (time) => {
+    const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
+    return splitDate[0] + ':' + splitDate[1]
+  }
+
+  const getMonthText = (date) => {
+    switch (date) {
+      case '01':
+        return 'JANUARY'
+      case '02':
+        return 'FEBRUARY'
+      case '03':
+        return 'MARCH'
+      case '04':
+        return 'APRIL'
+      case '05':
+        return 'MAY'
+      case '06':
+        return 'JUNE'
+      case '07':
+        return 'JULY'
+      case '08':
+        return 'AUGUST'
+      case '09':
+        return 'SEPTEMBER'
+      case '10':
+        return 'OCTOBER'
+      case '11':
+        return 'NOVEMBER'
+      case '12':
+        return 'DECEMBER'
+      default:
+        return 'incorrect data'
+    }
   }
 
   return (
@@ -114,7 +172,8 @@ function Chat (props) {
                 {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id}
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
-                  time={m.createdDate}/>)}
+                  timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
+                  timeSent={getDate(m.createdDate)}/>)}
               </li>
             </ul>
           </div>

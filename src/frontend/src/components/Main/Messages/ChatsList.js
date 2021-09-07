@@ -11,6 +11,7 @@ function ChatsList (props) {
   const classes = Style()
   const userChatMessages = useSelector(chatMessages)
   const dispatch = useDispatch()
+  console.log('chat id: ' + chatId)
 
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
