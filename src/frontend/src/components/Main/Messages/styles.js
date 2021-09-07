@@ -613,5 +613,13 @@ export default makeStyles((theme) => ({
       textDecorationThickness: '2px',
       textDecorationColor: theme.palette.grey[700]
     }
+  },
+  noChatInfo: {
+    height: 50,
+    fontSize: theme.typography.h4.fontSize,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
+
 }))

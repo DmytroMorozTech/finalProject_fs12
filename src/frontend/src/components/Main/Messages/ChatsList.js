@@ -86,7 +86,7 @@ function ChatsList (props) {
               <div className={classes.absolut}>
                 <Image
                   imageUrl={avatarPublicId}
-                  alt={'user avatar'}
+                  alt={fullName}
                   className={classes.userAvatar}
                   type={'extraSmallAvatar'}
                 />
