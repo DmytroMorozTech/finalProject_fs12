@@ -37,4 +37,10 @@ public class Invitation{
   @JoinColumn(name="user_whom_id")
   private User userWhom;
 
+  public Invitation(String text, User userWho, User userWhom) {
+    this.text = text;
+    this.userWho = userWho;
+    this.userWhom = userWhom;
+    this.id = new InvitationId(userWho.getId(), userWho.getId());
+  }
 }

@@ -1,15 +1,13 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.invitation.InvitationRq;
-import com.danit.fs12.entity.invitation.InvitationRs;
-import com.danit.fs12.facade.InvitationFacade;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.danit.fs12.entity.user.User;
+import com.danit.fs12.repository.InvitationRepository;
+import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,21 +20,24 @@ import javax.validation.Valid;
 @RequestMapping(path = "/api/invitations")
 @RequiredArgsConstructor
 public class InvitationController {
-  private final InvitationFacade invitationFacade;
+  private final InvitationRepository invitationRepository;
+  private final UserService userService;
 
   @PostMapping
-  @JsonView(InvitationViews.Base.class)
-  public ResponseEntity<InvitationRs> createInvitation(@Valid @RequestBody InvitationRq rq) {
-    System.out.println("Request from front-end:");
-    System.out.println(rq);
-    InvitationRs invitationRs = invitationFacade.createInvitation(rq);
-    return ResponseEntity.ok(invitationRs);
+  public ResponseEntity<String> createInvitation(@Valid @RequestBody InvitationRq rq) {
+    User userWho = userService.getActiveUser();
+    User userWhom = userService.findEntityById(rq.getUserWhomId());
+    String text = rq.getText();
+    Invitation invitation = new Invitation(text, userWho, userWhom);
+    Invitation savedInvitation = invitationRepository.save(invitation);
+    userWho.getInvitationsFromUser().add(savedInvitation);
+    return ResponseEntity.ok("Well done");
   }
 
-  @DeleteMapping(path = "{id}")
-  public ResponseEntity<?> deleteById(@PathVariable Long id) {
-    invitationFacade.deleteById(id);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-  }
+//  @DeleteMapping(path = "{id}")
+//  public ResponseEntity<?> deleteById(@PathVariable Long id) {
+//    invitationFacade.deleteById(id);
+//    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+//  }
 
 }
