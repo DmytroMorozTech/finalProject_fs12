@@ -43,6 +43,7 @@ public class MessageServiceUnitTest {
     }
 
     @Test
+    @WithMockUser
     void CanCreateMessage() {
         Faker faker = new Faker();
         Long chatId1 = 1L;
