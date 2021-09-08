@@ -33,7 +33,7 @@ export default makeStyles((theme) => ({
   },
 
   people: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
     padding: theme.spacing(2)
   },
 
@@ -41,5 +41,11 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     paddingLeft: theme.spacing(1)
+  },
+
+  '@media screen and (max-width: 445px)': {
+    smallMiniProfiles: {
+      justifyContent: 'center'
+    }
   }
 }))

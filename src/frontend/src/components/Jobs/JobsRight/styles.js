@@ -10,8 +10,7 @@ export default makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
-    width: '300px',
-    margin: theme.spacing(1)
+    width: '300px'
   },
 
   bestPracticesBlock: {
