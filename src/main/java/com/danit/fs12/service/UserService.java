@@ -4,6 +4,7 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
+import com.danit.fs12.entity.user.Provider;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
@@ -101,5 +102,44 @@ public class UserService extends GeneralService<User> {
     activeUser.setHeadline(rq.getHeadline());
 
     return save(activeUser);
+  }
+
+  public void processOAuthPostLogin(String email,
+                                    String avatarUrl,
+                                    String firstName,
+                                    String lastName) {
+    User existUser = userRepository.findUserByEmail(email);
+
+    if (existUser == null) {
+      User newUser = new User();
+      newUser.setEmail(email);
+      newUser.setAvatarPublicId(avatarUrl);
+      newUser.setFirstName(firstName);
+      newUser.setLastName(lastName);
+      newUser.setProvider(Provider.GOOGLE);
+      userRepository.save(newUser);
+    }
+  }
+
+  public void createNewUserAfterOAuthLoginSuccess(String email,
+                                                  String name,
+                                                  String avatarUrl,
+                                                  Provider provider) {
+    User user = new User();
+    user.setEmail(email);
+    user.setFirstName(name);
+    user.setAvatarPublicId(avatarUrl);
+    user.setProvider(provider);
+    userRepository.save(user);
+  }
+
+  public void updateUserAfterOAuthLoginSuccess(User user,
+                                               String name,
+                                               String avatarUrl,
+                                               Provider provider) {
+    user.setFirstName(name);
+    user.setAvatarPublicId(avatarUrl);
+    user.setProvider(provider);
+    userRepository.save(user);
   }
 }

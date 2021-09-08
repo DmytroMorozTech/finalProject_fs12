@@ -9,6 +9,7 @@ import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure()
+
 function App () {
   const dispatch = useDispatch()
   const isLoadingUser = useSelector(isLoadingUserSelector)
@@ -16,6 +17,7 @@ function App () {
   useEffect(() => {
     dispatch(getActiveUserAction())
   })
+
   return isLoadingUser ? <Preloader/> : (
     <div className="App">
       <Header/>
@@ -23,4 +25,5 @@ function App () {
     </div>
   )
 }
+
 export default App
