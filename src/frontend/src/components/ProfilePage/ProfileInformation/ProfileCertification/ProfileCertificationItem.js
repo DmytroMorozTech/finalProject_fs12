@@ -1,11 +1,11 @@
 import React from 'react'
-import style from './styles'
+import style from '../styles'
 import CreateIcon from '@material-ui/icons/Create'
 import Typography from '@material-ui/core/Typography'
-import toggleModalAction from '../../../redux/Modal/modalActions'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
-import convertLocalDateToString from '../../../utils/convertLocalDateToString'
-import { EDIT_CERTIFICATION } from '../../../redux/Modal/modalTypes'
+import convertLocalDateToString from '../../../../utils/convertLocalDateToString'
+import { EDIT_CERTIFICATION } from '../../../../redux/Modal/modalTypes'
 import clsx from 'clsx'
 
 function ProfileCertificationItem (props) {
@@ -20,7 +20,7 @@ function ProfileCertificationItem (props) {
 
   return (
     <div className={classes.content}>
-      <div className={classes.school}>
+      <div>
         <Typography variant="body1" className={classes.title}>{name}</Typography>
         <Typography>{issuingOrganization}</Typography>
         <Typography>Issued: {issuedMonthAndYear}</Typography>
@@ -39,4 +39,5 @@ function ProfileCertificationItem (props) {
     </div>
   )
 }
+
 export default ProfileCertificationItem
