@@ -89,10 +89,10 @@ function NewChat (props) {
   }
 
   const checkIfNeedToRenderDateTitle = (time) => {
-    if (dateTitleTemporaryMemory === getDateTitle(time)) {
+    if (dateTitleTemporaryMemory === getDateTitle(time).toLowerCase().trim()) {
       return ''
     } else {
-      dateTitleTemporaryMemory = getDateTitle(time)
+      dateTitleTemporaryMemory = getDateTitle(time).toLowerCase().trim()
       return getDateTitle(time)
     }
   }
