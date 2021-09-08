@@ -25,7 +25,6 @@ export const findUserByIdAction = (id) => (dispatch) => {
   return http
     .get(`../../api/users/${id}`)
     .then(res => {
-      console.log('Res data from curr user: ' + res.data)
       dispatch({
         type: actions.FIND_USER_BY_ID,
         payload: res.data
