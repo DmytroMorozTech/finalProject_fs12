@@ -34,7 +34,7 @@ function NetworkMain (props) {
           {/* Link is hardcoded below */}
           <SharedLinkSquare title='See all' to='#'/>
         </div>
-        <div className={classes.miniProfiles}>
+        <div className={clsx(classes.miniProfiles, classes.smallMiniProfiles)}>
           <MiniProfile/>
         </div>
       </div>

@@ -12,7 +12,7 @@ function Jobs () {
 
   return (
     <Container className={classes.jobsPage} maxWidth={'lg'}>
-      <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
+      <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
 
         <Hidden xsDown>
           <Grid item lg={2} xl={2}>
@@ -27,9 +27,11 @@ function Jobs () {
           <JobsMain/>
         </Grid>
 
-        <Hidden smDown>
-          <JobsRight/>
-        </Hidden>
+        <Grid item>
+          <Hidden smDown>
+            <JobsRight/>
+          </Hidden>
+        </Grid>
 
       </Grid>
     </Container>
