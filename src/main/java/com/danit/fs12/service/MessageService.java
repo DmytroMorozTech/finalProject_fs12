@@ -38,10 +38,8 @@ public class MessageService extends GeneralService<Message> {
     Message message = new Message();
     message.setText(text);
     messageRepository.save(message);
-
     user.addMessage(message);
     chat.addMessage(message);
-
     userRepository.save(user);
     chatRepository.save(chat);
 
