@@ -34,13 +34,13 @@ public class MessageService extends GeneralService<Message> {
     }
 
     User user = userOpt.get();
-    Chat chat = chatOpt.get();
     Message message = new Message();
     message.setText(text);
     messageRepository.save(message);
     user.addMessage(message);
-    chat.addMessage(message);
     userRepository.save(user);
+    Chat chat = chatOpt.get();
+    chat.addMessage(message);
     chatRepository.save(chat);
 
     return message;
