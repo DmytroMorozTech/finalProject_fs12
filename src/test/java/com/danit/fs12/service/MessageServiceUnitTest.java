@@ -116,7 +116,7 @@ public class MessageServiceUnitTest {
     }
 
     @Test
-    public void CanGetMessagesByCorrectChatId() {
+    public void CanGetMessagesByChatId() {
         MessageService messageService = new MessageService(userRepository, chatRepository, messageRepository, userService);
         when(messageRepository.findMessagesByChat_Id(chatId))
                 .thenReturn(Stream.of(message1, message2).collect(Collectors.toList()));
