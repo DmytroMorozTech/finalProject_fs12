@@ -8,8 +8,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: theme.shape.medium,
-    maxWidth: '180px',
-    width: '100%',
+    width: '180px',
     height: '280px',
     border: theme.border.simple,
     margin: theme.spacing(1),
@@ -20,8 +19,14 @@ export default makeStyles((theme) => ({
   },
 
   '@media screen and (max-width: 445px)': {
-    smallWidth: {
-      width: '155px'
+    smallScreen: {
+      width: '150px'
+    }
+  },
+
+  '@media screen and (max-width: 385px)': {
+    smallScreen: {
+      width: '118px'
     }
   },
 

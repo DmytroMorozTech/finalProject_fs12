@@ -56,5 +56,15 @@ export default makeStyles(() => ({
       minWidth: '380px',
       width: '427px'
     }
+  },
+
+  '@media screen and (max-width: 400px)': {
+    networkLeft: {
+      minWidth: '300px'
+    },
+
+    networkMain: {
+      minWidth: '300px'
+    }
   }
 }))
