@@ -8,11 +8,18 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.LOADING_USERS:
+      return {
+        ...state,
+        loadingUser: action.payload
+      }
+
     case actions.SAVE_ACTIVE_USER:
       return {
         ...state,
         activeUser: action.payload
       }
+
     case actions.SIGN_OUT:
       localStorage.clear()
       return {
@@ -25,6 +32,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         selectedUser: action.payload
       }
+
     default: {
       return state
     }
