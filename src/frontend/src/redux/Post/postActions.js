@@ -2,42 +2,37 @@ import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
 import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
-import getHeaders from '../../services/headersService'
+import { uploadPostImgAction } from '../Image/imageActions'
 
-export const createNewPostAction = (payload) => (dispatch) => {
+export const createNewPostAction = (payload) => async (dispatch) => {
+  const { text, image, video } = payload
+  let uploadedImgPublicId = ''
+  let uploadedVideoPublicId = ''
+
+  if (image !== null) {
+    uploadedImgPublicId = await uploadPostImgAction(image)
+  }
+
+  if (!image && video) {
+    uploadedVideoPublicId = 'endpoint call should be here'
+  }
+
   return http
-    .post('/api/posts', { text: payload.text }, {headers: getHeaders()})
+    .post('/api/posts', {
+      text: text,
+      imgPublicId: uploadedImgPublicId,
+      videoPublicId: uploadedVideoPublicId
+    })
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.ADD_NEW_POST, payload: newPostObj })
     })
 }
 
-export const getCommentsForPostAction = (postId) => (dispatch) => {
-  return http
-    .get(`/api/comments/for_post/${postId}`, {headers: getHeaders()})
-    .then((res) => res.data)
-    .then((listOfComments) => {
-      dispatch({ type: actions.SAVE_COMMENTS_FOR_POST, payload: { listOfComments, postId } })
-    })
-}
-
-export const createNewCommentAction = ({ text, id }) => (dispatch) => {
-  return http
-    .post('/api/comments', { text: text, postId: id }, {headers: getHeaders()})
-    .then((res) => res.data)
-    .then((newCommentObj) => {
-      dispatch({
-        type: actions.ADD_NEW_COMMENT_FOR_POST,
-        payload: { comment: newCommentObj, postId: id }
-      })
-    })
-}
-
 export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
   const id = payload
   return http
-    .get(`/api/users/who_liked_post/${id}`, {headers: getHeaders()})
+    .get(`/api/users/who_liked_post/${id}`)
     .then((res) => res.data)
     .then((usersList) => {
       dispatch({
@@ -49,11 +44,11 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
       dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_POST, id: id })))
 }
 
-export const toggleLikeAction = (payload) => (dispatch) => {
+export const togglePostLikeAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_like/${id}`, {}, {headers: getHeaders()})
+    .post(`/api/posts/toggle_like/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
@@ -65,7 +60,7 @@ export const toggleBookmarkAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
-    .post(`/api/posts/toggle_bookmark/${id}`, {}, {headers: getHeaders()})
+    .post(`/api/posts/toggle_bookmark/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })

@@ -4,12 +4,13 @@ import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import {GoogleLoginButton} from 'react-social-login-buttons'
 import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
-import SharedButton from '../../../shared/Button/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {getActiveUserAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
+import {activeUserSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
@@ -17,9 +18,11 @@ const LoginCard = () => {
   const loginRef = useRef('')
   const passwordRef = useRef('')
   const dispatch = useDispatch()
-  let initialToken = localStorage.getItem('token')
 
-  if (initialToken) {
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser.id
+
+  if (activeUserId) {
     history.push('/home')
   }
 
@@ -39,6 +42,20 @@ const LoginCard = () => {
           let token = res.data.token
           localStorage.setItem('token', token)
           dispatch(getActiveUserAction())
+          history.push('/home')
+        }
+      })
+      .catch(err => {
+        const errorMsg = err.response.data.message
+        toast.error(errorMsg)
+      })
+  }
+
+  const authenticateByGoogle = () => {
+    http
+      .get('http://localhost:9000/oauth2/authorization/google')
+      .then(res => {
+        if (res.status === 200) {
           history.push('/home')
         }
       })
@@ -96,7 +113,7 @@ const LoginCard = () => {
           <div/>
         </section>
         <div className={classes.googleBtn}>
-          <GoogleLoginButton onClick={() => alert('Hello')}/>
+          <GoogleLoginButton onClick={() => authenticateByGoogle()}/>
         </div>
       </div>
     </Paper>

@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: theme.shape.medium,
-    maxWidth: '190px',
+    maxWidth: '180px',
     width: '100%',
     height: '280px',
     border: theme.border.simple,
@@ -16,6 +16,12 @@ export default makeStyles((theme) => ({
     '&:hover': {
       boxShadow: theme.shadows[4],
       transitionDuration: '0.5s'
+    }
+  },
+
+  '@media screen and (max-width: 445px)': {
+    smallWidth: {
+      width: '155px'
     }
   },
 
@@ -59,8 +65,14 @@ export default makeStyles((theme) => ({
     margin: '0 auto'
   },
 
+  avatarWrapper: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+
   name: {
     color: theme.palette.grey[700],
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(1),
     cursor: 'pointer',
     '&:hover': {

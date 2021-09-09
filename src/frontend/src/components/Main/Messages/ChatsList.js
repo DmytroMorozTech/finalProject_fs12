@@ -1,20 +1,22 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Style from './styles'
-import {useDispatch, useSelector} from 'react-redux'
-import {chatMessages} from '../../../redux/Message/messageSelector'
-import {getChatMessagesAction} from '../../../redux/Message/messageActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {allMessages, chatMessages} from '../../../redux/Message/messageSelector'
+import { getChatMessagesAction } from '../../../redux/Message/messageActions'
+import Image from '../../../shared/Image/Image'
 
 function ChatsList (props) {
-  const {user, chatId, activeUserId} = props
-  const {avatarUrl, firstName, fullName} = user
+  const { user, chatId, activeUserId } = props
+  const { avatarPublicId, firstName, fullName } = user
   const classes = Style()
   const userChatMessages = useSelector(chatMessages)
+  const messagesList = useSelector(allMessages)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
-  }, [dispatch, chatId])
-  const allChatMessages = userChatMessages[chatId]
+  }, [dispatch, chatId, messagesList])
+  const allChatMessages = userChatMessages && userChatMessages[chatId]
 
   const chatMessagesLength = allChatMessages && allChatMessages.length - 1
 
@@ -23,11 +25,11 @@ function ChatsList (props) {
   }
 
   function getLastChatMessage () {
-    return allChatMessages && chatMessagesLength && allChatMessages[chatMessagesLength].text
+    return allChatMessages && allChatMessages[chatMessagesLength].text
   }
 
   function getMessageSentTime () {
-    return allChatMessages && chatMessagesLength && getDateTitle(allChatMessages[chatMessagesLength].createdDate)
+    return allChatMessages && getDateTitle(allChatMessages[chatMessagesLength].createdDate)
   }
 
   const getDateTitle = (time) => {
@@ -80,10 +82,14 @@ function ChatsList (props) {
       <ul className={classes.containerConversationsList}>
         <li className={classes.containerConvoItem}>
           <div className={classes.dFlex}>
-
             <div className={classes.selectableEntity}>
               <div className={classes.absolut}>
-                <img src={avatarUrl} alt={fullName} className={classes.userAvatar}/>
+                <Image
+                  imageUrl={avatarPublicId}
+                  alt={fullName}
+                  className={classes.userAvatar}
+                  type={'extraSmallAvatar'}
+                />
                 <div className={classes.statusUserAvatar}/>
               </div>
             </div>

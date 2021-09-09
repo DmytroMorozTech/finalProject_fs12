@@ -1,14 +1,14 @@
 import styles from './styles'
-import Avatar from '../../../../../../shared/Avatar/Avatar'
 import InputBase from '@material-ui/core/InputBase'
-import SharedButton from '../../../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../../../shared/SharedButton/SharedButton'
 import Comment from './Comment/Comment'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeUserSelector } from '../../../../../../redux/User/userSelector'
-import { createNewCommentAction } from '../../../../../../redux/Post/postActions'
-import { allCommentsSelector } from '../../../../../../redux/Post/postSelector'
+import { createNewCommentAction } from '../../../../../../redux/Comment/commentActions'
+import { allCommentsSelector } from '../../../../../../redux/Comment/commentSelector'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
+import Image from '../../../../../../shared/Image/Image'
 
 function NewCommentInput (props) {
   const {postId} = props
@@ -36,12 +36,12 @@ function NewCommentInput (props) {
         setCommentValue(commentInputVal)
       } else {
         e.preventDefault()
-        handleButtonPost()
+        createNewCommentHandler()
       }
     }
   }
 
-  const handleButtonPost = () => {
+  const createNewCommentHandler = () => {
     dispatch(createNewCommentAction({ text: commentValue, id: postId }))
     setCommentValue('')
   }
@@ -52,9 +52,12 @@ function NewCommentInput (props) {
   return (
     <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
-        <div className={classes.smallAvatar}>
-          <Avatar avatarUrl={activeUser.avatarUrl}/>
-        </div>
+        <Image
+          imageUrl={activeUser.avatarPublicId}
+          alt={'user avatar'}
+          type={'extraSmallAvatar'}
+          className={classes.smallAvatar}
+        />
         <div className={classes.newComment}>
           <InputBase
             placeholder="Add a comment..."
@@ -70,7 +73,7 @@ function NewCommentInput (props) {
             <RemoveCircleIcon fontSize='inherit'/>
             <div className={classes.validateMessage}>You have exceeded the maximum character limit.</div>
           </div>
-          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={handleButtonPost}>
+          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={createNewCommentHandler}>
             <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate} size='small'/>
             <div className={commentValue.length >= 1200 && commentValue.length <= numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
               {commentValue.length}
@@ -83,7 +86,7 @@ function NewCommentInput (props) {
       </div>
       <div>
         <div className={classes.comments}>
-          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment}/>)}
+          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
           <div className={classes.loadMoreComments}>
             <span>Load more comments</span>
           </div>

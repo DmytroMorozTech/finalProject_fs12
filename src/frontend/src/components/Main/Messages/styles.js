@@ -180,8 +180,8 @@ export default makeStyles((theme) => ({
   },
 
   userAvatar: {
-    width: 56,
-    height: 56,
+    width: 50,
+    height: 50,
     borderRadius: '50%',
     marginTop: 10,
     marginLeft: 15,
@@ -257,7 +257,9 @@ export default makeStyles((theme) => ({
   },
 
   scaffoldLayout: {
-    maxWidth: 'initial',
+    margin: '0 auto',
+    backgroundColor: 'white',
+    maxWidth: 640,
     minWidth: 'initial',
     height: '100%',
     minHeight: 340,
@@ -370,8 +372,8 @@ export default makeStyles((theme) => ({
     height: 16,
     position: 'absolute',
     boxShadow: '0 0 0 2px #fff',
-    bottom: -12,
-    right: -12,
+    bottom: -10,
+    right: -10,
     borderWidth: 4
   },
 
@@ -414,7 +416,7 @@ export default makeStyles((theme) => ({
 
   messageListTimeHeading: {
     fontSize: 12,
-    color: '#00000099',
+    color: 'rgba(36,34,34,0.6)',
     alignItems: 'center',
     clear: 'both',
     display: 'flex',
@@ -426,14 +428,14 @@ export default makeStyles((theme) => ({
       display: 'block',
       content: '""',
       flexGrow: 1,
-      borderTop: '1px solid #00000099'
+      borderTop: '1px solid rgba(147,143,143,0.6)'
     },
     '&::after': {
       marginLeft: 12,
       display: 'block',
       content: '""',
       flexGrow: 1,
-      borderTop: '1px solid #00000099'
+      borderTop: '1px solid rgba(147,143,143,0.6)'
     }
   },
 
@@ -445,7 +447,8 @@ export default makeStyles((theme) => ({
     position: 'relative',
     padding: 0,
     margin: 0,
-    width: '100%'
+    width: '100%',
+    alignItems: 'center'
   },
 
   eventListItemLink: {
@@ -598,6 +601,30 @@ export default makeStyles((theme) => ({
     fontWeight: 'bold'
   },
   searchInput: {
-
+  },
+  addTopMargin: {
+    marginTop: 70
+  },
+  linkMain: {
+    textDecoration: 'none',
+    color: theme.palette.grey[900],
+    '&:hover': {
+      textDecoration: 'underline',
+      textDecorationThickness: '2px',
+      textDecorationColor: theme.palette.grey[700]
+    }
+  },
+  noChatInfo: {
+    height: 50,
+    fontSize: theme.typography.h4.fontSize,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  emptyMessageTitle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
+
 }))

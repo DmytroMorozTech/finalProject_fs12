@@ -1,26 +1,40 @@
 import styles from './styles'
-import Button from '@material-ui/core/Button'
 import MiniProfile from './MiniProfile/MiniProfile'
+import SharedLinkSquare from '../../../shared/SharedLinkSquare/SharedLinkSquare'
+import Invitation from './Invitation/Invitation'
+import clsx from 'clsx'
 
-function NetworkMain () {
+function NetworkMain (props) {
+  const {isInvitation = true} = props
+
   const classes = styles()
 
   return (
     <div className={classes.networkMain}>
-      <div className={classes.invitations}>
-        No pending invitations
-        <Button color="secondary" className={classes.button}>
-          Manage
-        </Button>
-      </div>
-      <div className={classes.people}>
-        <div className={classes.mayKnow}>
-          People you may know
-          <Button color="secondary" className={classes.button}>
-            See all
-          </Button>
+      <div className={classes.block}>
+        <div className={clsx(classes.header, classes.invitationHeader)}>
+          <div>
+            {isInvitation
+              ? 'Invitations'
+              : 'No pending invitations'}
+          </div>
+          <SharedLinkSquare title='Manage' to='/network/invitation_manager/received'/>
         </div>
-        <div className={classes.miniProfiles}>
+        <div>
+          {isInvitation
+            ? <Invitation isReceived={true} isManage={false}/>
+            : ''}
+        </div>
+      </div>
+      <div className={clsx(classes.block, classes.people)}>
+        <div className={classes.header}>
+          <div>
+            People you may know
+          </div>
+          {/* Link is hardcoded below */}
+          <SharedLinkSquare title='See all' to='#'/>
+        </div>
+        <div className={clsx(classes.miniProfiles, classes.smallMiniProfiles)}>
           <MiniProfile/>
         </div>
       </div>

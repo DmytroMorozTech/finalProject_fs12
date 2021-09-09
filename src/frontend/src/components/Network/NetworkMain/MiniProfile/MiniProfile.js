@@ -1,21 +1,21 @@
 import styles from './styles'
 import { Link } from 'react-router-dom'
-import Avatar from '../../../../shared/Avatar/Avatar'
 import Typography from '@material-ui/core/Typography'
 import React, { useState } from 'react'
-import avatar from '../../../../temporaryImages/avatar.jpg'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
+import Image from '../../../../shared/Image/Image'
 
 function MiniProfile (props) {
   const classes = styles()
 
   const {
-    avatarUrl = avatar,
-    fullName = 'George Lupin',
-    positionAndCompany = 'Fullstack Developer — GlobalLogic',
+    avatarPublicId,
+    id = 3,
+    fullName = 'Laura Lee',
+    positionAndCompany = 'Senior Java Developer',
     numberOfConnection = 1
   } = props
 
@@ -25,23 +25,30 @@ function MiniProfile (props) {
     setRemovedMiniProfile(!removedMiniProfile)
   }
 
+  const linkToUserProfile = '/profiles/' + id
+
   return (
-    <div className={clsx(classes.miniProfile, removedMiniProfile ? classes.removed : '')}>
+    <div className={clsx(classes.miniProfile, classes.smallWidth, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
-          <CloseIcon fontSize='inherit'/>
+          <CloseIcon fontSize="inherit"/>
         </div>
-        <Link exact to="/profile" className={classes.link}>
-          <div className={classes.avatar}>
-            <Avatar avatarUrl={avatarUrl}/>
+        <Link to={linkToUserProfile} className={classes.link}>
+          <div className={classes.avatarWrapper}>
+            <Image
+              imageUrl={avatarPublicId}
+              alt={'user avatar'}
+              className={classes.avatar}
+              type={'extraLargeAvatar'}
+            />
           </div>
           <Typography variant="h5" align="center" className={classes.name}>
             {fullName}
           </Typography>
+          <Typography variant="body1" color="textSecondary" align="center">
+            {positionAndCompany}
+          </Typography>
         </Link>
-        <Typography variant="body1" color="textSecondary" align="center">
-          {positionAndCompany}
-        </Typography>
       </div>
       <div className={classes.connectionGroup}>
         <div className={classes.connection}>

@@ -11,12 +11,13 @@ export default makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   popper: {
-    marginTop: '1vh',
+    marginTop: theme.spacing(1),
     maxWidth: 800,
     zIndex: 10
   },
   menuBody: {
     borderRadius: theme.shape.medium,
-    borderBottomRightRadius: 0
+    border: theme.border.simple,
+    borderTopRightRadius: 0
   }
 }))

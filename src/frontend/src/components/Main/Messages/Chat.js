@@ -8,18 +8,20 @@ import AllUpload from './allUpload'
 import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import VideoCallIcon from '@material-ui/icons/VideoCall'
-import SharedButton from '../../../shared/Button/SharedButton'
-import Style from './styles'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
+import styles from './styles'
 import {createMessageAction, getChatMessagesAction} from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../../redux/Message/messageSelector'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import Image from '../../../shared/Image/Image'
 
 function Chat (props) {
   const {match} = props
+  const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
-  const classes = Style()
+  const classes = styles()
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
   const dispatch = useDispatch()
@@ -28,8 +30,11 @@ function Chat (props) {
   const chatsList = useSelector(allChats)
   const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
+  let dateTitleTemporaryMemory = ''
 
   const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
+  const currentChat = chatsList.filter(c => c.id === +chatId)[0]
+  const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
     dispatch(getChatMessagesAction(chatId))
@@ -46,13 +51,72 @@ function Chat (props) {
   }
 
   const getChatMember = () => {
-    const currentChat = chatsList.filter(c => c.id === +chatId)[0]
-    const currentChatUsers = currentChat && currentChat.users
     return currentChatUsers && currentChatUsers.filter(u => u.id !== activeUser.id)[0]
   }
 
+  const getMessageSender = (userId) => {
+    return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
+  }
+
+  const checkIfNeedToRenderDateTitle = (time) => {
+    if (dateTitleTemporaryMemory === getDateTitle(time).toLowerCase().trim()) {
+      return ''
+    } else {
+      dateTitleTemporaryMemory = getDateTitle(time).toLowerCase().trim()
+      return getDateTitle(time)
+    }
+  }
+
+  const getDateTitle = (time) => {
+    const localTime = new Date()
+    switch (true) {
+      case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
+        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
+      default:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
+    }
+  }
+
+  const getDate = (time) => {
+    const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
+    return splitDate[0] + ':' + splitDate[1]
+  }
+
+  const getMonthText = (date) => {
+    switch (date) {
+      case '01':
+        return 'JANUARY'
+      case '02':
+        return 'FEBRUARY'
+      case '03':
+        return 'MARCH'
+      case '04':
+        return 'APRIL'
+      case '05':
+        return 'MAY'
+      case '06':
+        return 'JUNE'
+      case '07':
+        return 'JULY'
+      case '08':
+        return 'AUGUST'
+      case '09':
+        return 'SEPTEMBER'
+      case '10':
+        return 'OCTOBER'
+      case '11':
+        return 'NOVEMBER'
+      case '12':
+        return 'DECEMBER'
+      default:
+        return 'incorrect data'
+    }
+  }
+
   return (
-    <section className={classes.messagingDetail}>
+    <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
         <div className={classes.sharedTitleBarContainer}>
           <div className={classes.titleBar}>
@@ -76,16 +140,24 @@ function Chat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={getChatMember() && getChatMember().avatarUrl}
-                          alt={getChatMember() && getChatMember().fullName}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
+                        <Link to={`/profiles/${getChatMember() && getChatMember().id}`}>
+                          <Image
+                            imageUrl={getChatMember() && getChatMember().avatarPublicId}
+                            alt={getChatMember() && getChatMember().fullName}
+                            className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                            type={'extraLargeAvatar'}
+                          />
+                        </Link>
                         <div className={classes.presenceEntityIndicator}>
+
                         </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {getChatMember() && getChatMember().fullName}
+                        <Link to={`/profiles/${getChatMember() && getChatMember().id}`} className={classes.linkMain}>
+                          {getChatMember() && getChatMember().fullName}
+                        </Link>
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
@@ -97,8 +169,11 @@ function Chat (props) {
                 </div>
               </li>
               <li className={classes.chatContainer}>
-                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id} text={m.text}
-                  time={m.createdDate}/>)}
+                {userChatMessages[chatId] && userChatMessages[chatId].map(m => <UserMessage key={m.id}
+                  messageSender={getMessageSender(m.userId)}
+                  text={m.text}
+                  timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
+                  timeSent={getDate(m.createdDate)}/>)}
               </li>
             </ul>
           </div>

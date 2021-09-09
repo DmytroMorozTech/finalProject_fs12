@@ -17,8 +17,10 @@ public class WorkPlaceRq {
   @NotNull(message = "Start date should should be specified.")
   private LocalDate dateStart;
 
-  @NotNull(message = "Finish date should should be specified.")
   private LocalDate dateFinish;
+
+  @NotNull(message = "Specify if the employee is currently employed in this company")
+  private Boolean isCurrentlyEmployed;
 
   @NotNull(message = "Organization id should be specified.")
   private String organizationId;

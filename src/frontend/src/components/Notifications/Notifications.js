@@ -11,10 +11,10 @@ function Notifications () {
   const classes = styles()
   return (
     <Container className={classes.notifications} maxWidth={'lg'}>
-      <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
+      <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
 
         <Hidden smDown>
-          <Grid item md={3} lg={2} xl={2}>
+          <Grid item>
             <NotificationsLeft/>
           </Grid>
         </Hidden>

@@ -7,43 +7,45 @@ export default makeStyles((theme) => ({
     flexDirection: 'column'
   },
 
-  invitations: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  block: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-    fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.grey[700]
+    overflow: 'hidden'
   },
 
-  button: {
-    padding: 0
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(2),
+    fontSize: theme.typography.h5.fontSize,
+    color: theme.palette.grey[700],
+    '& > div': {
+      paddingTop: theme.spacing(1)
+    }
+  },
+
+  invitationHeader: {
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(4),
+    padding: theme.spacing(1)
   },
 
   people: {
-    border: theme.border.simple,
-    borderRadius: theme.shape.medium,
-    backgroundColor: theme.palette.common.white,
+    marginTop: theme.spacing(4),
     padding: theme.spacing(2)
-  },
-
-  mayKnow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.grey[700],
-    paddingLeft: theme.spacing(2)
   },
 
   miniProfiles: {
     display: 'flex',
     flexWrap: 'wrap',
     paddingLeft: theme.spacing(1)
+  },
+
+  '@media screen and (max-width: 445px)': {
+    smallMiniProfiles: {
+      justifyContent: 'center'
+    }
   }
 }))

@@ -1,6 +1,7 @@
 package com.danit.fs12.facade;
 
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRq;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.service.UserService;
@@ -24,6 +25,15 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return listUsersRs;
   }
 
+  public List<UserRs> findUsersWhoLikedComment(Long id) {
+    List<User> listUsers = userService.findUsersWhoLikedComment(id);
+
+    List<UserRs> listUsersRs = listUsers.stream()
+      .map(this::convertToDto).collect(Collectors.toList());
+
+    return listUsersRs;
+  }
+
   public UserRs getActiveUser() {
     User user = userService.getActiveUser();
     return convertToDto(user);
@@ -38,11 +48,15 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
                            String lastName,
                            Integer age,
                            String phoneNumber,
-                           String password, 
+                           String password,
                            String email,
                            String avatar) {
     userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);
   }
 
+  public UserRs updateIntro(UserEditIntroRq rq) {
+    User updateIntro = userService.updateIntro(rq);
+    return convertToDto(updateIntro);
+  }
 
 }

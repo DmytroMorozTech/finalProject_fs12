@@ -40,7 +40,7 @@ export default makeStyles((theme) => ({
   },
 
   iconTarget: {
-    color: theme.palette.green.main,
+    color: theme.palette.success.main,
     fontSize: theme.typography.icons.medium.fontSize,
     marginRight: theme.spacing(1)
   },
@@ -51,7 +51,7 @@ export default makeStyles((theme) => ({
   },
 
   applicants: {
-    color: theme.palette.green.main,
+    color: theme.palette.success.main,
     fontWeight: theme.typography.fontWeightBold
   },
 

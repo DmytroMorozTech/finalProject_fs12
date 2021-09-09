@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
@@ -15,8 +15,12 @@ import EventNoteIcon from '@material-ui/icons/EventNote'
 import styles from './styles'
 import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
-import SharedButton from '../../../../shared/Button/SharedButton'
+import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
+import { toast } from 'react-toastify'
+import Image from '../../../../shared/Image/Image'
+import CloseIcon from '@material-ui/icons/Close'
+import clsx from 'clsx'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -49,10 +53,34 @@ const AddNewPost = () => {
   const dispatch = useDispatch()
   const activeUser = useSelector(activeUserSelector)
 
+  const [photoIsChosen, setPhotoIsChosen] = useState(false)
+  const [selectedImageFile, setSelectedImageFile] = useState(null)
+  // const [selectedVideoFile, setSelectedVideoFile] = useState(null)
+  const [imgWasRemoved, setImgWasRemoved] = useState(null)
+  // const [imgIsUploading, setImgIsUploading] = useState(false)
+
   const onPostSubmitHandler = () => {
-    dispatch(createNewPostAction({ text: postInputText }))
+    dispatch(createNewPostAction({
+      text: postInputText,
+      image: selectedImageFile,
+      video: ''
+    }))
     dispatch(toggleModalAction())
   }
+
+  const handleCancelImgSelection = () => {
+    setImgWasRemoved(true)
+    setPhotoIsChosen(false)
+  }
+
+  const photoPreviewComponent = () => (
+    <div className={clsx(classes.previewImgWrapper, imgWasRemoved ? classes.removed : '')}>
+      <div className={classes.cross} onClick={handleCancelImgSelection}>
+        <CloseIcon fontSize="inherit"/>
+      </div>
+      <img className={classes.previewImg} alt="preview" src={URL.createObjectURL(selectedImageFile)}/>
+    </div>
+  )
 
   const classes = styles()
 
@@ -62,10 +90,6 @@ const AddNewPost = () => {
     let postInputVal = e.currentTarget.value
     setPostInputText(postInputVal)
   }
-
-  const longText1 = `Add a photo`
-  const longText2 = `Add a video`
-  const longText3 = `Add a document`
 
   const numberCharacterToShowValidate = 3000
   const validateCount = (numberCharacterToShowValidate - postInputText.length)
@@ -79,8 +103,13 @@ const AddNewPost = () => {
       <hr className={classes.horizontalLine}/>
       <DialogContent>
         <div className={classes.userInfo}>
-          <div className={classes.avatar}>
-            <img src={activeUser.avatarUrl} alt={'user avatar'} className={classes.userAvatar}/>
+          <div>
+            <Image
+              imageUrl={activeUser.avatarPublicId}
+              alt={'user avatar'}
+              className={classes.userAvatar}
+              type={'smallAvatar'}
+            />
           </div>
           <div className={classes.buttonGroup}>
             <Typography variant="h5">
@@ -108,6 +137,7 @@ const AddNewPost = () => {
           onChange={handlePostInputChange}
           className={classes.editor}
         />
+        {photoIsChosen ? photoPreviewComponent() : null}
       </DialogContent>
       <div
         className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
@@ -121,17 +151,42 @@ const AddNewPost = () => {
       </div>
       <DialogActions>
         <div className={classes.shareButtons}>
-          <LightTooltip title={longText1} placement={'top'}>
-            <div className={classes.shareButton}>
-              <PhotoSizeSelectActualIcon/>
+
+          <LightTooltip title={`Add a photo`} placement={'top'}>
+            <div className={classes.shareButton} >
+              <label>
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  style={{display: 'none'}}
+                  required
+                  onChange={(event) => {
+                    const file = event.target.files[0]
+                    if (file && file.size > 10485760) {
+                      toast.error('The size of image should not exceed 10MB')
+                      return
+                    }
+
+                    if (file) {
+                      setSelectedImageFile(file)
+                      setPhotoIsChosen(true)
+                      setImgWasRemoved(false)
+                    }
+                  }}
+
+                />
+                <PhotoSizeSelectActualIcon/>
+              </label>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText2} placement={'top'}>
+
+          <LightTooltip title={`Add a video`} placement={'top'}>
             <div className={classes.shareButton}>
               <YouTubeIcon/>
             </div>
           </LightTooltip>
-          <LightTooltip title={longText3} placement={'top'}>
+          <LightTooltip title={`Add a document`} placement={'top'}>
             <div className={classes.shareButton}>
               <EventNoteIcon/>
             </div>

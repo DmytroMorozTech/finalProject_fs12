@@ -1,11 +1,13 @@
 import React from 'react'
 import {Redirect, Route} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import {activeUserSelector} from '../redux/User/userSelector'
 
 const ProtectedRoutes = (props) => {
   const {...data} = props
-  let initialToken = localStorage.getItem('token')
+  const activeUser = useSelector(activeUserSelector)
 
-  return (initialToken) ? (<Route {...data} />) : (<Redirect to={{pathname: '/'}}/>)
+  return activeUser ? (<Route {...data} />) : (<Redirect to={{pathname: '/'}}/>)
 }
 
 export default ProtectedRoutes

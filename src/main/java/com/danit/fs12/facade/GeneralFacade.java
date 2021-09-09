@@ -1,7 +1,6 @@
 package com.danit.fs12.facade;
 
 import com.danit.fs12.entity.AbstractEntity;
-import com.danit.fs12.exception.NotFoundException;
 import com.danit.fs12.service.ServiceInterface;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -48,8 +46,8 @@ public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
       .getGenericSuperclass()).getActualTypeArguments()[2];
   }
 
-  public E save(E entity) {
-    return service.save(entity);
+  public O save(E entity) {
+    return convertToDto(service.save(entity));
   }
 
   public void delete(E entity) {
@@ -68,17 +66,8 @@ public abstract class GeneralFacade<E extends AbstractEntity, I, O> {
     service.deleteById(id);
   }
 
-  public E getOne(Long id) {
-    return service.getOne(id);
-  }
-
   public O findById(Long id) {
-    Optional<E> entityOpt = service.findById(id);
-    if (entityOpt.isEmpty()) {
-      String msg = String.format("Entity with id %d was not found.", id);
-      throw new NotFoundException(msg);
-    }
-    return convertToDto(entityOpt.get());
+    return convertToDto(service.findEntityById(id));
   }
 
 }

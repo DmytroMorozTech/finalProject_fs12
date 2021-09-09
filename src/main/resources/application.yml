@@ -7,6 +7,21 @@ server:
 spring:
   profiles:
     active: "local"
+  servlet:
+    multipart:
+      max-file-size: 10000KB
+      max-request-size: 10000KB
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 645730785365-1qk27l2efhkoanabkurvchdltk0f6trs.apps.googleusercontent.com
+            clientSecret: yrfnMp5eHI-kUYlNVhknG4T5
+            scope:
+             - email
+             - profile
 jwt:
   header: Authorization
   secret: my-very-secret-key
+

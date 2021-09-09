@@ -13,4 +13,10 @@ public class PostRq {
   @NotNull(message = "Post text should be specified")
   String text;
 
+  @Size(max = 100, message = "Length of imgPublicId should not exceed 100 characters")
+  private String imgPublicId;
+
+  @Size(max = 100, message = "Length of videoPublicId should not exceed 100 characters")
+  private String videoPublicId;
+
 }

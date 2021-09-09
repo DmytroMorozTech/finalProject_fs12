@@ -2,11 +2,11 @@ import Navbar from './Navbar/Navbar'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import styles from './styles'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import { Hidden } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import { openModalSelector } from '../../redux/Modal/modalSelector'
+import {Hidden} from '@material-ui/core'
+import {useSelector} from 'react-redux'
+import {openModalSelector} from '../../redux/Modal/modalSelector'
 import CustomizedDialogs from '../Modal/Modal'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import React from 'react'
 
 function Header () {
@@ -18,7 +18,7 @@ function Header () {
     <>
       <div className={classes.header}>
         <div className={classes.headerLogoSearch}>
-          <Link exact to='/home'>
+          <Link to="/home">
             <div className={classes.headerLogo}>
               <LinkedInIcon fontSize="inherit"/>
             </div>

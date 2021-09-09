@@ -17,10 +17,10 @@ import java.util.Set;
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private Long id;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class})
   private LocalDateTime createdDate;
 
   private LocalDateTime lastModifiedDate;
@@ -29,13 +29,25 @@ public class UserRs {
 
   private String lastName;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
+  @JsonView(UserViews.Profile.class)
+  private String headline;
+
+  @JsonView(UserViews.Profile.class)
+  private String country;
+
+  @JsonView(UserViews.Profile.class)
+  private String city;
+
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String fullName;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
-  private String avatarUrl;
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  private String avatarPublicId;
 
-  @JsonView({UserViews.Base.class,PostViews.Base.class, CommentViews.Base.class})
+  @JsonView(UserViews.Profile.class)
+  private String profileBgPublicId;
+
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
   private String positionAndCompany;
 
   @JsonView(UserViews.Profile.class)
@@ -64,8 +76,6 @@ public class UserRs {
 
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
-
-
 
 
 }
