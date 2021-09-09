@@ -1,5 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles'
 import LoginCard from './loginCard/LoginCard'
+import { useSelector } from 'react-redux'
+import { isLoadingUserSelector } from '../../redux/User/userSelector'
+import Preloader from '../../shared/Preloader/Preloader'
+import React from 'react'
 
 const styles = makeStyles((theme) => ({
   login: {
@@ -23,8 +27,9 @@ const styles = makeStyles((theme) => ({
 }))
 
 const Login = () => {
+  const isLoadingUser = useSelector(isLoadingUserSelector)
   const classes = styles()
-  return (
+  return isLoadingUser ? <Preloader/> : (
     <div className={classes.login}>
       <div className={classes.loginCard}>
         <LoginCard />

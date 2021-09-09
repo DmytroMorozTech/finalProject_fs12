@@ -19,13 +19,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import {
   allChats,
   allMessages,
-  chatMessages, isTemporaryChatOpenSelector,
+  chatMessages,
+  isTemporaryChatOpenSelector,
   newChatData,
   newChatIdSelector
 } from '../../../redux/Message/messageSelector'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
 import {findUserByIdAction} from '../../../redux/User/userActions'
+import Image from '../../../shared/Image/Image'
 
 function NewChat (props) {
   const {match} = props
@@ -45,6 +47,7 @@ function NewChat (props) {
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
   const isChatOpen = useSelector(isTemporaryChatOpenSelector)
+  let dateTitleTemporaryMemory = ''
 
   const currentChat = chatsList.filter(c => c.id === newChat.id)[0]
   const currentChatUsers = currentChat && currentChat.users
@@ -85,6 +88,63 @@ function NewChat (props) {
     return currentChatUsers && currentChatUsers.filter(u => u.id === userId)[0]
   }
 
+  const checkIfNeedToRenderDateTitle = (time) => {
+    if (dateTitleTemporaryMemory === getDateTitle(time).toLowerCase().trim()) {
+      return ''
+    } else {
+      dateTitleTemporaryMemory = getDateTitle(time).toLowerCase().trim()
+      return getDateTitle(time)
+    }
+  }
+
+  const getDateTitle = (time) => {
+    const localTime = new Date()
+    switch (true) {
+      case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
+        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
+      default:
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
+    }
+  }
+
+  const getDate = (time) => {
+    const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
+    return splitDate[0] + ':' + splitDate[1]
+  }
+
+  const getMonthText = (date) => {
+    switch (date) {
+      case '01':
+        return 'JANUARY'
+      case '02':
+        return 'FEBRUARY'
+      case '03':
+        return 'MARCH'
+      case '04':
+        return 'APRIL'
+      case '05':
+        return 'MAY'
+      case '06':
+        return 'JUNE'
+      case '07':
+        return 'JULY'
+      case '08':
+        return 'AUGUST'
+      case '09':
+        return 'SEPTEMBER'
+      case '10':
+        return 'OCTOBER'
+      case '11':
+        return 'NOVEMBER'
+      case '12':
+        return 'DECEMBER'
+      default:
+        return 'incorrect data'
+    }
+  }
+
   return (
     <section className={clsx(classes.messagingDetail, isSeparateChat && classes.addTopMargin)}>
       <div className={classes.scaffoldLayout}>
@@ -110,16 +170,23 @@ function NewChat (props) {
                   <div style={{display: 'block'}}>
                     <div className={classes.entityLockupImage}>
                       <div className={classes.presenceEntity}>
-                        <img src={currentUser && currentUser.avatarPublicId}
-                          alt={currentUser && currentUser.fullName}
-                          className={`${classes.userAvatar} ${classes.presenceEntity}`}/>
+                        <Link to={`/profiles/${currentUser && currentUser.id}`}>
+                          <Image
+                            imageUrl={currentUser && currentUser.avatarPublicId}
+                            alt={currentUser && currentUser.fullName}
+                            className={`${classes.userAvatar} ${classes.presenceEntity}`}
+                            type={'extraLargeAvatar'}
+                          />
+                        </Link>
                         <div className={classes.presenceEntityIndicator}>
                         </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>
                       <div className={classes.entityLockupTitle}>
-                        {currentUser && currentUser.fullName}
+                        <Link to={`/profiles/${currentUser && currentUser.id}`} className={classes.linkMain}>
+                          {currentUser && currentUser.fullName}
+                        </Link>
                       </div>
                       <div className={classes.entityLockupSubtitle}>
                         <div>
@@ -134,7 +201,8 @@ function NewChat (props) {
                 {userChatMessages[newChat.id] && userChatMessages[newChat.id].map(m => <UserMessage key={m.id}
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
-                  time={m.createdDate}/>)}
+                  timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
+                  timeSent={getDate(m.createdDate)}/>)}
               </li>
             </ul>
           </div>
