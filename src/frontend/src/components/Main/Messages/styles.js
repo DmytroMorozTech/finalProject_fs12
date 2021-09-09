@@ -416,7 +416,7 @@ export default makeStyles((theme) => ({
 
   messageListTimeHeading: {
     fontSize: 12,
-    color: '#00000099',
+    color: 'rgba(36,34,34,0.6)',
     alignItems: 'center',
     clear: 'both',
     display: 'flex',
@@ -428,14 +428,14 @@ export default makeStyles((theme) => ({
       display: 'block',
       content: '""',
       flexGrow: 1,
-      borderTop: '1px solid #00000099'
+      borderTop: '1px solid rgba(147,143,143,0.6)'
     },
     '&::after': {
       marginLeft: 12,
       display: 'block',
       content: '""',
       flexGrow: 1,
-      borderTop: '1px solid #00000099'
+      borderTop: '1px solid rgba(147,143,143,0.6)'
     }
   },
 
@@ -604,5 +604,27 @@ export default makeStyles((theme) => ({
   },
   addTopMargin: {
     marginTop: 70
+  },
+  linkMain: {
+    textDecoration: 'none',
+    color: theme.palette.grey[900],
+    '&:hover': {
+      textDecoration: 'underline',
+      textDecorationThickness: '2px',
+      textDecorationColor: theme.palette.grey[700]
+    }
+  },
+  noChatInfo: {
+    height: 50,
+    fontSize: theme.typography.h4.fontSize,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  emptyMessageTitle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
+
 }))

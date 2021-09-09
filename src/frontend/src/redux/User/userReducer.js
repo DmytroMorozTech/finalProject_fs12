@@ -3,7 +3,7 @@ import * as actions from './userActionTypes'
 const initialState = {
   loadingUser: false,
   activeUser: {},
-  currentUser: {}
+  selectedUser: {}
 }
 
 const userReducer = (state = initialState, action) => {
@@ -23,7 +23,7 @@ const userReducer = (state = initialState, action) => {
     case actions.FIND_USER_BY_ID:
       return {
         ...state,
-        currentUser: action.payload
+        selectedUser: action.payload
       }
     default: {
       return state
