@@ -35,7 +35,7 @@ function Invitation (props) {
               {positionAndCompany}
             </Typography>
             {!isManage
-              ? <div className={classes.connection}>
+              ? <div className={clsx(classes.connection, classes.smallScreen)}>
                 <RadioButtonUncheckedIcon fontSize="inherit"/>
                 <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
                 <Typography variant="h6" className={classes.connectionText}>
@@ -44,7 +44,7 @@ function Invitation (props) {
               </div>
               : ''
             }
-            <Typography variant="h6">
+            <Typography variant="h6" className={classes.smallScreen}>
               {createDate}
             </Typography>
           </div>
@@ -55,7 +55,7 @@ function Invitation (props) {
           {/* Link is hardcoded below */}
           {isReceived
             ? <SharedLinkSquare title='Ignore' to='#'/>
-            : <SharedLinkSquare title='Withdrow' to='#'/>
+            : <SharedLinkSquare title='Withdraw' to='#'/>
           }
         </div>
         {isReceived

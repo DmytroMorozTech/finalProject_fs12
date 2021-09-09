@@ -9,18 +9,21 @@ import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure()
+
 function App () {
   const dispatch = useDispatch()
   const isLoadingUser = useSelector(isLoadingUserSelector)
 
   useEffect(() => {
     dispatch(getActiveUserAction())
-  })
-  return isLoadingUser ? <Preloader/> : (
+  }, [dispatch])
+
+  return isLoadingUser ? <Preloader fullscreen={true}/> : (
     <div className="App">
       <Header/>
       <MainRoutes/>
     </div>
   )
 }
+
 export default App

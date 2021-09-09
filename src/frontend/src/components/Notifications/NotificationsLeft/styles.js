@@ -7,8 +7,7 @@ export default makeStyles((theme) => ({
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
     paddingTop: theme.spacing(2),
-    width: '225px',
-    margin: theme.spacing(1)
+    width: '225px'
   },
 
   notifications: {

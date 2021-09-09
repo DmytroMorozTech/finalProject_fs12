@@ -1,10 +1,10 @@
 import React from 'react'
-import style from './styles'
+import style from '../styles'
 import Typography from '@material-ui/core/Typography'
 import ProfileCertificationItem from './ProfileCertificationItem'
 import { useDispatch } from 'react-redux'
-import toggleModalAction from '../../../redux/Modal/modalActions'
-import { ADD_NEW_CERTIFICATION } from '../../../redux/Modal/modalTypes'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
+import { ADD_NEW_CERTIFICATION } from '../../../../redux/Modal/modalTypes'
 import AddIcon from '@material-ui/icons/Add'
 import clsx from 'clsx'
 
@@ -40,4 +40,5 @@ function ProfileCertification (props) {
     </div>
   )
 }
+
 export default ProfileCertification

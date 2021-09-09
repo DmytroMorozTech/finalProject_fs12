@@ -1,11 +1,11 @@
 import React from 'react'
-import style from './styles'
+import style from '../styles'
 import CreateIcon from '@material-ui/icons/Create'
 import Typography from '@material-ui/core/Typography'
-import toggleModalAction from '../../../redux/Modal/modalActions'
+import toggleModalAction from '../../../../redux/Modal/modalActions'
 import {useDispatch} from 'react-redux'
-import convertLocalDateToString from '../../../utils/convertLocalDateToString'
-import {EDIT_EXPERIENCE} from '../../../redux/Modal/modalTypes'
+import convertLocalDateToString from '../../../../utils/convertLocalDateToString'
+import {EDIT_EXPERIENCE} from '../../../../redux/Modal/modalTypes'
 import clsx from 'clsx'
 
 const ProfileExperienceItem = (props) => {
@@ -20,7 +20,7 @@ const ProfileExperienceItem = (props) => {
 
   return (
     <div className={classes.content}>
-      <div className={classes.school}>
+      <div>
         <Typography variant="body1" className={classes.title}>Position:{position}</Typography>
         <Typography>Organization: {organization.name}</Typography>
         <Typography>{dateStartConverted}{dash}{dateFinish ? dateFinishConverted : 'Present time'}</Typography>
@@ -35,4 +35,5 @@ const ProfileExperienceItem = (props) => {
     </div>
   )
 }
+
 export default ProfileExperienceItem

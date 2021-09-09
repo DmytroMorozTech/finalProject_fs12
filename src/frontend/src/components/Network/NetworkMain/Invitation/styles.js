@@ -53,5 +53,11 @@ export default makeStyles((theme) => ({
 
   buttonSquare: {
     margin: theme.spacing(1)
+  },
+
+  '@media screen and (max-width: 445px)': {
+    smallScreen: {
+      display: 'none'
+    }
   }
 }))

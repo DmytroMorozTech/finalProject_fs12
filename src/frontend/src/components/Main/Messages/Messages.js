@@ -62,16 +62,17 @@ function Messages () {
               </div>
             </div>
           </div>
-          {chatsList && chatsList.map(c => {
+          {chatsList.length > 0 ? chatsList && chatsList.map(c => {
             const chatMember = c.users.filter(u => u.id !== activeUser.id)[0]
             return (
               <NavLink className={`${classes.link}`} key={c.id} to={`/messages/${c.id}`}>
                 <ChatsList key={c.id} chatId={c.id} activeUserId={activeUser.id} user={chatMember}/>
               </NavLink>
             )
-          })}
+          }) : <p className={classes.noChatInfo}>No one chat was started</p>}
         </section>
-        <Chat user={activeUser} chats={chatsList}/>
+        {chatsList.length > 0 ? <Chat user={activeUser} chats={chatsList}/> : ''}
+
       </div>
     </main>
   )

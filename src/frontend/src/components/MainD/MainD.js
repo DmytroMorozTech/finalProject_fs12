@@ -6,17 +6,18 @@ import MainLeftSticky from './MainSticky/MainLeftSticky'
 import styleMain from './styleMain'
 import { Container, Hidden } from '@material-ui/core'
 import {useSelector} from 'react-redux'
-import {isLoadingUserSelector} from '../../redux/User/userSelector'
+import {activeUserSelector, isLoadingUserSelector} from '../../redux/User/userSelector'
 import Preloader from '../../shared/Preloader/Preloader'
 import MainRight from './MainRight/MainRight'
 
 function Main () {
   const classes = styleMain()
   const isLoadingUser = useSelector(isLoadingUserSelector)
+  const activeUser = useSelector(activeUserSelector)
 
-  return isLoadingUser ? <Preloader/> : (
+  return isLoadingUser || !activeUser.id ? <Preloader/> : (
     <Container className={classes.container} maxWidth={'lg'} >
-      <Grid container spacing={2} alignItems={'flex-start'} justifyContent={'center'} >
+      <Grid container spacing={4} justifyContent={'center'} >
 
         <Hidden smDown>
           <Grid item sm={3} md={3} lg={2}>
