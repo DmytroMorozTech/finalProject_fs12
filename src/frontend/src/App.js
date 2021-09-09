@@ -16,9 +16,9 @@ function App () {
 
   useEffect(() => {
     dispatch(getActiveUserAction())
-  })
+  }, [dispatch])
 
-  return isLoadingUser ? <Preloader/> : (
+  return isLoadingUser ? <Preloader fullscreen={true}/> : (
     <div className="App">
       <Header/>
       <MainRoutes/>
