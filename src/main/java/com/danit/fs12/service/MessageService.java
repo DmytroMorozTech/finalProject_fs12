@@ -26,15 +26,19 @@ public class MessageService extends GeneralService<Message> {
     Long activeUserId = userService.getActiveUser().getId();
     Optional<User> userOpt = userRepository.findById(activeUserId);
     Optional<Chat> chatOpt = chatRepository.findById(chatId);
+
     if (userOpt.isEmpty() || chatOpt.isEmpty()) {
-      String msg = String.format("An error while trying to send new message. Extra data: "
+      String msg = String.format("An error while trying to create new message. Extra data: "
         + "chatId: %d, text: %s", chatId, text);
       throw new BadRequestException(msg);
     }
 
     User user = userOpt.get();
     Chat chat = chatOpt.get();
-    Message message = save(new Message(text));
+    Message message = new Message();
+    message.setText(text);
+    messageRepository.save(message);
+
     user.addMessage(message);
     chat.addMessage(message);
 

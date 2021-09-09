@@ -3,86 +3,125 @@ package com.danit.fs12.service;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
 import com.danit.fs12.repository.MessageRepository;
 import com.danit.fs12.repository.UserRepository;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 public class MessageServiceUnitTest {
 
-    @Mock
+    private static final Long userId = 1L;
+    private static final Long chatId = 15L;
+    private static final User user1 = mock(User.class);
+    private static final User user2 = mock(User.class);
+    private static final Message message1 = mock(Message.class);
+    private static final Message message2 = mock(Message.class);
+    private static final String text1 = "First message text";
+    private static final String text2 = "Second message text";
+    private static final Chat chat1 = mock(Chat.class);
+    @MockBean
+    private UserService userService;
+    @MockBean
     private MessageRepository messageRepository;
-    @Mock
+    @MockBean
     private ChatRepository chatRepository;
-    @Mock
+    @MockBean
     private UserRepository userRepository;
 
-    @InjectMocks
-    private MessageService messageService;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
-
-    @Test
-    @WithMockUser
-    void CanCreateMessage() {
+    @BeforeAll
+    public static void setup() {
         Faker faker = new Faker();
-        Long chatId1 = 1L;
 
-        String messageTest1 = faker.lorem().fixedString(300);
-        final Message message = new Message(messageTest1);
-
-        Chat chat1 = new Chat();
-        chat1.setId(chatId1);
-        chat1.addMessage(message);
-        chatRepository.save(chat1);
-
-        User user1 = new User();
         user1.setId(1L);
-        user1.addMessage(message);
-        userRepository.save(user1);
+        user1.setEmail(faker.internet().emailAddress());
+        user1.setFirstName(faker.name().firstName());
+        user1.setLastName(faker.name().lastName());
+        user1.setChats(Stream.of(chat1).collect(Collectors.toList()));
 
-        given(messageRepository.save(message)).willAnswer(invocation -> invocation.getArgument(0));
+        user2.setId(2L);
+        user2.setEmail(faker.internet().emailAddress());
+        user2.setFirstName(faker.name().firstName());
+        user2.setLastName(faker.name().lastName());
 
-        Message createdMessage = messageService.createMessage(chatId1, messageTest1);
+        chat1.setId(chatId);
+        chat1.addUser(user1);
+        chat1.addUser(user2);
+        chat1.addMessage(message1);
+        chat1.addMessage(message2);
 
-        assertThat(createdMessage).isNotNull();
+        message1.setUser(user1);
+        message1.setChat(chat1);
+        message1.setText(text1);
 
-        verify(messageRepository).save(any(Message.class));
+        message2.setUser(user2);
+        message2.setChat(chat1);
+        message2.setText(text2);
     }
 
     @Test
-    @Disabled
-    void getMessagesByChatId() {
-        Faker faker = new Faker();
-        String messageTest1 = faker.lorem().fixedString(300);
-        Long chatId1 = 1L;
-        Message message1 = new Message(messageTest1);
+    public void CanCreateMessage() {
+        MessageService messageService = new MessageService(userRepository,
+                chatRepository,
+                messageRepository,
+                userService);
 
-        Long activeUserId = 1L;
+        Optional<User> userOpt = Optional.of(user1);
+        Optional<Chat> chatOpt = Optional.of(chat1);
 
-        final List<Message> messageList = new ArrayList<>();
+        Message message = new Message();
+        message.setText(text1);
 
-        verify(messageRepository).findMessagesByChat_Id(chatId1);
+        when(userService.getActiveUser()).thenReturn(user1);
+        when(userService.getActiveUser().getId()).thenReturn(userId);
+        when(userRepository.findById(userId)).thenReturn(userOpt);
+        when(chatRepository.findById(chatId)).thenReturn(chatOpt);
 
+        Assertions.assertEquals(message, messageService.createMessage(chatId, text1));
+    }
+
+    @Test
+    public void TestCanCreateMessageThrowsBadRequestException() {
+        MessageService messageService = new MessageService(userRepository, chatRepository, messageRepository, userService);
+
+        Optional<User> userOpt = Optional.of(user1);
+        Optional<Chat> chatOpt = Optional.of(chat1);
+        Message message = new Message();
+        message.setText(text1);
+
+        when(userService.getActiveUser()).thenReturn(user1);
+        when(userService.getActiveUser().getId()).thenReturn(userId);
+        when(userRepository.findById(userId)).thenReturn(userOpt);
+        when(chatRepository.findById(chatId)).thenReturn(chatOpt);
+
+        BadRequestException exception = Assertions.assertThrows(
+                BadRequestException.class,
+                () -> messageService.createMessage(13L, text1));
+
+        Assertions.assertTrue(exception.getMessage().contains("An error while trying to create new message."));
+    }
+
+    @Test
+    public void CanGetMessagesByCorrectChatId() {
+        MessageService messageService = new MessageService(userRepository, chatRepository, messageRepository, userService);
+        when(messageRepository.findMessagesByChat_Id(chatId))
+                .thenReturn(Stream.of(message1, message2).collect(Collectors.toList()));
+
+        Assertions.assertEquals(2, messageService.getMessagesByChatId(chatId).size());
+        Assertions.assertNotEquals(3, messageService.getMessagesByChatId(chatId).size());
     }
 }
