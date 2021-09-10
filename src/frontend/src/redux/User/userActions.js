@@ -7,9 +7,7 @@ export const getActiveUserAction = () => (dispatch) => {
   return http
     .get('../../api/activeuser')
     .then(res => {
-      if (typeof (res.data) === 'string') {
-        checkedResponse = {}
-      } else checkedResponse = res.data
+      checkedResponse = (typeof (res.data) === 'string') ? {} : res.data
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
         payload: checkedResponse

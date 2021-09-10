@@ -6,20 +6,20 @@ import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
 import { Link } from 'react-router-dom'
 import SimpleMenu from '../../../../../shared/PopupMenu/PopupMenu'
 import ConnectionAddition from './ConnectionAddition/ConnectionAddition'
-import { useDispatch } from 'react-redux'
-// import { useSelector } from 'react-redux'
-import { getUserChatsAction } from '../../../../../redux/Message/messageActions'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { getUserChatsAction, isTemporaryChatOpenAction } from '../../../../../redux/Message/messageActions'
 import Image from '../../../../../shared/Image/Image'
-// import { isTemporaryChatOpenAction } from '../../../../../redux/Message/messageActions'
-// import { allChats } from '../../../../../redux/Message/messageSelector'
-// import { activeUserSelector } from '../../../../../redux/User/userSelector'
+
+import { allChats } from '../../../../../redux/Message/messageSelector'
+import { activeUserSelector } from '../../../../../redux/User/userSelector'
 
 function Connection (props) {
   const classes = styles()
   const dispatch = useDispatch()
-  // const chats = useSelector(allChats)
-  // const activeUser = useSelector(activeUserSelector)
-  // const activeUserId = activeUser && activeUser.id
+  const chats = useSelector(allChats)
+  const activeUser = useSelector(activeUserSelector)
+  const activeUserId = activeUser && activeUser.id
 
   const {
     id = 3,
@@ -39,16 +39,16 @@ function Connection (props) {
     setRemovedConnection(!removedConnection)
   }
 
-  // const findIfChatExist = () => {
-  //   dispatch(isTemporaryChatOpenAction(false))
-  //   let existChatId = null
-  //   chats && chats.forEach(c => {
-  //     if (c.users.filter(u => u.id === activeUserId).length > 0) {
-  //       existChatId = c.id
-  //     }
-  //   })
-  //   return existChatId !== null ? existChatId : 'new/' + id
-  // }
+  const findIfChatExist = () => {
+    dispatch(isTemporaryChatOpenAction(false))
+    let existChatId = null
+    chats && chats.forEach(c => {
+      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+        existChatId = c.id
+      }
+    })
+    return existChatId !== null ? existChatId : 'new/' + id
+  }
 
   return (
     <div className={removedConnection ? classes.removed : ''}>
@@ -77,10 +77,9 @@ function Connection (props) {
           </div>
           <div className={classes.buttons}>
             <div className={classes.button}>
-              {/* <NavLink className={classes.linkButton} key={id} to={`/chat/${findIfChatExist()}`}> */}
-              <SharedButton title="Message" size="medium" variant="outlined" />
-              {/* <SharedButton component={NavLink} title="Message" size="medium" variant="outlined" /> */}
-              {/* </NavLink> */}
+              <Link className={classes.linkButton} key={id} to={`/chat/${findIfChatExist()}`}>
+                <SharedButton title="Message" size="medium" variant="outlined" />
+              </Link>
             </div>
             <div>
               <SimpleMenu menuItem={
