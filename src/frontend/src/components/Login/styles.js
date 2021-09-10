@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
   signUpLineLink: {
     fontSize: theme.typography.sh3.fontSize,
     textDecoration: 'none',
-    '& :hover': {
+    '&:hover': {
       textDecoration: 'underline'
     }
   },

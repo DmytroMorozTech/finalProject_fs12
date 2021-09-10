@@ -3,11 +3,12 @@ import {makeStyles} from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
   card: {
     width: 550,
-    height: 500,
+    height: 400,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: '2%'
   },
 
   header: {
@@ -81,6 +82,25 @@ export default makeStyles((theme) => ({
   signInTagline: {
     fontSize: theme.typography.h3.fontSize,
     lineHeight: 0
+  },
+
+  forgotPasswordWrapper: {},
+
+  forgotPasswordLink: {
+    textDecoration: 'none',
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '4rem',
+    padding: '0.5rem',
+    color: '#4949f3',
+    '&:hover': {
+      borderRadius: '20px',
+      textDecoration: 'underline',
+      backgroundColor: '#e3e3ef'
+    },
+    '&:visited': {
+      color: '#4949f3'
+    }
   }
 
 }))
