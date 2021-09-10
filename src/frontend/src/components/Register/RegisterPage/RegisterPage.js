@@ -1,13 +1,11 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import styles from './styles'
-import SharedButton from '../../../../shared/SharedButton/SharedButton'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 import TextField from '@material-ui/core/TextField'
 import {Paper} from '@material-ui/core'
-import http from '../../../../services/httpService'
+import http from '../../../services/httpService'
 import {toast} from 'react-toastify'
-import {getActiveUserAction} from '../../../../redux/User/userActions'
 import {useHistory} from 'react-router'
-import {useDispatch} from 'react-redux'
 import logo from './additions/icons8-google.svg'
 import {Link} from 'react-router-dom'
 
@@ -17,25 +15,36 @@ function RegisterPage () {
   const history = useHistory()
   const loginRef = useRef('')
   const passwordRef = useRef('')
-  const dispatch = useDispatch()
+  const firstNameRef = useRef('')
+  const lastNameRef = useRef('')
+  const [login, setLogin] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstSignUpPage, setFirstSignUpPage] = useState(true)
 
-  const handleSubmit = async (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault()
+    setLogin(loginRef.current.value)
+    setPassword(passwordRef.current.value)
+    setFirstSignUpPage(false)
+  }
 
-    let inputtedLogin = loginRef.current.value
-    let inputtedPassword = passwordRef.current.value
+  const handleUserSubmit = async (e) => {
+    e.preventDefault()
+    let inputtedFirstName = firstNameRef.current.value
+    let inputtedLastName = lastNameRef.current.value
 
     http
-      .post('api/auth', {
-        login: inputtedLogin,
-        password: inputtedPassword
+      .post('api/signup', {
+        email: login,
+        password: password,
+        firstName: inputtedFirstName,
+        lastName: inputtedLastName
       })
       .then(res => {
         if (res.status === 200) {
-          let token = res.data.token
-          localStorage.setItem('token', token)
-          dispatch(getActiveUserAction())
-          history.push('/home')
+          toast.info('You have signed up successful! Now you can sign in! ')
+          setFirstSignUpPage(true)
+          history.push('/')
         }
       })
       .catch(err => {
@@ -58,9 +67,9 @@ function RegisterPage () {
       })
   }
 
-  return (
-    <Paper elevation={3} className={classes.registerPageCard}>
-      <form className={classes.form} noValidate onSubmit={handleSubmit}>
+  return (firstSignUpPage
+    ? <Paper elevation={3} className={classes.registerPageCard}>
+      <form className={classes.form} noValidate onSubmit={handleLoginSubmit}>
         <TextField
           variant="outlined"
           margin="normal"
@@ -71,6 +80,7 @@ function RegisterPage () {
           name="email"
           autoComplete="email"
           autoFocus
+          inputRef={loginRef}
         />
         <TextField
           variant="outlined"
@@ -82,6 +92,7 @@ function RegisterPage () {
           type="password"
           id="password"
           autoComplete="current-password"
+          inputRef={passwordRef}
         />
         <SharedButton
           className={classes.joinButton}
@@ -110,6 +121,43 @@ function RegisterPage () {
         <p>Already on LinkedIn?</p>
         <Link to="/" className={classes.signInLineLink}>Sign in</Link>
       </div>
+    </Paper>
+    : <Paper elevation={3} className={classes.registerPageCard}>
+      <form className={classes.form} noValidate onSubmit={handleUserSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="firstName"
+          label="First Name"
+          name="firstName"
+          autoComplete="firstName"
+          autoFocus
+          inputRef={firstNameRef}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="lastName"
+          label="Last Name"
+          type="lastName"
+          id="lastName"
+          autoComplete="lastName"
+          inputRef={lastNameRef}
+        />
+        <SharedButton
+          className={classes.joinButton}
+          type="submit"
+          size="large"
+          title="Continue"
+          fullWidth
+          variant="contained"
+          color="primary"
+        />
+      </form>
     </Paper>
   )
 }

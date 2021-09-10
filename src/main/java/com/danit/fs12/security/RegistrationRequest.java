@@ -15,16 +15,9 @@ public class RegistrationRequest {
   private String lastName;
 
   @NotEmpty
-  private String phoneNumber;
-
-  @NotNull
-  private Integer age;
-
-  @NotEmpty
   private String email;
 
   @NotEmpty
   private String password;
 
-  private String avatarUrl;
 }

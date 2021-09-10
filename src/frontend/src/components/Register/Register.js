@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles'
 import RegisterPage from './RegisterPage/RegisterPage'
-import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
+import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
 
 const Register = () => {
   const classes = styles()

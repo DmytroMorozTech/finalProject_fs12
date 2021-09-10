@@ -77,19 +77,13 @@ public class UserService extends GeneralService<User> {
 
   public void registerUser(String firstName,
                            String lastName,
-                           Integer age,
-                           String phoneNumber,
                            String password,
-                           String email,
-                           String avatar) {
+                           String email) {
     User user = new User();
     user.setFirstName(firstName);
     user.setLastName(lastName);
-    user.setAge(age);
-    user.setPhoneNumber(phoneNumber);
     user.setPasswordHash(password);
     user.setEmail(email);
-    user.setAvatarPublicId(avatar);
     saveUser(user);
   }
 

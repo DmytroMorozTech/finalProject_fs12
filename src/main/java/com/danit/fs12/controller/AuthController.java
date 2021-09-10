@@ -28,16 +28,13 @@ public class AuthController {
   @Autowired
   private JwtProvider jwtProvider;
 
-  @PostMapping("/register")
+  @PostMapping("/signup")
   public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
     userFacade.registerUser(registrationRequest.getFirstName(),
       registrationRequest.getLastName(),
-      registrationRequest.getAge(),
-      registrationRequest.getPhoneNumber(),
       registrationRequest.getPassword(),
-      registrationRequest.getEmail(),
-      registrationRequest.getAvatarUrl());
-    return "OK";
+      registrationRequest.getEmail());
+    return "SIGNED UP!";
   }
 
   @PostMapping("/auth")
