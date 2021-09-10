@@ -30,7 +30,7 @@ public class InvitationController {
     String text = rq.getText();
     Invitation invitation = new Invitation(text, userWho, userWhom);
     Invitation savedInvitation = invitationRepository.save(invitation);
-    userWho.getInvitationsFromUser().add(savedInvitation);
+    userWho.getInvitations().add(savedInvitation);
     return ResponseEntity.ok("Well done");
   }
 

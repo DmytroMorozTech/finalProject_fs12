@@ -20,27 +20,16 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Data
 @Table(name = "invitations")
-public class Invitation{
-
-  @EmbeddedId
-  private InvitationId id;
+public class Invitation extends AbstractEntity{
 
   private String text;
 
   @ManyToOne
-  @MapsId("userWhoId")
   @JoinColumn(name="user_who_id")
   private User userWho;
 
   @ManyToOne
-  @MapsId("userWhomId")
   @JoinColumn(name="user_whom_id")
   private User userWhom;
 
-  public Invitation(String text, User userWho, User userWhom) {
-    this.text = text;
-    this.userWho = userWho;
-    this.userWhom = userWhom;
-    this.id = new InvitationId(userWho.getId(), userWho.getId());
-  }
 }

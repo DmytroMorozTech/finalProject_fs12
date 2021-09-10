@@ -148,11 +148,21 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
 
-  @OneToMany(mappedBy = "userWho" )
-  private List<Invitation> invitationsFromUser = new ArrayList<>();
-
-  @OneToMany(mappedBy = "userWhom" )
-  private List<Invitation> invitationsForUser = new ArrayList<>();
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name = "invitations",
+    joinColumns = @JoinColumn(
+      name = "user_who_id",
+      foreignKey = @ForeignKey(name = "invitations_user_who_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "user_whom_id",
+      foreignKey = @ForeignKey(name = "invitations_user_whom_id_fk")
+    ))
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Invitation> invitations = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
