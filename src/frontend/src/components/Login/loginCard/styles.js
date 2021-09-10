@@ -1,8 +1,8 @@
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   card: {
-    width: 350,
+    width: 550,
     height: 500,
     display: 'flex',
     flexDirection: 'column',
@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
   },
 
   form: {
-    width: '70%',
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -61,10 +61,26 @@ export default makeStyles((theme) => ({
   },
 
   googleBtn: {
-    width: '70%',
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+
+  signInLineWrapper: {
+    width: '90%'
+  },
+
+  signInLine: {
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: 0
+  },
+
+  signInTagline: {
+    fontSize: theme.typography.h3.fontSize,
+    lineHeight: 0
   }
+
 }))
