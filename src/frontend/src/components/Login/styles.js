@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
@@ -26,14 +26,24 @@ export default makeStyles((theme) => ({
     zIndex: 150,
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     fontSize: theme.typography.sh3.fontSize
   },
 
   signUpLineLink: {
-    fontSize: theme.typography.sh3.fontSize,
     textDecoration: 'none',
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '2rem',
+    padding: '0.3rem 0.5rem',
+    color: '#0a66c2',
     '&:hover': {
-      textDecoration: 'underline'
+      borderRadius: '20px',
+      textDecoration: 'underline',
+      backgroundColor: '#d0e8ff'
+    },
+    '&:visited': {
+      color: '#0a66c2'
     }
   },
 

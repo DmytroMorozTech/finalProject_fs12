@@ -84,22 +84,20 @@ export default makeStyles((theme) => ({
     lineHeight: 0
   },
 
-  forgotPasswordWrapper: {},
-
   forgotPasswordLink: {
     textDecoration: 'none',
     fontSize: theme.typography.h3.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '4rem',
     padding: '0.5rem',
-    color: '#4949f3',
+    color: '#0a66c2',
     '&:hover': {
       borderRadius: '20px',
       textDecoration: 'underline',
-      backgroundColor: '#e3e3ef'
+      backgroundColor: '#d0e8ff'
     },
     '&:visited': {
-      color: '#4949f3'
+      color: '#0a66c2'
     }
   }
 

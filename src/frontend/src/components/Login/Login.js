@@ -5,7 +5,6 @@ import Preloader from '../../shared/Preloader/Preloader'
 import React from 'react'
 import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
 import styles from './styles'
-import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 
 const Login = () => {
@@ -21,8 +20,7 @@ const Login = () => {
       </div>
       <div className={classes.signUpLineWrapper}>
         <p>New to LinkedIn?</p>
-        <Button component={Link} exact to="/signup" className={classes.signUpLineLink} color="primary">Join
-            now</Button>
+        <Link to="/signup" className={classes.signUpLineLink}>Join now</Link>
       </div>
     </div>
   )
