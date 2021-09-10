@@ -14,6 +14,8 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 
 const LoginCard = () => {
   const classes = styles()
+
+  // TODO: Fix the error in the console related to useHistory
   const history = useHistory()
   const loginRef = useRef('')
   const passwordRef = useRef('')

@@ -81,7 +81,7 @@ const postReducer = (state = initialState, action) => {
       if (currentPost2 === null) return state
 
       const indexOfCurrentPost2 = state.postsList.indexOf(currentPost2)
-      const copyOfCurrentPost2 = { ...currentPost2, user: { ...currentPost2.user } }
+      const copyOfCurrentPost2 = { ...currentPost2 }
       copyOfCurrentPost2.numberOfComments += 1
 
       return update(state, {

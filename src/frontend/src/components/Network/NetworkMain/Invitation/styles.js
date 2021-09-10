@@ -56,8 +56,12 @@ export default makeStyles((theme) => ({
   },
 
   '@media screen and (max-width: 445px)': {
-    smallScreen: {
+    smallScreenConnection: {
       display: 'none'
+    },
+
+    smallScreenButtons: {
+      flexDirection: 'column'
     }
   }
 }))
