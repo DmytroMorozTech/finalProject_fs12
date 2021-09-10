@@ -25,6 +25,8 @@ const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
+      <Route exact path="/signup" render={() => <Register/>}/>
+      <Route exact path="/forgot" render={() => <Forgot/>}/>
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>

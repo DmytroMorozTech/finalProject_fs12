@@ -84,9 +84,10 @@ const LoginCard = () => {
           inputRef={passwordRef}
         />
         <div className={classes.forgotPasswordWrapper}>
-          <Link className={classes.forgotPasswordLink}>Forgot password?</Link>
+          <Link to="/forgot" className={classes.forgotPasswordLink}>Forgot password?</Link>
         </div>
         <SharedButton
+          className={classes.signInButton}
           type="submit"
           size="large"
           title="Sign In"

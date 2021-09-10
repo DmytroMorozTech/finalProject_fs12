@@ -1,14 +1,15 @@
 import React, {useRef} from 'react'
 import styles from './styles'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
-import {GoogleLoginButton} from 'react-social-login-buttons'
 import TextField from '@material-ui/core/TextField'
-import { Link, Paper } from '@material-ui/core'
+import {Paper} from '@material-ui/core'
 import http from '../../../../services/httpService'
 import {toast} from 'react-toastify'
 import {getActiveUserAction} from '../../../../redux/User/userActions'
 import {useHistory} from 'react-router'
 import {useDispatch} from 'react-redux'
+import logo from './additions/icons8-google.svg'
+import {Link} from 'react-router-dom'
 
 function RegisterPage () {
   const classes = styles()
@@ -83,9 +84,10 @@ function RegisterPage () {
           autoComplete="current-password"
         />
         <SharedButton
+          className={classes.joinButton}
           type="submit"
           size="large"
-          title="Register"
+          title="Join"
           fullWidth
           variant="contained"
           color="primary"
@@ -94,18 +96,19 @@ function RegisterPage () {
       <div className={classes.google}>
         <section>
           <div/>
-          <p>OR</p>
+          <p>or</p>
           <div/>
         </section>
-        <div className={classes.googleBtn}>
-          <GoogleLoginButton onClick={() => authenticateByGoogle()}/>
+        <div className={classes.googleBtnWrapper}>
+          <button className={classes.googleBtn} onClick={() => authenticateByGoogle()}>
+            <img src={logo} alt={logo}/>
+            <span>Join with Google</span>
+          </button>
         </div>
       </div>
-      <div className={classes.readyLinkedIn}>
-        <h4>Already have Linkedin account</h4>
-        <Link exact to='/login' className={classes.link}>
-          <SharedButton title='Return to login page'/>
-        </Link>
+      <div className={classes.signInLineWrapper}>
+        <p>Already on LinkedIn?</p>
+        <Link to="/" className={classes.signInLineLink}>Sign in</Link>
       </div>
     </Paper>
   )

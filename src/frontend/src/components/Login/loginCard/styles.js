@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   card: {
-    width: 550,
+    width: 500,
     height: 400,
     display: 'flex',
     flexDirection: 'column',
@@ -29,44 +29,6 @@ export default makeStyles((theme) => ({
       borderRadius: theme.shape.extraSmall,
       padding: theme.spacing(2)
     }
-  },
-
-  google: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    '& > section': {
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: theme.spacing(2),
-      '& > div': {
-        flex: 1,
-        height: 0.5,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.palette.grey[500]
-      },
-      '& > p': {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: theme.spacing(2),
-        color: theme.palette.grey[500]
-      }
-    }
-  },
-
-  googleBtn: {
-    width: '90%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
 
   signInLineWrapper: {
@@ -99,6 +61,10 @@ export default makeStyles((theme) => ({
     '&:visited': {
       color: '#0a66c2'
     }
+  },
+
+  signInButton: {
+    fontSize: theme.typography.h3.fontSize
   }
 
 }))

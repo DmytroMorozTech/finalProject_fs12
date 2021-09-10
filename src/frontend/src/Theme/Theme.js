@@ -53,6 +53,10 @@ const theme = createTheme({
       fontSize: '2.5rem',
       fontWeight: 900
     },
+    sh1: {
+      fontSize: '2.0rem',
+      fontWeight: 850
+    },
     h2: {
       fontSize: '1.3rem',
       fontWeight: 800
