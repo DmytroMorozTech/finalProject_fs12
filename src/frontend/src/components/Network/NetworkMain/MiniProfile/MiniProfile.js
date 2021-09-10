@@ -28,7 +28,7 @@ function MiniProfile (props) {
   const linkToUserProfile = '/profiles/' + id
 
   return (
-    <div className={clsx(classes.miniProfile, classes.smallWidth, removedMiniProfile ? classes.removed : '')}>
+    <div className={clsx(classes.miniProfile, classes.smallScreen, removedMiniProfile ? classes.removed : '')}>
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
