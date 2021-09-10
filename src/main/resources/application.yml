@@ -5,6 +5,9 @@ server:
     include-binding-errors: always
     include-stacktrace: on_trace_param
 spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.yaml
   profiles:
     active: "local"
   servlet:
