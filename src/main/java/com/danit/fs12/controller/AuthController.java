@@ -5,22 +5,18 @@ import com.danit.fs12.entity.authentication.AuthResponse;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.security.RegistrationRequest;
+import com.danit.fs12.security.UpdatePasswordRequest;
 import com.danit.fs12.security.jwt.JwtProvider;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,7 +49,9 @@ public class AuthController {
     return userFacade.getActiveUser();
   }
 
-//  @GetMapping("/signup_google_user")
-//  @JsonView(UserViews.Base.class)
-//  public UserRs currentGoogleAuthUserData() {return userFacade.googleAuthUserDataToSignUp();}
+  @PostMapping("/update_password")
+  @JsonView(UserViews.Base.class)
+  public UserRs currentGoogleAuthUserData(@RequestBody @Valid UpdatePasswordRequest updatePasswordRequest) {
+    return userFacade.updateUserPassword(updatePasswordRequest);
+  }
 }

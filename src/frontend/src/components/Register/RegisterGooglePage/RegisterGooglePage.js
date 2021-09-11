@@ -20,18 +20,14 @@ const RegisterGooglePage = () => {
   const activeUser = useSelector(activeUserSelector)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [inputedPassword, setPassword] = useState('')
 
   const handleSubmit = (data) => {
     const {password} = data
-    setPassword(password)
 
     http
-      .post('api/signup', {
+      .post('api/update_password', {
         email: activeUser.email,
-        password: inputedPassword,
-        firstName: activeUser.firstName,
-        lastName: activeUser.lastName
+        password: password
       })
       .then(res => {
         if (res.status === 200) {

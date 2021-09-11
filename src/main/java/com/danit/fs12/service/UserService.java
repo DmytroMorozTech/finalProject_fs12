@@ -81,7 +81,7 @@ public class UserService extends GeneralService<User> {
                            String lastName,
                            String password,
                            String email) {
-    if (userRepository.findUserByEmail(email) != null) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
       throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
     } else {
       User user = new User();
@@ -119,6 +119,17 @@ public class UserService extends GeneralService<User> {
       newUser.setLastName(lastName);
       newUser.setProvider(Provider.GOOGLE);
       userRepository.save(newUser);
+    }
+  }
+
+  public User updateUser (String password, String email) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = userRepository.findUserByEmail(email);
+      user.setPasswordHash(password);
+      saveUser(user);
+      return user;
     }
   }
 }
