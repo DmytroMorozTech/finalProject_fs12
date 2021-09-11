@@ -44,11 +44,11 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(user);
   }
 
-  public void registerUser(String firstName,
+  public UserRs registerUser(String firstName,
                            String lastName,
                            String password,
                            String email) {
-    userService.registerUser(firstName, lastName, password, email);
+    return convertToDto(userService.registerUser(firstName, lastName, password, email));
   }
 
   public UserRs updateIntro(UserEditIntroRq rq) {

@@ -10,6 +10,7 @@ import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
+import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
@@ -75,16 +76,21 @@ public class UserService extends GeneralService<User> {
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
-  public void registerUser(String firstName,
+  public User registerUser(String firstName,
                            String lastName,
                            String password,
                            String email) {
-    User user = new User();
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setPasswordHash(password);
-    user.setEmail(email);
-    saveUser(user);
+     if (userRepository.findUserByEmail(email) != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = new User();
+      user.setFirstName(firstName);
+      user.setLastName(lastName);
+      user.setPasswordHash(password);
+      user.setEmail(email);
+      saveUser(user);
+      return user;
+    }
   }
 
   public User updateIntro(UserEditIntroRq rq) {
