@@ -55,5 +55,4 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     User updateIntro = userService.updateIntro(rq);
     return convertToDto(updateIntro);
   }
-
 }

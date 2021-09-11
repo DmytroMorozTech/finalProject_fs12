@@ -52,4 +52,8 @@ public class AuthController {
   public UserRs currentUser() {
     return userFacade.getActiveUser();
   }
+
+//  @GetMapping("/signup_google_user")
+//  @JsonView(UserViews.Base.class)
+//  public UserRs currentGoogleAuthUserData() {return userFacade.googleAuthUserDataToSignUp();}
 }

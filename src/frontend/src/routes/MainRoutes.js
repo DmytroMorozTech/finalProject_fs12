@@ -26,6 +26,7 @@ const MainRoutes = () => {
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
       <Route exact path="/signup" render={() => <Register/>}/>
+      <Route exact path="/signup_g" render={() => <Register isByGoogle={true}/>}/>
       <Route exact path="/forgot" render={() => <Forgot/>}/>
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>

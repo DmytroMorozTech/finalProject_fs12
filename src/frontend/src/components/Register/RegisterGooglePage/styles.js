@@ -115,15 +115,70 @@ export default makeStyles((theme) => ({
     }
   },
 
+  notYouLineLink: {
+    textDecoration: 'none',
+    fontSize: theme.typography.h4.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '2rem',
+    padding: '0.3rem 0.5rem',
+    color: '#0a66c2',
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline'
+    },
+    '&:visited': {
+      color: '#0a66c2'
+    }
+  },
+
   joinButton: {
     fontSize: theme.typography.h3.fontSize
   },
 
-  firstSignUpPage: {
-    height: 500
+  googleSignUpPage: {
+    height: 350
   },
 
-  secondSignUpPage: {
-    height: 300
+  avatarWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  avatar: {
+    width: theme.avatar.medium,
+    borderRadius: '50%',
+    display: 'flex',
+    alignSelf: 'flex-start'
+  },
+
+  profileButton: {
+    borderRadius: '100px',
+    height: '1.5rem',
+    fontSize: theme.typography.button.fontSize,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    margin: theme.spacing(1)
+  },
+
+  userDataWrapper: {
+    width: '18rem',
+    marginLeft: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
+
+  userName: {
+    whiteSpace: 'normal',
+    fontSize: theme.typography.sh3.fontSize,
+    fontWeight: theme.typography.h6.fontWeight
+  },
+
+  userProfession: {
+    width: '100%',
+    whiteSpace: 'normal',
+    fontSize: theme.typography.h6.fontSize
   }
 }))

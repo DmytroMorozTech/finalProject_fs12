@@ -3,7 +3,8 @@ import * as actions from './userActionTypes'
 const initialState = {
   loadingUser: false,
   activeUser: {},
-  selectedUser: {}
+  selectedUser: {},
+  temporaryAuthData: {}
 }
 
 const userReducer = (state = initialState, action) => {

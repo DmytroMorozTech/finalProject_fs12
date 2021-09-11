@@ -105,7 +105,7 @@ function RegisterPage () {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Password (8 or more characters)"
               type="password"
               // autoComplete="current-password"
             />

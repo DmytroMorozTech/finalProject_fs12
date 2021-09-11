@@ -31,6 +31,7 @@ public class UserService extends GeneralService<User> {
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
+  private User newUserByGoogleAuth;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -80,7 +81,7 @@ public class UserService extends GeneralService<User> {
                            String lastName,
                            String password,
                            String email) {
-     if (userRepository.findUserByEmail(email) != null) {
+    if (userRepository.findUserByEmail(email) != null) {
       throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
     } else {
       User user = new User();
@@ -119,27 +120,5 @@ public class UserService extends GeneralService<User> {
       newUser.setProvider(Provider.GOOGLE);
       userRepository.save(newUser);
     }
-  }
-
-  public void createNewUserAfterOAuthLoginSuccess(String email,
-                                                  String name,
-                                                  String avatarUrl,
-                                                  Provider provider) {
-    User user = new User();
-    user.setEmail(email);
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
-  }
-
-  public void updateUserAfterOAuthLoginSuccess(User user,
-                                               String name,
-                                               String avatarUrl,
-                                               Provider provider) {
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
   }
 }
