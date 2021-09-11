@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
   registerPageCard: {
     width: 500,
-    height: 450,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -118,5 +117,13 @@ export default makeStyles((theme) => ({
 
   joinButton: {
     fontSize: theme.typography.h3.fontSize
+  },
+
+  firstSignUpPage: {
+    height: 500
+  },
+
+  secondSignUpPage: {
+    height: 300
   }
 }))
