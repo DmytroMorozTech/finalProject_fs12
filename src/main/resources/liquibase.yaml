@@ -1,12 +1,12 @@
 # production db
-url: jdbc:postgresql://tai.db.elephantsql.com/
-username: zmowlhvq
-password: vLkHFB0cCL0wnzcSVUnX1vmg2h6Xv_dA
+url: jdbc:postgresql://localhost:5432/fs12prod
+username: postgres
+password: password
 
 # development db
-referenceUrl: jdbc:h2:mem:linkedin
-referenceUsername: sa
-referencePassword:
+referenceUrl: jdbc:postgresql://localhost:5432/fs12dev
+referenceUsername: postgres
+referencePassword: password
 
 # for working. CURRENT list of all deltas
 changeLogFile: src/main/resources/db/changelog/master.yaml
