@@ -1,26 +1,3 @@
--- alter table bookmarks drop constraint if exists FK7nbb4ldgek7ux7y6lu0y4g826;
--- alter table bookmarks drop constraint if exists FKdbsho2e05w5r13fkjqfjmge5f;
--- alter table certifications drop constraint if exists FKbfsgbyyudnkdkf6julrlp6od0;
--- alter table comments drop constraint if exists FKh4c7lvsc298whoyd4w9ta25cr;
--- alter table comments drop constraint if exists FK8omq0tc18jd43bu5tjh6jvraq;
--- alter table comments_likes drop constraint if exists FKogmkq8clqlxqis53e9tlu4w96;
--- alter table comments_likes drop constraint if exists FKiwf3mhli7ej3pgf9ktj6vv08p;
--- alter table educations drop constraint if exists FKff5wc10svmgvwumia2rsfaud6;
--- alter table followers drop constraint if exists FKndvqwh40g1qt4xirl6vp2d6m6;
--- alter table followers drop constraint if exists FKi8o2nfxij3gj4wv568sr087dn;
--- alter table messages drop constraint if exists FK64w44ngcpqp99ptcb9werdfmb;
--- alter table messages drop constraint if exists FKpsmh6clh3csorw43eaodlqvkn;
--- alter table messages drop constraint if exists FKpsmh6clh3csorw43eaodlqvkn;
--- alter table posts drop constraint if exists user_post_fk;
--- alter table posts_likes drop constraint if exists FKimxtd6dl39nmu9x0snqm6mu1g;
--- alter table posts_likes drop constraint if exists FKt5kx9tu4bo443unk2n21dmshd;
--- alter table user_has_groups drop constraint if exists user_has_groups_group_id_fk;
--- alter table user_has_groups drop constraint if exists user_has_groups_user_id_fk;
--- alter table users_chats drop constraint if exists users_chats_chat_id_fk;
--- alter table users_chats drop constraint if exists users_chats_user_id_fk;
--- alter table work_places drop constraint if exists FKa7irgueh567s199i0g2q4y6vw;
--- alter table work_places drop constraint if exists FKp16rn3g2k6jpnpakvx5b0ev0u;
-
 drop table if exists bookmarks cascade;
 drop table if exists certifications cascade;
 drop table if exists chats cascade;
