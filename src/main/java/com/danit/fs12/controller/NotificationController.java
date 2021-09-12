@@ -1,6 +1,6 @@
 package com.danit.fs12.controller;
 
-import com.danit.fs12.entity.notification.NotificationRq;
+import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.notification.NotificationRs;
 import com.danit.fs12.facade.NotificationFacade;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NotificationController {
   private final NotificationFacade notificationFacade;
+
+  @MessageMapping("/notification")
+  @SendTo("/api/notification")
+  public Notification getNotification(Notification notification) {
+    System.out.println(notification);
+    return notification;
+  }
 
   @GetMapping
   @JsonView(UserViews.Profile.class)

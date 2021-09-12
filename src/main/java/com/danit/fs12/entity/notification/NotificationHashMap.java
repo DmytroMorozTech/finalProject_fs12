@@ -13,6 +13,6 @@ import java.util.HashMap;
 public class NotificationHashMap implements Serializable {
   private final static long serialVersionUID = 7702L;
 
-  HashMap<Character, Character> dataNotification  = new HashMap<>();
+  HashMap<String, String> dataNotification  = new HashMap<>();
 
 }
