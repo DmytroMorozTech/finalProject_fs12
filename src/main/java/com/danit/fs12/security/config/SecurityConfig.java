@@ -57,7 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .userInfoEndpoint().userService(oauthUserService)
       .and()
       .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
-        new OAuth2LoginSuccessHandler(userService).onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
+        new OAuth2LoginSuccessHandler(userService).onAuthenticationSuccess(httpServletRequest,
+          httpServletResponse,
+          authentication);
       })
       .and()
       .logout().permitAll()

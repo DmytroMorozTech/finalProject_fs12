@@ -123,7 +123,7 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public User updateUser (String password, String email) {
+  public User updateUser(String password, String email) {
     if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
       throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
     } else {

@@ -46,9 +46,9 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
   }
 
   public UserRs registerUser(String firstName,
-                           String lastName,
-                           String password,
-                           String email) {
+                             String lastName,
+                             String password,
+                             String email) {
     return convertToDto(userService.registerUser(firstName, lastName, password, email));
   }
 
@@ -57,7 +57,7 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(updateIntro);
   }
 
-  public UserRs updateUserPassword (UpdatePasswordRequest updatePasswordRequest) {
+  public UserRs updateUserPassword(UpdatePasswordRequest updatePasswordRequest) {
     return convertToDto(userService.updateUser(updatePasswordRequest.getPassword(),
       updatePasswordRequest.getEmail()));
   }
