@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './styles'
-import RegisterPage from './RegisterPage/RegisterPage'
 import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
 import RegisterGooglePage from './RegisterGooglePage/RegisterGooglePage'
+import RegisterPage from './RegisterPage/RegisterPage'
 
 const Register = (props) => {
   const {isByGoogle} = props

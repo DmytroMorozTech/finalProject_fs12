@@ -12,7 +12,7 @@ import {Field, Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 
-function RegisterPage () {
+function RegisterPageLoginData () {
   const classes = styles()
 
   const history = useHistory()
@@ -47,6 +47,7 @@ function RegisterPage () {
       .catch(err => {
         const errorMsg = err.response.data.message
         toast.error(errorMsg)
+        history.push('/')
       })
   }
 
@@ -69,7 +70,9 @@ function RegisterPage () {
       <Formik
         initialValues={{
           email: '',
-          password: ''
+          password: '',
+          firstName: '',
+          lastName: ''
         }}
         validationSchema={
           Yup.object().shape({
@@ -82,7 +85,7 @@ function RegisterPage () {
           })}
         onSubmit={(values, {resetForm}) => {
           handleLoginSubmit(values)
-          resetForm({email: '', password: ''})
+          resetForm()
         }}
       >
         {() => (
@@ -90,7 +93,6 @@ function RegisterPage () {
             <Field component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               type="email"
               label="Email Address"
@@ -102,12 +104,11 @@ function RegisterPage () {
             <Field component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password (8 or more characters)"
               type="password"
-              // autoComplete="current-password"
+              autoComplete="current-password"
             />
             <SharedButton
               className={classes.joinButton}
@@ -141,20 +142,17 @@ function RegisterPage () {
     </Paper>
     : <Paper elevation={3} className={clsx(classes.registerPageCard, classes.secondSignUpPage)}>
       <Formik
-        initialValues={{
-          firstName: '',
-          lastName: ''
-        }}
+        initialValues={{}}
         validationSchema={
           Yup.object().shape({
             firstName: Yup.string()
-              .required('First name is required'),
+              .required('First Name is required'),
             lastName: Yup.string()
-              .required('Last name is required')
+              .required('Last Name is required')
           })}
         onSubmit={(values, {resetForm}) => {
           handleUserSubmit(values)
-          resetForm({firstName: '', lastName: ''})
+          resetForm()
         }}
       >
         {() => (
@@ -162,25 +160,21 @@ function RegisterPage () {
             <Field component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               type="text"
-              label="First name"
+              label="First Name"
               name="firstName"
-              autoComplete="firstName"
               helperText="Please Enter First Name"
               autoFocus
             />
             <Field component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="lastName"
               label="Last Name"
               type="text"
-              autoComplete="lastName"
-              autoFocus
+              helperText="Please Enter Last Name"
             />
             <SharedButton
               className={classes.joinButton}
@@ -198,4 +192,4 @@ function RegisterPage () {
   )
 }
 
-export default RegisterPage
+export default RegisterPageLoginData

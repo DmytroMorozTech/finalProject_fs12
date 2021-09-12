@@ -32,13 +32,13 @@ public class AuthController {
     userFacade.registerUser(registrationRequest.getFirstName(),
       registrationRequest.getLastName(),
       registrationRequest.getPassword(),
-      registrationRequest.getEmail());
+      registrationRequest.getEmail().toLowerCase());
     return "SIGNED UP!";
   }
 
   @PostMapping("/auth")
   public AuthResponse auth(@RequestBody AuthRequest request) {
-    UserRs userRs = userFacade.findByEmailAndPassword(request.getLogin(), request.getPassword());
+    UserRs userRs = userFacade.findByEmailAndPassword(request.getLogin().toLowerCase(), request.getPassword());
     String token = jwtProvider.generateToken(userRs.getEmail());
     return new AuthResponse(token);
   }
