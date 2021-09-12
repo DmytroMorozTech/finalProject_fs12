@@ -8,6 +8,7 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
+import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
@@ -146,6 +147,22 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name = "invitations",
+    joinColumns = @JoinColumn(
+      name = "user_who_id",
+      foreignKey = @ForeignKey(name = "invitations_user_who_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "user_whom_id",
+      foreignKey = @ForeignKey(name = "invitations_user_whom_id_fk")
+    ))
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Invitation> invitations = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
