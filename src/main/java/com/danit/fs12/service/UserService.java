@@ -88,7 +88,8 @@ public class UserService extends GeneralService<User> {
       user.setFirstName(firstName);
       user.setLastName(lastName);
       user.setPasswordHash(password);
-      user.setEmail(email);
+      user.setEmail(email.toLowerCase());
+      user.setProvider(Provider.LOCAL);
       saveUser(user);
       return user;
     }

@@ -38,7 +38,7 @@ public class AuthController {
 
   @PostMapping("/auth")
   public AuthResponse auth(@RequestBody AuthRequest request) {
-    UserRs userRs = userFacade.findByEmailAndPassword(request.getLogin().toLowerCase(), request.getPassword());
+    UserRs userRs = userFacade.findByEmailAndPassword(request.getLogin(), request.getPassword());
     String token = jwtProvider.generateToken(userRs.getEmail());
     return new AuthResponse(token);
   }
