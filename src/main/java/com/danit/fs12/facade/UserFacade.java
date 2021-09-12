@@ -9,6 +9,8 @@ import com.danit.fs12.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,5 +62,9 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
   public UserRs updateUserPassword(UpdatePasswordRequest updatePasswordRequest) {
     return convertToDto(userService.updateUser(updatePasswordRequest.getPassword(),
       updatePasswordRequest.getEmail()));
+  }
+
+  public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
+    userService.generateResetPasswordNumber(email);
   }
 }

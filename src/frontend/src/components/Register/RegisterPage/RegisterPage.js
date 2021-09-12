@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styles from './styles'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
-import TextField from '@material-ui/core/TextField'
+import {TextField} from 'formik-material-ui'
 import {Paper} from '@material-ui/core'
 import http from '../../../services/httpService'
 import {toast} from 'react-toastify'

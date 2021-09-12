@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/resources/**").permitAll()
       .antMatchers("/oauth2/**").permitAll()
+      .antMatchers("/api/forgot_password/**").permitAll()
       .antMatchers("/api/register", "/api/auth", "/", "/api/logout", "api/google_auth", "/api/signup").permitAll()
       .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()

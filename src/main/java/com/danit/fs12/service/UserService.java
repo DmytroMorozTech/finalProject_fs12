@@ -15,12 +15,18 @@ import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +38,7 @@ public class UserService extends GeneralService<User> {
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
-  private User newUserByGoogleAuth;
+  private final JavaMailSender mailSender;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -135,15 +141,36 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public void generateResetPasswordNumber(String email) {
+  public void sendEmail(String receiverEmail, Integer resetNumber, String userName) throws MessagingException, UnsupportedEncodingException {
+    MimeMessage message = mailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message);
+
+    helper.setFrom("linkedin.dan.it@gmail.com", "LinkedIn");
+    helper.setTo(receiverEmail);
+
+    String subject = userName + ", this message contains code to Sign in.";
+
+    String content = "<p>Hello, " + userName + ",</p>" +
+      "<p>We have received your request to change your LinkedIn profile password.</p>" +
+      "<p>" + resetNumber + "</p>" +
+      "<p>Please, enter this number to finish password changing process.</p>";
+
+    helper.setSubject(subject);
+    helper.setText(content, true);
+    mailSender.send(message);
+  }
+
+  public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
     int resetNumber = (int) (Math.random() * 1000000);
     Optional<User> userOpt = Optional.of(userRepository.findUserByEmail(email));
-    if(userOpt.isPresent()) {
+    if (userOpt.isPresent()) {
       User user = userOpt.get();
+      String userName = user.getFirstName();
       user.setResetPasswordNumber(resetNumber);
       userRepository.save(user);
+      sendEmail(email, resetNumber, userName);
     } else {
-      throw  new NoSuchUserException(String.format("Could not find any user with %s email", email));
+      throw new NoSuchUserException(String.format("Could not find any user with %s email", email));
     }
   }
 
