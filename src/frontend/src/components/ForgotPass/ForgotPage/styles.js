@@ -51,12 +51,13 @@ export default makeStyles((theme) => ({
   },
 
   signInLineLink: {
+    width: '4rem',
     textDecoration: 'none',
     border: '1px solid transparent',
     fontSize: theme.typography.h3.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '2rem',
-    marginTop: '1rem',
+    margin: '1rem auto',
     padding: '0.3rem 0.5rem',
     color: 'rgba(0,0,0,0.6)',
     cursor: 'pointer',
@@ -69,4 +70,5 @@ export default makeStyles((theme) => ({
       color: 'rgba(0,0,0,0.6)'
     }
   }
+
 }))

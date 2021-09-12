@@ -17,6 +17,7 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -132,5 +133,29 @@ public class UserService extends GeneralService<User> {
       saveUser(user);
       return user;
     }
+  }
+
+  public void generateResetPasswordNumber(String email) {
+    int resetNumber = (int) (Math.random() * 1000000);
+    Optional<User> userOpt = Optional.of(userRepository.findUserByEmail(email));
+    if(userOpt.isPresent()) {
+      User user = userOpt.get();
+      user.setResetPasswordNumber(resetNumber);
+      userRepository.save(user);
+    } else {
+      throw  new NoSuchUserException(String.format("Could not find any user with %s email", email));
+    }
+  }
+
+  public User getByResetPasswordNumber(Integer number) {
+    return userRepository.findUserByResetPasswordNumber(number);
+  }
+
+  public void updatePassword(User user, String newPassword) {
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    String encodedPassword = passwordEncoder.encode(newPassword);
+    user.setPasswordHash(encodedPassword);
+    user.setResetPasswordNumber(null);
+    userRepository.save(user);
   }
 }
