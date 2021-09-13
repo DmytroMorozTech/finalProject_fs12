@@ -32,12 +32,12 @@ public class InvitationService extends GeneralService<Invitation> {
     // User should not be able to invite HIMSELF! And we should check that!
   }
 
-  public List<Invitation> getInvitationsForMe(){
+  public List<Invitation> getInvitationsForMe() {
     Long activeUserId = userService.getActiveUser().getId();
     return invitationRepository.findInvitationsByUserWhomId(activeUserId);
   }
 
-  public List<Invitation> getInvitationsFromMe(){
+  public List<Invitation> getInvitationsFromMe() {
     Long activeUserId = userService.getActiveUser().getId();
     return invitationRepository.findInvitationsByUserWhoId(activeUserId);
   }
