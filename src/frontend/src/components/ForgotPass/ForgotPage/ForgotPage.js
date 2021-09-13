@@ -9,12 +9,14 @@ import clsx from 'clsx'
 import * as Yup from 'yup'
 import {Field, Form, Formik} from 'formik'
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router'
 
 function ForgotPage () {
   const classes = styles()
   const [firstForgotPage, setFirstForgotPage] = useState(true)
   const [hideEmail, setHideEmail] = useState('')
   const [inputtedUserEmail, setInputtedUserEmail] = useState('')
+  const history = useHistory()
   let inputtedEmail = ''
 
   const handleEmailSubmit = (values, isResend) => {
@@ -44,13 +46,14 @@ function ForgotPage () {
   const handleSecurityCodeSubmit = (values) => {
     const {code} = values
     console.log('here code: ' + code)
+    inputtedEmail = inputtedUserEmail
+    console.log(inputtedEmail)
     http
-      .post('api/auth', {
-        email: inputtedEmail
-      })
+      .post(`forgot_password/${inputtedEmail}&${code}`)
       .then(res => {
         if (res.status === 200) {
-          let token = res.data.token
+          history.push('/')
+          console.log('WIN!!!')
         }
       })
       .catch(err => {
@@ -58,6 +61,7 @@ function ForgotPage () {
         toast.error(errorMsg)
       })
   }
+
   return (firstForgotPage
     ? <Paper elevation={3} className={clsx(classes.forgotPageCard, classes.firstForgotPage)}>
       <div className={classes.mainTextContainer}>

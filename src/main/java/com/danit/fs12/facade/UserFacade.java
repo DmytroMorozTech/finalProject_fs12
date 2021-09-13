@@ -1,5 +1,6 @@
 package com.danit.fs12.facade;
 
+import com.danit.fs12.entity.restore.RestoreRequest;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRq;
@@ -66,5 +67,13 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
 
   public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
     userService.generateResetPasswordNumber(email);
+  }
+
+  public boolean isUserRecognized(String email, String code) {
+    return userService.isUserRecognized(email, code);
+  }
+
+  public void updateUserPassword(RestoreRequest restoreRequest) {
+    userService.updateUserPassword(restoreRequest.getEmail(), restoreRequest.getPassword());
   }
 }

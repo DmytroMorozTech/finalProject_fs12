@@ -179,11 +179,25 @@ public class UserService extends GeneralService<User> {
     return userRepository.findUserByResetPasswordNumber(number);
   }
 
-  public void updatePassword(User user, String newPassword) {
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    String encodedPassword = passwordEncoder.encode(newPassword);
-    user.setPasswordHash(encodedPassword);
-    user.setResetPasswordNumber(null);
-    userRepository.save(user);
+  public boolean isUserRecognized(String email, String code) {
+    User user = findByEmail(email);
+    if (user != null) {
+      if (passwordEncoder.matches(code, user.getResetPasswordNumber())) {
+        return true;
+      }
+    }
+    throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
+  }
+
+  public void updateUserPassword(String email, String newPassword) {
+    User user = findByEmail(email);
+    if (user != null) {
+      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      String encodedPassword = passwordEncoder.encode(newPassword);
+      user.setPasswordHash(encodedPassword);
+      user.setResetPasswordNumber(null);
+      userRepository.save(user);
+    }
+    throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
   }
 }
