@@ -80,14 +80,13 @@ export default makeStyles((theme) => ({
   },
 
   secondForgotPage: {
-    width: 500,
-    height: 400
+    width: 550,
+    height: 450
   },
 
   mainTextSecond: {
+    width: '100%',
     fontSize: theme.typography.sh1.fontSize,
-    lineHeight: theme.typography.h3.lineHeight,
-    marginTop: '3rem',
     textAlign: 'center'
   },
 
@@ -116,6 +115,7 @@ export default makeStyles((theme) => ({
   },
 
   mainTextWrapperSecond: {
+    width: '100%',
     display: 'flex',
     alignItems: 'center'
   },
