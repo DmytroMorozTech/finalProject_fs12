@@ -4,7 +4,8 @@ const initialState = {
   invitationsForMe: [],
   invitationsFromMe: [],
   usersFollowing: [],
-  usersFollowed: []
+  usersFollowed: [],
+  invitationsAreLoading: true
 }
 
 const networkReducer = (state = initialState, action) => {
@@ -17,6 +18,9 @@ const networkReducer = (state = initialState, action) => {
 
     case actions.SAVE_INVITATIONS_FROM_ME:
       return { ...state, invitationsFromMe: [ ...action.payload ] }
+
+    case actions.SET_INVITATIONS_LOADING_STATUS:
+      return { ...state, invitationsAreLoading: action.payload }
 
     default: {
       return state

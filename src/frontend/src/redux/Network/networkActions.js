@@ -10,32 +10,36 @@ export const createNewInvitationAction = (payload) => (dispatch) => {
     })
 }
 
-export const getInvitationsForMe = () => (dispatch) => {
-  return http
+const getInvitationsForMePromise = new Promise((resolve, reject) => {
+  http
     .get('/api/invitations/for_me')
     .then((res) => res.data)
     .then((invitationsList) => {
-      console.log(invitationsList)
-      dispatch({ type: actions.SAVE_INVITATIONS_FOR_ME, payload: invitationsList })
+      resolve(invitationsList)
     })
-}
+    .catch(err => reject(err))
+})
 
-export const getInvitationsFromMe = () => (dispatch) => {
-  return http
+const getInvitationsFromMePromise = new Promise((resolve, reject) => {
+  http
     .get('/api/invitations/from_me')
     .then((res) => res.data)
     .then((invitationsList) => {
-      console.log(invitationsList)
-      dispatch({ type: actions.SAVE_INVITATIONS_FROM_ME, payload: invitationsList })
+      resolve(invitationsList)
     })
-}
+    .catch(err => reject(err))
+})
 
 export const getAllInvitations = () => (dispatch) => {
-  // await Promise.all([getInvitationsForMe(dispatch), getInvitationsFromMe(dispatch)])
-  //   .then((results) => {
-  //     console.log(results)
-  //     console.log('WAS COMPLETED')
-  //   })
-  dispatch(getInvitationsForMe())
-  dispatch(getInvitationsFromMe())
+  dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: true })
+
+  return Promise.all([getInvitationsForMePromise, getInvitationsFromMePromise])
+    .then((results) => {
+      const invitationsForMe = results[0]
+      const invitationsFromMe = results[1]
+
+      dispatch({ type: actions.SAVE_INVITATIONS_FROM_ME, payload: invitationsFromMe })
+      dispatch({ type: actions.SAVE_INVITATIONS_FOR_ME, payload: invitationsForMe })
+      dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: false })
+    })
 }

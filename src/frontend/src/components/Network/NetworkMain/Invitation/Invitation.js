@@ -8,10 +8,10 @@ import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSqua
 import clsx from 'clsx'
 
 function Invitation (props) {
-  const {avatarPublicId, fullName = 'Panny Hofstader',
-    positionAndCompany = 'Senior JavaScript Developer',
-    numberOfConnection = 1, isNewInvitation = false,
-    createDate = '3 hours ago', isReceived, isManage} = props
+  const {isReceived, isManage, numberOfConnection = 1,
+    isNewInvitation = false, createDate = '3 hours ago'} = props
+  const {avatarPublicId, fullName, positionAndCompany
+  } = props.data[isReceived ? 'userWho' : 'userWhom']
 
   const classes = styles()
 

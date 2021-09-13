@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
 function InvitationManagerHeader (props) {
-  const {numberOfReceived, numberOfSent} = props
+  const {numberOfInvReceived, numberOfInvSent} = props
 
   const classes = styles()
 
@@ -16,12 +16,12 @@ function InvitationManagerHeader (props) {
         <div className={classes.headerItems}>
           <NavLink to='/network/invitation_manager/received' className={classes.headerItem} activeClassName={classes.active}>
             <Typography variant='h5' color='inherit'>
-            Received ({numberOfReceived})
+            Received ({numberOfInvReceived})
             </Typography>
           </NavLink>
           <NavLink to='/network/invitation_manager/sent' className={classes.headerItem} activeClassName={classes.active}>
             <Typography variant='h5' color='inherit'>
-            Sent ({numberOfSent})
+            Sent ({numberOfInvSent})
             </Typography>
           </NavLink>
         </div>

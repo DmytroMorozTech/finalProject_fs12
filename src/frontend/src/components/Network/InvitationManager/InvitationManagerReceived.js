@@ -4,36 +4,53 @@ import InvitationManagerHeader from './InvitationManagerHeader/InvitationManager
 import InvitationManagerReceivedMain from './InvitationManagerMain/InvitationManagerReceivedMain'
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {getAllInvitations} from '../../../redux/Network/networkActions'
+import {
+  invitationsAreLoading,
+  invitationsForMeSelector,
+  invitationsFromMeSelector
+} from '../../../redux/Network/networkSelector'
+import Preloader from '../../../shared/Preloader/Preloader'
 
-function InvitationManagerReceived (props) {
-  const {numberOfReceived = 1, numberOfSent = 1} = props
-
+function InvitationManagerReceived () {
   const dispatch = useDispatch()
 
+  // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getAllInvitations())
-  }, [dispatch])
+  }, [])
+
+  const invitationsForMe = useSelector(invitationsForMeSelector)
+  const invitationsFromMe = useSelector(invitationsFromMeSelector)
 
   const classes = styles()
 
+  const isLoading = useSelector(invitationsAreLoading)
+
   return (
-    <Container maxWidth={'lg'} className={classes.invitationManager}>
+    isLoading ? Preloader
+      : (<Container maxWidth={'lg'} className={classes.invitationManager}>
 
-      <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
-        <Grid item xs={7}>
-          <div className={classes.main}>
-            <InvitationManagerHeader numberOfReceived={numberOfReceived} numberOfSent={numberOfSent}/>
-            <InvitationManagerReceivedMain numberOfReceived={numberOfReceived}/>
-          </div>
-        </Grid>
+        <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
+          <Grid item xs={7}>
+            <div className={classes.main}>
+              <InvitationManagerHeader
+                numberOfInvReceived={invitationsForMe.length}
+                numberOfInvSent={invitationsFromMe.length
+                }/>
+              <InvitationManagerReceivedMain
+                data={invitationsForMe}
+                numbOfInvReceived={invitationsForMe.length}
+              />
+            </div>
+          </Grid>
 
-        <Grid item xs={3}>
-          <InvitationManagerRight/>
+          <Grid item xs={3}>
+            <InvitationManagerRight/>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>)
   )
 }
 
