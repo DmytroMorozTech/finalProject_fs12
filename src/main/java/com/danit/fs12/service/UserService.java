@@ -164,9 +164,10 @@ public class UserService extends GeneralService<User> {
     int resetNumber = (int) (Math.random() * 1000000);
     Optional<User> userOpt = Optional.of(userRepository.findUserByEmail(email));
     if (userOpt.isPresent()) {
+      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       User user = userOpt.get();
       String userName = user.getFirstName();
-      user.setResetPasswordNumber(resetNumber);
+      user.setResetPasswordNumber(passwordEncoder.encode(String.valueOf(resetNumber)));
       userRepository.save(user);
       sendEmail(email, resetNumber, userName);
     } else {

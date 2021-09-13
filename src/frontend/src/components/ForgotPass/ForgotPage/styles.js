@@ -1,9 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   forgotPageCard: {
-    width: 450,
-    height: 400,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -69,6 +67,85 @@ export default makeStyles((theme) => ({
     '&:visited': {
       color: 'rgba(0,0,0,0.6)'
     }
-  }
+  },
 
+  spamText: {
+    fontSize: theme.typography.h5.fontSize,
+    color: theme.palette.grey[500]
+  },
+
+  firstForgotPage: {
+    width: 450,
+    height: 400
+  },
+
+  secondForgotPage: {
+    width: 500,
+    height: 400
+  },
+
+  mainTextSecond: {
+    fontSize: theme.typography.sh1.fontSize,
+    lineHeight: theme.typography.h3.lineHeight,
+    marginTop: '3rem',
+    textAlign: 'center'
+  },
+
+  signInLineLinkChange: {
+    width: '4.5rem',
+    textDecoration: 'none',
+    border: '1px solid transparent',
+    fontSize: theme.typography.h5.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '1rem',
+    margin: '1rem auto',
+    padding: '0.3rem 0.5rem',
+    color: '#0a66c2',
+    cursor: 'pointer',
+    '&:hover': {
+      borderRadius: '20px',
+      backgroundColor: '#d0e8ff'
+    },
+    '&:visited': {
+      color: '#0a66c2'
+    }
+  },
+
+  mainTextContainerSecond: {
+    display: 'block'
+  },
+
+  mainTextWrapperSecond: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+
+  subTextSecond: {
+    fontSize: theme.typography.h5.fontSize
+  },
+
+  hideEmail: {
+    marginLeft: '5px',
+    fontWeight: theme.typography.h2.fontWeight
+  },
+
+  signInLineLinkResetCode: {
+    width: '7rem',
+    textDecoration: 'none',
+    border: '1px solid transparent',
+    fontSize: theme.typography.h5.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '1rem',
+    margin: 0,
+    padding: '0.3rem 0.5rem',
+    color: '#0a66c2',
+    cursor: 'pointer',
+    '&:hover': {
+      borderRadius: '20px',
+      backgroundColor: '#d0e8ff'
+    },
+    '&:visited': {
+      color: '#0a66c2'
+    }
+  }
 }))

@@ -77,7 +77,7 @@ public class User extends AbstractEntity {
   private String profileBgPublicId;
 
   @Column(name = "reset_password_code")
-  private Integer resetPasswordNumber;
+  private String resetPasswordNumber;
 
   @Enumerated(EnumType.STRING)
   private Provider provider;
