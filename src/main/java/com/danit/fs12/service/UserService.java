@@ -10,6 +10,7 @@ import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
+import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
@@ -30,6 +31,7 @@ public class UserService extends GeneralService<User> {
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
+  private User newUserByGoogleAuth;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -75,22 +77,22 @@ public class UserService extends GeneralService<User> {
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
-  public void registerUser(String firstName,
+  public User registerUser(String firstName,
                            String lastName,
-                           Integer age,
-                           String phoneNumber,
                            String password,
-                           String email,
-                           String avatar) {
-    User user = new User();
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setAge(age);
-    user.setPhoneNumber(phoneNumber);
-    user.setPasswordHash(password);
-    user.setEmail(email);
-    user.setAvatarPublicId(avatar);
-    saveUser(user);
+                           String email) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = new User();
+      user.setFirstName(firstName);
+      user.setLastName(lastName);
+      user.setPasswordHash(password);
+      user.setEmail(email.toLowerCase());
+      user.setProvider(Provider.LOCAL);
+      saveUser(user);
+      return user;
+    }
   }
 
   public User updateIntro(UserEditIntroRq rq) {
@@ -121,25 +123,14 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public void createNewUserAfterOAuthLoginSuccess(String email,
-                                                  String name,
-                                                  String avatarUrl,
-                                                  Provider provider) {
-    User user = new User();
-    user.setEmail(email);
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
-  }
-
-  public void updateUserAfterOAuthLoginSuccess(User user,
-                                               String name,
-                                               String avatarUrl,
-                                               Provider provider) {
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
+  public User updateUser(String password, String email) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = userRepository.findUserByEmail(email);
+      user.setPasswordHash(password);
+      saveUser(user);
+      return user;
+    }
   }
 }

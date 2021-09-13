@@ -4,6 +4,7 @@ import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRq;
 import com.danit.fs12.entity.user.UserRs;
+import com.danit.fs12.security.UpdatePasswordRequest;
 import com.danit.fs12.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -44,14 +45,11 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(user);
   }
 
-  public void registerUser(String firstName,
-                           String lastName,
-                           Integer age,
-                           String phoneNumber,
-                           String password,
-                           String email,
-                           String avatar) {
-    userService.registerUser(firstName, lastName, age, phoneNumber, password, email, avatar);
+  public UserRs registerUser(String firstName,
+                             String lastName,
+                             String password,
+                             String email) {
+    return convertToDto(userService.registerUser(firstName, lastName, password, email));
   }
 
   public UserRs updateIntro(UserEditIntroRq rq) {
@@ -59,4 +57,8 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(updateIntro);
   }
 
+  public UserRs updateUserPassword(UpdatePasswordRequest updatePasswordRequest) {
+    return convertToDto(userService.updateUser(updatePasswordRequest.getPassword(),
+      updatePasswordRequest.getEmail()));
+  }
 }

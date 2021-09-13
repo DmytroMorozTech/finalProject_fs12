@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles'
 export default makeStyles(theme => ({
   register: {
     width: '100vw',
-    height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -15,7 +14,6 @@ export default makeStyles(theme => ({
     flexDirection: 'column'
   },
   registerPage: {
-    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
@@ -28,6 +26,7 @@ export default makeStyles(theme => ({
     alignItems: 'center'
   },
   registerHeaderText: {
-    fontSize: theme.typography.h1
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.h4.fontWeight
   }
 }))

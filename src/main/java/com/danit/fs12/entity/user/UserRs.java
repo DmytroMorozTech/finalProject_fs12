@@ -25,8 +25,10 @@ public class UserRs {
 
   private LocalDateTime lastModifiedDate;
 
+  @JsonView({UserViews.Base.class})
   private String firstName;
 
+  @JsonView({UserViews.Base.class})
   private String lastName;
 
   @JsonView(UserViews.Profile.class)
@@ -56,7 +58,7 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private String age;
 
-  @JsonView(UserViews.Profile.class)
+  @JsonView(UserViews.Base.class)
   private String email;
 
   @JsonView(UserViews.Profile.class)
