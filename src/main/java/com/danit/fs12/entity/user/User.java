@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -134,7 +135,7 @@ public class User extends AbstractEntity {
 
   @ManyToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "userId"),
+    joinColumns = @JoinColumn(name = "followingUserId"),
     inverseJoinColumns = @JoinColumn(name = "followedUserId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
@@ -143,7 +144,7 @@ public class User extends AbstractEntity {
   @ManyToMany
   @JoinTable(name = "followers",
     joinColumns = @JoinColumn(name = "followedUserId"),
-    inverseJoinColumns = @JoinColumn(name = "userId"))
+    inverseJoinColumns = @JoinColumn(name = "followingUserId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
@@ -241,5 +242,12 @@ public class User extends AbstractEntity {
     return workPlaceOpt.isPresent()
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
+  }
+
+  public List<Invitation> getInvitationsForMe() {
+    return invitations
+      .stream()
+      .filter(i -> i.getUserWhom().getId().equals(getId()))
+      .collect(Collectors.toList());
   }
 }

@@ -11,10 +11,6 @@ public class InvitationService extends GeneralService<Invitation> {
   private final UserService userService;
 
   public Invitation createInvitation(Invitation invitation, Long userWhomId) {
-    System.out.println("**************************************");
-    System.out.println("We are in InvitationService:");
-    System.out.println("**************************************");
-    System.out.println("userWhomId: " + userWhomId);
     User activeUser = userService.getActiveUser();
     User userWhom = userService.findEntityById(userWhomId);
     invitation.setUserWho(activeUser);

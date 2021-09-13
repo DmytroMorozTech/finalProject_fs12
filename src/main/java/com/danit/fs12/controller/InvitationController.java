@@ -3,6 +3,7 @@ package com.danit.fs12.controller;
 import com.danit.fs12.entity.invitation.InvitationRq;
 import com.danit.fs12.entity.invitation.InvitationRs;
 import com.danit.fs12.facade.InvitationFacade;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,10 @@ public class InvitationController {
   private final InvitationFacade invitationFacade;
 
   @PostMapping
-  public ResponseEntity<String> createInvitation(@Valid @RequestBody InvitationRq rq) {
+  @JsonView(InvitationViews.Base.class)
+  public ResponseEntity<InvitationRs> createInvitation(@Valid @RequestBody InvitationRq rq) {
     InvitationRs invitation = invitationFacade.createInvitation(rq);
-    return ResponseEntity.ok("Well done");
+    return ResponseEntity.ok(invitation);
   }
 
   @DeleteMapping(path = "{id}")
