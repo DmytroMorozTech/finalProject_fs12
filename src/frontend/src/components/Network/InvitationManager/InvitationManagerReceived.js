@@ -19,7 +19,7 @@ function InvitationManagerReceived () {
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getAllInvitations())
-  }, [])
+  }, [dispatch])
 
   const invitationsForMe = useSelector(invitationsForMeSelector)
   const invitationsFromMe = useSelector(invitationsFromMeSelector)

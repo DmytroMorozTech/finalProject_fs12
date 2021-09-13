@@ -6,7 +6,7 @@ import { Container } from '@material-ui/core'
 import NetworkLeft from './NetworkLeft/NetworkLeft'
 import { getAllInvitations } from '../../redux/Network/networkActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { invitationsForMeSelector, invitationsFromMeSelector } from '../../redux/Network/networkSelector'
+import { invitationsForMeSelector } from '../../redux/Network/networkSelector'
 
 function Network () {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ function Network () {
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getAllInvitations())
-  }, [])
+  }, [dispatch])
 
   const invitationsForMe = useSelector(invitationsForMeSelector)
 
