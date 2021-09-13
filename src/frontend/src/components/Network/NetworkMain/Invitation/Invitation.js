@@ -6,14 +6,23 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSquare'
 import clsx from 'clsx'
+import { useDispatch } from 'react-redux'
+import { deleteInvitationAction } from '../../../../redux/Network/networkActions'
 
 function Invitation (props) {
   const {isReceived, isManage, numberOfConnection = 1,
     isNewInvitation = false, createDate = '3 hours ago'} = props
   const {avatarPublicId, fullName, positionAndCompany
   } = props.data[isReceived ? 'userWho' : 'userWhom']
+  const {id} = props.data
 
   const classes = styles()
+
+  const dispatch = useDispatch()
+
+  const onDeleteHandler = () => {
+    dispatch(deleteInvitationAction(id))
+  }
 
   return (
     <div className={clsx(classes.invitation, isNewInvitation && classes.newInvitation)}>
@@ -52,10 +61,9 @@ function Invitation (props) {
       </div>
       <div className={clsx(classes.buttons, classes.smallScreenButtons)}>
         <div className={classes.buttonSquare}>
-          {/* Link is hardcoded below */}
           {isReceived
-            ? <SharedLinkSquare title='Ignore' to='#'/>
-            : <SharedLinkSquare title='Withdraw' to='#'/>
+            ? <SharedLinkSquare onClick={onDeleteHandler} title='Ignore' to='#'/>
+            : <SharedLinkSquare onClick={onDeleteHandler} title='Withdraw' to='#'/>
           }
         </div>
         {isReceived

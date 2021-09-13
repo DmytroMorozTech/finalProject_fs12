@@ -22,6 +22,15 @@ const networkReducer = (state = initialState, action) => {
     case actions.SET_INVITATIONS_LOADING_STATUS:
       return { ...state, invitationsAreLoading: action.payload }
 
+    case actions.DELETE_INVITATION:
+      const invitationId = action.payload
+      const invitationsForMeUpdated = state.invitationsForMe.filter(inv => inv.id !== invitationId)
+      const invitationsFromMeUpdated = state.invitationsFromMe.filter(inv => inv.id !== invitationId)
+      return { ...state,
+        invitationsForMe: [...invitationsForMeUpdated],
+        invitationsFromMe: [...invitationsFromMeUpdated]
+      }
+
     default: {
       return state
     }
