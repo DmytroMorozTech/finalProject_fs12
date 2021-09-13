@@ -255,8 +255,8 @@
                 <version>3.10.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.yaml</propertyFile>
-                    <changeLogDirectory>src/main/resources</changeLogDirectory>
-                    <changeLogFile>db/changelog/master.yaml</changeLogFile>
+                    <changeLogDirectory>src/main/resources/db/changelog/</changeLogDirectory>
+                    <changeLogFile>master.yaml</changeLogFile>
                 </configuration>
             </plugin>
 
