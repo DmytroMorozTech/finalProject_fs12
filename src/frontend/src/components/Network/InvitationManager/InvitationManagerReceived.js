@@ -3,9 +3,18 @@ import { Container, Grid } from '@material-ui/core'
 import InvitationManagerHeader from './InvitationManagerHeader/InvitationManagerHeader'
 import InvitationManagerReceivedMain from './InvitationManagerMain/InvitationManagerReceivedMain'
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import {getAllInvitations} from '../../../redux/Network/networkActions'
 
 function InvitationManagerReceived (props) {
   const {numberOfReceived = 1, numberOfSent = 1} = props
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllInvitations())
+  }, [dispatch])
 
   const classes = styles()
 
