@@ -1,38 +1,26 @@
-import { makeStyles } from '@material-ui/core/styles'
 import LoginCard from './loginCard/LoginCard'
-import { useSelector } from 'react-redux'
-import { isLoadingUserSelector } from '../../redux/User/userSelector'
+import {useSelector} from 'react-redux'
+import {isLoadingUserSelector} from '../../redux/User/userSelector'
 import Preloader from '../../shared/Preloader/Preloader'
 import React from 'react'
-
-const styles = makeStyles((theme) => ({
-  login: {
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: 150
-  },
-  loginCard: {
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-}))
+import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
+import styles from './styles'
+import {Link} from 'react-router-dom'
 
 const Login = () => {
   const isLoadingUser = useSelector(isLoadingUserSelector)
   const classes = styles()
   return isLoadingUser ? <Preloader/> : (
     <div className={classes.login}>
+      <div className={classes.signInLogo}>
+        <LinkedinLogo/>
+      </div>
       <div className={classes.loginCard}>
-        <LoginCard />
+        <LoginCard/>
+      </div>
+      <div className={classes.signUpLineWrapper}>
+        <p>New to LinkedIn?</p>
+        <Link to="/signup" className={classes.signUpLineLink}>Join now</Link>
       </div>
     </div>
   )

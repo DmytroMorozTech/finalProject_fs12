@@ -2,8 +2,6 @@ import React, {useRef} from 'react'
 import {Paper} from '@material-ui/core'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
-import {GoogleLoginButton} from 'react-social-login-buttons'
-import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
 import {useHistory} from 'react-router'
 import http from '../../../services/httpService'
@@ -11,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getActiveUserAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import {Link} from 'react-router-dom'
 
 const LoginCard = () => {
   const classes = styles()
@@ -53,26 +52,12 @@ const LoginCard = () => {
       })
   }
 
-  const authenticateByGoogle = () => {
-    http
-      .get('http://localhost:9000/oauth2/authorization/google')
-      .then(res => {
-        if (res.status === 200) {
-          history.push('/home')
-        }
-      })
-      .catch(err => {
-        const errorMsg = err.response.data.message
-        toast.error(errorMsg)
-      })
-  }
-
   return (
     <Paper elevation={3} className={classes.card}>
-      <header className={classes.header}>
-        <LinkedinLogo/>
-      </header>
-
+      <div className={classes.signInLineWrapper}>
+        <p className={classes.signInLine}>Sign in</p>
+        <p className={classes.signInTagline}>Stay updated on your professional world</p>
+      </div>
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
         <TextField
           variant="outlined"
@@ -98,7 +83,11 @@ const LoginCard = () => {
           autoComplete="current-password"
           inputRef={passwordRef}
         />
+        <div className={classes.forgotPasswordWrapper}>
+          <Link to="/forgot" className={classes.forgotPasswordLink}>Forgot password?</Link>
+        </div>
         <SharedButton
+          className={classes.signInButton}
           type="submit"
           size="large"
           title="Sign In"
@@ -107,17 +96,6 @@ const LoginCard = () => {
           color="primary"
         />
       </form>
-
-      <div className={classes.google}>
-        <section>
-          <div/>
-          <p>OR</p>
-          <div/>
-        </section>
-        <div className={classes.googleBtn}>
-          <GoogleLoginButton onClick={() => authenticateByGoogle()}/>
-        </div>
-      </div>
     </Paper>
   )
 }

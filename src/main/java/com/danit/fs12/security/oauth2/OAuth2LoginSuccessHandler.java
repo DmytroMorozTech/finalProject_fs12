@@ -1,7 +1,5 @@
 package com.danit.fs12.security.oauth2;
 
-import com.danit.fs12.entity.user.Provider;
-import com.danit.fs12.entity.user.User;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -23,19 +21,14 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                                       HttpServletResponse response,
                                       Authentication authentication) throws IOException, ServletException {
     CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-    String email = oauth2User.getEmail();
-    String name = oauth2User.getAttribute("name");
-    String avatarUrl = oauth2User.getAttribute("picture");
 
-    User user = userService.findByEmail(email);
+    userService.processOAuthPostLogin(oauth2User.getEmail(),
+      oauth2User.getAttribute("picture"),
+      oauth2User.getAttribute("given_name"),
+      oauth2User.getAttribute("family_name"));
 
-    if (user == null) {
-      //reg a new user
-      userService.createNewUserAfterOAuthLoginSuccess(email, name, avatarUrl, Provider.GOOGLE);
-    } else {
-      //update user
-      userService.updateUserAfterOAuthLoginSuccess(user, name, avatarUrl, Provider.GOOGLE);
-    }
+    //TODO temporary hardcoded redirect url (we must change redirect url to "/signup_g" before deploy)
+    response.sendRedirect("http://localhost:3000/signup_g");
     super.onAuthenticationSuccess(request, response, authentication);
   }
 }

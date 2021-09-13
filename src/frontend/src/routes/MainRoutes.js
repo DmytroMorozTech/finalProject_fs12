@@ -11,7 +11,7 @@ import Page404 from '../components/Main/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
 import Forgot from '../components/Main/Forgot/Forgot'
-import Register from '../components/Main/Register/Register'
+import Register from '../components/Register/Register'
 import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
 import Chat from '../components/Main/Messages/Chat'
@@ -25,6 +25,9 @@ const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
+      <Route exact path="/signup" render={() => <Register/>}/>
+      <Route exact path="/signup_g" render={() => <Register isByGoogle={true}/>}/>
+      <Route exact path="/forgot" render={() => <Forgot/>}/>
       <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
