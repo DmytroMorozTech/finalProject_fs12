@@ -42,8 +42,6 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/chat/:id" render={() => <Chat isSeparateChat={true}/>}/>
       <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat isSeparateChat={true}/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
-      <ProtectedRoutes exact path="/forgot" render={() => <Forgot/>}/>
-      <ProtectedRoutes exact path="/register" render={() => <Register/>}/>
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage}/>
       <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
       <ProtectedRoutes exact path="*" render={() => <Page404/>}/>

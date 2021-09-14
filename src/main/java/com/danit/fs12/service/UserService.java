@@ -15,6 +15,7 @@ import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
+import com.danit.fs12.utils.ForgotMailLetter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -152,22 +153,16 @@ public class UserService extends GeneralService<User> {
 
     String subject = userName + ", this message contains code to Sign in.";
 
-    String content = "<p>Hello, " + userName + ",</p>" +
-      "<p>We have received your request to change your LinkedIn profile password.</p>" +
-      "<p>" + resetNumber + "</p>" +
-      "<p>Please, enter this number to finish password changing process.</p>";
-
     helper.setSubject(subject);
-    helper.setText(content, true);
+    helper.setText(new ForgotMailLetter().buildEmail(resetNumber), true);
     mailSender.send(message);
   }
 
   public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
     int resetNumber = (int) (Math.random() * 1000000);
-    Optional<User> userOpt = Optional.of(userRepository.findUserByEmail(email));
-    if (userOpt.isPresent()) {
+    if (userRepository.findUserByEmail(email) != null) {
       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-      User user = userOpt.get();
+      User user = userRepository.findUserByEmail(email);
       String userName = user.getFirstName();
       user.setResetPasswordNumber(passwordEncoder.encode(String.valueOf(resetNumber)));
       userRepository.save(user);
