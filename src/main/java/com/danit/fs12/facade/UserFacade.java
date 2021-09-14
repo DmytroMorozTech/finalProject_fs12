@@ -77,6 +77,7 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
   public void updateUserPassword(RestoreRequest restoreRequest) {
     userService.updateUserPassword(restoreRequest.getEmail(), restoreRequest.getPassword());
   }
+
   public List<UserRs> findUsersByName(String searchInput) {
     Set<User> foundUsers = userService.findUsersByName(searchInput);
     List<UserRs> userRsList = foundUsers

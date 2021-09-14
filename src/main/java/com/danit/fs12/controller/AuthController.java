@@ -60,7 +60,8 @@ public class AuthController {
   }
 
   @PutMapping("/forgot_password/")
-  public void processForgotPassword(@RequestBody RestoreRequest restoreRequest) throws MessagingException, UnsupportedEncodingException {
+  public void processForgotPassword(@RequestBody RestoreRequest restoreRequest)
+    throws MessagingException, UnsupportedEncodingException {
     userFacade.generateResetPasswordNumber(restoreRequest);
   }
 
