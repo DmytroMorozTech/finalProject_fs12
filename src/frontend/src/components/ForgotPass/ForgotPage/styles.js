@@ -147,5 +147,53 @@ export default makeStyles((theme) => ({
     '&:visited': {
       color: '#0a66c2'
     }
+  },
+
+  passwordPromptLink: {
+    textDecoration: 'none',
+    fontSize: theme.typography.h5.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: '1rem',
+    margin: 0,
+    color: '#0a66c2',
+    cursor: 'pointer',
+    '&:visited': {
+      color: '#0a66c2'
+    }
+  },
+
+  thirdForgotPage: {
+    width: 470,
+    height: 500
+  },
+
+  popoverHeader: {
+    padding: theme.spacing(2),
+    fontSize: theme.typography.sh3.fontSize
+  },
+
+  popoverText: {
+    fontSize: theme.typography.h5.fontSize
+  },
+
+  mainTextWrapperNewPassword: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+
+  mainTextContainerNewPassword: {
+    display: 'block'
+  },
+
+  subTextNewPassword: {
+    fontSize: theme.typography.h5.fontSize
+  },
+
+  mainTextNewPassword: {
+    fontSize: theme.typography.sh1.fontSize
   }
+
 }))
