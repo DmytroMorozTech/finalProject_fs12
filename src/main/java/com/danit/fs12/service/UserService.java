@@ -144,7 +144,8 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public void sendEmail(String receiverEmail, Integer resetNumber, String userName) throws MessagingException, UnsupportedEncodingException {
+  public void sendEmail(String receiverEmail, Integer resetNumber, String userName)
+    throws MessagingException, UnsupportedEncodingException {
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message);
 

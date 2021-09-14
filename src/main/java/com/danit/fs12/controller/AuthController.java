@@ -72,6 +72,6 @@ public class AuthController {
 
   @PutMapping("/forgot_password/restore")
   public void updateUserPassword(@RequestBody RestoreRequest restoreRequest) {
-    userFacade.updateUserPassword(restoreRequest);
+    userFacade.restoreUserPassword(restoreRequest);
   }
 }
