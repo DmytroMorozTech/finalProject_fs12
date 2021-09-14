@@ -5,7 +5,6 @@ import CancelIcon from '@material-ui/icons/Cancel'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import {NavLink} from 'react-router-dom'
 import {MenuItem} from '@material-ui/core'
-import VisibilityIcon from '@material-ui/icons/Visibility'
 
 function NotificationAdditions (props) {
   const {userName} = props
