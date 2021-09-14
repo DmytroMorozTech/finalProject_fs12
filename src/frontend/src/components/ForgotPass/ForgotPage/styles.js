@@ -168,12 +168,16 @@ export default makeStyles((theme) => ({
   },
 
   popoverHeader: {
+    width: '28rem',
     padding: theme.spacing(2),
-    fontSize: theme.typography.sh3.fontSize
+    fontSize: theme.typography.sh3.fontSize,
+    lineHeight: '3rem'
   },
 
   popoverText: {
-    fontSize: theme.typography.h5.fontSize
+    fontSize: theme.typography.h5.fontSize,
+    lineHeight: '1.5rem'
+
   },
 
   mainTextWrapperNewPassword: {

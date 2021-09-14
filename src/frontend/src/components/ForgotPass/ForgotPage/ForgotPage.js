@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import styles from './styles'
 import {Paper} from '@material-ui/core'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
@@ -12,21 +12,16 @@ import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
-// import Preloader from '../../../shared/Preloader/Preloader'
 
 function ForgotPage () {
   const classes = styles()
   const [firstForgotPage, setFirstForgotPage] = useState(true)
   const [isPasswordPage, setPasswordPage] = useState(false)
-  // const [isLoading, setIsloading] = useState(false)
   const [hideEmail, setHideEmail] = useState('')
   const [inputtedUserEmail, setInputtedUserEmail] = useState('')
   const [anchorEl, setAnchorEl] = useState(null)
   const history = useHistory()
   let inputtedEmail = ''
-  //
-  // useEffect(() => {},
-  //   [isPasswordPage, firstForgotPage, isLoading, inputtedEmail])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -233,8 +228,9 @@ function ForgotPage () {
           }}
         >
           <Typography className={classes.popoverHeader}>Chose a strong password to protect your account
-            Password must be: minimum eight characters, at least one letter, one number and one special character.
-            It should not contain your name, phone number or email address.
+            <Typography className={classes.popoverText}>Password must be minimum eight characters.</Typography>
+            <Typography className={classes.popoverText}>Password must contains at least one letter, one number and one special character.</Typography>
+            <Typography className={classes.popoverText}>It should not contain your name, phone number or email address.</Typography>
           </Typography>
         </Popover>
       </Paper>
