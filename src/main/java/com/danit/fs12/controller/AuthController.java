@@ -60,14 +60,14 @@ public class AuthController {
     return userFacade.updateUserPassword(updatePasswordRequest);
   }
 
-  @PostMapping("/forgot_password/{email}")
-  public void processForgotPassword(@PathVariable String email) throws MessagingException, UnsupportedEncodingException {
-    userFacade.generateResetPasswordNumber(email);
+  @PutMapping("/forgot_password/")
+  public void processForgotPassword(@RequestBody RestoreRequest restoreRequest) throws MessagingException, UnsupportedEncodingException {
+    userFacade.generateResetPasswordNumber(restoreRequest);
   }
 
-  @PostMapping("/forgot_password/{email}&{code}")
-  public boolean isUserRecognized(@PathVariable String email, String code) {
-    return userFacade.isUserRecognized(email, code);
+  @PostMapping("/forgot_password/")
+  public boolean isUserRecognized(@RequestBody RestoreRequest restoreRequest) {
+    return userFacade.isUserRecognized(restoreRequest);
   }
 
   @PutMapping("/forgot_password/restore")

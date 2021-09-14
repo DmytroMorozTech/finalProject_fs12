@@ -10,6 +10,7 @@ import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
+import com.danit.fs12.exception.SecurityCodesDoNotMatchException;
 import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
@@ -175,18 +176,17 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public User getByResetPasswordNumber(Integer number) {
-    return userRepository.findUserByResetPasswordNumber(number);
-  }
-
   public boolean isUserRecognized(String email, String code) {
     User user = findByEmail(email);
     if (user != null) {
       if (passwordEncoder.matches(code, user.getResetPasswordNumber())) {
         return true;
+      } else {
+        throw new SecurityCodesDoNotMatchException("Entered security code is incorrect!");
       }
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
     }
-    throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
   }
 
   public void updateUserPassword(String email, String newPassword) {
@@ -197,7 +197,8 @@ public class UserService extends GeneralService<User> {
       user.setPasswordHash(encodedPassword);
       user.setResetPasswordNumber(null);
       userRepository.save(user);
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
     }
-    throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
   }
 }

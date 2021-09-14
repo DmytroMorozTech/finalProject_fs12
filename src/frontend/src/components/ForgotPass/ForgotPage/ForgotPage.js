@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './styles'
 import {Paper} from '@material-ui/core'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
@@ -12,16 +12,21 @@ import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
+// import Preloader from '../../../shared/Preloader/Preloader'
 
 function ForgotPage () {
   const classes = styles()
   const [firstForgotPage, setFirstForgotPage] = useState(true)
   const [isPasswordPage, setPasswordPage] = useState(false)
+  // const [isLoading, setIsloading] = useState(false)
   const [hideEmail, setHideEmail] = useState('')
   const [inputtedUserEmail, setInputtedUserEmail] = useState('')
   const [anchorEl, setAnchorEl] = useState(null)
   const history = useHistory()
   let inputtedEmail = ''
+  //
+  // useEffect(() => {},
+  //   [isPasswordPage, firstForgotPage, isLoading, inputtedEmail])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -46,7 +51,9 @@ function ForgotPage () {
     }
 
     http
-      .post(`api/forgot_password/${inputtedEmail}`, {})
+      .put('api/forgot_password/', {
+        email: inputtedEmail
+      })
       .then(res => {
         if (res.status === 200) {
           setFirstForgotPage(false)
@@ -60,15 +67,15 @@ function ForgotPage () {
 
   const handleSecurityCodeSubmit = (values) => {
     const {code} = values
-    console.log('here code: ' + code)
     inputtedEmail = inputtedUserEmail
-    console.log(inputtedEmail)
+
     http
-      .post(`/forgot_password/${inputtedEmail}&${code}`)
+      .post('api/forgot_password/', {
+        email: inputtedEmail,
+        code: code
+      })
       .then(res => {
         if (res.status === 200) {
-          // history.push('/')
-          console.log('WIN!!!')
           setPasswordPage(true)
         }
       })
@@ -82,12 +89,8 @@ function ForgotPage () {
     const {newPassword, retypePassword} = values
     inputtedEmail = inputtedUserEmail
     if (newPassword === retypePassword) {
-      console.log('New password: ' + newPassword)
-      console.log('Retype password: ' + retypePassword)
-      console.log('inputtedEMail: ' + inputtedEmail)
-
       http
-        .post(`/forgot_password/restore`, {
+        .put(`api/forgot_password/restore`, {
           email: inputtedEmail,
           password: newPassword
         })
@@ -96,7 +99,6 @@ function ForgotPage () {
             toast.info('Password was changed successful! Now you can sign in using your new password! ')
             setPasswordPage(false)
             history.push('/')
-            console.log('WIN2!!!')
           }
         })
         .catch(err => {
@@ -231,9 +233,8 @@ function ForgotPage () {
           }}
         >
           <Typography className={classes.popoverHeader}>Chose a strong password to protect your account
-            <p className={classes.popoverText}>It should be a mix of letters, numbers and special characters</p>
-            <p className={classes.popoverText}>It should be at least 8 characters long</p>
-            <p className={classes.popoverText}>It should not contain your name, phone number or email address </p>
+            Password must be: minimum eight characters, at least one letter, one number and one special character.
+            It should not contain your name, phone number or email address.
           </Typography>
         </Popover>
       </Paper>

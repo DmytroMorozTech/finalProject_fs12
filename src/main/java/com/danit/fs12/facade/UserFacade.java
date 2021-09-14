@@ -65,12 +65,12 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       updatePasswordRequest.getEmail()));
   }
 
-  public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
-    userService.generateResetPasswordNumber(email);
+  public void generateResetPasswordNumber(RestoreRequest restoreRequest) throws MessagingException, UnsupportedEncodingException {
+    userService.generateResetPasswordNumber(restoreRequest.getEmail());
   }
 
-  public boolean isUserRecognized(String email, String code) {
-    return userService.isUserRecognized(email, code);
+  public boolean isUserRecognized(RestoreRequest restoreRequest) {
+    return userService.isUserRecognized(restoreRequest.getEmail(), restoreRequest.getCode());
   }
 
   public void updateUserPassword(RestoreRequest restoreRequest) {
