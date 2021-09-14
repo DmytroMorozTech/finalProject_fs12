@@ -14,6 +14,7 @@ function InvitationManagerSent () {
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getAllInvitations())
+    console.log('useEffect worked InvitationManagerSent')
   }, [dispatch])
 
   const invitationsForMe = useSelector(invitationsForMeSelector)

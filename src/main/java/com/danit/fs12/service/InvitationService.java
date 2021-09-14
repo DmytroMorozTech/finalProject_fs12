@@ -23,11 +23,6 @@ public class InvitationService extends GeneralService<Invitation> {
 
     Invitation savedInDbInvitation = save(invitation);
 
-    //    activeUser.getInvitations().add(savedInDbInvitation);
-    //    userWhom.getInvitations().add(savedInDbInvitation);
-    //    userService.save(activeUser);
-    //    userService.save(userWhom);
-
     return savedInDbInvitation;
     // User should not be able to invite HIMSELF! And we should check that!
   }

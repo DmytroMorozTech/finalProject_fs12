@@ -14,10 +14,10 @@ const networkReducer = (state = initialState, action) => {
       return { ...state, invitationsFromMe: [ ...state.invitationsFromMe, action.payload ] }
 
     case actions.SAVE_INVITATIONS_FOR_ME:
-      return { ...state, invitationsForMe: [ ...action.payload ] }
+      return { ...state, invitationsForMe: [...action.payload] }
 
     case actions.SAVE_INVITATIONS_FROM_ME:
-      return { ...state, invitationsFromMe: [ ...action.payload ] }
+      return { ...state, invitationsFromMe: [...action.payload] }
 
     case actions.SET_INVITATIONS_LOADING_STATUS:
       return { ...state, invitationsAreLoading: action.payload }

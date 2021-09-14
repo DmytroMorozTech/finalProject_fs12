@@ -5,7 +5,7 @@ import InvitationManagerReceivedMain from './InvitationManagerMain/InvitationMan
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getAllInvitations} from '../../../redux/Network/networkActions'
+import { getAllInvitations } from '../../../redux/Network/networkActions'
 import {
   invitationsAreLoading,
   invitationsForMeSelector,
@@ -19,6 +19,7 @@ function InvitationManagerReceived () {
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getAllInvitations())
+    console.log('useEffect worked InvitationManagerReceived')
   }, [dispatch])
 
   const invitationsForMe = useSelector(invitationsForMeSelector)
@@ -37,8 +38,8 @@ function InvitationManagerReceived () {
             <div className={classes.main}>
               <InvitationManagerHeader
                 numberOfInvReceived={invitationsForMe.length}
-                numberOfInvSent={invitationsFromMe.length
-                }/>
+                numberOfInvSent={invitationsFromMe.length}
+              />
               <InvitationManagerReceivedMain
                 data={invitationsForMe}
                 numbOfInvReceived={invitationsForMe.length}

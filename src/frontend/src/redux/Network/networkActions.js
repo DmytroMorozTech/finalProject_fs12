@@ -31,17 +31,24 @@ const getInvitationsFromMePromise = new Promise((resolve, reject) => {
     .catch(err => reject(err))
 })
 
-export const getAllInvitations = () => (dispatch) => {
+export const getAllInvitations = () => async (dispatch) => {
   dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: true })
 
   return Promise.all([getInvitationsForMePromise, getInvitationsFromMePromise])
     .then((results) => {
       const invitationsForMe = results[0]
       const invitationsFromMe = results[1]
+      console.log('****************************')
+      console.log('for me')
+      console.log(invitationsForMe)
+      console.log('from me')
+      console.log(invitationsFromMe)
+      console.log('****************************')
 
-      dispatch({ type: actions.SAVE_INVITATIONS_FROM_ME, payload: invitationsFromMe })
       dispatch({ type: actions.SAVE_INVITATIONS_FOR_ME, payload: invitationsForMe })
+      dispatch({ type: actions.SAVE_INVITATIONS_FROM_ME, payload: invitationsFromMe })
       dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: false })
+      console.log('FINISH OF ALL DISPATCHES')
     })
 }
 
