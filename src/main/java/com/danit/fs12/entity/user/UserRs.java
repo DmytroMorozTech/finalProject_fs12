@@ -1,11 +1,13 @@
 package com.danit.fs12.entity.user;
 
 import com.danit.fs12.controller.CommentViews;
+import com.danit.fs12.controller.InvitationViews;
 import com.danit.fs12.controller.PostViews;
 import com.danit.fs12.controller.UserViews;
 import com.danit.fs12.entity.certification.CertificationRs;
 import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.entity.group.Group;
+import com.danit.fs12.entity.invitation.InvitationRs;
 import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class,InvitationViews.Base.class})
   private Long id;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class})
@@ -40,16 +42,16 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private String city;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String fullName;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String avatarPublicId;
 
   @JsonView(UserViews.Profile.class)
   private String profileBgPublicId;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String positionAndCompany;
 
   @JsonView(UserViews.Profile.class)
@@ -78,6 +80,8 @@ public class UserRs {
 
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
+
+  private List<InvitationRs> invitationsForMe;
 
 
 }

@@ -16,7 +16,6 @@ import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
@@ -25,11 +24,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -200,5 +201,13 @@ public class UserService extends GeneralService<User> {
     } else {
       throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
     }
+  }
+
+  public Set<User> findUsersByName(String searchInput) {
+    List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchInput);
+    List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchInput);
+    usersList1.addAll(usersList2);
+    Set<User> foundUsers = new HashSet<>(usersList1);
+    return foundUsers;
   }
 }

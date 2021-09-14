@@ -7,9 +7,12 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
 import Image from '../../../../shared/Image/Image'
+import { createNewInvitationAction } from '../../../../redux/Network/networkActions'
+import { useDispatch } from 'react-redux'
 
 function MiniProfile (props) {
   const classes = styles()
+  const dispatch = useDispatch()
 
   const {
     avatarPublicId,
@@ -58,7 +61,11 @@ function MiniProfile (props) {
             {numberOfConnection} mutual connection
           </Typography>
         </div>
-        <SharedButton title="Connect" variant="outlined" fullWidth={true}/>
+        <SharedButton
+          onClick={() => dispatch(createNewInvitationAction({userWhomId: id}))}
+          title="Connect"
+          variant="outlined"
+          fullWidth={true}/>
       </div>
     </div>
   )

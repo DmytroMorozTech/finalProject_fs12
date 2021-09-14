@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -75,5 +76,13 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
 
   public void updateUserPassword(RestoreRequest restoreRequest) {
     userService.updateUserPassword(restoreRequest.getEmail(), restoreRequest.getPassword());
+  }
+  public List<UserRs> findUsersByName(String searchInput) {
+    Set<User> foundUsers = userService.findUsersByName(searchInput);
+    List<UserRs> userRsList = foundUsers
+      .stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
+    return userRsList;
   }
 }

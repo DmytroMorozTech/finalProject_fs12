@@ -44,7 +44,7 @@ const FormikSearchField = ({
         .then((organizationsList) => {
           setFoundOrganizations(organizationsList)
         })
-    }, 1000),
+    }, 400),
     []
   )
 

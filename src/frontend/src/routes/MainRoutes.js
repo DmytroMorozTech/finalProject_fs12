@@ -10,8 +10,6 @@ import ProfilePage from '../components/ProfilePage/ProfilePage'
 import Page404 from '../components/Main/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
-import Forgot from '../components/ForgotPass/Forgot'
-import Register from '../components/Register/Register'
 import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
 import Chat from '../components/Main/Messages/Chat'
@@ -20,6 +18,8 @@ import PeopleIFollowFollowers from '../components/Network/PeopleIFollow/PeopleIF
 import PeopleIFollowFollowing from '../components/Network/PeopleIFollow/PeopleIFollowFollowing'
 import InvitationManagerReceived from '../components/Network/InvitationManager/InvitationManagerReceived'
 import InvitationManagerSent from '../components/Network/InvitationManager/InvitationManagerSent'
+import Register from '../components/Register/Register'
+import Forgot from '../components/ForgotPass/Forgot'
 
 const MainRoutes = () => {
   return (
