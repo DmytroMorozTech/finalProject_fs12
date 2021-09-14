@@ -1,13 +1,14 @@
 import Navbar from './Navbar/Navbar'
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import styles from './styles'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import {Hidden} from '@material-ui/core'
 import {useSelector} from 'react-redux'
 import {openModalSelector} from '../../redux/Modal/modalSelector'
 import CustomizedDialogs from '../Modal/Modal'
 import {Link} from 'react-router-dom'
 import React from 'react'
+import SearchBar from './SearchBar/SearchBar'
+import {Hidden} from '@material-ui/core'
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 
 function Header () {
   const classes = styles()
@@ -23,12 +24,11 @@ function Header () {
               <LinkedInIcon fontSize="inherit"/>
             </div>
           </Link>
+
           <Hidden smDown>
-            <div className={classes.headerSearch}>
-              <SearchRoundedIcon fontSize="inherit"/>
-              <input placeholder="Search"/>
-            </div>
+            <SearchBar/>
           </Hidden>
+
           <Hidden mdUp>
             <div className={classes.headerButtonSearch}>
               <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
@@ -37,6 +37,7 @@ function Header () {
               </Hidden>
             </div>
           </Hidden>
+
         </div>
         <Navbar/>
       </div>
