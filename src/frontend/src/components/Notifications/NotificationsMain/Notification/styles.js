@@ -43,5 +43,14 @@ export default makeStyles((theme) => ({
   notificationTime: {
     fontSize: theme.typography.h6.fontSize,
     marginRight: theme.spacing(2)
+  },
+
+  btnMarkViewed: {
+    marginTop: theme.spacing(3),
+    color: theme.palette.primary.light,
+    backgroundColor: theme.palette.secondary.contrastText,
+    borderColor: theme.palette.primary.light,
+    border: '1px solid',
+    borderRadius: '20px'
   }
 }))

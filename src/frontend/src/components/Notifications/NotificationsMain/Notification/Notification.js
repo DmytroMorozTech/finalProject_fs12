@@ -6,6 +6,7 @@ import NotificationAdditions from '../Additions/NotificationAdditions'
 import React from 'react'
 import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 function Notification ({
   userId = 5,
@@ -33,6 +34,7 @@ function Notification ({
           </Link>
           <span className={classes.actionAndText}>{userAction + ' ' + userText}</span>
         </Typography>
+        <Button className={classes.btnMarkViewed}>Mark All Viewed</Button>
       </div>
       <div className={classes.notificationTimeAndMenu}>
         <div className={classes.notificationTime}>
