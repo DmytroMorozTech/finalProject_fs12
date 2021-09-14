@@ -58,5 +58,14 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     User updateIntro = userService.updateIntro(rq);
     return convertToDto(updateIntro);
   }
+  public List<UserRs> findUsersByLastName(String lastName) {
+    List<User> usersByLastName = userService.findUsersByLastName(lastName);
+    List<UserRs> userRsList = usersByLastName
+      .stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
+
+    return userRsList;
+  }
 
 }

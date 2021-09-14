@@ -69,22 +69,31 @@ export default makeStyles((theme) => ({
     width: '35%',
     position: 'absolute',
     top: '50px',
-    left: '5%'
+    left: '15%'
   },
 
   dropDownItem: {
+    display: 'flex',
+    // flexDirection: 'column',
+    alignItems: 'center',
     width: '100%',
     backgroundColor: 'white',
     height: 40,
     zIndex: 100,
+    fontSize: theme.typography.h4.fontSize,
+    borderRadius: theme.shape.extraSmall,
     border: '1px solid gray',
     '&:hover': {
       backgroundColor: 'lightgray',
       cursor: 'pointer'
     }
   },
+  searchIcon: {
+    padding: theme.spacing(2)
+  },
 
   hidden: {
     display: 'none'
   }
+
 }))

@@ -142,4 +142,8 @@ public class UserService extends GeneralService<User> {
     user.setProvider(provider);
     userRepository.save(user);
   }
+
+  public List<User> findUsersByLastName(String lastName) {
+    return userRepository.findUsersByLastNameContainingIgnoreCase(lastName);
+  }
 }

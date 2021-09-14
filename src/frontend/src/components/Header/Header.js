@@ -37,7 +37,7 @@ function Header (props) {
           {/*  </div> */}
           {/* </Hidden> */}
         </div>
-        <SearchBar placeholder="Search for people, companies..." />
+        <SearchBar />
         <Navbar/>
       </div>
       {modal}

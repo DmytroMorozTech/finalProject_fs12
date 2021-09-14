@@ -27,6 +27,7 @@ public class UserRs {
 
   private String firstName;
 
+  @JsonView(UserViews.Profile.class)
   private String lastName;
 
   @JsonView(UserViews.Profile.class)
