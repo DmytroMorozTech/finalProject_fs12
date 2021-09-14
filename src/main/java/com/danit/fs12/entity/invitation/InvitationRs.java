@@ -17,5 +17,4 @@ public class InvitationRs {
   private UserRs userWho;
   private UserRs userWhom;
 
-
 }
