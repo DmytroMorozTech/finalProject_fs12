@@ -30,12 +30,11 @@ public class UserController {
     List<UserRs> allUsers = userFacade.findAll();
     return allUsers;
   }
-  @JsonView(UserViews.Profile.class)
-  @GetMapping(path = "{lastName}")
-  public ResponseEntity<List<UserRs>> findById(@PathVariable String lastName) {
-    System.out.println("**************************************************************");
-    System.out.println("Search name: " + lastName);
-    List<UserRs> foundUsers = userFacade.findUsersByLastName(lastName);
+
+  @JsonView(UserViews.Base.class)
+  @GetMapping(path = "/find_by_name/{searchInput}")
+  public ResponseEntity<List<UserRs>> findByName(@PathVariable String searchInput) {
+    List<UserRs> foundUsers = userFacade.findUsersByName(searchInput);
     return ResponseEntity.ok(foundUsers);
   }
 

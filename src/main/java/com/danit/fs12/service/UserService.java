@@ -20,8 +20,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -134,7 +136,12 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public List<User> findUsersByLastName(String lastName) {
-    return userRepository.findUsersByLastNameContainingIgnoreCase(lastName);
+  public Set<User> findUsersByName(String searchInput) {
+    List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchInput);
+    List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchInput);
+    usersList1.addAll(usersList2);
+    Set<User> foundUsers = new HashSet<>(usersList1);
+    return foundUsers;
   }
+
 }

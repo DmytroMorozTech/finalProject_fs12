@@ -7,6 +7,8 @@ import CustomizedDialogs from '../Modal/Modal'
 import {Link} from 'react-router-dom'
 import React from 'react'
 import SearchBar from './SearchBar/SearchBar'
+import {Hidden} from '@material-ui/core'
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 
 function Header (props) {
   const classes = styles()
@@ -22,22 +24,23 @@ function Header (props) {
               <LinkedInIcon fontSize="inherit"/>
             </div>
           </Link>
-          {/* <Hidden smDown> */}
-          {/* <div className={classes.headerSearch}> */}
-          {/*  <SearchRoundedIcon fontSize="inherit"/> */}
-          {/*  <input placeholder="Search"/> */}
-          {/* </div> */}
-          {/* </Hidden> */}
-          {/* <Hidden mdUp> */}
-          {/*  <div className={classes.headerButtonSearch}> */}
-          {/*    <SearchRoundedIcon fontSize="inherit" className={classes.icon}/> */}
-          {/*    <Hidden xsDown> */}
-          {/*      <div className={classes.title}>Search</div> */}
-          {/*    </Hidden> */}
-          {/*  </div> */}
-          {/* </Hidden> */}
+
+          <Hidden smDown>
+            <SearchBar/>
+          </Hidden>
+
+          {/* below goes version for mobile */}
+          <Hidden mdUp>
+            <div className={classes.headerButtonSearch}>
+              <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
+              <Hidden xsDown>
+                <div className={classes.title}>Search</div>
+              </Hidden>
+            </div>
+          </Hidden>
+
         </div>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <Navbar/>
       </div>
       {modal}
