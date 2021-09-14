@@ -8,6 +8,7 @@ import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
+import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -133,7 +135,7 @@ public class User extends AbstractEntity {
 
   @ManyToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "userId"),
+    joinColumns = @JoinColumn(name = "followingUserId"),
     inverseJoinColumns = @JoinColumn(name = "followedUserId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
@@ -142,10 +144,26 @@ public class User extends AbstractEntity {
   @ManyToMany
   @JoinTable(name = "followers",
     joinColumns = @JoinColumn(name = "followedUserId"),
-    inverseJoinColumns = @JoinColumn(name = "userId"))
+    inverseJoinColumns = @JoinColumn(name = "followingUserId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name = "invitations",
+    joinColumns = @JoinColumn(
+      name = "user_who_id",
+      foreignKey = @ForeignKey(name = "invitations_user_who_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "user_whom_id",
+      foreignKey = @ForeignKey(name = "invitations_user_whom_id_fk")
+    ))
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Invitation> invitations = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
@@ -224,5 +242,12 @@ public class User extends AbstractEntity {
     return workPlaceOpt.isPresent()
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
+  }
+
+  public List<Invitation> getInvitationsForMe() {
+    return invitations
+      .stream()
+      .filter(i -> i.getUserWhom().getId().equals(getId()))
+      .collect(Collectors.toList());
   }
 }

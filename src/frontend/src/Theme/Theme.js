@@ -49,13 +49,26 @@ const theme = createTheme({
     header: {
       fontWeight: 400
     },
+    h1: {
+      fontSize: '2.5rem',
+      fontWeight: 900
+    },
+    sh1: {
+      fontSize: '2.0rem',
+      fontWeight: 850
+    },
+    h2: {
+      fontSize: '1.3rem',
+      fontWeight: 800
+    },
     h3: {
       fontSize: '1.2rem',
       fontWeight: 700,
       lineHeight: 1.5
     },
     sh3: {
-      fontSize: '1.1rem'
+      fontSize: '1.1rem',
+      fontWeight: 600
     },
     h4: {
       fontSize: '0.900rem',
