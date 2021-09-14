@@ -8,7 +8,9 @@ import java.util.List;
 @Repository
 public interface UserRepository extends RepositoryInterface<User> {
   User findUserByEmail(String email);
+
   List<User> findUsersByFirstNameStartsWithIgnoreCase(String searchInput);
+
   List<User> findUsersByLastNameStartsWithIgnoreCase(String searchInput);
 }
 

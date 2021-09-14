@@ -10,7 +10,7 @@ import SearchBar from './SearchBar/SearchBar'
 import {Hidden} from '@material-ui/core'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 
-function Header (props) {
+function Header () {
   const classes = styles()
   const isModalOpen = useSelector(openModalSelector)
   const modal = isModalOpen ? <CustomizedDialogs/> : null
@@ -29,7 +29,6 @@ function Header (props) {
             <SearchBar/>
           </Hidden>
 
-          {/* below goes version for mobile */}
           <Hidden mdUp>
             <div className={classes.headerButtonSearch}>
               <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
@@ -40,7 +39,6 @@ function Header (props) {
           </Hidden>
 
         </div>
-        {/* <SearchBar /> */}
         <Navbar/>
       </div>
       {modal}

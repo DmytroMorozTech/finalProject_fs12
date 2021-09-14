@@ -5,46 +5,43 @@ import {Hidden} from '@material-ui/core'
 import http from '../../../services/httpService'
 import _ from 'lodash'
 import clsx from 'clsx'
+import {Link} from 'react-router-dom'
 
 function SearchBar () {
   const classes = styles()
   const [inputValue, setInputValue] = useState('')
-  const [foundOrganizations, setFoundOrganizations] = useState(null)
   const [foundUsers, setFoundUsers] = useState(null)
+  const [showDropDown, setShowDropDown] = useState(false)
 
   const handleChange = (event) => {
     const {value} = event.target
-    console.log(value)
     setInputValue(value)
     debounce(value)
   }
-  const findUsersByLastName = (lastName) => {
+
+  const onLinkClickHandler = () => {
+    setFoundUsers(null)
+    setInputValue('')
+  }
+
+  const findUsersByName = (searchInput) => {
     return http
-      .get(`/api/users/${lastName}`)
+      .get(`/api/users/find_by_name/${searchInput}`)
       .then((res) => res.data)
   }
-  const findOrganizationsByName = (name) => {
-    return http
-      .get(`/api/organizations/${name}`)
-      .then((res) => res.data)
-  }
+
+  // eslint-disable-next-line
   const debounce = useCallback(
     _.debounce((_searchVal) => {
       // send the server request here
-      findOrganizationsByName(_searchVal)
-        .then((organizationsList) => {
-          setFoundOrganizations(organizationsList)
+      findUsersByName(_searchVal)
+        .then((usersList) => {
+          setFoundUsers(usersList)
+          setShowDropDown(true)
         })
     }, 1000),
     []
-    // _.debounce((_searchVal) => {
-    // // send the server request here
-    //   findUsersByLastName(_searchVal)
-    //     .then((usersList) => {
-    //       setFoundUsers(usersList)
-    //     })
-    // }, 1000),
-    // []
+
   )
   return (
     <div className={classes.searchBarContainer}>
@@ -52,31 +49,36 @@ function SearchBar () {
       <Hidden smDown>
         <div className={classes.headerSearch}>
           <SearchRoundedIcon fontSize="inherit"/>
-          <input placeholder="Search for people, companies..." onChange={handleChange} />
+          <input
+            placeholder="Search for people"
+            onChange={handleChange}
+            value={inputValue}
+            onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
+          />
         </div>
       </Hidden>
-      {/* {foundUsers && */}
-      {foundOrganizations &&
+
+      {foundUsers && showDropDown &&
       (
         <div className={clsx(classes.searchDropDownWrapper, inputValue.length === 0 ? classes.hidden : '')} >
-          {/* {foundUsers.map( */}
-          {foundOrganizations.map(
-            (org, index) => (<div
-              // type='button'
-              key={index}
-              className={classes.dropDownItem}
-              // onClick={() => {
-              //   setInputValue(org.name)
-              //   setFoundOrganizations(null)
-              // }}
+          {foundUsers.map((user, index) =>
+            (<Link
+              to={`/profiles/${user.id}`}
+              className={classes.link}
+              onClick={onLinkClickHandler}
             >
-              <div className={classes.searchIcon}>
-                <SearchRoundedIcon fontSize="medium"/>
-              </div>
-              {/* {org.lastName} */}
+              <div
+                key={index}
+                className={classes.dropDownItem}
+              >
+                <div className={classes.searchIcon}>
+                  <SearchRoundedIcon fontSize="medium"/>
+                </div>
 
-              {org.name}
-            </div>))}
+                {user.fullName}
+              </div>
+            </Link>
+            ))}
         </div>
       )
       }

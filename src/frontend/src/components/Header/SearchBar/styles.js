@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
+  searchBarContainer: {
+    position: 'relative'
+  },
+
   headerSearch: {
     display: 'flex',
     alignItems: 'center',
@@ -66,10 +70,10 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.icons.large.fontSize
   },
   searchDropDownWrapper: {
-    width: '35%',
+    width: '100%',
     position: 'absolute',
-    top: '50px',
-    left: '15%'
+    top: '40px',
+    left: 0
   },
 
   dropDownItem: {
@@ -94,6 +98,11 @@ export default makeStyles((theme) => ({
 
   hidden: {
     display: 'none'
+  },
+
+  link: {
+    textDecoration: 'none',
+    color: 'black'
   }
 
 }))
