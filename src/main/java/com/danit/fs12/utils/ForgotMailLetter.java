@@ -35,7 +35,7 @@ public class ForgotMailLetter {
       +
       "<p style=\"margin:0;color:#4c4c4c;font-weight:400;font-size:16px;line-height:1.25\">"
       +
-      "Please, enter this number to finish changes."
+      "Please, enter this number to finish with changes."
       +
       "</p>"
       +
