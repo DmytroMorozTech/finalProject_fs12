@@ -65,9 +65,9 @@ function ProfileMain (props) {
             </Typography>
             <div className={classes.info}>
               <Typography variant="body1" color="secondary">
-                {profile.city}, {profile.country}
+                {profile.city}{profile.city && profile.country ? ', ' : ''}{profile.country}
               </Typography>
-              <SmallDot/>
+              {profile.city || profile.country ? <SmallDot/> : ''}
               <Link onClick={preventDefault}>
                 <Typography variant="body1" color="primary" className={classes.bold}>
                   Contact info
@@ -83,12 +83,14 @@ function ProfileMain (props) {
             </div>
           </div>
           <div>
-            <Hidden xsDown>
-              <Typography variant="h5" className={classes.rightPanel}>
-                <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
-                <span>{profile.positionAndCompany}</span>
-              </Typography>
-            </Hidden>
+            {profile.positionAndCompany
+              ? <Hidden xsDown>
+                <Typography variant="h5" className={classes.rightPanel}>
+                  <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
+                  <span>{profile.positionAndCompany}</span>
+                </Typography>
+              </Hidden>
+              : ''}
           </div>
         </div>
         <div>
