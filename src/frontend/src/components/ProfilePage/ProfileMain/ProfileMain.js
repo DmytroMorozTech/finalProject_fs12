@@ -14,7 +14,7 @@ import clsx from 'clsx'
 import Image from '../../../../src/shared/Image/Image'
 
 function ProfileMain (props) {
-  const { numberOfConnections = 45, isEditable } = props
+  const { numberOfConnections, isEditable } = props
   const profile = props.profile
   const classes = style()
   const dispatch = useDispatch()
@@ -75,11 +75,13 @@ function ProfileMain (props) {
               </Link>
             </div>
             <div>
-              <Link href="#" onClick={preventDefault}>
-                <Typography variant="body1" color="primary" className={classes.bold}>
-                  {numberOfConnections} connections
-                </Typography>
-              </Link>
+              {numberOfConnections
+                ? <Link href="#" onClick={preventDefault}>
+                  <Typography variant="body1" color="primary" className={classes.bold}>
+                    {numberOfConnections} connections
+                  </Typography>
+                </Link>
+                : ''}
             </div>
           </div>
           <div>
