@@ -1,21 +1,21 @@
 import React from 'react'
 import styles from './styles'
 import ForgotPage from './ForgotPage/ForgotPage'
-import { Link } from 'react-router-dom'
-import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
+import {Link} from 'react-router-dom'
+import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
 
 const Forgot = () => {
   const classes = styles()
   return (
     <div className={classes.forgot}>
       <div className={classes.header}>
-        <Link exact to='/home' className={classes.link}>
+        <Link exact to="/home" className={classes.link}>
           <LinkedinLogo/>
         </Link>
-        <Link exact to='/login' className={classes.link}>
-          <SharedButton title='Sign In'/>
-        </Link>
+        <div className={classes.headerTextContainer}>
+          <Link to="/" className={classes.signInLineLink}>Sign in</Link>
+          <Link to="/signup" className={classes.joinNowBtn}>Join now</Link>
+        </div>
       </div>
       <div className={classes.forgotPage}>
         <ForgotPage/>

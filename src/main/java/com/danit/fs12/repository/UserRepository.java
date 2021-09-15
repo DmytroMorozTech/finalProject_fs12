@@ -13,4 +13,3 @@ public interface UserRepository extends RepositoryInterface<User> {
 
   List<User> findUsersByLastNameStartsWithIgnoreCase(String searchInput);
 }
-

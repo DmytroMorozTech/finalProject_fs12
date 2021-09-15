@@ -2,6 +2,7 @@ package com.danit.fs12.controller;
 
 import com.danit.fs12.entity.authentication.AuthRequest;
 import com.danit.fs12.entity.authentication.AuthResponse;
+import com.danit.fs12.entity.restore.RestoreRequest;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
 import com.danit.fs12.security.RegistrationRequest;
@@ -12,11 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,5 +57,21 @@ public class AuthController {
   @JsonView(UserViews.Base.class)
   public UserRs currentGoogleAuthUserData(@RequestBody @Valid UpdatePasswordRequest updatePasswordRequest) {
     return userFacade.updateUserPassword(updatePasswordRequest);
+  }
+
+  @PutMapping("/forgot_password/")
+  public void processForgotPassword(@RequestBody RestoreRequest restoreRequest)
+    throws MessagingException, UnsupportedEncodingException {
+    userFacade.generateResetPasswordNumber(restoreRequest);
+  }
+
+  @PostMapping("/forgot_password/")
+  public boolean isUserRecognized(@RequestBody RestoreRequest restoreRequest) {
+    return userFacade.isUserRecognized(restoreRequest);
+  }
+
+  @PutMapping("/forgot_password/restore")
+  public void updateUserPassword(@RequestBody RestoreRequest restoreRequest) {
+    userFacade.restoreUserPassword(restoreRequest);
   }
 }

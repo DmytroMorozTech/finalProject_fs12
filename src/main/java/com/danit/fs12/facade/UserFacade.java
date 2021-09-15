@@ -1,5 +1,6 @@
 package com.danit.fs12.facade;
 
+import com.danit.fs12.entity.restore.RestoreRequest;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRq;
@@ -9,6 +10,8 @@ import com.danit.fs12.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -58,6 +61,24 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(updateIntro);
   }
 
+  public UserRs updateUserPassword(UpdatePasswordRequest updatePasswordRequest) {
+    return convertToDto(userService.updateUser(updatePasswordRequest.getPassword(),
+      updatePasswordRequest.getEmail()));
+  }
+
+  public void generateResetPasswordNumber(RestoreRequest restoreRequest)
+    throws MessagingException, UnsupportedEncodingException {
+    userService.generateResetPasswordNumber(restoreRequest.getEmail());
+  }
+
+  public boolean isUserRecognized(RestoreRequest restoreRequest) {
+    return userService.isUserRecognized(restoreRequest.getEmail(), restoreRequest.getCode());
+  }
+
+  public void restoreUserPassword(RestoreRequest restoreRequest) {
+    userService.updateUserPassword(restoreRequest.getEmail(), restoreRequest.getPassword());
+  }
+
   public List<UserRs> findUsersByName(String searchInput) {
     Set<User> foundUsers = userService.findUsersByName(searchInput);
     List<UserRs> userRsList = foundUsers
@@ -65,10 +86,5 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       .map(this::convertToDto)
       .collect(Collectors.toList());
     return userRsList;
-  }
-
-  public UserRs updateUserPassword(UpdatePasswordRequest updatePasswordRequest) {
-    return convertToDto(userService.updateUser(updatePasswordRequest.getPassword(),
-      updatePasswordRequest.getEmail()));
   }
 }

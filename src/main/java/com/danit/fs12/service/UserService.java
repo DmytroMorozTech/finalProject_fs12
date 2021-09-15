@@ -10,17 +10,25 @@ import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
+import com.danit.fs12.exception.SecurityCodesDoNotMatchException;
 import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
+import com.danit.fs12.utils.ForgotMailLetter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -33,7 +41,7 @@ public class UserService extends GeneralService<User> {
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
-  private User newUserByGoogleAuth;
+  private final JavaMailSender mailSender;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -136,6 +144,61 @@ public class UserService extends GeneralService<User> {
     }
   }
 
+  public void sendEmail(String receiverEmail, Integer resetNumber, String userName)
+    throws MessagingException, UnsupportedEncodingException {
+    MimeMessage message = mailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message);
+
+    helper.setFrom("linkedin.dan.it@gmail.com", "LinkedIn");
+    helper.setTo(receiverEmail);
+
+    String subject = userName + ", this message contains code to Sign in.";
+
+    helper.setSubject(subject);
+    helper.setText(new ForgotMailLetter().buildEmail(resetNumber, userName), true);
+    mailSender.send(message);
+  }
+
+  public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
+    int resetNumber = (int) (Math.random() * 1000000);
+    if (userRepository.findUserByEmail(email) != null) {
+      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      User user = userRepository.findUserByEmail(email);
+      String userName = user.getFirstName();
+      user.setResetPasswordNumber(passwordEncoder.encode(String.valueOf(resetNumber)));
+      userRepository.save(user);
+      sendEmail(email, resetNumber, userName);
+    } else {
+      throw new NoSuchUserException(String.format("Could not find any user with %s email", email));
+    }
+  }
+
+  public boolean isUserRecognized(String email, String code) {
+    User user = findByEmail(email);
+    if (user != null) {
+      if (passwordEncoder.matches(code, user.getResetPasswordNumber())) {
+        return true;
+      } else {
+        throw new SecurityCodesDoNotMatchException("Entered security code is incorrect!");
+      }
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
+    }
+  }
+
+  public void updateUserPassword(String email, String newPassword) {
+    User user = findByEmail(email);
+    if (user != null) {
+      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      String encodedPassword = passwordEncoder.encode(newPassword);
+      user.setPasswordHash(encodedPassword);
+      user.setResetPasswordNumber(null);
+      userRepository.save(user);
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
+    }
+  }
+
   public Set<User> findUsersByName(String searchInput) {
     List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchInput);
     List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchInput);
@@ -143,5 +206,4 @@ public class UserService extends GeneralService<User> {
     Set<User> foundUsers = new HashSet<>(usersList1);
     return foundUsers;
   }
-
 }

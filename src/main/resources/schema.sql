@@ -179,6 +179,7 @@ create table users
     phone_number         varchar(255),
     profile_bg_public_id varchar(255),
     provider             varchar(255),
+    reset_password_code  varchar(255),
     primary key (id)
 );
 
