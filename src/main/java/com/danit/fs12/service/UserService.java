@@ -155,7 +155,7 @@ public class UserService extends GeneralService<User> {
     String subject = userName + ", this message contains code to Sign in.";
 
     helper.setSubject(subject);
-    helper.setText(new ForgotMailLetter().buildEmail(resetNumber), true);
+    helper.setText(new ForgotMailLetter().buildEmail(resetNumber, userName), true);
     mailSender.send(message);
   }
 

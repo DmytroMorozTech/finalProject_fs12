@@ -2,12 +2,14 @@ package com.danit.fs12.utils;
 
 public class ForgotMailLetter {
 
-  public String buildEmail(Integer code) {
+  public String buildEmail(Integer code, String name) {
     return "<table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\"> "
       +
       "<tbody> <tr> <td style=\"padding-bottom:20px\"> "
       +
-      "<h2 style=\"margin:0;color:#262626;font-weight:700;font-size:20px;line-height:1.2\">Hello, Serhii,</h2>"
+      "<h2 style=\"margin:0;color:#262626;font-weight:700;font-size:20px;line-height:1.2\">"
+      +
+      "Hello, " + name + ",</h2>"
       +
       "</td> </tr> "
       +
