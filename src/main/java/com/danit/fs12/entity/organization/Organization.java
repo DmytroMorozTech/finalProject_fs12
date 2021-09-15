@@ -49,4 +49,10 @@ public class Organization extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<WorkPlace> workPlaces = new ArrayList<>();
 
+//  @ManyToOne
+//  @JoinColumn(name = "user_id")
+//  @ToString.Exclude
+//  @EqualsAndHashCode.Exclude
+//  @JsonIgnore
+//  private User user;
 }
