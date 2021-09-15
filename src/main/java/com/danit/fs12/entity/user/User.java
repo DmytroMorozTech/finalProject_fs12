@@ -243,11 +243,4 @@ public class User extends AbstractEntity {
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
   }
-
-  public List<Invitation> getInvitationsForMe() {
-    return invitations
-      .stream()
-      .filter(i -> i.getUserWhom().getId().equals(getId()))
-      .collect(Collectors.toList());
-  }
 }
