@@ -45,7 +45,12 @@ export default makeStyles((theme) => ({
 
   usersWhoLiked: {
     padding: theme.spacing(5),
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    '&:nth-last-child': {
+      '& > hr': {
+        display: 'none'
+      }
+    }
   }
 }))
