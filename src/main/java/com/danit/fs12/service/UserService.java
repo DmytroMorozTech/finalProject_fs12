@@ -152,7 +152,7 @@ public class UserService extends GeneralService<User> {
     helper.setFrom("linkedin.dan.it@gmail.com", "LinkedIn");
     helper.setTo(receiverEmail);
 
-    String subject = userName + ", this message contains code to Sign in.";
+    String subject = userName + ", this message contains code to confirm password change.";
 
     helper.setSubject(subject);
     helper.setText(new ForgotMailLetter().buildEmail(resetNumber, userName), true);
