@@ -21,10 +21,10 @@ const ProfileExperienceItem = (props) => {
   return (
     <div className={classes.content}>
       <div>
-        <Typography variant="body1" className={classes.title}>Position:{position}</Typography>
+        <Typography variant="body1" className={classes.title}>Position: {position}</Typography>
         <Typography>Organization: {organization.name}</Typography>
-        <Typography>{dateStartConverted}{dash}{dateFinish ? dateFinishConverted : 'Present time'}</Typography>
-        <Typography>Responsibilities:{responsibilities}</Typography>
+        <Typography>{dateStartConverted} {dash} {dateFinish ? dateFinishConverted : 'Present time'}</Typography>
+        <Typography>Responsibilities: {responsibilities}</Typography>
       </div>
       <div
         className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
