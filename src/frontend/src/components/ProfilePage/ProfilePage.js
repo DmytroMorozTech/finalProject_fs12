@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Container } from '@material-ui/core'
+import { Container, Hidden } from '@material-ui/core'
 import styles from './styles'
 import ProfileMain from './ProfileMain/ProfileMain'
 import ProfileRight from './ProfileRight/ProfileRight'
@@ -42,9 +42,11 @@ function ProfilePage (props) {
           }
         </Grid>
 
-        <Grid item sm={3} md={3} lg={3} xl={3}>
-          <ProfileRight/>
-        </Grid>
+        <Hidden smDown>
+          <Grid item md={3} lg={3} xl={3}>
+            <ProfileRight/>
+          </Grid>
+        </Hidden>
       </Grid>
     </Container>
   )

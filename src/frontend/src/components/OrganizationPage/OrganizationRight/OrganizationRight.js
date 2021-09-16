@@ -1,7 +1,7 @@
 import styles from './styles'
 import ImgToJobsPage from '../../../shared/ImgToJobsPage/ImgToJobsPage'
 
-function OrganisationRight () {
+function OrganizationRight () {
   const classes = styles()
 
   return (
@@ -11,4 +11,4 @@ function OrganisationRight () {
   )
 }
 
-export default OrganisationRight
+export default OrganizationRight
