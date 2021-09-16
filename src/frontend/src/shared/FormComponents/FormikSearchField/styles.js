@@ -9,18 +9,18 @@ export default makeStyles((theme) => ({
   searchDropDownWrapper: {
     width: '100%',
     position: 'absolute',
-    top: '100%',
+    top: '38px',
     left: 0
   },
 
   dropDownItem: {
     width: '100%',
-    backgroundColor: 'lightgray',
-    height: 50,
+    backgroundColor: 'white',
+    height: 40,
     zIndex: 100,
     border: '1px solid gray',
     '&:hover': {
-      backgroundColor: 'darkgray',
+      backgroundColor: 'lightgray',
       cursor: 'pointer'
     }
   },

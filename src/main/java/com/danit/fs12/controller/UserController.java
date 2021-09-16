@@ -31,6 +31,13 @@ public class UserController {
     return allUsers;
   }
 
+  @JsonView(UserViews.Base.class)
+  @GetMapping(path = "/find_by_name/{searchInput}")
+  public ResponseEntity<List<UserRs>> findByName(@PathVariable String searchInput) {
+    List<UserRs> foundUsers = userFacade.findUsersByName(searchInput);
+    return ResponseEntity.ok(foundUsers);
+  }
+
   @JsonView(UserViews.Profile.class)
   @GetMapping(path = "{id}")
   public ResponseEntity<UserRs> findById(@PathVariable Long id) {
@@ -74,6 +81,7 @@ public class UserController {
     UserRs user = userFacade.updateIntro(rq);
     return ResponseEntity.ok(user);
   }
+
 }
 
 

@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
 
   userWhoLiked: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(1)
   },
 
   userInfo: {
@@ -44,6 +46,7 @@ export default makeStyles((theme) => ({
 
   lineItem: {
     marginLeft: theme.spacing(12),
+    marginBottom: theme.spacing(1),
     width: 'calc(100% - 60px)',
     height: '0.5px',
     border: '0',

@@ -20,10 +20,12 @@ export default makeStyles((theme) => ({
   },
 
   photoIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     fontSize: theme.typography.icons.extraSmall.fontSize,
     width: theme.spacing(6),
     height: theme.spacing(6),
-    padding: theme.spacing(1.5),
     backgroundColor: theme.palette.common.white,
     borderRadius: '50%',
     cursor: 'pointer'
@@ -38,7 +40,6 @@ export default makeStyles((theme) => ({
 
   bigAvatar: {
     width: theme.avatar.profileAvatar,
-    // height: theme.spacing(31),
     border: '4px solid white',
     borderRadius: '50%',
     cursor: 'pointer',

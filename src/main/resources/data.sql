@@ -60,7 +60,24 @@ VALUES ('Microsoft', 'office@microsoft.com', 'microsoft.com', 'Software developm
         'Nation wide delivery service',
         'Сentral Street, 12A, Kyiv, Ukraine',
         'Express delivery of documents, cargo and parcels', 2001, 28000, '+380444455563',
-        timestamp '2010-01-02 09:00:10.111222', timestamp '2010-01-02 09:00:10.111222');
+        timestamp '2010-01-02 09:00:10.111222', timestamp '2010-01-02 09:00:10.111222'),
+       ('HQSoftware', 'usa@hqsoftwarelab.com', 'https://hqsoftwarelab.com', 'Software product development',
+        '315 Madison Avenue #3045, New York City, United States',
+        'IoT Solutions, Automotive IoT, Industrial IoT', 2001, 160, '917 720 3806',
+        timestamp '2014-01-20 09:00:10.111222', timestamp '2014-01-20 09:00:10.111222'),
+       ('Amazon.com', 'office@amazon.com', 'https://amazon.com', 'eCommerce', 'Seattle, Washington, US',
+        'Internet or Mobile App Based Business, Cloud Services',
+        1994, 1300000, '+380442223322',  timestamp '2007-10-01 09:00:10.111222', timestamp '2007-10-01 09:00:10.111222'),
+       ('Facebook', 'support@fb.com', 'www.facebook.com',
+        'Social media',
+        '1 Hacker Way, Menlo Park, CA 94025, United States',
+        'Communication Services, Internet or Mobile App Based Business', 2004, 60600, '+1-650-543-4800',
+        timestamp '2005-10-01 09:00:10.111222', timestamp '2005-10-01 09:00:10.111222'),
+        ('Oracle corporation', 'support@oracle.com', 'www.oracle.com',
+        'Software and IT',
+        'Austin, Texas, United States',
+        'Oracle Applications, Oracle, DatabaseOracle, CloudEnterprise, ManagerFusion, MiddlewareServers, Workstations, Storage', 1977, 133000, '+1-800-633-0738',
+        timestamp '203-10-01 09:00:10.111222', timestamp '2003-10-01 09:00:10.111222');
 
 
 INSERT INTO WORK_PLACES (organization_id, user_id, position, responsibilities, date_start,

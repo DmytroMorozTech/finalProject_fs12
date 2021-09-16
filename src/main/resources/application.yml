@@ -24,6 +24,22 @@ spring:
             scope:
              - email
              - profile
+  mail:
+    host: smtp.gmail.com
+    username: linkedin.dan.it@gmail.com
+    password: fs12finalproject
+    port: 587
+    properties:
+      mail:
+        smtp:
+          ssl:
+          trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 jwt:
   header: Authorization
   secret: my-very-secret-key

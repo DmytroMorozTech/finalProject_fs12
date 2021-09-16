@@ -5,20 +5,20 @@ import InvitationManagerSentMain from './InvitationManagerMain/InvitationManager
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getAllInvitations } from '../../../redux/Network/networkActions'
 import { invitationsForMeSelector, invitationsFromMeSelector } from '../../../redux/Network/networkSelector'
+import {
+  getInvitationsForMeAction, getInvitationsFromMeAction} from '../../../redux/Network/networkActions'
 
 function InvitationManagerSent () {
   const dispatch = useDispatch()
+  const invitationsForMe = useSelector(invitationsForMeSelector)
+  const invitationsFromMe = useSelector(invitationsFromMeSelector)
 
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
-    dispatch(getAllInvitations())
-    console.log('useEffect worked InvitationManagerSent')
+    dispatch(getInvitationsForMeAction())
+    dispatch(getInvitationsFromMeAction())
   }, [dispatch])
-
-  const invitationsForMe = useSelector(invitationsForMeSelector)
-  const invitationsFromMe = useSelector(invitationsFromMeSelector)
 
   const classes = styles()
 

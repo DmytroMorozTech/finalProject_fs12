@@ -8,6 +8,8 @@ import Image from '../../Image/Image'
 const UsersWhoLikedItem = (props) => {
   const {id, avatarPublicId, positionAndCompany, fullName} = props.user
 
+  const {isLastChild} = props
+
   const classes = styles()
 
   const linkToUserProfile = '/profiles/' + id
@@ -41,7 +43,7 @@ const UsersWhoLikedItem = (props) => {
           </div>
         </div>
       </div>
-      <hr className={classes.lineItem}/>
+      { isLastChild ? '' : <hr className={classes.lineItem}/> }
     </div>
   )
 }
