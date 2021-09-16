@@ -9,6 +9,10 @@ export const createNewInvitationAction = (payload) => (dispatch) => {
     .then((invitationObj) => {
       dispatch({ type: actions.ADD_NEW_INVITATION, payload: invitationObj })
     })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
 }
 
 export const getInvitationsForMeAction = () => (dispatch) => {
@@ -20,6 +24,10 @@ export const getInvitationsForMeAction = () => (dispatch) => {
         payload: res.data
       })
       dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: false })
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
     })
 }
 
@@ -33,6 +41,10 @@ export const getInvitationsFromMeAction = () => (dispatch) => {
       })
       dispatch({ type: actions.SET_INVITATIONS_LOADING_STATUS, payload: false })
     })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
 }
 
 export const deleteInvitationAction = (id) => (dispatch) => {
@@ -40,7 +52,23 @@ export const deleteInvitationAction = (id) => (dispatch) => {
     .delete(`/api/invitations/${id}`)
     .then((res) => res.status)
     .then((status) => {
-      if (parseInt(status) === 200 || parseInt(status) === 204) {
+      if (status === 200 || status === 204) {
+        dispatch({ type: actions.DELETE_INVITATION, payload: id })
+      }
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
+
+export const acceptInvitationAction = (id) => (dispatch) => {
+  return http
+    .put(`/api/invitations/accept/${id}`)
+    .then((res) => res.status)
+    .then((status) => {
+      if (status === 200 || status === 204) {
+        toast.info(`Connection with user (id: ${id}) was created`)
         dispatch({ type: actions.DELETE_INVITATION, payload: id })
       }
     })

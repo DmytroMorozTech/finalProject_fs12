@@ -1,6 +1,6 @@
 package com.danit.fs12.entity.organization;
 
-import com.danit.fs12.controller.UserViews;
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.workplace.WorkPlace;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;

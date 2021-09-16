@@ -25,10 +25,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -55,6 +55,20 @@ public class UserService extends GeneralService<User> {
     List<CommentLike> commentLikes = comment.getCommentLikes();
     List<User> usersList = commentLikes.stream().map(CommentLike::getUser).collect(Collectors.toList());
     return usersList;
+  }
+
+  public List<User> findConnectedUsers() {
+    User activeUser = getActiveUser();
+    Long activeUserId = activeUser.getId();
+
+    Set<Long> userIds = activeUser
+      .getConnections().stream()
+      .map(c -> c.getUserWho().getId().equals(activeUserId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toSet());
+
+    return findAllById(userIds);
   }
 
   public User findUserById(Long id) {

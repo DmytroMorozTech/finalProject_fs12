@@ -2,6 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.InvitationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 public class InvitationService extends GeneralService<Invitation> {
   private final UserService userService;
   private final InvitationRepository invitationRepository;
+  private final ConnectionService connectionService;
 
   public Invitation createInvitation(Invitation invitation, Long userWhomId) {
     User activeUser = userService.getActiveUser();
@@ -20,11 +22,18 @@ public class InvitationService extends GeneralService<Invitation> {
     invitation.setUserWho(activeUser);
     invitation.setUserWhom(userWhom);
     invitation.setText(invitation.getText());
+    if (activeUser.getId().equals(userWhomId))
+      throw new BadRequestException("User can not create invitation for himself.");
 
-    Invitation savedInDbInvitation = save(invitation);
+    return save(invitation);
+  }
 
-    return savedInDbInvitation;
-    // User should not be able to invite HIMSELF! And we should check that!
+  public void acceptInvitation(Long id) {
+    Invitation invitation = findEntityById(id);
+    User userWho = invitation.getUserWho();
+    User userWhom = invitation.getUserWhom();
+    connectionService.createConnection(userWho,userWhom);
+    delete(invitation);
   }
 
   public List<Invitation> getInvitationsForMe() {
