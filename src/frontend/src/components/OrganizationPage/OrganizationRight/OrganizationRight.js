@@ -1,14 +1,14 @@
 import styles from './styles'
 import ImgToJobsPage from '../../../shared/ImgToJobsPage/ImgToJobsPage'
 
-function ProfileRight () {
+function OrganizationRight () {
   const classes = styles()
 
   return (
-    <div className={classes.profileRight}>
+    <div className={classes.organisationRight}>
       <ImgToJobsPage/>
     </div>
   )
 }
 
-export default ProfileRight
+export default OrganizationRight
