@@ -8,7 +8,6 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     cursor: 'pointer',
     color: theme.palette.grey[700],
-    // zIndex: '10',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.1)'
     }
