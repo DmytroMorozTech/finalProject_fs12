@@ -90,10 +90,9 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
 
   public List<UserRs> findConnectedUsers() {
     List<User> foundUsers = userService.findConnectedUsers();
-    List<UserRs> userRsList = foundUsers
+    return foundUsers
       .stream()
       .map(this::convertToDto)
       .collect(Collectors.toList());
-    return userRsList;
   }
 }

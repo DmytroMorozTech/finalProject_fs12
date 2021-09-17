@@ -30,10 +30,11 @@ public class InvitationService extends GeneralService<Invitation> {
 
   public void acceptInvitation(Long id) {
     Invitation invitation = findEntityById(id);
-    User userWho = invitation.getUserWho();
-    User userWhom = invitation.getUserWhom();
-    connectionService.createConnection(userWho,userWhom);
-    delete(invitation);
+    Long userWhoInvitedId = invitation.getUserWho().getId();
+    System.out.println("USER WHO INVITED ID: " + userWhoInvitedId);
+    System.out.println("*****************************************");
+    connectionService.createConnection(userWhoInvitedId);
+//    delete(invitation);
   }
 
   public List<Invitation> getInvitationsForMe() {

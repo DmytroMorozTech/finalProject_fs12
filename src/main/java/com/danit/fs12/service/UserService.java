@@ -58,15 +58,24 @@ public class UserService extends GeneralService<User> {
   }
 
   public List<User> findConnectedUsers() {
+    System.out.println("we are in service method findConnectedUsers:");
     User activeUser = getActiveUser();
     Long activeUserId = activeUser.getId();
+    System.out.println(activeUser.getConnections());
 
-    Set<Long> userIds = activeUser
+//    List<Long> userIds = activeUser
+//      .getConnections().stream()
+//      .map(c -> c.getUserWho().getId().equals(activeUserId)
+//        ? c.getUserWhom().getId()
+//        : c.getUserWho().getId())
+//      .collect(Collectors.toList());
+//    System.out.println(userIds);
+
+    List<Long> userIds = activeUser
       .getConnections().stream()
-      .map(c -> c.getUserWho().getId().equals(activeUserId)
-        ? c.getUserWhom().getId()
-        : c.getUserWho().getId())
-      .collect(Collectors.toSet());
+      .map(c -> c.getUserWho().getId())
+      .collect(Collectors.toList());
+    System.out.println(userIds);
 
     return findAllById(userIds);
   }
