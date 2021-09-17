@@ -26,6 +26,7 @@ import java.util.List;
 public class Organization extends AbstractEntity {
   private String name;
   private String location;
+  private String about;
   private String email;
   private String industry;
   private String specialities;

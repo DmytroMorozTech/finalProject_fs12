@@ -20,6 +20,7 @@ import InvitationManagerReceived from '../components/Network/InvitationManager/I
 import InvitationManagerSent from '../components/Network/InvitationManager/InvitationManagerSent'
 import Register from '../components/Register/Register'
 import Forgot from '../components/ForgotPass/Forgot'
+import OrganizationPage from '../components/OrganizationPage/OrganizationPage'
 
 const MainRoutes = () => {
   return (
@@ -43,6 +44,8 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/chat/new/:id" render={() => <NewChat isSeparateChat={true}/>}/>
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage}/>
+      <ProtectedRoutes exact path="/organization" component={OrganizationPage}/>
+      {/* <ProtectedRoutes exact path="/organization/:id" component={OrganizationPage}/> */}
       <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
       <ProtectedRoutes exact path="*" render={() => <Page404/>}/>
     </Switch>
