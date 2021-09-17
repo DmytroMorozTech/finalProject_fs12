@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
   organizationBackgroundImg: {
     width: '100%',
     position: 'absolute',
-    maxHeight: '134px',
+    height: '134px',
     top: 0,
     left: 0,
     zIndex: -10,
