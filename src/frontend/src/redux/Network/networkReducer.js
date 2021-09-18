@@ -5,7 +5,7 @@ const initialState = {
   invitationsFromMe: [],
   usersFollowing: [],
   usersFollowed: [],
-  invitationsAreLoading: true
+  connections: []
 }
 
 const networkReducer = (state = initialState, action) => {
@@ -14,13 +14,10 @@ const networkReducer = (state = initialState, action) => {
       return { ...state, invitationsFromMe: [ ...state.invitationsFromMe, action.payload ] }
 
     case actions.SAVE_INVITATIONS_FOR_ME:
-      return { ...state, invitationsForMe: [ ...action.payload ] }
+      return { ...state, invitationsForMe: [...action.payload] }
 
     case actions.SAVE_INVITATIONS_FROM_ME:
-      return { ...state, invitationsFromMe: [ ...action.payload ] }
-
-    case actions.SET_INVITATIONS_LOADING_STATUS:
-      return { ...state, invitationsAreLoading: action.payload }
+      return { ...state, invitationsFromMe: [...action.payload] }
 
     case actions.DELETE_INVITATION:
       const invitationId = action.payload
@@ -30,6 +27,15 @@ const networkReducer = (state = initialState, action) => {
         invitationsForMe: [...invitationsForMeUpdated],
         invitationsFromMe: [...invitationsFromMeUpdated]
       }
+
+    case actions.DELETE_CONNECTION:
+      const connectedUserId = action.payload
+      const filteredConnections = state.connections.filter(connection => connection.id !== connectedUserId)
+      return { ...state, connections: [...filteredConnections]
+      }
+
+    case actions.SAVE_MY_CONNECTIONS:
+      return { ...state, connections: [...action.payload] }
 
     default: {
       return state

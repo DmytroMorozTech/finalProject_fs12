@@ -79,7 +79,8 @@ export default makeStyles((theme) => ({
 
   commentText: {
     marginTop: theme.spacing(2),
-    whiteSpace: 'pre-line'
+    whiteSpace: 'pre-line',
+    wordBreak: 'break-word'
   },
 
   commentLikes: {

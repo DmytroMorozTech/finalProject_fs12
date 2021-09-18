@@ -2,6 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
+import com.danit.fs12.entity.connection.Connection;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.Provider;
@@ -13,6 +14,7 @@ import com.danit.fs12.exception.NoSuchUserException;
 import com.danit.fs12.exception.SecurityCodesDoNotMatchException;
 import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
+import com.danit.fs12.repository.ConnectionRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import com.danit.fs12.utils.ForgotMailLetter;
@@ -25,10 +27,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -37,6 +39,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService extends GeneralService<User> {
+  private final ConnectionRepository connectionRepository;
   private final PostRepository postRepository;
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
@@ -55,6 +58,22 @@ public class UserService extends GeneralService<User> {
     List<CommentLike> commentLikes = comment.getCommentLikes();
     List<User> usersList = commentLikes.stream().map(CommentLike::getUser).collect(Collectors.toList());
     return usersList;
+  }
+
+  public List<User> findConnectedUsers() {
+    User activeUser = getActiveUser();
+    Long activeUserId = activeUser.getId();
+    List<Connection> connectionsOfActiveUser = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(activeUserId, activeUserId);
+
+    List<Long> userIds = connectionsOfActiveUser.stream()
+      .map(c -> c.getUserWho().getId().equals(activeUserId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+    //    System.out.println("Connections of user with id " + activeUserId + " are: " + userIds);
+
+    return findAllById(userIds);
   }
 
   public User findUserById(Long id) {

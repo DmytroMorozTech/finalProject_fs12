@@ -1,7 +1,7 @@
 package com.danit.fs12.entity.workplace;
 
 
-import com.danit.fs12.controller.UserViews;
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.organization.Organization;
 import com.danit.fs12.entity.user.User;

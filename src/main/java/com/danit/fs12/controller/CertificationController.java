@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.certification.CertificationRq;
 import com.danit.fs12.entity.certification.CertificationRs;
 import com.danit.fs12.facade.CertificationFacade;

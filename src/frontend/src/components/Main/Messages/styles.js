@@ -499,7 +499,8 @@ export default makeStyles((theme) => ({
     margin: '30px 0 4px 15px',
     color: '#000000e6',
     wordWrap: 'break-word',
-    whiteSpace: 'pre-line'
+    whiteSpace: 'pre-line',
+    wordBreak: 'break-word'
   },
 
   msgForm: {
