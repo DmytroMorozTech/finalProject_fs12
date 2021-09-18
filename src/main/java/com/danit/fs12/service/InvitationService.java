@@ -22,8 +22,9 @@ public class InvitationService extends GeneralService<Invitation> {
     invitation.setUserWho(activeUser);
     invitation.setUserWhom(userWhom);
     invitation.setText(invitation.getText());
-    if (activeUser.getId().equals(userWhomId))
+    if (activeUser.getId().equals(userWhomId)) {
       throw new BadRequestException("User can not create invitation for himself.");
+    }
 
     return save(invitation);
   }
@@ -31,10 +32,8 @@ public class InvitationService extends GeneralService<Invitation> {
   public void acceptInvitation(Long id) {
     Invitation invitation = findEntityById(id);
     Long userWhoInvitedId = invitation.getUserWho().getId();
-    System.out.println("USER WHO INVITED ID: " + userWhoInvitedId);
-    System.out.println("*****************************************");
     connectionService.createConnection(userWhoInvitedId);
-//    delete(invitation);
+    delete(invitation);
   }
 
   public List<Invitation> getInvitationsForMe() {

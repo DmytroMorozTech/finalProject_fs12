@@ -19,9 +19,9 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 
 function NetworkLeft (props) {
   const classes = styles()
+  const {numberOfConnections} = props
 
   const {
-    numberConnections = 100,
     // numberContacts,
     numberPeopleIFollow,
     numberGroups
@@ -35,7 +35,7 @@ function NetworkLeft (props) {
     {
       Icon: <SupervisorAccountRoundedIcon fontSize="inherit"/>,
       title: 'Connections',
-      number: numberConnections,
+      number: numberOfConnections,
       to: '/network/connections',
       onClick: () => console.log('Connections')
     },

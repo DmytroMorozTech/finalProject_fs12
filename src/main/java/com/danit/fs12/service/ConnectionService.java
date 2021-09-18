@@ -2,6 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.connection.Connection;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.repository.ConnectionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +10,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ConnectionService extends GeneralService<Connection> {
   private final UserService userService;
+  private final ConnectionRepository connectionRepository;
 
   public Connection createConnection(Long userWhoInvitedId) {
     User userWhoInvited = userService.findEntityById(userWhoInvitedId);
     User activeUser = userService.getActiveUser();
-    Connection savedInDbConnection = save(new Connection(userWhoInvited, activeUser));
-    System.out.println("savedInDbConnection:");
-    System.out.println(savedInDbConnection);
+    Connection connection = new Connection(userWhoInvited, activeUser);
+    return save(connection);
+  }
 
-    activeUser.getConnections().add(savedInDbConnection);
-//    userWhoInvited.getConnections().add(savedInDbConnection);
-    userService.save(activeUser);
-//    userService.save(userWhoInvited);
-
-    return savedInDbConnection;
+  public void deleteConnection(Long userWhoId, Long userWhomId) {
+    connectionRepository.deleteConnectionByUserWhoIdAndUserWhomId(userWhoId, userWhomId);
+    connectionRepository.deleteConnectionByUserWhoIdAndUserWhomId(userWhomId, userWhoId);
   }
 
 }

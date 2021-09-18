@@ -49,9 +49,9 @@ public class InvitationController {
     return ResponseEntity.ok(invitation);
   }
 
-  @PutMapping("/accept/{id}")
-  public ResponseEntity<?> acceptInvitation(@PathVariable Long id) {
-    invitationFacade.acceptInvitation(id);
+  @PutMapping("/accept/{invitationId}")
+  public ResponseEntity<?> acceptInvitation(@PathVariable Long invitationId) {
+    invitationFacade.acceptInvitation(invitationId);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 

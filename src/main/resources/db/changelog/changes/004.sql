@@ -17,3 +17,9 @@ alter table connections
 
 ALTER TABLE connections
     ADD CONSTRAINT uq_connections UNIQUE (user_who_id, user_whom_id);
+
+INSERT INTO CONNECTIONS(created_date, modified_date, user_who_id, user_whom_id)
+VALUES (CURRENT_DATE, CURRENT_DATE, 7,1),
+       (CURRENT_DATE, CURRENT_DATE, 1,4),
+       (CURRENT_DATE, CURRENT_DATE, 1,10);
+

@@ -89,8 +89,8 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
   }
 
   public List<UserRs> findConnectedUsers() {
-    List<User> foundUsers = userService.findConnectedUsers();
-    return foundUsers
+    List<User> connectedUsers = userService.findConnectedUsers();
+    return connectedUsers
       .stream()
       .map(this::convertToDto)
       .collect(Collectors.toList());
