@@ -66,6 +66,10 @@ function MiniProfile (props) {
           title="Connect"
           variant="outlined"
           fullWidth={true}/>
+        {/* <SharedButton */}
+        {/*  title="Follow" */}
+        {/*  variant="outlined" */}
+        {/*  fullWidth={true}/> */}
       </div>
     </div>
   )

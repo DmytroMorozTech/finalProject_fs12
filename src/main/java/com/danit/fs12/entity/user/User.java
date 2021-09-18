@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -152,6 +151,14 @@ public class User extends AbstractEntity {
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
+
+  //  @OneToMany(
+  //    mappedBy = "user",
+  //    cascade = CascadeType.ALL)
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  @JsonIgnore
+  //  private List<Organization> organizationsFollowed = new ArrayList<>();
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(

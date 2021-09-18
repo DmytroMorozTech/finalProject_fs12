@@ -225,4 +225,32 @@ public class UserService extends GeneralService<User> {
     Set<User> foundUsers = new HashSet<>(usersList1);
     return foundUsers;
   }
+
+  public List<User> getMutualConnections(Long activeUserId, Long userWhomId) {
+    List<Connection> connectionsOfActiveUser = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(activeUserId, activeUserId);
+
+    List<Long> activeUserFriendsIds = connectionsOfActiveUser.stream()
+      .map(c -> c.getUserWho().getId().equals(activeUserId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+
+    List<Connection> connectionsOfUserWhom = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(userWhomId, userWhomId);
+
+    List<Long> userWhomFriendsIds = connectionsOfUserWhom.stream()
+      .map(c -> c.getUserWho().getId().equals(userWhomId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+
+    // now we should find intersection between these 2 collections
+    List<Long> mutualConnectionsIds = activeUserFriendsIds.stream()
+      .distinct()
+      .filter(userWhomFriendsIds::contains)
+      .collect(Collectors.toList());
+
+    return findAllById(mutualConnectionsIds);
+  }
 }
