@@ -23,9 +23,9 @@ const LoginCard = () => {
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser.id
 
-  if (activeUserId) {
-    history.push('/home')
-  }
+  // if (activeUserId) {
+  //   history.push('/home')
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
