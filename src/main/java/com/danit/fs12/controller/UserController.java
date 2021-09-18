@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
@@ -80,6 +81,14 @@ public class UserController {
     System.out.println(rq);
     UserRs user = userFacade.updateIntro(rq);
     return ResponseEntity.ok(user);
+  }
+
+  // get the List of users that are connected with the active user
+  @GetMapping(path = "/connections")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> findConnectedUsers() {
+    List<UserRs> usersList = userFacade.findConnectedUsers();
+    return ResponseEntity.ok(usersList);
   }
 
 }

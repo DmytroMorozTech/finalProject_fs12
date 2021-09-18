@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.CommentViews;
 import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.facade.CommentFacade;

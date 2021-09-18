@@ -5,7 +5,7 @@ import LikeMiniIcon from '../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React from 'react'
 import styles from './styles'
 import clsx from 'clsx'
-import getTimeSinceCreated from '../../../../../../../services/timePassedService'
+import getTimeSinceCreated from '../../../../../../../services/timePassedServiceShort'
 import SeeMore from '../../../SeeMore/SeeMore'
 import { useDispatch } from 'react-redux'
 import {

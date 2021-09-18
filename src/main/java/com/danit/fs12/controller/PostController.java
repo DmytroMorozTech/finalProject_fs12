@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.PostViews;
 import com.danit.fs12.entity.post.PostRq;
 import com.danit.fs12.entity.post.PostRs;
 import com.danit.fs12.facade.PostFacade;

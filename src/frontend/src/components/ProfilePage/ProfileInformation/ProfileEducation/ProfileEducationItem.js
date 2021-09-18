@@ -24,7 +24,7 @@ const ProfileEducationItem = (props) => {
       <div>
         <Typography variant="body1" className={classes.title}>School: {school}</Typography>
         <Typography>Degree: {degreeReceived}</Typography>
-        <Typography>{convertedDateStart}{dash}{convertedDateFinish}</Typography>
+        <Typography>{convertedDateStart} {dash} {convertedDateFinish}</Typography>
         <Typography>Field of study: {fieldOfStudy}</Typography>
         <Typography>Description: {description}</Typography>
         <Typography>Activities: {activities}</Typography>

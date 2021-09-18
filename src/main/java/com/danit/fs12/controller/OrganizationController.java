@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.organization.OrganizationRs;
 import com.danit.fs12.facade.OrganizationFacade;
 import com.fasterxml.jackson.annotation.JsonView;

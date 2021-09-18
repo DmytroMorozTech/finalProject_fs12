@@ -8,6 +8,7 @@ const UsersWhoLiked = (props) => {
   const { id, usersWhoLiked } = props
 
   const usersWhoLikedThisId = usersWhoLiked[id]
+
   const classes = styles()
 
   return (
@@ -25,7 +26,10 @@ const UsersWhoLiked = (props) => {
       </div>
       <hr className={classes.line}/>
       <div className={classes.usersWhoLiked}>
-        {usersWhoLikedThisId.map(user => <UsersWhoLikedItem key={user.id} user={user}/>)}
+        {usersWhoLikedThisId.map(
+          user => <UsersWhoLikedItem key={user.id} user={user}
+            isLastChild={usersWhoLikedThisId[usersWhoLikedThisId.length - 1].id === user.id}/>
+        )}
       </div>
     </div>
   )
