@@ -22,6 +22,10 @@ public class InvitationFacade extends GeneralFacade<Invitation, InvitationRq, In
     return convertToDto(savedInvitation);
   }
 
+  public void acceptInvitation(Long id) {
+    invitationService.acceptInvitation(id);
+  }
+
   public List<InvitationRs> getInvitationsForMe() {
     List<Invitation> invitationsForMe = invitationService.getInvitationsForMe();
     return invitationsForMe.stream().map(this::convertToDto).collect(Collectors.toList());

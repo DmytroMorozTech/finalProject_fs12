@@ -1,9 +1,9 @@
 package com.danit.fs12.entity.user;
 
-import com.danit.fs12.controller.CommentViews;
-import com.danit.fs12.controller.InvitationViews;
-import com.danit.fs12.controller.PostViews;
-import com.danit.fs12.controller.UserViews;
+import com.danit.fs12.controller.views.CommentViews;
+import com.danit.fs12.controller.views.InvitationViews;
+import com.danit.fs12.controller.views.PostViews;
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.certification.CertificationRs;
 import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.entity.group.Group;

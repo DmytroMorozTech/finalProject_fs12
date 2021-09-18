@@ -7,7 +7,7 @@ import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSquare'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
-import { deleteInvitationAction } from '../../../../redux/Network/networkActions'
+import { deleteInvitationAction, acceptInvitationAction } from '../../../../redux/Network/networkActions'
 
 function Invitation (props) {
   const {isReceived, isManage, numberOfConnection = 1,
@@ -22,6 +22,10 @@ function Invitation (props) {
 
   const onDeleteHandler = () => {
     dispatch(deleteInvitationAction(id))
+  }
+
+  const onAcceptInvitationHandler = () => {
+    dispatch(acceptInvitationAction(id))
   }
 
   return (
@@ -68,7 +72,7 @@ function Invitation (props) {
         </div>
         {isReceived
           ? <div>
-            <SharedButton title='Accept' variant='outlined'/>
+            <SharedButton title='Accept' variant='outlined' onClick={onAcceptInvitationHandler}/>
           </div>
           : ''
         }
