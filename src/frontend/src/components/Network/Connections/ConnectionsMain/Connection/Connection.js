@@ -27,7 +27,7 @@ function Connection (props) {
   const timeSinceCreated = getTimeSinceCreated(createdDate)
 
   useEffect(() => {
-    dispatch(getUserChatsAction(id && id))
+    dispatch(getUserChatsAction(id))
   }, [dispatch, id])
 
   const handleRemoved = () => {

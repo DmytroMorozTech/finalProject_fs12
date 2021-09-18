@@ -60,18 +60,24 @@ function NewChat (props) {
   }, [newChatId, messagesList])
 
   const findIfChatExist = () => {
+    console.log('findIfChatExist')
     let chatId = ''
-    chatsList.forEach(c => {
-      if (c.users.filter(u => u.id === activeUserId).length > 0) {
-        chatId = c.id
-        dispatch(createMessageAction({chatId, text: messageValue}))
-      } else if (isChatOpen) {
-        dispatch(createMessageAction({newChatId, text: messageValue}))
-      } else {
-        dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
-        dispatch(isTemporaryChatOpenAction(true))
-      }
-    })
+    console.log(chatsList)
+    if (chatsList.length !== 0) {
+      chatsList.forEach(c => {
+        if (c.users.filter(u => u.id === activeUserId).length > 0) {
+          chatId = c.id
+          dispatch(createMessageAction({chatId, text: messageValue}))
+        } else if (isChatOpen) {
+          console.log('isChatOpen')
+          dispatch(createMessageAction({newChatId, text: messageValue}))
+        }
+      })
+    } else {
+      console.log('createNewCHat')
+      dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
+      dispatch(isTemporaryChatOpenAction(true))
+    }
   }
 
   const handleMessageInputChange = e => {
@@ -80,6 +86,7 @@ function NewChat (props) {
   }
 
   const handleSendMessageButton = () => {
+    console.log('Handle submit')
     findIfChatExist()
     setMessageValue('')
   }
