@@ -152,13 +152,13 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private Set<User> usersFollowing; // users that are following the current User
 
-//  @OneToMany(
-//    mappedBy = "user",
-//    cascade = CascadeType.ALL)
-//  @ToString.Exclude
-//  @EqualsAndHashCode.Exclude
-//  @JsonIgnore
-//  private List<Organization> organizationsFollowed = new ArrayList<>();
+  //  @OneToMany(
+  //    mappedBy = "user",
+  //    cascade = CascadeType.ALL)
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  @JsonIgnore
+  //  private List<Organization> organizationsFollowed = new ArrayList<>();
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(

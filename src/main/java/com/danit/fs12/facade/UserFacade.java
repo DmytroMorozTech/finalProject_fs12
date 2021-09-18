@@ -95,4 +95,11 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       .map(this::convertToDto)
       .collect(Collectors.toList());
   }
+
+  public List<UserRs> getMutualConnections(Long activeUserId, Long userWhomId) {
+    List<User> mutualConnections = userService.getMutualConnections(activeUserId, userWhomId);
+    return mutualConnections.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
+  }
 }

@@ -91,6 +91,14 @@ public class UserController {
     return ResponseEntity.ok(usersList);
   }
 
+  @GetMapping(path = "/mutual_connections/{activeUserId}/{userWhomId}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> getMutualConnections(
+    @PathVariable Long activeUserId, @PathVariable Long userWhomId) {
+    List<UserRs> mutualConnections = userFacade.getMutualConnections(activeUserId, userWhomId);
+    return ResponseEntity.ok(mutualConnections);
+  }
+
 }
 
 
