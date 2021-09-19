@@ -12,7 +12,7 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
   createChatWithBothMembersAction,
-  createMessageAction,
+  createMessageAction, getChatMessagesAction,
   isTemporaryChatOpenAction
 } from '../../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
@@ -42,7 +42,6 @@ function NewChat (props) {
   const chatsList = useSelector(allChats)
   const userIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
-  const activeUserId = activeUser && activeUser.id
   const newChat = useSelector(newChatData)
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
@@ -60,21 +59,19 @@ function NewChat (props) {
   }, [newChatId, messagesList])
 
   const findIfChatExist = () => {
-    console.log('findIfChatExist')
     let chatId = ''
-    console.log(chatsList)
-    if (chatsList.length !== 0) {
-      chatsList.forEach(c => {
-        if (c.users.filter(u => u.id === activeUserId).length > 0) {
-          chatId = c.id
-          dispatch(createMessageAction({chatId, text: messageValue}))
-        } else if (isChatOpen) {
-          console.log('isChatOpen')
-          dispatch(createMessageAction({newChatId, text: messageValue}))
-        }
-      })
-    } else {
-      console.log('createNewCHat')
+    let chatExist = ''
+    chatsList.forEach(c => {
+      if (c.users.filter(u => u.id === currentUser.id).length > 0) {
+        chatId = c.id
+        dispatch(createMessageAction({chatId, text: messageValue}))
+      } else if (isChatOpen) {
+        dispatch(createMessageAction({newChatId, text: messageValue}))
+      } else {
+        chatExist = false
+      }
+    })
+    if (!chatExist) {
       dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
       dispatch(isTemporaryChatOpenAction(true))
     }
@@ -86,7 +83,6 @@ function NewChat (props) {
   }
 
   const handleSendMessageButton = () => {
-    console.log('Handle submit')
     findIfChatExist()
     setMessageValue('')
   }
