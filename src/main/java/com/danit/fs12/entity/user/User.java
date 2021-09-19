@@ -136,20 +136,22 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "followingUserId"),
-    inverseJoinColumns = @JoinColumn(name = "followedUserId"))
+    joinColumns = @JoinColumn(name = "userWhoId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhomId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowed; // users that current User follows
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "followedUserId"),
-    inverseJoinColumns = @JoinColumn(name = "followingUserId"))
+    joinColumns = @JoinColumn(name = "userWhomId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhoId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowing; // users that are following the current User
 
   //  @OneToMany(
