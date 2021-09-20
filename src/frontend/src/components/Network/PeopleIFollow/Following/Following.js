@@ -6,9 +6,10 @@ import React, { useState } from 'react'
 import FollowingAdditions from './FollowingAdditions/FollowingAdditions'
 import FollowProfile from '../FollowProfile/FollowProfile'
 
-function Following () {
-  const classes = styles()
+function Following (props) {
+  const {usersFollowing} = props
 
+  const classes = styles()
   const [kindOfFilter, setKindOfFilter] = useState('All')
 
   const handleAll = () => {
@@ -48,7 +49,7 @@ function Following () {
         </div>
       </div>
       <div className={classes.peopleFollowing}>
-        <FollowProfile/>
+        {usersFollowing.map(user => <FollowProfile key={user.id} user={user}/>)}
       </div>
     </div>
   )

@@ -74,4 +74,7 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
 
+  @JsonView({UserViews.Base.class})
+  private Boolean isFollowedByActiveUser;
+
 }

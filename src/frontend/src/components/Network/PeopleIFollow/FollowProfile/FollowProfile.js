@@ -7,7 +7,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import AddIcon from '@material-ui/icons/Add'
 
 function FollowProfile (props) {
-  const {id = 6, avatarPublicId, fullName = 'Sheldon Cooper', workPlace = 'Scientist', numberFollowers = 50} = props
+  const {id, avatarPublicId, fullName, workPlace, numberFollowers = 50} = props.user
   const classes = styles()
 
   const linkToUserProfile = '/profile' + id

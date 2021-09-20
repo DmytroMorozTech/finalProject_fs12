@@ -19,7 +19,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 
 function NetworkLeft (props) {
   const classes = styles()
-  const {numberOfConnections} = props
+  const {numberOfConnections, numberOfUsersFollowed} = props
 
   const {
     // numberContacts,
@@ -49,7 +49,7 @@ function NetworkLeft (props) {
     {
       Icon: <PermIdentityOutlinedIcon fontSize="inherit"/>,
       title: 'People I Follow',
-      number: numberPeopleIFollow,
+      number: numberOfUsersFollowed,
       to: '/network/following', // this is temporary hardcoded
       onClick: () => console.log('People I Follow')
     },

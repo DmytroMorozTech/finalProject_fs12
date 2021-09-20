@@ -1,3 +1,5 @@
 export const invitationsForMeSelector = (store) => store.network.invitationsForMe
 export const invitationsFromMeSelector = (store) => store.network.invitationsFromMe
 export const connectionsSelector = (store) => store.network.connections
+export const usersFollowedSelector = (store) => store.network.usersFollowed
+export const usersFollowingSelector = (store) => store.network.usersFollowing

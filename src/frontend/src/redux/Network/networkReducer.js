@@ -37,6 +37,12 @@ const networkReducer = (state = initialState, action) => {
     case actions.SAVE_MY_CONNECTIONS:
       return { ...state, connections: [...action.payload] }
 
+    case actions.SAVE_USERS_FOLLOWING:
+      return { ...state, usersFollowing: [...action.payload] }
+
+    case actions.SAVE_USERS_FOLLOWED:
+      return { ...state, usersFollowed: [...action.payload] }
+
     default: {
       return state
     }

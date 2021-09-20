@@ -4,26 +4,43 @@ import NetworkMain from './NetworkMain/NetworkMain'
 import Grid from '@material-ui/core/Grid'
 import { Container } from '@material-ui/core'
 import NetworkLeft from './NetworkLeft/NetworkLeft'
-import {getInvitationsForMeAction, getInvitationsFromMeAction, getMyConnectionsAction}
+import {
+  getInvitationsForMeAction,
+  getInvitationsFromMeAction,
+  getMyConnectionsAction,
+  getUsersFollowedAction,
+  getUsersFollowingAction
+}
   from '../../redux/Network/networkActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { connectionsSelector, invitationsForMeSelector } from '../../redux/Network/networkSelector'
+import {
+  connectionsSelector,
+  invitationsForMeSelector,
+  usersFollowedSelector, usersFollowingSelector
+} from '../../redux/Network/networkSelector'
 
 function Network () {
   const dispatch = useDispatch()
   const classes = styles()
   const invitationsForMe = useSelector(invitationsForMeSelector)
   const connections = useSelector(connectionsSelector)
+  const usersFollowed = useSelector(usersFollowedSelector)
+  const usersFollowing = useSelector(usersFollowingSelector)
 
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
   useEffect(() => {
     dispatch(getInvitationsForMeAction())
     dispatch(getInvitationsFromMeAction())
     dispatch(getMyConnectionsAction())
+
+    dispatch(getUsersFollowingAction())
+    dispatch(getUsersFollowedAction())
   }, [dispatch])
 
   useEffect(() => {
     dispatch(getMyConnectionsAction())
+    dispatch(getUsersFollowingAction())
+    dispatch(getUsersFollowedAction())
   }, [dispatch, invitationsForMe])
 
   return (
@@ -31,7 +48,7 @@ function Network () {
       <Grid container spacing={4} justifyContent="center">
 
         <Grid item className={classes.networkLeft}>
-          <NetworkLeft numberOfConnections={connections.length}/>
+          <NetworkLeft numberOfConnections={connections.length} numberOfUsersFollowed={usersFollowed.length}/>
         </Grid>
 
         <Grid item className={classes.networkMain}>

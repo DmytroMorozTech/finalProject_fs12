@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 function PeopleIFollowHeader (props) {
   const classes = styles()
 
-  const {numberFollowing = 80, numberFollowers = 90} = props
+  const {numberOfUsersFollowing, numberOfUsersFollowed} = props
 
   return (
     <div className={classes.header}>
@@ -18,12 +18,12 @@ function PeopleIFollowHeader (props) {
         </NavLink>
         <NavLink to='/network/following' className={classes.headerItem} activeClassName={classes.active}>
           <Typography variant='h5' color='inherit'>
-            {numberFollowing} Following
+            {numberOfUsersFollowing} Following
           </Typography>
         </NavLink>
         <NavLink to='/network/followers' className={classes.headerItem} activeClassName={classes.active}>
           <Typography variant='h5' color='inherit'>
-            {numberFollowers} Followers
+            {numberOfUsersFollowed} Followers
           </Typography>
         </NavLink>
       </div>
