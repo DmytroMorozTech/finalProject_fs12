@@ -99,6 +99,12 @@ public class UserController {
     return ResponseEntity.ok(mutualConnections);
   }
 
+  @PutMapping(path = "/toggle_follow_user/{userId}")
+  public ResponseEntity<?> toggleFollowUser(@PathVariable Long userId) {
+    userFacade.toggleFollowUser(userId);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
 }
 
 

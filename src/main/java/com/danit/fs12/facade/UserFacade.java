@@ -102,4 +102,8 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       .map(this::convertToDto)
       .collect(Collectors.toList());
   }
+
+  public void toggleFollowUser(Long userId) {
+    userService.toggleFollowUser(userId);
+  }
 }

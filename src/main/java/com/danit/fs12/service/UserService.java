@@ -253,4 +253,18 @@ public class UserService extends GeneralService<User> {
 
     return findAllById(mutualConnectionsIds);
   }
+
+  public void toggleFollowUser(Long userId) {
+    User userForToggleFollow = findEntityById(userId);
+    User activeUser = getActiveUser();
+    boolean userIsFollowed = activeUser.getUsersFollowed().contains(userForToggleFollow);
+    if (userIsFollowed) {
+      activeUser.getUsersFollowed().remove(userForToggleFollow);
+      save(activeUser);
+      return;
+    }
+    getActiveUser().getUsersFollowed().add(userForToggleFollow);
+    save(activeUser);
+
+  }
 }

@@ -16,6 +16,10 @@ public class ConnectionService extends GeneralService<Connection> {
     User userWhoInvited = userService.findEntityById(userWhoInvitedId);
     User activeUser = userService.getActiveUser();
     Connection connection = new Connection(userWhoInvited, activeUser);
+
+    userWhoInvited.getUsersFollowing().add(activeUser); // works correctly
+    activeUser.getUsersFollowing().add(userWhoInvited);
+
     return save(connection);
   }
 

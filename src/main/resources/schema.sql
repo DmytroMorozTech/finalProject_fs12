@@ -88,9 +88,9 @@ create table educations
 
 create table followers
 (
-    followed_user_id  int8 not null,
-    following_user_id int8 not null,
-    primary key (following_user_id, followed_user_id)
+    user_whom_id int8 not null,
+    user_who_id int8 not null,
+    primary key (user_who_id, user_whom_id)
 );
 
 create table groups
@@ -221,9 +221,9 @@ alter table comments_likes
 alter table educations
     add constraint FKff5wc10svmgvwumia2rsfaud6 foreign key (user_id) references users;
 alter table followers
-    add constraint FKndvqwh40g1qt4xirl6vp2d6m6 foreign key (following_user_id) references users;
+    add constraint FKndvqwh40g1qt4xirl6vp2d6m6 foreign key (user_who_id) references users;
 alter table followers
-    add constraint FKi8o2nfxij3gj4wv568sr087dn foreign key (followed_user_id) references users;
+    add constraint FKi8o2nfxij3gj4wv568sr087dn foreign key (user_whom_id) references users;
 alter table messages
     add constraint FK64w44ngcpqp99ptcb9werdfmb foreign key (chat_id) references chats;
 alter table messages

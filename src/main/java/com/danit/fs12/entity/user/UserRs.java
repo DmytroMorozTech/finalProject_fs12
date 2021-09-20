@@ -66,12 +66,6 @@ public class UserRs {
   private List<Group> groups;
 
   @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowed;
-
-  @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowing;
-
-  @JsonView(UserViews.Profile.class)
   private List<WorkPlaceRs> workPlaces;
 
   @JsonView(UserViews.Profile.class)
