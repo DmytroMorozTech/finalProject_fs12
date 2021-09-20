@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from './styles'
-import Image from '../../../shared/Image/Image'
+import Image from '../../shared/Image/Image'
 import clsx from 'clsx'
 
 function UserMessage ({text, timeTitle, timeSent, messageSender}) {
