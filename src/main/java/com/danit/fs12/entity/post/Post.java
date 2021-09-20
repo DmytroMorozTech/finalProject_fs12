@@ -5,6 +5,7 @@ import com.danit.fs12.entity.bookmark.Bookmark;
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.utils.ActiveUserUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -90,12 +91,14 @@ public class Post extends AbstractEntity {
   }
 
   public Boolean getIsLikedByActiveUser() {
-    return postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), 1L));
+    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    return postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId));
   }
 
   public Boolean getIsBookmarkedByActiveUser() {
+    Long activeUserId = ActiveUserUtils.getActiveUserId();
     return bookmarks.stream()
-      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), 1L));
+      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId));
   }
 
 }
