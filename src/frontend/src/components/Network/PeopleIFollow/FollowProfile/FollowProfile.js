@@ -18,7 +18,7 @@ function FollowProfile (props) {
   const [isFollowed, setIsFollowed] = useState(isFollowedByActiveUser)
 
   const toggleFollowHandler = () => {
-    dispatch(toggleUserFollowedAction(id, setIsFollowed))
+    dispatch(toggleUserFollowedAction(id, setIsFollowed, isFollowed))
   }
 
   return (
@@ -50,11 +50,11 @@ function FollowProfile (props) {
       </div>
       <hr className={classes.line}/>
       <div className={classes.follow} onClick={toggleFollowHandler}>
-        {isFollowedByActiveUser
+        {isFollowed
           ? <CheckIcon fontSize='inherit'/>
           : <AddIcon fontSize='inherit' color='primary'/>
         }
-        {isFollowedByActiveUser
+        {isFollowed
           ? <Typography variant="h5" className={classes.followTitle}>Following</Typography>
           : <Typography variant="h5" color='primary' className={classes.followTitle}>Follow</Typography>
         }

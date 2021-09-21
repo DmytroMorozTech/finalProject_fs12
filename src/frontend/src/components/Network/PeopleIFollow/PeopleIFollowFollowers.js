@@ -27,7 +27,8 @@ function PeopleIFollowFollowers () {
         <Grid item xs={12}>
           <PeopleIFollowHeader
             numberOfUsersFollowingMe={usersFollowingMe.length}
-            numberOfUsersFollowedByMe={usersFollowedByMe.length}/>
+            numberOfUsersFollowedByMe={usersFollowedByMe.length}
+          />
         </Grid>
 
         <Grid item xs={12}>

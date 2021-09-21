@@ -1,12 +1,19 @@
 import { Typography } from '@material-ui/core'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import styles from './styles'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router'
 
 function PeopleIFollowHeader (props) {
   const classes = styles()
 
   const {numberOfUsersFollowedByMe, numberOfUsersFollowingMe} = props
+
+  const history = useHistory()
+
+  const handlePageRefresh = () => {
+    history.go(0)
+  }
 
   return (
     <div className={classes.header}>
@@ -27,7 +34,7 @@ function PeopleIFollowHeader (props) {
           </Typography>
         </NavLink>
       </div>
-      <SharedButton title='Done' component={Link} to='/home'/>
+      <SharedButton title='Done' onClick={handlePageRefresh}/>
     </div>
   )
 }
