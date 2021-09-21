@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -17,16 +18,14 @@ public class NotificationService extends GeneralService<Notification> {
   private final UserService userService;
   private final NotificationRepository notificationRepository;
 
-  public Notification createNotification(Notification notification) {
+  public void createNotification(Notification notification) {
     User activeUser = userService.getActiveUser();
-    notification.setUser(activeUser);
-
-    Notification savedInDbNotification = save(notification);
-
-    activeUser.getNotifications().add(savedInDbNotification);
-    userRepository.save(activeUser);
-
-    return savedInDbNotification;
+    Set<User> usersFollowingActiveUser = activeUser.getUsersFollowing();
+    for (User user: usersFollowingActiveUser) {
+      Notification savedInDbNotification = save(notification);
+      user.getNotifications().add(savedInDbNotification);
+      userService.save(user);
+    }
   }
 
   public List<Notification> getNotificationsForActiveUser() {

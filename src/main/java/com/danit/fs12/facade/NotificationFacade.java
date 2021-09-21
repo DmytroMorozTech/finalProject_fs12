@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class NotificationFacade extends GeneralFacade<Notification, NotificationRq, NotificationRs> {
   private final NotificationService notificationService;
 
-  public NotificationRs createNotification(NotificationRq rq) {
-    Notification notification = convertToEntity(rq);
-    Notification savedNotification = notificationService.createNotification(notification);
-    return convertToDto(savedNotification);
-  }
+//  public NotificationRs createNotification(NotificationRq rq) {
+//    Notification notification = convertToEntity(rq);
+//    Notification savedNotification = notificationService.createNotification(notification);
+//    return convertToDto(savedNotification);
+//  }
 
   public List<NotificationRs> getNotificationsForActiveUser() {
     List<NotificationRs> notificationRsList = notificationService.getNotificationsForActiveUser()
