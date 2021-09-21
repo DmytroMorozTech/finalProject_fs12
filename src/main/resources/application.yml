@@ -22,8 +22,8 @@ spring:
             clientId: 645730785365-1qk27l2efhkoanabkurvchdltk0f6trs.apps.googleusercontent.com
             clientSecret: yrfnMp5eHI-kUYlNVhknG4T5
             scope:
-             - email
-             - profile
+              - email
+              - profile
   mail:
     host: smtp.gmail.com
     username: linkedin.dan.it@gmail.com

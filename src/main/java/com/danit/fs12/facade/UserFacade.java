@@ -108,14 +108,14 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
     return convertToDto(user);
   }
 
-  public Set<UserRs> getUsersFollowed(){
+  public Set<UserRs> getUsersFollowed() {
     Set<User> followedUsers = userService.getUsersFollowed();
     return followedUsers.stream()
       .map(this::convertToDto)
       .collect(Collectors.toSet());
   }
 
-  public Set<UserRs> getUsersFollowing(){
+  public Set<UserRs> getUsersFollowing() {
     Set<User> followingUsers = userService.getUsersFollowing();
     return followingUsers.stream()
       .map(this::convertToDto)
