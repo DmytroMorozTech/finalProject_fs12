@@ -89,7 +89,7 @@ create table educations
 create table followers
 (
     user_whom_id int8 not null,
-    user_who_id int8 not null,
+    user_who_id  int8 not null,
     primary key (user_who_id, user_whom_id)
 );
 

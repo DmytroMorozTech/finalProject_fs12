@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -100,10 +101,26 @@ public class UserController {
   }
 
   @PutMapping(path = "/toggle_follow_user/{userId}")
-  public ResponseEntity<?> toggleFollowUser(@PathVariable Long userId) {
-    userFacade.toggleFollowUser(userId);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<UserRs> toggleFollowUser(@PathVariable Long userId) {
+    UserRs user = userFacade.toggleFollowUser(userId);
+    return ResponseEntity.ok(user);
   }
+
+  @GetMapping(path = "/followed")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowed() {
+    Set<UserRs> followedUsers = userFacade.getUsersFollowed();
+    return ResponseEntity.ok(followedUsers);
+  }
+
+  @GetMapping(path = "/following")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowing() {
+    Set<UserRs> followingUsers = userFacade.getUsersFollowing();
+    return ResponseEntity.ok(followingUsers);
+  }
+
 
 }
 

@@ -14,6 +14,7 @@ import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.workplace.WorkPlace;
+import com.danit.fs12.utils.ActiveUserUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -271,5 +273,14 @@ public class User extends AbstractEntity {
     return workPlaceOpt.isPresent()
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
+  }
+
+  public Boolean getIsFollowedByActiveUser() {
+    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    return getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
+  }
+
+  public Integer getNumberOfFollowers() {
+    return getUsersFollowing().size();
   }
 }

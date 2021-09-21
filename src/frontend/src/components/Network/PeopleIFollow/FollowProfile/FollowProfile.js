@@ -5,17 +5,20 @@ import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import CheckIcon from '@material-ui/icons/Check'
 import AddIcon from '@material-ui/icons/Add'
+import { toggleUserFollowedAction } from '../../../../redux/Network/networkActions'
+import { useDispatch } from 'react-redux'
 
 function FollowProfile (props) {
-  const {id = 6, avatarPublicId, fullName = 'Sheldon Cooper', workPlace = 'Scientist', numberFollowers = 50} = props
+  const {id, avatarPublicId, fullName, workPlace, numberOfFollowers, isFollowedByActiveUser} = props.user
   const classes = styles()
+  const dispatch = useDispatch()
 
   const linkToUserProfile = '/profile' + id
 
-  const [follow, setFollow] = useState(true)
+  const [isFollowed, setIsFollowed] = useState(isFollowedByActiveUser)
 
-  const handleFollow = () => {
-    follow ? setFollow(false) : setFollow(true)
+  const toggleFollowHandler = () => {
+    dispatch(toggleUserFollowedAction(id, setIsFollowed, isFollowed))
   }
 
   return (
@@ -41,17 +44,17 @@ function FollowProfile (props) {
         <div>
           <hr className={classes.smallLine}/>
           <Typography variant="h6">
-            {numberFollowers} followers
+            {numberOfFollowers} followers
           </Typography>
         </div>
       </div>
       <hr className={classes.line}/>
-      <div className={classes.follow} onClick={handleFollow}>
-        {follow
+      <div className={classes.follow} onClick={toggleFollowHandler}>
+        {isFollowed
           ? <CheckIcon fontSize='inherit'/>
           : <AddIcon fontSize='inherit' color='primary'/>
         }
-        {follow
+        {isFollowed
           ? <Typography variant="h5" className={classes.followTitle}>Following</Typography>
           : <Typography variant="h5" color='primary' className={classes.followTitle}>Follow</Typography>
         }

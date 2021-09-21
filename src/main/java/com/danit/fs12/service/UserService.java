@@ -76,10 +76,6 @@ public class UserService extends GeneralService<User> {
     return findAllById(userIds);
   }
 
-  public User findUserById(Long id) {
-    return findEntityById(id);
-  }
-
   public User saveUser(User user) {
     user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
     return userRepository.save(user);
@@ -254,17 +250,26 @@ public class UserService extends GeneralService<User> {
     return findAllById(mutualConnectionsIds);
   }
 
-  public void toggleFollowUser(Long userId) {
+  public User toggleFollowUser(Long userId) {
     User userForToggleFollow = findEntityById(userId);
     User activeUser = getActiveUser();
     boolean userIsFollowed = activeUser.getUsersFollowed().contains(userForToggleFollow);
     if (userIsFollowed) {
       activeUser.getUsersFollowed().remove(userForToggleFollow);
       save(activeUser);
-      return;
+      return userForToggleFollow;
     }
     getActiveUser().getUsersFollowed().add(userForToggleFollow);
     save(activeUser);
-
+    return userForToggleFollow;
   }
+
+  public Set<User> getUsersFollowed() {
+    return getActiveUser().getUsersFollowed();
+  }
+
+  public Set<User> getUsersFollowing() {
+    return getActiveUser().getUsersFollowing();
+  }
+
 }

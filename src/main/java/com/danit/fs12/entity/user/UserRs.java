@@ -13,12 +13,11 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class,InvitationViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private Long id;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class})
@@ -73,5 +72,11 @@ public class UserRs {
 
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
+
+  @JsonView({UserViews.Base.class})
+  private Boolean isFollowedByActiveUser;
+
+  @JsonView({UserViews.Base.class})
+  private Integer numberOfFollowers;
 
 }
