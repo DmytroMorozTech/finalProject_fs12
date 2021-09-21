@@ -1,8 +1,9 @@
 package com.danit.fs12.entity.user;
 
-import com.danit.fs12.controller.CommentViews;
-import com.danit.fs12.controller.PostViews;
-import com.danit.fs12.controller.UserViews;
+import com.danit.fs12.controller.views.CommentViews;
+import com.danit.fs12.controller.views.InvitationViews;
+import com.danit.fs12.controller.views.PostViews;
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.certification.CertificationRs;
 import com.danit.fs12.entity.education.EducationRs;
 import com.danit.fs12.entity.group.Group;
@@ -12,12 +13,11 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private Long id;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class})
@@ -25,8 +25,10 @@ public class UserRs {
 
   private LocalDateTime lastModifiedDate;
 
+  @JsonView({UserViews.Base.class})
   private String firstName;
 
+  @JsonView({UserViews.Base.class})
   private String lastName;
 
   @JsonView(UserViews.Profile.class)
@@ -38,16 +40,16 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private String city;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String fullName;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String avatarPublicId;
 
   @JsonView(UserViews.Profile.class)
   private String profileBgPublicId;
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String positionAndCompany;
 
   @JsonView(UserViews.Profile.class)
@@ -56,17 +58,11 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private String age;
 
-  @JsonView(UserViews.Profile.class)
+  @JsonView(UserViews.Base.class)
   private String email;
 
   @JsonView(UserViews.Profile.class)
   private List<Group> groups;
-
-  @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowed;
-
-  @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowing;
 
   @JsonView(UserViews.Profile.class)
   private List<WorkPlaceRs> workPlaces;
@@ -77,5 +73,10 @@ public class UserRs {
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
 
+  @JsonView({UserViews.Base.class})
+  private Boolean isFollowedByActiveUser;
+
+  @JsonView({UserViews.Base.class})
+  private Integer numberOfFollowers;
 
 }

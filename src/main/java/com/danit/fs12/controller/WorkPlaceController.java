@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.workplace.WorkPlaceRq;
 import com.danit.fs12.entity.workplace.WorkPlaceRs;
 import com.danit.fs12.facade.WorkPlaceFacade;

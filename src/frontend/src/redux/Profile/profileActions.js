@@ -56,7 +56,7 @@ export const deleteEducationAction = (id) => (dispatch) => {
     .delete(`/api/educations/${id}`)
     .then((res) => res.status)
     .then((status) => {
-      if (parseInt(status) === 200 || parseInt(status) === 204) {
+      if (status === 200 || status === 204) {
         dispatch({ type: actions.DELETE_EDUCATION, payload: id })
         toast.info('Education was deleted',
           {position: toast.POSITION.TOP_CENTER, autoClose: 2500})

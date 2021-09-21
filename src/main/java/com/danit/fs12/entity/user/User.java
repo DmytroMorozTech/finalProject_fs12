@@ -6,13 +6,16 @@ import com.danit.fs12.entity.certification.Certification;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
+import com.danit.fs12.entity.connection.Connection;
 import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
+import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.workplace.WorkPlace;
+import com.danit.fs12.utils.ActiveUserUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +37,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -76,6 +80,9 @@ public class User extends AbstractEntity {
 
   @Column(name = "profile_bg_public_id")
   private String profileBgPublicId;
+
+  @Column(name = "reset_password_code")
+  private String resetPasswordNumber;
 
   @Enumerated(EnumType.STRING)
   private Provider provider;
@@ -132,21 +139,63 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "userId"),
-    inverseJoinColumns = @JoinColumn(name = "followedUserId"))
+    joinColumns = @JoinColumn(name = "userWhoId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhomId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowed; // users that current User follows
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "followedUserId"),
-    inverseJoinColumns = @JoinColumn(name = "userId"))
+    joinColumns = @JoinColumn(name = "userWhomId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhoId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowing; // users that are following the current User
+
+  //  @OneToMany(
+  //    mappedBy = "user",
+  //    cascade = CascadeType.ALL)
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  @JsonIgnore
+  //  private List<Organization> organizationsFollowed = new ArrayList<>();
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name = "invitations",
+    joinColumns = @JoinColumn(
+      name = "user_who_id",
+      foreignKey = @ForeignKey(name = "invitations_user_who_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "user_whom_id",
+      foreignKey = @ForeignKey(name = "invitations_user_whom_id_fk")
+    ))
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Invitation> invitations = new ArrayList<>();
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name = "connections",
+    joinColumns = @JoinColumn(
+      name = "user_who_id",
+      foreignKey = @ForeignKey(name = "connections_user_who_id_fk")
+    ),
+    inverseJoinColumns = @JoinColumn(
+      name = "user_whom_id",
+      foreignKey = @ForeignKey(name = "connections_user_whom_id_fk")
+    ))
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Connection> connections = new ArrayList<>();
 
   @OneToMany(
     mappedBy = "user",
@@ -233,5 +282,14 @@ public class User extends AbstractEntity {
     return workPlaceOpt.isPresent()
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
+  }
+
+  public Boolean getIsFollowedByActiveUser() {
+    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    return getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
+  }
+
+  public Integer getNumberOfFollowers() {
+    return getUsersFollowing().size();
   }
 }

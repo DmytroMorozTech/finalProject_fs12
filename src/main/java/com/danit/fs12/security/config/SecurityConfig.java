@@ -1,8 +1,8 @@
 package com.danit.fs12.security.config;
 
 import com.danit.fs12.security.jwt.JwtFilter;
-import com.danit.fs12.security.oauth2.CustomOAuth2User;
 import com.danit.fs12.security.oauth2.CustomOAuth2UserService;
+import com.danit.fs12.security.oauth2.OAuth2LoginSuccessHandler;
 import com.danit.fs12.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/resources/**").permitAll()
       .antMatchers("/oauth2/**").permitAll()
-      .antMatchers("/api/register", "/api/auth", "/", "/api/logout", "api/google_auth").permitAll()
+      .antMatchers("/api/forgot_password").permitAll()
+      .antMatchers("/api/forgot_password/**").permitAll()
+      .antMatchers("/api/register", "/api/auth", "/", "/api/logout", "api/google_auth", "/api/signup").permitAll()
       .antMatchers("/h2/**").permitAll()
       .anyRequest().authenticated()
       .and()
@@ -57,13 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .userInfoEndpoint().userService(oauthUserService)
       .and()
       .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
-        CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-        userService.processOAuthPostLogin(oauth2User.getEmail(),
-          oauth2User.getAttribute("picture"),
-          oauth2User.getAttribute("given_name"),
-          oauth2User.getAttribute("family_name"));
-        // temporary hardcoded redirect url (we must change redirect url to "/home" before deploy)
-        httpServletResponse.sendRedirect("http://localhost:3000/home");
+        new OAuth2LoginSuccessHandler(userService).onAuthenticationSuccess(httpServletRequest,
+          httpServletResponse,
+          authentication);
       })
       .and()
       .logout().permitAll()

@@ -2,6 +2,7 @@ package com.danit.fs12.service;
 
 import com.danit.fs12.entity.comment.Comment;
 import com.danit.fs12.entity.commentlike.CommentLike;
+import com.danit.fs12.entity.connection.Connection;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.Provider;
@@ -10,26 +11,40 @@ import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.exception.AuthenticationException;
 import com.danit.fs12.exception.ForbiddenException;
 import com.danit.fs12.exception.NoSuchUserException;
+import com.danit.fs12.exception.SecurityCodesDoNotMatchException;
+import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
+import com.danit.fs12.repository.ConnectionRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
+import com.danit.fs12.utils.ForgotMailLetter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService extends GeneralService<User> {
+  private final ConnectionRepository connectionRepository;
   private final PostRepository postRepository;
   private final UserRepository userRepository;
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
+  private final JavaMailSender mailSender;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -45,8 +60,20 @@ public class UserService extends GeneralService<User> {
     return usersList;
   }
 
-  public User findUserById(Long id) {
-    return findEntityById(id);
+  public List<User> findConnectedUsers() {
+    User activeUser = getActiveUser();
+    Long activeUserId = activeUser.getId();
+    List<Connection> connectionsOfActiveUser = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(activeUserId, activeUserId);
+
+    List<Long> userIds = connectionsOfActiveUser.stream()
+      .map(c -> c.getUserWho().getId().equals(activeUserId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+    //    System.out.println("Connections of user with id " + activeUserId + " are: " + userIds);
+
+    return findAllById(userIds);
   }
 
   public User saveUser(User user) {
@@ -75,22 +102,22 @@ public class UserService extends GeneralService<User> {
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
-  public void registerUser(String firstName,
+  public User registerUser(String firstName,
                            String lastName,
-                           Integer age,
-                           String phoneNumber,
                            String password,
-                           String email,
-                           String avatar) {
-    User user = new User();
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setAge(age);
-    user.setPhoneNumber(phoneNumber);
-    user.setPasswordHash(password);
-    user.setEmail(email);
-    user.setAvatarPublicId(avatar);
-    saveUser(user);
+                           String email) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = new User();
+      user.setFirstName(firstName);
+      user.setLastName(lastName);
+      user.setPasswordHash(password);
+      user.setEmail(email.toLowerCase());
+      user.setProvider(Provider.LOCAL);
+      saveUser(user);
+      return user;
+    }
   }
 
   public User updateIntro(UserEditIntroRq rq) {
@@ -121,25 +148,128 @@ public class UserService extends GeneralService<User> {
     }
   }
 
-  public void createNewUserAfterOAuthLoginSuccess(String email,
-                                                  String name,
-                                                  String avatarUrl,
-                                                  Provider provider) {
-    User user = new User();
-    user.setEmail(email);
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
+  public User updateUser(String password, String email) {
+    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+      throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
+    } else {
+      User user = userRepository.findUserByEmail(email);
+      user.setPasswordHash(password);
+      saveUser(user);
+      return user;
+    }
   }
 
-  public void updateUserAfterOAuthLoginSuccess(User user,
-                                               String name,
-                                               String avatarUrl,
-                                               Provider provider) {
-    user.setFirstName(name);
-    user.setAvatarPublicId(avatarUrl);
-    user.setProvider(provider);
-    userRepository.save(user);
+  public void sendEmail(String receiverEmail, Integer resetNumber, String userName)
+    throws MessagingException, UnsupportedEncodingException {
+    MimeMessage message = mailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message);
+
+    helper.setFrom("linkedin.dan.it@gmail.com", "LinkedIn");
+    helper.setTo(receiverEmail);
+
+    String subject = userName + ", this message contains code to confirm password change.";
+
+    helper.setSubject(subject);
+    helper.setText(new ForgotMailLetter().buildEmail(resetNumber, userName), true);
+    mailSender.send(message);
   }
+
+  public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
+    int resetNumber = (int) (Math.random() * 1000000);
+    if (userRepository.findUserByEmail(email) != null) {
+      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      User user = userRepository.findUserByEmail(email);
+      String userName = user.getFirstName();
+      user.setResetPasswordNumber(passwordEncoder.encode(String.valueOf(resetNumber)));
+      userRepository.save(user);
+      sendEmail(email, resetNumber, userName);
+    } else {
+      throw new NoSuchUserException(String.format("Could not find any user with %s email", email));
+    }
+  }
+
+  public boolean isUserRecognized(String email, String code) {
+    User user = findByEmail(email);
+    if (user != null) {
+      if (passwordEncoder.matches(code, user.getResetPasswordNumber())) {
+        return true;
+      } else {
+        throw new SecurityCodesDoNotMatchException("Entered security code is incorrect!");
+      }
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
+    }
+  }
+
+  public void updateUserPassword(String email, String newPassword) {
+    User user = findByEmail(email);
+    if (user != null) {
+      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      String encodedPassword = passwordEncoder.encode(newPassword);
+      user.setPasswordHash(encodedPassword);
+      user.setResetPasswordNumber(null);
+      userRepository.save(user);
+    } else {
+      throw new NoSuchUserException(String.format("User with email %s doesn't exist", email));
+    }
+  }
+
+  public Set<User> findUsersByName(String searchInput) {
+    List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchInput);
+    List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchInput);
+    usersList1.addAll(usersList2);
+    Set<User> foundUsers = new HashSet<>(usersList1);
+    return foundUsers;
+  }
+
+  public List<User> getMutualConnections(Long activeUserId, Long userWhomId) {
+    List<Connection> connectionsOfActiveUser = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(activeUserId, activeUserId);
+
+    List<Long> activeUserFriendsIds = connectionsOfActiveUser.stream()
+      .map(c -> c.getUserWho().getId().equals(activeUserId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+
+    List<Connection> connectionsOfUserWhom = connectionRepository
+      .findConnectionsByUserWhoIdOrUserWhomId(userWhomId, userWhomId);
+
+    List<Long> userWhomFriendsIds = connectionsOfUserWhom.stream()
+      .map(c -> c.getUserWho().getId().equals(userWhomId)
+        ? c.getUserWhom().getId()
+        : c.getUserWho().getId())
+      .collect(Collectors.toList());
+
+    // now we should find intersection between these 2 collections
+    List<Long> mutualConnectionsIds = activeUserFriendsIds.stream()
+      .distinct()
+      .filter(userWhomFriendsIds::contains)
+      .collect(Collectors.toList());
+
+    return findAllById(mutualConnectionsIds);
+  }
+
+  public User toggleFollowUser(Long userId) {
+    User userForToggleFollow = findEntityById(userId);
+    User activeUser = getActiveUser();
+    boolean userIsFollowed = activeUser.getUsersFollowed().contains(userForToggleFollow);
+    if (userIsFollowed) {
+      activeUser.getUsersFollowed().remove(userForToggleFollow);
+      save(activeUser);
+      return userForToggleFollow;
+    }
+    getActiveUser().getUsersFollowed().add(userForToggleFollow);
+    save(activeUser);
+    return userForToggleFollow;
+  }
+
+  public Set<User> getUsersFollowed() {
+    return getActiveUser().getUsersFollowed();
+  }
+
+  public Set<User> getUsersFollowing() {
+    return getActiveUser().getUsersFollowing();
+  }
+
 }

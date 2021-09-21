@@ -1,6 +1,6 @@
 package com.danit.fs12.entity.post;
 
-import com.danit.fs12.controller.PostViews;
+import com.danit.fs12.controller.views.PostViews;
 import com.danit.fs12.entity.user.UserRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;

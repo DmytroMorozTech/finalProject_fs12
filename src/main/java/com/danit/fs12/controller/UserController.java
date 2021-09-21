@@ -1,5 +1,6 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.user.UserEditIntroRq;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -29,6 +31,13 @@ public class UserController {
   List<UserRs> findAll() {
     List<UserRs> allUsers = userFacade.findAll();
     return allUsers;
+  }
+
+  @JsonView(UserViews.Base.class)
+  @GetMapping(path = "/find_by_name/{searchInput}")
+  public ResponseEntity<List<UserRs>> findByName(@PathVariable String searchInput) {
+    List<UserRs> foundUsers = userFacade.findUsersByName(searchInput);
+    return ResponseEntity.ok(foundUsers);
   }
 
   @JsonView(UserViews.Profile.class)
@@ -74,6 +83,45 @@ public class UserController {
     UserRs user = userFacade.updateIntro(rq);
     return ResponseEntity.ok(user);
   }
+
+  // get the List of users that are connected with the active user
+  @GetMapping(path = "/connections")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> findConnectedUsers() {
+    List<UserRs> usersList = userFacade.findConnectedUsers();
+    return ResponseEntity.ok(usersList);
+  }
+
+  @GetMapping(path = "/mutual_connections/{activeUserId}/{userWhomId}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> getMutualConnections(
+    @PathVariable Long activeUserId, @PathVariable Long userWhomId) {
+    List<UserRs> mutualConnections = userFacade.getMutualConnections(activeUserId, userWhomId);
+    return ResponseEntity.ok(mutualConnections);
+  }
+
+  @PutMapping(path = "/toggle_follow_user/{userId}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<UserRs> toggleFollowUser(@PathVariable Long userId) {
+    UserRs user = userFacade.toggleFollowUser(userId);
+    return ResponseEntity.ok(user);
+  }
+
+  @GetMapping(path = "/followed")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowed() {
+    Set<UserRs> followedUsers = userFacade.getUsersFollowed();
+    return ResponseEntity.ok(followedUsers);
+  }
+
+  @GetMapping(path = "/following")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowing() {
+    Set<UserRs> followingUsers = userFacade.getUsersFollowing();
+    return ResponseEntity.ok(followingUsers);
+  }
+
+
 }
 
 

@@ -3,7 +3,9 @@ import styles from './styles'
 import FollowProfile from '../FollowProfile/FollowProfile'
 import Typography from '@material-ui/core/Typography'
 
-function Followers () {
+function Followers (props) {
+  const {usersFollowingMe} = props
+
   const classes = styles()
 
   return (
@@ -12,7 +14,7 @@ function Followers () {
         People who most recently followed you
       </Typography>
       <div className={classes.peopleFollowers}>
-        <FollowProfile/>
+        {usersFollowingMe.map(user => <FollowProfile key={user.id} user={user}/>)}
       </div>
     </div>
   )

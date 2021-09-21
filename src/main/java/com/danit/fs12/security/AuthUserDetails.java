@@ -10,11 +10,13 @@ public class AuthUserDetails implements UserDetails {
 
   private String login;
   private String password;
+  private Long activeUserId;
 
   public static AuthUserDetails fromUserEntityToAuthUserDetails(User user) {
     AuthUserDetails a = new AuthUserDetails();
     a.login = user.getEmail();
     a.password = user.getPasswordHash();
+    a.activeUserId = user.getId();
     return a;
   }
 
@@ -51,5 +53,9 @@ public class AuthUserDetails implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  public Long getActiveUserId() {
+    return activeUserId;
   }
 }

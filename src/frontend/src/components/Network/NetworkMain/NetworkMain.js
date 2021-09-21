@@ -5,7 +5,7 @@ import Invitation from './Invitation/Invitation'
 import clsx from 'clsx'
 
 function NetworkMain (props) {
-  const {isInvitation = true} = props
+  const {invitations} = props
 
   const classes = styles()
 
@@ -14,15 +14,16 @@ function NetworkMain (props) {
       <div className={classes.block}>
         <div className={clsx(classes.header, classes.invitationHeader)}>
           <div>
-            {isInvitation
+            {(invitations && invitations.length > 0)
               ? 'Invitations'
               : 'No pending invitations'}
           </div>
           <SharedLinkSquare title='Manage' to='/network/invitation_manager/received'/>
         </div>
         <div>
-          {isInvitation
-            ? <Invitation isReceived={true} isManage={false}/>
+          {(invitations && invitations.length > 0)
+            ? invitations.map(invitation =>
+              <Invitation data={invitation} isReceived={true} isManage={false}/>)
             : ''}
         </div>
       </div>

@@ -26,6 +26,7 @@ import java.util.List;
 public class Organization extends AbstractEntity {
   private String name;
   private String location;
+  private String about;
   private String email;
   private String industry;
   private String specialities;
@@ -49,4 +50,10 @@ public class Organization extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   private List<WorkPlace> workPlaces = new ArrayList<>();
 
+//  @ManyToOne
+//  @JoinColumn(name = "user_id")
+//  @ToString.Exclude
+//  @EqualsAndHashCode.Exclude
+//  @JsonIgnore
+//  private User user;
 }

@@ -1,5 +1,5 @@
 import styles from './styles'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../../../shared/SharedButton/SharedButton'
 import TreeDots from '../../../../../shared/ThreeDots/TreeDots'
@@ -13,6 +13,8 @@ import Image from '../../../../../shared/Image/Image'
 
 import { allChats } from '../../../../../redux/Message/messageSelector'
 import { activeUserSelector } from '../../../../../redux/User/userSelector'
+import getTimeSinceCreated from '../../../../../services/timePassedServiceFull'
+import { deleteConnectionAction } from '../../../../../redux/Network/networkActions'
 
 function Connection (props) {
   const classes = styles()
@@ -21,22 +23,15 @@ function Connection (props) {
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
 
-  const {
-    id = 3,
-    avatarPublicId = 'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
-    fullName = 'Laura Lee',
-    positionAndCompany = 'Sales manager at Microsoft',
-    dateCreated = '3 days ago'
-  } = props
+  const {id, avatarPublicId, fullName, positionAndCompany, createdDate} = props.connection
+  const timeSinceCreated = getTimeSinceCreated(createdDate)
 
   useEffect(() => {
     dispatch(getUserChatsAction(id && id))
   }, [dispatch, id])
 
-  const [removedConnection, setRemovedConnection] = useState(false)
-
   const handleRemoved = () => {
-    setRemovedConnection(!removedConnection)
+    dispatch(deleteConnectionAction(activeUserId, id))
   }
 
   const findIfChatExist = () => {
@@ -51,7 +46,7 @@ function Connection (props) {
   }
 
   return (
-    <div className={removedConnection ? classes.removed : ''}>
+    <div>
       <div>
         <div className={classes.connection}>
           <div className={classes.flex}>
@@ -71,7 +66,7 @@ function Connection (props) {
                 {positionAndCompany}
               </Typography>
               <Typography variant="h6" color="textSecondary">
-                Connected {dateCreated}
+                Connected {timeSinceCreated} ago
               </Typography>
             </div>
           </div>

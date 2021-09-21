@@ -5,6 +5,9 @@ server:
     include-binding-errors: always
     include-stacktrace: on_trace_param
 spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.yaml
   profiles:
     active: "local"
   servlet:
@@ -19,8 +22,24 @@ spring:
             clientId: 645730785365-1qk27l2efhkoanabkurvchdltk0f6trs.apps.googleusercontent.com
             clientSecret: yrfnMp5eHI-kUYlNVhknG4T5
             scope:
-             - email
-             - profile
+              - email
+              - profile
+  mail:
+    host: smtp.gmail.com
+    username: linkedin.dan.it@gmail.com
+    password: fs12finalproject
+    port: 587
+    properties:
+      mail:
+        smtp:
+          ssl:
+          trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 jwt:
   header: Authorization
   secret: my-very-secret-key

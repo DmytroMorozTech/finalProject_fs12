@@ -3,9 +3,22 @@ import { Container, Grid } from '@material-ui/core'
 import InvitationManagerHeader from './InvitationManagerHeader/InvitationManagerHeader'
 import InvitationManagerSentMain from './InvitationManagerMain/InvitationManagerSentMain'
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { invitationsForMeSelector, invitationsFromMeSelector } from '../../../redux/Network/networkSelector'
+import {
+  getInvitationsForMeAction, getInvitationsFromMeAction} from '../../../redux/Network/networkActions'
 
-function InvitationManagerSent (props) {
-  const {numberOfReceived = 1, numberOfSent = 1} = props
+function InvitationManagerSent () {
+  const dispatch = useDispatch()
+  const invitationsForMe = useSelector(invitationsForMeSelector)
+  const invitationsFromMe = useSelector(invitationsFromMeSelector)
+
+  // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
+  useEffect(() => {
+    dispatch(getInvitationsForMeAction())
+    dispatch(getInvitationsFromMeAction())
+  }, [dispatch])
 
   const classes = styles()
 
@@ -15,8 +28,13 @@ function InvitationManagerSent (props) {
       <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
         <Grid item xs={7}>
           <div className={classes.main}>
-            <InvitationManagerHeader numberOfReceived={numberOfReceived} numberOfSent={numberOfSent}/>
-            <InvitationManagerSentMain numberOfSent={numberOfSent}/>
+            <InvitationManagerHeader
+              numberOfInvReceived={invitationsForMe.length}
+              numberOfInvSent={invitationsFromMe.length}
+            />
+            <InvitationManagerSentMain
+              data={invitationsFromMe}
+              numberOfInvSent={invitationsFromMe.length}/>
           </div>
         </Grid>
 
