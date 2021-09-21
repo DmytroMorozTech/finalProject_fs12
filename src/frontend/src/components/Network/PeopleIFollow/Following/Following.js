@@ -7,7 +7,7 @@ import FollowingAdditions from './FollowingAdditions/FollowingAdditions'
 import FollowProfile from '../FollowProfile/FollowProfile'
 
 function Following (props) {
-  const {usersFollowing} = props
+  const {usersFollowedByMe} = props
 
   const classes = styles()
   const [kindOfFilter, setKindOfFilter] = useState('All')
@@ -49,7 +49,7 @@ function Following (props) {
         </div>
       </div>
       <div className={classes.peopleFollowing}>
-        {usersFollowing.map(user => <FollowProfile key={user.id} user={user}/>)}
+        {usersFollowedByMe.map(user => <FollowProfile key={user.id} user={user}/>)}
       </div>
     </div>
   )

@@ -3,8 +3,8 @@ import * as actions from '../Network/networkActionTypes'
 const initialState = {
   invitationsForMe: [],
   invitationsFromMe: [],
-  usersFollowing: [],
-  usersFollowed: [],
+  usersFollowingMe: [],
+  usersFollowedByMe: [],
   connections: []
 }
 
@@ -38,10 +38,10 @@ const networkReducer = (state = initialState, action) => {
       return { ...state, connections: [...action.payload] }
 
     case actions.SAVE_USERS_FOLLOWING:
-      return { ...state, usersFollowing: [...action.payload] }
+      return { ...state, usersFollowingMe: [...action.payload] }
 
     case actions.SAVE_USERS_FOLLOWED:
-      return { ...state, usersFollowed: [...action.payload] }
+      return { ...state, usersFollowedByMe: [...action.payload] }
 
     default: {
       return state
