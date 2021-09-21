@@ -9,7 +9,7 @@ import { toggleUserFollowedAction } from '../../../../redux/Network/networkActio
 import { useDispatch } from 'react-redux'
 
 function FollowProfile (props) {
-  const {id, avatarPublicId, fullName, workPlace, numberFollowers = 50, isFollowedByActiveUser} = props.user
+  const {id, avatarPublicId, fullName, workPlace, numberOfFollowers, isFollowedByActiveUser} = props.user
   const classes = styles()
   const dispatch = useDispatch()
 
@@ -44,7 +44,7 @@ function FollowProfile (props) {
         <div>
           <hr className={classes.smallLine}/>
           <Typography variant="h6">
-            {numberFollowers} followers
+            {numberOfFollowers} followers
           </Typography>
         </div>
       </div>

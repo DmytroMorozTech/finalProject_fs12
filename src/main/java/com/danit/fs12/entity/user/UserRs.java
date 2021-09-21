@@ -77,4 +77,7 @@ public class UserRs {
   @JsonView({UserViews.Base.class})
   private Boolean isFollowedByActiveUser;
 
+  @JsonView({UserViews.Base.class})
+  private Integer numberOfFollowers;
+
 }
