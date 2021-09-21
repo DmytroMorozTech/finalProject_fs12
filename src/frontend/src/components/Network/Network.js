@@ -10,13 +10,12 @@ import {
   getMyConnectionsAction,
   getUsersFollowedAction,
   getUsersFollowingAction
-}
-  from '../../redux/Network/networkActions'
+} from '../../redux/Network/networkActions'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   connectionsSelector,
   invitationsForMeSelector,
-  usersFollowedByMeSelector, usersFollowingMeSelector
+  usersFollowingMeSelector
 } from '../../redux/Network/networkSelector'
 
 function Network () {
@@ -24,7 +23,6 @@ function Network () {
   const classes = styles()
   const invitationsForMe = useSelector(invitationsForMeSelector)
   const connections = useSelector(connectionsSelector)
-  const usersFollowed = useSelector(usersFollowedByMeSelector)
   const usersFollowing = useSelector(usersFollowingMeSelector)
 
   // TODO: find out how to deal with empty dependencies array; with this code it works nice, but warning has appeared
