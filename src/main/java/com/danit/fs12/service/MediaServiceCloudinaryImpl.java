@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
+public class MediaServiceCloudinaryImpl implements MediaServiceInterface {
   private final Cloudinary cloudinary;
   private final UserService userService;
 
@@ -37,15 +37,15 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
 
     String newAvatarPublicId = (String) uploadResult.get("public_id");
 
-    Map<String, String> uploadOptions = new HashMap<>() {
-      {
-        put("invalidate", "true");
-      }
-    };
-
-    if (!currentAvatarPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
-    }
+//    Map<String, String> uploadOptions = new HashMap<>() {
+//      {
+//        put("invalidate", "true");
+//      }
+//    };
+//
+//    if (!currentAvatarPublicId.isEmpty()) {
+//      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
+//    }
 
     activeUser.setAvatarPublicId(newAvatarPublicId);
     return userService.save(activeUser);
@@ -78,15 +78,15 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
     );
     String newProfileBgPublicId = (String) uploadResult.get("public_id");
 
-    if (!currentProfileBgPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(
-        currentProfileBgPublicId,
-        new HashMap<>() {
-          {
-            put("invalidate", "true");
-          }
-        });
-    }
+//    if (!currentProfileBgPublicId.isEmpty()) {
+//      cloudinary.uploader().destroy(
+//        currentProfileBgPublicId,
+//        new HashMap<>() {
+//          {
+//            put("invalidate", "true");
+//          }
+//        });
+//    }
 
     activeUser.setProfileBgPublicId(newProfileBgPublicId);
     return userService.save(activeUser);
@@ -127,6 +127,23 @@ public class ImageServiceCloudinaryImpl implements ImageServiceInterface {
   @Override
   public Post deletePostImg() {
     return null;
+  }
+
+  @Override
+  public String uploadPostVideo(MultipartFile file) throws IOException {
+    Map uploadResult = cloudinary.uploader().upload(
+      file.getBytes(),
+      ObjectUtils.asMap(
+        "folder", "linkedin/posts-video/",
+        "unique_filename", "true",
+        "resource_type", "video",
+        "quality", "80",
+        "transformation", new Transformation().width(800).crop("pad").background("white")
+      )
+    );
+
+    String postVideoPublicId = (String) uploadResult.get("public_id");
+    return postVideoPublicId;
   }
 
 

@@ -3,6 +3,7 @@ import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
 import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
 import { uploadPostImgAction } from '../Image/imageActions'
+import { uploadPostVideoAction } from '../Video/videoActions'
 
 export const createNewPostAction = (payload) => async (dispatch) => {
   const { text, image, video } = payload
@@ -13,8 +14,8 @@ export const createNewPostAction = (payload) => async (dispatch) => {
     uploadedImgPublicId = await uploadPostImgAction(image)
   }
 
-  if (!image && video) {
-    uploadedVideoPublicId = 'endpoint call should be here'
+  if (video !== null) {
+    uploadedVideoPublicId = await uploadPostVideoAction(video)
   }
 
   return http

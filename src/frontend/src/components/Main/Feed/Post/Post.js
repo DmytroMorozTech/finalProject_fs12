@@ -15,12 +15,15 @@ import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
 import Image from '../../../../../src/shared/Image/Image'
 import { getCommentsForPostAction } from '../../../../redux/Comment/commentActions'
+import VideoPlayerCloudHosted from './Video/VideoPlayerCloudHosted'
 
 function Post (props) {
   const {
     id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    imgPublicId, videoUrl = ''
-  } = props.post
+    imgPublicId, videoPublicId } = props.post
+
+  const cloudName = 'dan-insta-step'
+  const videoPublicIdFinal = videoPublicId.replaceAll('/', '%2F')
 
   const dispatch = useDispatch()
   const classes = styles()
@@ -76,14 +79,23 @@ function Post (props) {
       </Typography>
 
       {imgPublicId &&
-        (<Image
-          imageUrl={imgPublicId}
-          className={classes.postImage}
-          alt={`Image for post with id: ${postId}`}
-          type={'postImg'}
-        />)
+      (<Image
+        imageUrl={imgPublicId}
+        className={classes.postImage}
+        alt={`Image for post with id: ${postId}`}
+        type={'postImg'}
+      />)
       }
-      {videoUrl && ' Some video content should be here'}
+
+      {videoPublicId &&
+      (<VideoPlayerCloudHosted
+        options={
+          {
+            publicId: videoPublicIdFinal,
+            cloudName: cloudName}
+        }/>)
+
+      }
 
       <div className={classes.quantity}>
         {numberOfLikes > 0
