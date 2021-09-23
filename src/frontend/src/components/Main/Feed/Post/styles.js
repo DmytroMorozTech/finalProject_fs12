@@ -121,6 +121,7 @@ export default makeStyles((theme) => ({
   videoWrapper: {
     width: '100%',
     display: 'block',
-    margin: '0 auto'
+    margin: '0 auto',
+    maxHeight: '480px'
   }
 }))

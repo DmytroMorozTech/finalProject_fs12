@@ -15,20 +15,10 @@ const useStyles = theme => ({
   videoContainer: {
     position: 'relative',
     maxWidth: '100%',
-    overflow: 'hidden'
-    // paddingTop: '56.25%' /* 16:9 Aspect Ratio */
-  },
-
-  responsiveIframe: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: '100%',
-    height: '100%',
-    border: 'none'
+    overflow: 'hidden',
+    maxHeight: '480px'
   }
+
 })
 
 class VideoPlayerClass extends Component {
@@ -37,9 +27,7 @@ class VideoPlayerClass extends Component {
   };
   videoPlayerInit = () => {
     const cld = this.cld()
-    const id = this.props.options.uniqueIdentifier.toString()
-    console.log(`uniqueIdentifier: ${id}`)
-    cld.videoPlayer('some-video', {
+    cld.videoPlayer(this.props.options.uniqueIdentifier, {
       publicId: this.props.options.publicId,
       fluid: true,
       controls: true,
@@ -56,7 +44,7 @@ class VideoPlayerClass extends Component {
     const {classes} = this.props
     return (
       <div className={classes.videoContainer}>
-        <video id="some-video" />
+        <video id={this.props.options.uniqueIdentifier} />
       </div>
     )
   }

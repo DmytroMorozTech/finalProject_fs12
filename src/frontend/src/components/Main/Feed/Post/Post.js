@@ -19,13 +19,13 @@ import VideoPlayerClass from './Video/VideoPlayerClass'
 
 function Post (props) {
   const {
-    id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    imgPublicId, videoPublicId } = props.post
+    id: postId, isLikedByActiveUser, isBookmarkedByActiveUser,
+    text, user, createdDate, numberOfLikes, numberOfComments, imgPublicId, videoPublicId
+  } = props.post
 
   const cloudName = 'dan-insta-step'
-  const videoPublicIdFinal = videoPublicId.replaceAll('/', '%2F')
-  const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: videoPublicIdFinal }
-  // const videoOptions = { cloudName: 'demo', publicId: 'race_road_car' }
+  const uniqueIdentifier = videoPublicId.replaceAll('/', '_')
+  const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: uniqueIdentifier }
 
   const dispatch = useDispatch()
   const classes = styles()
@@ -92,10 +92,9 @@ function Post (props) {
       {videoPublicId &&
       (
         <div className={classes.videoWrapper} key={videoPublicId}>
-          <VideoPlayerClass options={videoOptions} />
+          <VideoPlayerClass options={videoOptions}/>
         </div>
       )
-
       }
 
       <div className={classes.quantity}>

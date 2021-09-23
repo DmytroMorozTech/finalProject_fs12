@@ -189,14 +189,15 @@ Currently, India is building electric vehicle charging infrastructure because it
         timestamp '2021-05-22 13:35:10.111222'),
 --     Video for this post:   linkedin/posts-video/gh6b5qyonkfwxoijufs7
 
-       ('New fashion trend is coming... A black and white outfit is the universal answer to every dressing dilemma. Feeling underdressed? Swap your look for something in solid black and feel instantly confident. Unclear dress code? All those fashion magazines you read in high school were right, a little black dress really is your safest bet. Want to feel polished at a picnic? Throw on an ensemble of entirely white pieces and try not to spill.
-
-There’s something incredibly stylish about streamlining your outfit options with black and white pieces. Silhouettes have the chance to shine, for one. And the outfits carry a timelessness, giving you a green light for investing in pieces that will last for many a dressing dilemma to come. Keep reading for tips on how to wear black and white.',
-        6, '', 'linkedin/posts-video/vndq3cf3l1jbancxly0k', timestamp '2021-07-12 18:22:32.123123',
-        timestamp '2021-07-12 18:22:32.123123');
---        ('Do you dream of becoming a great specialist in IT sphere?',
---         2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
---         timestamp '2021-08-12 18:22:32.123123');
+--        ('New fashion trend is coming... A black and white outfit is the universal answer to every dressing dilemma. Feeling underdressed? Swap your look for something in solid black and feel instantly confident. Unclear dress code? All those fashion magazines you read in high school were right, a little black dress really is your safest bet. Want to feel polished at a picnic? Throw on an ensemble of entirely white pieces and try not to spill.
+--
+-- There’s something incredibly stylish about streamlining your outfit options with black and white pieces. Silhouettes have the chance to shine, for one. And the outfits carry a timelessness, giving you a green light for investing in pieces that will last for many a dressing dilemma to come. Keep reading for tips on how to wear black and white.',
+--         6, '', 'linkedin/posts-video/vndq3cf3l1jbancxly0k', timestamp '2021-07-12 18:22:32.123123',
+--         timestamp '2021-07-12 18:22:32.123123'),
+       ('Do you dream of becoming a great specialist in IT sphere?' ||
+        'All training programs in DAN.IT are developed according to the standards of the IT division of the Israeli army (MAMRAM) using the TELEM methodology',
+        2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
+        timestamp '2021-08-12 18:22:32.123123');
 
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)
