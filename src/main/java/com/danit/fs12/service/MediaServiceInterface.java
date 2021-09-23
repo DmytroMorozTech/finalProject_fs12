@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-public interface ImageServiceInterface {
+public interface MediaServiceInterface {
   User uploadAvatarImg(MultipartFile file) throws IOException;
 
   User updateAvatarImg(MultipartFile file);
@@ -24,4 +24,6 @@ public interface ImageServiceInterface {
   Post updatePostImg(MultipartFile file);
 
   Post deletePostImg();
+
+  String uploadPostVideo(MultipartFile file) throws IOException;
 }

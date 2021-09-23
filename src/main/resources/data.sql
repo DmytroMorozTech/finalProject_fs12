@@ -116,7 +116,8 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
         timestamp '2016-10-01 15:03:12.222323'),
        ('Post 3 Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
         3, '', '', timestamp '2017-02-11 08:45:23.123323', timestamp '2017-02-11 08:45:23.123323'),
-       ('Post 4 text goes here', 4, '', '', timestamp '2017-02-21 13:35:10.111222',
+       ('Post 4 text goes here', 4, '', '',
+        timestamp '2017-02-21 13:35:10.111222',
         timestamp '2017-02-21 13:35:10.111222'),
        ('Post 5 text goes here', 5, '', '', timestamp '2017-05-09 12:45:10.111222',
         timestamp '2017-05-09 12:45:10.111222'),
@@ -148,6 +149,7 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
 Fantastic to see auticon''s 2020 Global Impact Report highlight just how important it is to embrace neurodiversity in the workplace. ',
         7, 'linkedin/posts-img/a9uxdzhs88h5tqf29p5h', '', timestamp '2019-07-09 19:32:22.123123',
         timestamp '2019-07-09 19:32:22.123123'),
+
        ('Every year, I get the opportunity to meet the Washington Teacher of the Year. And every time, I’m blown away by the brilliant, thoughtful educators that my home state picks. Still, I went into my meeting this year with higher expectations than normal. 2020 was the most challenging year ever for teachers, and I knew that anyone who earned this honor while teaching through a pandemic must be truly exceptional.
         My meeting with Brooke Brown did not disappoint. She is an extraordinary teacher who has helped her students adapt to extraordinary times.' ||
         'Brooke teaches ethnic studies and English to high school seniors at Washington High School, which is located just outside of Tacoma. Nearly two-thirds of the kids at her school are students of color, and over half are eligible for free lunch. Her ethnic studies class counts as a social studies credit and has been a popular choice since the school started offering it two years ago. More students sign up to take it every semester than her classroom can accommodate.
@@ -173,7 +175,30 @@ Fantastic to see auticon''s 2020 Global Impact Report highlight just how importa
 
 Currently, India is building electric vehicle charging infrastructure because it hopes to increasingly develop towards sustainable energy and transportation. However, analysts believe that due to the cost of cars and the country’s lack of electric vehicle infrastructure, Tesla’s large-scale entry into the Indian market should be suppressed.',
         10, 'linkedin/posts-img/v9ogrvn4ib0cscsnaxwr', '', timestamp '2019-10-12 18:22:32.123123',
-        timestamp '2019-10-12 18:22:32.123123');
+        timestamp '2019-10-12 18:22:32.123123'),
+       ('Continuous Integration (CI) and Continuous Delivery (CD) are popular software development practices for automation and shortening feedback times. However, setup improperly, your CI/CD Pipelines could instead reduce the quality of your code and cause delays in development.
+         For that reason, it is important that you follow Continuous Integration and Continuous Delivery best practices for software development. This includes using the Continuous Integration tool — like Klocwork — that will be able to perform Continuous Integration testing and support CI/CD Pipelines.',
+        2, '', '',
+        timestamp '2021-05-12 13:35:10.111222',
+        timestamp '2021-05-12 13:35:10.111222'),
+--     Video for this post:   linkedin/posts-video/pmkt82hfcqn3hq5tmgwv
+
+       ('Storrors first was crossing from Europe to Asia by parkour. Bring your next first to life with Canon.',
+        5, '', '',
+        timestamp '2021-05-22 13:35:10.111222',
+        timestamp '2021-05-22 13:35:10.111222'),
+--     Video for this post:   linkedin/posts-video/gh6b5qyonkfwxoijufs7
+
+--        ('New fashion trend is coming... A black and white outfit is the universal answer to every dressing dilemma. Feeling underdressed? Swap your look for something in solid black and feel instantly confident. Unclear dress code? All those fashion magazines you read in high school were right, a little black dress really is your safest bet. Want to feel polished at a picnic? Throw on an ensemble of entirely white pieces and try not to spill.
+--
+-- There’s something incredibly stylish about streamlining your outfit options with black and white pieces. Silhouettes have the chance to shine, for one. And the outfits carry a timelessness, giving you a green light for investing in pieces that will last for many a dressing dilemma to come. Keep reading for tips on how to wear black and white.',
+--         6, '', 'linkedin/posts-video/vndq3cf3l1jbancxly0k', timestamp '2021-07-12 18:22:32.123123',
+--         timestamp '2021-07-12 18:22:32.123123'),
+       ('Do you dream of becoming a great specialist in IT sphere?' ||
+        'All training programs in DAN.IT are developed according to the standards of the IT division of the Israeli army (MAMRAM) using the TELEM methodology',
+        2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
+        timestamp '2021-08-12 18:22:32.123123');
+
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)
 VALUES (10, 1, 'Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111',

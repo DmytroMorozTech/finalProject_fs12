@@ -116,5 +116,12 @@ export default makeStyles((theme) => ({
 
   postImage: {
     width: '100%'
+  },
+
+  videoWrapper: {
+    width: '100%',
+    display: 'block',
+    margin: '0 auto',
+    maxHeight: '480px'
   }
 }))
