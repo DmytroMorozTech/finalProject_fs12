@@ -15,7 +15,7 @@ import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
 import Image from '../../../../../src/shared/Image/Image'
 import { getCommentsForPostAction } from '../../../../redux/Comment/commentActions'
-import VideoPlayerCloudHosted from './Video/VideoPlayerCloudHosted'
+import VideoPlayerClass from './Video/VideoPlayerClass'
 
 function Post (props) {
   const {
@@ -24,6 +24,8 @@ function Post (props) {
 
   const cloudName = 'dan-insta-step'
   const videoPublicIdFinal = videoPublicId.replaceAll('/', '%2F')
+  const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: videoPublicIdFinal }
+  // const videoOptions = { cloudName: 'demo', publicId: 'race_road_car' }
 
   const dispatch = useDispatch()
   const classes = styles()
@@ -88,12 +90,11 @@ function Post (props) {
       }
 
       {videoPublicId &&
-      (<VideoPlayerCloudHosted
-        options={
-          {
-            publicId: videoPublicIdFinal,
-            cloudName: cloudName}
-        }/>)
+      (
+        <div className={classes.videoWrapper} key={videoPublicId}>
+          <VideoPlayerClass options={videoOptions} />
+        </div>
+      )
 
       }
 
