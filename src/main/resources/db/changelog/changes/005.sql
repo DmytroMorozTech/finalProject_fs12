@@ -1,8 +1,8 @@
--- INSERT INTO FOLLOWERS (user_whom_id, user_who_id)
--- VALUES (7,1),
---        (1,7),
---        (1,4),
---        (4,1);
+INSERT INTO FOLLOWERS (user_whom_id, user_who_id)
+VALUES (7,1),
+       (1,7),
+       (1,4),
+       (4,1);
 
 --        (2,4),
 --        (4,2);
