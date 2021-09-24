@@ -1,7 +1,6 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.bookmark.Bookmark;
-import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.notification.NotificationType;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
@@ -12,8 +11,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -44,21 +41,13 @@ public class PostService extends GeneralService<Post> {
     user.getPosts().add(post);
     userService.save(user);
 
-    Notification notification = new Notification(
-      NotificationType.NEW_POST_WAS_CREATED,
-      new HashMap<>() {{
-        put("postId", post.getId().toString());
-      }},
-      activeUserId());
-
-    notificationService.createNotification(notification);
+    notificationService.createNotification(NotificationType.NEW_POST_WAS_CREATED, post.getId(), null);
 
     return post;
   }
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
-    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
     List<PostLike> postLikes = post.getPostLikes();
     Boolean postIsLiked = postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
 
@@ -69,6 +58,9 @@ public class PostService extends GeneralService<Post> {
       User user = userService.getActiveUser();
       PostLike postLike = new PostLike(user, post);
       post.getPostLikes().add(postLike);
+
+      notificationService.createNotification(NotificationType.POST_WAS_LIKED, null, null);
+
       return save(post);
     }
   }

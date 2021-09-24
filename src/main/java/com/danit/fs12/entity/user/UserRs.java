@@ -2,6 +2,7 @@ package com.danit.fs12.entity.user;
 
 import com.danit.fs12.controller.views.CommentViews;
 import com.danit.fs12.controller.views.InvitationViews;
+import com.danit.fs12.controller.views.NotificationViews;
 import com.danit.fs12.controller.views.PostViews;
 import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.certification.CertificationRs;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @Data
 public class UserRs {
-
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class,
+    NotificationViews.Base.class})
   private Long id;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class})

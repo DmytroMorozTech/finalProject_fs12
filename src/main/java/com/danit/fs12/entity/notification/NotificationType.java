@@ -1,5 +1,5 @@
 package com.danit.fs12.entity.notification;
 
 public enum NotificationType {
-  LIKE, NEW_POST_WAS_CREATED
+  POST_WAS_LIKED, NEW_POST_WAS_CREATED
 }

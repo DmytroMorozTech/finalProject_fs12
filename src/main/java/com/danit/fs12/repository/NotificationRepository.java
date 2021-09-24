@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface NotificationRepository extends RepositoryInterface<Notification> {
 
-  List<Notification> getNotificationsByUserId(Long userId);
+  List<Notification> findNotificationsByUserId(Long userId);
 }

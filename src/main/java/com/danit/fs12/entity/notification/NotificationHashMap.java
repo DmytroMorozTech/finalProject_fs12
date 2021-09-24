@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -13,6 +14,6 @@ import java.util.HashMap;
 public class NotificationHashMap implements Serializable {
   private final static long serialVersionUID = 7702L;
 
-  HashMap<String, String> dataNotification  = new HashMap<>();
+  Map<Long, Long> dataNotification  = new HashMap<>();
 
 }

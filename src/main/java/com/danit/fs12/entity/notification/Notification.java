@@ -20,13 +20,19 @@ import java.util.HashMap;
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 public class Notification extends AbstractEntity {
 
-  public Notification(NotificationType typeNotification,
-                      HashMap<String, String> dataNotification,
-                      Long relatedUserId) {
+  public Notification(
+    NotificationType typeNotification,
+    Long relatedUserId,
+//    NotificationHashMap dataNotification,
+    Long postId,
+    Long likeId
+  ) {
     super();
     this.typeNotification = typeNotification;
-    this.dataNotification = dataNotification;
     this.relatedUserId = relatedUserId;
+//    this.dataNotification = dataNotification;
+    this.postId = postId;
+    this.likeId = likeId;
   }
 
   @Column(name = "type_notification")
@@ -34,20 +40,19 @@ public class Notification extends AbstractEntity {
 
   @Type(type = "json")
   @Column(name = "data_notification", columnDefinition = "json")
-  private HashMap<String,String> dataNotification;
+  private NotificationHashMap dataNotification;
+
+  @Column(name = "post_id")
+  private Long postId;
+
+  @Column(name = "like_id")
+  private Long likeId;
 
   @Column(name = "related_user_id")
   private Long relatedUserId; // id of User who triggered this Notification
-  // нам надо в Notification отрисовать аватар именно этого пользователя
 
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user; // activeUser
 
 }
-
-// {
-//    numberOfLikes: n,
-//    text: "some text",
-//
-// }
