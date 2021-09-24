@@ -9,6 +9,7 @@ create table notifications
   user_id           bigint,
   post_id           bigint,
   like_id           bigint,
+  is_read           boolean,
   primary key (id)
 );
 

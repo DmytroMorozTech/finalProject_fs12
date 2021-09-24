@@ -6,8 +6,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class ActiveUserUtils {
 
   public static Long getActiveUserId() {
-    AuthUserDetails authUserDetails = (AuthUserDetails) SecurityContextHolder.getContext()
-      .getAuthentication().getPrincipal();
-    return authUserDetails.getActiveUserId();
+    try {
+      AuthUserDetails authUserDetails = (AuthUserDetails) SecurityContextHolder.getContext()
+        .getAuthentication().getPrincipal();
+      return authUserDetails.getActiveUserId();
+    } catch (ClassCastException ex) {
+      System.out.println(ex);
+    }
+    return null;
   }
 }

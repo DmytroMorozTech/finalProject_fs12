@@ -29,11 +29,15 @@ public class Notification extends AbstractEntity {
   ) {
     super();
     this.typeNotification = typeNotification;
-    this.relatedUserId = relatedUserId;
+    this.relatedUserId = relatedUserId; // id of User who triggered this Notification
 //    this.dataNotification = dataNotification;
     this.postId = postId;
     this.likeId = likeId;
+    this.isRead = false;
   }
+
+  @Column(name = "is_read")
+  private Boolean isRead;
 
   @Column(name = "type_notification")
   private NotificationType typeNotification; // e.g. NEW_POST_WAS_CREATED  ordinal = 1
