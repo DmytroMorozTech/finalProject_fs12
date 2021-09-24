@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles'
-import ProfileBgMini from '../../../temporaryImages/ProfileBgMini.png'
 
 export default makeStyles((theme) => ({
   root: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(4),
+    position: 'relative'
   },
 
   header: {
@@ -14,17 +14,25 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(3),
-    borderRadius: theme.shape.up,
-    backgroundImage: 'url(' + ProfileBgMini + ')',
-    backgroundSize: '100% 33%',
-    backgroundRepeat: 'no-repeat'
+    borderRadius: theme.shape.up
+  },
+
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '20%',
+    backgroundRepeat: 'no-repeat',
+    borderRadius: theme.shape.up
   },
 
   largeAvatar: {
     width: theme.avatar.large,
     border: '2px solid white',
     borderRadius: '50%',
-    margin: '0 auto'
+    margin: '0 auto',
+    zIndex: 1
   },
 
   line: {

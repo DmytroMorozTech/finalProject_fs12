@@ -4,17 +4,19 @@ import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
 import NotificationAdditions from '../Additions/NotificationAdditions'
 import React from 'react'
-import TemporaryAvatar from '../../../../temporaryImages/avatar.jpg'
 import { Link } from 'react-router-dom'
+import Image from '../../../../shared/Image/Image'
 
-function Notification ({
-  userId = 5,
-  userAvatar = TemporaryAvatar,
-  userName = 'Fred Grint',
-  userAction = 'shared a post:',
-  userText = 'You can place a request in our Standard Product Catalogue following a few simple steps: ad your product to the cart, fill the contact form and complete your request.',
-  notificationTime = '2d'
-}) {
+function Notification (props) {
+  const {
+    userId = 5,
+    avatarPublicId,
+    userName = 'Fred Grint',
+    userAction = 'shared a post:',
+    userText = 'You can place a request in our Standard Product Catalogue following a few simple steps: ad your product to the cart, fill the contact form and complete your request.',
+    notificationTime = '2d'
+  } = props
+
   const classes = styles()
 
   const linkToUserProfile = '/profiles/' + userId
@@ -23,7 +25,12 @@ function Notification ({
     <div className={classes.notification}>
       <div>
         <Link to={linkToUserProfile}>
-          <img src={userAvatar} alt={'user avatar'} className={classes.userAvatar}/>
+          <Image
+            imageUrl={avatarPublicId}
+            alt={'user avatar'}
+            className={classes.userAvatar}
+            type={'mediumAvatar'}
+          />
         </Link>
       </div>
       <div className={classes.content}>

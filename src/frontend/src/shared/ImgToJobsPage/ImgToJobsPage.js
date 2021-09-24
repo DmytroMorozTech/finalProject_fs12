@@ -1,13 +1,18 @@
 import styles from './styles'
 import { Link } from 'react-router-dom'
-import jobs from '../../temporaryImages/jobs.jpg'
+import Image from '../Image/Image'
+import React from 'react'
 
 function ImgToJobsPage () {
   const classes = styles()
 
   return (
     <Link to="/jobs">
-      <img alt="jobs" src={jobs} className={classes.img}/>
+      <Image
+        imageUrl={'linkedin/general/lsrqvmwtjzy4evnmj8dw'}
+        alt={'jobs banner'}
+        className={classes.img}
+      />
     </Link>
   )
 }

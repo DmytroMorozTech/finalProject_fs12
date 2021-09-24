@@ -17,6 +17,7 @@ function MiniProfile (props) {
   const {
     avatarPublicId,
     id = 3,
+    profileBgPublicId,
     fullName = 'Laura Lee',
     positionAndCompany = 'Senior Java Developer',
     numberOfConnection = 1
@@ -32,6 +33,12 @@ function MiniProfile (props) {
 
   return (
     <div className={clsx(classes.miniProfile, classes.smallScreen, removedMiniProfile ? classes.removed : '')}>
+      <Image
+        imageUrl={profileBgPublicId}
+        className={classes.backgroundImage}
+        type={'miniProfileBgImg'}
+        alt={'profile background'}
+      />
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
