@@ -54,8 +54,9 @@ const AddNewPost = () => {
   const activeUser = useSelector(activeUserSelector)
 
   const [photoIsChosen, setPhotoIsChosen] = useState(false)
+  const [videoIsChosen, setVideoIsChosen] = useState(false)
   const [selectedImageFile, setSelectedImageFile] = useState(null)
-  // const [selectedVideoFile, setSelectedVideoFile] = useState(null)
+  const [selectedVideoFile, setSelectedVideoFile] = useState(null)
   const [imgWasRemoved, setImgWasRemoved] = useState(null)
   // const [imgIsUploading, setImgIsUploading] = useState(false)
 
@@ -63,8 +64,9 @@ const AddNewPost = () => {
     dispatch(createNewPostAction({
       text: postInputText,
       image: selectedImageFile,
-      video: ''
+      video: selectedVideoFile
     }))
+
     dispatch(toggleModalAction())
   }
 
@@ -153,14 +155,14 @@ const AddNewPost = () => {
         <div className={classes.shareButtons}>
 
           <LightTooltip title={`Add a photo`} placement={'top'}>
-            <div className={classes.shareButton} >
+            <div className={classes.shareButton}>
               <label>
                 <input
                   type="file"
                   id="file"
                   accept="image/*"
-                  style={{display: 'none'}}
-                  required
+                  style={{ display: 'none' }}
+                  disabled={videoIsChosen}
                   onChange={(event) => {
                     const file = event.target.files[0]
                     if (file && file.size > 10485760) {
@@ -183,7 +185,37 @@ const AddNewPost = () => {
 
           <LightTooltip title={`Add a video`} placement={'top'}>
             <div className={classes.shareButton}>
-              <YouTubeIcon/>
+              <label>
+                <input
+                  type="file"
+                  id="file"
+                  accept="video/*"
+                  style={{ display: 'none' }}
+                  disabled={photoIsChosen}
+                  onChange={(event) => {
+                    const file = event.target.files[0]
+                    console.log('Video file was chosen')
+                    console.log(file)
+                    if (file && file.size > 52428800) {
+                      toast.error('The size of video should not exceed 50MB')
+                      return
+                    }
+
+                    if (file) {
+                      setSelectedVideoFile(file)
+                      setVideoIsChosen(true)
+
+                      console.log(`selectedVideoFile:`)
+                      console.log(selectedVideoFile)
+                      console.log(`videoIsChosen: ${videoIsChosen}`)
+                      // setVideoWasRemoved(false)
+                      // I will have to implement it in case I manage to create video preview
+                    }
+                  }}
+
+                />
+                <YouTubeIcon/>
+              </label>
             </div>
           </LightTooltip>
           <LightTooltip title={`Add a document`} placement={'top'}>

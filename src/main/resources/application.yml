@@ -12,8 +12,8 @@ spring:
     active: "local"
   servlet:
     multipart:
-      max-file-size: 10000KB
-      max-request-size: 10000KB
+      max-file-size: 50000KB
+      max-request-size: 50000KB
   security:
     oauth2:
       client:

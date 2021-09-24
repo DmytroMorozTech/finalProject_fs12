@@ -15,12 +15,17 @@ import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
 import Image from '../../../../../src/shared/Image/Image'
 import { getCommentsForPostAction } from '../../../../redux/Comment/commentActions'
+import VideoPlayerClass from './Video/VideoPlayerClass'
 
 function Post (props) {
   const {
-    id: postId, isLikedByActiveUser, isBookmarkedByActiveUser, text, user, createdDate, numberOfLikes, numberOfComments,
-    imgPublicId, videoUrl = ''
+    id: postId, isLikedByActiveUser, isBookmarkedByActiveUser,
+    text, user, createdDate, numberOfLikes, numberOfComments, imgPublicId, videoPublicId
   } = props.post
+
+  const cloudName = 'dan-insta-step'
+  const uniqueIdentifier = videoPublicId.replaceAll('/', '_')
+  const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: uniqueIdentifier }
 
   const dispatch = useDispatch()
   const classes = styles()
@@ -76,14 +81,21 @@ function Post (props) {
       </Typography>
 
       {imgPublicId &&
-        (<Image
-          imageUrl={imgPublicId}
-          className={classes.postImage}
-          alt={`Image for post with id: ${postId}`}
-          type={'postImg'}
-        />)
+      (<Image
+        imageUrl={imgPublicId}
+        className={classes.postImage}
+        alt={`Image for post with id: ${postId}`}
+        type={'postImg'}
+      />)
       }
-      {videoUrl && ' Some video content should be here'}
+
+      {videoPublicId &&
+      (
+        <div className={classes.videoWrapper} key={videoPublicId}>
+          <VideoPlayerClass options={videoOptions}/>
+        </div>
+      )
+      }
 
       <div className={classes.quantity}>
         {numberOfLikes > 0

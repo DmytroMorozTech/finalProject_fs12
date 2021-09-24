@@ -2,19 +2,21 @@ import http from '../../services/httpService'
 import * as actions from '../Profile/profileActionTypes'
 import { toast } from 'react-toastify'
 import toggleModalAction from '../Modal/modalActions'
+import { getActiveUserAction } from '../User/userActions'
 
 export const uploadAvatarImgAction = (file) => (dispatch) => {
   const formData = new FormData()
   formData.append('file', file)
   
   return http
-    .post(`/api/images/upload/avatar`, formData,
+    .post(`/api/media/images/upload/avatar`, formData,
       {
         headers: {'content-type': 'multipart/form-data'}
       })
     .then((res) => res.data)
     .then((profile) => {
       dispatch({ type: actions.SAVE_ACTIVE_PROFILE, payload: profile })
+      dispatch(getActiveUserAction()) // we should also update info in field activeUser in redux
       dispatch(toggleModalAction())
       toast.info('User\'s avatar image was updated',
         {position: toast.POSITION.TOP_CENTER, autoClose: 2500})
@@ -30,7 +32,7 @@ export const uploadProfileBgImgAction = (file) => (dispatch) => {
   formData.append('file', file)
 
   return http
-    .post(`/api/images/upload/profile-bg`, formData,
+    .post(`/api/media/images/upload/profile-bg`, formData,
       {
         headers: {'content-type': 'multipart/form-data'}
       })
@@ -52,11 +54,11 @@ export const uploadPostImgAction = (file) => {
   formData.append('file', file)
 
   return http
-    .post(`/api/images/upload/post`, formData,
+    .post(`/api/media/images/upload/post`, formData,
       {
         headers: {'content-type': 'multipart/form-data'}
       })
-    .then((res) => res.data) // postImgPublicId should be here
+    .then((res) => res.data) // here we get postImgPublicId
     .catch(err => {
       const errorMsg = err.response.data.message
       toast.error(errorMsg)
