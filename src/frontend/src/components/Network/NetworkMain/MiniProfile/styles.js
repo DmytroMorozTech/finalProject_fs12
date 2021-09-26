@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles'
-import ProfileBgMini from '../../../../temporaryImages/ProfileBgMini.png'
 
 export default makeStyles((theme) => ({
 
@@ -12,6 +11,7 @@ export default makeStyles((theme) => ({
     height: '280px',
     border: theme.border.simple,
     margin: theme.spacing(1),
+    position: 'relative',
     '&:hover': {
       boxShadow: theme.shadows[4],
       transitionDuration: '0.5s'
@@ -35,14 +35,21 @@ export default makeStyles((theme) => ({
   },
 
   header: {
-    backgroundImage: 'url(' + ProfileBgMini + ')',
-    backgroundSize: '100% 37%',
-    backgroundRepeat: 'no-repeat',
     padding: theme.spacing(2),
     paddingBottom: 0,
     alignItems: 'center',
     borderRadius: theme.shape.up,
     position: 'relative'
+  },
+
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '20%',
+    backgroundRepeat: 'no-repeat',
+    borderRadius: theme.shape.up
   },
 
   cross: {

@@ -4,13 +4,13 @@ import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRo
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined'
 import GroupIcon from '@material-ui/icons/Group'
 import NetworkLeftItem from './NetworkLeftItem/NetworkLeftItem'
-import jobs from '../../../temporaryImages/jobs.jpg'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import Button from '@material-ui/core/Button'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
+import Image from '../../../shared/Image/Image'
 
 function NetworkLeft (props) {
   const classes = styles()
@@ -65,7 +65,11 @@ function NetworkLeft (props) {
       </div>
       <hr className={classes.line}/>
       <Link to="/jobs">
-        <img alt="jobs" src={jobs} className={classes.img}/>
+        <Image
+          imageUrl={'linkedin/general/lsrqvmwtjzy4evnmj8dw'}
+          alt={'jobs banner'}
+          className={classes.img}
+        />
       </Link>
       <hr className={classes.line}/>
       {/* Link is hardcoded below */}
