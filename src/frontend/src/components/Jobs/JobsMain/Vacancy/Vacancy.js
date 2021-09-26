@@ -1,5 +1,4 @@
 import styles from './styles'
-import vacancyImg from '../../../../temporaryImages/vacancyImg.jpg'
 import SmallDot from '../../../../shared/SmallDot/SmallDot'
 import Typography from '@material-ui/core/Typography'
 import React from 'react'
@@ -7,6 +6,7 @@ import TrackChangesIcon from '@material-ui/icons/TrackChanges'
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import clsx from 'clsx'
+import Image from '../../../../shared/Image/Image'
 
 function Vacancy (props) {
   const {
@@ -25,7 +25,11 @@ function Vacancy (props) {
         <div className={classes.vacancy}>
           <div className={classes.row}>
             <div>
-              <img alt="vacancy" src={vacancyImg} className={classes.vacancyImg}/>
+              <Image
+                imageUrl={'linkedin/general/mr5jb7fifohjgy8d7unj'}
+                className={classes.vacancyImg}
+                alt={'job'}
+              />
             </div>
             <div className={classes.vacancyInfo}>
               <div className={classes.link}>

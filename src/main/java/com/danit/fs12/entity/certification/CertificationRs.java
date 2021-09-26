@@ -34,8 +34,4 @@ public class CertificationRs {
   @JsonView(UserViews.Profile.class)
   private String credentialUrl;
 
-  private UserRs user;
-  // this field is not marked with JsonView annotation, because frontend will retrive list
-  // of Certifications for a particular user. So, frontend doesn't need to receive
-  // nested User object as additional info. It already knows who is active user.
 }

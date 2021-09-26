@@ -21,6 +21,13 @@ function MainLeft (props) {
 
   return (
     <div className={classes.root}>
+      <Image
+        imageUrl={activeUser.profileBgPublicId}
+        className={classes.backgroundImage}
+        type={'miniProfileBgImg'}
+        alt={'profile background'}
+      />
+
       <div className={classes.header}>
         <Link to={linkToActiveUserProfile} className={classes.link}>
           <Image

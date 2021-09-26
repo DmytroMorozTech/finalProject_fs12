@@ -5,6 +5,7 @@ import com.danit.fs12.entity.notification.NotificationType;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class PostService extends GeneralService<Post> {
   private final UserService userService;
   private final NotificationService notificationService;
+  private final PostRepository postRepository;
 
   public Long activeUserId() {
     return userService.getActiveUser().getId();
@@ -48,6 +50,7 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
+    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
     List<PostLike> postLikes = post.getPostLikes();
     Boolean postIsLiked = postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
 
@@ -84,8 +87,11 @@ public class PostService extends GeneralService<Post> {
   }
 
   public Page<Post> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
+    List<Long> followedUsersIds = userService.getUsersFollowed()
+      .stream().map(user -> user.getId()).collect(Collectors.toList());
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
-    return findAll(pageRequest);
+
+    return postRepository.getPostsForActiveUserPaginated(followedUsersIds, pageRequest);
   }
 
   public Page<Post> getBookmarkedPosts(Integer pageNumber, Integer pageSize, String sortBy) {
@@ -103,5 +109,14 @@ public class PostService extends GeneralService<Post> {
     int startIndex = pageNumber * pageSize;
     int endIndex = Math.min((startIndex + pageSize), maxArrIndex);
     return new PageImpl<>(listOfBookmarkedPosts.subList(startIndex, endIndex), pageRequest, totalPosts);
+  }
+
+  public List<Post> getAllPostsForActiveUser() {
+    List<Long> followedUsersIds = userService.getUsersFollowed()
+      .stream().map(user -> user.getId()).collect(Collectors.toList());
+
+    List<Post> posts = postRepository.getAllPostsForActiveUser(followedUsersIds);
+    System.out.println((long) posts.size());
+    return posts;
   }
 }
