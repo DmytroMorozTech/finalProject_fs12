@@ -12,6 +12,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -43,7 +45,11 @@ public class PostService extends GeneralService<Post> {
     user.getPosts().add(post);
     userService.save(user);
 
-    notificationService.createNotification(NotificationType.NEW_POST_WAS_CREATED, post.getId(), null);
+    HashMap<String, Long> data = new HashMap<>();
+    data.put("post_id", post.getId());
+    data.put("related_user_id", activeUserId());
+
+    notificationService.createNotification(NotificationType.NEW_POST_WAS_CREATED, data);
 
     return post;
   }
@@ -62,8 +68,7 @@ public class PostService extends GeneralService<Post> {
       PostLike postLike = new PostLike(user, post);
       post.getPostLikes().add(postLike);
 
-      notificationService.createNotification(NotificationType.POST_WAS_LIKED, null, null);
-
+      notificationService.createNotificationToggleLike(post.getId(), post.getUser().getId());
       return save(post);
     }
   }

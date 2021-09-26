@@ -22,41 +22,29 @@ public class Notification extends AbstractEntity {
 
   public Notification(
     NotificationType typeNotification,
-    Long relatedUserId,
-//    NotificationHashMap dataNotification,
-    Long postId,
-    Long likeId
+    HashMap<String,Long> data
   ) {
     super();
-    this.typeNotification = typeNotification;
-    this.relatedUserId = relatedUserId; // id of User who triggered this Notification
-//    this.dataNotification = dataNotification;
-    this.postId = postId;
-    this.likeId = likeId;
+    this.type = typeNotification;
+    this.data = data;
     this.isRead = false;
   }
 
   @Column(name = "is_read")
   private Boolean isRead;
 
-  @Column(name = "type_notification")
-  private NotificationType typeNotification; // e.g. NEW_POST_WAS_CREATED  ordinal = 1
+  @Column(name = "type")
+  private NotificationType type;
 
   @Type(type = "json")
-  @Column(name = "data_notification", columnDefinition = "json")
-  private NotificationHashMap dataNotification;
+  @Column(name = "data", columnDefinition = "json")
+  private HashMap<String, Long> data;
 
-  @Column(name = "post_id")
-  private Long postId;
-
-  @Column(name = "like_id")
-  private Long likeId;
-
-  @Column(name = "related_user_id")
-  private Long relatedUserId; // id of User who triggered this Notification
+//  @Column(name = "related_user_id")
+//  private Long relatedUserId; // id of User who triggered this Notification
 
   @ManyToOne
   @JoinColumn(name = "user_id")
-  private User user; // activeUser
+  private User user;
 
 }
