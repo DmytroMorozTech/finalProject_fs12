@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styles from './styles'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
-import {TextField} from 'formik-material-ui'
-import {Paper} from '@material-ui/core'
+import { TextField } from 'formik-material-ui'
+import { Paper } from '@material-ui/core'
 import http from '../../../services/httpService'
-import {toast} from 'react-toastify'
-import {useHistory} from 'react-router'
-import logo from './additions/icons8-google.svg'
-import {Link} from 'react-router-dom'
-import {Field, Form, Formik} from 'formik'
+import { toast } from 'react-toastify'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
+import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import clsx from 'clsx'
+import Image from '../../../shared/Image/Image'
 
 function RegisterPageLoginData () {
   const classes = styles()
@@ -130,7 +130,10 @@ function RegisterPageLoginData () {
         </section>
         <div className={classes.googleBtnWrapper}>
           <button className={classes.googleBtn} onClick={() => authenticateByGoogle()}>
-            <img src={logo} alt={logo}/>
+            <Image
+              imageUrl={'linkedin/general/niaqwol8ifep3qjapufb'}
+              alt={'job'}
+            />
             <span>Join with Google</span>
           </button>
         </div>

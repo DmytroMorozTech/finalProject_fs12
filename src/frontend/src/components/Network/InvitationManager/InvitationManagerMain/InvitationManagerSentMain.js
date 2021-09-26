@@ -1,7 +1,8 @@
 import styles from './styles'
 import Invitation from '../../NetworkMain/Invitation/Invitation'
 import { Typography } from '@material-ui/core'
-import noSentInvitations from '../../../../temporaryImages/noSentInvitationsImage.PNG'
+import Image from '../../../../shared/Image/Image'
+import React from 'react'
 
 function InvitationManagerSentMain (props) {
   const {numberOfInvSent, data} = props
@@ -13,7 +14,11 @@ function InvitationManagerSentMain (props) {
       {numberOfInvSent > 0
         ? (data.map(invitation => <Invitation data={invitation} isReceived={false} isManage={true}/>))
         : <div className={classes.blockNoInvitations}>
-          <img alt='No sent invitations' src={noSentInvitations} className={classes.image}/>
+          <Image
+            imageUrl={'linkedin/general/ifdan6uahicr9iwqtzs1'}
+            alt={'No sent invitations'}
+            className={classes.image}
+          />
           <Typography variant='h3' className={classes.defaultText}>
             No sent invitations
           </Typography>

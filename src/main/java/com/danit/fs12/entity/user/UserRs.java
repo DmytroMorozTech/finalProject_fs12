@@ -46,7 +46,7 @@ public class UserRs {
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String avatarPublicId;
 
-  @JsonView(UserViews.Profile.class)
+  @JsonView({UserViews.Base.class, UserViews.Profile.class})
   private String profileBgPublicId;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
