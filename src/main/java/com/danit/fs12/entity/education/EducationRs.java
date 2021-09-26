@@ -34,5 +34,4 @@ public class EducationRs {
   @JsonView(UserViews.Profile.class)
   private LocalDate dateFinish;
 
-  private UserRs user;
 }
