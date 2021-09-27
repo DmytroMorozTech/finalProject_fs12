@@ -5,7 +5,7 @@ import Invitation from './Invitation/Invitation'
 import clsx from 'clsx'
 
 function NetworkMain (props) {
-  const {invitations} = props
+  const { invitations, potentialContacts } = props
 
   const classes = styles()
 
@@ -18,7 +18,7 @@ function NetworkMain (props) {
               ? 'Invitations'
               : 'No pending invitations'}
           </div>
-          <SharedLinkSquare title='Manage' to='/network/invitation_manager/received'/>
+          <SharedLinkSquare title="Manage" to="/network/invitation_manager/received"/>
         </div>
         <div>
           {(invitations && invitations.length > 0)
@@ -27,16 +27,17 @@ function NetworkMain (props) {
             : ''}
         </div>
       </div>
+
       <div className={clsx(classes.block, classes.people)}>
         <div className={classes.header}>
           <div>
             People you may know
           </div>
           {/* Link is hardcoded below */}
-          <SharedLinkSquare title='See all' to='#'/>
+          <SharedLinkSquare title="See all" to="#"/>
         </div>
         <div className={clsx(classes.miniProfiles, classes.smallMiniProfiles)}>
-          <MiniProfile/>
+          {potentialContacts.map(user => <MiniProfile user={user}/>)}
         </div>
       </div>
     </div>

@@ -16,12 +16,13 @@ function MiniProfile (props) {
 
   const {
     avatarPublicId,
-    id = 3,
+    id,
     profileBgPublicId,
-    fullName = 'Laura Lee',
-    positionAndCompany = 'Senior Java Developer',
-    numberOfConnection = 1
-  } = props
+    fullName,
+    positionAndCompany,
+    numberOfMutualConnections = 3
+    // TODO: this hardcode should be removed
+  } = props.user
 
   const [removedMiniProfile, setRemovedMiniProfile] = useState(false)
 
@@ -65,7 +66,7 @@ function MiniProfile (props) {
           <RadioButtonUncheckedIcon fontSize="inherit"/>
           <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
           <Typography variant="h6" color="textSecondary" className={classes.connectionText}>
-            {numberOfConnection} mutual connection
+            {numberOfMutualConnections} mutual connection{numberOfMutualConnections > 1 && 's'}
           </Typography>
         </div>
         <SharedButton
