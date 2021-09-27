@@ -69,6 +69,7 @@ public class PostService extends GeneralService<Post> {
       post.getPostLikes().add(postLike);
 
       notificationService.createNotificationToggleLike(post.getId(), post.getUser().getId());
+
       return save(post);
     }
   }

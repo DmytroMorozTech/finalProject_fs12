@@ -26,8 +26,8 @@ import java.util.List;
 public class NotificationController {
   private final NotificationFacade notificationFacade;
 
-  @MessageMapping("/notification")
-  @SendTo("/api/notification")
+  @MessageMapping("/notifications")
+  @SendTo("/api/notifications")
   public Notification getNotification(Notification notification) {
     System.out.println(notification);
     return notification;

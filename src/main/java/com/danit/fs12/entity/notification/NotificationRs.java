@@ -5,21 +5,20 @@ import com.danit.fs12.entity.user.UserRs;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
+import java.util.HashMap;
+
 @Data
 @JsonView(NotificationViews.Base.class)
 public class NotificationRs {
 
   private Long id;
 
-  private NotificationType typeNotification;
+  private NotificationType type;
 
-//  private String dataNotification;
+  private HashMap<String, Long> data;
 
-  private Long relatedUserId;
+  private Boolean isRead;
 
   private UserRs user;
 
-  private Long postId;
-
-  private Long likeId;
 }

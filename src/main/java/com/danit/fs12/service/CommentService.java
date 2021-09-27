@@ -20,6 +20,7 @@ public class CommentService extends GeneralService<Comment> {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
   private final UserService userService;
+  private final NotificationService notificationService;
 
   public Long activeUserId() {
     return userService.getActiveUser().getId();
@@ -39,6 +40,8 @@ public class CommentService extends GeneralService<Comment> {
 
     postRepository.save(post);
     userRepository.save(user);
+
+    notificationService.createNotificationComment(post.getId(), post.getUser().getId());
 
     return comment;
   }
