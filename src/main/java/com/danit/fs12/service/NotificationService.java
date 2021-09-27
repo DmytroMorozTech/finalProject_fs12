@@ -20,12 +20,12 @@ public class NotificationService extends GeneralService<Notification> {
   private final UserService userService;
   private final NotificationRepository notificationRepository;
 
-  public void createNotification(NotificationType notificationType, HashMap<String, Long> data) {
+  public void createNotificationNewPost(HashMap<String, Long> data) {
     User activeUser = userService.getActiveUser();
     Set<User> usersFollowingActiveUser = activeUser.getUsersFollowing();
 
     for (User user : usersFollowingActiveUser) {
-      Notification notification = new Notification(notificationType, data);
+      Notification notification = new Notification(NotificationType.NEW_POST_WAS_CREATED, data);
 
       notification.setUser(user);
       Notification savedInDbNotification = save(notification);
@@ -34,39 +34,49 @@ public class NotificationService extends GeneralService<Notification> {
     }
   }
 
-  public void createNotificationToggleLike(Long postId, Long postAuthorId) {
-    System.out.println(" We are in createNotificationToggleLike: ");
-    System.out.println("***********************************************");
+  private Optional<Notification> getPostWasLikedNotificationOptional(Long postId, Long postAuthorId) {
     User postAuthor = userService.findEntityById(postAuthorId);
-    List<Notification> allNotificationsAboutPostLikes = postAuthor.getNotifications().stream() // !!!  не может десериализовать
+    List<Notification> allNotificationsAboutPostLikes = postAuthor.getNotifications().stream()
       .filter(notification -> notification.getType() == NotificationType.POST_WAS_LIKED)
       .collect(Collectors.toList());
 
-//    Пример того, как вопрос можно решить:
-//    String jsonInput = "{\"key\": \"value\"}";
-//    TypeReference<HashMap<String, Long>> typeRef = new TypeReference<HashMap<String, Long>>() {};
-//    ObjectMapper mapper = new ObjectMapper();
-//    mapper.readValue(jsonInput, typeRef)
+    return allNotificationsAboutPostLikes
+      .stream()
+      .filter(n -> n.getData().get("post_id").equals(postId))
+      .findFirst();
+  }
 
-    Optional<Notification> notificationOpt = allNotificationsAboutPostLikes.stream()
-      .filter(n -> n.getData().get("post_id").equals(postId)).findFirst(); // !!!  не может десериализовать
-
-    if (notificationOpt.isPresent()) {
-      Notification notification = notificationOpt.get();
-      Long currentNumberOfLikes = notification.getData().get("number_of_likes");
-      notification.getData().put("number_of_likes", currentNumberOfLikes + 1);
-      save(notification);
+  public void createOrUpdateNotificationAddLike(Long postId, Long postAuthorId) {
+    Optional<Notification> notificationOpt = getPostWasLikedNotificationOptional(postId, postAuthorId);
+    User postAuthor = userService.findEntityById(postAuthorId);
+    if (notificationOpt.isEmpty()) {
+      HashMap<String, Long> data = new HashMap<>();
+      data.put("post_id", postId);
+      data.put("number_of_likes", 1L);
+      Notification notification = new Notification(NotificationType.POST_WAS_LIKED, data);
+      notification.setUser(postAuthor);
+      Notification savedInDbNotification = save(notification);
+      postAuthor.getNotifications().add(savedInDbNotification);
+      userService.save(postAuthor);
       return;
     }
 
-    HashMap<String, Long> data = new HashMap<>();
-    data.put("post_id", postId);
-    data.put("number_of_likes", 1L);
-    Notification notification = new Notification(NotificationType.POST_WAS_LIKED, data);
-    notification.setUser(postAuthor);
-    Notification savedInDbNotification = save(notification);
-    postAuthor.getNotifications().add(savedInDbNotification);
-    userService.save(postAuthor);
+    // if Notification already exists, then we have to update info in it and increment likes counter for post
+    Notification notification = notificationOpt.get();
+    Long currentNumberOfLikes = notification.getData().get("number_of_likes");
+    notification.getData().put("number_of_likes", currentNumberOfLikes + 1);
+    save(notification);
+  }
+
+  public void updateNotificationDecrementLike(Long postId, Long postAuthorId) {
+    Optional<Notification> notificationOpt = getPostWasLikedNotificationOptional(postId, postAuthorId);
+    if (notificationOpt.isPresent()) {
+      Notification notification = notificationOpt.get();
+      Long currentNumberOfLikes = notification.getData().get("number_of_likes");
+      notification.getData().put("number_of_likes", currentNumberOfLikes - 1);
+      // decrement likes counter in the existing Notification
+      save(notification);
+    }
   }
 
   public List<Notification> getNotificationsForActiveUser() {
@@ -77,4 +87,6 @@ public class NotificationService extends GeneralService<Notification> {
   public List<Notification> getNotificationsForUserId(Long id) {
     return notificationRepository.findNotificationsByUserId(id);
   }
+
+
 }
