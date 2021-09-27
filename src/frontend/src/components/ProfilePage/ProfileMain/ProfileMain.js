@@ -44,8 +44,8 @@ function ProfileMain (props) {
         <div className={classes.row}>
           <Image
             imageUrl={profile.avatarPublicId}
-            onClickHandler={() => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG }))}
-            className={classes.bigAvatar}
+            onClickHandler={isEditable ? () => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG })) : null }
+            className={clsx(classes.bigAvatar, isEditable && classes.cursorPointer)}
             type={'profileAvatar'}
             alt={'user avatar'}
           />

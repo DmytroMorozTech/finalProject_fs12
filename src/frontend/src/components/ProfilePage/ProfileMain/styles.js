@@ -42,8 +42,11 @@ export default makeStyles((theme) => ({
     width: theme.avatar.profileAvatar,
     border: '4px solid white',
     borderRadius: '50%',
-    cursor: 'pointer',
     marginBottom: theme.spacing(3)
+  },
+
+  cursorPointer: {
+    cursor: 'pointer'
   },
 
   profileBackgroundImg: {
