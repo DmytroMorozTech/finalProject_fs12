@@ -28,7 +28,7 @@ function Connection (props) {
 
   useEffect(() => {
     dispatch(getUserChatsAction(activeUserId))
-  }, [dispatch, id])
+  }, [dispatch, id, activeUserId])
 
   const handleRemoved = () => {
     dispatch(deleteConnectionAction(activeUserId, id))

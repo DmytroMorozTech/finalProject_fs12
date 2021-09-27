@@ -12,7 +12,7 @@ import SharedButton from '../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
   createChatWithBothMembersAction,
-  createMessageAction, getChatMessagesAction,
+  createMessageAction,
   isTemporaryChatOpenAction
 } from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
@@ -25,7 +25,7 @@ import {
   newChatIdSelector
 } from '../../redux/Message/messageSelector'
 import {Link, withRouter} from 'react-router-dom'
-import {activeUserSelector, currentUserSelector} from '../../redux/User/userSelector'
+import {currentUserSelector} from '../../redux/User/userSelector'
 import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
 
@@ -41,7 +41,6 @@ function NewChat (props) {
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
   const userIdFromUrl = match.params.id
-  const activeUser = useSelector(activeUserSelector)
   const newChat = useSelector(newChatData)
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
