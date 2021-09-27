@@ -84,7 +84,7 @@ public class NotificationService extends GeneralService<Notification> {
   public void createNotificationComment(Long postId, Long postAuthorId) {
     User postAuthor = userService.findEntityById(postAuthorId);
     List<Notification> allNotificationsAboutPostComments = postAuthor.getNotifications().stream()
-      .filter(notification -> notification.getType() == NotificationType.NEW_COMMENT_POST)
+      .filter(notification -> notification.getType() == NotificationType.NEW_COMMENTS_POST)
       .collect(Collectors.toList());
 
     Optional<Notification> notificationOpt = allNotificationsAboutPostComments.stream()
@@ -101,7 +101,7 @@ public class NotificationService extends GeneralService<Notification> {
     HashMap<String, Long> data = new HashMap<>();
     data.put("post_id", postId);
     data.put("number_of_comments", 1L);
-    Notification notification = new Notification(NotificationType.NEW_COMMENT_POST, data);
+    Notification notification = new Notification(NotificationType.NEW_COMMENTS_POST, data);
     notification.setUser(postAuthor);
     Notification savedInDbNotification = save(notification);
     postAuthor.getNotifications().add(savedInDbNotification);
