@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -90,6 +91,43 @@ public class UserController {
     List<UserRs> usersList = userFacade.findConnectedUsers();
     return ResponseEntity.ok(usersList);
   }
+
+  @GetMapping(path = "/mutual_connections/{activeUserId}/{userWhomId}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<List<UserRs>> getMutualConnections(
+    @PathVariable Long activeUserId, @PathVariable Long userWhomId) {
+    List<UserRs> mutualConnections = userFacade.getMutualConnections(activeUserId, userWhomId);
+    return ResponseEntity.ok(mutualConnections);
+  }
+
+  @PutMapping(path = "/toggle_follow_user/{userId}")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<UserRs> toggleFollowUser(@PathVariable Long userId) {
+    UserRs user = userFacade.toggleFollowUser(userId);
+    return ResponseEntity.ok(user);
+  }
+
+  @GetMapping(path = "/followed")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowed() {
+    Set<UserRs> followedUsers = userFacade.getUsersFollowed();
+    return ResponseEntity.ok(followedUsers);
+  }
+
+  @GetMapping(path = "/following")
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getUsersFollowing() {
+    Set<UserRs> followingUsers = userFacade.getUsersFollowing();
+    return ResponseEntity.ok(followingUsers);
+  }
+
+  @GetMapping(path = "/potential_contacts") // "users you may know" (at frontend)
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getPotentialContacts() {
+    Set<UserRs> potentialContacts = userFacade.getPotentialContacts();
+    return ResponseEntity.ok(potentialContacts);
+  }
+
 
 }
 

@@ -1,6 +1,5 @@
 INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_hash, avatar_public_id,
-                   profile_bg_public_id,
-                   created_date, modified_date, country, city, headline)
+                   profile_bg_public_id, created_date, modified_date, country, city, headline)
 VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         '$2a$10$VyCoVteS/iZ/5ZYTIGI0EOZEytTbZphdioSm0uXqNCQ29vK6giI0q',
         'linkedin/avatars/npgam09ruxy6rkej2asi',
@@ -32,10 +31,10 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         timestamp '2016-05-05 07:21:31.123123', CURRENT_DATE, 'Germany', 'Munich', 'Node.js Developer'),
        ('Leonard', 'Sanders', '+380678059758', 'leos@gmail.com', 37, 'passwordHashed9',
         'linkedin/avatars/urdz0mmjsvxwq7qfyuhm', '',
-        timestamp '2016-06-23 10:21:22.123123', CURRENT_DATE, 'Ukraine', 'Kharkiv', 'Junior Java Developer'),
+        timestamp '2016-06-23 10:21:22.123123', CURRENT_DATE, 'Canada', 'Ontario', 'Senior Java Developer'),
        ('Barry', 'Evans', '+380955744442', 'barry@gmail.com', 28, 'passwordHashed10',
         'linkedin/avatars/vnxm3wl3erio9ajtezlr', '',
-        timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'React Developer');
+        timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'Scala Developer');
 
 
 INSERT INTO ORGANIZATIONS (name, email, web_site, industry, location, specialities, founded_in_year,
@@ -55,7 +54,7 @@ VALUES ('Microsoft', 'office@microsoft.com', 'microsoft.com', 'Software developm
         timestamp '2009-10-01 09:00:10.111222', timestamp '2009-10-01 09:00:10.111222'),
        ('LinkedIn', 'office@linkedin.com', 'https://linkedin.com', 'Internet', 'Sunnyvale, CA, US',
         'Online Professional Network, Jobs, People Search, Company Search, Address Book, Advertising, Professional Identity, and Group Collaboration',
-        2003, 21499, '+380442223322',  timestamp '2009-10-01 09:00:10.111222', timestamp '2009-10-01 09:00:10.111222'),
+        2003, 21499, '+380442223322', timestamp '2009-10-01 09:00:10.111222', timestamp '2009-10-01 09:00:10.111222'),
        ('Nova Poshta LLC', 'support@nova_poshta.ua', 'https://novaposhta.ua',
         'Nation wide delivery service',
         'Сentral Street, 12A, Kyiv, Ukraine',
@@ -67,16 +66,17 @@ VALUES ('Microsoft', 'office@microsoft.com', 'microsoft.com', 'Software developm
         timestamp '2014-01-20 09:00:10.111222', timestamp '2014-01-20 09:00:10.111222'),
        ('Amazon.com', 'office@amazon.com', 'https://amazon.com', 'eCommerce', 'Seattle, Washington, US',
         'Internet or Mobile App Based Business, Cloud Services',
-        1994, 1300000, '+380442223322',  timestamp '2007-10-01 09:00:10.111222', timestamp '2007-10-01 09:00:10.111222'),
+        1994, 1300000, '+380442223322', timestamp '2007-10-01 09:00:10.111222', timestamp '2007-10-01 09:00:10.111222'),
        ('Facebook', 'support@fb.com', 'www.facebook.com',
         'Social media',
         '1 Hacker Way, Menlo Park, CA 94025, United States',
         'Communication Services, Internet or Mobile App Based Business', 2004, 60600, '+1-650-543-4800',
         timestamp '2005-10-01 09:00:10.111222', timestamp '2005-10-01 09:00:10.111222'),
-        ('Oracle corporation', 'support@oracle.com', 'www.oracle.com',
+       ('Oracle corporation', 'support@oracle.com', 'www.oracle.com',
         'Software and IT',
         'Austin, Texas, United States',
-        'Oracle Applications, Oracle, DatabaseOracle, CloudEnterprise, ManagerFusion, MiddlewareServers, Workstations, Storage', 1977, 133000, '+1-800-633-0738',
+        'Oracle Applications, Oracle, DatabaseOracle, CloudEnterprise, ManagerFusion, MiddlewareServers, Workstations, Storage',
+        1977, 133000, '+1-800-633-0738',
         timestamp '203-10-01 09:00:10.111222', timestamp '2003-10-01 09:00:10.111222');
 
 
@@ -103,7 +103,70 @@ VALUES (3, 1, 'Chief Operational Officer',
        (2, 3, 'Designer of interfaces', 'Designing UI interfaces with team',
         date '2006-06-03', date '2010-12-05', false, CURRENT_DATE, CURRENT_DATE),
        (2, 3, 'Head of design Unit', 'Responsibilities list ',
-        date '2010-12-05', null, true, CURRENT_DATE, CURRENT_DATE);
+        date '2010-12-05', null, true, CURRENT_DATE, CURRENT_DATE),
+       (3, 4, 'Junior Frontend Developer',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis eros lacinia, gravida lorem ut, aliquet purus.',
+        date '2003-01-05', date '2006-06-09', false, CURRENT_DATE, CURRENT_DATE),
+       (4, 4, 'Lead Frontend Developer',
+        'Quisque dictum odio neque, ut euismod neque bibendum a. Fusce eget orci vel mi laoreet tristique. In at erat at enim tincidunt interdum. Pellentesque habitant morbi tristique senectus. ',
+        date '2006-07-21', date '2015-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (6, 4, 'Project manager',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2015-03-02', null, true, CURRENT_DATE, CURRENT_DATE),
+       (5, 5, 'Assistant to HR-manager',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2008-03-02', date '2010-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (5, 5, 'HR-manager',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2010-03-02', date '2015-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (7, 5, 'HR-consultant',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2015-10-01', null, true, CURRENT_DATE, CURRENT_DATE),
+       (7, 6, 'Junior developer',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2009-03-02', date '2011-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (2, 6, 'React native developer',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2011-03-02', date '2014-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (6, 6, 'Lead QA engineer',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2014-10-01', null, true, CURRENT_DATE, CURRENT_DATE),
+       (9, 7, 'Junior developer',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2009-03-02', date '2011-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (8, 7, 'Middle React developer',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2011-03-02', date '2014-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (7, 7, 'Full-stack developer',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2014-10-01', null, true, CURRENT_DATE, CURRENT_DATE),
+       (7, 8, 'Java Script junior developer',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2009-03-02', date '2011-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (8, 8, 'Middle React developer',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2011-03-02', date '2014-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (9, 8, 'Node.js developer',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2014-10-01', null, true, CURRENT_DATE, CURRENT_DATE),
+       (1, 9, 'Java trainee',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2009-03-02', date '2011-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (3, 9, 'Middle Java developer',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2011-03-02', date '2014-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (7, 9, 'Senior Java developer',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2014-10-01', null, true, CURRENT_DATE, CURRENT_DATE),
+       (7, 10, 'Junior Java Developer',
+        'Maecenas congue neque arcu, ut posuere erat tincidunt at. Nunc iaculis sollicitudin congue. Pellentesque et gravida ex. Mauris venenatis velit eget auctor posuere. ',
+        date '2007-03-02', date '2010-03-02', false, CURRENT_DATE, CURRENT_DATE),
+       (5, 10, 'Middle Java developer',
+        'Proin quis imperdiet lorem, in tempus lacus. Nulla ac tellus sit amet quam feugiat iaculis. Nulla aliquet, lorem malesuada varius posuere, dui turpis',
+        date '2010-03-02', date '2018-10-01', false, CURRENT_DATE, CURRENT_DATE),
+       (7, 10, 'Scala developer',
+        'Curabitur augue ligula, pharetra faucibus dolor id, placerat luctus sapien. Proin tristique mattis ligula. In iaculis massa vitae felis scelerisque, ut mattis diam dapibus.',
+        date '2018-10-01', null, true, CURRENT_DATE, CURRENT_DATE);
 
 
 INSERT INTO POSTS (text, user_id, img_public_id, video_public_id, created_date, modified_date)
@@ -115,7 +178,8 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
         timestamp '2016-10-01 15:03:12.222323'),
        ('Post 3 Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
         3, '', '', timestamp '2017-02-11 08:45:23.123323', timestamp '2017-02-11 08:45:23.123323'),
-       ('Post 4 text goes here', 4, '', '', timestamp '2017-02-21 13:35:10.111222',
+       ('Post 4 text goes here', 4, '', '',
+        timestamp '2017-02-21 13:35:10.111222',
         timestamp '2017-02-21 13:35:10.111222'),
        ('Post 5 text goes here', 5, '', '', timestamp '2017-05-09 12:45:10.111222',
         timestamp '2017-05-09 12:45:10.111222'),
@@ -131,7 +195,8 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
         timestamp '2018-12-30 07:34:43.123123'),
        ('Post 11 text goes here', 1, '', '', timestamp '2019-01-03 17:22:32.123123',
         timestamp '2019-01-03 17:22:32.123123'),
-       ('Post 12 text goes here', 2, 'linkedin/posts-img/n6znpu6xjzqmexjqhnkg', '', timestamp '2019-02-04 09:43:32.123123',
+       ('Post 12 text goes here', 2, 'linkedin/posts-img/n6znpu6xjzqmexjqhnkg', '',
+        timestamp '2019-02-04 09:43:32.123123',
         timestamp '2019-02-04 09:43:32.123123'),
        ('Post 13 text goes here', 3, '', '', timestamp '2019-03-05 19:48:21.123123',
         timestamp '2019-03-05 19:48:21.123123'),
@@ -146,6 +211,7 @@ VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In port
 Fantastic to see auticon''s 2020 Global Impact Report highlight just how important it is to embrace neurodiversity in the workplace. ',
         7, 'linkedin/posts-img/a9uxdzhs88h5tqf29p5h', '', timestamp '2019-07-09 19:32:22.123123',
         timestamp '2019-07-09 19:32:22.123123'),
+
        ('Every year, I get the opportunity to meet the Washington Teacher of the Year. And every time, I’m blown away by the brilliant, thoughtful educators that my home state picks. Still, I went into my meeting this year with higher expectations than normal. 2020 was the most challenging year ever for teachers, and I knew that anyone who earned this honor while teaching through a pandemic must be truly exceptional.
         My meeting with Brooke Brown did not disappoint. She is an extraordinary teacher who has helped her students adapt to extraordinary times.' ||
         'Brooke teaches ethnic studies and English to high school seniors at Washington High School, which is located just outside of Tacoma. Nearly two-thirds of the kids at her school are students of color, and over half are eligible for free lunch. Her ethnic studies class counts as a social studies credit and has been a popular choice since the school started offering it two years ago. More students sign up to take it every semester than her classroom can accommodate.
@@ -171,7 +237,30 @@ Fantastic to see auticon''s 2020 Global Impact Report highlight just how importa
 
 Currently, India is building electric vehicle charging infrastructure because it hopes to increasingly develop towards sustainable energy and transportation. However, analysts believe that due to the cost of cars and the country’s lack of electric vehicle infrastructure, Tesla’s large-scale entry into the Indian market should be suppressed.',
         10, 'linkedin/posts-img/v9ogrvn4ib0cscsnaxwr', '', timestamp '2019-10-12 18:22:32.123123',
-        timestamp '2019-10-12 18:22:32.123123');
+        timestamp '2019-10-12 18:22:32.123123'),
+       ('Continuous Integration (CI) and Continuous Delivery (CD) are popular software development practices for automation and shortening feedback times. However, setup improperly, your CI/CD Pipelines could instead reduce the quality of your code and cause delays in development.
+         For that reason, it is important that you follow Continuous Integration and Continuous Delivery best practices for software development. This includes using the Continuous Integration tool — like Klocwork — that will be able to perform Continuous Integration testing and support CI/CD Pipelines.',
+        2, '', '',
+        timestamp '2021-05-12 13:35:10.111222',
+        timestamp '2021-05-12 13:35:10.111222'),
+--     Video for this post:   linkedin/posts-video/pmkt82hfcqn3hq5tmgwv
+
+       ('Storrors first was crossing from Europe to Asia by parkour. Bring your next first to life with Canon.',
+        5, '', '',
+        timestamp '2021-05-22 13:35:10.111222',
+        timestamp '2021-05-22 13:35:10.111222'),
+--     Video for this post:   linkedin/posts-video/gh6b5qyonkfwxoijufs7
+
+--        ('New fashion trend is coming... A black and white outfit is the universal answer to every dressing dilemma. Feeling underdressed? Swap your look for something in solid black and feel instantly confident. Unclear dress code? All those fashion magazines you read in high school were right, a little black dress really is your safest bet. Want to feel polished at a picnic? Throw on an ensemble of entirely white pieces and try not to spill.
+--
+-- There’s something incredibly stylish about streamlining your outfit options with black and white pieces. Silhouettes have the chance to shine, for one. And the outfits carry a timelessness, giving you a green light for investing in pieces that will last for many a dressing dilemma to come. Keep reading for tips on how to wear black and white.',
+--         6, '', 'linkedin/posts-video/vndq3cf3l1jbancxly0k', timestamp '2021-07-12 18:22:32.123123',
+--         timestamp '2021-07-12 18:22:32.123123'),
+       ('Do you dream of becoming a great specialist in IT sphere?' ||
+        'All training programs in DAN.IT are developed according to the standards of the IT division of the Israeli army (MAMRAM) using the TELEM methodology',
+        2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
+        timestamp '2021-08-12 18:22:32.123123');
+
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)
 VALUES (10, 1, 'Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111',

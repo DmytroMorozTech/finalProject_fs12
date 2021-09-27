@@ -101,6 +101,17 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
         )
         break
 
+      case 'miniProfileBgImg':
+        transformation = (
+          <Transformation
+            width="300"
+            crop="fill"
+            quality="90"
+            drp="auto"
+          />
+        )
+        break
+
       default:
         break
     }
@@ -115,6 +126,8 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
       defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
     } if (type === 'profileBgImg') {
       defaultImgUrl = 'linkedin/general/u4aqln7amyyfdj0tehqy'
+    } if (type === 'miniProfileBgImg') {
+      defaultImgUrl = 'linkedin/general/fdtqc5hacop8w5zt663j'
     }
 
     return defaultImgUrl

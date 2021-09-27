@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles'
-import imgPage from '../../../temporaryImages/page404img.png'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
+import SharedButton from '../../shared/SharedButton/SharedButton'
 import { Link } from 'react-router-dom'
-import LinkedinLogo from '../../../shared/LinkedinLogo/LinkedinLogo'
+import LinkedinLogo from '../../shared/LinkedinLogo/LinkedinLogo'
+import Image from '../../shared/Image/Image'
 
 function Page404 () {
   const classes = styles()
@@ -15,7 +15,11 @@ function Page404 () {
           <LinkedinLogo/>
         </Link>
       </div>
-      <img alt="page 404" src={imgPage} className={classes.pageImg}/>
+      <Image
+        imageUrl={'linkedin/general/jrn3axnlbe8gxborjqxb'}
+        alt={'page 404'}
+        className={classes.pageImg}
+      />
       <h1>This page doesn't exist</h1>
       <h2 className={classes.text}>Please check your URL or return to LinkedIn home.</h2>
       <Link exact to='/home' className={classes.link}>

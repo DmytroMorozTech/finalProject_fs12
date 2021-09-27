@@ -105,3 +105,63 @@ export const acceptInvitationAction = (invitationId) => (dispatch) => {
       toast.error(errorMsg)
     })
 }
+
+export const getUsersFollowingAction = () => (dispatch) => {
+  http
+    .get('/api/users/following')
+    .then(res => {
+      dispatch({
+        type: actions.SAVE_USERS_FOLLOWING,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
+
+export const getUsersFollowedAction = () => (dispatch) => {
+  http
+    .get('/api/users/followed')
+    .then(res => {
+      dispatch({
+        type: actions.SAVE_USERS_FOLLOWED,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
+
+export const toggleUserFollowedAction = (userId, setIsFollowed, isFollowed) => (dispatch) => {
+  http
+    .put(`/api/users/toggle_follow_user/${userId}`)
+    .then(res => res.status)
+    .then(status => {
+      if (status === 200 || status === 204) {
+        setIsFollowed(!isFollowed)
+      }
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
+
+export const getPotentialContacts = () => (dispatch) => {
+  http
+    .get('/api/users/potential_contacts')
+    .then(res => {
+      dispatch({
+        type: actions.SAVE_POTENTIAL_CONTACTS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}

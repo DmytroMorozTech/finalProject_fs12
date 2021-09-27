@@ -7,7 +7,8 @@ const ProtectedRoutes = (props) => {
   const {...data} = props
   const activeUser = useSelector(activeUserSelector)
 
-  return activeUser ? (<Route {...data} />) : (<Redirect to={{pathname: '/'}}/>)
+  localStorage.setItem('current_path', window.location.pathname)
+  return activeUser.id ? (<Route {...data} />) : (<Redirect to={{pathname: '/'}}/>)
 }
 
 export default ProtectedRoutes

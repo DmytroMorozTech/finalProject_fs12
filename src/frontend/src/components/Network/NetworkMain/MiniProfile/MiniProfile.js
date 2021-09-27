@@ -16,11 +16,13 @@ function MiniProfile (props) {
 
   const {
     avatarPublicId,
-    id = 3,
-    fullName = 'Laura Lee',
-    positionAndCompany = 'Senior Java Developer',
-    numberOfConnection = 1
-  } = props
+    id,
+    profileBgPublicId,
+    fullName,
+    positionAndCompany,
+    numberOfMutualConnections = 3
+    // TODO: this hardcode should be removed
+  } = props.user
 
   const [removedMiniProfile, setRemovedMiniProfile] = useState(false)
 
@@ -32,6 +34,12 @@ function MiniProfile (props) {
 
   return (
     <div className={clsx(classes.miniProfile, classes.smallScreen, removedMiniProfile ? classes.removed : '')}>
+      <Image
+        imageUrl={profileBgPublicId}
+        className={classes.backgroundImage}
+        type={'miniProfileBgImg'}
+        alt={'profile background'}
+      />
       <div className={classes.header}>
         <div className={classes.cross} onClick={handleCross}>
           <CloseIcon fontSize="inherit"/>
@@ -58,7 +66,7 @@ function MiniProfile (props) {
           <RadioButtonUncheckedIcon fontSize="inherit"/>
           <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
           <Typography variant="h6" color="textSecondary" className={classes.connectionText}>
-            {numberOfConnection} mutual connection
+            {numberOfMutualConnections} mutual connection{numberOfMutualConnections > 1 && 's'}
           </Typography>
         </div>
         <SharedButton
@@ -66,6 +74,10 @@ function MiniProfile (props) {
           title="Connect"
           variant="outlined"
           fullWidth={true}/>
+        {/* <SharedButton */}
+        {/*  title="Follow" */}
+        {/*  variant="outlined" */}
+        {/*  fullWidth={true}/> */}
       </div>
     </div>
   )

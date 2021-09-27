@@ -99,4 +99,12 @@ public class PostController {
     return ResponseEntity.ok(post);
   }
 
+  // this endpoint is needed only for testing purposes
+  @GetMapping("/all_active_user_posts")
+  @JsonView(PostViews.Base.class)
+  ResponseEntity<List<PostRs>> getPosts() {
+    List<PostRs> posts = postFacade.getAllPostsForActiveUser();
+    return ResponseEntity.ok().body(posts);
+  }
+
 }

@@ -8,13 +8,13 @@ import AllUpload from './allUpload'
 import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import VideoCallIcon from '@material-ui/icons/VideoCall'
-import SharedButton from '../../../shared/SharedButton/SharedButton'
+import SharedButton from '../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
   createChatWithBothMembersAction,
   createMessageAction, getChatMessagesAction,
   isTemporaryChatOpenAction
-} from '../../../redux/Message/messageActions'
+} from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {
   allChats,
@@ -23,11 +23,11 @@ import {
   isTemporaryChatOpenSelector,
   newChatData,
   newChatIdSelector
-} from '../../../redux/Message/messageSelector'
+} from '../../redux/Message/messageSelector'
 import {Link, withRouter} from 'react-router-dom'
-import {activeUserSelector, currentUserSelector} from '../../../redux/User/userSelector'
-import {findUserByIdAction} from '../../../redux/User/userActions'
-import Image from '../../../shared/Image/Image'
+import {activeUserSelector, currentUserSelector} from '../../redux/User/userSelector'
+import {findUserByIdAction} from '../../redux/User/userActions'
+import Image from '../../shared/Image/Image'
 
 function NewChat (props) {
   const {match} = props

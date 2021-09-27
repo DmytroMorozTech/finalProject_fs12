@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import Style from './styles'
 import { useDispatch, useSelector } from 'react-redux'
-import {allMessages, chatMessages} from '../../../redux/Message/messageSelector'
-import { getChatMessagesAction } from '../../../redux/Message/messageActions'
-import Image from '../../../shared/Image/Image'
+import {allMessages, chatMessages} from '../../redux/Message/messageSelector'
+import { getChatMessagesAction } from '../../redux/Message/messageActions'
+import Image from '../../shared/Image/Image'
 
 function ChatsList (props) {
   const { user, chatId, activeUserId } = props

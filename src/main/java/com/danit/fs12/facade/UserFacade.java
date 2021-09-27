@@ -95,4 +95,37 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       .map(this::convertToDto)
       .collect(Collectors.toList());
   }
+
+  public List<UserRs> getMutualConnections(Long activeUserId, Long userWhomId) {
+    List<User> mutualConnections = userService.getMutualConnections(activeUserId, userWhomId);
+    return mutualConnections.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
+  }
+
+  public UserRs toggleFollowUser(Long userId) {
+    User user = userService.toggleFollowUser(userId);
+    return convertToDto(user);
+  }
+
+  public Set<UserRs> getUsersFollowed() {
+    Set<User> followedUsers = userService.getUsersFollowed();
+    return followedUsers.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toSet());
+  }
+
+  public Set<UserRs> getUsersFollowing() {
+    Set<User> followingUsers = userService.getUsersFollowing();
+    return followingUsers.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toSet());
+  }
+
+  public Set<UserRs> getPotentialContacts() {
+    Set<User> followingUsers = userService.getPotentialContacts();
+    return followingUsers.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toSet());
+  }
 }

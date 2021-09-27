@@ -14,6 +14,7 @@ import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.workplace.WorkPlace;
+import com.danit.fs12.utils.ActiveUserUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,9 +36,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity(name = "User")
 @EqualsAndHashCode(callSuper = true)
@@ -137,21 +138,31 @@ public class User extends AbstractEntity {
   @JsonIgnore
   private List<Group> groups = new ArrayList<>();
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "followingUserId"),
-    inverseJoinColumns = @JoinColumn(name = "followedUserId"))
+    joinColumns = @JoinColumn(name = "userWhoId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhomId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowed; // users that current User follows
 
-  @ManyToMany
+  @OneToMany
   @JoinTable(name = "followers",
-    joinColumns = @JoinColumn(name = "followedUserId"),
-    inverseJoinColumns = @JoinColumn(name = "followingUserId"))
+    joinColumns = @JoinColumn(name = "userWhomId"),
+    inverseJoinColumns = @JoinColumn(name = "userWhoId"))
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private Set<User> usersFollowing; // users that are following the current User
+
+  //  @OneToMany(
+  //    mappedBy = "user",
+  //    cascade = CascadeType.ALL)
+  //  @ToString.Exclude
+  //  @EqualsAndHashCode.Exclude
+  //  @JsonIgnore
+  //  private List<Organization> organizationsFollowed = new ArrayList<>();
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
@@ -262,5 +273,14 @@ public class User extends AbstractEntity {
     return workPlaceOpt.isPresent()
       ? workPlaceOpt.get().getPositionAndCompany()
       : "";
+  }
+
+  public Boolean getIsFollowedByActiveUser() {
+    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    return getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
+  }
+
+  public Integer getNumberOfFollowers() {
+    return getUsersFollowing().size();
   }
 }

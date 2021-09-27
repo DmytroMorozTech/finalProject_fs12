@@ -1,19 +1,19 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-import Messages from '../components/Main/Messages/Messages'
+import Messages from '../components/Messages/Messages'
 import Notifications from '../components/Notifications/Notifications'
 import Jobs from '../components/Jobs/Jobs'
 import Network from '../components/Network/Network'
 import Login from '../components/Login/Login'
-import MainD from '../components/MainD/MainD'
+import Main from '../components/Main/Main'
 import ProfilePage from '../components/ProfilePage/ProfilePage'
-import Page404 from '../components/Main/Page404/Page404'
+import Page404 from '../components/Page404/Page404'
 import BookmarkedPosts from '../components/Main/BookmarkedPosts/BookmarkedPosts'
 import ProtectedRoutes from './ProtectedRoutes'
 import Connections from '../components/Network/Connections/Connections'
 import MyJobs from '../components/Jobs/MyJobs/MyJobs'
-import Chat from '../components/Main/Messages/Chat'
-import NewChat from '../components/Main/Messages/NewChat'
+import Chat from '../components/Messages/Chat'
+import NewChat from '../components/Messages/NewChat'
 import PeopleIFollowFollowers from '../components/Network/PeopleIFollow/PeopleIFollowFollowers'
 import PeopleIFollowFollowing from '../components/Network/PeopleIFollow/PeopleIFollowFollowing'
 import InvitationManagerReceived from '../components/Network/InvitationManager/InvitationManagerReceived'
@@ -29,7 +29,7 @@ const MainRoutes = () => {
       <Route exact path="/signup" render={() => <Register/>}/>
       <Route exact path="/signup_g" render={() => <Register isByGoogle={true}/>}/>
       <Route exact path="/forgot" render={() => <Forgot/>}/>
-      <ProtectedRoutes exact path="/home" render={() => <MainD/>}/>
+      <ProtectedRoutes exact path="/home" render={() => <Main/>}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/network/following" render={() => <PeopleIFollowFollowing/>}/>

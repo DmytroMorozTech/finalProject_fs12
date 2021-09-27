@@ -4,7 +4,7 @@ import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
-import com.danit.fs12.service.ImageServiceCloudinaryImpl;
+import com.danit.fs12.service.MediaServiceCloudinaryImpl;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,32 +18,37 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/images/upload")
-public class ImageController {
-  private final ImageServiceCloudinaryImpl imageService;
+@RequestMapping(path = "/api/media")
+public class MediaController {
+  private final MediaServiceCloudinaryImpl mediaService;
   private final UserFacade userFacade;
 
   @JsonView(UserViews.Profile.class)
-  @PostMapping("/avatar")
+  @PostMapping("/images/upload/avatar")
   public ResponseEntity<UserRs> uploadUserAvatar(@RequestParam("file") MultipartFile file) throws IOException {
-    User user = imageService.uploadAvatarImg(file);
+    User user = mediaService.uploadAvatarImg(file);
     UserRs userRs = userFacade.convertToDto(user);
 
     return ResponseEntity.ok(userRs);
   }
 
   @JsonView(UserViews.Profile.class)
-  @PostMapping("/profile-bg")
+  @PostMapping("/images/upload/profile-bg")
   public ResponseEntity<UserRs> handleProfileBgUpload(@RequestParam("file") MultipartFile file) throws IOException {
-    User user = imageService.uploadProfileBgImg(file);
+    User user = mediaService.uploadProfileBgImg(file);
     UserRs userRs = userFacade.convertToDto(user);
     return ResponseEntity.ok(userRs);
   }
 
-  @PostMapping("/post")
+  @PostMapping("/images/upload/post")
   public ResponseEntity<String> handlePostImgUpload(@RequestParam("file") MultipartFile file) throws IOException {
-    String imgPublicId = imageService.uploadPostImg(file);
+    String imgPublicId = mediaService.uploadPostImg(file);
     return ResponseEntity.ok(imgPublicId);
   }
 
+  @PostMapping("/videos/upload/post")
+  public ResponseEntity<String> handlePostVideoUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    String videoPublicId = mediaService.uploadPostVideo(file);
+    return ResponseEntity.ok(videoPublicId);
+  }
 }

@@ -13,12 +13,12 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Data
 public class UserRs {
 
-  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class,InvitationViews.Base.class})
+  @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private Long id;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class})
@@ -47,7 +47,7 @@ public class UserRs {
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
   private String avatarPublicId;
 
-  @JsonView(UserViews.Profile.class)
+  @JsonView({UserViews.Base.class, UserViews.Profile.class})
   private String profileBgPublicId;
 
   @JsonView({UserViews.Base.class, PostViews.Base.class, CommentViews.Base.class, InvitationViews.Base.class})
@@ -66,12 +66,6 @@ public class UserRs {
   private List<Group> groups;
 
   @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowed;
-
-  @JsonView(UserViews.Profile.class)
-  private Set<UserRs> usersFollowing;
-
-  @JsonView(UserViews.Profile.class)
   private List<WorkPlaceRs> workPlaces;
 
   @JsonView(UserViews.Profile.class)
@@ -79,5 +73,11 @@ public class UserRs {
 
   @JsonView(UserViews.Profile.class)
   private List<CertificationRs> certifications;
+
+  @JsonView({UserViews.Base.class})
+  private Boolean isFollowedByActiveUser;
+
+  @JsonView({UserViews.Base.class})
+  private Integer numberOfFollowers;
 
 }
