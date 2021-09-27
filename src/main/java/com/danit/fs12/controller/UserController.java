@@ -121,6 +121,13 @@ public class UserController {
     return ResponseEntity.ok(followingUsers);
   }
 
+  @GetMapping(path = "/potential_contacts") // "users you may know" (at frontend)
+  @JsonView(UserViews.Base.class)
+  public ResponseEntity<Set<UserRs>> getPotentialContacts() {
+    Set<UserRs> potentialContacts = userFacade.getPotentialContacts();
+    return ResponseEntity.ok(potentialContacts);
+  }
+
 
 }
 

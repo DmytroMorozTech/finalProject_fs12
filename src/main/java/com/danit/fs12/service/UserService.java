@@ -15,6 +15,7 @@ import com.danit.fs12.exception.SecurityCodesDoNotMatchException;
 import com.danit.fs12.exception.UserAlreadyExistException;
 import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.ConnectionRepository;
+import com.danit.fs12.repository.InvitationRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import com.danit.fs12.utils.ForgotMailLetter;
@@ -45,6 +46,7 @@ public class UserService extends GeneralService<User> {
   private final CommentRepository commentRepository;
   private final PasswordEncoder passwordEncoder;
   private final JavaMailSender mailSender;
+  private final InvitationRepository invitationRepository;
 
   public List<User> findUsersWhoLikedPost(Long id) {
     Post post = postRepository.findEntityById(id);
@@ -271,5 +273,35 @@ public class UserService extends GeneralService<User> {
   public Set<User> getUsersFollowing() {
     return getActiveUser().getUsersFollowing();
   }
+
+  public Set<User> getPotentialContacts() {
+    Set<User> mergedSet = new HashSet<>();
+    mergedSet.addAll(getUsersFollowed());
+    mergedSet.addAll(findConnectedUsers());
+    //    mergedSet.addAll(getUsersWithPendingInvitationToAndFromActiveUser());
+    mergedSet.add(getActiveUser());
+
+    Set<User> potentialContacts = userRepository
+      .findAll()
+      .stream()
+      .filter(user -> !mergedSet.contains(user))
+      .collect(Collectors.toSet());
+
+    return potentialContacts;
+
+  }
+
+  public List<User> getUsersWithPendingInvitationToAndFromActiveUser() {
+    List<Long> idsOfUsersInvitationsForMe = invitationRepository.findInvitationsByUserWhomId(getActiveUser().getId())
+      .stream().map(invitation -> invitation.getUserWho().getId()).collect(Collectors.toList());
+    List<Long> idsOfUsersInvitationsFromMe = invitationRepository.findInvitationsByUserWhoId(getActiveUser().getId())
+      .stream().map(invitation -> invitation.getUserWhom().getId()).collect(Collectors.toList());
+    Set<Long> allUserIds = new HashSet<>();
+    allUserIds.addAll(idsOfUsersInvitationsForMe);
+    allUserIds.addAll(idsOfUsersInvitationsFromMe);
+    return findAllById(allUserIds);
+  }
+
+
 
 }

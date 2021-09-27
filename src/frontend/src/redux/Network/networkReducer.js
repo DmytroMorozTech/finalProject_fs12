@@ -5,7 +5,8 @@ const initialState = {
   invitationsFromMe: [],
   usersFollowingMe: [],
   usersFollowedByMe: [],
-  connections: []
+  connections: [],
+  potentialContacts: []
 }
 
 const networkReducer = (state = initialState, action) => {
@@ -42,6 +43,9 @@ const networkReducer = (state = initialState, action) => {
 
     case actions.SAVE_USERS_FOLLOWED:
       return { ...state, usersFollowedByMe: [...action.payload] }
+
+    case actions.SAVE_POTENTIAL_CONTACTS:
+      return { ...state, potentialContacts: [...action.payload] }
 
     default: {
       return state
