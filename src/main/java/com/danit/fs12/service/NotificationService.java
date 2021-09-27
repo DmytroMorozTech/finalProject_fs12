@@ -73,9 +73,11 @@ public class NotificationService extends GeneralService<Notification> {
     if (notificationOpt.isPresent()) {
       Notification notification = notificationOpt.get();
       Long currentNumberOfLikes = notification.getData().get("number_of_likes");
-      notification.getData().put("number_of_likes", currentNumberOfLikes - 1);
-      // decrement likes counter in the existing Notification
-      save(notification);
+      if (currentNumberOfLikes > 0) {
+        notification.getData().put("number_of_likes", currentNumberOfLikes - 1);
+        // decrement likes counter in the existing Notification
+        save(notification);
+      }
     }
   }
 

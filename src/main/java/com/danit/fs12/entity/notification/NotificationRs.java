@@ -16,4 +16,5 @@ public class NotificationRs {
 
   private HashMap<String, Long> data;
 
+  private Boolean isRead;
 }

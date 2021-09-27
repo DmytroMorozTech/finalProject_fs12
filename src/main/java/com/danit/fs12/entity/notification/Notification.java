@@ -46,9 +46,6 @@ public class Notification extends AbstractEntity {
   @Column(name = "data", columnDefinition = "json")
   private HashMap<String, Long> data;
 
-//  @Column(name = "related_user_id")
-//  private Long relatedUserId; // id of User who triggered this Notification
-
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
