@@ -121,4 +121,11 @@ public class UserFacade extends GeneralFacade<User, UserRq, UserRs> {
       .map(this::convertToDto)
       .collect(Collectors.toSet());
   }
+
+  public Set<UserRs> getPotentialContacts() {
+    Set<User> followingUsers = userService.getPotentialContacts();
+    return followingUsers.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toSet());
+  }
 }

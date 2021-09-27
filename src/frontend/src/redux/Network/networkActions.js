@@ -150,3 +150,18 @@ export const toggleUserFollowedAction = (userId, setIsFollowed, isFollowed) => (
       toast.error(errorMsg)
     })
 }
+
+export const getPotentialContacts = () => (dispatch) => {
+  http
+    .get('/api/users/potential_contacts')
+    .then(res => {
+      dispatch({
+        type: actions.SAVE_POTENTIAL_CONTACTS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
+    })
+}
