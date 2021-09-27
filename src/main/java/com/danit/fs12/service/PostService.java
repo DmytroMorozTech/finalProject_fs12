@@ -1,7 +1,6 @@
 package com.danit.fs12.service;
 
 import com.danit.fs12.entity.bookmark.Bookmark;
-import com.danit.fs12.entity.notification.NotificationType;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.user.User;
@@ -48,28 +47,24 @@ public class PostService extends GeneralService<Post> {
     HashMap<String, Long> data = new HashMap<>();
     data.put("post_id", post.getId());
     data.put("related_user_id", activeUserId());
-
-    notificationService.createNotification(NotificationType.NEW_POST_WAS_CREATED, data);
-
+    notificationService.createNotificationNewPost(data);
     return post;
   }
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
-    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
-    List<PostLike> postLikes = post.getPostLikes();
-    Boolean postIsLiked = postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
-
+    Boolean postIsLiked = post.getIsLikedByActiveUser();
+    Long postAuthorId = post.getUser().getId();
     if (postIsLiked) {
       post.getPostLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
+      notificationService.updateNotificationDecrementLike(postId, postAuthorId);
       return save(post);
     } else {
       User user = userService.getActiveUser();
       PostLike postLike = new PostLike(user, post);
       post.getPostLikes().add(postLike);
 
-      notificationService.createNotificationToggleLike(post.getId(), post.getUser().getId());
-
+      notificationService.createOrUpdateNotificationAddLike(postId, postAuthorId);
       return save(post);
     }
   }
