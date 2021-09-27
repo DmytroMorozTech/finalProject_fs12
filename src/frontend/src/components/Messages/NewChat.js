@@ -25,7 +25,7 @@ import {
   newChatIdSelector
 } from '../../redux/Message/messageSelector'
 import {Link, withRouter} from 'react-router-dom'
-import {activeUserSelector, currentUserSelector} from '../../redux/User/userSelector'
+import {currentUserSelector} from '../../redux/User/userSelector'
 import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
 
@@ -41,8 +41,6 @@ function NewChat (props) {
   const userChatMessages = useSelector(chatMessages)
   const chatsList = useSelector(allChats)
   const userIdFromUrl = match.params.id
-  const activeUser = useSelector(activeUserSelector)
-  const activeUserId = activeUser && activeUser.id
   const newChat = useSelector(newChatData)
   const newChatId = useSelector(newChatIdSelector)
   const currentUser = useSelector(currentUserSelector)
@@ -61,17 +59,21 @@ function NewChat (props) {
 
   const findIfChatExist = () => {
     let chatId = ''
+    let chatExist = ''
     chatsList.forEach(c => {
-      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+      if (c.users.filter(u => u.id === currentUser.id).length > 0) {
         chatId = c.id
         dispatch(createMessageAction({chatId, text: messageValue}))
       } else if (isChatOpen) {
         dispatch(createMessageAction({newChatId, text: messageValue}))
       } else {
-        dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
-        dispatch(isTemporaryChatOpenAction(true))
+        chatExist = false
       }
     })
+    if (!chatExist) {
+      dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
+      dispatch(isTemporaryChatOpenAction(true))
+    }
   }
 
   const handleMessageInputChange = e => {

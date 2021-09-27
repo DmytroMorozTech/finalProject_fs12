@@ -27,8 +27,8 @@ function Connection (props) {
   const timeSinceCreated = getTimeSinceCreated(createdDate)
 
   useEffect(() => {
-    dispatch(getUserChatsAction(id && id))
-  }, [dispatch, id])
+    dispatch(getUserChatsAction(activeUserId))
+  }, [dispatch, id, activeUserId])
 
   const handleRemoved = () => {
     dispatch(deleteConnectionAction(activeUserId, id))
@@ -38,7 +38,7 @@ function Connection (props) {
     dispatch(isTemporaryChatOpenAction(false))
     let existChatId = null
     chats && chats.forEach(c => {
-      if (c.users.filter(u => u.id === activeUserId).length > 0) {
+      if (c.users.filter(u => u.id === id).length > 0) {
         existChatId = c.id
       }
     })
