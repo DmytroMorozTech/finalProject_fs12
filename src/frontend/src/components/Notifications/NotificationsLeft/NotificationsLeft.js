@@ -1,6 +1,6 @@
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
-import { Link } from 'react-router-dom'
+import SharedButton from '../../../shared/SharedButton/SharedButton'
 
 function NotificationsLeft () {
   const classes = styles()
@@ -16,14 +16,8 @@ function NotificationsLeft () {
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <div className={classes.settings}>
-        <Typography variant="body1" color="textSecondary" align="center">
-          Improve your notifications
-        </Typography>
-        {/* Link is hardcoded below */}
-        <Link to='/notifications' className={classes.link}>
-          View settings
-        </Link>
+      <div className={classes.read}>
+        <SharedButton title='Mark all as viewed'/>
       </div>
     </div>
   )

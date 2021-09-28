@@ -5,6 +5,7 @@ import CancelIcon from '@material-ui/icons/Cancel'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import {NavLink} from 'react-router-dom'
 import {MenuItem} from '@material-ui/core'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
 function NotificationAdditions (props) {
   const {userName} = props
@@ -12,6 +13,13 @@ function NotificationAdditions (props) {
   const classes = styles()
   return (
     <div>
+      <MenuItem component={NavLink} to='#' className={classes.itemWrapper}>
+        <CheckCircleIcon size='large' className={classes.icon}/>
+        <div className={classes.itemTextWrapper}>
+          <p className={classes.itemTextHeader}>Mark as viewed</p>
+          <p className={classes.itemTextBody}>Notification will be marked as viewed</p>
+        </div>
+      </MenuItem>
       <MenuItem component={NavLink} to='#' className={classes.itemWrapper}>
         <DeleteIcon size='large' className={classes.icon}/>
         <div className={classes.itemTextWrapper}>
