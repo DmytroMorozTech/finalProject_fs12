@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
   horizontalLine: {
     height: '1px',
     border: '0',
+    margin: '0',
     backgroundColor: theme.palette.grey[100]
   },
 
@@ -40,6 +41,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     backgroundColor: theme.palette.common.white,
     border: theme.border.boldLight,
+    paddingRight: theme.spacing(3),
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.05)',
       border: theme.border.boldDark
@@ -73,7 +75,7 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightBold
   },
 
-  icons: {
+  worldIcon: {
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     paddingTop: theme.spacing(1),
@@ -115,6 +117,11 @@ export default makeStyles((theme) => ({
   previewImg: {
     width: '100%',
     borderRadius: theme.shape.medium
+  },
+
+  icons: {
+    display: 'flex',
+    cursor: 'pointer'
   },
 
   cross: {

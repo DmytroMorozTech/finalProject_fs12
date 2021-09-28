@@ -29,18 +29,6 @@ function NewCommentInput (props) {
     setCommentValue(commentInputVal)
   }
 
-  const handleEnterPressed = (e) => {
-    if (e.keyCode === 13) {
-      if (e.ctrlKey) {
-        let commentInputVal = e.currentTarget.value + '\n'
-        setCommentValue(commentInputVal)
-      } else {
-        e.preventDefault()
-        createNewCommentHandler()
-      }
-    }
-  }
-
   const createNewCommentHandler = () => {
     dispatch(createNewCommentAction({ text: commentValue, id: postId }))
     setCommentValue('')
@@ -48,6 +36,20 @@ function NewCommentInput (props) {
 
   const numberCharacterToShowValidate = 1250
   const validateCount = (numberCharacterToShowValidate - commentValue.length)
+
+  const handleEnterPressed = (e) => {
+    if (e.keyCode === 13) {
+      if (e.ctrlKey) {
+        let commentInputVal = e.currentTarget.value + '\n'
+        setCommentValue(commentInputVal)
+      } else if (commentValue.length > numberCharacterToShowValidate || commentValue.trim() === '') {
+        e.preventDefault()
+      } else {
+        e.preventDefault()
+        createNewCommentHandler()
+      }
+    }
+  }
 
   return (
     <div className={classes.newCommentInput}>
@@ -73,8 +75,9 @@ function NewCommentInput (props) {
             <RemoveCircleIcon fontSize='inherit'/>
             <div className={classes.validateMessage}>You have exceeded the maximum character limit.</div>
           </div>
-          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={createNewCommentHandler}>
-            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate} size='small'/>
+          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
+            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate || commentValue.trim() === ''}
+              size='small' onClick={createNewCommentHandler}/>
             <div className={commentValue.length >= 1200 && commentValue.length <= numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
               {commentValue.length}
             </div>
