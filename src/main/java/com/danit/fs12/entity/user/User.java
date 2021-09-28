@@ -11,6 +11,7 @@ import com.danit.fs12.entity.education.Education;
 import com.danit.fs12.entity.group.Group;
 import com.danit.fs12.entity.invitation.Invitation;
 import com.danit.fs12.entity.message.Message;
+import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.postlike.PostLike;
 import com.danit.fs12.entity.workplace.WorkPlace;
@@ -243,6 +244,14 @@ public class User extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   @JsonIgnore
   private List<Certification> certifications = new ArrayList<>();
+
+  @OneToMany(
+    mappedBy = "user",
+    cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
+  private List<Notification> notifications = new ArrayList<>();
 
   public Message addMessage(Message message) {
     if (!this.messages.contains(message)) {
