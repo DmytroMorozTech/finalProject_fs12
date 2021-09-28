@@ -22,6 +22,15 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(2)
   },
 
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+      textDecorationColor: theme.palette.grey[700],
+      textDecorationThickness: '2px'
+    }
+  },
+
   userAvatar: {
     width: theme.avatar.large,
     borderRadius: '50%',
