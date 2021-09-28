@@ -3,11 +3,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'
-import ImageUpload from './imageUpload'
-import AllUpload from './allUpload'
-import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
-import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import styles from './styles'
 import {createMessageAction, getChatMessagesAction} from '../../redux/Message/messageActions'
@@ -194,20 +190,8 @@ function Chat (props) {
             </div>
             <footer className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
-                <div style={{display: 'inline-block'}}>
-                  <ImageUpload/>
-                </div>
-                <div style={{display: 'inline-block'}}>
-                  <AllUpload/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <GifOutlinedIcon/>
-                </div>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
                   <SentimentSatisfiedOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <VideoCallIcon/>
                 </div>
               </div>
               <div style={{display: 'flex'}}>

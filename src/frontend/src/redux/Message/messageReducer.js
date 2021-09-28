@@ -55,6 +55,12 @@ const messageReducer = (state = initialState, action) => {
         ...state,
         isTemporaryChatOpen: action.payload
       }
+    case actions.RESET_NEW_CHAT_DATA:
+      return {
+        ...state,
+        newChatData: [],
+        newChatId: ''
+      }
     default
     : {
       return state

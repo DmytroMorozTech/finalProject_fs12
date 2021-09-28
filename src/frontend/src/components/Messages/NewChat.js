@@ -3,11 +3,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'
-import ImageUpload from './imageUpload'
-import AllUpload from './allUpload'
-import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
-import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
@@ -28,6 +24,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {currentUserSelector} from '../../redux/User/userSelector'
 import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
+import * as actions from '../../redux/Message/messageActionTypes'
 
 function NewChat (props) {
   const {match} = props
@@ -51,6 +48,7 @@ function NewChat (props) {
   const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
+    dispatch({type: actions.RESET_NEW_CHAT_DATA})
     dispatch(findUserByIdAction(userIdFromUrl))
   }, [dispatch, userIdFromUrl])
 
@@ -59,7 +57,7 @@ function NewChat (props) {
 
   const findIfChatExist = () => {
     let chatId = ''
-    let chatExist = ''
+    let chatExist = true
     chatsList.forEach(c => {
       if (c.users.filter(u => u.id === currentUser.id).length > 0) {
         chatId = c.id
@@ -225,20 +223,8 @@ function NewChat (props) {
             </div>
             <footer className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
-                <div style={{display: 'inline-block'}}>
-                  <ImageUpload/>
-                </div>
-                <div style={{display: 'inline-block'}}>
-                  <AllUpload/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <GifOutlinedIcon/>
-                </div>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
                   <SentimentSatisfiedOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <VideoCallIcon/>
                 </div>
               </div>
               <div style={{display: 'flex'}}>
