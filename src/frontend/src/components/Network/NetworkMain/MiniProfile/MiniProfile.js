@@ -56,7 +56,7 @@ function MiniProfile (props) {
           <Typography variant="h5" align="center" className={classes.name}>
             {fullName}
           </Typography>
-          <Typography variant="body1" color="textSecondary" align="center">
+          <Typography variant="body1" color="textSecondary" align="center" className={clsx(classes.hidden, classes.position)}>
             {positionAndCompany}
           </Typography>
         </Link>
@@ -74,10 +74,6 @@ function MiniProfile (props) {
           title="Connect"
           variant="outlined"
           fullWidth={true}/>
-        {/* <SharedButton */}
-        {/*  title="Follow" */}
-        {/*  variant="outlined" */}
-        {/*  fullWidth={true}/> */}
       </div>
     </div>
   )

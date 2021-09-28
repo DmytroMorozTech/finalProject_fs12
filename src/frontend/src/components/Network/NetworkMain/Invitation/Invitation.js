@@ -44,30 +44,28 @@ function Invitation (props) {
             />
           </Link>
         </div>
-        <div>
-          <div className={classes.userInfo}>
-            <Link to={linkToUserProfile} className={classes.link}>
-              <Typography variant="h5">
-                {fullName}
+        <div className={classes.userInfo}>
+          <Link to={linkToUserProfile} className={classes.link}>
+            <Typography variant="h5">
+              {fullName}
+            </Typography>
+          </Link>
+          <Typography variant="h6">
+            {positionAndCompany}
+          </Typography>
+          {!isManage
+            ? <div className={clsx(classes.connection, classes.smallScreenConnection)}>
+              <RadioButtonUncheckedIcon fontSize="inherit"/>
+              <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
+              <Typography variant="h6" className={classes.connectionText}>
+                {numberOfConnection} mutual connection
               </Typography>
-            </Link>
-            <Typography variant="h6">
-              {positionAndCompany}
-            </Typography>
-            {!isManage
-              ? <div className={clsx(classes.connection, classes.smallScreenConnection)}>
-                <RadioButtonUncheckedIcon fontSize="inherit"/>
-                <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
-                <Typography variant="h6" className={classes.connectionText}>
-                  {numberOfConnection} mutual connection
-                </Typography>
-              </div>
-              : ''
-            }
-            <Typography variant="h6" className={classes.smallScreenConnection}>
-              {createDate}
-            </Typography>
-          </div>
+            </div>
+            : ''
+          }
+          <Typography variant="h6" className={classes.smallScreenConnection}>
+            {createDate}
+          </Typography>
         </div>
       </div>
       <div className={clsx(classes.buttons, classes.smallScreenButtons)}>

@@ -40,10 +40,11 @@ export default makeStyles((theme) => ({
   connection: {
     display: 'flex',
     alignItems: 'center',
-    color: theme.palette.grey[700],
     cursor: 'pointer',
+    color: theme.palette.grey[600],
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      textDecorationColor: theme.palette.grey[600]
     }
   },
 
