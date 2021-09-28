@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService extends GeneralService<Post> {
   private final UserService userService;
+  private final NotificationService notificationService;
   private final PostRepository postRepository;
 
   public Long activeUserId() {
@@ -42,22 +44,27 @@ public class PostService extends GeneralService<Post> {
     user.getPosts().add(post);
     userService.save(user);
 
+    HashMap<String, Long> data = new HashMap<>();
+    data.put("post_id", post.getId());
+    data.put("related_user_id", activeUserId());
+    notificationService.createNotificationNewPost(data);
     return post;
   }
 
   public Post toggleLike(Long postId) {
     Post post = findEntityById(postId);
-    //    Boolean postIsLiked = post.getIsLikedByActiveUser();
-    List<PostLike> postLikes = post.getPostLikes();
-    Boolean postIsLiked = postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId()));
-
+    Boolean postIsLiked = post.getIsLikedByActiveUser();
+    Long postAuthorId = post.getUser().getId();
     if (postIsLiked) {
       post.getPostLikes().removeIf(l -> Objects.equals(l.getUser().getId(), activeUserId()));
+      notificationService.updateNotificationDecrementLike(postId, postAuthorId);
       return save(post);
     } else {
       User user = userService.getActiveUser();
       PostLike postLike = new PostLike(user, post);
       post.getPostLikes().add(postLike);
+
+      notificationService.createOrUpdateNotificationAddLike(postId, postAuthorId);
       return save(post);
     }
   }
