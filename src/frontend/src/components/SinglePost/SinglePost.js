@@ -1,6 +1,6 @@
 import styles from './styles'
 import Grid from '@material-ui/core/Grid'
-import { Container, Hidden } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import Post from '../Main/Feed/Post/Post'
 import { findSinglePostByIdAction } from '../../redux/Post/postActions'
