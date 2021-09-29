@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface PostRepository extends RepositoryInterface<Post> {
 
-  @Query( "select p from Post p where p.user.id in :ids" )
+  @Query("select p from Post p where p.user.id in :ids")
   List<Post> getAllPostsForActiveUser(@Param("ids") List<Long> ids);
 
-  @Query( "select p from Post p where p.user.id in :ids" )
+  @Query("select p from Post p where p.user.id in :ids")
   Page<Post> getPostsForActiveUserPaginated(@Param("ids") List<Long> ids, Pageable pageable);
 
 }

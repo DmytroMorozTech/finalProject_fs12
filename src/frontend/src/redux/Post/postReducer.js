@@ -19,7 +19,8 @@ const initialState = {
       hasMore: true
     }
   },
-  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
+  usersWhoLikedPost: {}, // key - postId, value - [userRs, userRs,...]
+  singlePost: {}
 }
 
 const postReducer = (state = initialState, action) => {
@@ -113,6 +114,12 @@ const postReducer = (state = initialState, action) => {
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
       return { ...state, usersWhoLikedPost: { ...state.usersWhoLikedPost, [id]: usersList } }
+
+    case actions.SAVE_POST_SINGLE:
+      return {
+        ...state,
+        singlePost: action.payload
+      }
 
     default: {
       return state
