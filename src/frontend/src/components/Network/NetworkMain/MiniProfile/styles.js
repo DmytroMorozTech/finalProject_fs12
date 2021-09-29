@@ -21,12 +21,21 @@ export default makeStyles((theme) => ({
   '@media screen and (max-width: 445px)': {
     smallScreen: {
       width: '150px'
+    },
+
+    position: {
+      maxHeight: '40px',
+      overflow: 'hidden'
     }
   },
 
   '@media screen and (max-width: 385px)': {
     smallScreen: {
       width: '118px'
+    },
+
+    hidden: {
+      display: 'none'
     }
   },
 
@@ -108,8 +117,10 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(2),
     cursor: 'pointer',
+    color: theme.palette.grey[600],
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      textDecorationColor: theme.palette.grey[600]
     }
   },
 

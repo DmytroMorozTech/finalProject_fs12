@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     marginTop: '75px'
   },
 
-  '@media screen and (max-width: 2000px)': {
+  '@media screen and (max-width: 6000px)': {
     networkLeft: {
       width: '325px'
     },

@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
+
   root: {
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
@@ -22,7 +23,7 @@ export default makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '20%',
+    height: '54px',
     backgroundRepeat: 'no-repeat',
     borderRadius: theme.shape.up
   },

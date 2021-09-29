@@ -11,8 +11,7 @@ function MainLeft (props) {
   const activeUser = useSelector(activeUserSelector)
 
   const {
-    numberOfConnections = 45,
-    numberOfViews = 40
+    numberOfConnections
   } = props
 
   const classes = styles()
@@ -27,7 +26,6 @@ function MainLeft (props) {
         type={'miniProfileBgImg'}
         alt={'profile background'}
       />
-
       <div className={classes.header}>
         <Link to={linkToActiveUserProfile} className={classes.link}>
           <Image
@@ -49,13 +47,6 @@ function MainLeft (props) {
             <span className={classes.number}>{numberOfConnections}</span>
           </div>
           <span className={classes.connectionText}>Grow your network</span>
-        </div>
-      </Link>
-      {/* Link is hardcoded below */}
-      <Link to='/home' className={classes.link}>
-        <div className={classes.views}>
-          <span>Who viewed your profile</span>
-          <span className={classes.number}>{numberOfViews}</span>
         </div>
       </Link>
       <hr className={classes.line}/>
