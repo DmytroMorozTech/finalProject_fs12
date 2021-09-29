@@ -1,4 +1,4 @@
-import { togglePostLikeAction } from '../../../../../redux/Post/postActions'
+import { togglePostLikeGeneralAction, togglePostLikeSingleAction } from '../../../../../redux/Post/postActions'
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import { Hidden } from '@material-ui/core'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
@@ -11,15 +11,21 @@ import clsx from 'clsx'
 import NewCommentInput from './NewCommentInput/NewCommentInput'
 
 function PostButtons (props) {
-  const {postId, isLikedByActiveUser, showedAddComment, handleComment} = props
+  const {postId, isLikedByActiveUser, showedAddComment, handleComment, singlePostRender} = props
 
   const classes = styles()
 
   const dispatch = useDispatch()
 
-  const handleLike = () => {
-    dispatch(togglePostLikeAction(postId))
+  const handleLikeGeneral = () => {
+    dispatch(togglePostLikeGeneralAction(postId))
   }
+
+  const handleLikeSingle = () => {
+    dispatch(togglePostLikeSingleAction(postId))
+  }
+
+  const handleLike = singlePostRender ? handleLikeSingle : handleLikeGeneral
 
   const handleShare = () => {
     // TODO: handleShare

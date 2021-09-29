@@ -23,6 +23,8 @@ function Post (props) {
     text, user, createdDate, numberOfLikes, numberOfComments, imgPublicId, videoPublicId
   } = props.post
 
+  const {singlePostRender = false} = props
+
   const cloudName = 'dan-insta-step'
   const uniqueIdentifier = videoPublicId.replaceAll('/', '_')
   const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: uniqueIdentifier }
@@ -124,6 +126,7 @@ function Post (props) {
         isLikedByActiveUser={isLikedByActiveUser}
         showedAddComment={showedAddComment}
         handleComment={handleComment}
+        singlePostRender={singlePostRender}
       />
     </div>
   )
