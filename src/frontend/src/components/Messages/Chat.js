@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
@@ -12,9 +12,12 @@ import {allChats, allMessages, chatMessages} from '../../redux/Message/messageSe
 import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../redux/User/userSelector'
 import Image from '../../shared/Image/Image'
+import Picker from 'emoji-picker-react'
+import {ClickAwayListener} from '@material-ui/core'
 
 function Chat (props) {
   const {match} = props
+  const inputRef = useRef('')
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = styles()
@@ -27,6 +30,16 @@ function Chat (props) {
   const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
   let dateTitleTemporaryMemory = ''
+
+  const [openSmileBoard, setOpenSmileBoard] = useState(false)
+  // const [chosenEmoji, setChosenEmoji] = useState(null)
+  const onEmojiClick = (event, emojiObject) => {
+    // setChosenEmoji(emojiObject)
+    const { selectionStart } = inputRef.current
+    // replace selected text with clicked emoji
+    const newVal = messageValue.slice(0, selectionStart) + emojiObject.emoji
+    setMessageValue(newVal)
+  }
 
   const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
   const currentChat = chatsList.filter(c => c.id === +chatId)[0]
@@ -43,6 +56,7 @@ function Chat (props) {
 
   const handleSendMessageButton = () => {
     dispatch(createMessageAction({chatId, text: messageValue}))
+    setOpenSmileBoard(false)
     setMessageValue('')
   }
 
@@ -78,6 +92,10 @@ function Chat (props) {
   const getDate = (time) => {
     const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
     return splitDate[0] + ':' + splitDate[1]
+  }
+
+  const openSmiles = () => {
+    openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
   }
 
   const getMonthText = (date) => {
@@ -191,7 +209,7 @@ function Chat (props) {
             <footer className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <SentimentSatisfiedOutlinedIcon/>
+                  <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
                 </div>
               </div>
               <div style={{display: 'flex'}}>
@@ -203,6 +221,11 @@ function Chat (props) {
                   <MoreHorizIcon/>
                 </div>
               </div>
+              {openSmileBoard
+                ? (<div className={classes.smilesWrapper}>
+                  <Picker pickerStyle={{width: '25rem', height: '30rem', position: 'absolute', bottom: '1rem'}} onEmojiClick={onEmojiClick} />
+                </div>)
+                : null}
             </footer>
           </form>
         </div>
