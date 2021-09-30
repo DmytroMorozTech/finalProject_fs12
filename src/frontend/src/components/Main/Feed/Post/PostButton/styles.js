@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     cursor: 'pointer',
     transition: 'all 0.35s ease',
-    padding: theme.spacing(2),
+    height: '50px',
     borderRadius: theme.shape.small,
     fontSize: theme.typography.icons.large.fontSize,
     width: '25%',
