@@ -42,6 +42,7 @@ function PostButtons (props) {
   const handleCopy = () => {
     navigator.clipboard.writeText(linkToPost)
     handleTooltipOpen()
+    setTimeout(() => handleTooltipClose(), 600)
   }
 
   const handleSend = () => {
@@ -60,11 +61,11 @@ function PostButtons (props) {
       <div className={classes.block}>
         {items.map(({ icon, title, onClick, className }, i) => (
           <Tooltip
+            key={i}
             PopperProps={{
               disablePortal: true
             }}
-            onClose={handleTooltipClose}
-            open={title === 'Copy link' ? open : ''}
+            open={title === 'Copy link' ? open : false}
             title="Link copied"
             placement="top"
           >
