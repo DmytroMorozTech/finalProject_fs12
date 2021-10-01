@@ -136,7 +136,7 @@ export const getUsersFollowedAction = () => (dispatch) => {
     })
 }
 
-export const toggleUserFollowedAction = (userId, setIsFollowed, isFollowed) => (dispatch) => {
+export const toggleUserFollowedAction = (userId, setIsFollowed, isFollowed) => () => {
   http
     .put(`/api/users/toggle_follow_user/${userId}`)
     .then(res => res.status)

@@ -28,4 +28,8 @@ public class ConnectionService extends GeneralService<Connection> {
     connectionRepository.deleteConnectionByUserWhoIdAndUserWhomId(userWhomId, userWhoId);
   }
 
+//  public List<Connection> findConnectionsByName(String name) {
+//    return connectionRepository.findConnectionsByUserWhoFullNameContainingOrUserWhomFullNameContaining(name, name);
+//  }
+
 }

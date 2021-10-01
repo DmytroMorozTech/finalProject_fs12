@@ -8,6 +8,7 @@ import {
   EDIT_EDUCATION,
   EDIT_EXPERIENCE,
   EDIT_INTRO,
+  SEND_MESSAGE,
   UPLOAD_AVATAR_IMG,
   UPLOAD_PROFILE_BACKGROUND_IMG,
   USERS_WHO_LIKED_COMMENT,
@@ -23,6 +24,7 @@ import CertificationModal from '../../components/ProfilePage/ProfileModal/Certif
 import ExperienceModal from '../../components/ProfilePage/ProfileModal/ExperienceModal/ExperienceModal'
 import UploadProfileBgImgModal from '../../components/ProfilePage/UploadProfileBgImgModal/UploadProfileBgImgModal'
 import UploadAvatarModal from '../../components/ProfilePage/UploadAvatarModal/UploadAvatarModal'
+import SendPostLink from '../../components/Main/Feed/Post/PostButton/SendPostLink/SendPostLink'
 
 const initialState = {
   isModalOpen: false,
@@ -93,6 +95,10 @@ const modalReducer = (state = initialState, action) => {
 
         case EDIT_EXPERIENCE :
           content = <ExperienceModal workPlace={action.payload.workPlace}/>
+          break
+
+        case SEND_MESSAGE :
+          content = <SendPostLink/>
           break
 
         default:
