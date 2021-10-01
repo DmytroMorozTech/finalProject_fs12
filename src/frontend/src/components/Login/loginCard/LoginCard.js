@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getActiveUserAction} from '../../../redux/User/userActions'
 import {toast} from 'react-toastify'
 import {activeUserSelector} from '../../../redux/User/userSelector'
-import {Link} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const LoginCard = () => {
   const classes = styles()
@@ -22,10 +22,6 @@ const LoginCard = () => {
 
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser.id
-
-  if (activeUserId) {
-    history.push(localStorage.getItem('current_path'))
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -52,7 +48,7 @@ const LoginCard = () => {
       })
   }
 
-  return (
+  return activeUserId ? <Redirect to={localStorage.getItem('current_path')}/> : (
     <Paper elevation={3} className={classes.card}>
       <div className={classes.signInLineWrapper}>
         <p className={classes.signInLine}>Sign in</p>
