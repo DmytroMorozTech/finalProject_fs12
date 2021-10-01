@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
@@ -25,12 +25,14 @@ import {currentUserSelector} from '../../redux/User/userSelector'
 import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
 import * as actions from '../../redux/Message/messageActionTypes'
+import Picker from 'emoji-picker-react'
 
 function NewChat (props) {
   const {match} = props
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
+  const inputRef = useRef('')
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
   const dispatch = useDispatch()
@@ -43,6 +45,13 @@ function NewChat (props) {
   const currentUser = useSelector(currentUserSelector)
   const isChatOpen = useSelector(isTemporaryChatOpenSelector)
   let dateTitleTemporaryMemory = ''
+
+  const [openSmileBoard, setOpenSmileBoard] = useState(false)
+  const onEmojiClick = (event, emojiObject) => {
+    const { selectionStart } = inputRef.current
+    const newVal = messageValue.slice(0, selectionStart) + emojiObject.emoji
+    setMessageValue(newVal)
+  }
 
   const currentChat = chatsList.filter(c => c.id === newChat.id)[0]
   const currentChatUsers = currentChat && currentChat.users
@@ -81,6 +90,7 @@ function NewChat (props) {
 
   const handleSendMessageButton = () => {
     findIfChatExist()
+    setOpenSmileBoard(false)
     setMessageValue('')
   }
 
@@ -112,6 +122,10 @@ function NewChat (props) {
   const getDate = (time) => {
     const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
     return splitDate[0] + ':' + splitDate[1]
+  }
+
+  const openSmiles = () => {
+    openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
   }
 
   const getMonthText = (date) => {
@@ -224,7 +238,7 @@ function NewChat (props) {
             <footer className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <SentimentSatisfiedOutlinedIcon/>
+                  <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
                 </div>
               </div>
               <div style={{display: 'flex'}}>
@@ -236,6 +250,9 @@ function NewChat (props) {
                   <MoreHorizIcon/>
                 </div>
               </div>
+              {openSmileBoard
+                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                : null}
             </footer>
           </form>
         </div>

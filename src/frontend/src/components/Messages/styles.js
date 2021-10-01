@@ -260,7 +260,7 @@ export default makeStyles((theme) => ({
     margin: '0 auto',
     backgroundColor: 'white',
     maxWidth: 640,
-    minWidth: 'initial',
+    minWidth: 360,
     height: '100%',
     minHeight: 340,
     flexDirection: 'column',
@@ -629,7 +629,8 @@ export default makeStyles((theme) => ({
   },
   smilesWrapper: {
     width: '45rem',
-    position: 'relative'
+    position: 'relative',
+    zIndex: 10
   }
 
 }))

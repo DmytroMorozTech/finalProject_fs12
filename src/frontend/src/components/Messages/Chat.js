@@ -13,7 +13,6 @@ import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../redux/User/userSelector'
 import Image from '../../shared/Image/Image'
 import Picker from 'emoji-picker-react'
-import {ClickAwayListener} from '@material-ui/core'
 
 function Chat (props) {
   const {match} = props
@@ -32,11 +31,8 @@ function Chat (props) {
   let dateTitleTemporaryMemory = ''
 
   const [openSmileBoard, setOpenSmileBoard] = useState(false)
-  // const [chosenEmoji, setChosenEmoji] = useState(null)
   const onEmojiClick = (event, emojiObject) => {
-    // setChosenEmoji(emojiObject)
     const { selectionStart } = inputRef.current
-    // replace selected text with clicked emoji
     const newVal = messageValue.slice(0, selectionStart) + emojiObject.emoji
     setMessageValue(newVal)
   }
@@ -212,7 +208,7 @@ function Chat (props) {
                   <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
                 </div>
               </div>
-              <div style={{display: 'flex'}}>
+              <div style={{display: 'flex', position: 'relative'}}>
                 <div onClick={handleSendMessageButton}>
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
                     title="Message"/>
@@ -222,9 +218,7 @@ function Chat (props) {
                 </div>
               </div>
               {openSmileBoard
-                ? (<div className={classes.smilesWrapper}>
-                  <Picker pickerStyle={{width: '25rem', height: '30rem', position: 'absolute', bottom: '1rem'}} onEmojiClick={onEmojiClick} />
-                </div>)
+                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
                 : null}
             </footer>
           </form>
