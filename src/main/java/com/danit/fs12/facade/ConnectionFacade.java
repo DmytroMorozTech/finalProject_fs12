@@ -15,5 +15,5 @@ public class ConnectionFacade extends GeneralFacade<Connection, ConnectionRq, Co
   public void deleteByUserIds(Long activeUserId, Long userWhomId) {
     connectionService.deleteConnection(activeUserId, userWhomId);
   }
-}
 
+}

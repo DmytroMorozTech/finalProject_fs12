@@ -10,4 +10,5 @@ public interface ConnectionRepository extends RepositoryInterface<Connection> {
   List<Connection> findConnectionsByUserWhoIdOrUserWhomId(Long userWhoId, Long userWhomId);
 
   void deleteConnectionByUserWhoIdAndUserWhomId(Long userWhoId, Long userWhomId);
+
 }
