@@ -11,6 +11,4 @@ public interface ConnectionRepository extends RepositoryInterface<Connection> {
 
   void deleteConnectionByUserWhoIdAndUserWhomId(Long userWhoId, Long userWhomId);
 
-//  List<Connection> findConnectionsByUserWhoFullNameContainingOrUserWhomFullNameContaining(String nameUserWho, String nameUserWhom);
-
 }

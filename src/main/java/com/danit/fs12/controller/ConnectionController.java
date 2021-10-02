@@ -28,11 +28,4 @@ public class ConnectionController {
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
-//  @JsonView(ConnectionViews.Base.class)
-//  @GetMapping(path = "{name}")
-//  public ResponseEntity<List<ConnectionRs>> findById(@PathVariable String name) {
-//    List<ConnectionRs> foundConnections = connectionFacade.findConnectionsByName(name);
-//    return ResponseEntity.ok(foundConnections);
-//  }
-
 }

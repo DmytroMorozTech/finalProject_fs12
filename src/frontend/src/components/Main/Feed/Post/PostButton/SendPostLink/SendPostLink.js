@@ -1,17 +1,24 @@
 import Typography from '@material-ui/core/Typography'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import styles from './styles'
 import InputBase from '@material-ui/core/InputBase'
 import toggleModalAction from '../../../../../../redux/Modal/modalActions'
 import { useDispatch } from 'react-redux'
 import SharedButton from '../../../../../../shared/SharedButton/SharedButton'
+import _ from 'lodash'
+import http from '../../../../../../services/httpService'
+import Image from '../../../../../../shared/Image/Image'
+import clsx from 'clsx'
 
 function SendPostLink () {
   const classes = styles()
 
   const dispatch = useDispatch()
 
-  const [sendInputText, setSendInputText] = React.useState('')
+  const [sendInputText, setSendInputText] = useState('')
+  const [searchInputValue, setSearchInputValue] = useState('')
+  const [foundUsers, setFoundUsers] = useState(null)
+  const [showDropDown, setShowDropDown] = useState(false)
 
   const onSendSubmitHandler = () => {
     // dispatch(createNewPostAction({
@@ -28,7 +35,9 @@ function SendPostLink () {
 
   const numberCharacterToShowValidate = 8000
 
-  let btnIsDisabled = sendInputText.length === 0 || sendInputText.length > numberCharacterToShowValidate || sendInputText.trim() === ''
+  let btnIsDisabled = sendInputText.length === 0 ||
+    sendInputText.length > numberCharacterToShowValidate ||
+    sendInputText.trim() === ''
 
   const handleEnterPressed = (e) => {
     if (e.keyCode === 13) {
@@ -44,23 +53,75 @@ function SendPostLink () {
     }
   }
 
+  const findConnectedUsersByName = (searchInput) => {
+    return http
+      .get(`/api/users/connections/${searchInput}`)
+      .then((res) => res.data)
+  }
+
+  // eslint-disable-next-line
+  const debounce = useCallback(
+    _.debounce((_searchVal) => {
+      // send the server request here
+      findConnectedUsersByName(_searchVal)
+        .then((usersList) => {
+          setFoundUsers(usersList)
+          setShowDropDown(true)
+          console.log(usersList)
+          console.log(`ShowDropDown: ${showDropDown}`)
+        })
+    }, 1000),
+    []
+
+  )
+
+  const handleChange = (event) => {
+    const {value} = event.target
+    console.log(`Input value: ${value}`)
+    setSearchInputValue(value)
+
+    if (value.trim() === '') return
+    debounce(value)
+  }
+
   return (
-    <div>
+    <div className={classes.container}>
       <div className={classes.title}>
         <Typography variant="h3" className={classes.subtitle}>
           Send Post Link
         </Typography>
       </div>
       <hr className={classes.line}/>
-      <div className={classes.inputBase}>
+      <div className={clsx(classes.inputBase, classes.inputSearch)}>
         <InputBase
           placeholder="Type a name"
           fullWidth={true}
-          // value={searchUserInputText}
-          // onChange={handleSearchUserInputChange}
+          value={searchInputValue}
+          onChange={handleChange}
+          onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
           // className={classes.searchUser}
         />
       </div>
+
+      {foundUsers && showDropDown &&
+      (<div className={classes.foundedUsers}>
+        {foundUsers.map(user => (
+          <div>
+            <div key={user.id} className={classes.user}>
+              <Image
+                imageUrl={user.avatarPublicId}
+                alt={'user avatar'}
+                type={'smallAvatar'}
+                className={classes.smallAvatar}
+              />
+              <Typography variant='h5'>{user.fullName}</Typography>
+            </div>
+            <hr className={classes.line}/>
+          </div>
+        ))}
+      </div>)
+      }
+
       <hr className={classes.line}/>
       <div className={classes.inputBase}>
         <InputBase
@@ -70,13 +131,13 @@ function SendPostLink () {
           minRows={7}
           value={sendInputText}
           onChange={handleSendInputChange}
-          className={classes.sendInput}
+          // className={classes.sendInput}
           onKeyDown={handleEnterPressed}
         />
       </div>
       <hr className={classes.line}/>
       <div className={classes.button}>
-        <SharedButton title='Send' disabled={btnIsDisabled} onClick={btnIsDisabled ? '' : onSendSubmitHandler}/>
+        <SharedButton title="Send" disabled={btnIsDisabled} onClick={btnIsDisabled ? '' : onSendSubmitHandler}/>
       </div>
     </div>
   )

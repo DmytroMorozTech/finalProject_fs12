@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
+  container: {
+    position: 'relative'
+  },
+
   title: {
     display: 'flex',
     flexDirection: 'row',
@@ -30,6 +34,38 @@ export default makeStyles((theme) => ({
   inputBase: {
     paddingLeft: theme.spacing(5),
     padding: theme.spacing(1)
+  },
+
+  inputSearch: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '55px'
+  },
+
+  foundedUsers: {
+    width: '100%',
+    zIndex: 1,
+    backgroundColor: theme.palette.common.white,
+    position: 'absolute',
+    top: 95,
+    left: 0
+  },
+
+  user: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    paddingLeft: theme.spacing(5),
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.08)'
+    }
+  },
+
+  smallAvatar: {
+    width: theme.avatar.small,
+    borderRadius: '50%',
+    marginRight: theme.spacing(2)
   },
 
   button: {
