@@ -225,11 +225,11 @@ public class UserService extends GeneralService<User> {
   }
 
   public Set<User> findConnectedUsersByName(String searchInput) {
-    String searchInputLC = searchInput.toLowerCase();
+    String searchInputLowerCase = searchInput.toLowerCase();
     List<User> connectedUsers = findConnectedUsers();
     Set<User> foundConnectedUsersByName = connectedUsers.stream()
-      .filter(user -> (user.getFirstName().toLowerCase().startsWith(searchInputLC))
-        || user.getLastName().toLowerCase().startsWith(searchInputLC))
+      .filter(user -> (user.getFirstName().toLowerCase().startsWith(searchInputLowerCase))
+        || user.getLastName().toLowerCase().startsWith(searchInputLowerCase))
       .collect(Collectors.toSet());
 
     return foundConnectedUsersByName;
