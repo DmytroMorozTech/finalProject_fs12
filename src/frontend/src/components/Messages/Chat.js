@@ -13,6 +13,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../redux/User/userSelector'
 import Image from '../../shared/Image/Image'
 import Picker from 'emoji-picker-react'
+import useOnclickOutside from 'react-cool-onclickoutside'
 
 function Chat (props) {
   const {match} = props
@@ -93,6 +94,10 @@ function Chat (props) {
   const openSmiles = () => {
     openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
   }
+
+  const ref = useOnclickOutside(() => {
+    setOpenSmileBoard(false)
+  })
 
   const getMonthText = (date) => {
     switch (date) {
@@ -202,7 +207,7 @@ function Chat (props) {
                 </div>
               </div>
             </div>
-            <footer className={classes.msgFormFooter}>
+            <footer ref={ref} className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
                   <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>

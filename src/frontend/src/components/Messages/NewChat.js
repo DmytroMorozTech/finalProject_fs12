@@ -26,6 +26,7 @@ import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
 import * as actions from '../../redux/Message/messageActionTypes'
 import Picker from 'emoji-picker-react'
+import useOnclickOutside from 'react-cool-onclickoutside'
 
 function NewChat (props) {
   const {match} = props
@@ -127,6 +128,10 @@ function NewChat (props) {
   const openSmiles = () => {
     openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
   }
+
+  const ref = useOnclickOutside(() => {
+    setOpenSmileBoard(false)
+  })
 
   const getMonthText = (date) => {
     switch (date) {
@@ -235,7 +240,7 @@ function NewChat (props) {
                 </div>
               </div>
             </div>
-            <footer className={classes.msgFormFooter}>
+            <footer ref={ref} className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
                   <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
