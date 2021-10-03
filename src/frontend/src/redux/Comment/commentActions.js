@@ -1,10 +1,13 @@
 import http from '../../services/httpService'
 import * as actions from '../Comment/commentActionTypes'
-import { INCREMENT_COMMENTS_COUNTER_FOR_POST } from '../Post/postActionTypes'
+import {
+  INCREMENT_COMMENTS_COUNTER_FOR_POST_GENERAL,
+  INCREMENT_COMMENTS_COUNTER_FOR_POST_SINGLE
+} from '../Post/postActionTypes'
 import { USERS_WHO_LIKED_COMMENT } from '../Modal/modalTypes'
 import toggleModalAction from '../Modal/modalActions'
 
-export const createNewCommentAction = ({ text, id }) => (dispatch) => {
+export const createNewCommentAction = ({ text, id, singlePostRender }) => (dispatch) => {
   return http
     .post('/api/comments', { text: text, postId: id })
     .then((res) => res.data)
@@ -13,10 +16,14 @@ export const createNewCommentAction = ({ text, id }) => (dispatch) => {
         type: actions.ADD_NEW_COMMENT_FOR_POST,
         payload: { comment: newCommentObj, postId: id }
       })
-      dispatch({
-        type: INCREMENT_COMMENTS_COUNTER_FOR_POST,
-        payload: { postId: id }
-      })
+      if (!singlePostRender) {
+        dispatch({
+          type: INCREMENT_COMMENTS_COUNTER_FOR_POST_GENERAL,
+          payload: { postId: id }
+        })
+      } else if (singlePostRender) {
+        dispatch({ type: INCREMENT_COMMENTS_COUNTER_FOR_POST_SINGLE })
+      }
     })
 }
 

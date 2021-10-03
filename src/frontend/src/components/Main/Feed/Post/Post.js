@@ -47,14 +47,16 @@ function Post (props) {
     pageNumber: 0,
     pageSize: 3,
     totalPages: 0,
-    hasMore: true
+    hasMore: false
   }
 
   const [paginationData, setPaginationData] = useState(initialPaginationData)
+  const [commentsAreLoading, setCommentsAreLoading] = useState(false)
 
   const loadCommentsPaginated = useCallback(() => {
+    setCommentsAreLoading(true)
     return http
-      .get(`api/comments/for_post/${postId}`,
+      .get(`../api/comments/for_post/${postId}`,
         {
           params: {
             pageNumber: paginationData.pageNumber,
@@ -72,6 +74,7 @@ function Post (props) {
           hasMore: hasmore === 'true'
         })
         dispatch({ type: commentActions.SAVE_COMMENTS_FOR_POST, payload: { comments, postId } })
+        setCommentsAreLoading(false)
       })
   }, [paginationData.pageNumber, paginationData.pageSize, dispatch, postId])
 
@@ -158,7 +161,11 @@ function Post (props) {
       <PostButtons
         postId={postId}
         isLikedByActiveUser={isLikedByActiveUser}
-        handleComment={showCommentsSectionsHandler}
+        handleComment={
+          numberOfComments > 0
+            ? showCommentsSectionsHandler
+            : () => setCommentsSectionIsVisible(true)
+        }
         singlePostRender={singlePostRender}
       />
 
@@ -167,6 +174,8 @@ function Post (props) {
           postId={postId}
           postHasMoreComments={paginationData.hasMore}
           onCommentsLoadHandler = {loadCommentsPaginated}
+          commentsAreLoading = {commentsAreLoading}
+          singlePostRender = {singlePostRender}
         />
       </div>
 
