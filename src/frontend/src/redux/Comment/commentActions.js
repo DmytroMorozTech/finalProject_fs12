@@ -1,17 +1,8 @@
 import http from '../../services/httpService'
 import * as actions from '../Comment/commentActionTypes'
-import {INCREMENT_COMMENTS_COUNTER_FOR_POST} from '../Post/postActionTypes'
+import { INCREMENT_COMMENTS_COUNTER_FOR_POST } from '../Post/postActionTypes'
 import { USERS_WHO_LIKED_COMMENT } from '../Modal/modalTypes'
 import toggleModalAction from '../Modal/modalActions'
-
-export const getCommentsForPostAction = (postId) => (dispatch) => {
-  return http
-    .get(`/api/comments/for_post/${postId}`)
-    .then((res) => res.data)
-    .then((listOfComments) => {
-      dispatch({ type: actions.SAVE_COMMENTS_FOR_POST, payload: { listOfComments, postId } })
-    })
-}
 
 export const createNewCommentAction = ({ text, id }) => (dispatch) => {
   return http

@@ -1,6 +1,6 @@
 import PublicIcon from '@material-ui/icons/Public'
 import styles from './styles'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import LikeMiniIcon from '../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import Typography from '@material-ui/core/Typography'
 import ThreeDots from '../../../../shared/ThreeDots/TreeDots'
@@ -14,8 +14,10 @@ import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import PostAddition from './PostAddition/PostAddition'
 import { Link } from 'react-router-dom'
 import Image from '../../../../../src/shared/Image/Image'
-import { getCommentsForPostAction } from '../../../../redux/Comment/commentActions'
 import VideoPlayerClass from './Video/VideoPlayerClass'
+import * as commentActions from '../../../../redux/Comment/commentActionTypes'
+import http from '../../../../services/httpService'
+import NewCommentInput from './PostButton/NewCommentInput/NewCommentInput'
 
 function Post (props) {
   const {
@@ -32,14 +34,46 @@ function Post (props) {
   const dispatch = useDispatch()
   const classes = styles()
   const linkToUserProfile = '/profiles/' + user.id
-  const [showedAddComment, setShowedAddComment] = useState(false)
+  const [commentsSectionIsVisible, setCommentsSectionIsVisible] = useState(false)
 
-  const handleComment = () => {
-    if (!showedAddComment) {
-      dispatch(getCommentsForPostAction(postId))
-      setShowedAddComment(!showedAddComment)
+  const showCommentsSectionsHandler = () => {
+    if (!commentsSectionIsVisible) {
+      loadCommentsPaginated()
+      setCommentsSectionIsVisible(true)
     }
   }
+
+  const initialPaginationData = {
+    pageNumber: 0,
+    pageSize: 3,
+    totalPages: 0,
+    hasMore: true
+  }
+
+  const [paginationData, setPaginationData] = useState(initialPaginationData)
+
+  const loadCommentsPaginated = useCallback(() => {
+    return http
+      .get(`api/comments/for_post/${postId}`,
+        {
+          params: {
+            pageNumber: paginationData.pageNumber,
+            pageSize: paginationData.pageSize
+          }
+        }
+      )
+      .then((result) => {
+        let comments = result.data
+        const {pagenumber, pagesize, totalpages, hasmore} = result.headers
+        setPaginationData({
+          pageNumber: parseInt(pagenumber) + 1,
+          pageSize: parseInt(pagesize),
+          totalPages: parseInt(totalpages),
+          hasMore: hasmore === 'true'
+        })
+        dispatch({ type: commentActions.SAVE_COMMENTS_FOR_POST, payload: { comments, postId } })
+      })
+  }, [paginationData.pageNumber, paginationData.pageSize, dispatch, postId])
 
   return (
     <div className={classes.post}>
@@ -114,7 +148,7 @@ function Post (props) {
           : ''
         }
         {numberOfComments > 0
-          ? <Typography variant="body2" className={classes.quantityText} onClick={handleComment}>
+          ? <Typography variant="body2" className={classes.quantityText} onClick={showCommentsSectionsHandler}>
             {numberOfComments} comments
           </Typography>
           : ''
@@ -124,10 +158,18 @@ function Post (props) {
       <PostButtons
         postId={postId}
         isLikedByActiveUser={isLikedByActiveUser}
-        showedAddComment={showedAddComment}
-        handleComment={handleComment}
+        handleComment={showCommentsSectionsHandler}
         singlePostRender={singlePostRender}
       />
+
+      <div className={commentsSectionIsVisible ? classes.showedAddComment : classes.hidden}>
+        <NewCommentInput
+          postId={postId}
+          postHasMoreComments={paginationData.hasMore}
+          onCommentsLoadHandler = {loadCommentsPaginated}
+        />
+      </div>
+
     </div>
   )
 }

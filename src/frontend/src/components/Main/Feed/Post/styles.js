@@ -123,5 +123,15 @@ export default makeStyles((theme) => ({
     display: 'block',
     margin: '0 auto',
     maxHeight: '480px'
+  },
+
+  showedAddComment: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
+  },
+
+  hidden: {
+    display: 'none'
   }
 }))

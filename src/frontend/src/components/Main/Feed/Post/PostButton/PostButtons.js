@@ -8,12 +8,11 @@ import React, { useState } from 'react'
 import styles from './styles'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
-import NewCommentInput from './NewCommentInput/NewCommentInput'
 import toggleModalAction from '../../../../../redux/Modal/modalActions'
 import { SEND_MESSAGE } from '../../../../../redux/Modal/modalTypes'
 
 function PostButtons (props) {
-  const {postId, isLikedByActiveUser, showedAddComment, handleComment, singlePostRender} = props
+  const {postId, isLikedByActiveUser, handleComment, singlePostRender} = props
 
   const classes = styles()
 
@@ -82,9 +81,6 @@ function PostButtons (props) {
 
           </Tooltip>
         ))}
-      </div>
-      <div className={showedAddComment ? classes.showedAddComment : classes.hidden}>
-        <NewCommentInput postId={postId}/>
       </div>
     </div>
   )

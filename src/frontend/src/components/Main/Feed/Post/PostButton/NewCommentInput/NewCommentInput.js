@@ -11,7 +11,7 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import Image from '../../../../../../shared/Image/Image'
 
 function NewCommentInput (props) {
-  const {postId} = props
+  const {postId, postHasMoreComments, onCommentsLoadHandler} = props
   const classes = styles()
 
   const dispatch = useDispatch()
@@ -51,6 +51,12 @@ function NewCommentInput (props) {
     }
   }
 
+  const loadMoreCommentsElement = (
+    <div className={classes.loadMoreComments} onClick={onCommentsLoadHandler}>
+      <span>Load more comments</span>
+    </div>
+  )
+
   return (
     <div className={classes.newCommentInput}>
       <div className={classes.addComment}>
@@ -87,12 +93,13 @@ function NewCommentInput (props) {
           </div>
         </div>
       </div>
+
       <div>
         <div className={classes.comments}>
-          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
-          <div className={classes.loadMoreComments}>
-            <span>Load more comments</span>
-          </div>
+          {commentsForPost
+            .sort((c1, c2) => Date.parse(c1.createdDate) - Date.parse(c2.createdDate))
+            .map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
+          {postHasMoreComments && loadMoreCommentsElement}
         </div>
       </div>
     </div>

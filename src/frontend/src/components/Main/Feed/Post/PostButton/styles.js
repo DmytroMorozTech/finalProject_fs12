@@ -39,12 +39,6 @@ export default makeStyles((theme) => ({
     color: theme.palette.primary.main
   },
 
-  showedAddComment: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%'
-  },
-
   hidden: {
     display: 'none'
   }
