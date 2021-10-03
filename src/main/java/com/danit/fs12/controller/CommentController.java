@@ -4,18 +4,23 @@ import com.danit.fs12.controller.views.CommentViews;
 import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.facade.CommentFacade;
+import com.danit.fs12.utils.HeadersUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import java.util.List;
 
 @Slf4j
@@ -46,9 +51,18 @@ public class CommentController {
 
   @GetMapping(path = "/for_post/{postId}")
   @JsonView(CommentViews.Base.class)
-  public ResponseEntity<List<CommentRs>> getCommentsForPost(@PathVariable Long postId) {
-    List<CommentRs> comments = commentFacade.getCommentsForPost(postId);
-    return ResponseEntity.ok(comments);
+  public ResponseEntity<List<CommentRs>> getCommentsForPostPaginated(
+    @PathVariable Long postId,
+    @RequestParam(defaultValue = "0") Integer pageNumber,
+    @RequestParam(defaultValue = "3") @Max(100) Integer pageSize
+  ) {
+    Page<CommentRs> pageOfComments = commentFacade.getCommentsForPostPaginated(postId, pageNumber, pageSize);
+    List<CommentRs> content = pageOfComments.getContent();
+    HttpHeaders responseHeaders = HeadersUtils.createPaginationHeaders(pageOfComments);
+
+    return ResponseEntity.ok()
+      .headers(responseHeaders)
+      .body(content);
   }
 
   @PostMapping(path = "/toggle_like/{commentId}")

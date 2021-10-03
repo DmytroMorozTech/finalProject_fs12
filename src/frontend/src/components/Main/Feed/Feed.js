@@ -5,6 +5,7 @@ import ShareBox from './ShareBox/ShareBox'
 import {connect, useDispatch, useSelector} from 'react-redux'
 import Preloader from '../../../shared/Preloader/Preloader'
 import * as actions from '../../../redux/Post/postActionTypes'
+import {DELETE_COMMENTS_FOR_ALL_POSTS} from '../../../redux/Comment/commentActionTypes'
 import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 
@@ -93,6 +94,10 @@ function Feed (props) {
       }
     }
   }, [element])
+
+  useEffect(() => {
+    dispatch({ type: DELETE_COMMENTS_FOR_ALL_POSTS })
+  }, [dispatch])
 
   return (
     <>
