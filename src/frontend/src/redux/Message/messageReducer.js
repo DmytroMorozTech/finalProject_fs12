@@ -61,6 +61,11 @@ const messageReducer = (state = initialState, action) => {
         newChatData: [],
         newChatId: ''
       }
+    case actions.FIND_CHAT_BY_CHAT_MEMBER:
+      return {
+        ...state,
+        chatsList: action.payload
+      }
     default
     : {
       return state

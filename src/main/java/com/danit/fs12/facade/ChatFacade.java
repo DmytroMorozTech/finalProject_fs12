@@ -4,7 +4,6 @@ import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.chat.ChatRq;
 import com.danit.fs12.entity.chat.ChatRs;
 import com.danit.fs12.service.ChatService;
-import com.danit.fs12.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 @Component
 public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
   private final ChatService chatService;
-  private final UserService userService;
 
   public ChatRs createChat() {
     Chat chat = chatService.createChat();
@@ -39,5 +37,12 @@ public class ChatFacade extends GeneralFacade<Chat, ChatRq, ChatRs> {
   public ChatRs createChatIfNoExist(Long userId, ChatRq rq) {
     Chat chat = chatService.createChatIfNoExist(userId, rq.getText());
     return convertToDto(chat);
+  }
+
+  public List<ChatRs> findChatByMemberName(String text) {
+    List<Chat> chats = chatService.findChatByMemberName(text);
+    return chats.stream()
+      .map(this::convertToDto)
+      .collect(Collectors.toList());
   }
 }
