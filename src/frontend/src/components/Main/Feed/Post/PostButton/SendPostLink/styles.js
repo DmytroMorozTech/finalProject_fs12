@@ -2,10 +2,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
-  container: {
-    position: 'relative'
-  },
-
   title: {
     display: 'flex',
     flexDirection: 'row',
@@ -31,6 +27,10 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[300]
   },
 
+  inputs: {
+    position: 'relative'
+  },
+
   inputBase: {
     paddingLeft: theme.spacing(5),
     padding: theme.spacing(1)
@@ -42,12 +42,12 @@ export default makeStyles((theme) => ({
     height: '55px'
   },
 
-  foundedUsers: {
+  foundedUsersDropdown: {
     width: '100%',
     zIndex: 1,
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
-    top: 95,
+    top: 55,
     left: 0
   },
 

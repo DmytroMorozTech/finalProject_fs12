@@ -1,8 +1,10 @@
 package com.danit.fs12.service;
 
 
+import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.message.Message;
+import com.danit.fs12.entity.message.MessageFromFeedRq;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,5 +51,42 @@ public class MessageService extends GeneralService<Message> {
 
   public List<Message> getMessagesByChatId(Long chatId) {
     return messageRepository.findMessagesByChat_Id(chatId);
+  }
+
+  public Boolean createMessageFromFeed(MessageFromFeedRq rq) {
+    String text = rq.getText();
+    Long userWhomId = rq.getUserWhomId();
+    User userWhom = userService.findEntityById(userWhomId);
+
+    User activeUser = userService.getActiveUser();
+    Long activeUserId = activeUser.getId();
+    List<Chat> activeUserChats = activeUser.getChats();
+
+    List<Chat> chatsWithTwoUsers = activeUserChats
+      .stream()
+      .filter(chat -> chat.getUsers().size() == 2)
+      .collect(Collectors.toList());
+
+    Optional<Chat> chatOptional = chatsWithTwoUsers.stream().filter(
+      chat ->
+        chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
+          && chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(activeUserId)
+    ).findFirst();
+
+    if (chatOptional.isPresent()){
+      Long chatId = chatOptional.get().getId();
+      createMessage(chatId, text);
+      return true;
+    }
+
+    Chat chat = chatRepository.save(new Chat());
+    activeUser.addChat(chat);
+    userRepository.save(activeUser);
+    userWhom.addChat(chat);
+    userRepository.save(userWhom);
+
+    createMessage(chat.getId(), text);
+    return true;
+
   }
 }

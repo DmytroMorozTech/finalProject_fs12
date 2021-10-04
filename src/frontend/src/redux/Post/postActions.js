@@ -4,6 +4,7 @@ import toggleModalAction from '../Modal/modalActions'
 import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
 import { uploadPostImgAction } from '../Image/imageActions'
 import { uploadPostVideoAction } from '../Video/videoActions'
+import { toast } from 'react-toastify'
 
 export const createNewPostAction = (payload) => async (dispatch) => {
   const { text, image, video } = payload
@@ -94,5 +95,20 @@ export const findSinglePostByIdAction = (postId, setPostIsLoading) => (dispatch)
         payload: res.data
       })
       setPostIsLoading(false)
+    })
+}
+
+export const createMessageFromFeed = (data) => {
+  return http
+    .post(`api/messages/from_feed`, data)
+    .then((res) => res.status)
+    .then((status) => {
+      if (status === 200 || status === 204) {
+        toast.info('Your message was sent successfully')
+      }
+    })
+    .catch(err => {
+      const errorMsg = err.response.data.message
+      toast.error(errorMsg)
     })
 }
