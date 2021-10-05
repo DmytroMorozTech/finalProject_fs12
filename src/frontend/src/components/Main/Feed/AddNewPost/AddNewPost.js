@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import InputBase from '@material-ui/core/InputBase'
 import Typography from '@material-ui/core/Typography'
 import MuiDialogContent from '@material-ui/core/DialogContent'
@@ -95,7 +94,21 @@ const AddNewPost = () => {
 
   const numberCharacterToShowValidate = 3000
   const validateCount = (numberCharacterToShowValidate - postInputText.length)
-  let btnIsDisabled = postInputText.length === 0 || postInputText.length > numberCharacterToShowValidate
+  let btnIsDisabled = postInputText.length === 0 || postInputText.length > numberCharacterToShowValidate || postInputText.trim() === ''
+
+  const handleEnterPressed = (e) => {
+    if (e.keyCode === 13) {
+      if (e.ctrlKey) {
+        let postInputText = e.currentTarget.value + '\n'
+        setPostInputText(postInputText)
+      } else if (postInputText.length > numberCharacterToShowValidate || postInputText.trim() === '') {
+        e.preventDefault()
+      } else {
+        e.preventDefault()
+        onPostSubmitHandler()
+      }
+    }
+  }
 
   return (
     <div>
@@ -118,15 +131,12 @@ const AddNewPost = () => {
               {activeUser.fullName}
             </Typography>
             <button className={classes.sharePost}>
-              <div className={classes.icons}>
+              <div className={classes.worldIcon}>
                 <PublicIcon fontSize="inherit"/>
               </div>
               <Typography variant="h4">
                 Anyone
               </Typography>
-              <div className={classes.icons}>
-                <ArrowDropDownIcon fontSize="inherit"/>
-              </div>
             </button>
           </div>
         </div>
@@ -138,6 +148,7 @@ const AddNewPost = () => {
           value={postInputText}
           onChange={handlePostInputChange}
           className={classes.editor}
+          onKeyDown={handleEnterPressed}
         />
         {photoIsChosen ? photoPreviewComponent() : null}
       </DialogContent>
@@ -178,7 +189,7 @@ const AddNewPost = () => {
                   }}
 
                 />
-                <PhotoSizeSelectActualIcon/>
+                <PhotoSizeSelectActualIcon className={classes.icons}/>
               </label>
             </div>
           </LightTooltip>
@@ -209,25 +220,26 @@ const AddNewPost = () => {
                       console.log(selectedVideoFile)
                       console.log(`videoIsChosen: ${videoIsChosen}`)
                       // setVideoWasRemoved(false)
-                      // I will have to implement it in case I manage to create video preview
+                      // TODO Dmytro Moroz will have to implement it in the case and he manages to create a video preview
                     }
                   }}
 
                 />
-                <YouTubeIcon/>
+                <YouTubeIcon className={classes.icons}/>
               </label>
             </div>
           </LightTooltip>
           <LightTooltip title={`Add a document`} placement={'top'}>
             <div className={classes.shareButton}>
-              <EventNoteIcon/>
+              <EventNoteIcon className={classes.icons}/>
             </div>
           </LightTooltip>
           <hr className={classes.verticalLine}/>
         </div>
-        <SharedButton title="Post" disabled={btnIsDisabled} onClick={onPostSubmitHandler}/>
+        <SharedButton title="Post" disabled={btnIsDisabled} onClick={btnIsDisabled ? '' : onPostSubmitHandler}/>
       </DialogActions>
     </div>
   )
 }
+
 export default AddNewPost

@@ -34,21 +34,11 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[300]
   },
 
-  settings: {
+  read: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: theme.palette.grey[100],
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    padding: theme.spacing(2),
     borderRadius: theme.shape.down
-  },
-
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightBold,
-    fontSize: theme.typography.h5.fontSize,
-    cursor: 'pointer'
   }
 }))

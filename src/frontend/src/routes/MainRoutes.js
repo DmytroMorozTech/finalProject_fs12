@@ -21,6 +21,7 @@ import InvitationManagerSent from '../components/Network/InvitationManager/Invit
 import Register from '../components/Register/Register'
 import Forgot from '../components/ForgotPass/Forgot'
 import OrganizationPage from '../components/OrganizationPage/OrganizationPage'
+import SinglePost from '../components/SinglePost/SinglePost'
 
 const MainRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const MainRoutes = () => {
       <Route exact path="/signup_g" render={() => <Register isByGoogle={true}/>}/>
       <Route exact path="/forgot" render={() => <Forgot/>}/>
       <ProtectedRoutes exact path="/home" render={() => <Main/>}/>
+      <ProtectedRoutes exact path="/posts/:id" component={SinglePost}/>
       <ProtectedRoutes exact path="/network" render={() => <Network/>}/>
       <ProtectedRoutes exact path="/network/connections" render={() => <Connections/>}/>
       <ProtectedRoutes exact path="/network/following" render={() => <PeopleIFollowFollowing/>}/>

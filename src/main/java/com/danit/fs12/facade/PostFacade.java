@@ -48,4 +48,3 @@ public class PostFacade extends GeneralFacade<Post, PostRq, PostRs> {
     return posts.stream().map(this::convertToDto).collect(Collectors.toList());
   }
 }
-

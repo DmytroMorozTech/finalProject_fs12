@@ -5,9 +5,13 @@ import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.commentlike.CommentLike;
 import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
+import com.danit.fs12.repository.CommentRepository;
 import com.danit.fs12.repository.PostRepository;
 import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ public class CommentService extends GeneralService<Comment> {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
   private final UserService userService;
+  private final NotificationService notificationService;
+  private final CommentRepository commentRepository;
 
   public Long activeUserId() {
     return userService.getActiveUser().getId();
@@ -40,11 +46,9 @@ public class CommentService extends GeneralService<Comment> {
     postRepository.save(post);
     userRepository.save(user);
 
-    return comment;
-  }
+    notificationService.createNotificationComment(post.getId(), post.getUser().getId());
 
-  public List<Comment> getCommentsForPost(Long postId) {
-    return postRepository.findEntityById(postId).getComments();
+    return comment;
   }
 
   public Comment toggleCommentLike(Long commentId) {
@@ -61,6 +65,11 @@ public class CommentService extends GeneralService<Comment> {
       comment.getCommentLikes().add(commentLike);
       return save(comment);
     }
+  }
+
+  public Page<Comment> getCommentsForPostPaginated(Long postId, Integer pageNumber, Integer pageSize) {
+    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "createdDate");
+    return commentRepository.findCommentsByPostId(postId, pageRequest);
   }
 
 }

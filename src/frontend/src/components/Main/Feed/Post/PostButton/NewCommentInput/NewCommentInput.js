@@ -9,16 +9,15 @@ import { createNewCommentAction } from '../../../../../../redux/Comment/commentA
 import { allCommentsSelector } from '../../../../../../redux/Comment/commentSelector'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import Image from '../../../../../../shared/Image/Image'
+import Preloader from '../../../../../../shared/Preloader/Preloader'
 
 function NewCommentInput (props) {
-  const {postId} = props
+  const {postId, postHasMoreComments, onCommentsLoadHandler, commentsAreLoading, singlePostRender} = props
   const classes = styles()
 
   const dispatch = useDispatch()
 
   const activeUser = useSelector(activeUserSelector)
-  // we get all comments from Redux store using useSelector
-
   const allComments = useSelector(allCommentsSelector)
   const commentsForPost = allComments[postId] || []
 
@@ -29,11 +28,21 @@ function NewCommentInput (props) {
     setCommentValue(commentInputVal)
   }
 
+  const createNewCommentHandler = () => {
+    dispatch(createNewCommentAction({ text: commentValue, id: postId, singlePostRender: singlePostRender }))
+    setCommentValue('')
+  }
+
+  const numberCharacterToShowValidate = 1250
+  const validateCount = (numberCharacterToShowValidate - commentValue.length)
+
   const handleEnterPressed = (e) => {
     if (e.keyCode === 13) {
       if (e.ctrlKey) {
         let commentInputVal = e.currentTarget.value + '\n'
         setCommentValue(commentInputVal)
+      } else if (commentValue.length > numberCharacterToShowValidate || commentValue.trim() === '') {
+        e.preventDefault()
       } else {
         e.preventDefault()
         createNewCommentHandler()
@@ -41,13 +50,11 @@ function NewCommentInput (props) {
     }
   }
 
-  const createNewCommentHandler = () => {
-    dispatch(createNewCommentAction({ text: commentValue, id: postId }))
-    setCommentValue('')
-  }
-
-  const numberCharacterToShowValidate = 1250
-  const validateCount = (numberCharacterToShowValidate - commentValue.length)
+  const loadMoreCommentsElement = (
+    <div className={classes.loadMoreComments} onClick={onCommentsLoadHandler}>
+      <span>Load more comments</span>
+    </div>
+  )
 
   return (
     <div className={classes.newCommentInput}>
@@ -73,8 +80,9 @@ function NewCommentInput (props) {
             <RemoveCircleIcon fontSize='inherit'/>
             <div className={classes.validateMessage}>You have exceeded the maximum character limit.</div>
           </div>
-          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden} onClick={createNewCommentHandler}>
-            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate} size='small'/>
+          <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
+            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate || commentValue.trim() === ''}
+              size='small' onClick={createNewCommentHandler}/>
             <div className={commentValue.length >= 1200 && commentValue.length <= numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
               {commentValue.length}
             </div>
@@ -84,12 +92,14 @@ function NewCommentInput (props) {
           </div>
         </div>
       </div>
+
       <div>
         <div className={classes.comments}>
-          {commentsForPost.map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
-          <div className={classes.loadMoreComments}>
-            <span>Load more comments</span>
-          </div>
+          {commentsForPost
+            .sort((c1, c2) => Date.parse(c1.createdDate) - Date.parse(c2.createdDate))
+            .map(comment => <Comment key={comment.id} comment={comment} postId={postId}/>)}
+          {commentsAreLoading && <Preloader/>}
+          {postHasMoreComments && loadMoreCommentsElement}
         </div>
       </div>
     </div>

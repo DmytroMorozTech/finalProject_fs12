@@ -45,7 +45,7 @@ export const getUsersWhoLikedPostAction = (payload) => (dispatch) => {
       dispatch(toggleModalAction({ modalType: USERS_WHO_LIKED_POST, id: id })))
 }
 
-export const togglePostLikeAction = (payload) => (dispatch) => {
+export const togglePostLikeGeneralAction = (payload) => (dispatch) => {
   const id = payload
 
   return http
@@ -54,6 +54,17 @@ export const togglePostLikeAction = (payload) => (dispatch) => {
     .then((newPostObj) => {
       dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
       dispatch({ type: actions.UPDATE_BOOKMARKED_POST, payload: newPostObj })
+    })
+}
+
+export const togglePostLikeSingleAction = (payload) => (dispatch) => {
+  const id = payload
+
+  return http
+    .post(`/api/posts/toggle_like/${id}`)
+    .then((res) => res.data)
+    .then((newPostObj) => {
+      dispatch({ type: actions.SAVE_POST_SINGLE, payload: newPostObj })
     })
 }
 
@@ -70,5 +81,18 @@ export const toggleBookmarkAction = (payload) => (dispatch) => {
       } else if (newPostObj.isBookmarkedByActiveUser) {
         dispatch({ type: actions.SAVE_BOOKMARKED_POST, payload: newPostObj })
       }
+    })
+}
+
+export const findSinglePostByIdAction = (postId, setPostIsLoading) => (dispatch) => {
+  setPostIsLoading(true)
+  return http
+    .get(`/api/posts/${postId}`)
+    .then(res => {
+      dispatch({
+        type: actions.SAVE_POST_SINGLE,
+        payload: res.data
+      })
+      setPostIsLoading(false)
     })
 }

@@ -19,7 +19,8 @@ const initialState = {
       hasMore: true
     }
   },
-  usersWhoLikedPost: {} // key - postId, value - [userRs, userRs,...]
+  usersWhoLikedPost: {}, // key - postId, value - [userRs, userRs,...]
+  singlePost: {}
 }
 
 const postReducer = (state = initialState, action) => {
@@ -74,20 +75,6 @@ const postReducer = (state = initialState, action) => {
         postsList: { $splice: [[indexOfCurrentPost, 1, updatedPost]] }
       })
 
-    case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST:
-      const {postId} = action.payload
-
-      const currentPost2 = state.postsList.find((post) => post.id === postId)
-      if (currentPost2 === null) return state
-
-      const indexOfCurrentPost2 = state.postsList.indexOf(currentPost2)
-      const copyOfCurrentPost2 = { ...currentPost2 }
-      copyOfCurrentPost2.numberOfComments += 1
-
-      return update(state, {
-        postsList: { $splice: [[indexOfCurrentPost2, 1, copyOfCurrentPost2]] }
-      })
-
     case actions.UPDATE_BOOKMARKED_POST:
       const updatedPost1 = action.payload
 
@@ -113,6 +100,35 @@ const postReducer = (state = initialState, action) => {
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
       return { ...state, usersWhoLikedPost: { ...state.usersWhoLikedPost, [id]: usersList } }
+
+    case actions.SAVE_POST_SINGLE:
+      return {
+        ...state,
+        singlePost: action.payload
+      }
+
+    case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST_GENERAL:
+      const {postId} = action.payload
+
+      const currentPost2 = state.postsList.find((post) => post.id === postId)
+      if (currentPost2 === null) return state
+
+      const indexOfCurrentPost2 = state.postsList.indexOf(currentPost2)
+      const copyOfCurrentPost2 = { ...currentPost2 }
+      copyOfCurrentPost2.numberOfComments += 1
+
+      return update(state, {
+        postsList: { $splice: [[indexOfCurrentPost2, 1, copyOfCurrentPost2]] }
+      })
+
+    case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST_SINGLE:
+      const copyOfCurrentSinglePost = {...state.singlePost}
+      copyOfCurrentSinglePost.numberOfComments += 1
+
+      return {
+        ...state,
+        singlePost: copyOfCurrentSinglePost
+      }
 
     default: {
       return state

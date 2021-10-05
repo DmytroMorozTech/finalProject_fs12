@@ -5,10 +5,8 @@ import com.danit.fs12.entity.comment.CommentRq;
 import com.danit.fs12.entity.comment.CommentRs;
 import com.danit.fs12.service.CommentService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
@@ -25,11 +23,9 @@ public class CommentFacade extends GeneralFacade<Comment, CommentRq, CommentRs> 
     return convertToDto(comment);
   }
 
-  public List<CommentRs> getCommentsForPost(Long postId) {
-    List<Comment> commentsList = commentService.getCommentsForPost(postId);
-    List<CommentRs> listCommentRs = commentsList.stream()
-      .map(this::convertToDto).collect(Collectors.toList());
-    return listCommentRs;
+  public Page<CommentRs> getCommentsForPostPaginated(Long postId, Integer pageNumber, Integer pageSize) {
+    Page<Comment> commentsPage = commentService.getCommentsForPostPaginated(postId, pageNumber, pageSize);
+    return commentsPage.map(this::convertToDto);
   }
 
 }

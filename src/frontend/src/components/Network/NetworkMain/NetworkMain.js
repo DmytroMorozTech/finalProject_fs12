@@ -23,7 +23,7 @@ function NetworkMain (props) {
         <div>
           {(invitations && invitations.length > 0)
             ? invitations.map(invitation =>
-              <Invitation data={invitation} isReceived={true} isManage={false}/>)
+              <Invitation key={invitation.id} data={invitation} isReceived={true} isManage={false}/>)
             : ''}
         </div>
       </div>
@@ -37,7 +37,7 @@ function NetworkMain (props) {
           <SharedLinkSquare title="See all" to="#"/>
         </div>
         <div className={clsx(classes.miniProfiles, classes.smallMiniProfiles)}>
-          {potentialContacts.map(user => <MiniProfile user={user}/>)}
+          {potentialContacts.map(user => <MiniProfile key={user.id} user={user}/>)}
         </div>
       </div>
     </div>

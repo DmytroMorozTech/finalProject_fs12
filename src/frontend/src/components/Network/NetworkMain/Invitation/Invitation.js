@@ -8,13 +8,16 @@ import SharedLinkSquare from '../../../../shared/SharedLinkSquare/SharedLinkSqua
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { deleteInvitationAction, acceptInvitationAction } from '../../../../redux/Network/networkActions'
+import { Link } from 'react-router-dom'
 
 function Invitation (props) {
   const {isReceived, isManage, numberOfConnection = 1,
     isNewInvitation = false, createDate = '3 hours ago'} = props
-  const {avatarPublicId, fullName, positionAndCompany
+  const {id: userId, avatarPublicId, fullName, positionAndCompany
   } = props.data[isReceived ? 'userWho' : 'userWhom']
   const {id} = props.data
+
+  const linkToUserProfile = '/profiles/' + userId
 
   const classes = styles()
 
@@ -32,35 +35,37 @@ function Invitation (props) {
     <div className={clsx(classes.invitation, isNewInvitation && classes.newInvitation)}>
       <div className={classes.flex}>
         <div>
-          <Image
-            imageUrl={avatarPublicId}
-            alt={'user avatar'}
-            className={classes.userAvatar}
-            type={'largeAvatar'}
-          />
+          <Link to={linkToUserProfile}>
+            <Image
+              imageUrl={avatarPublicId}
+              alt={'user avatar'}
+              className={classes.userAvatar}
+              type={'largeAvatar'}
+            />
+          </Link>
         </div>
-        <div>
-          <div className={classes.userInfo}>
+        <div className={classes.userInfo}>
+          <Link to={linkToUserProfile} className={classes.link}>
             <Typography variant="h5">
               {fullName}
             </Typography>
-            <Typography variant="h6">
-              {positionAndCompany}
-            </Typography>
-            {!isManage
-              ? <div className={clsx(classes.connection, classes.smallScreenConnection)}>
-                <RadioButtonUncheckedIcon fontSize="inherit"/>
-                <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
-                <Typography variant="h6" className={classes.connectionText}>
-                  {numberOfConnection} mutual connection
-                </Typography>
-              </div>
-              : ''
-            }
-            <Typography variant="h6" className={classes.smallScreenConnection}>
-              {createDate}
-            </Typography>
-          </div>
+          </Link>
+          <Typography variant="h6">
+            {positionAndCompany}
+          </Typography>
+          {!isManage
+            ? <div className={clsx(classes.connection, classes.smallScreenConnection)}>
+              <RadioButtonUncheckedIcon fontSize="inherit"/>
+              <RadioButtonUncheckedIcon fontSize="inherit" className={classes.icon}/>
+              <Typography variant="h6" className={classes.connectionText}>
+                {numberOfConnection} mutual connection
+              </Typography>
+            </div>
+            : ''
+          }
+          <Typography variant="h6" className={classes.smallScreenConnection}>
+            {createDate}
+          </Typography>
         </div>
       </div>
       <div className={clsx(classes.buttons, classes.smallScreenButtons)}>

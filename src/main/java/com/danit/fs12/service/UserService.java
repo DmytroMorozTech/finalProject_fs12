@@ -224,6 +224,17 @@ public class UserService extends GeneralService<User> {
     return foundUsers;
   }
 
+  public Set<User> findConnectedUsersByName(String searchInput) {
+    String searchInputLowerCase = searchInput.toLowerCase();
+    List<User> connectedUsers = findConnectedUsers();
+    Set<User> foundConnectedUsersByName = connectedUsers.stream()
+      .filter(user -> (user.getFirstName().toLowerCase().startsWith(searchInputLowerCase))
+        || user.getLastName().toLowerCase().startsWith(searchInputLowerCase))
+      .collect(Collectors.toSet());
+
+    return foundConnectedUsersByName;
+  }
+
   public List<User> getMutualConnections(Long activeUserId, Long userWhomId) {
     List<Connection> connectionsOfActiveUser = connectionRepository
       .findConnectionsByUserWhoIdOrUserWhomId(activeUserId, activeUserId);
@@ -301,7 +312,5 @@ public class UserService extends GeneralService<User> {
     allUserIds.addAll(idsOfUsersInvitationsFromMe);
     return findAllById(allUserIds);
   }
-
-
 
 }
