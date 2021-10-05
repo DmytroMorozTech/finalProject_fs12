@@ -176,9 +176,6 @@ function NewChat (props) {
                 {daysAgoOnline}
               </div>
             </div>
-            <div className={classes.menu}>
-              <MoreHorizIcon/>
-            </div>
           </div>
         </div>
         <div className={classes.messageListContainer}>
@@ -250,9 +247,6 @@ function NewChat (props) {
                 <div onClick={handleSendMessageButton}>
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
                     title="Message"/>
-                </div>
-                <div className={classes.menu}>
-                  <MoreHorizIcon/>
                 </div>
               </div>
               {openSmileBoard

@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'
@@ -142,9 +141,6 @@ function Chat (props) {
                 {daysAgoOnline}
               </div>
             </div>
-            <div className={classes.menu}>
-              <MoreHorizIcon/>
-            </div>
           </div>
         </div>
         <div className={classes.messageListContainer}>
@@ -217,9 +213,6 @@ function Chat (props) {
                 <div onClick={handleSendMessageButton}>
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
                     title="Message"/>
-                </div>
-                <div className={classes.menu}>
-                  <MoreHorizIcon/>
                 </div>
               </div>
               {openSmileBoard
