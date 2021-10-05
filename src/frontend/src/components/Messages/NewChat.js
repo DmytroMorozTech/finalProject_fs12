@@ -1,13 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import React, {useEffect, useRef, useState} from 'react'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'
-import ImageUpload from './imageUpload'
-import AllUpload from './allUpload'
-import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
-import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import Style from './styles'
 import {
@@ -28,12 +23,16 @@ import {Link, withRouter} from 'react-router-dom'
 import {currentUserSelector} from '../../redux/User/userSelector'
 import {findUserByIdAction} from '../../redux/User/userActions'
 import Image from '../../shared/Image/Image'
+import * as actions from '../../redux/Message/messageActionTypes'
+import Picker from 'emoji-picker-react'
+import useOnclickOutside from 'react-cool-onclickoutside'
 
 function NewChat (props) {
   const {match} = props
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = Style()
+  const inputRef = useRef('')
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
   const dispatch = useDispatch()
@@ -47,10 +46,18 @@ function NewChat (props) {
   const isChatOpen = useSelector(isTemporaryChatOpenSelector)
   let dateTitleTemporaryMemory = ''
 
+  const [openSmileBoard, setOpenSmileBoard] = useState(false)
+  const onEmojiClick = (event, emojiObject) => {
+    const { selectionStart } = inputRef.current
+    const newVal = messageValue.slice(0, selectionStart) + emojiObject.emoji
+    setMessageValue(newVal)
+  }
+
   const currentChat = chatsList.filter(c => c.id === newChat.id)[0]
   const currentChatUsers = currentChat && currentChat.users
 
   useEffect(() => {
+    dispatch({type: actions.RESET_NEW_CHAT_DATA})
     dispatch(findUserByIdAction(userIdFromUrl))
   }, [dispatch, userIdFromUrl])
 
@@ -59,7 +66,7 @@ function NewChat (props) {
 
   const findIfChatExist = () => {
     let chatId = ''
-    let chatExist = ''
+    let chatExist = true
     chatsList.forEach(c => {
       if (c.users.filter(u => u.id === currentUser.id).length > 0) {
         chatId = c.id
@@ -83,6 +90,7 @@ function NewChat (props) {
 
   const handleSendMessageButton = () => {
     findIfChatExist()
+    setOpenSmileBoard(false)
     setMessageValue('')
   }
 
@@ -115,6 +123,14 @@ function NewChat (props) {
     const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
     return splitDate[0] + ':' + splitDate[1]
   }
+
+  const openSmiles = () => {
+    openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
+  }
+
+  const ref = useOnclickOutside(() => {
+    setOpenSmileBoard(false)
+  })
 
   const getMonthText = (date) => {
     switch (date) {
@@ -158,9 +174,6 @@ function NewChat (props) {
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
               </div>
-            </div>
-            <div className={classes.menu}>
-              <MoreHorizIcon/>
             </div>
           </div>
         </div>
@@ -223,22 +236,10 @@ function NewChat (props) {
                 </div>
               </div>
             </div>
-            <footer className={classes.msgFormFooter}>
+            <footer ref={ref} className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
-                <div style={{display: 'inline-block'}}>
-                  <ImageUpload/>
-                </div>
-                <div style={{display: 'inline-block'}}>
-                  <AllUpload/>
-                </div>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <GifOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <SentimentSatisfiedOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <VideoCallIcon/>
+                  <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
                 </div>
               </div>
               <div style={{display: 'flex'}}>
@@ -246,10 +247,10 @@ function NewChat (props) {
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
                     title="Message"/>
                 </div>
-                <div className={classes.menu}>
-                  <MoreHorizIcon/>
-                </div>
               </div>
+              {openSmileBoard
+                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                : null}
             </footer>
           </form>
         </div>

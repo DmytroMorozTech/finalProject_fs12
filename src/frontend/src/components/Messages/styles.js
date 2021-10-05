@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
 
@@ -8,7 +8,10 @@ export default makeStyles((theme) => ({
     maxWidth: '70%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media screen and (max-width: 640px)': {
+      paddingLeft: 0
+    }
   },
 
   listDetailInner: {
@@ -24,7 +27,10 @@ export default makeStyles((theme) => ({
     width: '30vw',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: 'inset -1px 0 0 0 #8080802b'
+    boxShadow: 'inset -1px 0 0 0 #8080802b',
+    '@media screen and (max-width: 640px)': {
+      width: '90vw'
+    }
   },
 
   containerHeader: {
@@ -74,7 +80,6 @@ export default makeStyles((theme) => ({
     width: '90%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     padding: '5px',
     borderRadius: 5,
     backgroundColor: '#eef3f8',
@@ -260,7 +265,7 @@ export default makeStyles((theme) => ({
     margin: '0 auto',
     backgroundColor: 'white',
     maxWidth: 640,
-    minWidth: 'initial',
+    minWidth: 360,
     height: '100%',
     minHeight: 340,
     flexDirection: 'column',
@@ -601,8 +606,7 @@ export default makeStyles((theme) => ({
   messageGroupMetaText: {
     fontWeight: 'bold'
   },
-  searchInput: {
-  },
+  searchInput: {},
   addTopMargin: {
     marginTop: 70
   },
@@ -626,6 +630,27 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  smilesWrapper: {
+    width: '45rem',
+    position: 'relative',
+    zIndex: 10
+  },
+  hiddenMenu: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    width: '98%',
+    marginTop: theme.spacing(1)
+  },
+  chatWindow: {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    '@media screen and (max-width: 640px)': {
+      display: 'none'
+    }
+  },
+  chatWindowNull: {
+    display: 'none'
   }
-
 }))
