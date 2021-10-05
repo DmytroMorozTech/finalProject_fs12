@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'

@@ -65,7 +65,7 @@ function Messages () {
             )
           }) : <p className={classes.noChatInfo}>No one chat was started</p>}
         </section>
-        <div className={classes.chatWindow}>
+        <div className={clsx(classes.chatWindow, chatsList.length === 0 ? classes.chatWindowNull : '')}>
           {chatsList.length > 0 ? <Chat user={activeUser} chats={chatsList}/> : ''}
         </div>
       </div>
