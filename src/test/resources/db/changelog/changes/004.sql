@@ -1,0 +1,2 @@
+ALTER TABLE ORGANIZATIONS
+    ADD COLUMN about varchar(3830);
