@@ -43,7 +43,6 @@ function Messages () {
             <div className={classes.containerTitle}>
               <h1 className={classes.flexGrow}>Messages</h1>
             </div>
-
             <div className={classes.header_search_container}>
               <div className={clsx(classes.header_search, inputIsFocusedSearch ? classes.header_searchActive : '')}>
                 <SearchRoundedIcon className={`${classes.absolut} ${classes.iconSearch}`}/>
@@ -66,8 +65,9 @@ function Messages () {
             )
           }) : <p className={classes.noChatInfo}>No one chat was started</p>}
         </section>
-        {chatsList.length > 0 ? <Chat user={activeUser} chats={chatsList}/> : ''}
-
+        <div className={classes.chatWindow}>
+          {chatsList.length > 0 ? <Chat user={activeUser} chats={chatsList}/> : ''}
+        </div>
       </div>
     </main>
   )
