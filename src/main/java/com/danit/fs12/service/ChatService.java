@@ -62,8 +62,8 @@ public class ChatService extends GeneralService<Chat> {
     List<Chat> userChats = userService.getActiveUser().getChats();
     return userChats.stream()
       .filter(c -> c.getUsers().stream()
-        .anyMatch(u -> !u.getId().equals(activeUserId) &&
-          (u.getFirstName().toLowerCase().trim().contains(text.toLowerCase().trim()) ||
-          u.getLastName().toLowerCase().trim().contains(text.toLowerCase().trim())))).collect(Collectors.toList());
+        .anyMatch(u -> !u.getId().equals(activeUserId)
+          && (u.getFirstName().toLowerCase().trim().contains(text.toLowerCase().trim())
+          || u.getLastName().toLowerCase().trim().contains(text.toLowerCase().trim())))).collect(Collectors.toList());
   }
 }
