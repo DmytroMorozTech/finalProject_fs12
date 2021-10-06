@@ -57,20 +57,11 @@ public class MessageService extends GeneralService<Message> {
     String text = rq.getText();
     Long userWhomId = rq.getUserWhomId();
     User userWhom = userService.findEntityById(userWhomId);
-
     User activeUser = userService.getActiveUser();
-    Long activeUserId = activeUser.getId();
-    List<Chat> activeUserChats = activeUser.getChats();
 
-    List<Chat> chatsWithTwoUsers = activeUserChats
-      .stream()
-      .filter(chat -> chat.getUsers().size() == 2)
-      .collect(Collectors.toList());
-
-    Optional<Chat> chatOptional = chatsWithTwoUsers.stream().filter(
-      chat ->
-        chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
-          && chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(activeUserId)
+    Optional<Chat> chatOptional = activeUser.getChats().stream()
+      .filter(
+      chat -> chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
     ).findFirst();
 
     if (chatOptional.isPresent()){

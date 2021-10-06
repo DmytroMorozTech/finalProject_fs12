@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.grey[700],
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(3),
     width: '160px'
   },
 
@@ -39,7 +39,7 @@ export default makeStyles((theme) => ({
   inputSearch: {
     display: 'flex',
     alignItems: 'center',
-    height: '55px'
+    height: '59px'
   },
 
   foundedUsersDropdown: {
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
     zIndex: 1,
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
-    top: 55,
+    top: 61,
     left: 0
   },
 
@@ -55,7 +55,10 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(1),
-    paddingLeft: theme.spacing(5),
+    paddingLeft: theme.spacing(5)
+  },
+
+  userHover: {
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.08)'

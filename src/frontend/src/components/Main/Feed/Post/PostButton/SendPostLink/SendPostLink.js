@@ -88,7 +88,7 @@ function SendPostLink () {
   function singleUserTab (user, userIsChosen) {
     return (
       <div>
-        <div key={user.id} className={classes.user} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
+        <div key={user.id} className={clsx(classes.user, !userIsChosen && classes.userHover)} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
           <Image
             imageUrl={user.avatarPublicId}
             alt={'user avatar'}
