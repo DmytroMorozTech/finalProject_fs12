@@ -56,24 +56,25 @@ public class MessageService extends GeneralService<Message> {
   public Boolean createMessageFromFeed(MessageFromFeedRq rq) {
     String text = rq.getText();
     Long userWhomId = rq.getUserWhomId();
-    User userWhom = userService.findEntityById(userWhomId);
     User activeUser = userService.getActiveUser();
 
     Optional<Chat> chatOptional = activeUser.getChats().stream()
       .filter(
-      chat -> chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
-    ).findFirst();
+        chat -> chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
+      ).findFirst();
 
-    if (chatOptional.isPresent()){
+    if (chatOptional.isPresent()) {
       Long chatId = chatOptional.get().getId();
       createMessage(chatId, text);
       return true;
     }
 
+    User userWhom = userService.findEntityById(userWhomId);
+
     Chat chat = chatRepository.save(new Chat());
     activeUser.addChat(chat);
-    userRepository.save(activeUser);
     userWhom.addChat(chat);
+    userRepository.save(activeUser);
     userRepository.save(userWhom);
 
     createMessage(chat.getId(), text);

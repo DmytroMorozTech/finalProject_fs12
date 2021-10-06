@@ -51,7 +51,9 @@ public class MessageController {
   @PostMapping(path = "/from_feed")
   public ResponseEntity<?> createMessageFromFeed(@Valid @RequestBody MessageFromFeedRq rq) {
     Boolean msgWasCreated = messageFacade.createMessageFromFeed(rq);
-    if (!msgWasCreated) throw new BadRequestException("Message was not created");
+    if (!msgWasCreated) {
+      throw new BadRequestException("Message was not created");
+    }
 
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
