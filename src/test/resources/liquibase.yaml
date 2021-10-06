@@ -1,0 +1,18 @@
+# production db
+url: jdbc:postgresql://tai.db.elephantsql.com/
+username: zmowlhvq
+password: vLkHFB0cCL0wnzcSVUnX1vmg2h6Xv_dA
+
+# development db
+referenceUrl: jdbc:h2:mem:linkedin-tests-db
+referenceUsername: sa
+referencePassword:
+
+# for working. CURRENT list of all deltas
+changeLogFile: src/test/resources/db/changelog/db.changelog-master.yaml
+
+# for grabbing FIRST database state
+outputChangeLogFile: src/test/resources/db/changelog/db.changelog-master0.yaml
+
+# for difference
+diffChangeLogFile: src/main/resources/db/changelog/changes/diff.yaml

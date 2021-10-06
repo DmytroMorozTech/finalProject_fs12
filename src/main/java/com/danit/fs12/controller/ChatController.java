@@ -57,4 +57,9 @@ public class ChatController {
     ChatRs chatRs = chatFacade.createChatIfNoExist(id, rq);
     return ResponseEntity.ok(chatRs);
   }
+
+  @GetMapping(path = "/filter/{text}")
+  List<ChatRs> findChatByMemberName(@PathVariable String text) {
+    return chatFacade.findChatByMemberName(text);
+  }
 }

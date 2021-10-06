@@ -76,6 +76,21 @@ export const createChatWithBothMembersAction = ({userId, text}) => (dispatch) =>
     .then(() => dispatch(getChatMessagesAction(newChatId)))
 }
 
+export const filterChatsAction = (activeUserId, text) => (dispatch) => {
+  dispatch({type: actions.LOADING_MESSAGES, payload: true})
+  if (text !== '') {
+    return http
+      .get(`../../api/chats/filter/${text}`)
+      .then(res => {
+        const filteredChats = res.data
+        dispatch({
+          type: actions.FIND_CHAT_BY_CHAT_MEMBER, payload: filteredChats
+        })
+        dispatch({type: actions.LOADING_MESSAGES, payload: false})
+      })
+  } else dispatch(getUserChatsAction(activeUserId))
+}
+
 export const isTemporaryChatOpenAction = (status) => (dispatch) => {
-  dispatch({ type: actions.TEMPORARY_CHAT_STATUS, payload: status })
+  dispatch({type: actions.TEMPORARY_CHAT_STATUS, payload: status})
 }

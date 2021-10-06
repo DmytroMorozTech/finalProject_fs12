@@ -1,13 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import React, {useEffect, useRef, useState} from 'react'
 import UserMessage from './UserMessage'
 import clsx from 'clsx'
 import InputBase from '@material-ui/core/InputBase'
-import ImageUpload from './imageUpload'
-import AllUpload from './allUpload'
-import GifOutlinedIcon from '@material-ui/icons/GifOutlined'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
-import VideoCallIcon from '@material-ui/icons/VideoCall'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import styles from './styles'
 import {createMessageAction, getChatMessagesAction} from '../../redux/Message/messageActions'
@@ -16,9 +11,12 @@ import {allChats, allMessages, chatMessages} from '../../redux/Message/messageSe
 import {Link, withRouter} from 'react-router-dom'
 import {activeUserSelector} from '../../redux/User/userSelector'
 import Image from '../../shared/Image/Image'
+import Picker from 'emoji-picker-react'
+import useOnclickOutside from 'react-cool-onclickoutside'
 
 function Chat (props) {
   const {match} = props
+  const inputRef = useRef('')
   const {isSeparateChat} = props
   const daysAgoOnline = '4 days'
   const classes = styles()
@@ -31,6 +29,13 @@ function Chat (props) {
   const chatIdFromUrl = match.params.id
   const activeUser = useSelector(activeUserSelector)
   let dateTitleTemporaryMemory = ''
+
+  const [openSmileBoard, setOpenSmileBoard] = useState(false)
+  const onEmojiClick = (event, emojiObject) => {
+    const { selectionStart } = inputRef.current
+    const newVal = messageValue.slice(0, selectionStart) + emojiObject.emoji
+    setMessageValue(newVal)
+  }
 
   const chatId = chatIdFromUrl || (chatsList[0] && chatsList[0].id)
   const currentChat = chatsList.filter(c => c.id === +chatId)[0]
@@ -47,6 +52,7 @@ function Chat (props) {
 
   const handleSendMessageButton = () => {
     dispatch(createMessageAction({chatId, text: messageValue}))
+    setOpenSmileBoard(false)
     setMessageValue('')
   }
 
@@ -83,6 +89,14 @@ function Chat (props) {
     const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
     return splitDate[0] + ':' + splitDate[1]
   }
+
+  const openSmiles = () => {
+    openSmileBoard === true ? setOpenSmileBoard(false) : setOpenSmileBoard(true)
+  }
+
+  const ref = useOnclickOutside(() => {
+    setOpenSmileBoard(false)
+  })
 
   const getMonthText = (date) => {
     switch (date) {
@@ -126,9 +140,6 @@ function Chat (props) {
                 <div className={classes.statusUserRight}/>
                 {daysAgoOnline}
               </div>
-            </div>
-            <div className={classes.menu}>
-              <MoreHorizIcon/>
             </div>
           </div>
         </div>
@@ -192,33 +203,21 @@ function Chat (props) {
                 </div>
               </div>
             </div>
-            <footer className={classes.msgFormFooter}>
+            <footer ref={ref} className={classes.msgFormFooter}>
               <div style={{display: 'flex'}}>
-                <div style={{display: 'inline-block'}}>
-                  <ImageUpload/>
-                </div>
-                <div style={{display: 'inline-block'}}>
-                  <AllUpload/>
-                </div>
                 <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <GifOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <SentimentSatisfiedOutlinedIcon/>
-                </div>
-                <div style={{display: 'inline-block'}} className={classes.menu}>
-                  <VideoCallIcon/>
+                  <SentimentSatisfiedOutlinedIcon onClick={() => openSmiles()}/>
                 </div>
               </div>
-              <div style={{display: 'flex'}}>
+              <div style={{display: 'flex', position: 'relative'}}>
                 <div onClick={handleSendMessageButton}>
                   <SharedButton className={classes.btnDisabled} disabled={messageValue.length === 0}
                     title="Message"/>
                 </div>
-                <div className={classes.menu}>
-                  <MoreHorizIcon/>
-                </div>
               </div>
+              {openSmileBoard
+                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                : null}
             </footer>
           </form>
         </div>

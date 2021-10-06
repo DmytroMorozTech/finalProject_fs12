@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +46,6 @@ public class ChatService extends GeneralService<Chat> {
 
   public List<Chat> getUserChats(Long userId) {
     User user = userRepository.findEntityById(userId);
-
     return user.getChats();
   }
 
@@ -55,5 +55,15 @@ public class ChatService extends GeneralService<Chat> {
     messageService.createMessage(chatId, text);
 
     return addUser(userId, chatId);
+  }
+
+  public List<Chat> findChatByMemberName(String text) {
+    Long activeUserId = userService.getActiveUser().getId();
+    List<Chat> userChats = userService.getActiveUser().getChats();
+    return userChats.stream()
+      .filter(c -> c.getUsers().stream()
+        .anyMatch(u -> !u.getId().equals(activeUserId)
+          && (u.getFirstName().toLowerCase().trim().contains(text.toLowerCase().trim())
+          || u.getLastName().toLowerCase().trim().contains(text.toLowerCase().trim())))).collect(Collectors.toList());
   }
 }
