@@ -12,7 +12,7 @@ function JobsSmall () {
 
   return (
     <div className={classes.container}>
-      <Link to='/jobs/my_jobs' className={classes.item} onClick={() => console.log('My Jobs')}>
+      <Link to='/jobs/my_jobs' className={classes.item}>
         <div className={classes.icon}>
           <BookmarkIcon fontSize="inherit"/>
         </div>

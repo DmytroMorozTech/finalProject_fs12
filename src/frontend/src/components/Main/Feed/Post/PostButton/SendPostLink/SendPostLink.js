@@ -11,12 +11,16 @@ import Image from '../../../../../../shared/Image/Image'
 import clsx from 'clsx'
 import {createMessageFromFeed} from '../../../../../../redux/Post/postActions'
 
-function SendPostLink () {
+function SendPostLink (props) {
   const classes = styles()
+
+  const {postId} = props
+
+  const linkToPost = 'http://localhost:3000/posts/' + postId
 
   const dispatch = useDispatch()
 
-  const [sendInputText, setSendInputText] = useState('')
+  const [sendInputText, setSendInputText] = useState('Hello! Take a look at this post: \n' + linkToPost)
   const [searchInputValue, setSearchInputValue] = useState('')
   const [foundUsers, setFoundUsers] = useState(null)
   const [showDropDown, setShowDropDown] = useState(false)
@@ -39,7 +43,7 @@ function SendPostLink () {
 
   let btnIsDisabled = sendInputText.length === 0 ||
     sendInputText.length > numberCharacterToShowValidate ||
-    sendInputText.trim() === ''
+    sendInputText.trim() === '' || chosenUser === null
 
   const handleEnterPressed = (e) => {
     if (e.keyCode === 13) {
@@ -69,8 +73,6 @@ function SendPostLink () {
         .then((usersList) => {
           setFoundUsers(usersList)
           setShowDropDown(true)
-          console.log(usersList)
-          console.log(`ShowDropDown: ${showDropDown}`)
         })
     }, 1000),
     []
@@ -88,7 +90,7 @@ function SendPostLink () {
   function singleUserTab (user, userIsChosen) {
     return (
       <div>
-        <div key={user.id} className={clsx(classes.user, !userIsChosen && classes.userHover)} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
+        <div key={user.id} className={clsx(classes.user, !userIsChosen && classes.foundedUsers)} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
           <Image
             imageUrl={user.avatarPublicId}
             alt={'user avatar'}
@@ -119,7 +121,6 @@ function SendPostLink () {
           value={searchInputValue}
           onChange={handleChange}
           onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
-          // className={classes.searchUser}
         />
           }
           {chosenUser && singleUserTab(chosenUser, true) }
@@ -141,7 +142,6 @@ function SendPostLink () {
           minRows={7}
           value={sendInputText}
           onChange={handleSendInputChange}
-          // className={classes.sendInput}
           onKeyDown={handleEnterPressed}
         />
       </div>

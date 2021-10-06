@@ -73,7 +73,6 @@ public class UserService extends GeneralService<User> {
         ? c.getUserWhom().getId()
         : c.getUserWho().getId())
       .collect(Collectors.toList());
-    //    System.out.println("Connections of user with id " + activeUserId + " are: " + userIds);
 
     return findAllById(userIds);
   }

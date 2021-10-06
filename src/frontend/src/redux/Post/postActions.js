@@ -1,7 +1,7 @@
 import * as actions from './postActionTypes'
 import http from '../../services/httpService'
 import toggleModalAction from '../Modal/modalActions'
-import { USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
+import { SEND_MESSAGE, USERS_WHO_LIKED_POST } from '../Modal/modalTypes'
 import { uploadPostImgAction } from '../Image/imageActions'
 import { uploadPostVideoAction } from '../Video/videoActions'
 import { toast } from 'react-toastify'
@@ -111,4 +111,8 @@ export const createMessageFromFeed = (data) => {
       const errorMsg = err.response.data.message
       toast.error(errorMsg)
     })
+}
+
+export const modalSendMessage = (postId) => (dispatch) => {
+  dispatch(toggleModalAction({ modalType: SEND_MESSAGE, id: postId }))
 }

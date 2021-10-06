@@ -54,11 +54,12 @@ export default makeStyles((theme) => ({
   user: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(1),
-    paddingLeft: theme.spacing(5)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   },
 
-  userHover: {
+  foundedUsers: {
+    paddingLeft: theme.spacing(5),
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.08)'

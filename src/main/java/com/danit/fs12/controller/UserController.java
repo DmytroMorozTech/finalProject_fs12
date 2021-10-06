@@ -79,7 +79,6 @@ public class UserController {
   @JsonView(UserViews.Profile.class)
   @PutMapping(path = "/profiles/intro")
   public ResponseEntity<UserRs> updateIntro(@RequestBody UserEditIntroRq rq) {
-    System.out.println(rq);
     UserRs user = userFacade.updateIntro(rq);
     return ResponseEntity.ok(user);
   }

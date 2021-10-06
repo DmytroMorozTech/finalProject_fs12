@@ -1,4 +1,8 @@
-import { togglePostLikeGeneralAction, togglePostLikeSingleAction } from '../../../../../redux/Post/postActions'
+import {
+  modalSendMessage,
+  togglePostLikeGeneralAction,
+  togglePostLikeSingleAction
+} from '../../../../../redux/Post/postActions'
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined'
 import { Hidden, Tooltip } from '@material-ui/core'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
@@ -8,8 +12,6 @@ import React, { useState } from 'react'
 import styles from './styles'
 import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
-import toggleModalAction from '../../../../../redux/Modal/modalActions'
-import { SEND_MESSAGE } from '../../../../../redux/Modal/modalTypes'
 
 function PostButtons (props) {
   const {postId, isLikedByActiveUser, handleComment, singlePostRender} = props
@@ -47,8 +49,7 @@ function PostButtons (props) {
   }
 
   const handleSend = () => {
-    // dispatch(getMyConnectionsAction())
-    dispatch(toggleModalAction({ modalType: SEND_MESSAGE }))
+    dispatch(modalSendMessage(postId))
   }
 
   const items = [

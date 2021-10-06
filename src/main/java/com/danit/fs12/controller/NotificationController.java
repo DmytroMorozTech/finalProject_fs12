@@ -29,7 +29,6 @@ public class NotificationController {
   @MessageMapping("/notifications")
   @SendTo("/api/notifications")
   public Notification getNotification(Notification notification) {
-    System.out.println(notification);
     return notification;
   }
 

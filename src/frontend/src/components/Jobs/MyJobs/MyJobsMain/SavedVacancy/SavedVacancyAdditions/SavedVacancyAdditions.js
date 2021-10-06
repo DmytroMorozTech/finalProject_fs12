@@ -10,15 +10,15 @@ function SavedVacancyAdditions () {
   const classes = styles()
 
   const handlerSendMessage = () => {
-    console.log('Send in a message')
+
   }
 
   const handlerCopyLink = () => {
-    console.log('Copy link')
+
   }
 
   const handlerUnsave = () => {
-    console.log('Unsave')
+
   }
 
   const items = [

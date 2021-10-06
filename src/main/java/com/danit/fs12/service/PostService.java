@@ -117,7 +117,6 @@ public class PostService extends GeneralService<Post> {
       .stream().map(user -> user.getId()).collect(Collectors.toList());
 
     List<Post> posts = postRepository.getAllPostsForActiveUser(followedUsersIds);
-    System.out.println((long) posts.size());
     return posts;
   }
 }
