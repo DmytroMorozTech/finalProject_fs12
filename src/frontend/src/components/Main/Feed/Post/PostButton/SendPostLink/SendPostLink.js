@@ -16,7 +16,9 @@ function SendPostLink (props) {
 
   const {postId} = props
 
-  const linkToPost = 'http://localhost:3000/posts/' + postId
+  const hostName = window.location.hostname
+  const port = window.location.port
+  const linkToPost = `${hostName}${port ? `:${port}` : ''}/posts/${postId}`
 
   const dispatch = useDispatch()
 

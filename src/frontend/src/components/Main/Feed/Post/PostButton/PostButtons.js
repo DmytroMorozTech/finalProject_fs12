@@ -19,8 +19,9 @@ function PostButtons (props) {
   const classes = styles()
 
   const dispatch = useDispatch()
-
-  const linkToPost = 'http://localhost:3000/posts/' + postId
+  const hostName = window.location.hostname
+  const port = window.location.port
+  const linkToPost = `${hostName}${port ? `:${port}` : ''}/posts/${postId}`
 
   const [open, setOpen] = useState(false)
 
