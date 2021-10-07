@@ -103,11 +103,9 @@ public class UserService extends GeneralService<User> {
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
-  public User registerUser(String firstName,
-                           String lastName,
-                           String password,
-                           String email) {
-    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+  public void registerUser(String firstName, String lastName, String password, String email) {
+    if (userRepository.findUserByEmail(email) != null
+      && userRepository.findUserByEmail(email).getPasswordHash() != null) {
       throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
     } else {
       User user = new User();
@@ -117,7 +115,6 @@ public class UserService extends GeneralService<User> {
       user.setEmail(email.toLowerCase());
       user.setProvider(Provider.LOCAL);
       saveUser(user);
-      return user;
     }
   }
 

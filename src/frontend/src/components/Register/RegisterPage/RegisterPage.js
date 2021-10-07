@@ -31,7 +31,7 @@ function RegisterPageLoginData () {
     const {firstName, lastName} = data
 
     http
-      .post('api/signup', {
+      .post('/api/signup', {
         email: login,
         password: password,
         firstName: firstName,
@@ -39,7 +39,7 @@ function RegisterPageLoginData () {
       })
       .then(res => {
         if (res.status === 200) {
-          toast.info('You have signed up successful! Now you can sign in! ')
+          toast.info('You have signed up successfully! Now you can sign in! ')
           setFirstSignUpPage(true)
           history.push('/')
         }
