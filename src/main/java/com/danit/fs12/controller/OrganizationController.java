@@ -24,8 +24,6 @@ public class OrganizationController {
   @JsonView(UserViews.Profile.class)
   @GetMapping(path = "{name}")
   public ResponseEntity<List<OrganizationRs>> findById(@PathVariable String name) {
-    System.out.println("**************************************************************");
-    System.out.println("Search name: " + name);
     List<OrganizationRs> foundOrganizations = organizationFacade.findOrganizationsByName(name);
     return ResponseEntity.ok(foundOrganizations);
   }

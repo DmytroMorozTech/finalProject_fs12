@@ -9,22 +9,28 @@ import _ from 'lodash'
 import http from '../../../../../../services/httpService'
 import Image from '../../../../../../shared/Image/Image'
 import clsx from 'clsx'
+import {createMessageFromFeed} from '../../../../../../redux/Post/postActions'
 
-function SendPostLink () {
+function SendPostLink (props) {
   const classes = styles()
+
+  const {postId} = props
+
+  const linkToPost = 'http://localhost:3000/posts/' + postId
 
   const dispatch = useDispatch()
 
-  const [sendInputText, setSendInputText] = useState('')
+  const [sendInputText, setSendInputText] = useState('Hello! Take a look at this post: \n' + linkToPost)
   const [searchInputValue, setSearchInputValue] = useState('')
   const [foundUsers, setFoundUsers] = useState(null)
   const [showDropDown, setShowDropDown] = useState(false)
+  const [chosenUser, setChosenUser] = useState(null)
 
   const onSendSubmitHandler = () => {
-    // dispatch(createNewPostAction({
-    //   text: postInputText
-    // }))
-
+    createMessageFromFeed({
+      userWhomId: chosenUser.id,
+      text: sendInputText
+    })
     dispatch(toggleModalAction())
   }
 
@@ -37,7 +43,7 @@ function SendPostLink () {
 
   let btnIsDisabled = sendInputText.length === 0 ||
     sendInputText.length > numberCharacterToShowValidate ||
-    sendInputText.trim() === ''
+    sendInputText.trim() === '' || chosenUser === null
 
   const handleEnterPressed = (e) => {
     if (e.keyCode === 13) {
@@ -67,8 +73,6 @@ function SendPostLink () {
         .then((usersList) => {
           setFoundUsers(usersList)
           setShowDropDown(true)
-          console.log(usersList)
-          console.log(`ShowDropDown: ${showDropDown}`)
         })
     }, 1000),
     []
@@ -77,50 +81,57 @@ function SendPostLink () {
 
   const handleChange = (event) => {
     const {value} = event.target
-    console.log(`Input value: ${value}`)
     setSearchInputValue(value)
 
     if (value.trim() === '') return
     debounce(value)
   }
 
+  function singleUserTab (user, userIsChosen) {
+    return (
+      <div>
+        <div key={user.id} className={clsx(classes.user, !userIsChosen && classes.foundedUsers)} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
+          <Image
+            imageUrl={user.avatarPublicId}
+            alt={'user avatar'}
+            type={'smallAvatar'}
+            className={classes.smallAvatar}
+          />
+          <Typography variant='h5'>{user.fullName}</Typography>
+        </div>
+        <hr className={classes.line}/>
+      </div>
+    )
+  }
+
   return (
-    <div className={classes.container}>
+    <div>
       <div className={classes.title}>
         <Typography variant="h3" className={classes.subtitle}>
           Send Post Link
         </Typography>
       </div>
-      <hr className={classes.line}/>
-      <div className={clsx(classes.inputBase, classes.inputSearch)}>
+      <div className={classes.inputs}>
+        <hr className={classes.line}/>
+        <div className={clsx(classes.inputBase, classes.inputSearch)}>
+          {!chosenUser &&
         <InputBase
           placeholder="Type a name"
           fullWidth={true}
           value={searchInputValue}
           onChange={handleChange}
           onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
-          // className={classes.searchUser}
         />
-      </div>
+          }
+          {chosenUser && singleUserTab(chosenUser, true) }
+        </div>
 
-      {foundUsers && showDropDown &&
-      (<div className={classes.foundedUsers}>
-        {foundUsers.map(user => (
-          <div>
-            <div key={user.id} className={classes.user}>
-              <Image
-                imageUrl={user.avatarPublicId}
-                alt={'user avatar'}
-                type={'smallAvatar'}
-                className={classes.smallAvatar}
-              />
-              <Typography variant='h5'>{user.fullName}</Typography>
-            </div>
-            <hr className={classes.line}/>
-          </div>
-        ))}
+        {foundUsers && showDropDown &&
+      (<div className={classes.foundedUsersDropdown}>
+        {foundUsers.map((user) => singleUserTab(user, false))}
       </div>)
-      }
+        }
+      </div>
 
       <hr className={classes.line}/>
       <div className={classes.inputBase}>
@@ -131,13 +142,15 @@ function SendPostLink () {
           minRows={7}
           value={sendInputText}
           onChange={handleSendInputChange}
-          // className={classes.sendInput}
           onKeyDown={handleEnterPressed}
         />
       </div>
       <hr className={classes.line}/>
       <div className={classes.button}>
-        <SharedButton title="Send" disabled={btnIsDisabled} onClick={btnIsDisabled ? '' : onSendSubmitHandler}/>
+        <SharedButton
+          title="Send"
+          disabled={btnIsDisabled}
+          onClick={btnIsDisabled ? '' : onSendSubmitHandler}/>
       </div>
     </div>
   )

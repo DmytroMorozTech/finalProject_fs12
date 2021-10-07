@@ -5,7 +5,6 @@ import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined'
 import GroupIcon from '@material-ui/icons/Group'
 import NetworkLeftItem from './NetworkLeftItem/NetworkLeftItem'
 import { Link } from 'react-router-dom'
-import Typography from '@material-ui/core/Typography'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import Button from '@material-ui/core/Button'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -21,22 +20,19 @@ function NetworkLeft (props) {
       Icon: <SupervisorAccountRoundedIcon fontSize="inherit"/>,
       title: 'Connections',
       number: numberOfConnections,
-      to: '/network/connections',
-      onClick: () => console.log('Connections')
+      to: '/network/connections'
     },
     {
       Icon: <PermIdentityOutlinedIcon fontSize="inherit"/>,
       title: 'People I Follow',
       number: numberOfUsersFollowingMe,
-      to: '/network/following',
-      onClick: () => console.log('People I Follow')
+      to: '/network/following'
     },
     {
       Icon: <GroupIcon fontSize="inherit"/>,
       title: 'Groups',
       number: numberGroups,
-      to: '#', // this is temporary hardcoded
-      onClick: () => console.log('Groups')
+      to: '#' // this is temporary hardcoded
     }
   ]
 
@@ -70,13 +66,6 @@ function NetworkLeft (props) {
           alt={'jobs banner'}
           className={classes.img}
         />
-      </Link>
-      <hr className={classes.line}/>
-      {/* Link is hardcoded below */}
-      <Link to="#" className={classes.link}>
-        <Typography variant="h5" color="primary" align="center">
-          Grow your network
-        </Typography>
       </Link>
       <hr className={classes.line}/>
       <div className={classes.logo}>

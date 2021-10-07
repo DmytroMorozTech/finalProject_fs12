@@ -1,10 +1,13 @@
 package com.danit.fs12.controller;
 
+import com.danit.fs12.entity.message.MessageFromFeedRq;
 import com.danit.fs12.entity.message.MessageRq;
 import com.danit.fs12.entity.message.MessageRs;
+import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.facade.MessageFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,4 +47,15 @@ public class MessageController {
   public List<MessageRs> getMessagesByChatId(@PathVariable Long id) {
     return messageFacade.getMessagesByChatId(id);
   }
+
+  @PostMapping(path = "/from_feed")
+  public ResponseEntity<?> createMessageFromFeed(@Valid @RequestBody MessageFromFeedRq rq) {
+    Boolean msgWasCreated = messageFacade.createMessageFromFeed(rq);
+    if (!msgWasCreated) {
+      throw new BadRequestException("Message was not created");
+    }
+
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
 }

@@ -1,8 +1,10 @@
 package com.danit.fs12.service;
 
 
+import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.chat.Chat;
 import com.danit.fs12.entity.message.Message;
+import com.danit.fs12.entity.message.MessageFromFeedRq;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,5 +51,34 @@ public class MessageService extends GeneralService<Message> {
 
   public List<Message> getMessagesByChatId(Long chatId) {
     return messageRepository.findMessagesByChat_Id(chatId);
+  }
+
+  public Boolean createMessageFromFeed(MessageFromFeedRq rq) {
+    String text = rq.getText();
+    Long userWhomId = rq.getUserWhomId();
+    User activeUser = userService.getActiveUser();
+
+    Optional<Chat> chatOptional = activeUser.getChats().stream()
+      .filter(
+        chat -> chat.getUsers().stream().map(AbstractEntity::getId).collect(Collectors.toList()).contains(userWhomId)
+      ).findFirst();
+
+    if (chatOptional.isPresent()) {
+      Long chatId = chatOptional.get().getId();
+      createMessage(chatId, text);
+      return true;
+    }
+
+    User userWhom = userService.findEntityById(userWhomId);
+
+    Chat chat = chatRepository.save(new Chat());
+    activeUser.addChat(chat);
+    userWhom.addChat(chat);
+    userRepository.save(activeUser);
+    userRepository.save(userWhom);
+
+    createMessage(chat.getId(), text);
+    return true;
+
   }
 }

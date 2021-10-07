@@ -98,7 +98,7 @@ const modalReducer = (state = initialState, action) => {
           break
 
         case SEND_MESSAGE :
-          content = <SendPostLink/>
+          content = <SendPostLink postId={id}/>
           break
 
         default:
