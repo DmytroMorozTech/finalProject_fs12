@@ -52,17 +52,9 @@ function RegisterPageLoginData () {
   }
 
   const authenticateByGoogle = () => {
-    http
-      .get('/oauth2/authorization/google')
-      .then(res => {
-        if (res.status === 200) {
-          history.push('/home')
-        }
-      })
-      .catch(err => {
-        const errorMsg = err.response.data.message
-        toast.error(errorMsg)
-      })
+    const currentURL = window.location.href
+    const baseURL = currentURL.split('/signup')[0]
+    document.location.href = baseURL + '/oauth2/authorization/google'
   }
 
   return (firstSignUpPage
