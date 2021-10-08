@@ -34,7 +34,8 @@ public class AuthController {
 
   @PostMapping("/signup")
   public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
-    userFacade.registerUser(registrationRequest.getFirstName(),
+    userFacade.registerUser(
+      registrationRequest.getFirstName(),
       registrationRequest.getLastName(),
       registrationRequest.getPassword(),
       registrationRequest.getEmail().toLowerCase());
@@ -48,7 +49,7 @@ public class AuthController {
     return new AuthResponse(token);
   }
 
-  @GetMapping("/activeuser")
+  @GetMapping("/active_user")
   @JsonView(UserViews.Base.class)
   public UserRs currentUser() {
     return userFacade.getActiveUser();
