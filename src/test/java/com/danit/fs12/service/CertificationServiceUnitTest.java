@@ -6,30 +6,38 @@ import com.danit.fs12.repository.CertificationRepository;
 import com.danit.fs12.repository.RepositoryInterface;
 import com.danit.fs12.repository.UserRepository;
 import com.github.javafaker.Faker;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.Field;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
+@RunWith(MockitoJUnitRunner.class)
 public class CertificationServiceUnitTest {
-
-    @Autowired
-    private CertificationRepository certificationRepository;
-
-    @MockBean
+    @Mock
     private UserRepository userRepository;
-    @MockBean
+    @Mock
     private UserService userService;
+    @Mock
+    private RepositoryInterface<Certification> repo;
+
+    @InjectMocks
+    private CertificationService certificationService;
 
     private static final Long userId = 1L;
     private static final Long certificationId = 5L;
@@ -38,7 +46,6 @@ public class CertificationServiceUnitTest {
 
     @BeforeAll
     public static void setup() {
-
         Faker faker = new Faker();
 
         user1.setId(1L);
@@ -47,21 +54,27 @@ public class CertificationServiceUnitTest {
         user1.setLastName(faker.name().lastName());
 
         certification1.setUser(user1);
-        certification1.setId(certificationId);
+    }
+
+    @Before
+    public void prepare() {
+        Field field = ReflectionUtils.findField(certificationService.getClass(), "repo");
+        field.setAccessible(true);
+        ReflectionUtils.setField(field, certificationService, repo);
     }
 
     @Test
     @Disabled
     public void canCreateCertification() {
-        CertificationService certificationService = new CertificationService(userRepository, userService);
-
-        Certification newCertification = new Certification();
+        Certification certification = new Certification();
+        certification.setUser(user1);
 
         when(userService.getActiveUser()).thenReturn(user1);
-        when(userService.getActiveUser().getId()).thenReturn(userId);
-        when(certificationRepository.save(certification1)).thenReturn(newCertification);
+        when(userService.findEntityById(user1.getId())).thenReturn(user1);
+        when(repo.save(certification)).thenReturn(certification);
+//    when(userService.getActiveUser().getId()).thenReturn(userId);
 
-        Assertions.assertEquals(newCertification, certificationService.createCertification(certification1));
+        Assertions.assertEquals(certification, certificationService.createCertification(certification1));
 
     }
 
