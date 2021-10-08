@@ -52,12 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .formLogin()
       // temporary hardcoded redirect url (we must change redirect url to "/" before deploy)
-      .loginPage("http://localhost:3000/")
+      .loginPage("/")
       .and()
       .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
       .oauth2Login()
       // temporary hardcoded redirect url (we must change redirect url to "/" before deploy)
-      .loginPage("http://localhost:3000/")
+      .loginPage("/")
       .userInfoEndpoint().userService(oauthUserService)
       .and()
       .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
@@ -72,6 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .clearAuthentication(true)
       .addLogoutHandler(new SecurityContextLogoutHandler())
       // temporary hardcoded redirect url (we must change redirect url to "/" before deploy)
-      .logoutSuccessUrl("http://localhost:3000/");
+      .logoutSuccessUrl("/");
   }
 }
