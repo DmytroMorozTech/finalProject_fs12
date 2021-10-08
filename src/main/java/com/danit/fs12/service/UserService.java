@@ -177,7 +177,7 @@ public class UserService extends GeneralService<User> {
     Random random = new Random();
     int min = 100000;
     int max = 999999;
-    int resetNumber = random.ints(min, (max+1)).findFirst().getAsInt();
+    int resetNumber = random.ints(min, (max + 1)).findFirst().getAsInt();
     if (userRepository.findUserByEmail(email) != null) {
       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       User user = userRepository.findUserByEmail(email);
