@@ -288,7 +288,7 @@ public class UserService extends GeneralService<User> {
     Set<User> mergedSet = new HashSet<>();
     mergedSet.addAll(getUsersFollowed());
     mergedSet.addAll(findConnectedUsers());
-    //    mergedSet.addAll(getUsersWithPendingInvitationToAndFromActiveUser());
+    mergedSet.addAll(getUsersWithPendingInvitationToAndFromActiveUser());
     mergedSet.add(getActiveUser());
 
     Set<User> potentialContacts = userRepository
