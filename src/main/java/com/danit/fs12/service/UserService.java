@@ -34,6 +34,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -173,7 +174,10 @@ public class UserService extends GeneralService<User> {
   }
 
   public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
-    int resetNumber = (int) (Math.random() * 1000000);
+    Random random = new Random();
+    int min = 100000;
+    int max = 999999;
+    int resetNumber = random.ints(min, (max+1)).findFirst().getAsInt();
     if (userRepository.findUserByEmail(email) != null) {
       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       User user = userRepository.findUserByEmail(email);

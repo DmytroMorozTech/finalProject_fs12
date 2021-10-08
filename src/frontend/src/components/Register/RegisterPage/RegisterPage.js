@@ -53,7 +53,7 @@ function RegisterPageLoginData () {
 
   const authenticateByGoogle = () => {
     http
-      .get('http://localhost:9000/oauth2/authorization/google')
+      .get('/oauth2/authorization/google')
       .then(res => {
         if (res.status === 200) {
           history.push('/home')
