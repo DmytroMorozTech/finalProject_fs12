@@ -91,8 +91,11 @@ function SendPostLink (props) {
 
   function singleUserTab (user, userIsChosen) {
     return (
-      <div>
-        <div key={user.id} className={clsx(classes.user, !userIsChosen && classes.foundedUsers)} onClick={() => !userIsChosen ? setChosenUser(user) : null }>
+      <div key={user.id}>
+        <div
+          key={user.id}
+          className={clsx(classes.user, !userIsChosen && classes.foundedUsers)}
+          onClick={!userIsChosen ? () => setChosenUser(user) : null }>
           <Image
             imageUrl={user.avatarPublicId}
             alt={'user avatar'}
@@ -152,7 +155,7 @@ function SendPostLink (props) {
         <SharedButton
           title="Send"
           disabled={btnIsDisabled}
-          onClick={btnIsDisabled ? '' : onSendSubmitHandler}/>
+          onClick={btnIsDisabled ? null : onSendSubmitHandler}/>
       </div>
     </div>
   )

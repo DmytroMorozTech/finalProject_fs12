@@ -12,7 +12,7 @@ public class MessageRq {
   private Long chatId;
 
   @NotNull(message = "Text message can not be null")
-  @Size(min = 2, max = 500, message = "Text message must have more than 2 and maximum 500 characters ")
+  @Size(min = 1, max = 500, message = "Text message must have more than 1 and maximum 500 characters ")
   private String text;
 
 }

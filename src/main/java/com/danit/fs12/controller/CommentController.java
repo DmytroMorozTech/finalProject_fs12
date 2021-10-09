@@ -38,7 +38,6 @@ public class CommentController {
   @GetMapping(path = "{id}")
   public ResponseEntity<CommentRs> findById(@PathVariable Long id) {
     CommentRs comment = commentFacade.findById(id);
-    // in case Comment can not be found by id in Facade, an error will be thrown
     return ResponseEntity.ok(comment);
   }
 
