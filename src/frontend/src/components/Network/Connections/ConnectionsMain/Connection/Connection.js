@@ -36,13 +36,15 @@ function Connection (props) {
 
   const findIfChatExist = () => {
     dispatch(isTemporaryChatOpenAction(false))
-    let existChatId = null
+    let existingChatId = null
     chats && chats.forEach(c => {
       if (c.users.filter(u => u.id === id).length > 0) {
-        existChatId = c.id
+        existingChatId = c.id
       }
     })
-    return existChatId !== null ? existChatId : 'new/' + id
+
+    const chatId = existingChatId !== null ? existingChatId : `new/${id}`
+    return chatId
   }
 
   return (

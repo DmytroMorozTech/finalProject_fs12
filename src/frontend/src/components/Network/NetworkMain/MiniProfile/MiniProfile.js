@@ -70,7 +70,7 @@ function MiniProfile (props) {
           </Typography>
         </div>
         <SharedButton
-          onClick={() => dispatch(createNewInvitationAction({userWhomId: id}))}
+          onClick={() => dispatch(createNewInvitationAction({userWhomId: id, fullName}))}
           title="Connect"
           variant="outlined"
           fullWidth={true}/>

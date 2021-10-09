@@ -3,11 +3,14 @@ import * as actions from '../Network/networkActionTypes'
 import { toast } from 'react-toastify'
 
 export const createNewInvitationAction = (payload) => (dispatch) => {
+  const {userWhomId, fullName} = payload
+  dispatch({ type: actions.DELETE_POTENTIAL_CONTACT, payload: userWhomId })
   return http
     .post('/api/invitations', { ...payload })
     .then((res) => res.data)
     .then((invitationObj) => {
       dispatch({ type: actions.ADD_NEW_INVITATION, payload: invitationObj })
+      toast.info(`You've just invited ${fullName} to become you Connection`)
     })
     .catch(err => {
       const errorMsg = err.response.data.message

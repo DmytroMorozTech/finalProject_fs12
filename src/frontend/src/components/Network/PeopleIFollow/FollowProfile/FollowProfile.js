@@ -13,7 +13,7 @@ function FollowProfile (props) {
   const classes = styles()
   const dispatch = useDispatch()
 
-  const linkToUserProfile = '/profile' + id
+  const linkToUserProfile = `/profiles/${id}`
 
   const [isFollowed, setIsFollowed] = useState(isFollowedByActiveUser)
 
