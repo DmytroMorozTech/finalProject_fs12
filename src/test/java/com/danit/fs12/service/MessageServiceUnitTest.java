@@ -7,7 +7,6 @@ import com.danit.fs12.exception.BadRequestException;
 import com.danit.fs12.repository.ChatRepository;
 import com.danit.fs12.repository.MessageRepository;
 import com.danit.fs12.repository.UserRepository;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,18 +44,17 @@ public class MessageServiceUnitTest {
 
     @BeforeAll
     public static void setup() {
-        Faker faker = new Faker();
 
         user1.setId(1L);
-        user1.setEmail(faker.internet().emailAddress());
-        user1.setFirstName(faker.name().firstName());
-        user1.setLastName(faker.name().lastName());
+        user1.setEmail("test1@gmail.com");
+        user1.setFirstName("Serhii");
+        user1.setLastName("Romaniuk");
         user1.setChats(Stream.of(chat1).collect(Collectors.toList()));
 
         user2.setId(2L);
-        user2.setEmail(faker.internet().emailAddress());
-        user2.setFirstName(faker.name().firstName());
-        user2.setLastName(faker.name().lastName());
+        user2.setEmail("test2@gmail.com");
+        user2.setFirstName("Marta");
+        user2.setLastName("Brane");
 
         chat1.setId(chatId);
         chat1.addUser(user1);
