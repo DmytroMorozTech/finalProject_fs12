@@ -113,7 +113,6 @@ public class UserService extends GeneralService<User> {
       user.setFirstName(firstName);
       user.setLastName(lastName);
       user.setPasswordHash(password);
-      System.out.println(user.getPasswordHash());
       user.setEmail(email.toLowerCase());
       user.setProvider(Provider.LOCAL);
       saveUser(user);
