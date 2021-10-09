@@ -1,7 +1,7 @@
 # production db
-url: jdbc:postgresql://tai.db.elephantsql.com/
-username: zmowlhvq
-password: vLkHFB0cCL0wnzcSVUnX1vmg2h6Xv_dA
+url: jdbc:postgresql://aam1rukz6w0pyb.ch9cmgj0b2qn.eu-central-1.rds.amazonaws.com:5432/ebdb
+username: linkedinDB
+password: bed1ven-aqg5GVW0wrb
 
 # development db
 referenceUrl: jdbc:h2:mem:linkedin
