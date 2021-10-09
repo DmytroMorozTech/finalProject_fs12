@@ -17,7 +17,7 @@ public class ConnectionService extends GeneralService<Connection> {
     User activeUser = userService.getActiveUser();
     Connection connection = new Connection(userWhoInvited, activeUser);
 
-    userWhoInvited.getUsersFollowing().add(activeUser); // works correctly
+    userWhoInvited.getUsersFollowing().add(activeUser);
     activeUser.getUsersFollowing().add(userWhoInvited);
 
     return save(connection);
