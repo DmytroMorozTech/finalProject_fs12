@@ -3,15 +3,16 @@ import http from '../../services/httpService'
 
 export const getActiveUserAction = () => (dispatch) => {
   dispatch({type: actions.LOADING_USERS, payload: true})
-  let checkedResponse = ''
   return http
-    .get('../../api/activeuser')
+    .get('/api/active_user')
     .then(res => {
-      checkedResponse = (typeof (res.data) === 'string') ? {} : res.data
       dispatch({
         type: actions.SAVE_ACTIVE_USER,
-        payload: checkedResponse
+        payload: res.data
       })
+      dispatch({type: actions.LOADING_USERS, payload: false})
+    })
+    .catch(() => {
       dispatch({type: actions.LOADING_USERS, payload: false})
     })
 }
@@ -22,7 +23,7 @@ export const signOutAction = () => (dispatch) => {
     payload: null
   })
   return http
-    .get('../../logout')
+    .get('/logout')
     .then(() => {
       window.location.href = '/'
     }
@@ -31,7 +32,7 @@ export const signOutAction = () => (dispatch) => {
 
 export const findUserByIdAction = (id) => (dispatch) => {
   return http
-    .get(`../../api/users/${id}`)
+    .get(`/api/users/${id}`)
     .then(res => {
       dispatch({
         type: actions.FIND_USER_BY_ID,

@@ -34,6 +34,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -103,11 +104,9 @@ public class UserService extends GeneralService<User> {
       new NoSuchUserException("There is a problem while trying to get Active user. Check your authentication data."));
   }
 
-  public User registerUser(String firstName,
-                           String lastName,
-                           String password,
-                           String email) {
-    if (userRepository.findUserByEmail(email) != null && userRepository.findUserByEmail(email).getPasswordHash() != null) {
+  public void registerUser(String firstName, String lastName, String password, String email) {
+    if (userRepository.findUserByEmail(email) != null
+      && userRepository.findUserByEmail(email).getPasswordHash() != null) {
       throw new UserAlreadyExistException(String.format("User with email %s already exists", email));
     } else {
       User user = new User();
@@ -117,7 +116,6 @@ public class UserService extends GeneralService<User> {
       user.setEmail(email.toLowerCase());
       user.setProvider(Provider.LOCAL);
       saveUser(user);
-      return user;
     }
   }
 
@@ -176,7 +174,10 @@ public class UserService extends GeneralService<User> {
   }
 
   public void generateResetPasswordNumber(String email) throws MessagingException, UnsupportedEncodingException {
-    int resetNumber = (int) (Math.random() * 1000000);
+    Random random = new Random();
+    int min = 100000;
+    int max = 999999;
+    int resetNumber = random.ints(min, (max + 1)).findFirst().getAsInt();
     if (userRepository.findUserByEmail(email) != null) {
       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       User user = userRepository.findUserByEmail(email);
@@ -288,7 +289,7 @@ public class UserService extends GeneralService<User> {
     Set<User> mergedSet = new HashSet<>();
     mergedSet.addAll(getUsersFollowed());
     mergedSet.addAll(findConnectedUsers());
-    //    mergedSet.addAll(getUsersWithPendingInvitationToAndFromActiveUser());
+    mergedSet.addAll(getUsersWithPendingInvitationToAndFromActiveUser());
     mergedSet.add(getActiveUser());
 
     Set<User> potentialContacts = userRepository

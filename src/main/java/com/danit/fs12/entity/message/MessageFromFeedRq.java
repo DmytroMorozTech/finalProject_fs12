@@ -12,7 +12,7 @@ public class MessageFromFeedRq {
   private Long userWhomId;
 
   @NotNull(message = "Text message can not be null")
-  @Size(min = 2, max = 500, message = "Text message must have more than 2 and less than 500 characters ")
+  @Size(min = 1, max = 500, message = "Text message must have more than 1 and less than 500 characters ")
   private String text;
 
 }
