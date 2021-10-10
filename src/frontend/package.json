@@ -46,7 +46,7 @@
     "stylelint-build": "stylelint \"src/**/*.scss\"",
     "watch-styles-sass": "npm-watch",
     "stylelint-fix-sass": "stylelint --fix \"src/**/*.scss\"",
-    "test": "jest",
+    "test": "react-scripts test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
@@ -102,23 +102,5 @@
     "react-toastify": "^7.0.4",
     "standard": "^10.0.3",
     "yup": "^0.32.9"
-  },
-  "jest": {
-    "verbose": true,
-    "clearMocks": true,
-    "collectCoverage": true,
-    "setupFilesAfterEnv": [
-      "./config/setupTest.js"
-    ],
-    "snapshotSerializers": [
-      "./node_modules/enzyme-to-json/serializer"
-    ],
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.js",
-      "\\.(css|scss)$": "identity-obj-proxy"
-    }
   }
 }

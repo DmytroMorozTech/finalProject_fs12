@@ -1,22 +1,30 @@
-// import {render, screen} from '@testing-library/react'
 import React from 'react'
 import App from './App'
-//
-// import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
+import * as redux from 'react-redux';
 
-// test('renders learn react link', () => {
-//   render(<App/>)
-//   const linkElement = screen.getByText(/learn react/i)
-//   expect(linkElement).toBeInTheDocument()
-// })
-
-const setUp = (props) => shallow(<App {...props} />)
+const setUp = (props) => shallow(<App {...props} />);
 
 describe('should render App component', () => {
+  let spyOnUseSelector;
+  let spyOnUseDispatch;
+  let mockDispatch = jest.fn()
+
   let component
+
   beforeEach(() => {
+    spyOnUseSelector = jest.spyOn(redux, 'useSelector');
+    spyOnUseSelector.mockReturnValue(false);
+    spyOnUseDispatch = jest.spyOn(redux, 'useDispatch');
+    mockDispatch = jest.fn()
+    spyOnUseDispatch.mockReturnValue(mockDispatch);
+
     component = setUp()
   })
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
   it('should contain .App wrapper', () => {
     const wrapper = component.find('.App')
