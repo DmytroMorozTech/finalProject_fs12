@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SharedLinkSquare component to match snapshot 1`] = `
+<Link
+  className="makeStyles-link-1"
+  to="#"
+>
+  <div />
+</Link>
+`;
