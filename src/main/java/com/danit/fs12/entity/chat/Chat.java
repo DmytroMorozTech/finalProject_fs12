@@ -3,10 +3,12 @@ package com.danit.fs12.entity.chat;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.message.Message;
 import com.danit.fs12.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -24,9 +26,15 @@ import java.util.List;
 public class Chat extends AbstractEntity {
 
   @ManyToMany(mappedBy = "chats")
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<User> users = new ArrayList<>();
 
   @OneToMany(mappedBy = "chat")
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @JsonIgnore
   private List<Message> messages = new ArrayList<>();
 
   public Message addMessage(Message message) {

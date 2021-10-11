@@ -47,6 +47,13 @@ const networkReducer = (state = initialState, action) => {
     case actions.SAVE_POTENTIAL_CONTACTS:
       return { ...state, potentialContacts: [...action.payload] }
 
+    case actions.DELETE_POTENTIAL_CONTACT:
+      const potentialContactUserId = action.payload
+      const filteredPotentialContacts = state.potentialContacts
+        .filter(potentialContact => potentialContact.id !== potentialContactUserId)
+      return { ...state, potentialContacts: [...filteredPotentialContacts]
+      }
+
     default: {
       return state
     }

@@ -63,8 +63,7 @@ const ExperienceModal = (props) => {
     endYear: (end ? end.year : '') || '',
     responsibilities: workPlace?.responsibilities || ''
   }
-  
-  console.log(INITIAL_FORM_STATE)
+
   const FORM_VALIDATION = Yup.object().shape({
     position: Yup.string()
       .required('Required'),
@@ -129,7 +128,6 @@ const ExperienceModal = (props) => {
           }}
           validationSchema={FORM_VALIDATION}
           onSubmit={values => {
-            console.log(values)
             if (workPlace) {
               values.organizationId = workPlace.organization.id
               dispatch(updateWorkPlaceAction(values, workPlace.id))

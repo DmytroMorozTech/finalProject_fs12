@@ -31,7 +31,7 @@ function RegisterPageLoginData () {
     const {firstName, lastName} = data
 
     http
-      .post('api/signup', {
+      .post('/api/signup', {
         email: login,
         password: password,
         firstName: firstName,
@@ -39,7 +39,7 @@ function RegisterPageLoginData () {
       })
       .then(res => {
         if (res.status === 200) {
-          toast.info('You have signed up successful! Now you can sign in! ')
+          toast.info('You have signed up successfully! Now you can sign in! ')
           setFirstSignUpPage(true)
           history.push('/')
         }
@@ -52,17 +52,9 @@ function RegisterPageLoginData () {
   }
 
   const authenticateByGoogle = () => {
-    http
-      .get('http://localhost:9000/oauth2/authorization/google')
-      .then(res => {
-        if (res.status === 200) {
-          history.push('/home')
-        }
-      })
-      .catch(err => {
-        const errorMsg = err.response.data.message
-        toast.error(errorMsg)
-      })
+    const currentURL = window.location.href
+    const baseURL = currentURL.split('/signup')[0]
+    document.location.href = baseURL + '/oauth2/authorization/google'
   }
 
   return (firstSignUpPage

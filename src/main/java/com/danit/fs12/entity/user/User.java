@@ -286,7 +286,11 @@ public class User extends AbstractEntity {
 
   public Boolean getIsFollowedByActiveUser() {
     Long activeUserId = ActiveUserUtils.getActiveUserId();
-    return getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
+    Set<User> usersFollowing = getUsersFollowing();
+
+    return (usersFollowing.size() == 0)
+      ? false
+      : getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
   }
 
   public Integer getNumberOfFollowers() {

@@ -27,8 +27,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
       oauth2User.getAttribute("given_name"),
       oauth2User.getAttribute("family_name"));
 
-    //TODO temporary hardcoded redirect url (we must change redirect url to "/signup_g" before deploy)
-    response.sendRedirect("http://localhost:3000/signup_g");
+    response.sendRedirect("/signup_g");
     super.onAuthenticationSuccess(request, response, authentication);
   }
 }

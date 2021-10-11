@@ -24,7 +24,7 @@ const userReducer = (state = initialState, action) => {
       localStorage.clear()
       return {
         ...state,
-        activeUser: null
+        activeUser: {}
       }
 
     case actions.FIND_USER_BY_ID:

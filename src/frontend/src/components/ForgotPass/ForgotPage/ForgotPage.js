@@ -12,12 +12,14 @@ import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
+import Preloader from '../../../shared/Preloader/Preloader'
 
 function ForgotPage () {
   const classes = styles()
   const [firstForgotPage, setFirstForgotPage] = useState(true)
   const [isPasswordPage, setPasswordPage] = useState(false)
   const [hideEmail, setHideEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [inputtedUserEmail, setInputtedUserEmail] = useState('')
   const [anchorEl, setAnchorEl] = useState(null)
   const history = useHistory()
@@ -44,17 +46,20 @@ function ForgotPage () {
     } else {
       inputtedEmail = inputtedUserEmail
     }
-
+    setFirstForgotPage(false)
+    setIsLoading(true)
     http
       .put('api/forgot_password/', {
         email: inputtedEmail
       })
       .then(res => {
         if (res.status === 200) {
-          setFirstForgotPage(false)
+          setIsLoading(false)
         }
       })
       .catch(err => {
+        setIsLoading(false)
+        setFirstForgotPage(true)
         const errorMsg = err.response.data.message
         toast.error(errorMsg)
       })
@@ -63,7 +68,6 @@ function ForgotPage () {
   const handleSecurityCodeSubmit = (values) => {
     const {code} = values
     inputtedEmail = inputtedUserEmail
-
     http
       .post('api/forgot_password/', {
         email: inputtedEmail,
@@ -156,133 +160,141 @@ function ForgotPage () {
       </Formik>
       <Link to="/" className={classes.signInLineLink}>Back</Link>
     </Paper>
-    : isPasswordPage
-      ? <Paper elevation={3} className={clsx(classes.forgotPageCard, classes.thirdForgotPage)}>
-        <div className={classes.mainTextContainerNewPassword}>
-          <h2 className={classes.mainTextNewPassword}>Choose a new password</h2>
-          <div className={classes.mainTextWrapperNewPassword}>
-            <p className={classes.subTextSecond}>Create a new password that is at least 8 characters long.</p>
-            <p aria-describedby={id} onClick={handleClick} className={classes.passwordPromptLink}>What makes a strong password</p>
+    : isLoading ? <Preloader fullscreen={true}/>
+      : isPasswordPage
+        ? <Paper elevation={3} className={clsx(classes.forgotPageCard, classes.thirdForgotPage)}>
+          {isLoading && <Preloader/>}
+          <div className={classes.mainTextContainerNewPassword}>
+            <h2 className={classes.mainTextNewPassword}>Choose a new password</h2>
+            <div className={classes.mainTextWrapperNewPassword}>
+              <p className={classes.subTextSecond}>Create a new password that is at least 8 characters long.</p>
+              <p aria-describedby={id} onClick={handleClick} className={classes.passwordPromptLink}>What makes a
+                  strong
+                  password</p>
+            </div>
           </div>
-        </div>
-        <Formik
-          initialValues={{}}
-          validationSchema={
-            Yup.object().shape({
-              newPassword: Yup.string()
-                .matches('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$', 'Password must be: minimum eight characters, at least one letter, one number and one special character!')
-                .required('Password is required'),
-              retypePassword: Yup.string()
-                .matches('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$', 'Password must be: minimum eight characters, at least one letter, one number and one special character!')
-                .required('Password is required')
-            })}
-          onSubmit={(values, {resetForm}) => {
-            handleNewPasswordSubmit(values)
-            resetForm()
-          }}
-        >
-          {() => (
-            <Form className={classes.form} noValidate>
-              <Field component={TextField}
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                name="newPassword"
-                label="New password"
-                type="password"
-                autoComplete="current-password"
-              />
-              <Field component={TextField}
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                name="retypePassword"
-                label="Retype new password"
-                type="password"
-                autoComplete="current-password"
-              />
-              <SharedButton
-                className={classes.resetButton}
-                type="submit"
-                size="large"
-                title="Submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              />
-            </Form>
-          )}
-        </Formik>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center'
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center'
-          }}
-        >
-          <Typography className={classes.popoverHeader}>Chose a strong password to protect your account
-            <Typography className={classes.popoverText}>Password must be minimum eight characters.</Typography>
-            <Typography className={classes.popoverText}>Password must contains at least one letter, one number and one special character.</Typography>
-            <Typography className={classes.popoverText}>It should not contain your name, phone number or email address.</Typography>
-          </Typography>
-        </Popover>
-      </Paper>
-      : <Paper elevation={3} className={clsx(classes.forgotPageCard, classes.secondForgotPage)}>
-        <div className={classes.mainTextContainerSecond}>
-          <h2 className={classes.mainTextSecond}>We sent a code to your email</h2>
-          <div className={classes.mainTextWrapperSecond}>
-            <p className={classes.subTextSecond}>Enter the 6-digit verification code sent to </p>
-            <span className={clsx(classes.subTextSecond, classes.hideEmail)}>{hideEmail}</span>
-            <p onClick={() => setFirstForgotPage(true)} className={classes.signInLineLinkChange}>Change</p>
+          <Formik
+            initialValues={{}}
+            validationSchema={
+              Yup.object().shape({
+                newPassword: Yup.string()
+                  .matches('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$', 'Password must be: minimum eight characters, at least one letter, one number and one special character!')
+                  .required('Password is required'),
+                retypePassword: Yup.string()
+                  .matches('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$', 'Password must be: minimum eight characters, at least one letter, one number and one special character!')
+                  .required('Password is required')
+              })}
+            onSubmit={(values, {resetForm}) => {
+              handleNewPasswordSubmit(values)
+              resetForm()
+            }}
+          >
+            {() => (
+              <Form className={classes.form} noValidate>
+                <Field component={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  name="newPassword"
+                  label="New password"
+                  type="password"
+                  autoComplete="current-password"
+                />
+                <Field component={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  name="retypePassword"
+                  label="Retype new password"
+                  type="password"
+                  autoComplete="current-password"
+                />
+                <SharedButton
+                  className={classes.resetButton}
+                  type="submit"
+                  size="large"
+                  title="Submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                />
+              </Form>
+            )}
+          </Formik>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Typography className={classes.popoverHeader}>Chose a strong password to protect your account
+              <Typography className={classes.popoverText}>Password must be minimum eight characters.</Typography>
+              <Typography className={classes.popoverText}>Password must contains at least one letter, one number and
+                  one
+                  special character.</Typography>
+              <Typography className={classes.popoverText}>It should not contain your name, phone number or email
+                  address.</Typography>
+            </Typography>
+          </Popover>
+        </Paper>
+        : <Paper elevation={3} className={clsx(classes.forgotPageCard, classes.secondForgotPage)}>
+          <div className={classes.mainTextContainerSecond}>
+            <h2 className={classes.mainTextSecond}>We sent a code to your email</h2>
+            <div className={classes.mainTextWrapperSecond}>
+              <p className={classes.subTextSecond}>Enter the 6-digit verification code sent to </p>
+              <span className={clsx(classes.subTextSecond, classes.hideEmail)}>{hideEmail}</span>
+              <p onClick={() => setFirstForgotPage(true)} className={classes.signInLineLinkChange}>Change</p>
+            </div>
           </div>
-        </div>
-        <Formik
-          initialValues={{}}
-          validationSchema={
-            Yup.object().shape({
-              code: Yup.number().typeError('Security code must be a number and has 6 digits')
-                .required('Security code is required')
-            })}
-          onSubmit={(values, {resetForm}) => {
-            handleSecurityCodeSubmit(values)
-            resetForm()
-          }}
-        >
-          {() => (
-            <Form className={classes.form} noValidate>
-              <Field component={TextField}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="code"
-                label="6 digit code"
-                name="code"
-                autoComplete="code"
-                autoFocus
-              />
-              <p className={classes.signInLineLinkResetCode} onClick={() => handleEmailSubmit(inputtedEmail, true)}>Resend code</p>
-              <SharedButton
-                className={classes.resetButton}
-                type="submit"
-                size="large"
-                title="Submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              />
-            </Form>
-          )}
-        </Formik>
-        <p className={classes.spamText}>If you don't see the email in your inbox, check your spam folder.</p>
-      </Paper>
+          <Formik
+            initialValues={{}}
+            validationSchema={
+              Yup.object().shape({
+                code: Yup.number().typeError('Security code must be a number and has 6 digits')
+                  .required('Security code is required')
+              })}
+            onSubmit={(values, {resetForm}) => {
+              handleSecurityCodeSubmit(values)
+              resetForm()
+            }}
+          >
+            {() => (
+              <Form className={classes.form} noValidate>
+                <Field component={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="code"
+                  label="6 digit code"
+                  name="code"
+                  autoComplete="code"
+                  autoFocus
+                />
+                <p className={classes.signInLineLinkResetCode}
+                  onClick={() => handleEmailSubmit(inputtedEmail, true)}>Resend code</p>
+                <SharedButton
+                  className={classes.resetButton}
+                  type="submit"
+                  size="large"
+                  title="Submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                />
+              </Form>
+            )}
+          </Formik>
+          <p className={classes.spamText}>If you don't see the email in your inbox, check your spam folder.</p>
+        </Paper>
   )
 }
 
