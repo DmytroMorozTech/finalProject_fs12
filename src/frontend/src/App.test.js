@@ -10,7 +10,7 @@ const setUp = (props) => shallow(<App {...props} />)
 describe('should render App component', () => {
   let spyOnUseSelector
   let spyOnUseDispatch
-  let mockDispatch = jest.fn()
+  let mockDispatch
 
   let component
 
@@ -34,37 +34,6 @@ describe('should render App component', () => {
   })
 
   it('should work dispatch', () => {
-    expect(mockDispatch).toHaveBeenCalledWith(getActiveUserAction())
+    expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
 })
-
-// const mockDispatch = jest.fn()
-// jest.mock('react-redux', () => ({
-//   useSelector: jest.fn(),
-//   useDispatch: () => mockDispatch
-// }))
-
-// describe('dispatch mock', function () {
-//   it('should mock dispatch', function () {
-//     // arrange
-//     const useDispatchSpy = jest.spyOn(redux, 'useDispatch')
-//     const mockDispatchFn = jest.fn()
-//     useDispatchSpy.mockReturnValue(mockDispatchFn)
-//
-//     // action
-//     // triggerYourFlow()
-//
-//     // assert
-//     expect(mockDispatchFn).toHaveBeenCalledWith(getActiveUserAction())
-//
-//     // teardown
-//     useDispatchSpy.mockClear()
-//   })
-// })
-// it('loads data on init', () => {
-//   const mockedDispatch = jest.fn()
-//   useSelector.mockImplementation((selectorFn) => selectorFn(store))
-//   useDispatch.mockReturnValue(mockedDispatch)
-//   // mount(<Router><Clients history={historyMock} /></Router>)
-//   expect(mockDispatch).toHaveBeenCalledWith()
-// })

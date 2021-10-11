@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FullscreenFalse component to match snapshot 1`] = `
+<div
+  className="makeStyles-fullscreenFalse-1"
+>
+  <WithStyles(ForwardRef(CircularProgress)) />
+</div>
+`;

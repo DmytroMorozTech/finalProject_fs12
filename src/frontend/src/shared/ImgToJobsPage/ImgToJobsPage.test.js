@@ -1,12 +1,9 @@
 import React from 'react'
 import ImgToJobsPage from './ImgToJobsPage'
-import { render } from 'enzyme'
-import { BrowserRouter } from 'react-router-dom'
+import { shallow } from 'enzyme'
 
-const setUp = () => render(
-  <BrowserRouter>
-    <ImgToJobsPage />
-  </BrowserRouter>
+const setUp = () => shallow(
+  <ImgToJobsPage />
 )
 
 describe('should render ImgToJobsPage component', () => {

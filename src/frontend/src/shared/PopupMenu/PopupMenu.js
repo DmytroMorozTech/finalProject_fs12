@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import Paper from '@material-ui/core/Paper'
@@ -7,8 +7,8 @@ import MenuList from '@material-ui/core/MenuList'
 import styles from './styles'
 
 export default function SimpleMenu (props) {
-  const [open, setOpen] = React.useState(false)
-  const anchorRef = React.useRef(null)
+  const [open, setOpen] = useState(false)
+  const anchorRef = useRef(null)
   const classes = styles()
   const {menuItem, userData} = props
 
@@ -31,8 +31,8 @@ export default function SimpleMenu (props) {
     }
   }
 
-  const prevOpen = React.useRef(open)
-  React.useEffect(() => {
+  const prevOpen = useRef(open)
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus()
     }
@@ -43,6 +43,7 @@ export default function SimpleMenu (props) {
   return (
     <div className={classes.root}>
       <span
+        id='spanForHandleToggle'
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"

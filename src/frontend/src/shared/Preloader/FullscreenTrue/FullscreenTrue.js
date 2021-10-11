@@ -1,6 +1,7 @@
 import LinkedinLogo from '../../LinkedinLogo/LinkedinLogo'
 import { LinearProgress } from '@material-ui/core'
 import styles from './styles'
+import React from 'react'
 
 function FullscreenTrue () {
   const classes = styles()

@@ -1,5 +1,6 @@
 import { CircularProgress } from '@material-ui/core'
 import styles from './styles'
+import React from 'react'
 
 function FullscreenFalse () {
   const classes = styles()
