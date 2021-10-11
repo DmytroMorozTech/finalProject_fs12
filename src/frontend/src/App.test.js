@@ -3,6 +3,7 @@ import React from 'react'
 import App from './App'
 import { shallow } from 'enzyme'
 import * as redux from 'react-redux'
+import { getActiveUserAction } from './redux/User/userActions'
 
 const setUp = (props) => shallow(<App {...props} />)
 
@@ -15,7 +16,7 @@ describe('should render App component', () => {
 
   beforeEach(() => {
     spyOnUseSelector = jest.spyOn(redux, 'useSelector')
-    spyOnUseSelector.mockReturnValue(true)
+    spyOnUseSelector.mockReturnValue(false)
     spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
@@ -32,8 +33,8 @@ describe('should render App component', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('should contain div wrapper', () => {
-    // expect(mockDispatch).toHaveBeenCalledWith(getActiveUserAction())
+  it('should work dispatch', () => {
+    expect(mockDispatch).toHaveBeenCalledWith(getActiveUserAction())
   })
 })
 

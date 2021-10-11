@@ -1,6 +1,7 @@
 import styles from './styles'
 import Button from '@material-ui/core/Button'
 import clsx from 'clsx'
+import React from 'react'
 
 function SharedButton ({ title, color = 'primary', variant = 'contained',
   disabled = false, size = 'small', onClick, type = 'button',
