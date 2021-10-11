@@ -39,10 +39,6 @@ export default makeStyles((theme) => ({
     }
   },
 
-  removed: {
-    display: 'none'
-  },
-
   header: {
     padding: theme.spacing(2),
     paddingBottom: 0,
@@ -59,20 +55,6 @@ export default makeStyles((theme) => ({
     height: '20%',
     backgroundRepeat: 'no-repeat',
     borderRadius: theme.shape.up
-  },
-
-  cross: {
-    display: 'flex',
-    width: theme.spacing(6),
-    fontSize: theme.typography.icons.medium.fontSize,
-    color: theme.palette.common.white,
-    backgroundColor: 'rgba(0,0,0,.5)',
-    padding: theme.spacing(1),
-    borderRadius: '50%',
-    position: 'absolute',
-    top: theme.spacing(1),
-    right: theme.spacing(1),
-    cursor: 'pointer'
   },
 
   link: {
