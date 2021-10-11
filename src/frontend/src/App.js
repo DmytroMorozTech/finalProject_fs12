@@ -19,7 +19,7 @@ function App () {
   }, [dispatch])
 
   return isLoadingUser ? <Preloader fullscreen={true}/> : (
-    <div className="App">
+    <div>
       <Header/>
       <MainRoutes/>
     </div>
