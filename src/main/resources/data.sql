@@ -259,7 +259,10 @@ Currently, India is building electric vehicle charging infrastructure because it
        ('Do you dream of becoming a great specialist in IT sphere?' ||
         'All training programs in DAN.IT are developed according to the standards of the IT division of the Israeli army (MAMRAM) using the TELEM methodology',
         2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
-        timestamp '2021-08-12 18:22:32.123123');
+        timestamp '2021-08-12 18:22:32.123123'),
+       ('There is overwhelming evidence that the impacts of climate change are already being observed in human and natural systems," the paper reads. "We infer that attributable anthropogenic impacts may be occurring across 80% of the world''s land area, where 85% of the population reside.',
+        2, 'linkedin/posts-img/pe3k2oeoefvgzdt0lbr1', '', timestamp '2018-11-03 15:03:12.222323',
+        timestamp '2018-11-03 15:03:12.222323');
 
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)

@@ -4,19 +4,26 @@ export default makeStyles((theme) => ({
 
   notification: {
     display: 'flex',
-    flexDirection: 'row'
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: theme.border.simple,
+    borderRadius: theme.shape.small,
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(1),
+    overflow: 'hidden'
   },
 
-  userAvatar: {
-    width: theme.avatar.medium,
-    borderRadius: '50%',
-    marginTop: theme.spacing(2),
+  notificationImg: {
+    width: theme.avatar.extraSmall,
     marginLeft: theme.spacing(3)
   },
 
   content: {
     margin: theme.spacing(3),
-    cursor: 'pointer'
+    cursor: 'pointer',
+    width: '100%'
   },
 
   userName: {
@@ -28,7 +35,8 @@ export default makeStyles((theme) => ({
     textDecoration: 'none'
   },
 
-  actionAndText: {
+  mainText: {
+    display: 'block',
     color: theme.palette.grey[700]
   },
 
@@ -43,5 +51,9 @@ export default makeStyles((theme) => ({
   notificationTime: {
     fontSize: theme.typography.h6.fontSize,
     marginRight: theme.spacing(2)
+  },
+
+  wasNotRead: {
+    backgroundColor: '#e8f1f7'
   }
 }))

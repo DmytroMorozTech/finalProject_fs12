@@ -5,6 +5,9 @@ import com.danit.fs12.entity.notification.NotificationType;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -108,9 +111,10 @@ public class NotificationService extends GeneralService<Notification> {
     userService.save(postAuthor);
   }
 
-  public List<Notification> getNotificationsForActiveUser() {
+  public Page<Notification> getNotificationsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     Long activeUserId = userService.getActiveUser().getId();
-    return notificationRepository.findNotificationsByUserId(activeUserId);
+    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+    return notificationRepository.findNotificationsByUserId(activeUserId, pageRequest);
   }
 
   public List<Notification> getNotificationsForUserId(Long id) {

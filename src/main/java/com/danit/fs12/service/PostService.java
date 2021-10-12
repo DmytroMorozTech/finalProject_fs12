@@ -91,6 +91,8 @@ public class PostService extends GeneralService<Post> {
     List<Long> followedUsersIds = userService.getUsersFollowed()
       .stream().map(user -> user.getId()).collect(Collectors.toList());
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+    followedUsersIds.add(userService.getActiveUser().getId());
+    // active user should also see their own posts in Feed
 
     return postRepository.getPostsForActiveUserPaginated(followedUsersIds, pageRequest);
   }

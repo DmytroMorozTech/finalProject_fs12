@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './styles'
 import Grid from '@material-ui/core/Grid'
 import { Container, Hidden } from '@material-ui/core'
-import NotificationsMain from './NotificationsMain/NotificationsMain'
 import NotificationsRight from './NotificationsRight/NotificationsRight'
 import NotificationsLeft from './NotificationsLeft/NotificationsLeft'
 import SmallNotification from './SmallNotification/SmallNotification'
@@ -24,7 +23,6 @@ function Notifications () {
           <Hidden mdUp>
             <SmallNotification/>
           </Hidden>
-          {/* <NotificationsMain/> */}
           <Feed type={'notifications'}/>
         </Grid>
 

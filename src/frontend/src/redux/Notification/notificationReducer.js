@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   pagination: {
     pageNumber: 0,
-    pageSize: 4,
+    pageSize: 8,
     totalPages: 0,
     hasMore: true
   }
@@ -18,7 +18,7 @@ const notificationReducer = (state = initialState, action) => {
 
     case actions.SAVE_NEW_NOTIFICATIONS:
       const { notifications, headers } = action.payload
-      const {pagenumber = 0, pagesize = 10, totalpages, hasmore} = headers
+      const {pagenumber = 0, pagesize = 4, totalpages, hasmore} = headers
       return {
         ...state,
         notificationsList: [...state.notificationsList, ...notifications],

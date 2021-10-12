@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 public class NotificationFacade extends GeneralFacade<Notification, NotificationRq, NotificationRs> {
   private final NotificationService notificationService;
 
-  public List<NotificationRs> getNotificationsForActiveUser() {
-    List<Notification> notifications = notificationService.getNotificationsForActiveUser();
-    return notifications.stream().map(this::convertToDto).collect(Collectors.toList());
+  public Page<NotificationRs> getNotificationsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
+    Page<Notification> notificationsPage = notificationService.getNotificationsForActiveUser(pageNumber, pageSize, sortBy);
+    return notificationsPage.map(this::convertToDto);
   }
 
   public List<NotificationRs> getNotificationsForUserId(Long id) {

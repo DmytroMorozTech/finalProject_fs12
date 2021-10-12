@@ -18,7 +18,6 @@ function Feed (props) {
   const activeUser = useSelector(activeUserSelector)
 
   const localState = (type === 'posts') ? postsState : (type === 'bookmarkedPosts') ? bookmarkedPostsState : notificationsState
-  console.log(localState)
 
   let data
   let pagination
@@ -74,14 +73,13 @@ function Feed (props) {
     dispatch({ type: actions.LOADING_POSTS, payload: true })
 
     return http
-      .get(`api/notifications/${activeUser.id}`)
-    // {
-    //   params: {
-    //     pageNumber: pageNumber,
-    //     pageSize: pageSize
-    //   }
-    // }
-      // )
+      .get(`api/notifications`,
+        {
+          params: {
+            pageNumber: pageNumber,
+            pageSize: pageSize
+          }
+        })
       .then((result) => {
         const notifications = result.data
         const headers = result.headers
