@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FullscreenTrue component to match snapshot 1`] = `
+<div
+  className="makeStyles-fullscreenTrue-1"
+>
+  <div
+    className="makeStyles-logo-2"
+  >
+    <LinkedinLogo />
+  </div>
+  <div
+    className="makeStyles-preloader-3"
+  >
+    <WithStyles(ForwardRef(LinearProgress)) />
+  </div>
+</div>
+`;

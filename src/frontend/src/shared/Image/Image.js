@@ -2,6 +2,10 @@ import React from 'react'
 import { Image as CloudinaryImage, Transformation } from 'cloudinary-react'
 import theme from '../../Theme/Theme'
 
+export const defaultAvatar = 'linkedin/general/ghrchekikx3dnas6ivxm'
+export const defaultProfileBgImg = 'linkedin/general/u4aqln7amyyfdj0tehqy'
+export const defaultMiniProfileBgImage = 'linkedin/general/fdtqc5hacop8w5zt663j'
+
 function Image ({ imageUrl, type, onClickHandler, className, alt }) {
   const getTransformation = (type) => {
     let transformation = ''
@@ -123,11 +127,11 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
     if (type === 'profileAvatar' || type === 'extraLargeAvatar' ||
       type === 'largeAvatar' || type === 'mediumAvatar' ||
       type === 'smallAvatar' || type === 'extraSmallAvatar') {
-      defaultImgUrl = 'linkedin/general/ghrchekikx3dnas6ivxm'
+      defaultImgUrl = defaultAvatar
     } if (type === 'profileBgImg') {
-      defaultImgUrl = 'linkedin/general/u4aqln7amyyfdj0tehqy'
+      defaultImgUrl = defaultProfileBgImg
     } if (type === 'miniProfileBgImg') {
-      defaultImgUrl = 'linkedin/general/fdtqc5hacop8w5zt663j'
+      defaultImgUrl = defaultMiniProfileBgImage
     }
 
     return defaultImgUrl

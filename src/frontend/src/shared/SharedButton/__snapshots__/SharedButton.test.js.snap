@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SharedButton component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Button))
+  className="makeStyles-btn-1"
+  color="primary"
+  component="button"
+  disabled={false}
+  fullWidth={false}
+  size="small"
+  to="#"
+  type="button"
+  variant="contained"
+/>
+`;
