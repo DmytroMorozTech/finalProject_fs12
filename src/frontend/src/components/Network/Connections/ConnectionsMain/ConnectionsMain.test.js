@@ -1,12 +1,14 @@
 import React from 'react'
 import ConnectionsMain from './ConnectionsMain'
-import { render } from 'enzyme'
+import { shallow } from 'enzyme'
 import * as redux from 'react-redux'
-import { ThemeProvider } from '@material-ui/styles'
-import theme from '../../../../Theme/Theme'
-import { BrowserRouter } from 'react-router-dom'
 
-const connections = [
+jest.mock('react-router-dom', () => ({
+  Link: 'a'
+}))
+jest.mock('./styles', () => () => ({}))
+
+export const connections = [
   {
     'id': 4,
     'createdDate': '2015-05-11T22:21:12.123123',
@@ -35,12 +37,7 @@ const connections = [
   }
 ]
 
-const setUp = (props) => render(
-  <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <ConnectionsMain {...props}/>
-    </BrowserRouter>
-  </ThemeProvider>)
+const setUp = (props) => shallow(<ConnectionsMain {...props}/>)
 
 describe('should render ConnectionsMain component', () => {
   let spyOnUseSelector
@@ -54,9 +51,6 @@ describe('should render ConnectionsMain component', () => {
     spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
-    jest.mock('react-router-dom', () => ({
-      Link: 'a'
-    }))
 
     component = setUp({connections})
   })

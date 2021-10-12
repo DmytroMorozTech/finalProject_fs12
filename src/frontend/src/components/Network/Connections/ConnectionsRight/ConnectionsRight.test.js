@@ -1,8 +1,10 @@
 import React from 'react'
 import ConnectionsRight from './ConnectionsRight'
-import { render } from 'enzyme'
+import { shallow } from 'enzyme'
 
-const setUp = () => render(<ConnectionsRight />)
+jest.mock('./styles', () => () => ({}))
+
+const setUp = () => shallow(<ConnectionsRight />)
 
 describe('should render ConnectionsRight component', () => {
   let component
