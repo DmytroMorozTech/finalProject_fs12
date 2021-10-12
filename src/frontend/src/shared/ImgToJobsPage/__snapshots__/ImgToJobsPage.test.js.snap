@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ImgToJobsPage component to match snapshot 1`] = `
+<Link
+  to="/jobs"
+>
+  <Image
+    alt="jobs banner"
+    className="makeStyles-img-1"
+    imageUrl="linkedin/general/lsrqvmwtjzy4evnmj8dw"
+  />
+</Link>
+`;
