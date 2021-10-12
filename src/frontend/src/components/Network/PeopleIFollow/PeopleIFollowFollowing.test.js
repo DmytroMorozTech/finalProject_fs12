@@ -1,21 +1,11 @@
+import { shallow } from 'enzyme'
 import React from 'react'
-import Connection from './Connection'
-import { render } from 'enzyme'
-import { ThemeProvider } from '@material-ui/styles'
-import theme from '../../../../../Theme/Theme'
-import { connection } from './Connection.test'
+import PeopleIFollowFollowing from './PeopleIFollowFollowing'
 import * as redux from 'react-redux'
 
-jest.mock('react-router-dom', () => ({
-  Link: 'a'
-}))
+const setUp = (props) => shallow(<PeopleIFollowFollowing {...props}/>)
 
-const setUp = (props) => render(
-  <ThemeProvider theme={theme}>
-    <Connection {...props}/>
-  </ThemeProvider>)
-
-describe('should render Connection styles', () => {
+describe('should render PeopleIFollowFollowing component', () => {
   let spyOnUseSelector
   let spyOnUseDispatch
   let mockDispatch
@@ -28,7 +18,7 @@ describe('should render Connection styles', () => {
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
 
-    component = setUp({connection})
+    component = setUp()
   })
   afterEach(() => {
     jest.restoreAllMocks()
