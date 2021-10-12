@@ -55,6 +55,7 @@ const invitations = [
     }
   }
 ]
+
 const potentialContacts = [
   {
     'id': 10,
