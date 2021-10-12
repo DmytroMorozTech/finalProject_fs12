@@ -54,6 +54,9 @@ describe('should render ConnectionsMain component', () => {
     spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
+    jest.mock('react-router-dom', () => ({
+      Link: 'a'
+    }))
 
     component = setUp({connections})
   })
