@@ -3,6 +3,7 @@ import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import styles from './styles'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router'
+import React from 'react'
 
 function PeopleIFollowHeader (props) {
   const classes = styles()

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Network component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-network-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      className="makeStyles-networkLeft-2"
+      item={true}
+    >
+      <NetworkLeft />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      className="makeStyles-networkMain-3"
+      item={true}
+    >
+      <NetworkMain
+        invitations={false}
+        potentialContacts={false}
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

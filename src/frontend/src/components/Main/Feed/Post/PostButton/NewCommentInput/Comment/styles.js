@@ -66,12 +66,6 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.h6.fontSize
   },
 
-  dots: {
-    cursor: 'pointer',
-    marginLeft: theme.spacing(0.5),
-    fontSize: theme.typography.icons.small.fontSize
-  },
-
   commentUserInfo: {
     fontSize: theme.typography.h6.fontSize,
     cursor: 'pointer'

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NetworkLeft component to match snapshot 1`] = `
+<div>
+  <div>
+    Manage my network
+  </div>
+  <div>
+    <div>
+      <NetworkLeftItem
+        Icon={
+          <Memo
+            fontSize="inherit"
+          />
+        }
+        key="0"
+        number={1}
+        title="Connections"
+        to="/network/connections"
+      />
+      <WithStyles(ForwardRef(Button))
+        endIcon={<Memo />}
+        onClick={[Function]}
+        variant="contained"
+      >
+        Show more
+      </WithStyles(ForwardRef(Button))>
+    </div>
+  </div>
+  <hr />
+  <Link
+    to="/jobs"
+  >
+    <Image
+      alt="jobs banner"
+      imageUrl="linkedin/general/lsrqvmwtjzy4evnmj8dw"
+    />
+  </Link>
+  <hr />
+  <div>
+    <span>
+      Linked
+    </span>
+    <Memo(ForwardRef(LinkedInIcon))
+      fontSize="inherit"
+    />
+    <div>
+      LinkedIn Corporation © 2021
+    </div>
+  </div>
+</div>
+`;
