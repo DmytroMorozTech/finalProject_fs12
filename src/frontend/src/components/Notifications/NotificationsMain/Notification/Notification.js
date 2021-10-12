@@ -8,25 +8,25 @@ import { Link } from 'react-router-dom'
 import Image from '../../../../shared/Image/Image'
 
 function Notification (props) {
-  const {
-    userId = 5,
-    avatarPublicId,
-    userName = 'Fred Grint',
-    userAction = 'shared a post:',
-    userText = 'You can place a request in our Standard Product Catalogue following a few simple steps: ad your product to the cart, fill the contact form and complete your request.',
-    notificationTime = '2d'
-  } = props
+  const { id, type, data, isRead } = props.notification
+  console.log(`data type: ${type}`)
+  console.log(JSON.parse(data))
+  // const {post_id, number_of_likes = 0, number_of_comments = 0} = data
+  //
+  // const headerText = type == 'POST_WAS_LIKED' ? `Your post with id ${post_id} was liked ${number_of_likes} times`
+  //   : ``
 
   const classes = styles()
+  const postWasLikedImgPublicId = 'linkedin/general/txyezdylwhwfe0i3ykjp'
 
-  const linkToUserProfile = '/profiles/' + userId
+  // const linkToUserProfile = '/profiles/' + userId
 
   return (
     <div className={classes.notification}>
       <div>
-        <Link to={linkToUserProfile}>
+        <Link to={null}>
           <Image
-            imageUrl={avatarPublicId}
+            imageUrl={postWasLikedImgPublicId}
             alt={'user avatar'}
             className={classes.userAvatar}
             type={'mediumAvatar'}
@@ -35,17 +35,18 @@ function Notification (props) {
       </div>
       <div className={classes.content}>
         <Typography variant="body1">
-          <Link to={linkToUserProfile} className={classes.link}>
-            <span className={classes.userName}>{userName + ' '}</span>
+          <Link to={null} className={classes.link}>
+            <span className={classes.userName}>{type + ' '}</span>
           </Link>
-          <span className={classes.actionAndText}>{userAction + ' ' + userText}</span>
+          <span className={classes.actionAndText}>{'userAction' + ' ' + 'userText'}</span>
         </Typography>
       </div>
+
       <div className={classes.notificationTimeAndMenu}>
         <div className={classes.notificationTime}>
-          {notificationTime}
+          {type}
         </div>
-        <SimpleMenu menuItem={<ThreeDots/>} userData={<NotificationAdditions userName={userName}/>}/>
+        <SimpleMenu menuItem={<ThreeDots/>} userData={<NotificationAdditions userName={type}/>}/>
       </div>
     </div>
   )

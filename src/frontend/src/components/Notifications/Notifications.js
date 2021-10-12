@@ -6,6 +6,7 @@ import NotificationsMain from './NotificationsMain/NotificationsMain'
 import NotificationsRight from './NotificationsRight/NotificationsRight'
 import NotificationsLeft from './NotificationsLeft/NotificationsLeft'
 import SmallNotification from './SmallNotification/SmallNotification'
+import Feed from '../Main/Feed/Feed'
 
 function Notifications () {
   const classes = styles()
@@ -23,7 +24,8 @@ function Notifications () {
           <Hidden mdUp>
             <SmallNotification/>
           </Hidden>
-          <NotificationsMain/>
+          {/* <NotificationsMain/> */}
+          <Feed type={'notifications'}/>
         </Grid>
 
         <Hidden mdDown>
