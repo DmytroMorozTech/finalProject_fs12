@@ -24,13 +24,5 @@ export default makeStyles((theme) => ({
   preloader: {
     width: '100px',
     margin: '0 auto'
-  },
-
-  fullscreenFalse: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
-    margin: '10px auto'
   }
 }))
