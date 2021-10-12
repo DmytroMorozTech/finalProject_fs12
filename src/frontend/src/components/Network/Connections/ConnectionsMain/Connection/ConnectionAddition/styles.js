@@ -18,8 +18,7 @@ export default makeStyles((theme) => ({
     cursor: 'pointer'
   },
 
-  icons: {
-    fontSize: theme.typography.icons.large.fontSize,
+  icon: {
     display: 'flex'
   },
 

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Connections component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-connections-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={7}
+      md={6}
+      sm={10}
+      xl={8}
+      xs={12}
+    >
+      <ConnectionsMain
+        connections={false}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <Hidden
+      smDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        lg={4}
+        md={4}
+        xl={1}
+      >
+        <ConnectionsRight />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;
