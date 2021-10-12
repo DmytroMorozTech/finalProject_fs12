@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Image from '../../../../shared/Image/Image'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import CheckIcon from '@material-ui/icons/Check'
