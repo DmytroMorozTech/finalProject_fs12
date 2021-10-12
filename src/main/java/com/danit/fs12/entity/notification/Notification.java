@@ -26,10 +26,7 @@ import java.util.HashMap;
 @TypeDef(name = "json", typeClass = JsonType.class)
 public class Notification extends AbstractEntity {
 
-  public Notification(
-    NotificationType typeNotification,
-    HashMap<String,Long> data
-  ) {
+  public Notification(NotificationType typeNotification, HashMap<String, Long> data) {
     super();
     this.type = typeNotification;
     this.data = data;
