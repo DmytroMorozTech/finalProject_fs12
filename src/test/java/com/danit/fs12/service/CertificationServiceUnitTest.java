@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
@@ -39,7 +38,6 @@ public class CertificationServiceUnitTest {
     private static final Long userId3 = 3L;
     private static final Long certificationId = 5L;
     private static final Long certificationId2 = 10L;
-    private static final Long certificationId3 = 15L;
     private static final User userTest = mock(User.class);
     private static final User userTest2 = mock(User.class);
     private static final User userTest3 = mock(User.class);
