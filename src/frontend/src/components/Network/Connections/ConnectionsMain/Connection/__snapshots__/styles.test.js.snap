@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Connection component to match snapshot 1`] = `undefined`;
+
+exports[`should render Connection styles to match snapshot 1`] = `undefined`;
