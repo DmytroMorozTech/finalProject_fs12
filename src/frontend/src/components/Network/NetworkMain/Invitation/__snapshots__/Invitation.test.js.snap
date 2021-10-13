@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Received Invitation component is Manage to match snapshot 1`] = `
+<div
+  className=""
+>
+  <div>
+    <div>
+      <a
+        to="/profiles/5"
+      >
+        <Image
+          alt="user avatar"
+          imageUrl="linkedin/avatars/hj8sulgxxo5ywotggkcy"
+          type="largeAvatar"
+        />
+      </a>
+    </div>
+    <div>
+      <a
+        to="/profiles/5"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Katherine McCarthy
+        </WithStyles(ForwardRef(Typography))>
+      </a>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        HR-consultant at Amazon.com
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        3 hours ago
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+  </div>
+  <div
+    className=""
+  >
+    <div>
+      <SharedLinkSquare
+        onClick={[Function]}
+        title="Ignore"
+        to="#"
+      />
+    </div>
+    <div>
+      <SharedButton
+        onClick={[Function]}
+        title="Accept"
+        variant="outlined"
+      />
+    </div>
+  </div>
+</div>
+`;

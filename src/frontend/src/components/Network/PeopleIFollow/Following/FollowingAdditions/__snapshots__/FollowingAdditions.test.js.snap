@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FollowingAdditions component to match snapshot 1`] = `
+<div>
+  <FollowingAdditionsItem
+    key="0"
+    onClick={[MockFunction]}
+    subtitle=""
+    title="All"
+  />
+  <FollowingAdditionsItem
+    key="1"
+    onClick={[MockFunction]}
+    subtitle="Connections you are following"
+    title="Connections"
+  />
+  <FollowingAdditionsItem
+    key="2"
+    onClick={[MockFunction]}
+    subtitle="People you are following, who are not connections"
+    title="Out-of-Network"
+  />
+  <FollowingAdditionsItem
+    key="3"
+    onClick={[MockFunction]}
+    subtitle="Companies you are following"
+    title="Companies"
+  />
+</div>
+`;

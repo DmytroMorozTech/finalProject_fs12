@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MiniProfile component to match snapshot 1`] = `
+<div
+  className=""
+>
+  <Image
+    alt="profile background"
+    imageUrl=""
+    type="miniProfileBgImg"
+  />
+  <div>
+    <Link
+      to="/profiles/10"
+    >
+      <div>
+        <Image
+          alt="user avatar"
+          imageUrl="linkedin/avatars/vnxm3wl3erio9ajtezlr"
+          type="extraLargeAvatar"
+        />
+      </div>
+      <WithStyles(ForwardRef(Typography))
+        align="center"
+        variant="h5"
+      >
+        Barry Evans
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        align="center"
+        className=""
+        color="textSecondary"
+        variant="body1"
+      >
+        Scala developer at Amazon.com
+      </WithStyles(ForwardRef(Typography))>
+    </Link>
+  </div>
+  <div>
+    <div>
+      <Memo(ForwardRef(RadioButtonUncheckedIcon))
+        fontSize="inherit"
+      />
+      <Memo(ForwardRef(RadioButtonUncheckedIcon))
+        fontSize="inherit"
+      />
+      <WithStyles(ForwardRef(Typography))
+        color="textSecondary"
+        variant="h6"
+      >
+        3
+         mutual connection
+        s
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+    <SharedButton
+      fullWidth={true}
+      onClick={[Function]}
+      title="Connect"
+      variant="outlined"
+    />
+  </div>
+</div>
+`;

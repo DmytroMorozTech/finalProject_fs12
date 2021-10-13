@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Following component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(Typography))
+    variant="h4"
+  >
+    Unfollow to stop seeing their posts in your feed. Don’t worry, they won’t be notified.
+  </WithStyles(ForwardRef(Typography))>
+  <div>
+    <div>
+      Filter by
+      <span>
+         
+        All
+      </span>
+    </div>
+    <div>
+      <SimpleMenu
+        menuItem={<Memo />}
+        userData={
+          <FollowingAdditions
+            handleAll={[Function]}
+            handleCompanies={[Function]}
+            handleConnections={[Function]}
+            handleOutOfNetwork={[Function]}
+          />
+        }
+      />
+    </div>
+  </div>
+  <div>
+    <FollowProfile
+      key="4"
+      user={
+        Object {
+          "avatarPublicId": "linkedin/avatars/i1bzhpqac3i1ld2urju8",
+          "createdDate": "2015-05-11T22:21:12.123123",
+          "email": "test4@gmail.com",
+          "firstName": "Everett",
+          "fullName": "Everett Anderson",
+          "id": 4,
+          "isFollowedByActiveUser": true,
+          "lastName": "Anderson",
+          "numberOfFollowers": 4,
+          "positionAndCompany": "Project manager at HQSoftware",
+          "profileBgPublicId": "",
+        }
+      }
+    />
+    <FollowProfile
+      key="7"
+      user={
+        Object {
+          "avatarPublicId": "linkedin/avatars/ob8gmrldzy35dytcib5t",
+          "createdDate": "2016-03-04T09:33:31.123123",
+          "email": "test7@gmail.com",
+          "firstName": "Connie",
+          "fullName": "Connie Johnston",
+          "id": 7,
+          "isFollowedByActiveUser": true,
+          "lastName": "Johnston",
+          "numberOfFollowers": 1,
+          "positionAndCompany": "Full-stack developer at Amazon.com",
+          "profileBgPublicId": "",
+        }
+      }
+    />
+  </div>
+</div>
+`;
