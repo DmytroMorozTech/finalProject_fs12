@@ -1,6 +1,7 @@
 import styles from './styles'
 import { Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
+import React from 'react'
 
 function InvitationManagerHeader (props) {
   const {numberOfInvReceived, numberOfInvSent} = props

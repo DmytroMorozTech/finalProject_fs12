@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InvitationManagerHeader component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      Manage invitations
+    </WithStyles(ForwardRef(Typography))>
+    <div>
+      <a
+        to="/network/invitation_manager/received"
+      >
+        <WithStyles(ForwardRef(Typography))
+          color="inherit"
+          variant="h5"
+        >
+          Received (
+          )
+        </WithStyles(ForwardRef(Typography))>
+      </a>
+      <a
+        to="/network/invitation_manager/sent"
+      >
+        <WithStyles(ForwardRef(Typography))
+          color="inherit"
+          variant="h5"
+        >
+          Sent (
+          )
+        </WithStyles(ForwardRef(Typography))>
+      </a>
+    </div>
+  </div>
+</div>
+`;

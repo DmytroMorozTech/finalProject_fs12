@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InvitationManagerReceived component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={7}
+    >
+      <div>
+        <InvitationManagerHeader />
+        <InvitationManagerReceivedMain
+          data={false}
+        />
+      </div>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={3}
+    >
+      <InvitationManagerRight />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;
