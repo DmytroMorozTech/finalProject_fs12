@@ -3,7 +3,7 @@ import Connection from './Connection'
 import { shallow } from 'enzyme'
 import * as redux from 'react-redux'
 
-export const connection = {
+const connection = {
   'id': 4,
   'createdDate': '2015-05-11T22:21:12.123123',
   'firstName': 'Everett',
@@ -16,11 +16,6 @@ export const connection = {
   'isFollowedByActiveUser': true,
   'numberOfFollowers': 4
 }
-
-jest.mock('./styles', () => () => ({}))
-jest.mock('react-router-dom', () => ({
-  Link: 'a'
-}))
 
 const chats = [
   {
@@ -122,6 +117,11 @@ const chats = [
     ]
   }
 ]
+
+jest.mock('./styles', () => () => ({}))
+jest.mock('react-router-dom', () => ({
+  Link: 'a'
+}))
 
 const setUp = (props) => shallow(<Connection {...props}/>)
 
