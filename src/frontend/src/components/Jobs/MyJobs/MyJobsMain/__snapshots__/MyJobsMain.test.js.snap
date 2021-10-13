@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MyJobsMain component to match snapshot 1`] = `
+<div>
+  <div>
+    My Jobs
+  </div>
+  <div>
+    <SharedButton
+      title="Saved"
+    />
+  </div>
+  <hr />
+  <div>
+    <SavedVacancy />
+  </div>
+</div>
+`;

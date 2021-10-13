@@ -21,7 +21,7 @@ const invitationReceived = {
   }
 }
 
-const invitationSend = {
+const invitationSent = {
   'id': 1,
   'createdDate': '2015-01-01T18:22:32.123123',
   'text': '',
@@ -97,7 +97,7 @@ describe('should render Received Invitation component is Manage and is NewInvita
   })
 })
 
-describe('should render Send Invitation component is Manage and is not NewInvitation', () => {
+describe('should render Sent Invitation component is Manage and is not NewInvitation', () => {
   let spyOnUseDispatch
   let mockDispatch
 
@@ -107,7 +107,7 @@ describe('should render Send Invitation component is Manage and is not NewInvita
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
 
-    component = setUp({data: invitationSend, isReceived: false, isManage: true})
+    component = setUp({data: invitationSent, isReceived: false, isManage: true})
   })
   afterEach(() => {
     jest.restoreAllMocks()

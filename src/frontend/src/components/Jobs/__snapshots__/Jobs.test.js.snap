@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Jobs component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-jobsPage-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <Hidden
+      xsDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        lg={2}
+        xl={2}
+      >
+        <JobsLeft />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={6}
+      md={5}
+      sm={7}
+      xl={6}
+      xs={12}
+    >
+      <Hidden
+        smUp={true}
+      >
+        <JobsSmall />
+      </Hidden>
+      <JobsMain />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+    >
+      <Hidden
+        smDown={true}
+      >
+        <JobsRight />
+      </Hidden>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

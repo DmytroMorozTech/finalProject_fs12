@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render JobsSmall component to match snapshot 1`] = `
+<div>
+  <a
+    to="/jobs/my_jobs"
+  >
+    <div>
+      <Memo(ForwardRef(BookmarkIcon))
+        fontSize="inherit"
+      />
+    </div>
+    <div>
+      My Jobs
+    </div>
+  </a>
+  <SimpleMenu
+    menuItem={
+      <SharedLinkSquare
+        icon={<Memo />}
+        title="More"
+      />
+    }
+    userData={<JobsAdditions />}
+  />
+</div>
+`;
