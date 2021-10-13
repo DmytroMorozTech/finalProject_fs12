@@ -1,5 +1,6 @@
 package com.danit.fs12.service;
 
+import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.notification.NotificationType;
 import com.danit.fs12.entity.user.User;
@@ -117,9 +118,19 @@ public class NotificationService extends GeneralService<Notification> {
     return notificationRepository.findNotificationsByUserId(activeUserId, pageRequest);
   }
 
-  public List<Notification> getNotificationsForUserId(Long id) {
-    return notificationRepository.findNotificationsByUserId(id);
+  public Notification markNotificationAsViewed(Long id) {
+    Notification notification = findEntityById(id);
+    notification.setIsViewed(true);
+    return save(notification);
   }
 
+  public void markAllNotificationAsViewed() {
+    User activeUser = userService.getActiveUser();
+    List<Long> activeUserNotificationIds = activeUser.getNotifications().stream()
+      .map(AbstractEntity::getId).collect(Collectors.toList());
+    List<Notification> activeUserNotifications = findAllById(activeUserNotificationIds);
+    activeUserNotifications.forEach(n -> n.setIsViewed(true));
+    notificationRepository.saveAll(activeUserNotifications);
+  }
 
 }

@@ -53,7 +53,7 @@ export default makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
 
-  wasNotRead: {
+  wasNotViewed: {
     backgroundColor: '#e8f1f7'
   }
 }))

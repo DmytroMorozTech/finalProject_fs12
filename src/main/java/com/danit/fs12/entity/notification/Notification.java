@@ -30,11 +30,11 @@ public class Notification extends AbstractEntity {
     super();
     this.type = typeNotification;
     this.data = data;
-    this.isRead = false;
+    this.isViewed = false;
   }
 
-  @Column(name = "is_read")
-  private Boolean isRead;
+  @Column(name = "is_viewed")
+  private Boolean isViewed;
 
   @Column(name = "type")
   private NotificationType type;

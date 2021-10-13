@@ -20,7 +20,7 @@ function generateMainText (number, notificationType) {
 
 function Notification (props) {
   const {notification} = props
-  const { id, type, data, isRead, createdDate } = notification
+  const { id, type, data, isViewed, createdDate } = notification
   const { 'post_id': postId, 'number_of_likes': numberOfLikes = 0, 'number_of_comments': numberOfComments = 0 } = data
 
   let headerText
@@ -37,7 +37,15 @@ function Notification (props) {
       mainText = generateMainText(numberOfComments, 'comment')
       break
 
+      // case 'NEW_POST_WAS_CREATED':
+      //   headerText = `Your post with id ${postId} was commented ${numberOfComments} times`
+      //   mainText = generateMainText(numberOfComments, 'comment')
+      //   break
+
     default:
+      headerText = `You've just received a new notification`
+      mainText = 'Some extra data about your notification should be here'
+      break
   }
 
   const classes = styles()
@@ -50,7 +58,7 @@ function Notification (props) {
   />
 
   return (
-    <div key={notification.id} className={clsx(classes.notification, !isRead ? classes.wasNotRead : '')}>
+    <div key={notification.id} className={clsx(classes.notification, !isViewed ? classes.wasNotViewed : '')}>
       <div>
         {type == 'POST_WAS_LIKED' ? thumbsUpIcon : <ChatOutlinedIcon className={classes.notificationImg}/>}
       </div>
@@ -67,7 +75,9 @@ function Notification (props) {
         <div className={classes.notificationTime}>
           {getTimeSinceCreated(createdDate)}
         </div>
-        <SimpleMenu menuItem={<ThreeDots/>} userData={<NotificationAdditions userName={type}/>}/>
+        <SimpleMenu
+          menuItem={<ThreeDots/>}
+          userData={<NotificationAdditions notificationId={id} isViewed={isViewed}/>}/>
       </div>
     </div>
   )
