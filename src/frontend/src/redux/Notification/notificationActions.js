@@ -20,8 +20,6 @@ export const deleteNotificationAction = (id) => (dispatch) => {
     .then((status) => {
       if (status === 200 || status === 204) {
         dispatch({ type: actions.DELETE_NOTIFICATION, payload: id })
-        toast.info('Notification was deleted',
-          {position: toast.POSITION.TOP_RIGHT, autoClose: 1700})
       }
     })
 }

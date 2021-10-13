@@ -3,6 +3,7 @@ package com.danit.fs12.service;
 import com.danit.fs12.entity.AbstractEntity;
 import com.danit.fs12.entity.notification.Notification;
 import com.danit.fs12.entity.notification.NotificationType;
+import com.danit.fs12.entity.post.Post;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,26 @@ public class NotificationService extends GeneralService<Notification> {
   private final UserService userService;
   private final NotificationRepository notificationRepository;
 
-  public void createNotificationNewPost(HashMap<String, Long> data) {
+  public void createNotificationNewPost(Post post) {
+    HashMap<String, Long> data = new HashMap<>();
+    data.put("postId", post.getId());
+    int lengthOfPost = post.getText().length();
+
+    HashMap<String, String> userWhoTriggered = new HashMap<>();
+    userWhoTriggered.put("id", post.getUser().getId().toString());
+    userWhoTriggered.put("fullName", post.getUser().getFullName());
+    userWhoTriggered.put("imgPublicId", post.getUser().getAvatarPublicId());
+    userWhoTriggered.put("text", post.getText().substring(0, Math.min(lengthOfPost, 150)).concat("..."));
+
     User activeUser = userService.getActiveUser();
     Set<User> usersFollowingActiveUser = activeUser.getUsersFollowing();
 
     for (User user : usersFollowingActiveUser) {
-      Notification notification = new Notification(NotificationType.NEW_POST_WAS_CREATED, data);
+      Notification notification = new Notification(
+        NotificationType.NEW_POST_WAS_CREATED,
+        data,
+        userWhoTriggered
+      );
 
       notification.setUser(user);
       Notification savedInDbNotification = save(notification);
@@ -40,13 +55,14 @@ public class NotificationService extends GeneralService<Notification> {
 
   private Optional<Notification> getPostWasLikedNotificationOptional(Long postId, Long postAuthorId) {
     User postAuthor = userService.findEntityById(postAuthorId);
-    List<Notification> allNotificationsAboutPostLikes = postAuthor.getNotifications().stream()
+    List<Notification> allNotifsAboutPostLikesNotViewed = postAuthor.getNotifications().stream()
+      .filter(notification -> !notification.getIsViewed())
       .filter(notification -> notification.getType() == NotificationType.POST_WAS_LIKED)
       .collect(Collectors.toList());
 
-    return allNotificationsAboutPostLikes
+    return allNotifsAboutPostLikesNotViewed
       .stream()
-      .filter(n -> n.getData().get("post_id").equals(postId))
+      .filter(n -> n.getData().get("postId").equals(postId))
       .findFirst();
   }
 
@@ -55,8 +71,8 @@ public class NotificationService extends GeneralService<Notification> {
     User postAuthor = userService.findEntityById(postAuthorId);
     if (notificationOpt.isEmpty()) {
       HashMap<String, Long> data = new HashMap<>();
-      data.put("post_id", postId);
-      data.put("number_of_likes", 1L);
+      data.put("postId", postId);
+      data.put("numberOfLikes", 1L);
       Notification notification = new Notification(NotificationType.POST_WAS_LIKED, data);
       notification.setUser(postAuthor);
       Notification savedInDbNotification = save(notification);
@@ -67,8 +83,8 @@ public class NotificationService extends GeneralService<Notification> {
 
     // if Notification already exists, then we have to update info in it and increment likes counter for post
     Notification notification = notificationOpt.get();
-    Long currentNumberOfLikes = notification.getData().get("number_of_likes");
-    notification.getData().put("number_of_likes", currentNumberOfLikes + 1);
+    Long currentNumberOfLikes = notification.getData().get("numberOfLikes");
+    notification.getData().put("numberOfLikes", currentNumberOfLikes + 1);
     save(notification);
   }
 
@@ -76,9 +92,9 @@ public class NotificationService extends GeneralService<Notification> {
     Optional<Notification> notificationOpt = getPostWasLikedNotificationOptional(postId, postAuthorId);
     if (notificationOpt.isPresent()) {
       Notification notification = notificationOpt.get();
-      Long currentNumberOfLikes = notification.getData().get("number_of_likes");
-      if (currentNumberOfLikes > 0) {
-        notification.getData().put("number_of_likes", currentNumberOfLikes - 1);
+      Long currentNumberOfLikes = notification.getData().get("numberOfLikes");
+      if (currentNumberOfLikes > 1) {
+        notification.getData().put("numberOfLikes", currentNumberOfLikes - 1);
         // decrement likes counter in the existing Notification
         save(notification);
       }
@@ -92,19 +108,19 @@ public class NotificationService extends GeneralService<Notification> {
       .collect(Collectors.toList());
 
     Optional<Notification> notificationOpt = allNotificationsAboutPostComments.stream()
-      .filter(n -> n.getData().get("post_id").equals(postId)).findFirst();
+      .filter(n -> n.getData().get("postId").equals(postId)).findFirst();
 
     if (notificationOpt.isPresent()) {
       Notification notification = notificationOpt.get();
-      Long currentNumberOfComments = notification.getData().get("number_of_comments");
-      notification.getData().put("number_of_comments", currentNumberOfComments + 1);
+      Long currentNumberOfComments = notification.getData().get("numberOfComments");
+      notification.getData().put("numberOfComments", currentNumberOfComments + 1);
       save(notification);
       return;
     }
 
     HashMap<String, Long> data = new HashMap<>();
-    data.put("post_id", postId);
-    data.put("number_of_comments", 1L);
+    data.put("postId", postId);
+    data.put("numberOfComments", 1L);
     Notification notification = new Notification(NotificationType.NEW_COMMENTS_POST, data);
     notification.setUser(postAuthor);
     Notification savedInDbNotification = save(notification);

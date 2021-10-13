@@ -16,8 +16,16 @@ export default makeStyles((theme) => ({
   },
 
   notificationImg: {
-    width: theme.avatar.extraSmall,
-    marginLeft: theme.spacing(3)
+    width: theme.avatar.small,
+    marginLeft: theme.spacing(3),
+    borderRadius: '50%'
+  },
+
+  noNotificationsImg: {
+    width: theme.avatar.large,
+    marginLeft: theme.spacing(3),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
 
   content: {
@@ -26,7 +34,7 @@ export default makeStyles((theme) => ({
     width: '100%'
   },
 
-  userName: {
+  headerText: {
     fontWeight: theme.typography.h5.fontWeight,
     color: theme.palette.grey[700]
   },

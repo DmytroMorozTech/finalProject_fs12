@@ -18,29 +18,35 @@ function generateMainText (number, notificationType) {
           : 'Let the communication begin.'
 }
 
+function getHowManyTimesStr (number) {
+  return number === 1 ? 'once' : number === 2 ? 'twice' : `${number} times`
+}
+
 function Notification (props) {
   const {notification} = props
-  const { id, type, data, isViewed, createdDate } = notification
-  const { 'post_id': postId, 'number_of_likes': numberOfLikes = 0, 'number_of_comments': numberOfComments = 0 } = data
+  const { id, type, data, isViewed, createdDate, userWhoTriggered } = notification
+  const { postId, numberOfLikes = 0, numberOfComments = 0 } = data
+  const classes = styles()
 
   let headerText
   let mainText
 
   switch (type) {
     case 'POST_WAS_LIKED':
-      headerText = `Your post with id ${postId} was liked ${numberOfLikes} times`
+      headerText = `Your post with id ${postId} was liked ${getHowManyTimesStr(numberOfLikes)}`
       mainText = generateMainText(numberOfLikes, 'like')
       break
 
     case 'NEW_COMMENTS_POST':
-      headerText = `Your post with id ${postId} was commented ${numberOfComments} times`
+      headerText = `Your post with id ${postId} was commented ${getHowManyTimesStr(numberOfComments)}`
       mainText = generateMainText(numberOfComments, 'comment')
       break
 
-      // case 'NEW_POST_WAS_CREATED':
-      //   headerText = `Your post with id ${postId} was commented ${numberOfComments} times`
-      //   mainText = generateMainText(numberOfComments, 'comment')
-      //   break
+    case 'NEW_POST_WAS_CREATED':
+      const {fullName, text} = userWhoTriggered
+      headerText = `${fullName} has created a Post. `
+      mainText = text
+      break
 
     default:
       headerText = `You've just received a new notification`
@@ -48,26 +54,35 @@ function Notification (props) {
       break
   }
 
-  const classes = styles()
-
-  const thumbsUpIcon = <Image
+  const thumbsUpImg = <Image
     imageUrl={'linkedin/general/uj1vnnyai3jssffhgasg'}
     alt={'user avatar'}
     className={classes.notificationImg}
     type={'smallAvatar'}
   />
 
+  const userWhoTriggeredAvatarImg = userWhoTriggered ? <Image
+    imageUrl={userWhoTriggered.imgPublicId}
+    alt={'user avatar'}
+    className={classes.notificationImg}
+    type={'mediumAvatar'}
+  /> : ''
+
+  const imgForNotification = (type === 'POST_WAS_LIKED') ? thumbsUpImg
+    : (type === 'NEW_COMMENTS_POST') ? <ChatOutlinedIcon className={classes.notificationImg}/>
+      : userWhoTriggeredAvatarImg
+
   return (
     <div key={notification.id} className={clsx(classes.notification, !isViewed ? classes.wasNotViewed : '')}>
       <div>
-        {type == 'POST_WAS_LIKED' ? thumbsUpIcon : <ChatOutlinedIcon className={classes.notificationImg}/>}
+        {imgForNotification}
       </div>
       <div className={classes.content}>
         <Typography variant="body1">
           <Link to={`/posts/${postId}`} className={classes.link}>
-            <span className={classes.userName}>{headerText}</span>
+            <span className={classes.headerText}>{headerText}</span>
+            <span className={classes.mainText}>{mainText}</span>
           </Link>
-          <span className={classes.mainText}>{mainText}</span>
         </Typography>
       </div>
 

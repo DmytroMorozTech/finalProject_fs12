@@ -10,29 +10,37 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         'linkedin/avatars/kgpkn4a4fudfjpebyegx',
         'linkedin/profile-bg/iltbrz2s8408pu0xrvsj',
         timestamp '2015-03-03 22:22:32.123123', CURRENT_DATE, 'Ukraine', 'Kyiv', 'Head of Sales Department'),
-       ('Laura', 'Lee', '+380677623175', 'test3@gmail.com', 62, '$2a$10$2xFkfxj1Gx4PbJeqt12.V.dR2./r5fcojGGjtVPRZXa2JvWXuq0Ci',
+       ('Laura', 'Lee', '+380677623175', 'test3@gmail.com', 62,
+        '$2a$10$2xFkfxj1Gx4PbJeqt12.V.dR2./r5fcojGGjtVPRZXa2JvWXuq0Ci',
         'linkedin/avatars/p1qwriz6hzjgwkaihwpa',
         'linkedin/profile-bg/o0ngvhpnbu4bz4moqklt',
         timestamp '2015-03-23 11:13:12.123123', CURRENT_DATE, 'Spain', 'Barcelona', 'Senior Java Developer'),
-       ('Everett', 'Anderson', '+380507501193', 'test4@gmail.com', 62, '$2a$10$FUDJQK2vlMHQ.OUf1hSEde6kg8v2vlenPfyfBOXO5nWFpoMENOsLy',
+       ('Everett', 'Anderson', '+380507501193', 'test4@gmail.com', 62,
+        '$2a$10$FUDJQK2vlMHQ.OUf1hSEde6kg8v2vlenPfyfBOXO5nWFpoMENOsLy',
         'linkedin/avatars/i1bzhpqac3i1ld2urju8', '',
         timestamp '2015-05-11 22:21:12.123123', CURRENT_DATE, 'USA', 'Los Angelos', 'Frontend Developer'),
-       ('Katherine', 'McCarthy', '+380508791965', 'test5@gmail.com', 32, '$2a$10$szlnkXCYbGVzE4/f.7K2IOPVMezpqt/GWsMjfJoE4g6QMh4UIysIK',
+       ('Katherine', 'McCarthy', '+380508791965', 'test5@gmail.com', 32,
+        '$2a$10$szlnkXCYbGVzE4/f.7K2IOPVMezpqt/GWsMjfJoE4g6QMh4UIysIK',
         'linkedin/avatars/hj8sulgxxo5ywotggkcy', '',
         timestamp '2015-08-12 07:32:31.123123', CURRENT_DATE, 'Ukraine', 'Lviv', 'HR Director'),
-       ('James', 'Ford', '+380952051202', 'test6@gmail.com', 43, '$2a$10$lEzK1U6TFeBsDkCQ9KFB7eaPZhP4xklAcZGCOYVg8c08SRzlOglmC',
+       ('James', 'Ford', '+380952051202', 'test6@gmail.com', 43,
+        '$2a$10$lEzK1U6TFeBsDkCQ9KFB7eaPZhP4xklAcZGCOYVg8c08SRzlOglmC',
         'linkedin/avatars/oevdjvez2wqekez5zbyp', '',
         timestamp '2016-02-02 12:23:31.123123', CURRENT_DATE, 'Great Britain', 'London', 'Lead QA Engineer'),
-       ('Connie', 'Johnston', '+380689978723', 'test7@gmail.com', 43, '$2a$10$LdEjBteL1ggNToW09SetXOGETJ4Nge2ebcjUBk1ao9.Lp1y5kLkby',
+       ('Connie', 'Johnston', '+380689978723', 'test7@gmail.com', 43,
+        '$2a$10$LdEjBteL1ggNToW09SetXOGETJ4Nge2ebcjUBk1ao9.Lp1y5kLkby',
         'linkedin/avatars/ob8gmrldzy35dytcib5t', '',
         timestamp '2016-03-04 09:33:31.123123', CURRENT_DATE, 'Germany', 'Berlin', 'Full Stack Developer'),
-       ('Susan', 'Anderson', '+380506433660', 'test8@gmail.com', 34, '$2a$10$r3wr7zR0dj5BsFtRZiK9VOWji2VhUh8qYlYgyNuN6CsM6MOCwbJOC',
+       ('Susan', 'Anderson', '+380506433660', 'test8@gmail.com', 34,
+        '$2a$10$r3wr7zR0dj5BsFtRZiK9VOWji2VhUh8qYlYgyNuN6CsM6MOCwbJOC',
         'linkedin/avatars/okktjt3pedvcz3zemwor', '',
         timestamp '2016-05-05 07:21:31.123123', CURRENT_DATE, 'Germany', 'Munich', 'Node.js Developer'),
-       ('Leonard', 'Sanders', '+380678059758', 'test9@gmail.com', 37, '$2a$10$kABIXmLwUl1oocldG174ZeKxeZPpApFtJZPBb7TtMny5qII.ulafW',
+       ('Leonard', 'Sanders', '+380678059758', 'test9@gmail.com', 37,
+        '$2a$10$kABIXmLwUl1oocldG174ZeKxeZPpApFtJZPBb7TtMny5qII.ulafW',
         'linkedin/avatars/urdz0mmjsvxwq7qfyuhm', '',
         timestamp '2016-06-23 10:21:22.123123', CURRENT_DATE, 'Canada', 'Ontario', 'Senior Java Developer'),
-       ('Barry', 'Evans', '+380955744442', 'test10@gmail.com', 28, '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
+       ('Barry', 'Evans', '+380955744442', 'test10@gmail.com', 28,
+        '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
         'linkedin/avatars/vnxm3wl3erio9ajtezlr', '',
         timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'Scala Developer');
 
@@ -262,8 +270,24 @@ Currently, India is building electric vehicle charging infrastructure because it
         timestamp '2021-08-12 18:22:32.123123'),
        ('There is overwhelming evidence that the impacts of climate change are already being observed in human and natural systems," the paper reads. "We infer that attributable anthropogenic impacts may be occurring across 80% of the world''s land area, where 85% of the population reside.',
         2, 'linkedin/posts-img/pe3k2oeoefvgzdt0lbr1', '', timestamp '2018-11-03 15:03:12.222323',
-        timestamp '2018-11-03 15:03:12.222323');
-
+        timestamp '2018-11-03 15:03:12.222323'),
+       ('Indeed, it was a long journey.
+I would never have thought I get this far. I doubted it even after my HR, Sam Sherwood, told me that I got the offer. It was surreal. I wish I could explain better how I feel, but all I can say is, “thank you, God!”
+I am delighted to tell you that I will be joinning as software engineer at Google Cloud. I cannot thank you enough to my HR, Sam Sherwood for everything he has done for me from the beginning to the end of hiring process. I could not have done it without you! Thank you!
+I also thank you to many other people who have supported me along the way! Jacob Marquez, Jack Zeya Li, Wendy Hsu, Henry Ryu, Wei-Chih Chen and more…
+I sincerely enjoyed the ride with #AlgoExpert platform and Clement Mihailescu. I learned so much from it and it was the fundamental support for technical interviews. Thank you as well!
+Let’s begin the new journey!',
+        5, 'linkedin/posts-img/dmmquywq4wovtluxyezr', '', timestamp '2021-10-13 15:50:15.432752',
+        timestamp '2021-10-13 15:50:15.432752'),
+       ('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ' ||
+        'Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ' ||
+        'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. ' ||
+        'Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, ' ||
+        'venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.' ||
+        ' Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in,' ||
+        ' viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. ',
+        5, 'linkedin/posts-img/abqr3eucghxxz31uwhwq', '', timestamp '2021-10-13 16:26:30.35932',
+        timestamp '2021-10-13 16:26:30.35932');
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)
 VALUES (10, 1, 'Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111',

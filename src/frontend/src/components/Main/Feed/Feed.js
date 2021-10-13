@@ -10,6 +10,7 @@ import {DELETE_COMMENTS_FOR_ALL_POSTS} from '../../../redux/Comment/commentActio
 import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 import Notification from '../../Notifications/NotificationsMain/Notification/Notification'
+import NoNotificationsAvailable from '../../Notifications/NotificationsMain/Notification/NoNotificationsAvailable'
 
 function Feed (props) {
   const { type, loading = true, postsState, bookmarkedPostsState, notificationsState } = props
@@ -141,10 +142,12 @@ function Feed (props) {
         {data.map(post => <Post key={post.id} post={post}/>)}
       </div>}
 
-      {type === 'notifications' &&
+      {type === 'notifications' && data &&
       <div className={classes.feed}>
         {data.map(notification => <Notification key={notification.id} notification={notification}/>)}
       </div>}
+
+      {type === 'notifications' && data.length === 0 && !loading && <NoNotificationsAvailable/>}
 
       {loading && <Preloader/>}
       {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}

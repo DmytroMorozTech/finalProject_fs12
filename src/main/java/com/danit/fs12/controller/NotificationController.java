@@ -42,7 +42,8 @@ public class NotificationController {
     @RequestParam(defaultValue = "4") @Max(100) Integer pageSize,
     @RequestParam(defaultValue = "id") String sortBy
   ) {
-    Page<NotificationRs> pageOfNotifications = notificationFacade.getNotificationsForActiveUser(pageNumber, pageSize, sortBy);
+    Page<NotificationRs> pageOfNotifications = notificationFacade
+      .getNotificationsForActiveUser(pageNumber, pageSize, sortBy);
     List<NotificationRs> content = pageOfNotifications.getContent();
     HttpHeaders responseHeaders = HeadersUtils.createPaginationHeaders(pageOfNotifications);
 

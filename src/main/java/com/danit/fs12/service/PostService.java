@@ -44,10 +44,7 @@ public class PostService extends GeneralService<Post> {
     user.getPosts().add(post);
     userService.save(user);
 
-    HashMap<String, Long> data = new HashMap<>();
-    data.put("post_id", post.getId());
-    data.put("related_user_id", activeUserId());
-    notificationService.createNotificationNewPost(data);
+    notificationService.createNotificationNewPost(post);
     return post;
   }
 

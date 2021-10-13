@@ -19,5 +19,7 @@ public class NotificationRs {
 
   private HashMap<String, Long> data;
 
+  private HashMap<String, String> userWhoTriggered;
+
   private Boolean isViewed;
 }

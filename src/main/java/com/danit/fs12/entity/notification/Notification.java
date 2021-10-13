@@ -33,6 +33,18 @@ public class Notification extends AbstractEntity {
     this.isViewed = false;
   }
 
+  public Notification(
+    NotificationType typeNotification,
+    HashMap<String, Long> data,
+    HashMap<String,String> userWhoTriggered
+  ) {
+    super();
+    this.type = typeNotification;
+    this.data = data;
+    this.userWhoTriggered = userWhoTriggered;
+    this.isViewed = false;
+  }
+
   @Column(name = "is_viewed")
   private Boolean isViewed;
 
@@ -42,6 +54,10 @@ public class Notification extends AbstractEntity {
   @Type(type = "json")
   @Column(name = "data", columnDefinition = "json")
   private HashMap<String, Long> data;
+
+  @Type(type = "json")
+  @Column(name = "user_who_triggered", columnDefinition = "json")
+  private HashMap<String, String> userWhoTriggered;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
