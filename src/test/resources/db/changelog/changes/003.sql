@@ -1,12 +1,13 @@
 create table notifications
 (
-    id              bigserial not null,
-    created_date    timestamp,
-    modified_date   timestamp,
-    data            json,
-    type            integer,
-    user_id         bigint,
-    is_read         boolean,
+    id                 bigserial not null,
+    created_date       timestamp,
+    modified_date      timestamp,
+    data               json,
+    type               integer,
+    user_id            bigint,
+    is_viewed          boolean,
+    user_who_triggered json,
     primary key (id)
 );
 
