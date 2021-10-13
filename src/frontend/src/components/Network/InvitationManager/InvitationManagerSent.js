@@ -4,7 +4,7 @@ import InvitationManagerHeader from './InvitationManagerHeader/InvitationManager
 import InvitationManagerSentMain from './InvitationManagerMain/InvitationManagerSentMain'
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { invitationsForMeSelector, invitationsFromMeSelector } from '../../../redux/Network/networkSelector'
 import {
   getInvitationsForMeAction, getInvitationsFromMeAction} from '../../../redux/Network/networkActions'
