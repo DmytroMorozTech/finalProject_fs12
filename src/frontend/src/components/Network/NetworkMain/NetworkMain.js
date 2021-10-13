@@ -3,6 +3,7 @@ import MiniProfile from './MiniProfile/MiniProfile'
 import SharedLinkSquare from '../../../shared/SharedLinkSquare/SharedLinkSquare'
 import Invitation from './Invitation/Invitation'
 import clsx from 'clsx'
+import React from 'react'
 
 function NetworkMain (props) {
   const { invitations, potentialContacts } = props

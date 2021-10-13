@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FollowingAdditionsItem component to match snapshot 1`] = `
+<WithStyles(ForwardRef(MenuItem))
+  onClick={[MockFunction]}
+>
+  <div>
+    All
+  </div>
+  <div />
+</WithStyles(ForwardRef(MenuItem))>
+`;
