@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InvitationManagerReceivedMain component with props to match snapshot 1`] = `
+<div>
+  <div>
+    <Image
+      alt="No received invitations"
+      imageUrl="linkedin/general/xbzouduhmt3awvxyxou2"
+    />
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      No received invitations
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;
