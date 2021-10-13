@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Connection component to match snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <div>
+        <a
+          to="/profiles/4"
+        >
+          <Image
+            alt="user avatar"
+            imageUrl="linkedin/avatars/i1bzhpqac3i1ld2urju8"
+            type="largeAvatar"
+          />
+        </a>
+        <div>
+          <a
+            to="/profiles/4"
+          >
+            Everett Anderson
+          </a>
+          <WithStyles(ForwardRef(Typography))
+            color="textSecondary"
+            variant="body1"
+          >
+            Project manager at HQSoftware
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            color="textSecondary"
+            variant="h6"
+          >
+            Connected 
+            6 years
+             ago
+          </WithStyles(ForwardRef(Typography))>
+        </div>
+      </div>
+      <div>
+        <div>
+          <a
+            key="4"
+            to="/chat/new/4"
+          >
+            <SharedButton
+              size="medium"
+              title="Message"
+              variant="outlined"
+            />
+          </a>
+        </div>
+        <div>
+          <SimpleMenu
+            menuItem={<ThreeDots />}
+            userData={
+              <ConnectionAddition
+                onClick={[Function]}
+              />
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>
+`;

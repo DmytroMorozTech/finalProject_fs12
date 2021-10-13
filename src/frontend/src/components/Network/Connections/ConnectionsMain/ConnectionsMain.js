@@ -1,6 +1,7 @@
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import Connection from './Connection/Connection'
+import React from 'react'
 
 function ConnectionsMain (props) {
   const classes = styles()
@@ -12,7 +13,7 @@ function ConnectionsMain (props) {
         {connections.length} Connections
       </Typography>
       <hr className={classes.line}/>
-      {connections.map(connection => <Connection connection={connection}/>)}
+      {connections.map(connection => <Connection key={connection.id} connection={connection}/>)}
     </div>
   )
 }
