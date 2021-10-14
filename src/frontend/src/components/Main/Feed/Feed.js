@@ -5,18 +5,29 @@ import ShareBox from './ShareBox/ShareBox'
 import {connect, useDispatch, useSelector} from 'react-redux'
 import Preloader from '../../../shared/Preloader/Preloader'
 import * as actions from '../../../redux/Post/postActionTypes'
+import * as notificationActions from '../../../redux/Notification/notificationActionTypes'
 import {DELETE_COMMENTS_FOR_ALL_POSTS} from '../../../redux/Comment/commentActionTypes'
 import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
+import Notification from '../../Notifications/NotificationsMain/Notification/Notification'
+import NoNotificationsAvailable from '../../Notifications/NotificationsMain/Notification/NoNotificationsAvailable'
 
 function Feed (props) {
-  const { type, loading = true, postsState, bookmarkedPostsState } = props
+  const { type, loading = true, postsState, bookmarkedPostsState, notificationsState } = props
   const dispatch = useDispatch()
   const classes = styles()
   const activeUser = useSelector(activeUserSelector)
 
-  const localState = (type === 'posts') ? postsState : bookmarkedPostsState
-  const { postsList: posts, pagination } = localState
+  const localState = (type === 'posts') ? postsState : (type === 'bookmarkedPosts') ? bookmarkedPostsState : notificationsState
+
+  let data
+  let pagination
+  if ((type === 'posts') || (type === 'bookmarkedPosts')) {
+    data = localState.postsList
+  } else if (type === 'notifications') {
+    data = localState.notificationsList
+  }
+  pagination = localState.pagination
   const {pageNumber, pageSize, hasMore} = pagination
 
   const loadPosts = useCallback(() => {
@@ -59,7 +70,26 @@ function Feed (props) {
       })
   }, [pageNumber, pageSize, dispatch])
 
-  const load = (type === 'posts') ? loadPosts : loadBookmarkedPosts
+  const loadNotifications = useCallback(() => {
+    dispatch({ type: actions.LOADING_POSTS, payload: true })
+
+    return http
+      .get(`api/notifications`,
+        {
+          params: {
+            pageNumber: pageNumber,
+            pageSize: pageSize
+          }
+        })
+      .then((result) => {
+        const notifications = result.data
+        const headers = result.headers
+        dispatch({ type: notificationActions.SAVE_NEW_NOTIFICATIONS, payload: {notifications, headers} })
+        dispatch({ type: actions.LOADING_POSTS, payload: false })
+      })
+  }, [pageNumber, pageSize, dispatch])
+
+  const load = (type === 'posts') ? loadPosts : (type === 'bookmarkedPosts') ? loadBookmarkedPosts : loadNotifications
 
   const loader = React.useRef(load)
 
@@ -104,13 +134,20 @@ function Feed (props) {
       {type === 'posts' &&
       <div className={classes.feed}>
         <ShareBox activeUser={activeUser}/>
-        {posts.map(post => <Post key={post.id} post={post}/>)}
+        {data.map(post => <Post key={post.id} post={post}/>)}
       </div>}
 
       {type === 'bookmarkedPosts' &&
       <div className={classes.feed}>
-        {posts.map(post => <Post key={post.id} post={post}/>)}
+        {data.map(post => <Post key={post.id} post={post}/>)}
       </div>}
+
+      {type === 'notifications' && data &&
+      <div className={classes.feed}>
+        {data.map(notification => <Notification key={notification.id} notification={notification}/>)}
+      </div>}
+
+      {type === 'notifications' && data.length === 0 && !loading && <NoNotificationsAvailable/>}
 
       {loading && <Preloader/>}
       {!loading && hasMore && <p ref={setElement} style={{ background: 'transparent' }}/>}
@@ -123,7 +160,8 @@ const mapStateToProps = (state) => {
     activeUserId: state.user.activeUser.id,
     postsState: state.posts,
     bookmarkedPostsState: state.posts.bookmarked,
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    notificationsState: state.notifications
   }
 }
 

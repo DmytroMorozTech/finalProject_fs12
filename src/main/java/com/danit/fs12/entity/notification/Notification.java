@@ -26,18 +26,27 @@ import java.util.HashMap;
 @TypeDef(name = "json", typeClass = JsonType.class)
 public class Notification extends AbstractEntity {
 
+  public Notification(NotificationType typeNotification, HashMap<String, Long> data) {
+    super();
+    this.type = typeNotification;
+    this.data = data;
+    this.isViewed = false;
+  }
+
   public Notification(
     NotificationType typeNotification,
-    HashMap<String,Long> data
+    HashMap<String, Long> data,
+    HashMap<String,String> userWhoTriggered
   ) {
     super();
     this.type = typeNotification;
     this.data = data;
-    this.isRead = false;
+    this.userWhoTriggered = userWhoTriggered;
+    this.isViewed = false;
   }
 
-  @Column(name = "is_read")
-  private Boolean isRead;
+  @Column(name = "is_viewed")
+  private Boolean isViewed;
 
   @Column(name = "type")
   private NotificationType type;
@@ -45,6 +54,10 @@ public class Notification extends AbstractEntity {
   @Type(type = "json")
   @Column(name = "data", columnDefinition = "json")
   private HashMap<String, Long> data;
+
+  @Type(type = "json")
+  @Column(name = "user_who_triggered", columnDefinition = "json")
+  private HashMap<String, String> userWhoTriggered;
 
   @ManyToOne
   @JoinColumn(name = "user_id")

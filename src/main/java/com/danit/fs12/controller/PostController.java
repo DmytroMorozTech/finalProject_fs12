@@ -35,7 +35,7 @@ public class PostController {
   ResponseEntity<List<PostRs>> getPostsForActiveUser(
     @RequestParam(defaultValue = "0") Integer pageNumber,
     @RequestParam(defaultValue = "4") @Max(100) Integer pageSize, // to implement max in all pagination
-    @RequestParam(defaultValue = "id") String sortBy
+    @RequestParam(defaultValue = "createdDate") String sortBy
   // in Connections we will also have ASC , DESC direction of sorting that will be passed from frontend
   ) {
 
@@ -53,7 +53,7 @@ public class PostController {
   ResponseEntity<List<PostRs>> getBookmarkedPosts(
     @RequestParam(defaultValue = "0") Integer pageNumber,
     @RequestParam(defaultValue = "4") Integer pageSize,
-    @RequestParam(defaultValue = "id") String sortBy
+    @RequestParam(defaultValue = "createdDate") String sortBy
   ) {
     Page<PostRs> pageOfBookmarkedPosts = postFacade.getBookmarkedPosts(pageNumber, pageSize, sortBy);
     List<PostRs> content = pageOfBookmarkedPosts.getContent();
