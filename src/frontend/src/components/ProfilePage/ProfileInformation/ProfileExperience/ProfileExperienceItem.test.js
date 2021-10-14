@@ -5,9 +5,7 @@ import ProfileExperienceItem from './ProfileExperienceItem'
 
 jest.mock('../styles', () => () => ({}))
 
-let workPlace
-
-let isEditable = false
+let isEditable
 
 let component
 
@@ -17,7 +15,7 @@ describe('should render ProfileExperienceItem component', () => {
   let spyOnUseDispatch
   let mockDispatch
 
-  workPlace = {
+  let workPlace = {
     'id': 1,
     'position': 'Chief Operational Officer',
     'responsibilities': 'Quisque id rhoncus mauris. Phasellus quis diam aliquet, gravida massa in, suscipit felis. Aliquam ac turpis arcu. Nunc fermentum dui augue, et aliquam eros ullamcorper imperdiet.',
@@ -31,6 +29,8 @@ describe('should render ProfileExperienceItem component', () => {
       'webSite': 'www.paypal.com'
     }
   }
+
+  isEditable = true
 
   beforeEach(() => {
     spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
@@ -56,7 +56,7 @@ describe('should render ProfileCertificationItem component', () => {
   let spyOnUseDispatch
   let mockDispatch
 
-  workPlace = {
+  let workPlace = {
     'id': 3,
     'position': 'Sales manager',
     'responsibilities': 'Phasellus vitae interdum mauris, eget luctus neque. Aenean at venenatis mauris, venenatis convallis velit. Suspendisse hendrerit lectus dolor, sit amet tristique odio lobortis sit amet. Donec ante purus, ',
@@ -70,6 +70,8 @@ describe('should render ProfileCertificationItem component', () => {
       'webSite': 'microsoft.com'
     }
   }
+
+  isEditable = false
 
   beforeEach(() => {
     spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')

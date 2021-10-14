@@ -7,24 +7,24 @@ exports[`should render ProfileExperienceItem component to match snapshot 1`] = `
       variant="body1"
     >
       Position: 
-      Sales manager
+      Chief Operational Officer
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
       Organization: 
-      Microsoft
+      PayPal Holdings Inc.
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
-      Jan 2014
+      Dec 2000
        
       <span>
         -
       </span>
        
-      Present time
+      Jun 2010
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
       Responsibilities: 
-      Phasellus vitae interdum mauris, eget luctus neque. Aenean at venenatis mauris, venenatis convallis velit. Suspendisse hendrerit lectus dolor, sit amet tristique odio lobortis sit amet. Donec ante purus, 
+      Quisque id rhoncus mauris. Phasellus quis diam aliquet, gravida massa in, suscipit felis. Aliquam ac turpis arcu. Nunc fermentum dui augue, et aliquam eros ullamcorper imperdiet.
     </WithStyles(ForwardRef(Typography))>
   </div>
   <div

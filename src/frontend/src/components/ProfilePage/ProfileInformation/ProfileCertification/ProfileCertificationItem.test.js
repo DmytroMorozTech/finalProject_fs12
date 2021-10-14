@@ -5,8 +5,6 @@ import ProfileCertificationItem from './ProfileCertificationItem'
 
 jest.mock('../styles', () => () => ({}))
 
-let certification
-
 let isEditable
 
 let component
@@ -17,7 +15,7 @@ describe('should render ProfileCertificationItem component', () => {
   let spyOnUseDispatch
   let mockDispatch
 
-  certification = {
+  let certification = {
     'id': 1,
     'name': 'Spring data jpa',
     'issuingOrganization': 'DAN-IT',
@@ -57,7 +55,7 @@ describe('should render ProfileCertificationItem component', () => {
   let spyOnUseDispatch
   let mockDispatch
 
-  certification = {
+  let certification = {
     'id': 2,
     'name': 'On-site practice',
     'issuingOrganization': 'Unilever',

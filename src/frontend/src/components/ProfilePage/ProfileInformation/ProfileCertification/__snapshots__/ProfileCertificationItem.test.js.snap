@@ -6,27 +6,27 @@ exports[`should render ProfileCertificationItem component to match snapshot 1`] 
     <WithStyles(ForwardRef(Typography))
       variant="body1"
     >
-      On-site practice
+      Spring data jpa
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
-      Unilever
+      DAN-IT
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
       Issued: 
-      Jul 2017
+      Jan 2016
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
        
-      No Expiration Date
+      Expires: Jan 2026
        
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
       Credential ID: 
-      RQ3627AS
+      PS35092
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))>
       Credential URL: 
-      https://unilever.ua
+      https://dan-it.com.ua
     </WithStyles(ForwardRef(Typography))>
   </div>
   <div
