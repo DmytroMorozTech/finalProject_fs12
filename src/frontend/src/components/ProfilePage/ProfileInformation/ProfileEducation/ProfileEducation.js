@@ -20,6 +20,7 @@ const ProfileEducation = (props) => {
           Education
         </Typography>
         <div
+          id='toggleModal'
           className={clsx(!isEditable && classes.hidden)}
           onClick={() =>
             dispatch(toggleModalAction({modalType: ADD_NEW_EDUCATION}))}>

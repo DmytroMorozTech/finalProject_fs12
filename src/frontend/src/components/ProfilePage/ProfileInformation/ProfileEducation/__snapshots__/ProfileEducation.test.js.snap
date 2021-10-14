@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileCertification component with props to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      Education
+    </WithStyles(ForwardRef(Typography))>
+    <div
+      className=""
+      id="toggleModal"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(AddIcon)) />
+    </div>
+  </div>
+  <div>
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Doing mathematical calculations all day long",
+          "dateFinish": "2019-03-03",
+          "dateStart": "2017-03-03",
+          "degreeReceived": "Msc",
+          "description": "Best calculus ever",
+          "fieldOfStudy": "Math",
+          "id": 4,
+          "school": "Michigan state University",
+        }
+      }
+      isEditable={true}
+      key="4"
+    />
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Studying best practices of Financial Analysis",
+          "dateFinish": "2019-03-03",
+          "dateStart": "2017-03-03",
+          "degreeReceived": "Msc",
+          "description": "Learning ideas, methods, and institutions that permit human society to manage risks and foster enterprise. Emphasis on financially-savvy leadership skills. ",
+          "fieldOfStudy": "Economy and Finance",
+          "id": 6,
+          "school": "University of Calgary",
+        }
+      }
+      isEditable={true}
+      key="6"
+    />
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Studying hard, reading a lot",
+          "dateFinish": "2017-07-08",
+          "dateStart": "2015-07-08",
+          "degreeReceived": "Phd",
+          "description": "High-level of education; nice capmus; ...",
+          "fieldOfStudy": "Chemistry",
+          "id": 2,
+          "school": "NY High-school for Humanitarians",
+        }
+      }
+      isEditable={true}
+      key="2"
+    />
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Studying Data-structures and algorithms",
+          "dateFinish": "2014-01-01",
+          "dateStart": "2013-01-01",
+          "degreeReceived": "Graduate",
+          "description": "Highly intensive programming courses",
+          "fieldOfStudy": "Programming",
+          "id": 1,
+          "school": "NY Programming with MARK courses",
+        }
+      }
+      isEditable={true}
+      key="1"
+    />
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Studying best practices of Financial Analysis",
+          "dateFinish": "2016-03-05",
+          "dateStart": "2012-01-02",
+          "degreeReceived": "Bachelor",
+          "description": "Studying  risk management and behavioral finance principles to understand the real-world functioning of securities, insurance, and banking industries.",
+          "fieldOfStudy": "Economy and Finance",
+          "id": 5,
+          "school": "Mount Royal University",
+        }
+      }
+      isEditable={true}
+      key="5"
+    />
+    <ProfileEducationItem
+      education={
+        Object {
+          "activities": "Working hard; Writing scientifica articles",
+          "dateFinish": "2015-04-04",
+          "dateStart": "2011-03-03",
+          "degreeReceived": "Bachelor",
+          "description": "High-level of education; nice capmus; ...",
+          "fieldOfStudy": "Electronics",
+          "id": 3,
+          "school": "MIT",
+        }
+      }
+      isEditable={true}
+      key="3"
+    />
+  </div>
+</div>
+`;

@@ -12,7 +12,7 @@ function InvitationManagerReceivedMain (props) {
   return (
     <div>
       { numbOfInvReceived > 0
-        ? (data.map(invitation => <Invitation data={invitation} isReceived={true} isManage={true}/>))
+        ? (data.map(invitation => <Invitation key={invitation.id} data={invitation} isReceived={true} isManage={true}/>))
         : <div className={classes.blockNoInvitations}>
           <Image
             imageUrl={'linkedin/general/xbzouduhmt3awvxyxou2'}
