@@ -44,10 +44,7 @@ public class PostService extends GeneralService<Post> {
     user.getPosts().add(post);
     userService.save(user);
 
-    HashMap<String, Long> data = new HashMap<>();
-    data.put("post_id", post.getId());
-    data.put("related_user_id", activeUserId());
-    notificationService.createNotificationNewPost(data);
+    notificationService.createNotificationNewPost(post);
     return post;
   }
 
@@ -91,6 +88,8 @@ public class PostService extends GeneralService<Post> {
     List<Long> followedUsersIds = userService.getUsersFollowed()
       .stream().map(user -> user.getId()).collect(Collectors.toList());
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+    followedUsersIds.add(userService.getActiveUser().getId());
+    // active user should also see their own posts in Feed
 
     return postRepository.getPostsForActiveUserPaginated(followedUsersIds, pageRequest);
   }

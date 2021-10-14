@@ -1,9 +1,14 @@
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
+import { markAllNotificationsAsViewedAction } from '../../../redux/Notification/notificationActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { numberOfNotificationsSelector } from '../../../redux/Notification/notificationSelector'
 
 function NotificationsLeft () {
   const classes = styles()
+  const dispatch = useDispatch()
+  const numberOfNotifications = useSelector(numberOfNotificationsSelector)
 
   return (
     <div className={classes.notificationsLeft}>
@@ -17,7 +22,11 @@ function NotificationsLeft () {
       </div>
       <hr className={classes.line}/>
       <div className={classes.read}>
-        <SharedButton title='Mark all as viewed'/>
+        <SharedButton
+          disabled={numberOfNotifications === 0}
+          onClick={() => dispatch(markAllNotificationsAsViewedAction())}
+          title='Mark all as viewed'
+        />
       </div>
     </div>
   )

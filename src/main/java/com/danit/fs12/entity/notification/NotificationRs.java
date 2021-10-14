@@ -4,6 +4,7 @@ import com.danit.fs12.controller.views.NotificationViews;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 @Data
@@ -12,9 +13,13 @@ public class NotificationRs {
 
   private Long id;
 
+  private LocalDateTime createdDate;
+
   private NotificationType type;
 
   private HashMap<String, Long> data;
 
-  private Boolean isRead;
+  private HashMap<String, String> userWhoTriggered;
+
+  private Boolean isViewed;
 }
