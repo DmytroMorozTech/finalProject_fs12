@@ -1,5 +1,5 @@
 # production db
-url: jdbc:postgresql://aaay6532uvyxif.ch9cmgj0b2qn.eu-central-1.rds.amazonaws.com:5432/ebdb
+url: jdbc:postgresql://aa1ir9nsr6abqxt.ch9cmgj0b2qn.eu-central-1.rds.amazonaws.com:5432/ebdb
 username: linkedinDB
 password: bed1ven-aqg5GVW0wrb
 

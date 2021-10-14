@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    image: "dmytromorozzz/linkedin:v10"
+    image: "dmytromorozzz/linkedin:v11"
     ports:
       - "80:8080"
     restart: "always"
