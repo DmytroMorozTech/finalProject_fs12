@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SavedVacancyAdditions component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(MenuItem))
+    className="makeStyles-menuItem-1"
+    key="0"
+  >
+    <SavedVacancyAdditionsItem
+      Icon={
+        <Memo
+          fontSize="inherit"
+        />
+      }
+      key="0"
+      onClick={[Function]}
+      title="Send in a message"
+    />
+  </WithStyles(ForwardRef(MenuItem))>
+  <WithStyles(ForwardRef(MenuItem))
+    className="makeStyles-menuItem-1"
+    key="1"
+  >
+    <SavedVacancyAdditionsItem
+      Icon={
+        <Memo
+          fontSize="inherit"
+        />
+      }
+      key="1"
+      onClick={[Function]}
+      title="Copy link"
+    />
+  </WithStyles(ForwardRef(MenuItem))>
+  <WithStyles(ForwardRef(MenuItem))
+    className="makeStyles-menuItem-1"
+    key="2"
+  >
+    <SavedVacancyAdditionsItem
+      Icon={
+        <Memo
+          fontSize="inherit"
+        />
+      }
+      key="2"
+      onClick={[Function]}
+      title="Unsave"
+    />
+  </WithStyles(ForwardRef(MenuItem))>
+</div>
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MyJobsLeft component to match snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <Memo(ForwardRef(BookmarkIcon))
+        fontSize="inherit"
+      />
+    </div>
+    <div>
+      My Items
+    </div>
+  </div>
+  <hr />
+  <div>
+    <div>
+      My Jobs
+    </div>
+    <div>
+      1
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,5 @@
 import styles from './styles'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
-// import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined'
 import NoteIcon from '@material-ui/icons/Note'
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined'
@@ -19,11 +18,6 @@ function JobsAdditions () {
       title: 'Job Alerts',
       to: '#'
     },
-    // {
-    //   Icon: <LocalAtmIcon fontSize="inherit"/>,
-    //   title: 'Salary',
-    //   to: '#'
-    // },
     {
       Icon: <AssignmentTurnedInOutlinedIcon fontSize="inherit"/>,
       title: 'Skill Assessments',

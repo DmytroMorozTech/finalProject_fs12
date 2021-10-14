@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Vacancy component to match snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <div>
+        <div>
+          <Image
+            alt="job"
+            imageUrl="linkedin/general/mr5jb7fifohjgy8d7unj"
+          />
+        </div>
+        <div>
+          <div>
+            Junior Java Developer
+          </div>
+          <WithStyles(ForwardRef(Typography))
+            variant="h6"
+          >
+            GlobalLogic
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            variant="h6"
+          >
+            Kyiv, Ukraine
+          </WithStyles(ForwardRef(Typography))>
+          <div>
+            <Memo(ForwardRef(TrackChangesIcon))
+              fontSize="inherit"
+            />
+            <WithStyles(ForwardRef(Typography))
+              variant="h6"
+            >
+              Actively recruiting
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+          <div>
+            <WithStyles(ForwardRef(Typography))
+              variant="h6"
+            >
+              3 weeks ago
+            </WithStyles(ForwardRef(Typography))>
+            <SmallDot />
+            <WithStyles(ForwardRef(Typography))
+              variant="h6"
+            >
+              2
+               applicants
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div
+            className=""
+          >
+            <Memo(ForwardRef(VisibilityOffIcon))
+              fontSize="inherit"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <Memo(ForwardRef(BookmarkBorderIcon))
+              fontSize="inherit"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <hr />
+  </div>
+</div>
+`;
