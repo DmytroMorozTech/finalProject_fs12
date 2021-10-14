@@ -1,12 +1,12 @@
 import { shallow } from 'enzyme'
 import React from 'react'
-import InvitationManagerRight from './InvitationManagerRight'
+import ProfileRight from './ProfileRight'
 
 jest.mock('./styles', () => () => ({}))
 
-const setUp = () => shallow(<InvitationManagerRight />)
+const setUp = () => shallow(<ProfileRight />)
 
-describe('should render InvitationManagerRight component', () => {
+describe('should render ProfileRight component', () => {
   let component
 
   beforeEach(() => {
