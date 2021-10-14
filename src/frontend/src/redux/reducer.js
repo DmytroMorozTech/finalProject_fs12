@@ -6,6 +6,7 @@ import messageReducer from './Message/messageReducer'
 import profileReducer from './Profile/profileReducer'
 import commentReducer from './Comment/commentReducer'
 import networkReducer from './Network/networkReducer'
+import notificationReducer from './Notification/notificationReducer'
 
 const reducer = combineReducers({
   modal: modalReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   posts: postReducer,
   messages: messageReducer,
   comments: commentReducer,
-  network: networkReducer
+  network: networkReducer,
+  notifications: notificationReducer
 })
 
 export default reducer

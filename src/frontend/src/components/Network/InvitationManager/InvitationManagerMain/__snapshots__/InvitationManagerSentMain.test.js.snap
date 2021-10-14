@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InvitationManagerSentMain component with props to match snapshot 1`] = `
+<div>
+  <Invitation
+    data={
+      Object {
+        "createdDate": "2015-01-01T18:22:32.123123",
+        "id": 1,
+        "text": "",
+        "userWho": Object {
+          "avatarPublicId": "linkedin/avatars/vbalexhudya0ano14pgs",
+          "fullName": "Richard West",
+          "id": 1,
+          "positionAndCompany": "Sales manager at Microsoft",
+        },
+        "userWhom": Object {
+          "avatarPublicId": "linkedin/avatars/kgpkn4a4fudfjpebyegx",
+          "fullName": "Frank Jackson",
+          "id": 2,
+          "positionAndCompany": "Head of CIS region at Apple",
+        },
+      }
+    }
+    isManage={true}
+    isReceived={false}
+    key="1"
+  />
+  <Invitation
+    data={
+      Object {
+        "createdDate": "2016-01-01T18:22:32.123123",
+        "id": 2,
+        "text": "",
+        "userWho": Object {
+          "avatarPublicId": "linkedin/avatars/vbalexhudya0ano14pgs",
+          "fullName": "Richard West",
+          "id": 1,
+          "positionAndCompany": "Sales manager at Microsoft",
+        },
+        "userWhom": Object {
+          "avatarPublicId": "linkedin/avatars/p1qwriz6hzjgwkaihwpa",
+          "fullName": "Laura Lee",
+          "id": 3,
+          "positionAndCompany": "Head of design Unit at Apple",
+        },
+      }
+    }
+    isManage={true}
+    isReceived={false}
+    key="2"
+  />
+  <Invitation
+    data={
+      Object {
+        "createdDate": "2016-02-01T18:22:32.123123",
+        "id": 3,
+        "text": "",
+        "userWho": Object {
+          "avatarPublicId": "linkedin/avatars/vbalexhudya0ano14pgs",
+          "fullName": "Richard West",
+          "id": 1,
+          "positionAndCompany": "Sales manager at Microsoft",
+        },
+        "userWhom": Object {
+          "avatarPublicId": "linkedin/avatars/i1bzhpqac3i1ld2urju8",
+          "fullName": "Everett Anderson",
+          "id": 4,
+          "positionAndCompany": "Project manager at HQSoftware",
+        },
+      }
+    }
+    isManage={true}
+    isReceived={false}
+    key="3"
+  />
+</div>
+`;

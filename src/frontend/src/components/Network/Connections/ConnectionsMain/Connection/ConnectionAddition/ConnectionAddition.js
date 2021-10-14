@@ -12,8 +12,8 @@ function ConnectionAddition (props) {
     <div>
       <MenuItem className={classes.menuItem}>
         <div className={classes.item} onClick={onClick}>
-          <div className={classes.icons}>
-            <DeleteIcon fontSize='inherit'/>
+          <div className={classes.icon}>
+            <DeleteIcon fontSize='large'/>
           </div>
           <div className={classes.titles}>Remove connection</div>
         </div>

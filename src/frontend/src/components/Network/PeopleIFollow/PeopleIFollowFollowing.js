@@ -4,7 +4,7 @@ import PeopleIFollowHeader from './PeopleIFollowHeader/PeopleIFollowHeader'
 import Following from './Following/Following'
 import { useDispatch, useSelector } from 'react-redux'
 import { usersFollowedByMeSelector, usersFollowingMeSelector } from '../../../redux/Network/networkSelector'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { getUsersFollowedAction, getUsersFollowingAction } from '../../../redux/Network/networkActions'
 
 function PeopleIFollowFollowing () {

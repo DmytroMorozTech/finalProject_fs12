@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render InvitationManagerReceivedMain component with props to match snapshot 1`] = `
+<div>
+  <Invitation
+    data={
+      Object {
+        "createdDate": "2016-04-01T18:22:32.123123",
+        "id": 5,
+        "text": "",
+        "userWho": Object {
+          "avatarPublicId": "linkedin/avatars/oevdjvez2wqekez5zbyp",
+          "fullName": "James Ford",
+          "id": 6,
+          "positionAndCompany": "Lead QA engineer at HQSoftware",
+        },
+        "userWhom": Object {
+          "avatarPublicId": "linkedin/avatars/vbalexhudya0ano14pgs",
+          "fullName": "Richard West",
+          "id": 1,
+          "positionAndCompany": "Sales manager at Microsoft",
+        },
+      }
+    }
+    isManage={true}
+    isReceived={true}
+    key="5"
+  />
+  <Invitation
+    data={
+      Object {
+        "createdDate": "2016-05-01T18:22:32.123123",
+        "id": 6,
+        "text": "",
+        "userWho": Object {
+          "avatarPublicId": "linkedin/avatars/urdz0mmjsvxwq7qfyuhm",
+          "fullName": "Leonard Sanders",
+          "id": 9,
+          "positionAndCompany": "Senior Java developer at Amazon.com",
+        },
+        "userWhom": Object {
+          "avatarPublicId": "linkedin/avatars/vbalexhudya0ano14pgs",
+          "fullName": "Richard West",
+          "id": 1,
+          "positionAndCompany": "Sales manager at Microsoft",
+        },
+      }
+    }
+    isManage={true}
+    isReceived={true}
+    key="6"
+  />
+</div>
+`;

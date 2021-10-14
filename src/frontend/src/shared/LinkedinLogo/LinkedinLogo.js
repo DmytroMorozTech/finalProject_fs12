@@ -1,5 +1,6 @@
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import styles from './styles'
+import React from 'react'
 
 function LinkedinLogo () {
   const classes = styles()

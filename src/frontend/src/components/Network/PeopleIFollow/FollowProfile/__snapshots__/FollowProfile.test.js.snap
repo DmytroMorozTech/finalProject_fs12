@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PeopleIFollowFollowers component to match snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <Link
+        to="/profiles/4"
+      >
+        <Image
+          imageUrl="linkedin/avatars/i1bzhpqac3i1ld2urju8"
+          type="profileAvatar"
+        />
+      </Link>
+      <Link
+        to="/profiles/4"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="h4"
+        >
+          Everett Anderson
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          color="textSecondary"
+          variant="h4"
+        />
+      </Link>
+    </div>
+    <div>
+      <hr />
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        4
+         followers
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+  </div>
+  <hr />
+  <div
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CheckIcon))
+      fontSize="inherit"
+    />
+    <WithStyles(ForwardRef(Typography))
+      variant="h5"
+    >
+      Following
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render JobsLeftItem component to match snapshot 1`] = `
+<a>
+  <div>
+    <div />
+    <div />
+  </div>
+</a>
+`;

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render JobsRight component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(Typography))
+    variant="h3"
+  >
+    Ways to prepare
+  </WithStyles(ForwardRef(Typography))>
+  <div>
+    <div>
+      <Memo(ForwardRef(EmojiObjectsIcon))
+        fontSize="inherit"
+      />
+    </div>
+    <div>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Best practices
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Get the most out of your job search and stand out to recruiters
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+    </div>
+  </div>
+</div>
+`;

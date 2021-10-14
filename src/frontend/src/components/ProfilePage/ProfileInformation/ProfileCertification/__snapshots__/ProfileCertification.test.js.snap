@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileCertification component with props to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      Licenses & certifications
+    </WithStyles(ForwardRef(Typography))>
+    <div
+      className=""
+      id="toggleModal"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(AddIcon)) />
+    </div>
+  </div>
+  <div>
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "RQ3627AS",
+          "credentialUrl": "https://unilever.ua",
+          "expirationDate": null,
+          "hasExpiryDate": false,
+          "id": 2,
+          "issueDate": "2017-07-08",
+          "issuingOrganization": "Unilever",
+          "name": "On-site practice",
+        }
+      }
+      isEditable={true}
+      key="2"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "MK98123HAP",
+          "credentialUrl": "https://dan-it.com.ua",
+          "expirationDate": "2025-07-08",
+          "hasExpiryDate": true,
+          "id": 3,
+          "issueDate": "2016-07-08",
+          "issuingOrganization": "DAN-IT",
+          "name": "Spring data jpa",
+        }
+      }
+      isEditable={true}
+      key="3"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "FG8892348",
+          "credentialUrl": "https://www.udemy.com/",
+          "expirationDate": "2025-07-08",
+          "hasExpiryDate": true,
+          "id": 5,
+          "issueDate": "2016-07-08",
+          "issuingOrganization": "UDEMY",
+          "name": "Financial accounting for entrepreneurs",
+        }
+      }
+      isEditable={true}
+      key="5"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "OP2983849",
+          "credentialUrl": "https://www.udemy.com/",
+          "expirationDate": "2025-07-08",
+          "hasExpiryDate": true,
+          "id": 7,
+          "issueDate": "2016-07-08",
+          "issuingOrganization": "UDEMY",
+          "name": "Interpersonal communications",
+        }
+      }
+      isEditable={true}
+      key="7"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "MK98123HAP",
+          "credentialUrl": "https://dan-it.com.ua",
+          "expirationDate": "2023-03-02",
+          "hasExpiryDate": true,
+          "id": 4,
+          "issueDate": "2016-03-06",
+          "issuingOrganization": "DAN-IT",
+          "name": "Mongo DB course",
+        }
+      }
+      isEditable={true}
+      key="4"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "JK9928402",
+          "credentialUrl": "https://www.udemy.com/",
+          "expirationDate": "2023-03-02",
+          "hasExpiryDate": true,
+          "id": 6,
+          "issueDate": "2016-03-06",
+          "issuingOrganization": "UDEMY",
+          "name": "Soft skills upgrade",
+        }
+      }
+      isEditable={true}
+      key="6"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "MW99128430",
+          "credentialUrl": "https://www.udemy.com/",
+          "expirationDate": "2023-03-02",
+          "hasExpiryDate": true,
+          "id": 8,
+          "issueDate": "2016-03-06",
+          "issuingOrganization": "UDEMY",
+          "name": "Software development",
+        }
+      }
+      isEditable={true}
+      key="8"
+    />
+    <ProfileCertificationItem
+      certification={
+        Object {
+          "credentialId": "PS35092",
+          "credentialUrl": "https://dan-it.com.ua",
+          "expirationDate": "2026-01-01",
+          "hasExpiryDate": true,
+          "id": 1,
+          "issueDate": "2016-01-01",
+          "issuingOrganization": "DAN-IT",
+          "name": "Spring data jpa",
+        }
+      }
+      isEditable={true}
+      key="1"
+    />
+  </div>
+</div>
+`;

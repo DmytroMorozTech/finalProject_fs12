@@ -1,5 +1,4 @@
 import Typography from '@material-ui/core/Typography'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import SmallDot from '../../../../../../../shared/SmallDot/SmallDot'
 import LikeMiniIcon from '../../../../../../../shared/LikeMiniIcon/LikeMiniIcon'
 import React from 'react'
@@ -58,7 +57,6 @@ function Comment (props) {
             </div>
             <div className={classes.commentRow}>
               <div className={classes.time}>{getTimeSinceCreated(createdDate)}</div>
-              <div className={classes.dots}><MoreHorizIcon fontSize="inherit"/></div>
             </div>
           </div>
           <Typography variant="body1" gutterBottom className={classes.commentText}>

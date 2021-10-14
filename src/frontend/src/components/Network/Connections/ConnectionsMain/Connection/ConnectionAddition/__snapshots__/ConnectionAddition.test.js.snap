@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ConnectionAddition component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(MenuItem))
+    className="makeStyles-menuItem-1"
+  >
+    <div
+      className="makeStyles-item-2"
+      onClick={[Function]}
+    >
+      <div
+        className="makeStyles-icon-3"
+      >
+        <Memo(ForwardRef(DeleteIcon))
+          fontSize="large"
+        />
+      </div>
+      <div
+        className="makeStyles-titles-4"
+      >
+        Remove connection
+      </div>
+    </div>
+  </WithStyles(ForwardRef(MenuItem))>
+</div>
+`;

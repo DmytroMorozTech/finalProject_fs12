@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render JobsLeft component to match snapshot 1`] = `
+<div>
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="0"
+    title="My Jobs"
+    to="/jobs/my_jobs"
+  />
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="1"
+    title="Job Alerts"
+    to="#"
+  />
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="2"
+    title="Skill Assessments"
+    to="#"
+  />
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="3"
+    title="Interview Prep"
+    to="#"
+  />
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="4"
+    title="Resume Builder"
+    to="#"
+  />
+  <JobsLeftItem
+    Icon={
+      <Memo
+        fontSize="inherit"
+      />
+    }
+    key="5"
+    title="Application Settings"
+    to="#"
+  />
+</div>
+`;

@@ -1,10 +1,9 @@
 import styles from './styles'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
-import React, { useState } from 'react'
+import React from 'react'
 import SharedButton from '../../../../shared/SharedButton/SharedButton'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
 import Image from '../../../../shared/Image/Image'
 import { createNewInvitationAction } from '../../../../redux/Network/networkActions'
@@ -24,16 +23,10 @@ function MiniProfile (props) {
     // TODO: this hardcode should be removed
   } = props.user
 
-  const [removedMiniProfile, setRemovedMiniProfile] = useState(false)
-
-  const handleCross = () => {
-    setRemovedMiniProfile(!removedMiniProfile)
-  }
-
   const linkToUserProfile = '/profiles/' + id
 
   return (
-    <div className={clsx(classes.miniProfile, classes.smallScreen, removedMiniProfile ? classes.removed : '')}>
+    <div className={clsx(classes.miniProfile, classes.smallScreen)}>
       <Image
         imageUrl={profileBgPublicId}
         className={classes.backgroundImage}
@@ -41,9 +34,6 @@ function MiniProfile (props) {
         alt={'profile background'}
       />
       <div className={classes.header}>
-        <div className={classes.cross} onClick={handleCross}>
-          <CloseIcon fontSize="inherit"/>
-        </div>
         <Link to={linkToUserProfile} className={classes.link}>
           <div className={classes.avatarWrapper}>
             <Image
