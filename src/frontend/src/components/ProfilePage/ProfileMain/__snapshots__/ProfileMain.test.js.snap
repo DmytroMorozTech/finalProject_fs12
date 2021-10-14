@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileMain component to match snapshot 1`] = `
+<div>
+  <Image
+    alt="profile background"
+    imageUrl="linkedin/profile-bg/isgzneqfm5ro1bufycqc"
+    type="profileBgImg"
+  />
+  <div>
+    <div
+      className=""
+      id="toggleModalUploadProfileBg"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(PhotoCameraIcon))
+        color="primary"
+        fontSize="inherit"
+      />
+    </div>
+  </div>
+  <div>
+    <div>
+      <Image
+        alt="user avatar"
+        className=""
+        id="toggleModalUploadAvatar"
+        imageUrl="linkedin/avatars/vbalexhudya0ano14pgs"
+        onClickHandler={[Function]}
+        type="profileAvatar"
+      />
+      <div
+        className=""
+        id="toggleModalEditIntro"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(CreateIcon)) />
+      </div>
+    </div>
+    <div>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h3"
+        >
+          Richard West
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Java Developer
+        </WithStyles(ForwardRef(Typography))>
+        <div>
+          <WithStyles(ForwardRef(Typography))
+            color="secondary"
+            variant="body1"
+          >
+            New York
+            , 
+            USA
+          </WithStyles(ForwardRef(Typography))>
+          <SmallDot />
+          <WithStyles(ForwardRef(Link))
+            onClick={[Function]}
+          >
+            <WithStyles(ForwardRef(Typography))
+              color="primary"
+              variant="body1"
+            >
+              Contact info
+            </WithStyles(ForwardRef(Typography))>
+          </WithStyles(ForwardRef(Link))>
+        </div>
+        <div />
+      </div>
+      <div>
+        <Hidden
+          xsDown={true}
+        >
+          <WithStyles(ForwardRef(Typography))
+            variant="h5"
+          >
+            <Memo(ForwardRef(BusinessTwoToneIcon))
+              color="secondary"
+              fontSize="large"
+            />
+            <span>
+              Sales manager at Microsoft
+            </span>
+          </WithStyles(ForwardRef(Typography))>
+        </Hidden>
+      </div>
+    </div>
+    <div>
+      <SharedButton
+        title="Open to"
+      />
+      <SharedButton
+        color="secondary"
+        title="Add section"
+        variant="outlined"
+      />
+      <SharedButton
+        color="secondary"
+        title="More"
+        variant="outlined"
+      />
+    </div>
+    <div>
+      <WithStyles(ForwardRef(Link))
+        href="#"
+        onClick={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          color="secondary"
+          variant="body1"
+        >
+          Open to work
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          color="secondary"
+          variant="body1"
+        >
+          Sales manager at Microsoft
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          color="primary"
+          variant="body1"
+        >
+          See all details
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Link))>
+      <div
+        className=""
+      >
+        <Memo(ForwardRef(CreateIcon))
+          fontSize="inherit"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
