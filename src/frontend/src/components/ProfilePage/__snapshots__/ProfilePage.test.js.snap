@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfilePage component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-profilePage-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={7}
+      md={7}
+      sm={12}
+      xl={7}
+      xs={12}
+    >
+      <ProfileMain
+        isEditable={true}
+        profile={false}
+      />
+      <ProfileExperience
+        isEditable={true}
+      />
+      <ProfileEducation
+        isEditable={true}
+      />
+      <ProfileCertification
+        isEditable={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <Hidden
+      smDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        lg={3}
+        md={3}
+        xl={3}
+      >
+        <ProfileRight />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

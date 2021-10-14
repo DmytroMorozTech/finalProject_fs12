@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileCertificationItem component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      On-site practice
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Unilever
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Issued: 
+      Jul 2017
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+       
+      No Expiration Date
+       
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Credential ID: 
+      RQ3627AS
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Credential URL: 
+      https://unilever.ua
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className=""
+    id="toggleModal"
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CreateIcon)) />
+  </div>
+</div>
+`;

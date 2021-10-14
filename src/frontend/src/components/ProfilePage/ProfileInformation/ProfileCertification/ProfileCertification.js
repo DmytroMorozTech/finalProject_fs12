@@ -20,6 +20,7 @@ function ProfileCertification (props) {
           Licenses & certifications
         </Typography>
         <div
+          id='toggleModal'
           className={clsx(!isEditable && classes.hidden)}
           onClick={() =>
             dispatch(toggleModalAction({modalType: ADD_NEW_CERTIFICATION}))}>
