@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileExperienceItem component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      Position: 
+      Chief Operational Officer
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Organization: 
+      PayPal Holdings Inc.
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Dec 2000
+       
+      <span>
+        -
+      </span>
+       
+      Jun 2010
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Responsibilities: 
+      Quisque id rhoncus mauris. Phasellus quis diam aliquet, gravida massa in, suscipit felis. Aliquam ac turpis arcu. Nunc fermentum dui augue, et aliquam eros ullamcorper imperdiet.
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className=""
+    id="toggleModal"
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CreateIcon)) />
+  </div>
+</div>
+`;

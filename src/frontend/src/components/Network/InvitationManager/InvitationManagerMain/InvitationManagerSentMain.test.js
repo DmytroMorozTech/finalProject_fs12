@@ -65,12 +65,14 @@ jest.mock('./styles', () => () => ({}))
 const setUp = (props) => shallow(<InvitationManagerSentMain {...props}/>)
 
 describe('should render InvitationManagerSentMain component with props', () => {
-  let numbOfInvSent = 1
+  let numberOfInvSent = 3
 
   beforeEach(() => {
     component = setUp(
-      numbOfInvSent,
-      data
+      {
+        numberOfInvSent,
+        data
+      }
     )
   })
   it('to match snapshot', () => {
@@ -78,17 +80,19 @@ describe('should render InvitationManagerSentMain component with props', () => {
   })
   it('should show Invitation', () => {
     const wrapper = component.find('Invitation')
-    expect(wrapper.length).toBe(0)
+    expect(wrapper.length).toBe(3)
   })
 })
 
 describe('should render InvitationManagerSentMain component with empty props', () => {
-  let numbOfInvSent = 0
+  let numberOfInvSent = 0
 
   beforeEach(() => {
     component = setUp(
-      numbOfInvSent,
-      emptyData
+      {
+        numberOfInvSent,
+        emptyData
+      }
     )
   })
   it('should show string `No pending invitations`', () => {

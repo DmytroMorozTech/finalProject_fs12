@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileEducationItem component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      School: 
+      NY Programming with MARK courses
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Degree: 
+      Graduate
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Jan 2013
+       
+      <span>
+        -
+      </span>
+       
+      Jan 2014
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Field of study: 
+      Programming
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Description: 
+      Highly intensive programming courses
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Activities: 
+      Studying Data-structures and algorithms
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className=""
+    id="toggleModal"
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CreateIcon)) />
+  </div>
+</div>
+`;

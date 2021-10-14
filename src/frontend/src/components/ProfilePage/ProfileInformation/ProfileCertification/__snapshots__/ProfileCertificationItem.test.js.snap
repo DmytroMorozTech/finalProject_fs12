@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileCertificationItem component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      Spring data jpa
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      DAN-IT
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Issued: 
+      Jan 2016
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+       
+      Expires: Jan 2026
+       
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Credential ID: 
+      PS35092
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Credential URL: 
+      https://dan-it.com.ua
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className=""
+    id="toggleModal"
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CreateIcon)) />
+  </div>
+</div>
+`;
