@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileExperienceItem component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      Position: 
+      Sales manager
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Organization: 
+      Microsoft
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Jan 2014
+       
+      <span>
+        -
+      </span>
+       
+      Present time
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))>
+      Responsibilities: 
+      Phasellus vitae interdum mauris, eget luctus neque. Aenean at venenatis mauris, venenatis convallis velit. Suspendisse hendrerit lectus dolor, sit amet tristique odio lobortis sit amet. Donec ante purus, 
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className=""
+    id="toggleModal"
+    onClick={[Function]}
+  >
+    <Memo(ForwardRef(CreateIcon)) />
+  </div>
+</div>
+`;

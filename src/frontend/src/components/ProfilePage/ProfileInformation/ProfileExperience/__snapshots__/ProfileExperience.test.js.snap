@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProfileExperience component with props to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      Experience
+    </WithStyles(ForwardRef(Typography))>
+    <div
+      className=""
+      id="toggleModal"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(AddIcon)) />
+    </div>
+  </div>
+  <div>
+    <ProfileExperienceItem
+      isEditable={true}
+      key="3"
+      workPlace={
+        Object {
+          "dateFinish": null,
+          "dateStart": "2014-01-20",
+          "id": 3,
+          "isCurrentlyEmployed": true,
+          "organization": Object {
+            "id": 1,
+            "location": "Redmond, WA, US (HQ) Microsoft Corporation One Microsoft Way",
+            "name": "Microsoft",
+            "webSite": "microsoft.com",
+          },
+          "position": "Sales manager",
+          "responsibilities": "Phasellus vitae interdum mauris, eget luctus neque. Aenean at venenatis mauris, venenatis convallis velit. Suspendisse hendrerit lectus dolor, sit amet tristique odio lobortis sit amet. Donec ante purus, ",
+        }
+      }
+    />
+    <ProfileExperienceItem
+      isEditable={true}
+      key="2"
+      workPlace={
+        Object {
+          "dateFinish": "2013-11-22",
+          "dateStart": "2010-06-20",
+          "id": 2,
+          "isCurrentlyEmployed": false,
+          "organization": Object {
+            "id": 2,
+            "location": "1 Apple Park Way Cupertino, California, 95014-0642 United States",
+            "name": "Apple",
+            "webSite": "apple.com",
+          },
+          "position": "CEO",
+          "responsibilities": "Fusce lacinia, nisl et vestibulum ultricies, orci risus luctus urna, et consectetur sem nibh non mauris. Phasellus ac aliquam libero, eu luctus lorem. Nulla tempor risus eu tortor mattis, id eleifend tellus semper. ",
+        }
+      }
+    />
+    <ProfileExperienceItem
+      isEditable={true}
+      key="1"
+      workPlace={
+        Object {
+          "dateFinish": "2010-06-12",
+          "dateStart": "2000-12-31",
+          "id": 1,
+          "isCurrentlyEmployed": false,
+          "organization": Object {
+            "id": 3,
+            "location": "2211 N 1st St, San Jose, CA 95131, United States",
+            "name": "PayPal Holdings Inc.",
+            "webSite": "www.paypal.com",
+          },
+          "position": "Chief Operational Officer",
+          "responsibilities": "Quisque id rhoncus mauris. Phasellus quis diam aliquet, gravida massa in, suscipit felis. Aliquam ac turpis arcu. Nunc fermentum dui augue, et aliquam eros ullamcorper imperdiet.",
+        }
+      }
+    />
+  </div>
+</div>
+`;
