@@ -30,6 +30,7 @@ const ProfileEducationItem = (props) => {
         <Typography>Activities: {activities}</Typography>
       </div>
       <div
+        id='toggleModal'
         className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
         onClick={() =>
           dispatch(toggleModalAction({modalType: EDIT_EDUCATION, education: props.education}))}>

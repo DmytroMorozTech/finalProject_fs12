@@ -29,6 +29,7 @@ function ProfileCertificationItem (props) {
         {credentialUrl && <Typography>Credential URL: {credentialUrl}</Typography>}
       </div>
       <div
+        id='toggleModal'
         className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
         onClick={() => dispatch(toggleModalAction(
           {modalType: EDIT_CERTIFICATION, certification: props.certification}

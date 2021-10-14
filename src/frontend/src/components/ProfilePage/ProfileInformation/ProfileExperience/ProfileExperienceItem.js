@@ -27,6 +27,7 @@ const ProfileExperienceItem = (props) => {
         <Typography>Responsibilities: {responsibilities}</Typography>
       </div>
       <div
+        id='toggleModal'
         className={clsx(classes.btnCreate, !isEditable && classes.hidden)}
         onClick={() =>
           dispatch(toggleModalAction({modalType: EDIT_EXPERIENCE, workPlace: props.workPlace}))}>
