@@ -35,6 +35,7 @@ function ProfileMain (props) {
 
       <div className={classes.header}>
         <div
+          id='toggleModalUploadProfileBg'
           className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
           onClick={() => dispatch(toggleModalAction({ modalType: UPLOAD_PROFILE_BACKGROUND_IMG }))}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
@@ -43,6 +44,7 @@ function ProfileMain (props) {
       <div>
         <div className={classes.row}>
           <Image
+            id='toggleModalUploadAvatar'
             imageUrl={profile.avatarPublicId}
             onClickHandler={isEditable ? () => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG })) : null }
             className={clsx(classes.bigAvatar, isEditable && classes.cursorPointer)}
@@ -50,6 +52,7 @@ function ProfileMain (props) {
             alt={'user avatar'}
           />
           <div
+            id='toggleModalEditIntro'
             className={clsx(!isEditable && classes.hidden)}
             onClick={() => dispatch(toggleModalAction({ modalType: EDIT_INTRO, profile: props.profile }))}>
             <CreateIcon className={classes.editName}/>
