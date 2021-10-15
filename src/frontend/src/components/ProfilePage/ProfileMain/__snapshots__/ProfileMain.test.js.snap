@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render ProfileMain component to match snapshot 1`] = `
+exports[`should render ProfileMain component is editable with country, city, positionAndCompany to match snapshot 1`] = `
 <div>
   <Image
     alt="profile background"
@@ -21,14 +21,17 @@ exports[`should render ProfileMain component to match snapshot 1`] = `
   </div>
   <div>
     <div>
-      <Image
-        alt="user avatar"
-        className=""
+      <div
         id="toggleModalUploadAvatar"
-        imageUrl="linkedin/avatars/vbalexhudya0ano14pgs"
-        onClickHandler={[Function]}
-        type="profileAvatar"
-      />
+        onClick={[Function]}
+      >
+        <Image
+          alt="user avatar"
+          className=""
+          imageUrl="linkedin/avatars/vbalexhudya0ano14pgs"
+          type="profileAvatar"
+        />
+      </div>
       <div
         className=""
         id="toggleModalEditIntro"
@@ -52,6 +55,7 @@ exports[`should render ProfileMain component to match snapshot 1`] = `
         <div>
           <WithStyles(ForwardRef(Typography))
             color="secondary"
+            id="cityAndCountry"
             variant="body1"
           >
             New York
@@ -70,7 +74,22 @@ exports[`should render ProfileMain component to match snapshot 1`] = `
             </WithStyles(ForwardRef(Typography))>
           </WithStyles(ForwardRef(Link))>
         </div>
-        <div />
+        <div
+          id="numberOfConnections"
+        >
+          <WithStyles(ForwardRef(Link))
+            href="#"
+            onClick={[Function]}
+          >
+            <WithStyles(ForwardRef(Typography))
+              color="primary"
+              variant="body1"
+            >
+              55
+               connections
+            </WithStyles(ForwardRef(Typography))>
+          </WithStyles(ForwardRef(Link))>
+        </div>
       </div>
       <div>
         <Hidden
@@ -83,7 +102,9 @@ exports[`should render ProfileMain component to match snapshot 1`] = `
               color="secondary"
               fontSize="large"
             />
-            <span>
+            <span
+              id="positionAndCompany"
+            >
               Sales manager at Microsoft
             </span>
           </WithStyles(ForwardRef(Typography))>
