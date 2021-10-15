@@ -4,9 +4,9 @@ username: linkedinDB
 password: bed1ven-aqg5GVW0wrb
 
 # development db
-referenceUrl: jdbc:h2:mem:linkedin
-referenceUsername: sa
-referencePassword:
+referenceUrl: jdbc:postgresql://localhost:5432/test
+referenceUsername: postgres
+referencePassword: password
 
 # for working. CURRENT list of all deltas
 changeLogFile: src/main/resources/db/changelog/master.yaml
@@ -16,3 +16,4 @@ outputChangeLogFile: src/main/resources/db/changelog/master0.yaml
 
 # for difference
 diffChangeLogFile: src/main/resources/db/changelog/changes/diff.yaml
+

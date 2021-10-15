@@ -1,0 +1,33 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: insert-notifications-data-1
+      author: Dmytro
+      changes:
+        - insert:
+#            catalogName: department
+            columns:
+              - column:
+                  name: created_date
+                  value: '2021-10-03 10:02:21.123123'
+              - column:
+                  name: modified_date
+                  value: '2021-10-03 10:02:21.123123'
+              - column:
+                  name: data
+                  value: '{"postId": 1, "numberOfComments": 3}'
+              - column:
+                  name: type
+                  value: '2'
+              - column:
+                  name: user_id
+                  value: '1'
+              - column:
+                  name: is_viewed
+                  value: 'false'
+              - column:
+                  name: user_who_triggered
+                  value: 'null'
+#            dbms: '!h2,  mysql'
+            schemaName: public
+            tableName: notifications
