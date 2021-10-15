@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render LoginCard component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Paper))
+  elevation={3}
+>
+  <div>
+    <p>
+      Sign in
+    </p>
+    <p>
+      Stay updated on your professional world
+    </p>
+  </div>
+  <form
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <WithStyles(ForwardRef(TextField))
+      autoComplete="email"
+      autoFocus={true}
+      fullWidth={true}
+      id="email"
+      inputRef={
+        Object {
+          "current": "",
+        }
+      }
+      label="Email Address"
+      margin="normal"
+      name="email"
+      required={true}
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(TextField))
+      autoComplete="current-password"
+      fullWidth={true}
+      id="password"
+      inputRef={
+        Object {
+          "current": "",
+        }
+      }
+      label="Password"
+      margin="normal"
+      name="password"
+      required={true}
+      type="password"
+      variant="outlined"
+    />
+    <div>
+      <Link
+        to="/forgot"
+      >
+        Forgot password?
+      </Link>
+    </div>
+    <SharedButton
+      color="primary"
+      fullWidth={true}
+      size="large"
+      title="Sign In"
+      type="submit"
+      variant="contained"
+    />
+  </form>
+</WithStyles(ForwardRef(Paper))>
+`;
