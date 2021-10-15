@@ -143,6 +143,15 @@ export default makeStyles((theme) => ({
 
   removed: {
     display: 'none'
+  },
+
+  preloader: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    height: '35vh'
   }
 
 }))

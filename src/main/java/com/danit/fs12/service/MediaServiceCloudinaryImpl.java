@@ -37,15 +37,15 @@ public class MediaServiceCloudinaryImpl implements MediaServiceInterface {
 
     String newAvatarPublicId = (String) uploadResult.get("public_id");
 
-    Map<String, String> uploadOptions = new HashMap<>() {
-      {
-        put("invalidate", "true");
-      }
-    };
-
-    if (!currentAvatarPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
-    }
+//    Map<String, String> uploadOptions = new HashMap<>() {
+//      {
+//        put("invalidate", "true");
+//      }
+//    };
+//
+//    if (!currentAvatarPublicId.isEmpty()) {
+//      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
+//    }
 
     activeUser.setAvatarPublicId(newAvatarPublicId);
     return userService.save(activeUser);
@@ -78,15 +78,15 @@ public class MediaServiceCloudinaryImpl implements MediaServiceInterface {
     );
     String newProfileBgPublicId = (String) uploadResult.get("public_id");
 
-    if (!currentProfileBgPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(
-        currentProfileBgPublicId,
-        new HashMap<>() {
-          {
-            put("invalidate", "true");
-          }
-        });
-    }
+//    if (!currentProfileBgPublicId.isEmpty()) {
+//      cloudinary.uploader().destroy(
+//        currentProfileBgPublicId,
+//        new HashMap<>() {
+//          {
+//            put("invalidate", "true");
+//          }
+//        });
+//    }
 
     activeUser.setProfileBgPublicId(newProfileBgPublicId);
     return userService.save(activeUser);
