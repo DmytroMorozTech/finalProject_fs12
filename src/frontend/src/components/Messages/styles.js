@@ -652,5 +652,15 @@ export default makeStyles((theme) => ({
   },
   chatWindowNull: {
     display: 'none'
+  },
+  selectedChat: {
+    '@media screen and (max-width: 640px)': {
+      display: 'block'
+    }
+  },
+  selectedChatList: {
+    '@media screen and (max-width: 640px)': {
+      display: 'none'
+    }
   }
 }))

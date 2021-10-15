@@ -216,7 +216,7 @@ function Chat (props) {
                 </div>
               </div>
               {openSmileBoard
-                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                ? <Picker pickerStyle={{width: '20rem', height: '20rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
                 : null}
             </footer>
           </form>

@@ -7,7 +7,8 @@ const initialState = {
   newChatData: [],
   newChatId: '',
   isLoading: false,
-  isTemporaryChatOpen: false
+  isTemporaryChatOpen: false,
+  selectedChat: false
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -65,6 +66,11 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         chatsList: action.payload
+      }
+    case actions.SELECTED_CHAT:
+      return {
+        ...state,
+        selectedChat: action.payload
       }
     default
     : {
