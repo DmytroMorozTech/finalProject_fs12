@@ -2,7 +2,7 @@ INSERT INTO USERS (first_name, last_name, phone_number, email, age, password_has
                    profile_bg_public_id, created_date, modified_date, country, city, headline)
 VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         '$2a$10$VyCoVteS/iZ/5ZYTIGI0EOZEytTbZphdioSm0uXqNCQ29vK6giI0q',
-        'linkedin/avatars/vbalexhudya0ano14pgs',
+        'linkedin/avatars/qxfjsjymm69qp5wbpeio',
         'linkedin/profile-bg/isgzneqfm5ro1bufycqc',
         timestamp '2015-01-01 18:22:32.123123', CURRENT_DATE, 'USA', 'New York', 'Java Developer'),
        ('Frank', 'Jackson', '+380674974924', 'test2@gmail.com', 32,
