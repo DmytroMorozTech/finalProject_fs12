@@ -10,11 +10,11 @@ import Typography from '@material-ui/core/Typography'
 function PostAddition (props) {
   const classes = styles()
 
-  const { postId, isBookmarkedByActiveUser } = props
+  const { postId, isBookmarkedByActiveUser, feedType } = props
 
   const dispatch = useDispatch()
   const handleBookmarkPost = () => {
-    dispatch(toggleBookmarkAction(postId))
+    dispatch(toggleBookmarkAction(postId, feedType))
   }
 
   return (

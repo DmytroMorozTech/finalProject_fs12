@@ -73,18 +73,18 @@ export const togglePostLikeSingleAction = (payload) => (dispatch) => {
     })
 }
 
-export const toggleBookmarkAction = (payload) => (dispatch) => {
-  const id = payload
-
+export const toggleBookmarkAction = (id, feedType) => (dispatch) => {
   return http
     .post(`/api/posts/toggle_bookmark/${id}`)
     .then((res) => res.data)
     .then((newPostObj) => {
-      dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
-      if (!newPostObj.isBookmarkedByActiveUser) {
+      if (feedType === 'posts') {
+        dispatch({ type: actions.UPDATE_POST, payload: newPostObj })
+        return
+      }
+
+      if (feedType === 'bookmarkedPosts' && !newPostObj.isBookmarkedByActiveUser) {
         dispatch({ type: actions.DELETE_BOOKMARKED_POST, payload: newPostObj.id })
-      } else if (newPostObj.isBookmarkedByActiveUser) {
-        dispatch({ type: actions.SAVE_BOOKMARKED_POST, payload: newPostObj })
       }
     })
 }
@@ -104,7 +104,7 @@ export const findSinglePostByIdAction = (postId, setPostIsLoading) => (dispatch)
 
 export const createMessageFromFeed = (data) => {
   return http
-    .post(`api/messages/from_feed`, data)
+    .post(`/api/messages/from_feed`, data)
     .then((res) => res.status)
     .then((status) => {
       if (status === 200 || status === 204) {

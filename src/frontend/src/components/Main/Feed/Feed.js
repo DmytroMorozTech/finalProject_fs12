@@ -4,7 +4,7 @@ import Post from './Post/Post'
 import ShareBox from './ShareBox/ShareBox'
 import {connect, useDispatch, useSelector} from 'react-redux'
 import Preloader from '../../../shared/Preloader/Preloader'
-import * as actions from '../../../redux/Post/postActionTypes'
+import * as postActions from '../../../redux/Post/postActionTypes'
 import * as notificationActions from '../../../redux/Notification/notificationActionTypes'
 import {DELETE_COMMENTS_FOR_ALL_POSTS} from '../../../redux/Comment/commentActionTypes'
 import http from '../../../services/httpService'
@@ -31,7 +31,7 @@ function Feed (props) {
   const {pageNumber, pageSize, hasMore} = pagination
 
   const loadPosts = useCallback(() => {
-    dispatch({ type: actions.LOADING_POSTS, payload: true })
+    dispatch({ type: postActions.LOADING_POSTS, payload: true })
 
     return http
       .get('api/posts',
@@ -45,13 +45,13 @@ function Feed (props) {
       .then((result) => {
         const posts = result.data
         const headers = result.headers
-        dispatch({ type: actions.SAVE_NEW_POSTS, payload: {posts, headers} })
-        dispatch({ type: actions.LOADING_POSTS, payload: false })
+        dispatch({ type: postActions.SAVE_NEW_POSTS, payload: {posts, headers} })
+        dispatch({ type: postActions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
 
   const loadBookmarkedPosts = useCallback(() => {
-    dispatch({ type: actions.LOADING_POSTS, payload: true })
+    dispatch({ type: postActions.LOADING_POSTS, payload: true })
 
     return http
       .get('api/posts/bookmarked',
@@ -65,13 +65,13 @@ function Feed (props) {
       .then((result) => {
         const posts = result.data
         const headers = result.headers
-        dispatch({ type: actions.SAVE_NEW_BOOKMARKED_POSTS, payload: {posts, headers} })
-        dispatch({ type: actions.LOADING_POSTS, payload: false })
+        dispatch({ type: postActions.SAVE_NEW_BOOKMARKED_POSTS, payload: {posts, headers} })
+        dispatch({ type: postActions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
 
   const loadNotifications = useCallback(() => {
-    dispatch({ type: actions.LOADING_POSTS, payload: true })
+    dispatch({ type: postActions.LOADING_POSTS, payload: true })
 
     return http
       .get(`api/notifications`,
@@ -85,7 +85,7 @@ function Feed (props) {
         const notifications = result.data
         const headers = result.headers
         dispatch({ type: notificationActions.SAVE_NEW_NOTIFICATIONS, payload: {notifications, headers} })
-        dispatch({ type: actions.LOADING_POSTS, payload: false })
+        dispatch({ type: postActions.LOADING_POSTS, payload: false })
       })
   }, [pageNumber, pageSize, dispatch])
 
@@ -126,7 +126,9 @@ function Feed (props) {
   }, [element])
 
   useEffect(() => {
+    dispatch({ type: postActions.RESET_POSTS })
     dispatch({ type: DELETE_COMMENTS_FOR_ALL_POSTS })
+    dispatch({ type: notificationActions.RESET_NOTIFICATIONS })
   }, [dispatch])
 
   return (
@@ -134,12 +136,12 @@ function Feed (props) {
       {type === 'posts' &&
       <div className={classes.feed}>
         <ShareBox activeUser={activeUser}/>
-        {data.map(post => <Post key={post.id} post={post}/>)}
+        {data.map(post => <Post key={post.id} post={post} feedType={'posts'}/>)}
       </div>}
 
       {type === 'bookmarkedPosts' &&
       <div className={classes.feed}>
-        {data.map(post => <Post key={post.id} post={post}/>)}
+        {data.map(post => <Post key={post.id} post={post} feedType={'bookmarkedPosts'}/>)}
       </div>}
 
       {type === 'notifications' && data &&

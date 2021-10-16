@@ -24,6 +24,7 @@ function Post (props) {
     id: postId, isLikedByActiveUser, isBookmarkedByActiveUser,
     text, user, createdDate, numberOfLikes, numberOfComments, imgPublicId, videoPublicId
   } = props.post
+  const {feedType} = props
 
   const {singlePostRender = false} = props
 
@@ -81,9 +82,15 @@ function Post (props) {
   return (
     <div className={classes.post}>
       <div className={classes.hiddenMenu}>
-        <SimpleMenu menuItem={
-          <ThreeDots/>
-        } userData={<PostAddition postId={postId} isBookmarkedByActiveUser={isBookmarkedByActiveUser}/>}/>
+        <SimpleMenu
+          menuItem={<ThreeDots/>}
+          userData={
+            <PostAddition
+              postId={postId}
+              isBookmarkedByActiveUser={isBookmarkedByActiveUser}
+              feedType={feedType}
+            />}
+        />
       </div>
       <hr className={classes.line}/>
       <div className={classes.postAuthor}>
