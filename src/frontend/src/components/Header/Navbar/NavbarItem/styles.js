@@ -66,5 +66,11 @@ export default makeStyles((theme) => ({
     marginBottom: '0',
     backgroundColor: theme.palette.common.black,
     transition: 'width 0.4s ease-out'
+  },
+  badge: {
+    '& > span': {
+      top: 7,
+      right: 10
+    }
   }
 }))

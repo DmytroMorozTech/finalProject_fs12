@@ -35,4 +35,12 @@ public class MessageFacade extends GeneralFacade<Message, MessageRq, MessageRs> 
     return messageService.createMessageFromFeed(rq);
 
   }
+
+  public void setAllChatMessagesViewed(Long chatId) {
+    messageService.setAllChatMessagesViewed(chatId);
+  }
+
+  public Long getNumberOfNewMessages() {
+    return messageService.getNumberOfNewMessages();
+  }
 }

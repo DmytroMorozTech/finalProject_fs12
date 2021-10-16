@@ -441,9 +441,9 @@ VALUES (1, 1),
        (1, 2),
        (3, 2);
 
-INSERT INTO MESSAGES (created_date, modified_date, text, chat_id, user_id)
-VALUES (date '2015-01-20', date '2015-01-20', 'Message text', 1, 1),
-       (date '2015-01-20', date '2015-01-20', 'Message text2', 1, 2),
-       (date '2015-01-20', date '2015-01-20', 'Message text3', 2, 1),
-       (date '2015-01-20', date '2015-01-20', 'Message text4', 2, 3),
-       (date '2015-01-20', date '2015-01-20', 'Message text5', 2, 3);
+INSERT INTO MESSAGES (created_date, modified_date, text, chat_id, user_id, is_viewed)
+VALUES (date '2015-01-20', date '2015-01-20', 'Message text', 1, 1, true),
+       (date '2015-01-20', date '2015-01-20', 'Message text2', 1, 2, false),
+       (date '2015-01-20', date '2015-01-20', 'Message text3', 2, 1, true),
+       (date '2015-01-20', date '2015-01-20', 'Message text4', 2, 3, true),
+       (date '2015-01-20', date '2015-01-20', 'Message text5', 2, 3, true);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Messages from '../components/Messages/Messages'
 import Notifications from '../components/Notifications/Notifications'
@@ -22,8 +22,15 @@ import Register from '../components/Register/Register'
 import Forgot from '../components/ForgotPass/Forgot'
 import OrganizationPage from '../components/OrganizationPage/OrganizationPage'
 import SinglePost from '../components/SinglePost/SinglePost'
+import {getNumberOfNewMessagesAction} from '../redux/Message/messageActions'
+import {useDispatch} from 'react-redux'
 
 const MainRoutes = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getNumberOfNewMessagesAction())
+  }, [dispatch])
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>

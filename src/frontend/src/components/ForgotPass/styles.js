@@ -26,7 +26,11 @@ export default makeStyles((theme) => ({
     paddingLeft: theme.spacing(3),
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    '@media screen and (max-width: 640px)': {
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
   },
   link: {
     textDecoration: 'none',
@@ -48,6 +52,9 @@ export default makeStyles((theme) => ({
     },
     '&:visited': {
       color: 'rgba(0,0,0,0.6)'
+    },
+    '@media screen and (max-width: 640px)': {
+      width: '6rem'
     }
   },
 
@@ -68,6 +75,10 @@ export default makeStyles((theme) => ({
     fontWeight: 'bold',
     '&:hover': {
       backgroundColor: '#d0e8ff'
+    },
+    '@media screen and (max-width: 640px)': {
+      margin: 0,
+      padding: 0
     }
   },
 
