@@ -1,5 +1,6 @@
 import http from '../../services/httpService'
 import * as actions from '../Profile/profileActionTypes'
+import {UPDATE_ACTIVE_USER_PROFILE_BG_IMG} from '../User/userActionTypes'
 import { toast } from 'react-toastify'
 import toggleModalAction from '../Modal/modalActions'
 import { getActiveUserAction } from '../User/userActions'
@@ -7,7 +8,7 @@ import { getActiveUserAction } from '../User/userActions'
 export const uploadAvatarImgAction = (file) => (dispatch) => {
   const formData = new FormData()
   formData.append('file', file)
-  
+
   return http
     .post(`/api/media/images/upload/avatar`, formData,
       {
@@ -39,6 +40,7 @@ export const uploadProfileBgImgAction = (file) => (dispatch) => {
     .then((res) => res.data)
     .then((profile) => {
       dispatch({ type: actions.SAVE_ACTIVE_PROFILE, payload: profile })
+      dispatch({ type: UPDATE_ACTIVE_USER_PROFILE_BG_IMG, payload: profile.profileBgPublicId })
       dispatch(toggleModalAction())
       toast.info('Image for User\'s profile background was updated',
         {position: toast.POSITION.TOP_CENTER, autoClose: 2500})

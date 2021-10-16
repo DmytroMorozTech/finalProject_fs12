@@ -55,6 +55,9 @@ const notificationReducer = (state = initialState, action) => {
       const updatedNotificationsList1 = state.notificationsList.filter((notification) => notification.id !== id)
       return { ...state, notificationsList: [...updatedNotificationsList1] }
 
+    case actions.RESET_NOTIFICATIONS:
+      return { ...initialState }
+
     default: {
       return state
     }

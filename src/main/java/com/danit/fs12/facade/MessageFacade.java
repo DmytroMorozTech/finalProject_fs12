@@ -7,11 +7,8 @@ import com.danit.fs12.entity.message.MessageRq;
 import com.danit.fs12.entity.message.MessageRs;
 import com.danit.fs12.service.MessageService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,5 +34,13 @@ public class MessageFacade extends GeneralFacade<Message, MessageRq, MessageRs> 
   public Boolean createMessageFromFeed(MessageFromFeedRq rq) {
     return messageService.createMessageFromFeed(rq);
 
+  }
+
+  public void setAllChatMessagesViewed(Long chatId) {
+    messageService.setAllChatMessagesViewed(chatId);
+  }
+
+  public Long getNumberOfNewMessages() {
+    return messageService.getNumberOfNewMessages();
   }
 }

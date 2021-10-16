@@ -4,6 +4,7 @@ import update from 'immutability-helper'
 const initialState = {
   postsList: [],
   loading: false,
+  postIsBeingUploaded: false,
   pagination: {
     pageNumber: 0,
     pageSize: 4,
@@ -28,9 +29,12 @@ const postReducer = (state = initialState, action) => {
     case actions.LOADING_POSTS:
       return { ...state, loading: action.payload }
 
+    case actions.POST_IS_BEING_UPLOADED:
+      return { ...state, postIsBeingUploaded: action.payload }
+
     case actions.SAVE_NEW_POSTS:
       const { posts, headers } = action.payload
-      const {pagenumber = 0, pagesize = 4, totalpages, hasmore} = headers
+      const { pagenumber = 0, pagesize = 4, totalpages, hasmore } = headers
       return {
         ...state,
         postsList: [...state.postsList, ...posts],
@@ -44,8 +48,10 @@ const postReducer = (state = initialState, action) => {
 
     case actions.SAVE_NEW_BOOKMARKED_POSTS:
       const { posts: postsBm, headers: headersBm } = action.payload
-      const {pagenumber: pageNumberBm = 0, pagesize: pageSizeBm = 4,
-        totalpages: totalPagesBm, hasmore: hasMoreBm} = headersBm
+      const {
+        pagenumber: pageNumberBm = 0, pagesize: pageSizeBm = 4,
+        totalpages: totalPagesBm, hasmore: hasMoreBm
+      } = headersBm
 
       return {
         ...state,
@@ -61,7 +67,7 @@ const postReducer = (state = initialState, action) => {
       }
 
     case actions.ADD_NEW_POST:
-      return { ...state, postsList: [ action.payload, ...state.postsList ] }
+      return { ...state, postsList: [action.payload, ...state.postsList] }
 
     case actions.UPDATE_POST:
       const updatedPost = action.payload
@@ -83,19 +89,15 @@ const postReducer = (state = initialState, action) => {
 
       const indexOfCurrentPost1 = state.bookmarked.postsList.indexOf(currentPost1)
 
-      return update(state, {bookmarked:
-          {postsList: {$splice: [[indexOfCurrentPost1, 1, updatedPost1]]}}})
+      return update(state, {
+        bookmarked:
+          { postsList: { $splice: [[indexOfCurrentPost1, 1, updatedPost1]] } }
+      })
 
     case actions.DELETE_BOOKMARKED_POST:
       const postId4 = action.payload
       const updatedBookmarkedPosts = state.bookmarked.postsList.filter((post) => post.id !== postId4)
       return { ...state, bookmarked: { ...state.bookmarked, postsList: [...updatedBookmarkedPosts] } }
-
-    case actions.SAVE_BOOKMARKED_POST:
-      const newPost = action.payload
-      return { ...state,
-        bookmarked: { ...state.bookmarked,
-          postsList: [...state.bookmarked.postsList, newPost] } }
 
     case actions.SAVE_USERS_WHO_LIKED_POST:
       const { usersList, id } = action.payload
@@ -108,7 +110,7 @@ const postReducer = (state = initialState, action) => {
       }
 
     case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST_GENERAL:
-      const {postId} = action.payload
+      const { postId } = action.payload
 
       const currentPost2 = state.postsList.find((post) => post.id === postId)
       if (currentPost2 === null) return state
@@ -122,13 +124,16 @@ const postReducer = (state = initialState, action) => {
       })
 
     case actions.INCREMENT_COMMENTS_COUNTER_FOR_POST_SINGLE:
-      const copyOfCurrentSinglePost = {...state.singlePost}
+      const copyOfCurrentSinglePost = { ...state.singlePost }
       copyOfCurrentSinglePost.numberOfComments += 1
 
       return {
         ...state,
         singlePost: copyOfCurrentSinglePost
       }
+
+    case actions.RESET_POSTS:
+      return { ...initialState }
 
     default: {
       return state

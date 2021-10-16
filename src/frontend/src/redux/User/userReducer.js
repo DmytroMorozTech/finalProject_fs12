@@ -33,6 +33,15 @@ const userReducer = (state = initialState, action) => {
         selectedUser: action.payload
       }
 
+    case actions.UPDATE_ACTIVE_USER_PROFILE_BG_IMG:
+      const copyOfActiveUser = {...state.activeUser}
+      copyOfActiveUser.profileBgPublicId = action.payload
+
+      return {
+        ...state,
+        activeUser: copyOfActiveUser
+      }
+
     default: {
       return state
     }

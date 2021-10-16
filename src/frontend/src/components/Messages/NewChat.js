@@ -8,7 +8,7 @@ import Style from './styles'
 import {
   createChatWithBothMembersAction,
   createMessageAction,
-  isTemporaryChatOpenAction
+  isTemporaryChatOpenAction, setAllChatMessagesIsViewedAction
 } from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {
@@ -67,16 +67,20 @@ function NewChat (props) {
   const findIfChatExist = () => {
     let chatId = ''
     let chatExist = true
-    chatsList.forEach(c => {
-      if (c.users.filter(u => u.id === currentUser.id).length > 0) {
-        chatId = c.id
-        dispatch(createMessageAction({chatId, text: messageValue}))
-      } else if (isChatOpen) {
-        dispatch(createMessageAction({newChatId, text: messageValue}))
-      } else {
-        chatExist = false
-      }
-    })
+    chatsList && chatsList.length > 0
+      ? chatsList.forEach(c => {
+        if (c.users.filter(u => u.id === currentUser.id).length > 0) {
+          dispatch(setAllChatMessagesIsViewedAction(chatId))
+          chatId = c.id
+          dispatch(createMessageAction({chatId, text: messageValue}))
+        } else if (isChatOpen) {
+          dispatch(setAllChatMessagesIsViewedAction(newChatId))
+          dispatch(createMessageAction({newChatId, text: messageValue}))
+        } else {
+          chatExist = false
+        }
+      })
+      : chatExist = false
     if (!chatExist) {
       dispatch(createChatWithBothMembersAction({userId: +userIdFromUrl, text: messageValue}))
       dispatch(isTemporaryChatOpenAction(true))
@@ -217,7 +221,8 @@ function NewChat (props) {
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
                   timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
-                  timeSent={getDate(m.createdDate)}/>)}
+                  timeSent={getDate(m.createdDate)}
+                  isViewed={m.isViewed}/>)}
               </li>
             </ul>
           </div>

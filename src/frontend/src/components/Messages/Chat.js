@@ -5,7 +5,11 @@ import InputBase from '@material-ui/core/InputBase'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import styles from './styles'
-import {createMessageAction, getChatMessagesAction} from '../../redux/Message/messageActions'
+import {
+  createMessageAction,
+  getChatMessagesAction,
+  setAllChatMessagesIsViewedAction
+} from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../redux/Message/messageSelector'
 import {Link, withRouter} from 'react-router-dom'
@@ -51,6 +55,7 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
+    dispatch(setAllChatMessagesIsViewedAction(chatId))
     dispatch(createMessageAction({chatId, text: messageValue}))
     setOpenSmileBoard(false)
     setMessageValue('')
@@ -184,7 +189,10 @@ function Chat (props) {
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
                   timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
-                  timeSent={getDate(m.createdDate)}/>)}
+                  timeSent={getDate(m.createdDate)}
+                  isViewed={m.isViewed}
+                  activeUserId={activeUser.id}
+                  messageSenderId={m.userId}/>)}
               </li>
             </ul>
           </div>
@@ -216,7 +224,7 @@ function Chat (props) {
                 </div>
               </div>
               {openSmileBoard
-                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                ? <Picker pickerStyle={{width: '20rem', height: '20rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
                 : null}
             </footer>
           </form>
