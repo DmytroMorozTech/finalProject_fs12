@@ -7,6 +7,8 @@ import { uploadPostVideoAction } from '../Video/videoActions'
 import { toast } from 'react-toastify'
 
 export const createNewPostAction = (payload) => async (dispatch) => {
+  dispatch({ type: actions.POST_IS_BEING_UPLOADED, payload: true })
+
   const { text, image, video } = payload
   let uploadedImgPublicId = ''
   let uploadedVideoPublicId = ''
@@ -28,6 +30,8 @@ export const createNewPostAction = (payload) => async (dispatch) => {
     .then((res) => res.data)
     .then((newPostObj) => {
       dispatch({ type: actions.ADD_NEW_POST, payload: newPostObj })
+      dispatch(toggleModalAction())
+      dispatch({ type: actions.POST_IS_BEING_UPLOADED, payload: false })
     })
 }
 

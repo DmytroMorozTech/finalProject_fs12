@@ -8,16 +8,16 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import styles from './styles'
+import { postIsBeingUploadedSelector } from '../../redux/Post/postSelector'
 
 export default function CustomizedDialogs () {
   const classes = styles()
   const isModalOpened = useSelector(openModalSelector)
   const dispatch = useDispatch()
   const modalContent = useSelector(modalContentSelector)
+  const postIsBeingUploaded = useSelector(postIsBeingUploadedSelector)
 
-  const handleClose = () => {
-    dispatch(toggleModalAction())
-  }
+  const handleClose = postIsBeingUploaded ? null : () => dispatch(toggleModalAction())
 
   const DialogTitle = (props) => {
     const { children, onClose, ...other } = props
@@ -25,7 +25,10 @@ export default function CustomizedDialogs () {
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
         <Typography variant="h6">{children}</Typography>
         {onClose && (
-          <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <IconButton
+            aria-label="close"
+            className={classes.closeButton}
+            onClick={postIsBeingUploaded ? null : onClose}>
             <CloseIcon/>
           </IconButton>
         )}
