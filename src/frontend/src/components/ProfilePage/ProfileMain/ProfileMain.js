@@ -35,23 +35,29 @@ function ProfileMain (props) {
 
       <div className={classes.header}>
         <div
+          id='toggleModalUploadProfileBg'
           className={clsx(classes.photoIcon, !isEditable && classes.hidden)}
-          onClick={() => dispatch(toggleModalAction({ modalType: UPLOAD_PROFILE_BACKGROUND_IMG }))}>
+          onClick={isEditable ? () => dispatch(toggleModalAction({ modalType: UPLOAD_PROFILE_BACKGROUND_IMG })) : null}>
           <PhotoCameraIcon fontSize="inherit" color={'primary'}/>
         </div>
       </div>
       <div>
         <div className={classes.row}>
-          <Image
-            imageUrl={profile.avatarPublicId}
-            onClickHandler={isEditable ? () => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG })) : null }
-            className={clsx(classes.bigAvatar, isEditable && classes.cursorPointer)}
-            type={'profileAvatar'}
-            alt={'user avatar'}
-          />
           <div
+            id='toggleModalUploadAvatar'
+            className={classes.avatar}
+            onClick={isEditable ? () => dispatch(toggleModalAction({ modalType: UPLOAD_AVATAR_IMG })) : null }>
+            <Image
+              imageUrl={profile.avatarPublicId}
+              className={clsx(classes.bigAvatar, isEditable && classes.cursorPointer)}
+              type={'profileAvatar'}
+              alt={'user avatar'}
+            />
+          </div>
+          <div
+            id='toggleModalEditIntro'
             className={clsx(!isEditable && classes.hidden)}
-            onClick={() => dispatch(toggleModalAction({ modalType: EDIT_INTRO, profile: props.profile }))}>
+            onClick={isEditable ? () => dispatch(toggleModalAction({ modalType: EDIT_INTRO, profile: props.profile })) : null}>
             <CreateIcon className={classes.editName}/>
           </div>
         </div>
@@ -64,7 +70,7 @@ function ProfileMain (props) {
               {profile.headline}
             </Typography>
             <div className={classes.info}>
-              <Typography variant="body1" color="secondary">
+              <Typography id='cityAndCountry' variant="body1" color="secondary">
                 {profile.city}{profile.city && profile.country ? ', ' : ''}{profile.country}
               </Typography>
               {profile.city || profile.country ? <SmallDot/> : ''}
@@ -74,22 +80,22 @@ function ProfileMain (props) {
                 </Typography>
               </Link>
             </div>
-            <div>
-              {numberOfConnections
-                ? <Link href="#" onClick={preventDefault}>
+            {numberOfConnections
+              ? <div id='numberOfConnections'>
+                <Link href="#" onClick={preventDefault}>
                   <Typography variant="body1" color="primary" className={classes.bold}>
                     {numberOfConnections} connections
                   </Typography>
                 </Link>
-                : ''}
-            </div>
+              </div>
+              : ''}
           </div>
           <div>
             {profile.positionAndCompany
               ? <Hidden xsDown>
                 <Typography variant="h5" className={classes.rightPanel}>
                   <BusinessTwoToneIcon fontSize="large" color="secondary" className={classes.businessIcon}/>
-                  <span>{profile.positionAndCompany}</span>
+                  <span id='positionAndCompany'>{profile.positionAndCompany}</span>
                 </Typography>
               </Hidden>
               : ''}

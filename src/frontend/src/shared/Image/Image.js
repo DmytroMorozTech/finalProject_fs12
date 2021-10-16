@@ -145,6 +145,7 @@ function Image ({ imageUrl, type, onClickHandler, className, alt }) {
       crop="crop"
       key={imageUrl}
       alt={alt}
+      // cloudName="dan-insta-step"
     >
       {getTransformation(type)}
     </CloudinaryImage>

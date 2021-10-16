@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './styles'
 import Typography from '@material-ui/core/Typography'
 import BookmarkIcon from '@material-ui/icons/Bookmark'
@@ -17,6 +17,9 @@ function MainLeft (props) {
   const classes = styles()
 
   const linkToActiveUserProfile = '/profiles/' + activeUser.id
+
+  useEffect(() => {
+  }, [activeUser.profileBgPublicId])
 
   return (
     <div className={classes.root}>

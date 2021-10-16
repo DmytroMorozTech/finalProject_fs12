@@ -38,11 +38,15 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
 
+  avatar: {
+    display: 'flex',
+    marginBottom: theme.spacing(3)
+  },
+
   bigAvatar: {
     width: theme.avatar.profileAvatar,
     border: '4px solid white',
-    borderRadius: '50%',
-    marginBottom: theme.spacing(3)
+    borderRadius: '50%'
   },
 
   cursorPointer: {
