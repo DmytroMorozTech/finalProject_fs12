@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Login component to match snapshot 1`] = `
+<div>
+  <div>
+    <LinkedinLogo />
+  </div>
+  <div>
+    <LoginCard />
+  </div>
+  <div>
+    <p>
+      New to LinkedIn?
+    </p>
+    <Link
+      to="/signup"
+    >
+      Join now
+    </Link>
+  </div>
+</div>
+`;

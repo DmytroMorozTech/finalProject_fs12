@@ -4,6 +4,7 @@ import update from 'immutability-helper'
 const initialState = {
   postsList: [],
   loading: false,
+  postIsBeingUploaded: false,
   pagination: {
     pageNumber: 0,
     pageSize: 4,
@@ -27,6 +28,9 @@ const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOADING_POSTS:
       return { ...state, loading: action.payload }
+
+    case actions.POST_IS_BEING_UPLOADED:
+      return { ...state, postIsBeingUploaded: action.payload }
 
     case actions.SAVE_NEW_POSTS:
       const { posts, headers } = action.payload
