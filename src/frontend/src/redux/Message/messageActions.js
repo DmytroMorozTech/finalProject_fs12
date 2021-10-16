@@ -101,6 +101,9 @@ export const setAllChatMessagesIsViewedAction = (chatId) => (dispatch) => {
     .then(() => {
       dispatch(getChatMessagesAction(chatId))
     })
+    .then(() => {
+      dispatch(getNumberOfNewMessagesAction())
+    })
 }
 
 export const getNumberOfNewMessagesAction = () => (dispatch) => {

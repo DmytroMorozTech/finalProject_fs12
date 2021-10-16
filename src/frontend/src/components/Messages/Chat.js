@@ -189,7 +189,10 @@ function Chat (props) {
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
                   timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
-                  timeSent={getDate(m.createdDate)}/>)}
+                  timeSent={getDate(m.createdDate)}
+                  isViewed={m.isViewed}
+                  activeUserId={activeUser.id}
+                  messageSenderId={m.userId}/>)}
               </li>
             </ul>
           </div>

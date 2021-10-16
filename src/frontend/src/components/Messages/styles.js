@@ -665,5 +665,8 @@ export default makeStyles((theme) => ({
   },
   newMessage: {
     backgroundColor: '#eef3f8'
+  },
+  newMessageViewed: {
+    backgroundColor: '#eef3f8'
   }
 }))

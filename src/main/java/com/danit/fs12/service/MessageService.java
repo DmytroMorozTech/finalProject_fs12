@@ -89,7 +89,7 @@ public class MessageService extends GeneralService<Message> {
     Long userId = userService.getActiveUser().getId();
     List<Message> chatMessages = getMessagesByChatId(chatId);
     chatMessages.forEach(m -> {
-      if(!m.getUserId().equals(userId)) {
+      if (!m.getUserId().equals(userId)) {
         m.setIsViewed(true);
         messageRepository.save(m);
       }
@@ -98,14 +98,17 @@ public class MessageService extends GeneralService<Message> {
 
   public Long getNumberOfNewMessages() {
     final Long[] numberOfNewMessages = {0L};
-    Long userId = userService.getActiveUser().getId();
-    List<Message> newMessages = messageRepository.findMessagesByUser_Id(userId);
-    Set<Long> userChats = new HashSet<>();
-    newMessages.forEach(m -> userChats.add(m.getChatId()));
-    userChats.forEach(c -> {
+    User activeUser = userService.getActiveUser();
+    Long userId = activeUser.getId();
+    List<Chat> chats = activeUser.getChats();
+    Set<Long> chatsUserIds = new HashSet<>();
+    chats.forEach(c -> {
+      chatsUserIds.add(c.getId());
+    });
+    chatsUserIds.forEach(c -> {
       List<Message> chatMessages = messageRepository.findMessagesByChat_Id(c);
       chatMessages.forEach(m -> {
-        if(!m.getUserId().equals(userId) && !m.getIsViewed()) {
+        if (!m.getUserId().equals(userId) && !m.getIsViewed()) {
           numberOfNewMessages[0] += 1;
         }
       });

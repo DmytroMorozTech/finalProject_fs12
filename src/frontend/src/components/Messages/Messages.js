@@ -17,7 +17,6 @@ function Messages () {
   const activeUser = useSelector(activeUserSelector)
   const activeUserId = activeUser && activeUser.id
   const selectedChat = useSelector(selectedChatSelector)
-  // const [selectedChat, setSelectedChat] = useState(false)
   let chatsList = useSelector(allChats)
 
   useEffect(() => {

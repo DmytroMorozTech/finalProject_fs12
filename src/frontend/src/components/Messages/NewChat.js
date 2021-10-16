@@ -221,7 +221,8 @@ function NewChat (props) {
                   messageSender={getMessageSender(m.userId)}
                   text={m.text}
                   timeTitle={checkIfNeedToRenderDateTitle(m.createdDate)}
-                  timeSent={getDate(m.createdDate)}/>)}
+                  timeSent={getDate(m.createdDate)}
+                  isViewed={m.isViewed}/>)}
               </li>
             </ul>
           </div>

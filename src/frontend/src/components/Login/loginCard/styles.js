@@ -8,7 +8,11 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '2%'
+    borderRadius: '2%',
+    '@media screen and (max-width: 640px)': {
+      width: '90vw',
+      height: '50vh'
+    }
   },
 
   header: {
@@ -38,12 +42,17 @@ export default makeStyles((theme) => ({
   signInLine: {
     fontSize: theme.typography.h1.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
-    lineHeight: 0
+    lineHeight: 0,
+    textAlign: 'center'
   },
 
   signInTagline: {
     fontSize: theme.typography.h3.fontSize,
-    lineHeight: 0
+    lineHeight: 0,
+    textAlign: 'center',
+    '@media screen and (max-width: 640px)': {
+      lineHeight: 1
+    }
   },
 
   forgotPasswordLink: {

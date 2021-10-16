@@ -3,13 +3,17 @@ import Style from './styles'
 import Image from '../../shared/Image/Image'
 import clsx from 'clsx'
 
-function UserMessage ({text, timeTitle, timeSent, messageSender}) {
+function UserMessage ({text, timeTitle, timeSent, messageSender, isViewed, activeUserId, messageSenderId}) {
   const classes = Style()
+
+  function checkIfNewMessage () {
+    return !isViewed && (activeUserId !== messageSenderId)
+  }
 
   return (
     <>
       <time className={clsx(classes.emptyMessageTitle, timeTitle !== '' && classes.messageListTimeHeading)}>{timeTitle}</time>
-      <div className={classes.eventListItem}>
+      <div className={clsx(classes.eventListItem, checkIfNewMessage() && classes.newMessageViewed)}>
         <Image
           imageUrl={messageSender && messageSender.avatarPublicId}
           alt={messageSender && messageSender.fullName}

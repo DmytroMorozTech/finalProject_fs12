@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles'
+import {makeStyles} from '@material-ui/styles'
 
 export default makeStyles(theme => ({
   register: {
@@ -16,7 +16,11 @@ export default makeStyles(theme => ({
   registerPage: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media screen and (max-width: 640px)': {
+      width: '90vw',
+      height: '50vh'
+    }
   },
   registerHeader: {
     display: 'flex',
@@ -27,6 +31,10 @@ export default makeStyles(theme => ({
   },
   registerHeaderText: {
     fontSize: theme.typography.h1.fontSize,
-    fontWeight: theme.typography.h4.fontWeight
+    fontWeight: theme.typography.h4.fontWeight,
+    textAlign: 'center',
+    '@media screen and (max-width: 640px)': {
+      fontSize: theme.typography.sh1.fontSize
+    }
   }
 }))

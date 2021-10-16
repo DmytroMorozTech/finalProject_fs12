@@ -18,6 +18,10 @@ const NavbarItem = ({ Icon, title, arrow, toggleMenu, badge, to, exact = true })
     e.preventDefault()
   }
 
+  function renderNewChatsNumber () {
+    return typeof newMessages === 'string' ? 0 : newMessages
+  }
+
   const renderMenuItem = (
     <NavLink className={classes.itemPrimary}
       onClick={(e) => {
@@ -42,7 +46,7 @@ const NavbarItem = ({ Icon, title, arrow, toggleMenu, badge, to, exact = true })
   const renderMenu = toggleMenu
     ? <SimpleMenu menuItem={renderMenuItem} userData={<UserData />} />
     : badge
-      ? <Badge className={classes.badge} color="secondary" badgeContent={newMessages} max={99}>
+      ? <Badge className={classes.badge} color="secondary" badgeContent={renderNewChatsNumber()} max={99}>
         {renderMenuItem}
       </Badge>
       : renderMenuItem
