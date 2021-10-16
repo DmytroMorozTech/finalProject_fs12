@@ -1,13 +1,13 @@
 import { shallow } from 'enzyme'
-import React from 'react'
-import RegisterGooglePage from './RegisterGooglePage'
 import * as redux from 'react-redux'
+import React from 'react'
+import RegisterPage from './RegisterPage'
 
 jest.mock('./styles', () => () => ({}))
 
-const setUp = () => shallow(<RegisterGooglePage />)
+const setUp = () => shallow(<RegisterPage />)
 
-describe('should render RegisterGooglePage component', () => {
+describe('should render RegisterPage component', () => {
   let spyOnUseSelector
   let spyOnUseDispatch
   let mockDispatch
@@ -29,19 +29,9 @@ describe('should render RegisterGooglePage component', () => {
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-  it('should work dispatch sign out', () => {
-    expect(mockDispatch).toHaveBeenCalledTimes(0)
-    component.find('Link[id=\'signOut\']').simulate('click')
-    expect(mockDispatch).toHaveBeenCalledTimes(1)
-  })
-  it('should work dispatch sign in', () => {
-    expect(mockDispatch).toHaveBeenCalledTimes(0)
-    component.find('Link[id=\'signIn\']').simulate('click')
-    expect(mockDispatch).toHaveBeenCalledTimes(1)
-  })
-  // it('should work submit handle', () => {
+  // it('should work dispatch authenticate by Google', () => {
   //   expect(mockDispatch).toHaveBeenCalledTimes(0)
-  //   component.find('Formik').simulate('submit')
+  //   component.find('button[id=\'googleBtn\']').simulate('click')
   //   expect(mockDispatch).toHaveBeenCalledTimes(1)
   // })
 })

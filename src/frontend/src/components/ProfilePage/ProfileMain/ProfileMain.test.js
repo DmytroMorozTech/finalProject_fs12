@@ -133,6 +133,9 @@ describe('should render ProfileMain component', () => {
 
     component = setUp({profile, isEditable})
   })
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
   it('should work dispatch toggle modal upload profile bg', () => {
     expect(mockDispatch).toHaveBeenCalledTimes(0)
     component.find('div[id=\'toggleModalUploadProfileBg\']').simulate('click')

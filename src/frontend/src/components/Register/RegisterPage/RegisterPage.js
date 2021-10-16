@@ -12,7 +12,7 @@ import * as Yup from 'yup'
 import clsx from 'clsx'
 import Image from '../../../shared/Image/Image'
 
-function RegisterPageLoginData () {
+function RegisterPage () {
   const classes = styles()
 
   const history = useHistory()
@@ -121,7 +121,7 @@ function RegisterPageLoginData () {
           <div/>
         </section>
         <div className={classes.googleBtnWrapper}>
-          <button className={classes.googleBtn} onClick={() => authenticateByGoogle()}>
+          <button id='googleBtn' className={classes.googleBtn} onClick={() => authenticateByGoogle()}>
             <Image
               imageUrl={'linkedin/general/niaqwol8ifep3qjapufb'}
               alt={'job'}
@@ -187,4 +187,4 @@ function RegisterPageLoginData () {
   )
 }
 
-export default RegisterPageLoginData
+export default RegisterPage
