@@ -37,12 +37,11 @@ public class MessageService extends GeneralService<Message> {
         + "chatId: %d, text: %s", chatId, text);
       throw new BadRequestException(msg);
     }
-
-    User user = userOpt.get();
     Message message = new Message();
     message.setText(text);
     message.setIsViewed(false);
     messageRepository.save(message);
+    User user = userOpt.get();
     user.addMessage(message);
     userRepository.save(user);
     Chat chat = chatOpt.get();
