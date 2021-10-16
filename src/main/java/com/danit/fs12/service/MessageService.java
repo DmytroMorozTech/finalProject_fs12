@@ -38,7 +38,7 @@ public class MessageService extends GeneralService<Message> {
       throw new BadRequestException(msg);
     }
 
-   User user = userOpt.get();
+    User user = userOpt.get();
     Message message = new Message();
     message.setText(text);
     message.setIsViewed(false);
