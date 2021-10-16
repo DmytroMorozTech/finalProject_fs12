@@ -662,5 +662,8 @@ export default makeStyles((theme) => ({
     '@media screen and (max-width: 640px)': {
       display: 'none'
     }
+  },
+  newMessage: {
+    backgroundColor: '#eef3f8'
   }
 }))

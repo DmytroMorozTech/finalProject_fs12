@@ -12,5 +12,6 @@ public class MessageRs {
   private Long chatId;
   private String text;
   private LocalDateTime createdDate;
+  private Boolean isViewed;
 
 }

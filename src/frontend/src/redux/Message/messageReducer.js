@@ -8,7 +8,8 @@ const initialState = {
   newChatId: '',
   isLoading: false,
   isTemporaryChatOpen: false,
-  selectedChat: false
+  selectedChat: false,
+  numberOfNewMessages: 0
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -71,6 +72,11 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedChat: action.payload
+      }
+    case actions.NUMBER_OF_NEW_MESSAGES:
+      return {
+        ...state,
+        numberOfNewMessages: action.payload
       }
     default
     : {

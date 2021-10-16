@@ -1,16 +1,18 @@
 import React from 'react'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
-import { Hidden } from '@material-ui/core'
+import {Badge, Hidden} from '@material-ui/core'
 import styles from './styles'
 import { NavLink } from 'react-router-dom'
 import SimpleMenu from '../../../../shared/PopupMenu/PopupMenu'
 import UserData from '../../../UserData/UserData'
 import * as actions from '../../../../redux/Message/messageActionTypes'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {numberOfNewMessagesSelector} from '../../../../redux/Message/messageSelector'
 
-const NavbarItem = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
+const NavbarItem = ({ Icon, title, arrow, toggleMenu, badge, to, exact = true }) => {
   const classes = styles()
   const dispatch = useDispatch()
+  const newMessages = useSelector(numberOfNewMessagesSelector)
 
   const notLink = (e) => {
     e.preventDefault()
@@ -39,7 +41,11 @@ const NavbarItem = ({ Icon, title, arrow, toggleMenu, to, exact = true }) => {
 
   const renderMenu = toggleMenu
     ? <SimpleMenu menuItem={renderMenuItem} userData={<UserData />} />
-    : renderMenuItem
+    : badge
+      ? <Badge className={classes.badge} color="secondary" badgeContent={newMessages} max={99}>
+        {renderMenuItem}
+      </Badge>
+      : renderMenuItem
 
   return (
     <div className={classes.menuItem}>

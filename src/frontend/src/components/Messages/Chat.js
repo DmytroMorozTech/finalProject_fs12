@@ -5,7 +5,11 @@ import InputBase from '@material-ui/core/InputBase'
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
 import SharedButton from '../../shared/SharedButton/SharedButton'
 import styles from './styles'
-import {createMessageAction, getChatMessagesAction} from '../../redux/Message/messageActions'
+import {
+  createMessageAction,
+  getChatMessagesAction,
+  setAllChatMessagesIsViewedAction
+} from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {allChats, allMessages, chatMessages} from '../../redux/Message/messageSelector'
 import {Link, withRouter} from 'react-router-dom'
@@ -51,6 +55,7 @@ function Chat (props) {
   }
 
   const handleSendMessageButton = () => {
+    dispatch(setAllChatMessagesIsViewedAction(chatId))
     dispatch(createMessageAction({chatId, text: messageValue}))
     setOpenSmileBoard(false)
     setMessageValue('')

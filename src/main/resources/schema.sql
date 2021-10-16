@@ -114,6 +114,7 @@ create table messages
     text          varchar(255),
     chat_id       int8,
     user_id       int8,
+    is_viewed     boolean,
     primary key (id)
 );
 

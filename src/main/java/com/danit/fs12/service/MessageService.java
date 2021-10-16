@@ -13,8 +13,10 @@ import com.danit.fs12.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +41,7 @@ public class MessageService extends GeneralService<Message> {
     User user = userOpt.get();
     Message message = new Message();
     message.setText(text);
+    message.setIsViewed(false);
     messageRepository.save(message);
     user.addMessage(message);
     userRepository.save(user);
@@ -80,5 +83,33 @@ public class MessageService extends GeneralService<Message> {
     createMessage(chat.getId(), text);
     return true;
 
+  }
+
+  public void setAllChatMessagesViewed(Long chatId) {
+    Long userId = userService.getActiveUser().getId();
+    List<Message> chatMessages = getMessagesByChatId(chatId);
+    chatMessages.forEach(m -> {
+      if(!m.getUserId().equals(userId)) {
+        m.setIsViewed(true);
+        messageRepository.save(m);
+      }
+    });
+  }
+
+  public Long getNumberOfNewMessages() {
+    final Long[] numberOfNewMessages = {0L};
+    Long userId = userService.getActiveUser().getId();
+    List<Message> newMessages = messageRepository.findMessagesByUser_Id(userId);
+    Set<Long> userChats = new HashSet<>();
+    newMessages.forEach(m -> userChats.add(m.getChatId()));
+    userChats.forEach(c -> {
+      List<Message> chatMessages = messageRepository.findMessagesByChat_Id(c);
+      chatMessages.forEach(m -> {
+        if(!m.getUserId().equals(userId) && !m.getIsViewed()) {
+          numberOfNewMessages[0] += 1;
+        }
+      });
+    });
+    return numberOfNewMessages[0];
   }
 }

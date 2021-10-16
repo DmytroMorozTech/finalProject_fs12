@@ -8,7 +8,7 @@ import Style from './styles'
 import {
   createChatWithBothMembersAction,
   createMessageAction,
-  isTemporaryChatOpenAction
+  isTemporaryChatOpenAction, setAllChatMessagesIsViewedAction
 } from '../../redux/Message/messageActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {
@@ -70,9 +70,11 @@ function NewChat (props) {
     chatsList && chatsList.length > 0
       ? chatsList.forEach(c => {
         if (c.users.filter(u => u.id === currentUser.id).length > 0) {
+          dispatch(setAllChatMessagesIsViewedAction(chatId))
           chatId = c.id
           dispatch(createMessageAction({chatId, text: messageValue}))
         } else if (isChatOpen) {
+          dispatch(setAllChatMessagesIsViewedAction(newChatId))
           dispatch(createMessageAction({newChatId, text: messageValue}))
         } else {
           chatExist = false
