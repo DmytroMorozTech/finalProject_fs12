@@ -7,7 +7,6 @@ import {isLoadingUserSelector} from './redux/User/userSelector'
 import Preloader from './shared/Preloader/Preloader'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {getNumberOfNewMessagesAction} from './redux/Message/messageActions'
 
 toast.configure()
 
@@ -17,7 +16,6 @@ function App () {
 
   useEffect(() => {
     dispatch(getActiveUserAction())
-    dispatch(getNumberOfNewMessagesAction())
   }, [dispatch])
 
   return isLoadingUser ? <Preloader fullscreen={true}/> : (
