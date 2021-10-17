@@ -153,7 +153,8 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(1),
     borderRadius: '50%',
     position: 'relative',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginLeft: theme.spacing(2)
   },
 
   removed: {
@@ -174,6 +175,12 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     position: 'relative'
+  },
+
+  nameVideo: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
   }
 
 }))

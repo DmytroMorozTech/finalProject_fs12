@@ -6,8 +6,9 @@ server:
     include-stacktrace: on_trace_param
 spring:
   liquibase:
-    enabled: true
     change-log: classpath:/db/changelog/master.yaml
+    enabled: true
+    default-schema: public
   profiles:
     active: "local"
   servlet:
