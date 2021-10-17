@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -103,12 +103,15 @@ public class PostService extends GeneralService<Post> {
       .collect(Collectors.toList());
 
     List<Post> listOfBookmarkedPosts = findAllById(postsIds);
-    long totalPosts = listOfBookmarkedPosts.size();
+
+    List<Post> sortedBookmarkedPosts = listOfBookmarkedPosts.stream()
+      .sorted(Comparator.comparing(Post::getCreatedDate).reversed()).collect(Collectors.toList());
+    long totalPosts = sortedBookmarkedPosts.size();
 
     int maxArrIndex = (int) totalPosts;
     int startIndex = pageNumber * pageSize;
     int endIndex = Math.min((startIndex + pageSize), maxArrIndex);
-    return new PageImpl<>(listOfBookmarkedPosts.subList(startIndex, endIndex), pageRequest, totalPosts);
+    return new PageImpl<>(sortedBookmarkedPosts.subList(startIndex, endIndex), pageRequest, totalPosts);
   }
 
   public List<Post> getAllPostsForActiveUser() {

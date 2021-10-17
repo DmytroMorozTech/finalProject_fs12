@@ -4,7 +4,7 @@ import com.danit.fs12.controller.views.UserViews;
 import com.danit.fs12.entity.user.User;
 import com.danit.fs12.entity.user.UserRs;
 import com.danit.fs12.facade.UserFacade;
-import com.danit.fs12.service.MediaServiceCloudinaryImpl;
+import com.danit.fs12.service.MediaServiceInterface;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/media")
 public class MediaController {
-  private final MediaServiceCloudinaryImpl mediaService;
+  private final MediaServiceInterface mediaService;
   private final UserFacade userFacade;
 
   @JsonView(UserViews.Profile.class)

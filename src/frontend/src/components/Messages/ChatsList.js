@@ -2,8 +2,12 @@ import React, { useEffect } from 'react'
 import Style from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import {allMessages, chatMessages} from '../../redux/Message/messageSelector'
-import { getChatMessagesAction } from '../../redux/Message/messageActions'
+import {
+  getChatMessagesAction,
+  setAllChatMessagesIsViewedAction
+} from '../../redux/Message/messageActions'
 import Image from '../../shared/Image/Image'
+import clsx from 'clsx'
 
 function ChatsList (props) {
   const { user, chatId, activeUserId } = props
@@ -30,6 +34,11 @@ function ChatsList (props) {
 
   function getMessageSentTime () {
     return allChatMessages && getDateTitle(allChatMessages[chatMessagesLength].createdDate)
+  }
+
+  function getIsMessageViewed () {
+    return (allChatMessages && allChatMessages[chatMessagesLength].userId !== activeUserId) &&
+      !allChatMessages[chatMessagesLength].isViewed
   }
 
   const getDateTitle = (time) => {
@@ -81,7 +90,8 @@ function ChatsList (props) {
     <div>
       <ul className={classes.containerConversationsList}>
         <li className={classes.containerConvoItem}>
-          <div className={classes.dFlex}>
+          <div className={clsx(classes.dFlex, getIsMessageViewed() && classes.newMessage)}
+            onClick={() => dispatch(setAllChatMessagesIsViewedAction(chatId))}>
             <div className={classes.selectableEntity}>
               <div className={classes.absolut}>
                 <Image

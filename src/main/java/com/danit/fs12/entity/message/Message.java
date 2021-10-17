@@ -44,4 +44,6 @@ public class Message extends AbstractEntity {
     return user.getId();
   }
 
+  private Boolean isViewed;
+
 }
