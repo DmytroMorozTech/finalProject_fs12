@@ -7,10 +7,9 @@ import SmsRoundedIcon from '@material-ui/icons/SmsRounded'
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded'
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded'
 import React from 'react'
-import { Hidden } from '@material-ui/core'
-import {useDispatch, useSelector} from 'react-redux'
-import {activeUserSelector} from '../../../redux/User/userSelector'
-import {getNumberOfNewMessagesAction} from '../../../redux/Message/messageActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { activeUserSelector } from '../../../redux/User/userSelector'
+import { getNumberOfNewMessagesAction } from '../../../redux/Message/messageActions'
 
 function Navbar () {
   const activeUser = useSelector(activeUserSelector)
@@ -32,9 +31,6 @@ function Navbar () {
       {items.map(({ Icon, ...rest }, i) => (
         <NavbarItem key={i} Icon={Icon} {...rest} />
       ))}
-      <Hidden mdDown>
-        <span className={classes.margin}> </span>
-      </Hidden>
     </div>
   )
 }

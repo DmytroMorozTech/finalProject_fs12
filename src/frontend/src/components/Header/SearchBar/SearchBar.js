@@ -1,13 +1,15 @@
-import React, {useCallback, useState} from 'react'
+import React, { useCallback, useState } from 'react'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded'
 import styles from './styles'
-import {Hidden} from '@material-ui/core'
 import http from '../../../services/httpService'
 import _ from 'lodash'
 import clsx from 'clsx'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Image from '../../../shared/Image/Image'
+import Typography from '@material-ui/core/Typography'
 
-function SearchBar () {
+function SearchBar (props) {
+  const {handleCloseSearchBar, isHandleClose} = props
   const classes = styles()
   const [inputValue, setInputValue] = useState('')
   const [foundUsers, setFoundUsers] = useState(null)
@@ -41,47 +43,49 @@ function SearchBar () {
         })
     }, 1000),
     []
-
   )
+
   return (
     <div className={classes.searchBarContainer}>
 
-      <Hidden smDown>
-        <div className={classes.headerSearch}>
-          <SearchRoundedIcon fontSize="inherit"/>
-          <input
-            placeholder="Search for people"
-            onChange={handleChange}
-            value={inputValue}
-            onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
-          />
-        </div>
-      </Hidden>
+      <div className={classes.headerSearch}>
+        <SearchRoundedIcon fontSize="inherit"/>
+        <input
+          placeholder="Search for people"
+          onChange={handleChange}
+          value={inputValue}
+          onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
+        />
+      </div>
 
-      {foundUsers && showDropDown &&
-      (
-        <div className={clsx(classes.searchDropDownWrapper, inputValue.length === 0 ? classes.hidden : '')} >
-          {foundUsers.map((user, index) =>
-            (<Link
+      {foundUsers && showDropDown && (
+        <div
+          className={clsx(classes.searchDropDownWrapper, inputValue.length === 0 ? classes.hidden : '')}
+          onClick={isHandleClose ? handleCloseSearchBar : null}
+        >
+          {foundUsers.map((user) =>
+            (<Link key={user.id}
               to={`/profiles/${user.id}`}
               className={classes.link}
-              onClick={onLinkClickHandler}
-            >
-              <div
-                key={index}
-                className={classes.dropDownItem}
-              >
-                <div className={classes.searchIcon}>
-                  <SearchRoundedIcon fontSize="medium"/>
-                </div>
+              onClick={onLinkClickHandler}>
 
-                {user.fullName}
+              <div className={classes.dropDownItem}>
+                <div className={classes.dropDownUser}>
+                  <Image
+                    imageUrl={user.avatarPublicId}
+                    alt={'user avatar'}
+                    type={'smallAvatar'}
+                    className={classes.smallAvatar}
+                  />
+                  <Typography variant='h5'>{user.fullName}</Typography>
+                </div>
+                <hr className={classes.line}/>
               </div>
+
             </Link>
             ))}
         </div>
-      )
-      }
+      )}
     </div>
   )
 }
