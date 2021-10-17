@@ -141,8 +141,46 @@ export default makeStyles((theme) => ({
     cursor: 'pointer'
   },
 
+  crossForVideoNotification: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    fontSize: theme.typography.icons.medium.fontSize,
+    color: theme.palette.common.white,
+    backgroundColor: 'rgba(0,0,0,.5)',
+    padding: theme.spacing(1),
+    borderRadius: '50%',
+    position: 'relative',
+    cursor: 'pointer',
+    marginLeft: theme.spacing(2)
+  },
+
   removed: {
     display: 'none'
+  },
+
+  preloader: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    height: '35vh'
+  },
+
+  videoWasChosenNotification: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'relative'
+  },
+
+  nameVideo: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
   }
 
 }))

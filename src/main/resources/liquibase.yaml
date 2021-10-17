@@ -1,12 +1,12 @@
 # production db
-url: jdbc:postgresql://tai.db.elephantsql.com/
-username: zmowlhvq
-password: vLkHFB0cCL0wnzcSVUnX1vmg2h6Xv_dA
+url: jdbc:postgresql://aa1ir9nsr6abqxt.ch9cmgj0b2qn.eu-central-1.rds.amazonaws.com:5432/ebdb
+username: linkedinDB
+password: bed1ven-aqg5GVW0wrb
 
 # development db
-referenceUrl: jdbc:h2:mem:linkedin
-referenceUsername: sa
-referencePassword:
+referenceUrl: jdbc:postgresql://localhost:5432/linkedin
+referenceUsername: postgres
+referencePassword: password
 
 # for working. CURRENT list of all deltas
 changeLogFile: src/main/resources/db/changelog/master.yaml
@@ -16,3 +16,4 @@ outputChangeLogFile: src/main/resources/db/changelog/master0.yaml
 
 # for difference
 diffChangeLogFile: src/main/resources/db/changelog/changes/diff.yaml
+

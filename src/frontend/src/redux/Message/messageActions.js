@@ -94,3 +94,25 @@ export const filterChatsAction = (activeUserId, text) => (dispatch) => {
 export const isTemporaryChatOpenAction = (status) => (dispatch) => {
   dispatch({type: actions.TEMPORARY_CHAT_STATUS, payload: status})
 }
+
+export const setAllChatMessagesIsViewedAction = (chatId) => (dispatch) => {
+  return http
+    .put(`../../api/messages/all_viewed/${chatId}`)
+    .then(() => {
+      dispatch(getChatMessagesAction(chatId))
+    })
+    .then(() => {
+      dispatch(getNumberOfNewMessagesAction())
+    })
+}
+
+export const getNumberOfNewMessagesAction = () => (dispatch) => {
+  return http
+    .get('../../api/messages/new_number')
+    .then(res => {
+      const newChats = res.data
+      dispatch({
+        type: actions.NUMBER_OF_NEW_MESSAGES, payload: newChats
+      })
+    })
+}

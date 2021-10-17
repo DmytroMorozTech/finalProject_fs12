@@ -2,13 +2,14 @@ import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   card: {
-    width: 500,
-    height: 400,
+    width: '100%',
+    maxWidth: 500,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '2%'
+    borderRadius: theme.shape.medium,
+    paddingBottom: theme.spacing(3)
   },
 
   header: {

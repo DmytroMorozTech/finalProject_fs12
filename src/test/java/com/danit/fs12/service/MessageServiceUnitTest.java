@@ -83,6 +83,7 @@ public class MessageServiceUnitTest {
 
         Message message = new Message();
         message.setText(text1);
+        message.setIsViewed(false);
 
         when(userService.getActiveUser()).thenReturn(user1);
         when(userService.getActiveUser().getId()).thenReturn(userId);

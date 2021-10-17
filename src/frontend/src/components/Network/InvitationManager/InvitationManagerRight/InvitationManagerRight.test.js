@@ -13,10 +13,6 @@ describe('should render InvitationManagerRight component', () => {
     component = setUp()
   })
 
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
-
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })

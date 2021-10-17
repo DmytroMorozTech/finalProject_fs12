@@ -17,7 +17,11 @@ export default makeStyles((theme) => ({
   mainText: {
     fontSize: theme.typography.h1.fontSize,
     lineHeight: theme.typography.h3.lineHeight,
-    margin: 0
+    margin: 0,
+    textAlign: 'center',
+    '@media screen and (max-width: 640px)': {
+      fontSize: theme.typography.sh1.fontSize
+    }
   },
   subText: {
     fontSize: theme.typography.h5.fontSize
@@ -71,23 +75,34 @@ export default makeStyles((theme) => ({
 
   spamText: {
     fontSize: theme.typography.h5.fontSize,
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[500],
+    textAlign: 'center'
   },
 
   firstForgotPage: {
     width: 450,
-    height: 400
+    height: 400,
+    '@media screen and (max-width: 640px)': {
+      width: '90vw'
+    }
   },
 
   secondForgotPage: {
     width: 550,
-    height: 450
+    height: 450,
+    '@media screen and (max-width: 640px)': {
+      width: '90vw',
+      height: '55vh'
+    }
   },
 
   mainTextSecond: {
     width: '100%',
     fontSize: theme.typography.sh1.fontSize,
-    textAlign: 'center'
+    textAlign: 'center',
+    '@media screen and (max-width: 640px)': {
+      fontSize: theme.typography.h2.fontSize
+    }
   },
 
   signInLineLinkChange: {
@@ -117,11 +132,16 @@ export default makeStyles((theme) => ({
   mainTextWrapperSecond: {
     width: '100%',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media screen and (max-width: 640px)': {
+      flexDirection: 'column',
+      fontSize: theme.typography.h2.fontSize
+    }
   },
 
   subTextSecond: {
-    fontSize: theme.typography.h5.fontSize
+    fontSize: theme.typography.h5.fontSize,
+    textAlign: 'center'
   },
 
   hideEmail: {
@@ -159,12 +179,18 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     '&:visited': {
       color: '#0a66c2'
+    },
+    '@media screen and (max-width: 640px)': {
+      textAlign: 'center'
     }
   },
 
   thirdForgotPage: {
     width: 470,
-    height: 500
+    height: 500,
+    '@media screen and (max-width: 640px)': {
+      width: '90vw'
+    }
   },
 
   popoverHeader: {
@@ -197,7 +223,8 @@ export default makeStyles((theme) => ({
   },
 
   mainTextNewPassword: {
-    fontSize: theme.typography.sh1.fontSize
+    fontSize: theme.typography.sh1.fontSize,
+    textAlign: 'center'
   }
 
 }))

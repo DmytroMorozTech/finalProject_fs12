@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import toggleModalAction from '../../../../redux/Modal/modalActions'
 import PublicIcon from '@material-ui/icons/Public'
 import InputBase from '@material-ui/core/InputBase'
 import Typography from '@material-ui/core/Typography'
@@ -20,6 +19,7 @@ import { toast } from 'react-toastify'
 import Image from '../../../../shared/Image/Image'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
+import Preloader from '../../../../shared/Preloader/Preloader'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -52,34 +52,55 @@ const AddNewPost = () => {
   const dispatch = useDispatch()
   const activeUser = useSelector(activeUserSelector)
 
-  const [photoIsChosen, setPhotoIsChosen] = useState(false)
+  const [imageIsChosen, setImageIsChosen] = useState(false)
   const [videoIsChosen, setVideoIsChosen] = useState(false)
   const [selectedImageFile, setSelectedImageFile] = useState(null)
   const [selectedVideoFile, setSelectedVideoFile] = useState(null)
-  const [imgWasRemoved, setImgWasRemoved] = useState(null)
-  // const [imgIsUploading, setImgIsUploading] = useState(false)
+  const [videoFileName, setVideoFileName] = useState('')
+  const [postIsBeingUploaded, setPostIsBeingUploaded] = useState(false)
 
   const onPostSubmitHandler = () => {
+    setPostIsBeingUploaded(true)
     dispatch(createNewPostAction({
       text: postInputText,
       image: selectedImageFile,
       video: selectedVideoFile
     }))
-
-    dispatch(toggleModalAction())
   }
 
   const handleCancelImgSelection = () => {
-    setImgWasRemoved(true)
-    setPhotoIsChosen(false)
+    setImageIsChosen(false)
+    setSelectedImageFile(null)
+  }
+
+  const handleCancelVideoSelection = () => {
+    setVideoIsChosen(false)
+    setSelectedVideoFile(null)
+    setVideoFileName('')
   }
 
   const photoPreviewComponent = () => (
-    <div className={clsx(classes.previewImgWrapper, imgWasRemoved ? classes.removed : '')}>
+    <div className={clsx(classes.previewImgWrapper, !imageIsChosen ? classes.removed : '')}>
       <div className={classes.cross} onClick={handleCancelImgSelection}>
         <CloseIcon fontSize="inherit"/>
       </div>
       <img className={classes.previewImg} alt="preview" src={URL.createObjectURL(selectedImageFile)}/>
+    </div>
+  )
+
+  const videoWasChosenNotification = () => (
+    <div className={classes.videoWasChosenNotification}>
+      <div className={classes.nameVideo}>
+        <Typography variant="h5" style={{ maxWidth: 'calc(100% - 50px)' }}>
+        You have attached a video file with name:
+        </Typography>
+        <Typography variant="h5" style={{ maxWidth: 'calc(100% - 50px)' }}>
+          {videoFileName}
+        </Typography>
+      </div>
+      <span className={classes.crossForVideoNotification} onClick={handleCancelVideoSelection}>
+        <CloseIcon fontSize="inherit"/>
+      </span>
     </div>
   )
 
@@ -116,128 +137,148 @@ const AddNewPost = () => {
         Create a post
       </div>
       <hr className={classes.horizontalLine}/>
-      <DialogContent>
-        <div className={classes.userInfo}>
-          <div>
-            <Image
-              imageUrl={activeUser.avatarPublicId}
-              alt={'user avatar'}
-              className={classes.userAvatar}
-              type={'smallAvatar'}
-            />
-          </div>
-          <div className={classes.buttonGroup}>
-            <Typography variant="h5">
-              {activeUser.fullName}
-            </Typography>
-            <button className={classes.sharePost}>
-              <div className={classes.worldIcon}>
-                <PublicIcon fontSize="inherit"/>
-              </div>
-              <Typography variant="h4">
-                Anyone
+
+      {!postIsBeingUploaded &&
+      <>
+        <DialogContent>
+          <div className={classes.userInfo}>
+            <div>
+              <Image
+                imageUrl={activeUser.avatarPublicId}
+                alt={'user avatar'}
+                className={classes.userAvatar}
+                type={'smallAvatar'}
+              />
+            </div>
+            <div className={classes.buttonGroup}>
+              <Typography variant="h5">
+                {activeUser.fullName}
               </Typography>
-            </button>
+              <button className={classes.sharePost}>
+                <div className={classes.worldIcon}>
+                  <PublicIcon fontSize="inherit"/>
+                </div>
+                <Typography variant="h4">
+                  Anyone
+                </Typography>
+              </button>
+            </div>
+          </div>
+          <InputBase
+            placeholder="What do you want to talk about?"
+            fullWidth={true}
+            multiline={true}
+            minRows={7}
+            value={postInputText}
+            onChange={handlePostInputChange}
+            className={classes.editor}
+            onKeyDown={handleEnterPressed}
+          />
+
+          {imageIsChosen ? photoPreviewComponent() : null}
+
+          {videoIsChosen && videoWasChosenNotification()}
+        </DialogContent>
+
+        <div
+          className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
+          <div className={classes.validateMessage}>
+            <RemoveCircleIcon fontSize="inherit"/>
+            <div className={classes.validateInfo}>You have exceeded the maximum character limit.</div>
+          </div>
+          <div className={classes.validateInfo}>
+            {validateCount}
           </div>
         </div>
-        <InputBase
-          placeholder="What do you want to talk about?"
-          fullWidth={true}
-          multiline={true}
-          minRows={7}
-          value={postInputText}
-          onChange={handlePostInputChange}
-          className={classes.editor}
-          onKeyDown={handleEnterPressed}
-        />
-        {photoIsChosen ? photoPreviewComponent() : null}
-      </DialogContent>
-      <div
-        className={postInputText.length > numberCharacterToShowValidate ? classes.showedValidateMessage : classes.hidden}>
-        <div className={classes.validateMessage}>
-          <RemoveCircleIcon fontSize="inherit"/>
-          <div className={classes.validateInfo}>You have exceeded the maximum character limit.</div>
-        </div>
-        <div className={classes.validateInfo}>
-          {validateCount}
-        </div>
-      </div>
-      <DialogActions>
-        <div className={classes.shareButtons}>
+        <DialogActions>
+          <div className={classes.shareButtons}>
 
-          <LightTooltip title={`Add a photo`} placement={'top'}>
-            <div className={classes.shareButton}>
-              <label>
-                <input
-                  type="file"
-                  id="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  disabled={videoIsChosen}
-                  onChange={(event) => {
-                    const file = event.target.files[0]
-                    if (file && file.size > 10485760) {
-                      toast.error('The size of image should not exceed 10MB')
-                      return
-                    }
+            <LightTooltip title={`Add a photo`} placement={'top'}>
+              <div className={classes.shareButton}>
+                <label>
+                  <input
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    disabled={videoIsChosen}
+                    onChange={(event) => {
+                      const file = event.target.files[0]
+                      if (file && file.size > 10485760) {
+                        toast.error('The size of image should not exceed 10MB')
+                        return
+                      }
 
-                    if (file) {
-                      setSelectedImageFile(file)
-                      setPhotoIsChosen(true)
-                      setImgWasRemoved(false)
-                    }
-                  }}
+                      if (file) {
+                        handleCancelVideoSelection()
+                        handleCancelImgSelection()
+                        setSelectedImageFile(file)
+                        setImageIsChosen(true)
+                      }
+                    }}
 
-                />
-                <PhotoSizeSelectActualIcon className={classes.icons}/>
-              </label>
-            </div>
-          </LightTooltip>
+                  />
+                  <PhotoSizeSelectActualIcon className={classes.icons}/>
+                </label>
+              </div>
+            </LightTooltip>
 
-          <LightTooltip title={`Add a video`} placement={'top'}>
-            <div className={classes.shareButton}>
-              <label>
-                <input
-                  type="file"
-                  id="file"
-                  accept="video/*"
-                  style={{ display: 'none' }}
-                  disabled={photoIsChosen}
-                  onChange={(event) => {
-                    const file = event.target.files[0]
-                    console.log('Video file was chosen')
-                    console.log(file)
-                    if (file && file.size > 52428800) {
-                      toast.error('The size of video should not exceed 50MB')
-                      return
-                    }
+            <LightTooltip title={`Add a video`} placement={'top'}>
+              <div className={classes.shareButton}>
+                <label>
+                  <input
+                    type="file"
+                    id="file"
+                    accept="video/*"
+                    style={{ display: 'none' }}
+                    disabled={imageIsChosen}
+                    onChange={(event) => {
+                      const file = event.target.files[0]
+                      // console.log('Video file was chosen')
+                      // console.log(file)
+                      if (file && file.size > 52428800) {
+                        toast.error('The size of video should not exceed 50MB')
+                        return
+                      }
 
-                    if (file) {
-                      setSelectedVideoFile(file)
-                      setVideoIsChosen(true)
+                      if (file) {
+                        handleCancelVideoSelection()
+                        handleCancelImgSelection()
+                        setSelectedVideoFile(file)
+                        setVideoIsChosen(true)
+                        setVideoFileName(file.name)
+                      }
+                    }}
+                  />
+                  <YouTubeIcon className={classes.icons}/>
+                </label>
+              </div>
+            </LightTooltip>
 
-                      console.log(`selectedVideoFile:`)
-                      console.log(selectedVideoFile)
-                      console.log(`videoIsChosen: ${videoIsChosen}`)
-                      // setVideoWasRemoved(false)
-                      // TODO Dmytro Moroz will have to implement it in the case and he manages to create a video preview
-                    }
-                  }}
+            <LightTooltip title={`Add a document`} placement={'top'}>
+              <div className={classes.shareButton}>
+                <EventNoteIcon className={classes.icons}/>
+              </div>
+            </LightTooltip>
 
-                />
-                <YouTubeIcon className={classes.icons}/>
-              </label>
-            </div>
-          </LightTooltip>
-          <LightTooltip title={`Add a document`} placement={'top'}>
-            <div className={classes.shareButton}>
-              <EventNoteIcon className={classes.icons}/>
-            </div>
-          </LightTooltip>
-          <hr className={classes.verticalLine}/>
-        </div>
-        <SharedButton title="Post" disabled={btnIsDisabled} onClick={btnIsDisabled ? '' : onPostSubmitHandler}/>
-      </DialogActions>
+            <hr className={classes.verticalLine}/>
+          </div>
+
+          <SharedButton title="Post" disabled={btnIsDisabled} onClick={btnIsDisabled ? null : onPostSubmitHandler}/>
+
+        </DialogActions>
+
+      </>
+      }
+
+      {postIsBeingUploaded &&
+      <div className={classes.preloader}>
+        <Typography variant="h2">
+          Your post is being uploaded...
+        </Typography>
+        <div><Preloader/></div>
+
+      </div>}
     </div>
   )
 }

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  datasource:
+    url: jdbc:postgresql://aa1ir9nsr6abqxt.ch9cmgj0b2qn.eu-central-1.rds.amazonaws.com:5432/ebdb
+    username: linkedinDB
+    password: bed1ven-aqg5GVW0wrb
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+info:
+  cloudinary:
+    cloud-name: "dan-insta-step"
+    api-key: "615942255258686"
+    api-secret: "HnYwqnw7fBFrk9yn16CLt7r_s-I"
+
+
+
+

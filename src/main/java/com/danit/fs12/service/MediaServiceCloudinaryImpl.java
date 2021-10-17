@@ -37,15 +37,20 @@ public class MediaServiceCloudinaryImpl implements MediaServiceInterface {
 
     String newAvatarPublicId = (String) uploadResult.get("public_id");
 
-    Map<String, String> uploadOptions = new HashMap<>() {
-      {
-        put("invalidate", "true");
-      }
-    };
 
-    if (!currentAvatarPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
-    }
+    /**
+     * The code snippet below was commented temporarily, because we don't want images in Cloudinary
+     * to be deleted and replaced with new versions when user uploads a new avatar img
+     */
+    //    Map<String, String> uploadOptions = new HashMap<>() {
+    //      {
+    //        put("invalidate", "true");
+    //      }
+    //    };
+    //
+    //    if (!currentAvatarPublicId.isEmpty()) {
+    //      cloudinary.uploader().destroy(currentAvatarPublicId, uploadOptions);
+    //    }
 
     activeUser.setAvatarPublicId(newAvatarPublicId);
     return userService.save(activeUser);
@@ -78,15 +83,19 @@ public class MediaServiceCloudinaryImpl implements MediaServiceInterface {
     );
     String newProfileBgPublicId = (String) uploadResult.get("public_id");
 
-    if (!currentProfileBgPublicId.isEmpty()) {
-      cloudinary.uploader().destroy(
-        currentProfileBgPublicId,
-        new HashMap<>() {
-          {
-            put("invalidate", "true");
-          }
-        });
-    }
+    /**
+     * The code snippet below was commented temporarily, because we don't want images in Cloudinary
+     * to be deleted and replaced with new versions when user uploads a new profile background img
+     */
+    //    if (!currentProfileBgPublicId.isEmpty()) {
+    //      cloudinary.uploader().destroy(
+    //        currentProfileBgPublicId,
+    //        new HashMap<>() {
+    //          {
+    //            put("invalidate", "true");
+    //          }
+    //        });
+    //    }
 
     activeUser.setProfileBgPublicId(newProfileBgPublicId);
     return userService.save(activeUser);
