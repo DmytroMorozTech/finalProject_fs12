@@ -53,7 +53,7 @@ const RegisterGooglePage = () => {
           <span className={classes.userName}>{activeUser.fullName}</span>
           <span className={classes.userName}>{activeUser.email}</span>
         </div>
-        <Link to="/" className={classes.notYouLineLink} onClick={() => dispatch(signOutAction())}>Not you?</Link>
+        <Link id='signOut' to="/" className={classes.notYouLineLink} onClick={() => dispatch(signOutAction())}>Not you?</Link>
       </div>
       <Formik
         initialValues={{
@@ -95,7 +95,7 @@ const RegisterGooglePage = () => {
       </Formik>
       <div className={classes.signInLineWrapper}>
         <p>Already on LinkedIn?</p>
-        <Link to="/" className={classes.signInLineLink} onClick={() => dispatch(signOutAction())}>Sign in</Link>
+        <Link id='signIn' to="/" className={classes.signInLineLink} onClick={() => dispatch(signOutAction())}>Sign in</Link>
       </div>
     </Paper>
   )

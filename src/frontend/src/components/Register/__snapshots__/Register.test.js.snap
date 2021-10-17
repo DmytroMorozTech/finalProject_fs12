@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Register component with RegisterGooglePage to match snapshot 1`] = `
+<div>
+  <div>
+    <LinkedinLogo />
+    <h1>
+      Make the most of your professional life
+    </h1>
+  </div>
+  <div>
+    <RegisterGooglePage />
+  </div>
+</div>
+`;

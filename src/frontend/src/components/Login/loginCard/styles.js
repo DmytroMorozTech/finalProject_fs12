@@ -2,17 +2,14 @@ import {makeStyles} from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   card: {
-    width: 500,
-    height: 400,
+    width: '100%',
+    maxWidth: 500,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '2%',
-    '@media screen and (max-width: 640px)': {
-      width: '90vw',
-      height: '50vh'
-    }
+    borderRadius: theme.shape.medium,
+    paddingBottom: theme.spacing(3)
   },
 
   header: {
@@ -42,17 +39,12 @@ export default makeStyles((theme) => ({
   signInLine: {
     fontSize: theme.typography.h1.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
-    lineHeight: 0,
-    textAlign: 'center'
+    lineHeight: 0
   },
 
   signInTagline: {
     fontSize: theme.typography.h3.fontSize,
-    lineHeight: 0,
-    textAlign: 'center',
-    '@media screen and (max-width: 640px)': {
-      lineHeight: 1
-    }
+    lineHeight: 0
   },
 
   forgotPasswordLink: {
