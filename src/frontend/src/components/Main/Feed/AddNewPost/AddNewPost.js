@@ -90,9 +90,14 @@ const AddNewPost = () => {
 
   const videoWasChosenNotification = () => (
     <div className={classes.videoWasChosenNotification}>
-      <Typography variant="h5" style={{ maxWidth: 'calc(100% - 50px)' }}>
-        {`You have attached a video file with name:  ${videoFileName}`}
-      </Typography>
+      <div className={classes.nameVideo}>
+        <Typography variant="h5" style={{ maxWidth: 'calc(100% - 50px)' }}>
+        You have attached a video file with name:
+        </Typography>
+        <Typography variant="h5" style={{ maxWidth: 'calc(100% - 50px)' }}>
+          {videoFileName}
+        </Typography>
+      </div>
       <span className={classes.crossForVideoNotification} onClick={handleCancelVideoSelection}>
         <CloseIcon fontSize="inherit"/>
       </span>
