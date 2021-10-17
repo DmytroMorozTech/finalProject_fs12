@@ -9,9 +9,5 @@ databaseChangeLog:
       file: db/changelog/changes/004.sql
   - include:
       file: db/changelog/changes/005.sql
-#  - include:
-#      file: db/changelog/changes/006.sql
   - include:
-      file: db/changelog/changes/006.yml
-  - include:
-      file: db/changelog/changes/007.yml
+      file: db/changelog/changes/006.sql

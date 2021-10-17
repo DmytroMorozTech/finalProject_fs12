@@ -4,7 +4,7 @@ username: linkedinDB
 password: bed1ven-aqg5GVW0wrb
 
 # development db
-referenceUrl: jdbc:postgresql://localhost:5432/test
+referenceUrl: jdbc:postgresql://localhost:5432/linkedin
 referenceUsername: postgres
 referencePassword: password
 

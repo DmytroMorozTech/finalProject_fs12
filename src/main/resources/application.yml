@@ -10,7 +10,7 @@ spring:
     enabled: true
     default-schema: public
   profiles:
-    active: "dev"
+    active: "local"
   servlet:
     multipart:
       max-file-size: 50000KB
