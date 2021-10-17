@@ -16,12 +16,14 @@ export default makeStyles(theme => ({
   registerPage: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%'
   },
   registerHeader: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     flexDirection: 'column',
     alignItems: 'center'
   },

@@ -11,7 +11,6 @@ const Register = (props) => {
     <div className={classes.register}>
       <div className={classes.registerHeader}>
         <LinkedinLogo/>
-        <h1 className={classes.registerHeaderText}>Make the most of your professional life</h1>
       </div>
       <div className={classes.registerPage}>
         {isByGoogle ? <RegisterGooglePage/> : <RegisterPage/>}
