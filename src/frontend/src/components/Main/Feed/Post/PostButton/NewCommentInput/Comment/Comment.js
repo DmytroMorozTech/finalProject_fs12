@@ -67,6 +67,7 @@ function Comment (props) {
         </div>
         <div className={classes.commentLikes}>
           <span
+            id='commentLikeButton'
             className={clsx(classes.commentLike, isLikedByActiveUser ? classes.commentLiked : classes.commentNotLiked)}
             onClick={handleCommentLike}>
             Like
@@ -74,7 +75,10 @@ function Comment (props) {
           <span
             className={clsx(classes.commentRow, numberOfLikes === 0 && classes.hiddenQuantityOfCommentsLike)}>
             <SmallDot/>
-            <span className={classes.quantityOfCommentsLike} onClick={handleModalWhoLikedComment}>
+            <span
+              id='toggleModal'
+              className={classes.quantityOfCommentsLike}
+              onClick={handleModalWhoLikedComment}>
               <LikeMiniIcon/>
               {numberOfLikes}
             </span>
