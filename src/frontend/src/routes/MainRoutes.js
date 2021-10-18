@@ -31,6 +31,7 @@ const MainRoutes = () => {
   useEffect(() => {
     dispatch(getNumberOfNewMessagesAction())
   }, [dispatch])
+
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
@@ -54,7 +55,6 @@ const MainRoutes = () => {
       <ProtectedRoutes exact path="/notifications" render={() => <Notifications/>}/>
       <ProtectedRoutes exact path="/profiles/:id" component={ProfilePage}/>
       <ProtectedRoutes exact path="/organization" component={OrganizationPage}/>
-      {/* <ProtectedRoutes exact path="/organization/:id" component={OrganizationPage}/> */}
       <ProtectedRoutes exact path="/bookmarked" render={() => <BookmarkedPosts/>}/>
       <ProtectedRoutes exact path="*" render={() => <Page404/>}/>
     </Switch>

@@ -12,13 +12,8 @@ export default makeStyles((theme) => ({
     borderBottom: theme.border.simple,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     height: theme.spacing(11),
-    '& > div': {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+    justifyContent: 'space-evenly'
   },
 
   headerLogoSearch: {
@@ -28,9 +23,9 @@ export default makeStyles((theme) => ({
   },
 
   headerLogo: {
+    display: 'flex',
     color: theme.palette.primary.main,
-    fontSize: theme.typography.icons.extraLarge.fontSize,
-    paddingTop: theme.spacing(3)
+    fontSize: theme.typography.icons.extraLarge.fontSize
   },
 
   headerSearch: {
@@ -83,7 +78,7 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.header.fontWeight
   },
   icon: {
-    width: theme.spacing(8),
+    width: theme.spacing(7),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

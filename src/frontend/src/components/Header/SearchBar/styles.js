@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
 
   searchBarContainer: {
-    position: 'relative'
+    position: 'relative',
+    width: '100%',
+    minWidth: '250px'
   },
 
   headerSearch: {
@@ -15,14 +17,12 @@ export default makeStyles((theme) => ({
     backgroundColor: 'rgba(220,230,241,0.5)',
     fontSize: theme.typography.icons.medium.fontSize,
     color: theme.palette.grey[800],
-    marginRight: theme.spacing(25),
     '& > input': {
       fontSize: theme.typography.h4.fontSize,
       fontWeight: theme.typography.h4.fontWeight,
       marginLeft: theme.spacing(1),
       border: 0,
       backgroundColor: 'transparent',
-      width: theme.spacing(50),
       '&:focus': {
         outline: 'none',
         '&:placeholder': {
@@ -72,28 +72,42 @@ export default makeStyles((theme) => ({
   searchDropDownWrapper: {
     width: '100%',
     position: 'absolute',
-    top: '40px',
+    top: '36px',
     left: 0
   },
 
   dropDownItem: {
     display: 'flex',
-    // flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: 'column',
     width: '100%',
-    backgroundColor: 'white',
-    height: 40,
+    backgroundColor: theme.palette.common.white,
     zIndex: 100,
-    fontSize: theme.typography.h4.fontSize,
-    borderRadius: theme.shape.extraSmall,
-    border: '1px solid gray',
     '&:hover': {
-      backgroundColor: 'lightgray',
+      backgroundColor: theme.palette.grey[200],
       cursor: 'pointer'
     }
   },
-  searchIcon: {
-    padding: theme.spacing(2)
+
+  dropDownUser: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: theme.spacing(1)
+  },
+
+  line: {
+    zIndex: 100,
+    width: '100%',
+    height: '0.5px',
+    border: '0',
+    margin: '0 auto',
+    backgroundColor: theme.palette.grey[300]
+  },
+
+  smallAvatar: {
+    width: theme.avatar.small,
+    borderRadius: '50%',
+    marginRight: theme.spacing(2)
   },
 
   hidden: {
@@ -101,8 +115,7 @@ export default makeStyles((theme) => ({
   },
 
   link: {
-    textDecoration: 'none',
-    color: 'black'
+    textDecoration: 'none'
   }
 
 }))
