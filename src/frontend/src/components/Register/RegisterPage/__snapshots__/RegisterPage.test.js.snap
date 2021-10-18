@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RegisterPage component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Paper))
+  className=""
+  elevation={3}
+>
+  <Formik
+    initialValues={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "password": "",
+      }
+    }
+    onSubmit={[Function]}
+    validationSchema={
+      ObjectSchema {
+        "_blacklist": ReferenceSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "_blacklistError": undefined,
+        "_excludedEdges": Array [],
+        "_nodes": Array [
+          "password",
+          "email",
+        ],
+        "_sortErrors": [Function],
+        "_typeError": [Function],
+        "_whitelist": ReferenceSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "_whitelistError": undefined,
+        "conditions": Array [],
+        "deps": Array [],
+        "exclusiveTests": Object {},
+        "fields": Object {
+          "email": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_mutate": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "email": false,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+          "password": StringSchema {
+            "_blacklist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_blacklistError": undefined,
+            "_mutate": undefined,
+            "_typeError": [Function],
+            "_whitelist": ReferenceSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_whitelistError": undefined,
+            "conditions": Array [],
+            "deps": Array [],
+            "exclusiveTests": Object {
+              "matches": false,
+              "required": true,
+            },
+            "spec": Object {
+              "abortEarly": true,
+              "nullable": false,
+              "presence": "required",
+              "recursive": true,
+              "strict": false,
+              "strip": false,
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "string",
+          },
+        },
+        "spec": Object {
+          "abortEarly": true,
+          "nullable": false,
+          "presence": "optional",
+          "recursive": true,
+          "strict": false,
+          "strip": false,
+        },
+        "tests": Array [],
+        "transforms": Array [
+          [Function],
+        ],
+        "type": "object",
+      }
+    }
+  >
+    <Component />
+  </Formik>
+  <div>
+    <section>
+      <div />
+      <p>
+        or
+      </p>
+      <div />
+    </section>
+    <div>
+      <button
+        id="googleBtn"
+        onClick={[Function]}
+      >
+        <Image
+          alt="job"
+          imageUrl="linkedin/general/niaqwol8ifep3qjapufb"
+        />
+        <span>
+          Join with Google
+        </span>
+      </button>
+    </div>
+  </div>
+  <div>
+    <p>
+      Already on LinkedIn?
+    </p>
+    <Link
+      to="/"
+    >
+      Sign in
+    </Link>
+  </div>
+</WithStyles(ForwardRef(Paper))>
+`;

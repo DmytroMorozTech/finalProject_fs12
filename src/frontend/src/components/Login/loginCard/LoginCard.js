@@ -1,14 +1,14 @@
-import React, {useRef} from 'react'
-import {Paper} from '@material-ui/core'
+import React, { useRef } from 'react'
+import { Paper, Typography } from '@material-ui/core'
 import styles from './styles'
 import TextField from '@material-ui/core/TextField'
 import SharedButton from '../../../shared/SharedButton/SharedButton'
-import {useHistory} from 'react-router'
+import { useHistory } from 'react-router'
 import http from '../../../services/httpService'
-import {useDispatch, useSelector} from 'react-redux'
-import {getActiveUserAction} from '../../../redux/User/userActions'
-import {toast} from 'react-toastify'
-import {activeUserSelector} from '../../../redux/User/userSelector'
+import { useDispatch, useSelector } from 'react-redux'
+import { getActiveUserAction } from '../../../redux/User/userActions'
+import { toast } from 'react-toastify'
+import { activeUserSelector } from '../../../redux/User/userSelector'
 import { Link, Redirect } from 'react-router-dom'
 
 const LoginCard = () => {
@@ -52,7 +52,9 @@ const LoginCard = () => {
     <Paper elevation={3} className={classes.card}>
       <div className={classes.signInLineWrapper}>
         <p className={classes.signInLine}>Sign in</p>
-        <p className={classes.signInTagline}>Stay updated on your professional world</p>
+        <Typography variant='h3'>
+          Stay updated on your professional world
+        </Typography>
       </div>
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
         <TextField
