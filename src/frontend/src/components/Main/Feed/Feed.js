@@ -12,7 +12,7 @@ import {activeUserSelector} from '../../../redux/User/userSelector'
 import Notification from '../../Notifications/NotificationsMain/Notification/Notification'
 import NoNotificationsAvailable from '../../Notifications/NotificationsMain/Notification/NoNotificationsAvailable'
 
-function Feed (props) {
+export function Feed (props) {
   const { type, loading = true, postsState, bookmarkedPostsState, notificationsState } = props
   const dispatch = useDispatch()
   const classes = styles()
