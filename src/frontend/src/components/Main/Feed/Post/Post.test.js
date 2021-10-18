@@ -52,7 +52,7 @@ describe('should render Post component', () => {
     component.find('div[id=\'like\']').simulate('click')
     expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
-  it('should toggle comment likes modal dispatch', () => {
+  it('should showCommentsSectionsHandler', () => {
     component.find('WithStyles(ForwardRef(Typography))[id=\'numberOfComments\']').simulate('click')
     expect.stringMatching('NewCommentInput')
   })
