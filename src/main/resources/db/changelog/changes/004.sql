@@ -1,32 +1,21 @@
-drop table if exists connections cascade;
-
-create table connections
-(
-    id            bigserial not null,
-    created_date  timestamp,
-    modified_date timestamp,
-    user_who_id   bigint,
-    user_whom_id  bigint,
-    primary key (id)
-);
-
-alter table connections
-    add constraint connections_user_whom_id_fk foreign key (user_whom_id) references users;
-alter table connections
-    add constraint connections_user_who_id_fk foreign key (user_who_id) references users;
-
-ALTER TABLE connections
-    ADD CONSTRAINT uq_connections UNIQUE (user_who_id, user_whom_id);
-
-INSERT INTO CONNECTIONS(created_date, modified_date, user_who_id, user_whom_id)
-VALUES (CURRENT_DATE, CURRENT_DATE, 7, 1),
-       (CURRENT_DATE, CURRENT_DATE, 1, 4),
-       (CURRENT_DATE, CURRENT_DATE, 2, 4),
-       (CURRENT_DATE, CURRENT_DATE, 2, 5),
-       (CURRENT_DATE, CURRENT_DATE, 2, 6),
-       (CURRENT_DATE, CURRENT_DATE, 3, 4),
-       (CURRENT_DATE, CURRENT_DATE, 3, 5),
-       (CURRENT_DATE, CURRENT_DATE, 3, 6),
-       (CURRENT_DATE, CURRENT_DATE, 8, 4),
-       (timestamp '2021-10-13 16:23:29.569125', timestamp '2021-10-13 16:23:29.569125', 5, 1);
-
+INSERT INTO FOLLOWERS (user_whom_id, user_who_id)
+VALUES (7, 1),
+       (1, 7),
+       (1, 4),
+       (4, 1),
+       (2, 4),
+       (4, 2),
+       (2, 5),
+       (5, 2),
+       (2, 6),
+       (6, 2),
+       (3, 4),
+       (4, 3),
+       (3, 5),
+       (5, 3),
+       (3, 6),
+       (6, 3),
+       (4, 8),
+       (8, 4),
+       (1, 5),
+       (5, 1);
