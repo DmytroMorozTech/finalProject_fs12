@@ -2,19 +2,39 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   registerPageCard: {
-    width: 500,
+    maxWidth: 500,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    borderRadius: '15px'
+  },
+
+  title: {
+    marginLeft: theme.spacing(5),
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.sh3.fontWeight,
+    lineHeight: 0
+  },
+
+  subtitle: {
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5)
+  },
+
+  registerBody: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: '15px'
+    alignItems: 'center'
   },
+
   form: {
     width: '90%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
+
   google: {
     width: '90%',
     display: 'flex',
@@ -120,10 +140,10 @@ export default makeStyles((theme) => ({
   },
 
   firstSignUpPage: {
-    height: 500
+    // height: 500
   },
 
   secondSignUpPage: {
-    height: 300
+    // height: 300
   }
 }))

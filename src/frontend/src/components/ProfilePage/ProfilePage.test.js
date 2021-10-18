@@ -23,6 +23,9 @@ describe('should render ProfilePage component', () => {
 
     component = setUp({match: {params: {userId}}})
   })
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })

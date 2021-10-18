@@ -17,24 +17,18 @@ export default makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    '@media screen and (max-width: 640px)': {
-      width: '90vw',
-      height: '50vh'
-    }
+    width: '100%'
   },
   registerHeader: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     flexDirection: 'column',
     alignItems: 'center'
   },
   registerHeaderText: {
     fontSize: theme.typography.h1.fontSize,
-    fontWeight: theme.typography.h4.fontWeight,
-    textAlign: 'center',
-    '@media screen and (max-width: 640px)': {
-      fontSize: theme.typography.sh1.fontSize
-    }
+    fontWeight: theme.typography.h4.fontWeight
   }
 }))

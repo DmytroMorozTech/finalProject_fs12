@@ -9,9 +9,10 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     border: theme.border.simple,
-    borderRadius: theme.shape.small,
+    borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
     padding: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     overflow: 'hidden'
   },
 
