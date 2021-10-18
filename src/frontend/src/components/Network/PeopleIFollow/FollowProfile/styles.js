@@ -3,13 +3,16 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
 
   followProfile: {
+    display: 'flex',
+    flexWrap: 'wrap',
     width: '20%',
-    minWidth: '115px',
+    minWidth: '149px',
     borderRight: theme.border.simple,
     borderBottom: theme.border.simple
   },
 
   userInfo: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -60,6 +63,7 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     fontSize: theme.typography.icons.medium.fontSize,
     color: theme.palette.grey[700],
+    width: '100%',
     '&:hover': {
       backgroundColor: 'rgba(112, 181, 249, 0.2)'
     }

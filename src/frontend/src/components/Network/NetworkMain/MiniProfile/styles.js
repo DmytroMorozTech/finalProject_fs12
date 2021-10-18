@@ -20,17 +20,14 @@ export default makeStyles((theme) => ({
 
   '@media screen and (max-width: 445px)': {
     smallScreen: {
-      width: '150px'
-    },
-
-    position: {
-      maxHeight: '40px',
-      overflow: 'hidden'
+      width: '150px',
+      height: '320px'
     }
   },
 
   '@media screen and (max-width: 385px)': {
     smallScreen: {
+      height: '280px',
       width: '118px'
     },
 
