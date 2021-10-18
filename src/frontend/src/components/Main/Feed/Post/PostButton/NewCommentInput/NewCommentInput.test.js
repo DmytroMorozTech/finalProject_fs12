@@ -3,7 +3,7 @@ import * as redux from 'react-redux'
 import React from 'react'
 import NewCommentInput from './NewCommentInput'
 
-const comments = [
+const comments = {5: [
   {
     id: 17,
     text: 'Comment no.17 goes here.',
@@ -32,7 +32,7 @@ const comments = [
     isLikedByActiveUser: false,
     numberOfLikes: 0
   }
-]
+]}
 
 jest.mock('./styles', () => () => ({}))
 
@@ -87,20 +87,20 @@ describe('should render NewCommentInput component', () => {
   })
   it('should work handle ctrl + enter pressed', () => {
     let wrapper = component.find('WithStyles(ForwardRef(InputBase))')
-    wrapper.simulate('onKeyDown', {keyCode: 13}, {keyCode: 17})
+    wrapper.simulate('keyDown', {key: 'Enter'}, {keyCode: 17})
     expect.stringContaining('\n')
   })
   it('should work handle enter pressed on empty input', () => {
     let wrapper = component.find('WithStyles(ForwardRef(InputBase))')
-    wrapper.simulate('onKeyDown', {keyCode: 13})
+    wrapper.simulate('keyDown', {key: 'Enter'})
     expect.not.stringContaining('\n')
   })
   it('should work handle ctrl + enter pressed on not empty input', () => {
     let wrapper = component.find('WithStyles(ForwardRef(InputBase))')
-    wrapper.simulate('onChange', {keyCode: 74})
-    wrapper.simulate('onChange', {keyCode: 83})
+    wrapper.simulate('keyDown', {key: 'j'})
+    wrapper.simulate('keyDown', {key: 's'})
     expect.stringContaining('js')
-    wrapper.simulate('onKeyDown', {keyCode: 13}, {keyCode: 17})
+    wrapper.simulate('keyDown', {key: 'Enter'}, {key: 'ctrlKey'})
     expect.stringContaining('')
   })
   it('should work map of commentsForPost', () => {

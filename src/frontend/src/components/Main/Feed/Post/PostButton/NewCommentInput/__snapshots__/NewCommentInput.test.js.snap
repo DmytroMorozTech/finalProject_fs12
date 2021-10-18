@@ -34,20 +34,59 @@ exports[`should render NewCommentInput component to match snapshot 1`] = `
           title="Post"
         />
         <div>
-          <div>
-            0
-          </div>
-          <div>
-            <span>
-              1250
-            </span>
-          </div>
+          0
+        </div>
+        <div>
+          <span>
+            1250
+          </span>
         </div>
       </div>
     </div>
   </div>
   <div>
-    <div />
+    <div>
+      <Comment
+        comment={
+          Object {
+            "createdDate": "2021-01-05T17:09:10.123111",
+            "id": 17,
+            "isLikedByActiveUser": false,
+            "lastModifiedDate": "2021-01-05T17:09:10.123111",
+            "numberOfLikes": 0,
+            "text": "Comment no.17 goes here.",
+            "user": Object {
+              "avatarPublicId": "linkedin/avatars/hj8sulgxxo5ywotggkcy",
+              "fullName": "Katherine McCarthy",
+              "id": 5,
+              "positionAndCompany": "HR-consultant at Amazon.com",
+            },
+          }
+        }
+        key="17"
+        postId={5}
+      />
+      <Comment
+        comment={
+          Object {
+            "createdDate": "2021-01-06T18:09:10.123112",
+            "id": 18,
+            "isLikedByActiveUser": false,
+            "lastModifiedDate": "2021-01-06T18:09:10.123112",
+            "numberOfLikes": 0,
+            "text": "Comment no.18 goes here.",
+            "user": Object {
+              "avatarPublicId": "linkedin/avatars/hj8sulgxxo5ywotggkcy",
+              "fullName": "Katherine McCarthy",
+              "id": 5,
+              "positionAndCompany": "HR-consultant at Amazon.com",
+            },
+          }
+        }
+        key="18"
+        postId={5}
+      />
+    </div>
   </div>
 </div>
 `;
