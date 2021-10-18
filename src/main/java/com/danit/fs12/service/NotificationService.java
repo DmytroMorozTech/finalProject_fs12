@@ -105,6 +105,7 @@ public class NotificationService extends GeneralService<Notification> {
     User postAuthor = userService.findEntityById(postAuthorId);
     List<Notification> allNotificationsAboutPostComments = postAuthor.getNotifications().stream()
       .filter(notification -> notification.getType() == NotificationType.NEW_COMMENTS_POST)
+      .filter(notification -> !notification.getIsViewed())
       .collect(Collectors.toList());
 
     Optional<Notification> notificationOpt = allNotificationsAboutPostComments.stream()

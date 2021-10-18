@@ -15,15 +15,11 @@ function Header () {
   const isModalOpen = useSelector(openModalSelector)
   const modal = isModalOpen ? <CustomizedDialogs/> : null
 
-  const [openSearchBar, setOpenSearchBar] = useState(false)
+  const [searchBarIsOpen, setSearchBarIsOpen] = useState(false)
 
-  const handleSearchBar = () => {
-    setOpenSearchBar(true)
-  }
+  const onSearchBarOpenHandler = () => setSearchBarIsOpen(true)
 
-  const handleCloseSearchBar = () => {
-    setOpenSearchBar(false)
-  }
+  const onSearchBarCloseHandler = () => setSearchBarIsOpen(false)
 
   return (
     <>
@@ -35,18 +31,20 @@ function Header () {
             </div>
           </Link>
 
+          {/* Searchbar for desktop version */}
           <Hidden smDown>
-            <SearchBar handleCloseSearchBar={handleCloseSearchBar} isHandleClose={false}/>
+            <SearchBar handleCloseSearchBar={onSearchBarCloseHandler} isHandleClose={false}/>
           </Hidden>
 
+          {/* Searchbar for mobile version */}
           <Hidden mdUp>
-            {openSearchBar
-              ? <ClickAwayListener onClickAway={handleCloseSearchBar}>
+            {searchBarIsOpen
+              ? <ClickAwayListener onClickAway={onSearchBarCloseHandler}>
                 <Paper elevation={0}>
-                  <SearchBar handleCloseSearchBar={handleCloseSearchBar} isHandleClose={true}/>
+                  <SearchBar handleCloseSearchBar={onSearchBarCloseHandler} isHandleClose={true}/>
                 </Paper>
               </ClickAwayListener>
-              : (<div className={classes.headerButtonSearch} onClick={handleSearchBar}>
+              : (<div className={classes.headerButtonSearch} onClick={onSearchBarOpenHandler}>
                 <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
                 <Hidden xsDown>
                   <div className={classes.title}>Search</div>
@@ -55,11 +53,13 @@ function Header () {
             }
           </Hidden>
         </div>
-        {openSearchBar
+
+        {searchBarIsOpen
           ? null
           : <Navbar/>
         }
       </div>
+
       {modal}
     </>
   )

@@ -217,11 +217,32 @@ public class UserService extends GeneralService<User> {
   }
 
   public Set<User> findUsersByName(String searchInput) {
-    List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchInput);
-    List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchInput);
-    usersList1.addAll(usersList2);
-    Set<User> foundUsers = new HashSet<>(usersList1);
-    return foundUsers;
+    Long activeUserId = getActiveUser().getId();
+    String[] searchWords = searchInput.trim().split(" ");
+
+    if (searchWords.length == 1) {
+      String searchWord = searchWords[0];
+      List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchWord);
+      List<User> usersList2 = userRepository.findUsersByLastNameStartsWithIgnoreCase(searchWord);
+      usersList1.addAll(usersList2);
+      return usersList1.stream().filter(user -> !user.getId().equals(activeUserId)).collect(Collectors.toSet());
+    }
+    if (searchWords.length == 2) {
+      List<User> usersList1 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchWords[0]);
+      List<User> filteredUsersList1 = usersList1.stream()
+        .filter(user -> user.getLastName().toLowerCase().startsWith(searchWords[1].toLowerCase()))
+        .collect(Collectors.toList());
+
+      List<User> usersList2 = userRepository.findUsersByFirstNameStartsWithIgnoreCase(searchWords[1]);
+      List<User> filteredUsersList2 = usersList2.stream()
+        .filter(user -> user.getLastName().toLowerCase().startsWith(searchWords[0].toLowerCase()))
+        .collect(Collectors.toList());
+
+      filteredUsersList1.addAll(filteredUsersList2);
+      return filteredUsersList1.stream().filter(user -> !user.getId().equals(activeUserId)).collect(Collectors.toSet());
+    }
+
+    return new HashSet<>();
   }
 
   public Set<User> findConnectedUsersByName(String searchInput) {

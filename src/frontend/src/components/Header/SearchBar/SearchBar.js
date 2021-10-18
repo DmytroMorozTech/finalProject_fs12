@@ -15,18 +15,21 @@ function SearchBar (props) {
   const [foundUsers, setFoundUsers] = useState(null)
   const [showDropDown, setShowDropDown] = useState(false)
 
-  const handleChange = (event) => {
+  const onInputChangeHandler = (event) => {
     const {value} = event.target
     setInputValue(value)
     debounce(value)
   }
 
-  const onLinkClickHandler = () => {
+  const resetInputHandler = () => {
     setFoundUsers(null)
     setInputValue('')
   }
 
   const findUsersByName = (searchInput) => {
+    if (searchInput.trim() === '') {
+      return Promise.resolve()
+    }
     return http
       .get(`/api/users/find_by_name/${searchInput}`)
       .then((res) => res.data)
@@ -38,8 +41,10 @@ function SearchBar (props) {
       // send the server request here
       findUsersByName(_searchVal)
         .then((usersList) => {
-          setFoundUsers(usersList)
-          setShowDropDown(true)
+          if (usersList) {
+            setFoundUsers(usersList)
+            setShowDropDown(true)
+          }
         })
     }, 1000),
     []
@@ -52,9 +57,10 @@ function SearchBar (props) {
         <SearchRoundedIcon fontSize="inherit"/>
         <input
           placeholder="Search for people"
-          onChange={handleChange}
+          onChange={onInputChangeHandler}
           value={inputValue}
           onBlur={() => setTimeout(() => setShowDropDown(false), 200)}
+          onFocus={onInputChangeHandler}
         />
       </div>
 
@@ -67,7 +73,7 @@ function SearchBar (props) {
             (<Link key={user.id}
               to={`/profiles/${user.id}`}
               className={classes.link}
-              onClick={onLinkClickHandler}>
+              onClick={resetInputHandler}>
 
               <div className={classes.dropDownItem}>
                 <div className={classes.dropDownUser}>
