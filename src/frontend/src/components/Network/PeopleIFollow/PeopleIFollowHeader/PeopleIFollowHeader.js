@@ -18,7 +18,7 @@ function PeopleIFollowHeader (props) {
 
   return (
     <div className={classes.header}>
-      <div>
+      <div className={classes.menuItems}>
         <NavLink to='/network' className={classes.headerItem} >
           <Typography variant='h5'>
           Follow fresh perspectives
@@ -35,7 +35,11 @@ function PeopleIFollowHeader (props) {
           </Typography>
         </NavLink>
       </div>
-      <SharedButton title='Done' onClick={handlePageRefresh}/>
+      <div>
+        <div className={classes.refreshButton}>
+          <SharedButton title='Done' onClick={handlePageRefresh}/>
+        </div>
+      </div>
     </div>
   )
 }

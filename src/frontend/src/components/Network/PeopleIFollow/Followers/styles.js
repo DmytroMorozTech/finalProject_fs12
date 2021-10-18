@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
-    display: 'flex'
+    display: 'flex',
+    flexWrap: 'wrap'
   }
 }))
