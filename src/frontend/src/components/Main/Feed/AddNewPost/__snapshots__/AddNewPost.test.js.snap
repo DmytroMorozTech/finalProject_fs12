@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render AddNewPost component to match snapshot 1`] = `
+<div>
+  <div>
+    Create a post
+  </div>
+  <hr />
+  <WithStyles(WithStyles(ForwardRef(DialogContent)))>
+    <div>
+      <div>
+        <Image
+          alt="user avatar"
+          type="smallAvatar"
+        />
+      </div>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        />
+        <button>
+          <div>
+            <Memo(ForwardRef(PublicIcon))
+              fontSize="inherit"
+            />
+          </div>
+          <WithStyles(ForwardRef(Typography))
+            variant="h4"
+          >
+            Anyone
+          </WithStyles(ForwardRef(Typography))>
+        </button>
+      </div>
+    </div>
+    <WithStyles(ForwardRef(InputBase))
+      fullWidth={true}
+      minRows={7}
+      multiline={true}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="What do you want to talk about?"
+      value=""
+    />
+  </WithStyles(WithStyles(ForwardRef(DialogContent)))>
+  <div>
+    <div>
+      <Memo(ForwardRef(RemoveCircleIcon))
+        fontSize="inherit"
+      />
+      <div>
+        You have exceeded the maximum character limit.
+      </div>
+    </div>
+    <div>
+      3000
+    </div>
+  </div>
+  <WithStyles(WithStyles(ForwardRef(DialogActions)))>
+    <div>
+      <WithStyles(WithStyles(ForwardRef(Tooltip)))
+        placement="top"
+        title="Add a photo"
+      >
+        <div>
+          <label>
+            <input
+              accept="image/*"
+              disabled={false}
+              id="file"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
+            <Memo(ForwardRef(PhotoSizeSelectActualIcon)) />
+          </label>
+        </div>
+      </WithStyles(WithStyles(ForwardRef(Tooltip)))>
+      <WithStyles(WithStyles(ForwardRef(Tooltip)))
+        placement="top"
+        title="Add a video"
+      >
+        <div>
+          <label>
+            <input
+              accept="video/*"
+              disabled={false}
+              id="file"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
+            <Memo(ForwardRef(YouTubeIcon)) />
+          </label>
+        </div>
+      </WithStyles(WithStyles(ForwardRef(Tooltip)))>
+      <WithStyles(WithStyles(ForwardRef(Tooltip)))
+        placement="top"
+        title="Add a document"
+      >
+        <div>
+          <Memo(ForwardRef(EventNoteIcon)) />
+        </div>
+      </WithStyles(WithStyles(ForwardRef(Tooltip)))>
+      <hr />
+    </div>
+    <SharedButton
+      disabled={true}
+      onClick={null}
+      title="Post"
+    />
+  </WithStyles(WithStyles(ForwardRef(DialogActions)))>
+</div>
+`;

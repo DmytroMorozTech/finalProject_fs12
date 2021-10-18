@@ -10,6 +10,9 @@ describe('should render Feed component', () => {
   let spyOnUseDispatch
   let mockDispatch
 
+  const observe = jest.fn()
+  const unobserve = jest.fn()
+
   let type
   let activeUserId
   let postsState
@@ -26,7 +29,12 @@ describe('should render Feed component', () => {
     mockDispatch = jest.fn()
     spyOnUseDispatch.mockReturnValue(mockDispatch)
 
-    type = 'bookmarkedPosts'
+    window.IntersectionObserver = jest.fn(() => ({
+      observe,
+      unobserve
+    }))
+
+    type = 'posts'
     activeUserId = 1
     postsState =
     postsState = {
@@ -173,7 +181,7 @@ describe('should render Feed component', () => {
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-  // it('should render bookmarked posts components', () => {
-  //   expect.stringMatching('bookmarkedPosts')
-  // })
+  it('should render bookmarked posts components', () => {
+    expect.stringMatching('posts')
+  })
 })

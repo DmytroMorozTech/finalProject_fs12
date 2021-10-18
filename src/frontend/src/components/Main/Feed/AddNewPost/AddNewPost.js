@@ -234,8 +234,6 @@ const AddNewPost = () => {
                     disabled={imageIsChosen}
                     onChange={(event) => {
                       const file = event.target.files[0]
-                      // console.log('Video file was chosen')
-                      // console.log(file)
                       if (file && file.size > 52428800) {
                         toast.error('The size of video should not exceed 50MB')
                         return
