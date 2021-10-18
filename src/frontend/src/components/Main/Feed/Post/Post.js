@@ -29,6 +29,7 @@ function Post (props) {
   const {singlePostRender = false} = props
 
   const cloudName = 'dan-insta-step'
+  console.log(videoPublicId)
   const uniqueIdentifier = videoPublicId.replaceAll('/', '_')
   const videoOptions = { cloudName: cloudName, publicId: videoPublicId, uniqueIdentifier: uniqueIdentifier }
 
