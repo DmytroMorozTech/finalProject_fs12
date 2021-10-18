@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
 
   navbar: {
+    display: 'flex',
     '& > div': {
       display: 'flex',
       alignItems: 'center',
@@ -18,8 +19,5 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     color: theme.palette.grey[500]
-  },
-  margin: {
-    marginRight: theme.spacing(30)
   }
 }))

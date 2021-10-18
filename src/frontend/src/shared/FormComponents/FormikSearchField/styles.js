@@ -8,19 +8,26 @@ export default makeStyles((theme) => ({
 
   searchDropDownWrapper: {
     width: '100%',
+    border: '2px solid #0a66c2',
+    borderBottomLeftRadius: theme.shape.small,
+    borderBottomRightRadius: theme.shape.small,
+    overflow: 'hidden',
+    backgroundColor: theme.palette.common.white,
     position: 'absolute',
-    top: '38px',
+    top: '36px',
     left: 0
   },
 
   dropDownItem: {
     width: '100%',
-    backgroundColor: 'white',
     height: 40,
     zIndex: 100,
-    border: '1px solid gray',
+    backgroundColor: theme.palette.common.white,
+    borderTop: theme.border.normal,
+    border: 'transparent',
+    fontSize: theme.typography.h5.fontSize,
     '&:hover': {
-      backgroundColor: 'lightgray',
+      backgroundColor: theme.palette.grey[200],
       cursor: 'pointer'
     }
   },

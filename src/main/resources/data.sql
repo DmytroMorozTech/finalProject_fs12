@@ -17,11 +17,11 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         timestamp '2015-03-23 11:13:12.123123', CURRENT_DATE, 'Spain', 'Barcelona', 'Senior Java Developer'),
        ('Everett', 'Anderson', '+380507501193', 'test4@gmail.com', 62,
         '$2a$10$FUDJQK2vlMHQ.OUf1hSEde6kg8v2vlenPfyfBOXO5nWFpoMENOsLy',
-        'linkedin/avatars/i1bzhpqac3i1ld2urju8', '',
+        'linkedin/avatars/i1bzhpqac3i1ld2urju8', 'linkedin/profile-bg/vavbxviumilgy5kddl0m',
         timestamp '2015-05-11 22:21:12.123123', CURRENT_DATE, 'USA', 'Los Angelos', 'Frontend Developer'),
        ('Katherine', 'McCarthy', '+380508791965', 'test5@gmail.com', 32,
         '$2a$10$szlnkXCYbGVzE4/f.7K2IOPVMezpqt/GWsMjfJoE4g6QMh4UIysIK',
-        'linkedin/avatars/hj8sulgxxo5ywotggkcy', '',
+        'linkedin/avatars/hj8sulgxxo5ywotggkcy', 'linkedin/profile-bg/pjgychofmfti4a6ogz91',
         timestamp '2015-08-12 07:32:31.123123', CURRENT_DATE, 'Ukraine', 'Lviv', 'HR Director'),
        ('James', 'Ford', '+380952051202', 'test6@gmail.com', 43,
         '$2a$10$lEzK1U6TFeBsDkCQ9KFB7eaPZhP4xklAcZGCOYVg8c08SRzlOglmC',
@@ -33,7 +33,7 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
         timestamp '2016-03-04 09:33:31.123123', CURRENT_DATE, 'Germany', 'Berlin', 'Full Stack Developer'),
        ('Susan', 'Anderson', '+380506433660', 'test8@gmail.com', 34,
         '$2a$10$r3wr7zR0dj5BsFtRZiK9VOWji2VhUh8qYlYgyNuN6CsM6MOCwbJOC',
-        'linkedin/avatars/okktjt3pedvcz3zemwor', '',
+        'linkedin/avatars/okktjt3pedvcz3zemwor', 'linkedin/profile-bg/n6a4ueeb64fefbx6rxi3',
         timestamp '2016-05-05 07:21:31.123123', CURRENT_DATE, 'Germany', 'Munich', 'Node.js Developer'),
        ('Leonard', 'Sanders', '+380678059758', 'test9@gmail.com', 37,
         '$2a$10$kABIXmLwUl1oocldG174ZeKxeZPpApFtJZPBb7TtMny5qII.ulafW',
@@ -42,7 +42,11 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
        ('Barry', 'Evans', '+380955744442', 'test10@gmail.com', 28,
         '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
         'linkedin/avatars/vnxm3wl3erio9ajtezlr', '',
-        timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'Scala Developer');
+        timestamp '2016-07-08 12:22:23.123123', CURRENT_DATE, 'Canada', 'Ottawa', 'Scala Developer'),
+       ('Jamie', 'Anderson', '+380503332233', 'test11@gmail.com', 32,
+        '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
+        'linkedin/avatars/vrhpzgx8di9aoz5hykzh', '',
+        timestamp '2017-06-11 22:21:12.123123', CURRENT_DATE, 'USA', 'California', 'Doctor');
 
 
 INSERT INTO ORGANIZATIONS (name, email, web_site, industry, location, specialities, founded_in_year,
@@ -406,7 +410,17 @@ VALUES (date '2014-10-02', date '2014-10-02', 'Studying Data-structures and algo
         date '2019-03-03', date '2017-03-03', 'Msc',
         'Economy and Finance',
         'University of Calgary', 4,
-        'Learning ideas, methods, and institutions that permit human society to manage risks and foster enterprise. Emphasis on financially-savvy leadership skills. ');
+        'Learning ideas, methods, and institutions that permit human society to manage risks and foster enterprise. Emphasis on financially-savvy leadership skills. '),
+       (timestamp '2021-10-18 12:52:20.848709', timestamp '2021-10-18 12:52:20.848709', 'Football team player',
+        date '2012-05-01', date '2002-09-01', 'None',
+        'General sciences',
+        'Marymount School of New York', 11,
+        '*'),
+       (timestamp '2021-10-18 12:55:23.002559', timestamp '2021-10-18 12:55:23.002559', 'Traineeship in college',
+        date '2019-08-01', date '2012-10-01', 'MBBS – Bachelor of Medicine, Bachelor of Surgery',
+        'Surgery',
+        'New York Medical College', 11,
+        'Gained extensive knowledge in surgery');
 
 INSERT INTO CERTIFICATIONS (created_date, modified_date, credential_id,
                             credential_url, expiration_date, has_expiry_date, issue_date, issuing_organization,
@@ -426,7 +440,10 @@ VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua'
        (date '2018-04-03', date '2018-04-03', 'OP2983849', 'https://www.udemy.com/',
         date '2025-07-08', true, date '2016-07-08', 'UDEMY', 'Interpersonal communications', 4),
        (date '2018-04-03', date '2018-04-03', 'MW99128430', 'https://www.udemy.com/',
-        date '2023-03-02', true, date '2016-03-06', 'UDEMY', 'Software development', 4);
+        date '2023-03-02', true, date '2016-03-06', 'UDEMY', 'Software development', 4),
+       (date '2019-09-20', date '2019-09-20', 'RPP3526351', '',
+        date '2025-09-01', true, date '2019-09-01', 'New York Medical College', 'Advanced practives in cardio surgery', 11);
+
 
 INSERT INTO CHATS (created_date, modified_date)
 VALUES (date '2015-01-20', date '2015-01-20'),
