@@ -15,6 +15,11 @@ export default makeStyles((theme) => ({
     }
   },
 
+  menuItems: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+
   headerItem: {
     marginLeft: theme.spacing(3),
     marginTop: theme.spacing(3),
@@ -22,11 +27,17 @@ export default makeStyles((theme) => ({
     paddingBottom: theme.spacing(1),
     cursor: 'pointer',
     textDecoration: 'none',
-    color: theme.palette.grey[700]
+    color: theme.palette.grey[700],
+    borderBottom: '4px solid transparent'
   },
 
   active: {
     color: theme.palette.success.main,
     borderBottom: theme.border.success
+  },
+
+  refreshButton: {
+    display: 'flex',
+    alignItems: 'center'
   }
 }))

@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     }
   },
   icons: {
-    width: theme.spacing(8),
+    width: theme.spacing(7),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

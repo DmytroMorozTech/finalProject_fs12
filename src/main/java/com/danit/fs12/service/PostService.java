@@ -68,7 +68,6 @@ public class PostService extends GeneralService<Post> {
 
   public Post toggleBookmark(Long postId) {
     Post post = findEntityById(postId);
-    //    Boolean postIsBookmarked = post.getIsBookmarkedByActiveUser();
     List<Bookmark> bookmarks = post.getBookmarks();
     Boolean postIsBookmarked = bookmarks.stream()
       .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId()));
