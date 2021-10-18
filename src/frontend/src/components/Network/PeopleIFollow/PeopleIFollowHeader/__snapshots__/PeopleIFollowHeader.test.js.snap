@@ -35,9 +35,13 @@ exports[`should render PeopleIFollowHeader component to match snapshot 1`] = `
       </WithStyles(ForwardRef(Typography))>
     </NavLink>
   </div>
-  <SharedButton
-    onClick={[Function]}
-    title="Done"
-  />
+  <div>
+    <div>
+      <SharedButton
+        onClick={[Function]}
+        title="Done"
+      />
+    </div>
+  </div>
 </div>
 `;

@@ -208,7 +208,6 @@ const AddNewPost = () => {
                         toast.error('The size of image should not exceed 10MB')
                         return
                       }
-
                       if (file) {
                         handleCancelVideoSelection()
                         handleCancelImgSelection()
@@ -216,7 +215,6 @@ const AddNewPost = () => {
                         setImageIsChosen(true)
                       }
                     }}
-
                   />
                   <PhotoSizeSelectActualIcon className={classes.icons}/>
                 </label>
@@ -238,7 +236,6 @@ const AddNewPost = () => {
                         toast.error('The size of video should not exceed 50MB')
                         return
                       }
-
                       if (file) {
                         handleCancelVideoSelection()
                         handleCancelImgSelection()
