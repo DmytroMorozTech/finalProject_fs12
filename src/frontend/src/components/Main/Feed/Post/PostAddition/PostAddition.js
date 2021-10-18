@@ -20,7 +20,10 @@ function PostAddition (props) {
   return (
     <div>
       <MenuItem className={classes.menuItem}>
-        <div className={classes.item} onClick={handleBookmarkPost}>
+        <div
+          id='item'
+          className={classes.item}
+          onClick={handleBookmarkPost}>
           <div className={classes.icons}>
             {isBookmarkedByActiveUser ? <BookmarkIcon fontSize="inherit"/> : <BookmarkBorderIcon fontSize="inherit"/>}
           </div>

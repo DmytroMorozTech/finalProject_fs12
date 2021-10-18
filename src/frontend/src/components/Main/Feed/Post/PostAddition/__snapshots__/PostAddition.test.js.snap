@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PostAddition component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(MenuItem))>
+    <div
+      id="item"
+      onClick={[Function]}
+    >
+      <div>
+        <Memo(ForwardRef(BookmarkBorderIcon))
+          fontSize="inherit"
+        />
+      </div>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Save
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="h6"
+        >
+          Save for later
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+    </div>
+  </WithStyles(ForwardRef(MenuItem))>
+</div>
+`;

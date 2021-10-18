@@ -102,6 +102,7 @@
     "react-datepicker": "^4.2.0",
     "react-toastify": "^7.0.4",
     "standard": "^10.0.3",
+    "string.prototype.replaceall": "^1.0.6",
     "yup": "^0.32.9"
   },
   "jest": {

@@ -146,7 +146,9 @@ function Post (props) {
 
       <div className={classes.quantity}>
         {numberOfLikes > 0
-          ? <div onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
+          ? <div
+            id='like'
+            onClick={() => dispatch(getUsersWhoLikedPostAction(postId))}>
             <Typography variant="body2" className={classes.quantityText}>
               <LikeMiniIcon/>
               {numberOfLikes}
@@ -159,7 +161,9 @@ function Post (props) {
           : ''
         }
         {numberOfComments > 0
-          ? <Typography variant="body2" className={classes.quantityText} onClick={showCommentsSectionsHandler}>
+          ? <Typography
+            id='numberOfComments'
+            variant="body2" className={classes.quantityText} onClick={showCommentsSectionsHandler}>
             {numberOfComments} comments
           </Typography>
           : ''
@@ -178,13 +182,13 @@ function Post (props) {
       />
 
       <div className={commentsSectionIsVisible ? classes.showedAddComment : classes.hidden}>
-        <NewCommentInput
+        {commentsSectionIsVisible && <NewCommentInput
           postId={postId}
           postHasMoreComments={paginationData.hasMore}
           onCommentsLoadHandler = {loadCommentsPaginated}
           commentsAreLoading = {commentsAreLoading}
           singlePostRender = {singlePostRender}
-        />
+        />}
       </div>
 
     </div>
