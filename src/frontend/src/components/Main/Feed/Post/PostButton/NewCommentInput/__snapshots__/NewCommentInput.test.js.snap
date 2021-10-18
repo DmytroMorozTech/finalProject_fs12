@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NewCommentInput component to match snapshot 1`] = `
+<div>
+  <div>
+    <Image
+      alt="user avatar"
+      type="extraSmallAvatar"
+    />
+    <div>
+      <WithStyles(ForwardRef(InputBase))
+        autoFocus={true}
+        id="input"
+        multiline={true}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Add a comment..."
+        value=""
+      />
+      <div>
+        <Memo(ForwardRef(RemoveCircleIcon))
+          fontSize="inherit"
+        />
+        <div>
+          You have exceeded the maximum character limit.
+        </div>
+      </div>
+      <div>
+        <SharedButton
+          disabled={true}
+          id="newCommentButton"
+          onClick={[Function]}
+          size="small"
+          title="Post"
+        />
+        <div>
+          <div>
+            0
+          </div>
+          <div>
+            <span>
+              1250
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div />
+  </div>
+</div>
+`;

@@ -8,9 +8,11 @@ exports[`should render LoginCard component to match snapshot 1`] = `
     <p>
       Sign in
     </p>
-    <p>
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
       Stay updated on your professional world
-    </p>
+    </WithStyles(ForwardRef(Typography))>
   </div>
   <form
     noValidate={true}
