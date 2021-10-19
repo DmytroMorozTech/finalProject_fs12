@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NavbarItem component to match snapshot 1`] = `
+<div>
+  <NavLink
+    exact={true}
+    onClick={[Function]}
+    to="/home"
+  >
+    <div>
+      <Memo(ForwardRef(HomeRoundedIcon))
+        fontSize="inherit"
+        onClick={[Function]}
+      />
+    </div>
+    <Hidden
+      xsDown={true}
+    >
+      <div>
+        <span>
+          Home
+        </span>
+      </div>
+      <hr />
+    </Hidden>
+  </NavLink>
+</div>
+`;
