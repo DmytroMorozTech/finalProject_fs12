@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
 
   smallNotification: {
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     border: theme.border.simple,
     borderRadius: theme.shape.medium,
@@ -15,6 +16,11 @@ export default makeStyles((theme) => ({
   item: {
     display: 'flex',
     alignItems: 'center'
+  },
+
+  block: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
 
   icon: {

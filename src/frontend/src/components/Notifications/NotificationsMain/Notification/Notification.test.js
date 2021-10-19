@@ -1,16 +1,24 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import Notification from './Notification'
+import * as redux from 'react-redux'
 
 jest.mock('./styles', () => () => ({}))
 
 const setUp = (props) => shallow(<Notification {...props}/>)
 
 describe('should render Notification component', () => {
+  let spyOnUseDispatch
+  let mockDispatch
+
   let notification
 
   let component
   beforeEach(() => {
+    spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
+    mockDispatch = jest.fn()
+    spyOnUseDispatch.mockReturnValue(mockDispatch)
+
     notification = {
       'id': 20,
       'createdDate': '2021-10-13T16:26:30.95932',
@@ -38,11 +46,18 @@ describe('should render Notification component', () => {
 })
 
 describe('should render Notification component', () => {
+  let spyOnUseDispatch
+  let mockDispatch
+
   let notification
 
   // eslint-disable-next-line no-unused-vars
   let component
   beforeEach(() => {
+    spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
+    mockDispatch = jest.fn()
+    spyOnUseDispatch.mockReturnValue(mockDispatch)
+
     notification = {
       'id': 13,
       'createdDate': '2021-10-05T23:10:32.123123',
@@ -63,11 +78,18 @@ describe('should render Notification component', () => {
 })
 
 describe('should render Notification component', () => {
+  let spyOnUseDispatch
+  let mockDispatch
+
   let notification
 
   // eslint-disable-next-line no-unused-vars
   let component
   beforeEach(() => {
+    spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
+    mockDispatch = jest.fn()
+    spyOnUseDispatch.mockReturnValue(mockDispatch)
+
     notification = {
       'id': 1,
       'createdDate': '2021-10-03T10:02:21.123123',
@@ -88,11 +110,18 @@ describe('should render Notification component', () => {
 })
 
 describe('should render Notification component', () => {
+  let spyOnUseDispatch
+  let mockDispatch
+
   let notification
 
   // eslint-disable-next-line no-unused-vars
   let component
   beforeEach(() => {
+    spyOnUseDispatch = jest.spyOn(redux, 'useDispatch')
+    mockDispatch = jest.fn()
+    spyOnUseDispatch.mockReturnValue(mockDispatch)
+
     notification = {
       'id': 1,
       'createdDate': '2021-10-03T10:02:21.123123',
