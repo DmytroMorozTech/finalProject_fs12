@@ -15,7 +15,7 @@ function BookmarkedPosts () {
           <div className={classes.savedElementsPanel}>
             <Typography variant='h3' className={classes.savedElementsHeading}>
               <BookmarkIcon/>
-              Saved Items
+              Saved posts
             </Typography>
             <Typography variant='h5' className={classes.savedElementsSubheading}>
               Anything you save is private.

@@ -21,7 +21,7 @@ exports[`should render BookmarkedPosts component to match snapshot 1`] = `
           variant="h3"
         >
           <Memo(ForwardRef(BookmarkIcon)) />
-          Saved Items
+          Saved posts
         </WithStyles(ForwardRef(Typography))>
         <WithStyles(ForwardRef(Typography))
           variant="h5"

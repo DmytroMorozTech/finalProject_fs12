@@ -9,6 +9,8 @@ import Image from '../../../../shared/Image/Image'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import clsx from 'clsx'
 import getTimeSinceCreated from '../../../../services/timePassedServiceShort'
+import { useDispatch } from 'react-redux'
+import { markNotificationAsViewedAction } from '../../../../redux/Notification/notificationActions'
 
 function generateMainText (number, notificationType) {
   return number > 20 ? `Outstanding result! You seem to be a confident member of LinkedIn network. Number of ${notificationType}s is more than 20. `
@@ -27,6 +29,7 @@ function Notification (props) {
   const { id, type, data, isViewed, createdDate, userWhoTriggered } = notification
   const { postId, numberOfLikes = 0, numberOfComments = 0 } = data
   const classes = styles()
+  const dispatch = useDispatch()
 
   let headerText
   let mainText
@@ -79,7 +82,11 @@ function Notification (props) {
       </div>
       <div className={classes.content}>
         <Typography variant="body1">
-          <Link to={`/posts/${postId}`} className={classes.link}>
+          <Link
+            to={`/posts/${postId}`}
+            className={classes.link}
+            onClick={() => dispatch(markNotificationAsViewedAction(id))}
+          >
             <span className={classes.headerText}>{headerText}</span>
             <span className={classes.mainText}>{mainText}</span>
           </Link>

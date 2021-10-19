@@ -2,9 +2,7 @@ import http from '../../services/httpService'
 import * as actions from './notificationActionTypes'
 import { toast } from 'react-toastify'
 
-export const markNotificationAsViewedAction = (payload) => (dispatch) => {
-  const id = payload
-
+export const markNotificationAsViewedAction = (id) => (dispatch) => {
   return http
     .put(`/api/notifications/mark_as_viewed/${id}`)
     .then((res) => res.data)
@@ -32,7 +30,7 @@ export const markAllNotificationsAsViewedAction = () => (dispatch) => {
       if (status === 200 || status === 204) {
         dispatch({ type: actions.MARK_ALL_NOTIFICATIONS_AS_VIEWED })
         toast.info('You have marked all notifications as viewed',
-          {position: toast.POSITION.TOP_RIGHT, autoClose: 1700})
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 1700 })
       }
     })
 }

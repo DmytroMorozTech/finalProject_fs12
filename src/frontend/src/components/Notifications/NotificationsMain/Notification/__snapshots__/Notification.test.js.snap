@@ -17,6 +17,7 @@ exports[`should render Notification component to match snapshot 1`] = `
       variant="body1"
     >
       <Link
+        onClick={[Function]}
         to="/posts/26"
       >
         <span>
