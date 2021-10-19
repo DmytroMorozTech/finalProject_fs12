@@ -1,1 +1,1 @@
-export const numberOfNotificationsSelector = (state) => state.notifications.notificationsList.length
+export const notificationsSelector = (state) => state.notifications.notificationsList

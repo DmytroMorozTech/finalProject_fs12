@@ -2,7 +2,9 @@
 
 exports[`should render SmallNotification component to match snapshot 1`] = `
 <div>
-  <div>
+  <div
+    className=""
+  >
     <Memo(ForwardRef(NotificationsNoneOutlinedIcon))
       fontSize="inherit"
     />
@@ -10,11 +12,11 @@ exports[`should render SmallNotification component to match snapshot 1`] = `
       Your notifications live here
     </span>
   </div>
-  <div
+  <SharedButton
+    disabled={false}
     id="markAllNotificationsAsViewed"
     onClick={[Function]}
-  >
-    Mark all as viewed
-  </div>
+    title="Mark all as viewed"
+  />
 </div>
 `;
