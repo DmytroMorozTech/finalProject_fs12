@@ -56,7 +56,7 @@ function MainLeft (props) {
       <Link to='/bookmarked' className={classes.link}>
         <div className={classes.items}>
           <BookmarkIcon/>
-          <span>My items</span>
+          <span>My saved posts</span>
         </div>
       </Link>
     </div>

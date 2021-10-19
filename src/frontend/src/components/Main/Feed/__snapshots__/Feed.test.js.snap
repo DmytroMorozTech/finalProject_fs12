@@ -8,6 +8,11 @@ exports[`should render Feed component to match snapshot 1`] = `
     <ShareBox
       activeUser={false}
     />
+    <Hidden
+      mdUp={true}
+    >
+      <SmallMySavedPosts />
+    </Hidden>
     <Post
       feedType="posts"
       key="26"

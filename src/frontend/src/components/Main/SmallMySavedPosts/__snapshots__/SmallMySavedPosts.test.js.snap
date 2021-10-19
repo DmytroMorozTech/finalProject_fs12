@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SmallMySavedPosts component to match snapshot 1`] = `
+<Link
+  to="/bookmarked"
+>
+  <div>
+    <Memo(ForwardRef(BookmarkIcon))
+      fontSize="inherit"
+    />
+    <span>
+      My saved posts
+    </span>
+  </div>
+</Link>
+`;
