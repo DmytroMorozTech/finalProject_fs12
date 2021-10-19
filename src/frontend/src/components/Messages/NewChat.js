@@ -30,7 +30,6 @@ import useOnclickOutside from 'react-cool-onclickoutside'
 function NewChat (props) {
   const {match} = props
   const {isSeparateChat} = props
-  const daysAgoOnline = '4 days'
   const classes = Style()
   const inputRef = useRef('')
   const [messageValue, setMessageValue] = useState('')
@@ -115,7 +114,7 @@ function NewChat (props) {
     const localTime = new Date()
     switch (true) {
       case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
-        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
       case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
       default:
@@ -174,10 +173,6 @@ function NewChat (props) {
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
               {currentUser && currentUser.fullName}
-              <div className={classes.userDeviceStyle}>
-                <div className={classes.statusUserRight}/>
-                {daysAgoOnline}
-              </div>
             </div>
           </div>
         </div>
@@ -197,8 +192,6 @@ function NewChat (props) {
                             type={'extraLargeAvatar'}
                           />
                         </Link>
-                        <div className={classes.presenceEntityIndicator}>
-                        </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>
