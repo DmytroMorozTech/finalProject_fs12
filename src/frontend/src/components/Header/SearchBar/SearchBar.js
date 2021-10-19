@@ -66,6 +66,7 @@ function SearchBar (props) {
 
       {foundUsers && showDropDown && (
         <div
+          id='searchDropDownWrapper'
           className={clsx(classes.searchDropDownWrapper, inputValue.length === 0 ? classes.hidden : '')}
           onClick={isHandleClose ? handleCloseSearchBar : null}
         >
