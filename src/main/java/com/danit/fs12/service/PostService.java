@@ -86,10 +86,18 @@ public class PostService extends GeneralService<Post> {
   public Page<Post> getPostsForActiveUser(Integer pageNumber, Integer pageSize, String sortBy) {
     List<Long> followedUsersIds = userService.getUsersFollowed()
       .stream().map(user -> user.getId()).collect(Collectors.toList());
+    Integer numberOfPostsFromFollowedUsers = userService.getUsersFollowed()
+      .stream().map(user -> user.getPosts().size()).reduce(0, Integer::sum);
+
+    Boolean userIsNotFollowingAnybody = followedUsersIds.size() == 0;
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+
+    if (userIsNotFollowingAnybody || numberOfPostsFromFollowedUsers < 12) {
+      return postRepository.getAllPostsPaginated(pageRequest);
+    }
+
     followedUsersIds.add(userService.getActiveUser().getId());
     // active user should also see their own posts in Feed
-
     return postRepository.getPostsForActiveUserPaginated(followedUsersIds, pageRequest);
   }
 
