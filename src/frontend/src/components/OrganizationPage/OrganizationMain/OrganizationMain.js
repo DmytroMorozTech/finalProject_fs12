@@ -23,14 +23,14 @@ function OrganizationMain (props) {
     numberOfFollowers = 800,
     numberOfConnections = 2,
     numberOfEmployees = 85,
-    // isFollowed,
+    isFollowedByActiveUser = false,
     webSite = 'https://dan-it.com.ua/' } = props
 
   const classes = style()
 
   const preventDefault = (event) => event.preventDefault()
 
-  const [isFollowed, setFollow] = useState(true)
+  const [isFollowed, setFollow] = useState(isFollowedByActiveUser)
 
   const handleFollow = () => {
     isFollowed ? setFollow(false) : setFollow(true)
@@ -90,6 +90,7 @@ function OrganizationMain (props) {
           </div>
           <div className={classes.buttons}>
             <SharedButton
+              id='handleFollow'
               title={isFollowed ? 'Following' : 'Follow'}
               startIcon={isFollowed
                 ? <CheckIcon fontSize='inherit'/>
