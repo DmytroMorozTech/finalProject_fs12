@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Page404 component to match snapshot 1`] = `
+<div
+  className="makeStyles-container-1"
+>
+  <div
+    className="makeStyles-header-2"
+  >
+    <Link
+      className="makeStyles-link-4"
+      exact={true}
+      to="/home"
+    >
+      <LinkedinLogo />
+    </Link>
+  </div>
+  <Image
+    alt="page 404"
+    className="makeStyles-pageImg-3"
+    imageUrl="linkedin/general/jrn3axnlbe8gxborjqxb"
+  />
+  <h1>
+    This page doesn't exist
+  </h1>
+  <h2
+    className="makeStyles-text-5"
+  >
+    Please check your URL or return to LinkedIn home.
+  </h2>
+  <Link
+    className="makeStyles-link-4"
+    exact={true}
+    to="/home"
+  >
+    <SharedButton
+      title="Go to your feed"
+      variant="outlined"
+    />
+  </Link>
+</div>
+`;
