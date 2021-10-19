@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render OrganizationPage component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-profilePage-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={7}
+      md={7}
+      sm={12}
+      xl={7}
+      xs={12}
+    >
+      <OrganizationMain />
+    </WithStyles(ForwardRef(Grid))>
+    <Hidden
+      smDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        lg={3}
+        md={3}
+        sm={3}
+        xl={3}
+      >
+        <OrganizationRight />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

@@ -9,9 +9,6 @@ describe('should render Jobs component', () => {
   beforeEach(() => {
     component = setUp()
   })
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })

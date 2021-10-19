@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render OrganizationMain component to match snapshot 1`] = `
+<div>
+  <div>
+    <Image
+      alt="organisation background"
+      type="profileBgImg"
+    />
+    <div>
+      <Image
+        alt="organisation avatar"
+        type="extraLargeAvatar"
+      />
+      <div>
+        <div>
+          <WithStyles(ForwardRef(Typography))
+            variant="h3"
+          >
+            DAN.IT education
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            variant="body1"
+          >
+            DAN.IT education - educational center in Kiev, which trains IT specialists according to the methods of the Israeli army.
+          </WithStyles(ForwardRef(Typography))>
+          <div>
+            <WithStyles(ForwardRef(Typography))
+              color="secondary"
+              variant="body1"
+            >
+              Information Technology & Services
+            </WithStyles(ForwardRef(Typography))>
+            <SmallDot />
+            <WithStyles(ForwardRef(Typography))
+              color="secondary"
+              variant="body1"
+            >
+              Kyiv, Ukraine
+            </WithStyles(ForwardRef(Typography))>
+            <SmallDot />
+            <WithStyles(ForwardRef(Typography))
+              color="secondary"
+              variant="body1"
+            >
+              800
+               followers
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+          <div>
+            <WithStyles(ForwardRef(Link))
+              href="#"
+              onClick={[Function]}
+            >
+              <WithStyles(ForwardRef(Typography))
+                color="textSecondary"
+                variant="h5"
+              >
+                2
+                 connections work here
+              </WithStyles(ForwardRef(Typography))>
+            </WithStyles(ForwardRef(Link))>
+            <SmallDot />
+            <WithStyles(ForwardRef(Link))
+              href="#"
+              onClick={[Function]}
+            >
+              <WithStyles(ForwardRef(Typography))
+                color="textSecondary"
+                variant="h5"
+              >
+                85
+                 employees
+              </WithStyles(ForwardRef(Typography))>
+            </WithStyles(ForwardRef(Link))>
+          </div>
+        </div>
+      </div>
+      <div>
+        <SharedButton
+          id="handleFollow"
+          onClick={[Function]}
+          startIcon={
+            <Memo
+              color="primary"
+              fontSize="inherit"
+            />
+          }
+          title="Follow"
+          variant="outlined"
+        />
+        <WithStyles(ForwardRef(Link))
+          href="https://dan-it.com.ua/"
+        >
+          <SharedButton
+            endIcon={<Memo />}
+            title="Visit website"
+          />
+        </WithStyles(ForwardRef(Link))>
+        <SimpleMenu
+          menuItem={
+            <SharedButton
+              color="secondary"
+              title="More"
+              variant="outlined"
+            />
+          }
+          userData={
+            <OrganizationAddition
+              icon={
+                <Memo
+                  fontSize="inherit"
+                />
+              }
+              onClick={[Function]}
+              title="Share in a message"
+            />
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className=""
+  >
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      About
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      DAN.IT education - educational center in Kiev, which trains IT specialists according to the methods of the Israeli army.
+
+In 2017, two representatives of the Israeli startup nation chose Ukraine as the next step in their mission. Eran Lasser and Eddie Prilepsky - businessmen, investors, business angels and representatives of international venture capital funds - decided to bring values ​​and methodology to the Ukrainian IT sphere, which at one time helped Israel to become a direct competitor to Silicon Valley.
+
+Why Ukraine? Because Ukrainian specialists are highly valued in the world market of information services. Because our students have a high level of responsibility and a great desire to learn. And, of course, because Ukraine is worthy to represent Europe in the IT market in the forefront. It was with this idea that the DAN.IT education training center was created. By the way, "Dan" in the Hebrew interpretation symbolizes great potential.
+
+Why choose our method
+
+To implement the idea, the founders of DAN.IT education decided to adapt the Telem methodology, which is also used to train technical specialists of the Israeli army. Its advantage is teamwork on the strengths of each student and increasing his motivation. A teacher, offline and online mentor, coordinator and HR specialist work with the student at the same time. On the one hand, he learns programming based on case studies and practical exercises without boring lectures and wasting time, which is also the basis of our methodology. On the other hand, he has time to develop his personal skills and prepare for a job search.
+
+Supervisory Board
+
+To keep abreast of the trends in the Ukrainian and global markets, we have formed a Supervisory Board. The Council employs the leading experts of Ukraine in the field of IT - they always know what employers want and expect, as well as plan and adjust our training programs. Thus, with the help of colleagues from the technical field, we prepare students for the challenges and difficulties of future work. Members of the Supervisory Board are also potential employers for our graduates.
+
+Our achievements
+
+For 4 years on the Ukrainian market, we have opened 7 areas of study for a period of 6 to 12 months, in which both adolescents 9-14 years old and adults can study. We are chosen by both school graduates and people over the age of 40 who have already tried several professions, but do not want to stop there. Former lawyers, doctors, stylists and businessmen, bloggers and creators, bank employees and TV presenters study on programs at DAN.IT. The scope of our students' skills is amazing, but at DAN IT they become programmers, developers, web designers and digital marketers in order to conquer new heights. And this inspires us to achieve.
+
+Already, the training center is a member of the IT Ukraine Association, the official partner of the International Bank of Azerbaijan for the provision of social IT education services to the Azerbaijani market, the gold partner of the Ukrainian Israeli Innovation Summit. We have graduated more than 2,000 students, and the employment rate of graduates reaches 73%.
+
+For the comfort of our students, in January 2021, we opened another DAN.IT office on the right bank of Kiev. Now it will become easier for residents from Obolon to Goloseevo, from Pechersk to Svyatoshino, from the city center to its suburbs, combining study with work, personal life and leisure. The second location is located at st. Vladimirskaya, 77A, BC "Solo Plus", 2nd floor.
+
+Joining the IT Ukraine Association
+
+In December 2019, DAN.IT education became the only educational partner and member of the Ukrainian IT Association. Together with the Association, we plan to develop the country's information technologies and have already begun work on projects such as ClickToSchool.
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;

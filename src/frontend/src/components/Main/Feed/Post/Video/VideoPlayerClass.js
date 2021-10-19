@@ -5,7 +5,7 @@ import 'cloudinary-video-player/dist/cld-video-player.light.min.css'
 
 import { withStyles } from '@material-ui/core/styles'
 
-const useStyles = theme => ({
+export const useStyles = () => ({
   iframeWrapper: {
     width: '100%',
     display: 'block',
@@ -21,7 +21,7 @@ const useStyles = theme => ({
 
 })
 
-class VideoPlayerClass extends Component {
+export class VideoPlayerClass extends Component {
   cld = () => {
     return new Cloudinary({ cloud_name: this.props.options.cloudName, secure: true })
   };
@@ -49,4 +49,5 @@ class VideoPlayerClass extends Component {
     )
   }
 }
+
 export default withStyles(useStyles)(VideoPlayerClass)

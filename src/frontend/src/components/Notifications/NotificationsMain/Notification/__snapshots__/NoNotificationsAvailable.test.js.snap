@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NoNotificationsAvailable component to match snapshot 1`] = `
+<div>
+  <Image
+    alt="no notifications"
+    imageUrl="linkedin/general/mrtvwl5vxbu7hzi5m2sc"
+    type="largeAvatar"
+  />
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      <span>
+        At the moment, there are no notifications for you.
+      </span>
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;

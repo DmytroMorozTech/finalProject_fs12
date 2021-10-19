@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NotificationsLeft component to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      align="center"
+      variant="h5"
+    >
+      Notifications
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      align="center"
+      variant="h5"
+    >
+      You’re all caught up! Check back later for new notifications
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <hr />
+  <div>
+    <SharedButton
+      disabled={false}
+      onClick={[Function]}
+      title="Mark all as viewed"
+    />
+  </div>
+</div>
+`;

@@ -81,8 +81,12 @@ function NewCommentInput (props) {
             <div className={classes.validateMessage}>You have exceeded the maximum character limit.</div>
           </div>
           <div className={commentValue.length > 0 ? classes.showedButton : classes.hidden}>
-            <SharedButton title="Post" disabled={commentValue.length > numberCharacterToShowValidate || commentValue.trim() === ''}
-              size='small' onClick={createNewCommentHandler}/>
+            <SharedButton
+              id='newCommentButton'
+              title="Post"
+              disabled={commentValue.length > numberCharacterToShowValidate || commentValue.trim() === ''}
+              size='small'
+              onClick={createNewCommentHandler}/>
             <div className={commentValue.length >= 1200 && commentValue.length <= numberCharacterToShowValidate ? classes.validateMessage : classes.hidden}>
               {commentValue.length}
             </div>

@@ -4,9 +4,6 @@ exports[`should render Register component with RegisterGooglePage to match snaps
 <div>
   <div>
     <LinkedinLogo />
-    <h1>
-      Make the most of your professional life
-    </h1>
   </div>
   <div>
     <RegisterGooglePage />

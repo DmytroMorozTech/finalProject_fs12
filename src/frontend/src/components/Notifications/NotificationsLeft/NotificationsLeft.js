@@ -4,6 +4,7 @@ import SharedButton from '../../../shared/SharedButton/SharedButton'
 import { markAllNotificationsAsViewedAction } from '../../../redux/Notification/notificationActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { numberOfNotificationsSelector } from '../../../redux/Notification/notificationSelector'
+import React from 'react'
 
 function NotificationsLeft () {
   const classes = styles()
