@@ -100,7 +100,6 @@ function ChatsList (props) {
                   className={classes.userAvatar}
                   type={'extraSmallAvatar'}
                 />
-                <div className={classes.statusUserAvatar}/>
               </div>
             </div>
 
