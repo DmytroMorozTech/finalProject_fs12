@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Post component to match snapshot 1`] = `
+<div>
+  <div>
+    <SimpleMenu
+      menuItem={<ThreeDots />}
+      userData={
+        <PostAddition
+          feedType="posts"
+          isBookmarkedByActiveUser={false}
+          postId={26}
+        />
+      }
+    />
+  </div>
+  <hr />
+  <div>
+    <Link
+      to="/profiles/5"
+    >
+      <Image
+        alt="user avatar"
+        imageUrl="linkedin/avatars/hj8sulgxxo5ywotggkcy"
+        type="smallAvatar"
+      />
+    </Link>
+    <div>
+      <Link
+        to="/profiles/5"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Katherine McCarthy
+        </WithStyles(ForwardRef(Typography))>
+      </Link>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        HR-consultant at Amazon.com
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        5d
+        <SmallDot />
+        <div>
+          <Memo(ForwardRef(PublicIcon))
+            fontSize="inherit"
+          />
+        </div>
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+  </div>
+  <WithStyles(ForwardRef(Typography))
+    gutterBottom={true}
+    variant="body1"
+  >
+    <SeeMore
+      numberOfLimitChar={200}
+    >
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. 
+    </SeeMore>
+  </WithStyles(ForwardRef(Typography))>
+  <Image
+    alt="Image for post with id: 26"
+    imageUrl="linkedin/posts-img/abqr3eucghxxz31uwhwq"
+    type="postImg"
+  />
+  <div
+    key="linkedin/posts-video/xtkqkvhnfqurfibwksst"
+  >
+    <WithStyles(VideoPlayerClass)
+      options={
+        Object {
+          "cloudName": "dan-insta-step",
+          "publicId": "linkedin/posts-video/xtkqkvhnfqurfibwksst",
+          "uniqueIdentifier": "/",
+        }
+      }
+    />
+  </div>
+  <div>
+    <div
+      id="like"
+      onClick={[Function]}
+    >
+      <WithStyles(ForwardRef(Typography))
+        variant="body2"
+      >
+        <LikeMiniIcon />
+        2
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+    <SmallDot />
+    <WithStyles(ForwardRef(Typography))
+      id="numberOfComments"
+      onClick={[Function]}
+      variant="body2"
+    >
+      1
+       comments
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <hr />
+  <PostButtons
+    handleComment={[Function]}
+    isLikedByActiveUser={false}
+    postId={26}
+    singlePostRender={false}
+  />
+  <div />
+</div>
+`;

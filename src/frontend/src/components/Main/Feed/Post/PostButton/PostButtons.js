@@ -74,7 +74,7 @@ function PostButtons (props) {
             placement="top"
           >
 
-            <div key={i} className={className} onClick={onClick}>
+            <div id={title} key={i} className={className} onClick={onClick}>
               {icon}
               <Hidden xsDown>
                 <span>{title}</span>

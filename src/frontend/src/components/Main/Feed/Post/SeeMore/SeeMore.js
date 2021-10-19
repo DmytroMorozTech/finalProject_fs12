@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './styles'
 import clsx from 'clsx'
 
@@ -15,7 +15,9 @@ function SeeMore ({ numberOfLimitChar = 150, children }) {
 
   return (
     <span> {seaMore ? text.slice(0, numberOfLimitChar) : text}
-      <span onClick={handleSeeMore} className={clsx(text.length > numberOfLimitChar ? classes.seeMore : classes.none)}>
+      <span
+        id='seeMore'
+        onClick={handleSeeMore} className={clsx(text.length > numberOfLimitChar ? classes.seeMore : classes.none)}>
         {seaMore ? '...see more' : ''}
       </span>
     </span>

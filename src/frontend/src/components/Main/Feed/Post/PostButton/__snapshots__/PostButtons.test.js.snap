@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PostButtons component is not singlePostRender to match snapshot 1`] = `
+<div>
+  <div>
+    <WithStyles(ForwardRef(Tooltip))
+      PopperProps={
+        Object {
+          "disablePortal": true,
+        }
+      }
+      key="0"
+      open={false}
+      placement="top"
+      title="Link copied"
+    >
+      <div
+        className=""
+        id="Like"
+        key="0"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(ThumbUpOutlinedIcon))
+          fontSize="inherit"
+        />
+        <Hidden
+          xsDown={true}
+        >
+          <span>
+            Like
+          </span>
+        </Hidden>
+      </div>
+    </WithStyles(ForwardRef(Tooltip))>
+    <WithStyles(ForwardRef(Tooltip))
+      PopperProps={
+        Object {
+          "disablePortal": true,
+        }
+      }
+      key="1"
+      open={false}
+      placement="top"
+      title="Link copied"
+    >
+      <div
+        id="Comment"
+        key="1"
+        onClick={[MockFunction]}
+      >
+        <Memo(ForwardRef(ChatOutlinedIcon))
+          fontSize="inherit"
+        />
+        <Hidden
+          xsDown={true}
+        >
+          <span>
+            Comment
+          </span>
+        </Hidden>
+      </div>
+    </WithStyles(ForwardRef(Tooltip))>
+    <WithStyles(ForwardRef(Tooltip))
+      PopperProps={
+        Object {
+          "disablePortal": true,
+        }
+      }
+      key="2"
+      open={false}
+      placement="top"
+      title="Link copied"
+    >
+      <div
+        id="Copy link"
+        key="2"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(RedoOutlinedIcon))
+          fontSize="inherit"
+        />
+        <Hidden
+          xsDown={true}
+        >
+          <span>
+            Copy link
+          </span>
+        </Hidden>
+      </div>
+    </WithStyles(ForwardRef(Tooltip))>
+    <WithStyles(ForwardRef(Tooltip))
+      PopperProps={
+        Object {
+          "disablePortal": true,
+        }
+      }
+      key="3"
+      open={false}
+      placement="top"
+      title="Link copied"
+    >
+      <div
+        id="Send"
+        key="3"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(TelegramIcon))
+          fontSize="inherit"
+        />
+        <Hidden
+          xsDown={true}
+        >
+          <span>
+            Send
+          </span>
+        </Hidden>
+      </div>
+    </WithStyles(ForwardRef(Tooltip))>
+  </div>
+</div>
+`;
