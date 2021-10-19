@@ -1,10 +1,12 @@
 import { shallow } from 'enzyme'
 import React from 'react'
-import Jobs from './Jobs'
+import MainRight from './MainRight'
 
-const setUp = () => shallow(<Jobs />)
+jest.mock('./styles', () => () => ({}))
 
-describe('should render Jobs component', () => {
+const setUp = () => shallow(<MainRight/>)
+
+describe('should render MainRight component', () => {
   let component
   beforeEach(() => {
     component = setUp()
