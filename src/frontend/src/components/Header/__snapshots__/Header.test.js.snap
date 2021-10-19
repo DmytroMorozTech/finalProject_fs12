@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header component to match snapshot 1`] = `
+<Fragment>
+  <div>
+    <div>
+      <Link
+        to="/home"
+      >
+        <div>
+          <Memo(ForwardRef(LinkedInIcon))
+            fontSize="inherit"
+          />
+        </div>
+      </Link>
+      <Hidden
+        smDown={true}
+      >
+        <SearchBar
+          handleCloseSearchBar={[Function]}
+          isHandleClose={false}
+        />
+      </Hidden>
+      <Hidden
+        mdUp={true}
+      >
+        <div
+          id="SearchBarIconButton"
+          onClick={[Function]}
+        >
+          <Memo(ForwardRef(SearchRoundedIcon))
+            fontSize="inherit"
+          />
+          <Hidden
+            xsDown={true}
+          >
+            <div>
+              Search
+            </div>
+          </Hidden>
+        </div>
+      </Hidden>
+    </div>
+    <Navbar />
+  </div>
+</Fragment>
+`;

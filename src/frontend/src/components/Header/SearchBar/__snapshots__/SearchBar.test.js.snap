@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SearchBar component to match snapshot 1`] = `
+<div>
+  <div>
+    <Memo(ForwardRef(SearchRoundedIcon))
+      fontSize="inherit"
+    />
+    <input
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search for people"
+      value=""
+    />
+  </div>
+</div>
+`;
