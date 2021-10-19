@@ -44,7 +44,10 @@ function Header () {
                   <SearchBar handleCloseSearchBar={onSearchBarCloseHandler} isHandleClose={true}/>
                 </Paper>
               </ClickAwayListener>
-              : (<div className={classes.headerButtonSearch} onClick={onSearchBarOpenHandler}>
+              : (<div
+                id='SearchBarIconButton'
+                className={classes.headerButtonSearch}
+                onClick={onSearchBarOpenHandler}>
                 <SearchRoundedIcon fontSize="inherit" className={classes.icon}/>
                 <Hidden xsDown>
                   <div className={classes.title}>Search</div>
