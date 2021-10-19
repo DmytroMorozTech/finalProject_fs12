@@ -46,7 +46,11 @@ VALUES ('Richard', 'West', '+380502926823', 'test@gmail.com', 20,
        ('Jamie', 'Anderson', '+380503332233', 'test11@gmail.com', 32,
         '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
         'linkedin/avatars/vrhpzgx8di9aoz5hykzh', '',
-        timestamp '2017-06-11 22:21:12.123123', CURRENT_DATE, 'USA', 'California', 'Doctor');
+        timestamp '2017-06-11 22:21:12.123123', CURRENT_DATE, 'USA', 'California', 'Doctor'),
+       ('Denzel', 'Washington', '+380505556677', 'test12@gmail.com', 55,
+        '$2a$10$aRGdTu/8PfA9boT/rUvbO.WwEmO9XGS92/L4DAcXCrvRl3V0gSYBi',
+        'linkedin/avatars/fe3cupz7bkqayoqgrt74', '',
+        timestamp '2017-06-11 22:21:12.123123', CURRENT_DATE, 'USA', 'New York', 'Actor');
 
 
 INSERT INTO ORGANIZATIONS (name, email, web_site, industry, location, specialities, founded_in_year,
@@ -182,41 +186,54 @@ VALUES (3, 1, 'Chief Operational Officer',
 
 
 INSERT INTO POSTS (text, user_id, img_public_id, video_public_id, created_date, modified_date)
-VALUES ('Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor varius placerat. Duis elementum mattis dui, in egestas massa hendrerit eget. Cras commodo felis erat, laoreet blandit leo hendrerit quis. Morbi diam justo, aliquam a dictum aliquam, lobortis quis sapien. Morbi luctus laoreet justo eu facilisis. Maecenas sollicitudin feugiat dui, et feugiat mauris efficitur eu. Curabitur posuere eros sed tincidunt tempor. Sed massa lectus, consequat et maximus eu, eleifend tempor justo. Curabitur in dapibus nibh. Vivamus sed risus eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean condimentum mattis turpis ac elementum. Etiam eu orci condimentum, placerat dui ac, scelerisque sem. Sed tincidunt id risus sit amet tincidunt. Nulla sed metus ex. Phasellus libero tortor, iaculis quis accumsan ac, facilisis in leo.',
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor varius placerat. Duis elementum mattis dui, in egestas massa hendrerit eget. Cras commodo felis erat, laoreet blandit leo hendrerit quis. Morbi diam justo, aliquam a dictum aliquam, lobortis quis sapien. Morbi luctus laoreet justo eu facilisis. Maecenas sollicitudin feugiat dui, et feugiat mauris efficitur eu. Curabitur posuere eros sed tincidunt tempor. Sed massa lectus, consequat et maximus eu, eleifend tempor justo. Curabitur in dapibus nibh. Vivamus sed risus eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean condimentum mattis turpis ac elementum. Etiam eu orci condimentum, placerat dui ac, scelerisque sem. Sed tincidunt id risus sit amet tincidunt. Nulla sed metus ex. Phasellus libero tortor, iaculis quis accumsan ac, facilisis in leo.',
         1, 'linkedin/posts-img/q2wo3dud8ztniakfo3ft', '', timestamp '2015-01-20 09:00:10.111222',
         timestamp '2015-01-20 09:00:10.111222'),
-       ('Post 2 Nullam eu pretium nunc. Nulla facilisi. Curabitur faucibus laoreet quam, vel dictum urna porttitor et. Curabitur vitae arcu sem. Nulla dolor ante, tristique ac sem ac, scelerisque mollis lacus. Vestibulum pellentesque arcu vel massa molestie commodo. In semper ipsum eget velit fermentum, a gravida tortor fringilla. Suspendisse potenti. Mauris purus risus, porta nec facilisis in, vestibulum eget sapien. Ut lacus libero, pulvinar quis eros quis, elementum semper massa. In ut est et turpis blandit bibendum ac quis erat. Curabitur dictum pellentesque lacinia. Aenean vulputate tortor ac leo sagittis fringilla. Ut pharetra aliquet hendrerit. Curabitur ut maximus risus.',
+       ('Nullam eu pretium nunc. Nulla facilisi. Curabitur faucibus laoreet quam, vel dictum urna porttitor et. Curabitur vitae arcu sem. Nulla dolor ante, tristique ac sem ac, scelerisque mollis lacus. Vestibulum pellentesque arcu vel massa molestie commodo. In semper ipsum eget velit fermentum, a gravida tortor fringilla. Suspendisse potenti. Mauris purus risus, porta nec facilisis in, vestibulum eget sapien. Ut lacus libero, pulvinar quis eros quis, elementum semper massa. In ut est et turpis blandit bibendum ac quis erat. Curabitur dictum pellentesque lacinia. Aenean vulputate tortor ac leo sagittis fringilla. Ut pharetra aliquet hendrerit. Curabitur ut maximus risus.',
         2, 'linkedin/posts-img/n6znpu6xjzqmexjqhnkg', '', timestamp '2016-10-01 15:03:12.222323',
         timestamp '2016-10-01 15:03:12.222323'),
-       ('Post 3 Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
+       ('Cras maximus neque vitae dui tincidunt commodo. Mauris semper vehicula viverra. Praesent faucibus quis purus vitae pellentesque. Donec tristique iaculis gravida. Praesent pulvinar dui eget neque lacinia, quis cursus tortor dapibus. Nulla fringilla nec nisl id tincidunt. Quisque et lorem quis est maximus maximus eget ut nisi. Morbi et justo a sapien ornare auctor vehicula in elit. Suspendisse sed rutrum augue. Pellentesque ac arcu sed sapien imperdiet tempus. Ut euismod velit ac sapien aliquam commodo.',
         3, '', '', timestamp '2017-02-11 08:45:23.123323', timestamp '2017-02-11 08:45:23.123323'),
-       ('Post 4 text goes here', 4, '', '',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Sed turpis tincidunt id aliquet risus. Diam vel quam elementum pulvinar etiam non quam lacus suspendisse. Nunc sed velit dignissim sodales ut eu sem integer vitae.',
+        4, '', '',
         timestamp '2017-02-21 13:35:10.111222',
         timestamp '2017-02-21 13:35:10.111222'),
-       ('Post 5 text goes here', 5, '', '', timestamp '2017-05-09 12:45:10.111222',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque habitant morbi tristique senectus et netus et malesuada. Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Vestibulum morbi blandit cursus risus at ultrices. Ultrices neque ornare aenean euismod elementum nisi quis.',
+        5, '', '', timestamp '2017-05-09 12:45:10.111222',
         timestamp '2017-05-09 12:45:10.111222'),
-       ('Post 6 text goes here', 6, '', '', timestamp '2017-07-27 08:09:22.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...', 6, '',
+        '', timestamp '2017-07-27 08:09:22.123123',
         timestamp '2017-07-27 08:09:22.123123'),
-       ('Post 7 text goes here', 7, '', '', timestamp '2017-08-03 22:10:21.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi. Vitae semper quis lectus nulla at volutpat diam ut venenatis. Sem et tortor consequat id porta. Tellus molestie nunc non blandit. Sollicitudin tempor id eu nisl. Neque aliquam vestibulum morbi blandit cursus risus at ultrices. Enim diam vulputate ut pharetra sit amet aliquam id diam.',
+        7, '', '', timestamp '2017-08-03 22:10:21.123123',
         timestamp '2017-08-03 22:10:21.123123'),
-       ('Post 8 text goes here', 8, '', '', timestamp '2018-11-10 11:03:18.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl pretium fusce id velit ut tortor pretium. Nunc mattis enim ut tellus elementum sagittis vitae et. Tempus urna et pharetra pharetra massa. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Enim tortor at auctor urna nunc id cursus. Condimentum vitae sapien pellentesque habitant morbi tristique senectus. Fusce ut placerat orci nulla pellentesque dignissim enim sit. Donec pretium vulputate sapien nec sagittis.',
+        8, '', '', timestamp '2018-11-10 11:03:18.123123',
         timestamp '2018-11-10 11:03:18.123123'),
-       ('Post 9 text goes here', 9, '', '', timestamp '2018-11-12 14:14:18.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac auctor augue mauris augue neque gravida in fermentum et. Eget duis at tellus at urna. Amet mauris commodo quis imperdiet massa tincidunt. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Turpis egestas maecenas pharetra convallis. Consequat mauris nunc congue nisi vitae suscipit tellus.',
+        9, '', '', timestamp '2018-11-12 14:14:18.123123',
         timestamp '2018-11-12 14:14:18.123123'),
-       ('Post 10 text goes here', 10, '', '', timestamp '2018-12-30 07:34:43.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Posuere ac ut consequat semper viverra nam libero justo.',
+        10, '', '', timestamp '2018-12-30 07:34:43.123123',
         timestamp '2018-12-30 07:34:43.123123'),
-       ('Post 11 text goes here', 1, '', '', timestamp '2019-01-03 17:22:32.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis tincidunt id aliquet risus feugiat in ante metus. Imperdiet massa tincidunt nunc pulvinar sapien et ligula.',
+        1, '', '', timestamp '2019-01-03 17:22:32.123123',
         timestamp '2019-01-03 17:22:32.123123'),
-       ('Post 12 text goes here', 2, 'linkedin/posts-img/n6znpu6xjzqmexjqhnkg', '',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed tempus urna et pharetra. Nunc sed id semper risus in hendrerit gravida rutrum. Ut diam quam nulla porttitor massa id neque aliquam. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt.',
+        2, 'linkedin/posts-img/n6znpu6xjzqmexjqhnkg', '',
         timestamp '2019-02-04 09:43:32.123123',
         timestamp '2019-02-04 09:43:32.123123'),
-       ('Post 13 text goes here', 3, '', '', timestamp '2019-03-05 19:48:21.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue ut lectus arcu bibendum at varius vel pharetra vel. Lectus sit amet est placerat in egestas erat. Eleifend mi in nulla posuere. Vehicula ipsum a arcu cursus vitae congue mauris. Eget magna fermentum iaculis eu non diam phasellus vestibulum. Morbi blandit cursus risus at ultrices mi tempus.',
+        3, '', '', timestamp '2019-03-05 19:48:21.123123',
         timestamp '2019-03-05 19:48:21.123123'),
-       ('Post 14 text goes here', 4, '', '', timestamp '2019-04-06 22:11:21.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Erat nam at lectus urna duis convallis convallis tellus id.',
+        4, '', '', timestamp '2019-04-06 22:11:21.123123',
         timestamp '2019-04-06 22:11:21.123123'),
-       ('Post 15 text goes here', 5, '', '', timestamp '2019-05-07 11:04:12.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Sagittis aliquam malesuada bibendum arcu. Sit amet luctus venenatis lectus magna fringilla urna. Pellentesque sit amet porttitor eget dolor.',
+        5, '', '', timestamp '2019-05-07 11:04:12.123123',
         timestamp '2019-05-07 11:04:12.123123'),
-       ('Post 16 text goes here', 6, '', '', timestamp '2019-06-08 15:02:12.123123',
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nam aliquam sem et tortor consequat id porta. Quis viverra nibh cras pulvinar mattis.',
+        6, '', '', timestamp '2019-06-08 15:02:12.123123',
         timestamp '2019-06-08 15:02:12.123123'),
        ('“We need new perspectives, different ideas and broader ways of thinking to solve the big problems of our time. This is where a neurodiverse workforce can really benefit a business.”
 
@@ -258,16 +275,13 @@ Currently, India is building electric vehicle charging infrastructure because it
 --     Video for this post:   linkedin/posts-video/pmkt82hfcqn3hq5tmgwv
 
        ('Storrors first was crossing from Europe to Asia by parkour. Bring your next first to life with Canon.',
-        5, '', '',
+        5, '', 'linkedin/posts-video/gh6b5qyonkfwxoijufs7',
         timestamp '2021-05-22 13:35:10.111222',
         timestamp '2021-05-22 13:35:10.111222'),
---     Video for this post:   linkedin/posts-video/gh6b5qyonkfwxoijufs7
 
---        ('New fashion trend is coming... A black and white outfit is the universal answer to every dressing dilemma. Feeling underdressed? Swap your look for something in solid black and feel instantly confident. Unclear dress code? All those fashion magazines you read in high school were right, a little black dress really is your safest bet. Want to feel polished at a picnic? Throw on an ensemble of entirely white pieces and try not to spill.
---
--- There’s something incredibly stylish about streamlining your outfit options with black and white pieces. Silhouettes have the chance to shine, for one. And the outfits carry a timelessness, giving you a green light for investing in pieces that will last for many a dressing dilemma to come. Keep reading for tips on how to wear black and white.',
---         6, '', 'linkedin/posts-video/vndq3cf3l1jbancxly0k', timestamp '2021-07-12 18:22:32.123123',
---         timestamp '2021-07-12 18:22:32.123123'),
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu feugiat pretium nibh ipsum consequat. Sit amet est placerat in egestas erat imperdiet sed. Faucibus nisl tincidunt eget nullam non nisi est. Consequat interdum varius sit amet. Eget dolor morbi non arcu. Rhoncus dolor purus non enim praesent elementum facilisis leo. Consequat nisl vel pretium lectus quam.',
+        6, 'linkedin/posts-img/tjbxcxqb7eeo4p4oznyc', '', timestamp '2021-07-12 18:22:32.123123',
+        timestamp '2021-07-12 18:22:32.123123'),
        ('Do you dream of becoming a great specialist in IT sphere?' ||
         'All training programs in DAN.IT are developed according to the standards of the IT division of the Israeli army (MAMRAM) using the TELEM methodology',
         2, '', 'linkedin/posts-video/xtkqkvhnfqurfibwksst', timestamp '2021-08-12 18:22:32.123123',
@@ -291,7 +305,17 @@ Let’s begin the new journey!',
         ' Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in,' ||
         ' viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. ',
         5, 'linkedin/posts-img/abqr3eucghxxz31uwhwq', '', timestamp '2021-10-13 16:26:30.35932',
-        timestamp '2021-10-13 16:26:30.35932');
+        timestamp '2021-10-13 16:26:30.35932'),
+       ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu ultrices vitae auctor eu augue ut. Sed euismod nisi porta lorem mollis aliquam ut. Elit ut aliquam purus sit amet. Aenean et tortor at risus viverra adipiscing at. ',
+        12, 'linkedin/posts-img/ayeix1ewcn86gfflcxzo', '', timestamp '2021-10-19 10:17:37.660660',
+        timestamp '2021-10-19 10:17:37.660660'),
+       ('What to know about robotic chest surgery ?
+How it works:
+“First robotic trocars are placed in between the ribs through small incisions. These trocars allow instruments to be placed into the chest. The robotic arms are then docked to the trocars, allowing control of the instruments. Then, as the surgeon, I sit at the robotic station, and my fingers control the robotic instruments that are inside my patient,” said Dr. Amanda Eilers, a Marshfield Clinic Health System cardiothoracic surgeon. “I’m able to see with the assistance of a high-definition camera, allowing a precise view of the surgical area.”
+
+Eilers said while many procedures can be performed robotically, there are other procedures and specific situations that need to still be done traditionally (open).',
+        11, 'linkedin/posts-img/htl9k9y26om7kte5ktx0', '', timestamp '2021-10-19 10:51:25.032508',
+        timestamp '2021-10-19 10:51:25.032508');
 
 INSERT INTO COMMENTS (post_id, user_id, text, created_date, modified_date)
 VALUES (10, 1, 'Comment no.1 goes here.', timestamp '2021-08-08 12:11:11.111111',
@@ -442,7 +466,8 @@ VALUES (date '2018-12-30', date '2018-12-30', 'PS35092', 'https://dan-it.com.ua'
        (date '2018-04-03', date '2018-04-03', 'MW99128430', 'https://www.udemy.com/',
         date '2023-03-02', true, date '2016-03-06', 'UDEMY', 'Software development', 4),
        (date '2019-09-20', date '2019-09-20', 'RPP3526351', '',
-        date '2025-09-01', true, date '2019-09-01', 'New York Medical College', 'Advanced practives in cardio surgery', 11);
+        date '2025-09-01', true, date '2019-09-01', 'New York Medical College', 'Advanced practives in cardio surgery',
+        11);
 
 
 INSERT INTO CHATS (created_date, modified_date)

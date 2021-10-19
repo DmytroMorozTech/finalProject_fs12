@@ -18,4 +18,7 @@ public interface PostRepository extends RepositoryInterface<Post> {
   @Query("select p from Post p where p.user.id in :ids")
   Page<Post> getPostsForActiveUserPaginated(@Param("ids") List<Long> ids, Pageable pageable);
 
+  @Query("select p from Post p")
+  Page<Post> getAllPostsPaginated(Pageable pageable);
+
 }

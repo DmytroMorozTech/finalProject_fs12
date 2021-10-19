@@ -204,14 +204,13 @@ const AddNewPost = () => {
                     disabled={videoIsChosen}
                     onChange={(event) => {
                       const file = event.target.files[0]
+                      event.target.value = ''
                       if (file && file.size > 10485760) {
                         toast.error('The size of image should not exceed 10MB')
                         return
                       }
 
                       if (file) {
-                        handleCancelVideoSelection()
-                        handleCancelImgSelection()
                         setSelectedImageFile(file)
                         setImageIsChosen(true)
                       }
@@ -234,16 +233,13 @@ const AddNewPost = () => {
                     disabled={imageIsChosen}
                     onChange={(event) => {
                       const file = event.target.files[0]
-                      // console.log('Video file was chosen')
-                      // console.log(file)
+                      event.target.value = ''
                       if (file && file.size > 52428800) {
                         toast.error('The size of video should not exceed 50MB')
                         return
                       }
 
                       if (file) {
-                        handleCancelVideoSelection()
-                        handleCancelImgSelection()
                         setSelectedVideoFile(file)
                         setVideoIsChosen(true)
                         setVideoFileName(file.name)
