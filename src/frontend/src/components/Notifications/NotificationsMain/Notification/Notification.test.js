@@ -40,9 +40,6 @@ describe('should render Notification component', () => {
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-  // it('should work case NEW_POST_WAS_CREATED', () => {
-  //   expect.stringMatching('has created a Post')
-  // })
 })
 
 describe('should render Notification component', () => {

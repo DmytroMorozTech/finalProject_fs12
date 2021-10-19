@@ -82,11 +82,11 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.common.white,
     cursor: 'pointer',
     '& > span': {
       marginLeft: 15,
-      color: '#0a66c2',
+      color: theme.palette.primary.main,
       fontWeight: theme.typography.h5.fontWeight
     },
     '& > img': {
@@ -125,25 +125,17 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '2rem',
     padding: '0.3rem 0.5rem',
-    color: '#0a66c2',
+    color: theme.palette.primary.main,
     cursor: 'pointer',
     '&:hover': {
       textDecoration: 'underline'
     },
     '&:visited': {
-      color: '#0a66c2'
+      color: theme.palette.primary.main
     }
   },
 
   joinButton: {
     fontSize: theme.typography.h3.fontSize
-  },
-
-  firstSignUpPage: {
-    // height: 500
-  },
-
-  secondSignUpPage: {
-    // height: 300
   }
 }))

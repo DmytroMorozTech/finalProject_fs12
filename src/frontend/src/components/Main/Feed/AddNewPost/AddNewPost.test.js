@@ -29,9 +29,4 @@ describe('should render AddNewPost component', () => {
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-  // it('should work dispatch getActiveUser', () => {
-  //   expect(mockDispatch).toHaveBeenCalledTimes(0)
-  //   component.find('form').simulate('submit')
-  //   expect(mockDispatch).toHaveBeenCalledTimes(1)
-  // })
 })
