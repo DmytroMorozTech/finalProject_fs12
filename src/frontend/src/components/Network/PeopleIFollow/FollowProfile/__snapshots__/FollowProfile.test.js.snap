@@ -22,8 +22,10 @@ exports[`should render PeopleIFollowFollowers component to match snapshot 1`] = 
         </WithStyles(ForwardRef(Typography))>
         <WithStyles(ForwardRef(Typography))
           color="textSecondary"
-          variant="h4"
-        />
+          variant="h6"
+        >
+          Project manager at HQSoftware
+        </WithStyles(ForwardRef(Typography))>
       </Link>
     </div>
     <div>
