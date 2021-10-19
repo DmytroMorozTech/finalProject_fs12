@@ -2,6 +2,14 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { useStyles, VideoPlayerClass } from './VideoPlayerClass'
 
+jest.mock('cloudinary-core', () => ({
+  Cloudinary: jest.fn().mockImplementation(() => {
+    return {
+      videoPlayer: jest.fn()
+    }
+  })
+}))
+
 const setUp = (props) => shallow(<VideoPlayerClass {...props}/>)
 
 describe('should render VideoPlayerClass component', () => {
