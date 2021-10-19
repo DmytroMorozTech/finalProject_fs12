@@ -22,7 +22,6 @@ function Chat (props) {
   const {match} = props
   const inputRef = useRef('')
   const {isSeparateChat} = props
-  const daysAgoOnline = '4 days'
   const classes = styles()
   const [messageValue, setMessageValue] = useState('')
   const [inputIsFocused, setInputIsFocused] = useState(false)
@@ -82,7 +81,7 @@ function Chat (props) {
     const localTime = new Date()
     switch (true) {
       case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
-        return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
+        return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
       case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
       default:
@@ -141,10 +140,6 @@ function Chat (props) {
           <div className={classes.titleBar}>
             <div className={classes.entityLockup}>
               {getChatMember() && getChatMember().fullName}
-              <div className={classes.userDeviceStyle}>
-                <div className={classes.statusUserRight}/>
-                {daysAgoOnline}
-              </div>
             </div>
           </div>
         </div>
@@ -164,9 +159,6 @@ function Chat (props) {
                             type={'extraLargeAvatar'}
                           />
                         </Link>
-                        <div className={classes.presenceEntityIndicator}>
-
-                        </div>
                       </div>
                     </div>
                     <div className={classes.entityLockupContent}>
