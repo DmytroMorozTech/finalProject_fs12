@@ -24,3 +24,8 @@ console.error = message => {
 
 // pass an instance of jest to `enableHooks()`
 enableHooks(jest)
+
+//  String.prototype.replaceAll is not implemented in Node.js of versions until v16.8.0
+const replaceAllPolyfill = require('string.prototype.replaceall')
+// eslint-disable-next-line no-extend-native
+String.prototype.replaceAll = String.prototype.replaceAll || replaceAllPolyfill

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SeeMore component to match snapshot 1`] = `
+<span>
+   
+  te
+  <span
+    className="makeStyles-seeMore-1"
+    id="seeMore"
+    onClick={[Function]}
+  >
+    ...see more
+  </span>
+</span>
+`;
