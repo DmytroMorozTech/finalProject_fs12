@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Notifications component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-notifications-1"
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="flex-start"
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <Hidden
+      smDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <NotificationsLeft />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={5}
+      md={5}
+      sm={10}
+      xl={5}
+      xs={12}
+    >
+      <Hidden
+        mdUp={true}
+      >
+        <SmallNotification />
+      </Hidden>
+      <Connect(Feed)
+        type="notifications"
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <Hidden
+      mdDown={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        lg={3}
+        md={4}
+        xl={3}
+      >
+        <NotificationsRight />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

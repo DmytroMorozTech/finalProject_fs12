@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Notification component to match snapshot 1`] = `
+<div
+  className=""
+  key="20"
+>
+  <div>
+    <Image
+      alt="user avatar"
+      imageUrl="linkedin/avatars/hj8sulgxxo5ywotggkcy"
+      type="mediumAvatar"
+    />
+  </div>
+  <div>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      <Link
+        to="/posts/26"
+      >
+        <span>
+          Katherine McCarthy has created a Post. 
+        </span>
+        <span>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aene...
+        </span>
+      </Link>
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div>
+    <div>
+      5d
+    </div>
+    <SimpleMenu
+      menuItem={<ThreeDots />}
+      userData={
+        <NotificationAdditions
+          isViewed={false}
+          notificationId={20}
+        />
+      }
+    />
+  </div>
+</div>
+`;

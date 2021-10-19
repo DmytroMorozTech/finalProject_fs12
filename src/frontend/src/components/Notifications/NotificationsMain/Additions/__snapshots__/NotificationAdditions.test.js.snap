@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NotificationAdditions component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(MenuItem))
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "activeClassName": [Function],
+          "activeStyle": [Function],
+          "aria-current": [Function],
+          "className": [Function],
+          "exact": [Function],
+          "innerRef": [Function],
+          "isActive": [Function],
+          "location": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "sensitive": [Function],
+          "strict": [Function],
+          "style": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    disabled={true}
+    id="markAsViewed"
+    onClick={[Function]}
+    to="#"
+  >
+    <Memo(ForwardRef(CheckCircleIcon))
+      size="large"
+    />
+    <div>
+      <p>
+        Mark as viewed
+      </p>
+      <p>
+        Notification will be marked as viewed
+      </p>
+    </div>
+  </WithStyles(ForwardRef(MenuItem))>
+  <WithStyles(ForwardRef(MenuItem))
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "activeClassName": [Function],
+          "activeStyle": [Function],
+          "aria-current": [Function],
+          "className": [Function],
+          "exact": [Function],
+          "innerRef": [Function],
+          "isActive": [Function],
+          "location": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "sensitive": [Function],
+          "strict": [Function],
+          "style": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    id="delete"
+    onClick={[Function]}
+    to="#"
+  >
+    <Memo(ForwardRef(DeleteIcon))
+      size="large"
+    />
+    <div>
+      <p>
+        Delete
+      </p>
+      <p>
+        Delete this notification
+      </p>
+    </div>
+  </WithStyles(ForwardRef(MenuItem))>
+</div>
+`;

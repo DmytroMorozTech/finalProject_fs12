@@ -20,6 +20,7 @@ function NotificationAdditions (props) {
   return (
     <div>
       <MenuItem
+        id='markAsViewed'
         onClick={onMarkAsViewedHandler}
         component={NavLink} to='#'
         className={classes.itemWrapper}
@@ -33,6 +34,7 @@ function NotificationAdditions (props) {
       </MenuItem>
 
       <MenuItem
+        id='delete'
         onClick={onDeleteHandler}
         component={NavLink} to='#'
         className={classes.itemWrapper}
