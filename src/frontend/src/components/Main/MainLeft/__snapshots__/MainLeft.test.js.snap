@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MainLeft component to match snapshot 1`] = `
+<div>
+  <Image
+    alt="profile background"
+    type="miniProfileBgImg"
+  />
+  <div>
+    <Link
+      to="/profiles/undefined"
+    >
+      <Image
+        type="profileAvatar"
+      />
+      <div />
+    </Link>
+    <WithStyles(ForwardRef(Typography))
+      align="center"
+      color="textSecondary"
+      variant="h6"
+    />
+  </div>
+  <hr />
+  <Link
+    to="/network/connections"
+  >
+    <div>
+      <div>
+        <span>
+          Connections
+        </span>
+        <span>
+          2
+        </span>
+      </div>
+      <span>
+        Grow your network
+      </span>
+    </div>
+  </Link>
+  <hr />
+  <Link
+    to="/bookmarked"
+  >
+    <div>
+      <Memo(ForwardRef(BookmarkIcon)) />
+      <span>
+        My items
+      </span>
+    </div>
+  </Link>
+</div>
+`;
