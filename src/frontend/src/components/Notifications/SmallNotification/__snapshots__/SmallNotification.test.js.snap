@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SmallNotification component to match snapshot 1`] = `
+<div>
+  <div>
+    <Memo(ForwardRef(NotificationsNoneOutlinedIcon))
+      fontSize="inherit"
+    />
+    <span>
+      Your notifications live here
+    </span>
+  </div>
+  <div
+    id="markAllNotificationsAsViewed"
+    onClick={[Function]}
+  >
+    Mark all as viewed
+  </div>
+</div>
+`;

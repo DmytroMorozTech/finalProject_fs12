@@ -46,7 +46,7 @@ exports[`should render MainLeft component to match snapshot 1`] = `
     <div>
       <Memo(ForwardRef(BookmarkIcon)) />
       <span>
-        My items
+        My saved posts
       </span>
     </div>
   </Link>
