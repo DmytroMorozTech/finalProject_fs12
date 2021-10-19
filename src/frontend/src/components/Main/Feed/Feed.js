@@ -11,6 +11,8 @@ import http from '../../../services/httpService'
 import {activeUserSelector} from '../../../redux/User/userSelector'
 import Notification from '../../Notifications/NotificationsMain/Notification/Notification'
 import NoNotificationsAvailable from '../../Notifications/NotificationsMain/Notification/NoNotificationsAvailable'
+import SmallMySavedPosts from '../SmallMySavedPosts/SmallMySavedPosts'
+import { Hidden } from '@material-ui/core'
 
 export function Feed (props) {
   const { type, loading = true, postsState, bookmarkedPostsState, notificationsState } = props
@@ -136,6 +138,9 @@ export function Feed (props) {
       {type === 'posts' &&
       <div className={classes.feed}>
         <ShareBox activeUser={activeUser}/>
+        <Hidden mdUp>
+          <SmallMySavedPosts/>
+        </Hidden>
         {data.map(post => <Post key={post.id} post={post} feedType={'posts'}/>)}
       </div>}
 
