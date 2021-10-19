@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BookmarkedPosts component to match snapshot 1`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="lg"
+>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    justifyContent="center"
+    spacing={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={6}
+      md={6}
+      sm={12}
+      xs={12}
+    >
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          variant="h3"
+        >
+          <Memo(ForwardRef(BookmarkIcon)) />
+          Saved Items
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          Anything you save is private.
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+      <Connect(Feed)
+        type="bookmarkedPosts"
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;

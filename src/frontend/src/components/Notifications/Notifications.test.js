@@ -1,10 +1,10 @@
 import { shallow } from 'enzyme'
 import React from 'react'
-import Jobs from './Jobs'
+import Notifications from './Notifications'
 
-const setUp = () => shallow(<Jobs />)
+const setUp = () => shallow(<Notifications />)
 
-describe('should render Jobs component', () => {
+describe('should render Notifications component', () => {
   let component
   beforeEach(() => {
     component = setUp()

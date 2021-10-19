@@ -1,10 +1,12 @@
 import { shallow } from 'enzyme'
 import React from 'react'
-import Jobs from './Jobs'
+import BookmarkedPosts from './BookmarkedPosts'
 
-const setUp = () => shallow(<Jobs />)
+jest.mock('./styles', () => () => ({}))
 
-describe('should render Jobs component', () => {
+const setUp = () => shallow(<BookmarkedPosts />)
+
+describe('should render BookmarkedPosts component', () => {
   let component
   beforeEach(() => {
     component = setUp()
