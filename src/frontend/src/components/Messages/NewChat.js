@@ -247,7 +247,7 @@ function NewChat (props) {
                 </div>
               </div>
               {openSmileBoard
-                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                ? <Picker pickerStyle={{width: '19rem', height: '21rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
                 : null}
             </footer>
           </form>
