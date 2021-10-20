@@ -4,6 +4,13 @@ import http from '../../services/httpService'
 import { uploadAvatarImgAction } from './imageActions'
 import * as profileActionTypes from '../Profile/profileActionTypes'
 
+jest.mock('../Modal/modalActions', () => () => ({
+  type: 'TEST_MODAL_ACTION'
+}))
+jest.mock('../User/userActions', () => ({
+  getActiveUserAction: () => ({ type: 'TEST_USER_ACTION' })
+}))
+
 const middlewares = [thunk] // add your middlewares like `redux-thunk`
 const mockStore = configureStore(middlewares)
 
@@ -19,7 +26,8 @@ it('testing uploadAvatarImgAction', async () => {
   const testImage = {
     name: 'car.jpg',
     size: 7110,
-    type: 'image/jpeg'}
+    type: 'image/jpeg'
+  }
   const testResponse = 'Test response'
   http.post.mockResolvedValue({ data: testResponse })
 
@@ -34,4 +42,6 @@ it('testing uploadAvatarImgAction', async () => {
   expect(actions.length).toBe(3)
   expect(actions[0].type).toEqual(profileActionTypes.SAVE_ACTIVE_PROFILE)
   expect(actions[0].payload).toEqual(testResponse)
+  expect(actions[1].type).toEqual('TEST_USER_ACTION')
+  expect(actions[2].type).toEqual('TEST_MODAL_ACTION')
 })

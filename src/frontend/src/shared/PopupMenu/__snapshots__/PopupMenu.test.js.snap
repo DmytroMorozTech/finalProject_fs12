@@ -6,6 +6,7 @@ exports[`should render PopupMenu component to match snapshot 1`] = `
 >
   <span
     aria-haspopup="true"
+    class="makeStyles-flex-2"
     id="spanForHandleToggle"
   />
 </div>
