@@ -115,7 +115,7 @@ function NewChat (props) {
     switch (true) {
       case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
-      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+      case localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
       default:
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1])
@@ -247,7 +247,7 @@ function NewChat (props) {
                 </div>
               </div>
               {openSmileBoard
-                ? <Picker pickerStyle={{width: '25rem', height: '30rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
+                ? <Picker pickerStyle={{width: '19rem', height: '21rem', bottom: '14rem', position: 'absolute', zIndex: 10}} onEmojiClick={onEmojiClick} />
                 : null}
             </footer>
           </form>
