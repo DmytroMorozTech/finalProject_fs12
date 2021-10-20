@@ -1,7 +1,3 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 import 'regenerator-runtime/runtime'
 import enableHooks from 'jest-react-hooks-shallow'
@@ -25,7 +21,7 @@ console.error = message => {
 // pass an instance of jest to `enableHooks()`
 enableHooks(jest)
 
-//  String.prototype.replaceAll is not implemented in Node.js of versions until v16.8.0
+// String.prototype.replaceAll is not implemented in Node.js of versions until v16.8.0
 const replaceAllPolyfill = require('string.prototype.replaceall')
 // eslint-disable-next-line no-extend-native
 String.prototype.replaceAll = String.prototype.replaceAll || replaceAllPolyfill

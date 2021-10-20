@@ -37,7 +37,10 @@ function UserData () {
       <SharedButton component={Link} to={`/profiles/${activeUserId}`} className={classes.profileButton} variant="outlined" color="primary">
         View Profile
       </SharedButton>
-      <SharedButton className={classes.profileButton} variant="outlined" color="secondary" onClick={() => signOut()}>
+      <SharedButton
+        id='SignOut'
+        className={classes.profileButton} variant="outlined" color="secondary"
+        onClick={() => signOut()}>
         Sign Out
       </SharedButton>
     </div>

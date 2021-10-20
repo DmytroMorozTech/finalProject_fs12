@@ -9,7 +9,6 @@ import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
-import clsx from 'clsx'
 import Image from '../../../shared/Image/Image'
 
 function RegisterPage () {
@@ -58,7 +57,7 @@ function RegisterPage () {
   }
 
   return (firstSignUpPage
-    ? <Paper elevation={3} className={clsx(classes.registerPageCard, classes.firstSignUpPage)}>
+    ? <Paper elevation={3} className={classes.registerPageCard}>
       <p className={classes.title}>Sign up</p>
       <Typography variant='h3' className={classes.subtitle}>
         Make the most of your professional life
@@ -141,7 +140,7 @@ function RegisterPage () {
         </div>
       </div>
     </Paper>
-    : <Paper elevation={3} className={clsx(classes.registerPageCard, classes.secondSignUpPage)}>
+    : <Paper elevation={3} className={classes.registerPageCard}>
       <p className={classes.title}>Sign up</p>
       <Typography variant='h3' className={classes.subtitle}>
         Make the most of your professional life

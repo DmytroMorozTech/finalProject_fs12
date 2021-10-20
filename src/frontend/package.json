@@ -101,6 +101,7 @@
     "jest-react-hooks-shallow": "^1.5.1",
     "react-datepicker": "^4.2.0",
     "react-toastify": "^7.0.4",
+    "redux-mock-store": "^1.5.4",
     "standard": "^10.0.3",
     "string.prototype.replaceall": "^1.0.6",
     "yup": "^0.32.9"

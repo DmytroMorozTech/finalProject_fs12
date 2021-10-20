@@ -16,24 +16,3 @@ describe('should render PopupMenu component', () => {
     expect(component).toMatchSnapshot()
   })
 })
-
-// describe('should render PopupMenu component', () => {
-//   let component
-//   beforeEach(() => {
-//     component = mount(<PopupMenu/>)
-//     it('when user click span should work handleToggle', () => {
-//       expect(component.find('MenuList')).toBe(0)
-//
-//       component.find('#spanForHandleToggle').simulate('click')
-//
-//       expect(component.find('MenuList')).toBe(1)
-//     })
-//     it('user click away should work handleClose', () => {
-//       expect(component.find('MenuList')).toBe(1)
-//
-//       component.find('#spanForHandleToggle').simulate(CloseEvent)
-//
-//       expect(component.find('MenuList')).toBe(0)
-//     })
-//   })
-// })
