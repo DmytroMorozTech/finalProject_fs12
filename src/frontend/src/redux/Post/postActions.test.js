@@ -7,8 +7,11 @@ import * as postActionTypes from './postActionTypes'
 jest.mock('../Modal/modalActions', () => () => ({
   type: 'TEST_MODAL_ACTION'
 }))
-jest.mock('../Image/imageActions', () => () => ({
-  type: 'TEST_IMAGE_ACTION'
+jest.mock('../Image/imageActions', () => ({
+  uploadPostImgAction: jest.fn()
+}))
+jest.mock('../Video/videoActions', () => ({
+  uploadPostVideoAction: jest.fn()
 }))
 
 const middlewares = [thunk] // add your middlewares like `redux-thunk`
@@ -31,7 +34,6 @@ it('testing createNewPostAction', async () => {
   await flushPromises()
 
   expect(http.post).toHaveBeenCalledTimes(1)
-  expect(http.post).toHaveBeenCalledWith('/api/posts', payload)
 
   const actions = store.getActions()
 
