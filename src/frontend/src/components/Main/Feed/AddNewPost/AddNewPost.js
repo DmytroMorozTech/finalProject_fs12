@@ -9,7 +9,6 @@ import MuiDialogActions from '@material-ui/core/DialogActions'
 import Tooltip from '@material-ui/core/Tooltip'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import YouTubeIcon from '@material-ui/icons/YouTube'
-import EventNoteIcon from '@material-ui/icons/EventNote'
 import styles from './styles'
 import { activeUserSelector } from '../../../../redux/User/userSelector'
 import { createNewPostAction } from '../../../../redux/Post/postActions'
@@ -245,12 +244,6 @@ const AddNewPost = () => {
                   />
                   <YouTubeIcon className={classes.icons}/>
                 </label>
-              </div>
-            </LightTooltip>
-
-            <LightTooltip title={`Add a document`} placement={'top'}>
-              <div className={classes.shareButton}>
-                <EventNoteIcon className={classes.icons}/>
               </div>
             </LightTooltip>
 
