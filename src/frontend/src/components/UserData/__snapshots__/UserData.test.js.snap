@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render UserData component to match snapshot 1`] = `
+<div>
+  <WithStyles(ForwardRef(MenuItem))
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    to="/profiles/1"
+  >
+    <div>
+      <Image
+        alt="Avatar of undefined"
+        type="smallAvatar"
+      />
+      <div>
+        <span />
+        <div />
+      </div>
+    </div>
+  </WithStyles(ForwardRef(MenuItem))>
+  <SharedButton
+    color="primary"
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    to="/profiles/1"
+    variant="outlined"
+  >
+    View Profile
+  </SharedButton>
+  <SharedButton
+    color="secondary"
+    id="SignOut"
+    onClick={[Function]}
+    variant="outlined"
+  >
+    Sign Out
+  </SharedButton>
+</div>
+`;
