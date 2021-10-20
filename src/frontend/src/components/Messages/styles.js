@@ -261,7 +261,11 @@ export default makeStyles((theme) => ({
     padding: 0,
     overflow: 'hidden',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    '@media screen and (max-width: 640px)': {
+      margin: '0 auto',
+      width: '90vw'
+    }
   },
 
   scaffoldLayout: {
