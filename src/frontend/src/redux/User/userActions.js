@@ -26,8 +26,7 @@ export const signOutAction = () => (dispatch) => {
     .get('/logout')
     .then(() => {
       window.location.href = '/'
-    }
-    )
+    })
 }
 
 export const findUserByIdAction = (id) => (dispatch) => {
