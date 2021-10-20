@@ -101,14 +101,6 @@ exports[`should render AddNewPost component to match snapshot 1`] = `
           </label>
         </div>
       </WithStyles(WithStyles(ForwardRef(Tooltip)))>
-      <WithStyles(WithStyles(ForwardRef(Tooltip)))
-        placement="top"
-        title="Add a document"
-      >
-        <div>
-          <Memo(ForwardRef(EventNoteIcon)) />
-        </div>
-      </WithStyles(WithStyles(ForwardRef(Tooltip)))>
       <hr />
     </div>
     <SharedButton

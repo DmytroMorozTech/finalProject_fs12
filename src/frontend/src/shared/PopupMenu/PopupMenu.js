@@ -42,7 +42,7 @@ export default function SimpleMenu (props) {
 
   return (
     <div className={classes.root}>
-      <span
+      <span className={classes.flex}
         id='spanForHandleToggle'
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}

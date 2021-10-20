@@ -2,7 +2,6 @@
 
 exports[`should render RegisterPage component to match snapshot 1`] = `
 <WithStyles(ForwardRef(Paper))
-  className=""
   elevation={3}
 >
   <p>

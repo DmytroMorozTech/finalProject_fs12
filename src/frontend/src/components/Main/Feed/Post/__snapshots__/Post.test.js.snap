@@ -43,7 +43,7 @@ exports[`should render Post component to match snapshot 1`] = `
       <WithStyles(ForwardRef(Typography))
         variant="h6"
       >
-        6d
+        1w
         <SmallDot />
         <div>
           <Memo(ForwardRef(PublicIcon))
