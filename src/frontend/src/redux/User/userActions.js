@@ -24,9 +24,6 @@ export const signOutAction = () => (dispatch) => {
   })
   return http
     .get('/logout')
-    // .then(() => {
-    //   window.location.href = '/'
-    // })
 }
 
 export const findUserByIdAction = (id) => (dispatch) => {
