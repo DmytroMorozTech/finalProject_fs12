@@ -29,9 +29,4 @@ describe('should render RegisterPage component', () => {
   it('to match snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-  // it('should work dispatch authenticate by Google', () => {
-  //   expect(mockDispatch).toHaveBeenCalledTimes(0)
-  //   component.find('button[id=\'googleBtn\']').simulate('click')
-  //   expect(mockDispatch).toHaveBeenCalledTimes(1)
-  // })
 })
