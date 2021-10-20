@@ -10,6 +10,7 @@ import Preloader from '../../shared/Preloader/Preloader'
 import MainRight from './MainRight/MainRight'
 import { connectionsSelector } from '../../redux/Network/networkSelector'
 import { getMyConnectionsAction } from '../../redux/Network/networkActions'
+import {getNumberOfNewMessagesAction} from '../../redux/Message/messageActions'
 
 function Main () {
   const classes = styleMain()
@@ -21,6 +22,7 @@ function Main () {
 
   useEffect(() => {
     dispatch(getMyConnectionsAction())
+    dispatch(getNumberOfNewMessagesAction())
   }, [dispatch])
 
   return isLoadingUser || !activeUser.id ? <Preloader/> : (

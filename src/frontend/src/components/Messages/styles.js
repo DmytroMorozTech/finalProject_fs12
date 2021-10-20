@@ -20,7 +20,10 @@ export default makeStyles((theme) => ({
     overflow: 'hidden',
     borderRadius: 12,
     boxShadow: 'inset 0 0 0 1px #8080802b',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    '@media screen and (max-width: 640px)': {
+      width: '90vw'
+    }
   },
 
   layoutList: {
@@ -258,7 +261,11 @@ export default makeStyles((theme) => ({
     padding: 0,
     overflow: 'hidden',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    '@media screen and (max-width: 640px)': {
+      margin: '0 auto',
+      width: '90vw'
+    }
   },
 
   scaffoldLayout: {
@@ -569,7 +576,10 @@ export default makeStyles((theme) => ({
     paddingBottom: 48,
     flexShrink: 0,
     zIndex: 2,
-    boxShadow: 'inset -1px -1px 0 0 #8080802b'
+    boxShadow: 'inset -1px -1px 0 0 #8080802b',
+    '@media screen and (max-width: 640px)': {
+      width: '90vw'
+    }
   },
 
   imgIconMsg: {

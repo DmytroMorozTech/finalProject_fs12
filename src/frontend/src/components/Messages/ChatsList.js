@@ -46,7 +46,7 @@ function ChatsList (props) {
     switch (true) {
       case localTime.getFullYear() === +time.split('T')[0].split('-')[0] && +time.split('T')[0].split('-')[2] !== localTime.getDate():
         return time.split('T')[1].split('.')[2] + '.' + time.split('T')[1].split('.')[1]
-      case localTime.getDate() !== +time.split('T')[0].split('-')[2] && localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
+      case localTime.getFullYear() !== +time.split('T')[0].split('-')[0]:
         return time.split('T')[0].split('-')[2] + ' ' + getMonthText(time.split('T')[0].split('-')[1]) + ' ' + time.split('T')[0].split('-')[0]
       default:
         const splitDate = time.split('T')[1].split('.')[0].split(':').slice(0, 2)
