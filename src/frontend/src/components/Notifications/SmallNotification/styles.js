@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     borderRadius: theme.shape.medium,
     backgroundColor: theme.palette.common.white,
     padding: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(1)
   },
 
   item: {
