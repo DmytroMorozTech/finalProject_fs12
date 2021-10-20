@@ -1,4 +1,4 @@
-import React, from 'react'
+import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Messages from '../components/Messages/Messages'
 import Notifications from '../components/Notifications/Notifications'
@@ -24,7 +24,6 @@ import OrganizationPage from '../components/OrganizationPage/OrganizationPage'
 import SinglePost from '../components/SinglePost/SinglePost'
 
 const MainRoutes = () => {
-
   return (
     <Switch>
       <Route exact path="/" render={() => <Login/>}/>
