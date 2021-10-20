@@ -147,6 +147,7 @@ const CertificationModal = (props) => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Field
+                    fullWidth
                     name="name"
                     label="Name"
                     required
@@ -161,6 +162,7 @@ const CertificationModal = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field
+                    fullWidth
                     name="issuingOrganization"
                     label="Issuing organization"
                     required
@@ -224,6 +226,7 @@ const CertificationModal = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field
+                    fullWidth
                     name="credentialId"
                     label="Credential ID"
                     type="text"
@@ -236,6 +239,7 @@ const CertificationModal = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field
+                    fullWidth
                     name="credentialUrl"
                     label="Credential URL"
                     type="text"
