@@ -7,6 +7,7 @@ import {isLoadingUserSelector} from './redux/User/userSelector'
 import Preloader from './shared/Preloader/Preloader'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import {connect} from './utils/ws'
 
 toast.configure()
 
@@ -17,6 +18,10 @@ function App () {
   useEffect(() => {
     dispatch(getActiveUserAction())
   }, [dispatch])
+
+  useEffect(() => {
+    connect()
+  }, [])
 
   return isLoadingUser ? <Preloader fullscreen={true}/> : (
     <div>
