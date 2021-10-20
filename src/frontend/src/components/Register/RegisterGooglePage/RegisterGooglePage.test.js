@@ -39,9 +39,4 @@ describe('should render RegisterGooglePage component', () => {
     component.find('Link[id=\'signIn\']').simulate('click')
     expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
-  // it('should work submit handle', () => {
-  //   expect(mockDispatch).toHaveBeenCalledTimes(0)
-  //   component.find('Formik').simulate('submit')
-  //   expect(mockDispatch).toHaveBeenCalledTimes(1)
-  // })
 })
