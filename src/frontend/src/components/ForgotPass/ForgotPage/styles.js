@@ -53,7 +53,8 @@ export default makeStyles((theme) => ({
     width: '100%',
     fontSize: theme.typography.h3.fontSize,
     marginTop: '2rem',
-    marginLeft: 0
+    marginLeft: 0,
+    marginBottom: theme.spacing(3)
   },
 
   signInLineLink: {
@@ -134,9 +135,13 @@ export default makeStyles((theme) => ({
   },
 
   subTextSecond: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontSize: theme.typography.h5.fontSize,
-    textAlign: 'center',
-    margin: 0
+    margin: 0,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3)
   },
 
   hideEmail: {
@@ -166,11 +171,15 @@ export default makeStyles((theme) => ({
 
   passwordPromptLink: {
     textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
     fontSize: theme.typography.h5.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '1rem',
     margin: 0,
     color: theme.palette.primary.main,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
     cursor: 'pointer',
     '&:visited': {
       color: theme.palette.primary.main
