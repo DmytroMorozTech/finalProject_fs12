@@ -1,5 +1,5 @@
 import styles from './styles'
-import { Container, Grid } from '@material-ui/core'
+import { Container, Grid, Hidden } from '@material-ui/core'
 import InvitationManagerHeader from './InvitationManagerHeader/InvitationManagerHeader'
 import InvitationManagerReceivedMain from './InvitationManagerMain/InvitationManagerReceivedMain'
 import InvitationManagerRight from './InvitationManagerRight/InvitationManagerRight'
@@ -25,7 +25,7 @@ function InvitationManagerReceived () {
     <Container maxWidth={'lg'} className={classes.invitationManager}>
 
       <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
-        <Grid item xs={7}>
+        <Grid item xs={12} md={8}>
           <div className={classes.main}>
             <InvitationManagerHeader
               numberOfInvReceived={invitationsForMe.length}
@@ -38,9 +38,11 @@ function InvitationManagerReceived () {
           </div>
         </Grid>
 
-        <Grid item xs={3}>
-          <InvitationManagerRight/>
-        </Grid>
+        <Hidden smDown>
+          <Grid item md={3}>
+            <InvitationManagerRight/>
+          </Grid>
+        </Hidden>
       </Grid>
     </Container>
   )

@@ -18,10 +18,7 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.h1.fontSize,
     lineHeight: theme.typography.h3.lineHeight,
     margin: 0,
-    textAlign: 'center',
-    '@media screen and (max-width: 640px)': {
-      fontSize: theme.typography.sh1.fontSize
-    }
+    textAlign: 'center'
   },
   subText: {
     fontSize: theme.typography.h5.fontSize
@@ -80,29 +77,19 @@ export default makeStyles((theme) => ({
   },
 
   firstForgotPage: {
-    width: 450,
-    height: 400,
-    '@media screen and (max-width: 640px)': {
-      width: '90vw'
-    }
+    width: '100%',
+    maxWidth: 450
   },
 
   secondForgotPage: {
-    width: 550,
-    height: 450,
-    '@media screen and (max-width: 640px)': {
-      width: '90vw',
-      height: '55vh'
-    }
+    width: '100%',
+    maxWidth: 550
   },
 
   mainTextSecond: {
     width: '100%',
     fontSize: theme.typography.sh1.fontSize,
-    textAlign: 'center',
-    '@media screen and (max-width: 640px)': {
-      fontSize: theme.typography.h2.fontSize
-    }
+    textAlign: 'center'
   },
 
   signInLineLinkChange: {
@@ -112,16 +99,16 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.h5.fontSize,
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '1rem',
-    margin: '1rem auto',
     padding: '0.3rem 0.5rem',
-    color: '#0a66c2',
+    color: theme.palette.primary.main,
     cursor: 'pointer',
+    margin: 0,
     '&:hover': {
       borderRadius: '20px',
       backgroundColor: '#d0e8ff'
     },
     '&:visited': {
-      color: '#0a66c2'
+      color: theme.palette.primary.main
     }
   },
 
@@ -132,16 +119,17 @@ export default makeStyles((theme) => ({
   mainTextWrapperSecond: {
     width: '100%',
     display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     alignItems: 'center',
-    '@media screen and (max-width: 640px)': {
-      flexDirection: 'column',
-      fontSize: theme.typography.h2.fontSize
-    }
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4)
   },
 
   subTextSecond: {
     fontSize: theme.typography.h5.fontSize,
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: 0
   },
 
   hideEmail: {
@@ -158,14 +146,14 @@ export default makeStyles((theme) => ({
     lineHeight: '1rem',
     margin: 0,
     padding: '0.3rem 0.5rem',
-    color: '#0a66c2',
+    color: theme.palette.primary.main,
     cursor: 'pointer',
     '&:hover': {
       borderRadius: '20px',
       backgroundColor: '#d0e8ff'
     },
     '&:visited': {
-      color: '#0a66c2'
+      color: theme.palette.primary.main
     }
   },
 
@@ -175,22 +163,16 @@ export default makeStyles((theme) => ({
     fontWeight: theme.typography.sh3.fontWeight,
     lineHeight: '1rem',
     margin: 0,
-    color: '#0a66c2',
+    color: theme.palette.primary.main,
     cursor: 'pointer',
     '&:visited': {
-      color: '#0a66c2'
-    },
-    '@media screen and (max-width: 640px)': {
-      textAlign: 'center'
+      color: theme.palette.primary.main
     }
   },
 
   thirdForgotPage: {
-    width: 470,
-    height: 500,
-    '@media screen and (max-width: 640px)': {
-      width: '90vw'
-    }
+    width: '100%',
+    maxWidth: 470
   },
 
   popoverHeader: {
@@ -226,5 +208,4 @@ export default makeStyles((theme) => ({
     fontSize: theme.typography.sh1.fontSize,
     textAlign: 'center'
   }
-
 }))

@@ -12,7 +12,8 @@ exports[`should render InvitationManagerReceived component to match snapshot 1`]
   >
     <WithStyles(ForwardRef(Grid))
       item={true}
-      xs={7}
+      md={8}
+      xs={12}
     >
       <div>
         <InvitationManagerHeader />
@@ -21,12 +22,16 @@ exports[`should render InvitationManagerReceived component to match snapshot 1`]
         />
       </div>
     </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      item={true}
-      xs={3}
+    <Hidden
+      smDown={true}
     >
-      <InvitationManagerRight />
-    </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        md={3}
+      >
+        <InvitationManagerRight />
+      </WithStyles(ForwardRef(Grid))>
+    </Hidden>
   </WithStyles(ForwardRef(Grid))>
 </WithStyles(ForwardRef(Container))>
 `;
