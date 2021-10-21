@@ -6,7 +6,8 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '10px'
+    borderRadius: '10px',
+    padding: theme.spacing(3)
   },
 
   mainTextContainer: {
@@ -21,7 +22,13 @@ export default makeStyles((theme) => ({
     textAlign: 'center'
   },
   subText: {
-    fontSize: theme.typography.h5.fontSize
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: theme.typography.h5.fontSize,
+    margin: 0,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3)
   },
   form: {
     width: '80%',
