@@ -91,14 +91,14 @@ public class Post extends AbstractEntity {
   }
 
   public Boolean getIsLikedByActiveUser() {
-    Long activeUserId = ActiveUserUtils.getActiveUserId();
-    return postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getId(), activeUserId));
+    String activeUserEmail = ActiveUserUtils.getActiveUserEmail();
+    return postLikes.stream().anyMatch(l -> Objects.equals(l.getUser().getEmail(), activeUserEmail));
   }
 
   public Boolean getIsBookmarkedByActiveUser() {
-    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    String activeUserEmail = ActiveUserUtils.getActiveUserEmail();
     return bookmarks.stream()
-      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getId(), activeUserId));
+      .anyMatch(bookmark -> Objects.equals(bookmark.getUser().getEmail(), activeUserEmail));
   }
 
 }

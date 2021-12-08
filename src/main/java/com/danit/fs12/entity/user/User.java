@@ -285,12 +285,12 @@ public class User extends AbstractEntity {
   }
 
   public Boolean getIsFollowedByActiveUser() {
-    Long activeUserId = ActiveUserUtils.getActiveUserId();
+    String activeUserEmail = ActiveUserUtils.getActiveUserEmail();
     Set<User> usersFollowing = getUsersFollowing();
 
     return (usersFollowing.size() == 0)
       ? false
-      : getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getId(), activeUserId));
+      : getUsersFollowing().stream().anyMatch(user -> Objects.equals(user.getEmail(), activeUserEmail));
   }
 
   public Integer getNumberOfFollowers() {
